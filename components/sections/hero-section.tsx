@@ -23,8 +23,6 @@ export default function HeroSection() {
   const words = ["more visibility", "more clients", "more time", "more impact", "your business"]
 
   useEffect(() => {
-    let timer: NodeJS.Timeout
-
     const handleTyping = () => {
       const current = loopNum % words.length
       const fullText = words[current]
@@ -54,18 +52,18 @@ export default function HeroSection() {
       }
     }
 
-    timer = setTimeout(handleTyping, typingSpeed)
+    const timer = setTimeout(handleTyping, typingSpeed)
     return () => clearTimeout(timer)
-  }, [displayText, isDeleting, loopNum, typingSpeed, words])
+  }, [displayText, isDeleting, loopNum, typingSpeed])
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-r from-blue-50 to-white pt-20 pb-16 md:pt-32 md:pb-24">
       {/* Background pattern */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
+      <div className="absolute inset-0 bg-grid-pattern opacity-10" />
 
       {/* Floating elements for visual interest */}
-      <div className="absolute top-20 right-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-10 left-10 w-72 h-72 bg-blue-100/20 rounded-full blur-3xl"></div>
+      <div className="absolute top-20 right-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-10 left-10 w-72 h-72 bg-blue-100/20 rounded-full blur-3xl" />
 
       <div className="container-wide relative z-10">
         <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -84,7 +82,7 @@ export default function HeroSection() {
                 {/* Fixed height container to prevent layout shifts */}
                 <span className="inline-block min-h-[1.2em]" ref={typingRef}>
                   {displayText}
-                  <span className="typing-cursor"></span>
+                  <span className="typing-cursor" />
                 </span>
               </span>
             </h1>
@@ -119,8 +117,8 @@ export default function HeroSection() {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             {/* Decorative elements */}
-            <div className="absolute -top-6 -right-6 w-24 h-24 bg-blue-100 rounded-full z-0"></div>
-            <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-primary/10 rounded-full z-0"></div>
+            <div className="absolute -top-6 -right-6 w-24 h-24 bg-blue-100 rounded-full z-0" />
+            <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-primary/10 rounded-full z-0" />
 
             <div className="relative h-full w-full z-10">
               {/* Using a placeholder image that will definitely work */}
@@ -145,8 +143,8 @@ export default function HeroSection() {
             { value: 120, suffix: "+", label: "Projects completed" },
             { value: 7, suffix: "+", label: "Years experience" },
             { value: 50, suffix: "+", label: "Happy clients" },
-          ].map((stat, index) => (
-            <div key={index} className="flex flex-col items-center text-center">
+          ].map((stat) => (
+            <div key={stat.label} className="flex flex-col items-center text-center">
               <div className="text-primary font-bold text-3xl md:text-4xl mb-2">
                 <CountUp end={stat.value} suffix={stat.suffix} duration={2.5} enableScrollSpy scrollSpyDelay={500} />
               </div>
