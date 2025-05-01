@@ -125,7 +125,7 @@ export default function HeroSection() {
             <div className="relative h-full w-full z-10">
               {/* Using a placeholder image that will definitely work */}
               <Image
-                src="/placeholder.svg?height=500&width=500"
+                src="/placeholder.svg"
                 alt="Professional entrepreneur"
                 fill
                 className="object-cover rounded-xl"
