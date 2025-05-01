@@ -1,9 +1,10 @@
+/* biome-disable lint/correctness/useExhaustiveDependencies */
 "use client"
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Menu, X } from "lucide-react"
+import { Menu, X, ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
@@ -32,18 +33,25 @@ export default function Header() {
   }, [])
 
   // Close mobile menu when route changes
+  // biome-disable-next-line lint/correctness/useExhaustiveDependencies
   useEffect(() => {
     setMobileMenuOpen(false)
-  }, [pathname])
+  }, [])
 
   return (
     <header
       className={cn(
         "sticky top-0 z-50 w-full transition-all duration-300",
-        scrolled ? "bg-white/95 backdrop-blur-md shadow-sm" : "bg-transparent",
+        scrolled ? "bg-white/80 backdrop-blur-md shadow-sm" : "bg-transparent",
       )}
     >
-      <nav className="container-wide flex items-center justify-between py-4" aria-label="Global">
+      <nav
+        className={cn(
+          "container-wide flex items-center justify-between transition-all duration-300",
+          scrolled ? "py-4 lg:py-2" : "py-4 lg:py-6"
+        )}
+        aria-label="Global"
+      >
         <div className="flex lg:flex-1">
           <Link href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company Name</span>
@@ -96,21 +104,7 @@ export default function Header() {
           <Button asChild className="bg-primary hover:bg-primary/90 group">
             <Link href="/contact">
               Get in touch
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1"
-              >
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
+              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </Button>
         </div>
@@ -168,21 +162,7 @@ export default function Header() {
                 <Button asChild className="w-full bg-primary hover:bg-primary/90 group">
                   <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
                     Get in touch
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1"
-                    >
-                      <line x1="5" y1="12" x2="19" y2="12"></line>
-                      <polyline points="12 5 19 12 12 19"></polyline>
-                    </svg>
+                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </Button>
               </div>

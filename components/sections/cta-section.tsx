@@ -6,8 +6,8 @@ export default function CtaSection() {
   return (
     <section className="py-20 bg-primary text-white relative overflow-hidden">
       {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-white/10 rounded-full -translate-y-1/2 -translate-x-1/2 blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-white/10 rounded-full translate-y-1/2 translate-x-1/2 blur-3xl"></div>
+      <div className="absolute top-0 left-0 w-96 h-96 bg-white/10 rounded-full -translate-y-1/2 -translate-x-1/2 blur-3xl" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-white/10 rounded-full translate-y-1/2 translate-x-1/2 blur-3xl" />
 
       <div className="container-wide px-4 text-center relative z-10">
         <div className="inline-flex items-center bg-white/20 rounded-full px-4 py-2 mb-6">
@@ -23,8 +23,9 @@ export default function CtaSection() {
             strokeLinejoin="round"
             className="h-4 w-4 mr-2"
           >
-            <circle cx="12" cy="12" r="10"></circle>
-            <polyline points="12 6 12 12 16 14"></polyline>
+            <title>Clock icon</title>
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="12 6 12 12 16 14" />
           </svg>
           <span className="text-sm font-medium">Limited time offer</span>
         </div>
@@ -43,7 +44,7 @@ export default function CtaSection() {
             </Link>
           </Button>
 
-          <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/20" asChild>
+          <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white/20" asChild>
             <Link href="/about">Learn more about us</Link>
           </Button>
         </div>

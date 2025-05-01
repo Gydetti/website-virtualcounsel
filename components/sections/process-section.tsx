@@ -42,13 +42,13 @@ export default function ProcessSection() {
 
   return (
     <section id="process" className="section-padding bg-white relative overflow-hidden">
-      <div className="absolute inset-0 bg-[url('/placeholder.svg?height=1000&width=1000')] bg-center opacity-5"></div>
+      <div className="absolute inset-0 bg-[url('/placeholder.svg?height=1000&width=1000')] bg-center opacity-5" />
 
       {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-blue-50/80 rounded-full -translate-y-1/2 -translate-x-1/2 blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 rounded-full translate-y-1/2 translate-x-1/2 blur-3xl"></div>
+      <div className="absolute top-0 left-0 w-96 h-96 bg-blue-50/80 rounded-full -translate-y-1/2 -translate-x-1/2 blur-3xl" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 rounded-full translate-y-1/2 translate-x-1/2 blur-3xl" />
 
-      <div className="container-wide relative z-10">
+      <div className="max-w-4xl mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
           <Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">Our process</Badge>
           <h2 className="section-title">How we work with you</h2>
@@ -59,12 +59,12 @@ export default function ProcessSection() {
 
         <div className="relative">
           {/* Timeline line */}
-          <div className="absolute left-[40px] top-0 bottom-0 w-0.5 bg-gray-200 hidden md:block"></div>
+          <div className="absolute left-[40px] top-0 bottom-0 w-0.5 bg-gray-200 hidden md:block" />
 
           <div className="space-y-16">
             {steps.map((step, index) => (
               <motion.div
-                key={index}
+                key={step.number}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -84,8 +84,8 @@ export default function ProcessSection() {
                   <div className="bg-gray-50 p-6 rounded-lg">
                     <h4 className="font-semibold mb-3">What this includes:</h4>
                     <ul className="space-y-2">
-                      {step.details.map((detail, i) => (
-                        <li key={i} className="flex items-start">
+                      {step.details.map((detail) => (
+                        <li key={detail} className="flex items-start">
                           <span className="text-primary mr-2">•</span>
                           <span>{detail}</span>
                         </li>

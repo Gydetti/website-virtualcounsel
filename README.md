@@ -325,8 +325,24 @@ The template includes a comprehensive cookie consent system that complies with G
 
 ### Cookiebot Integration
 - Optional integration with Cookiebot
-- Script in `app/layout.tsx`
-- Placeholder: `XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`
+- Script in `app/layout.tsx` pulls your ID from `process.env.NEXT_PUBLIC_COOKIEBOT_ID`
+- To configure:
+  1. In your hosting platform (e.g., Vercel), set the environment variable:
+     ```bash
+     NEXT_PUBLIC_COOKIEBOT_ID=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+     ```
+  2. Deploy so that the Cookiebot `<Script>` runs with `strategy="beforeInteractive"` before other scripts.
+  3. Ensure any tracking `<Script>` tags you add use:
+     ```tsx
+     type="text/plain"
+     data-cookieconsent="statistics"  // for analytics scripts
+     data-cookieconsent="marketing"   // for marketing scripts
+     ```
+     Cookiebot will block/unblock those scripts based on user consent.
+- Testing the setup:
+  - Open the site in a fresh or incognito browser—verify the Cookiebot consent banner appears and no trackers load initially.
+  - Give consent for each category and confirm the corresponding scripts load (check Network panel or dataLayer events).
+  - Use Cookiebot's dashboard to review discovered cookies and categories.
 
 ## SEO Optimization
 
@@ -400,6 +416,22 @@ The template is optimized for performance:
 1. Replace placeholder text in all components
 2. Update images with your own
 3. Modify service and blog data in `lib/data-utils.ts`
+
+### Newsletter Provider
+To enable the built-in newsletter subscription form, configure these environment variables in your deployment (e.g., Vercel):
+1. `NEXT_PUBLIC_NEWSLETTER_PROVIDER` – set to `mailchimp`, `hubspot`, or `activecampaign`.
+2. **Mailchimp**
+   - `MAILCHIMP_API_KEY=your-key-usX`
+   - `MAILCHIMP_LIST_ID=your-list-id`
+3. **HubSpot**
+   - `HUBSPOT_PORTAL_ID=your-portal-id`
+   - `HUBSPOT_FORM_ID=your-form-id`
+4. **ActiveCampaign**
+   - `ACTIVECAMPAIGN_API_URL=https://youraccount.api-usX.com`
+   - `ACTIVECAMPAIGN_API_TOKEN=your-token`
+5. When `NEXT_PUBLIC_NEWSLETTER_PROVIDER` is unset or unsupported, the form will be hidden; you can replace it with a static CTA.
+
+The template includes `components/ui/SubscribeForm.tsx`, which automatically selects and renders the proper form based on the provider. After updating your env variables, redeploy so the changes take effect.
 
 ### Tracking
 1. Replace tracking IDs in `components/tracking/tracking-scripts.tsx`

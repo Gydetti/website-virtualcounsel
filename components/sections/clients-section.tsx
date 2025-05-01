@@ -1,7 +1,6 @@
 "use client"
-import Image from "next/image"
-import Marquee from "react-fast-marquee"
 import { Badge } from "@/components/ui/badge"
+import styles from './clients-section.module.css'
 
 export default function ClientsSection() {
   const clients = [
@@ -14,6 +13,9 @@ export default function ClientsSection() {
     { name: "EliteServices", logo: "/placeholder.svg?height=60&width=120" },
     { name: "PrimeConsulting", logo: "/placeholder.svg?height=60&width=120" },
   ]
+  const repeats = 3
+  const slideWidth = 166; // width of each logo item in px
+  const totalWidth = clients.length * repeats * slideWidth;
 
   return (
     <section className="py-12 bg-white relative overflow-hidden">
@@ -23,21 +25,19 @@ export default function ClientsSection() {
           <h2 className="text-2xl font-bold">Companies that trust us</h2>
         </div>
 
-        <Marquee gradient={true} gradientWidth={50} speed={40} pauseOnHover={true} className="py-4">
-          <div className="flex items-center gap-16">
-            {clients.map((client, index) => (
-              <div key={index} className="mx-4 grayscale hover:grayscale-0 transition-all duration-300">
-                <Image
-                  src={client.logo || "/placeholder.svg"}
-                  alt={client.name}
-                  width={120}
-                  height={60}
-                  className="h-12 w-auto object-contain"
-                />
-              </div>
-            ))}
+        <div className="py-4">
+          <div className={styles.slider_wrapper}>
+            <div className={styles.slider} style={{ width: `${totalWidth}px` }}>
+              {Array.from({ length: repeats }).flatMap((_, rIdx) =>
+                clients.map((client) => (
+                  <div key={`${rIdx}-${client.name}`} className={styles.logo_item}>
+                    <img src={client.logo} alt={client.name} className={`${styles.logo_image} w-24`} />
+                  </div>
+                )),
+              )}
+            </div>
           </div>
-        </Marquee>
+        </div>
       </div>
     </section>
   )

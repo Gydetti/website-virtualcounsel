@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import CountUp from "react-countup"
+import { AspectRatio } from "@/components/ui/aspect-ratio"
 
 export default function HeroSection() {
   // Reference to the typing element
@@ -22,6 +23,9 @@ export default function HeroSection() {
   // Words to cycle through
   const words = ["more visibility", "more clients", "more time", "more impact", "your business"]
 
+  // Hero image source state with fallback
+  const [heroSrc, setHeroSrc] = useState<string>("/placeholder-user.jpg")
+
   useEffect(() => {
     const handleTyping = () => {
       const current = loopNum % words.length
@@ -33,9 +37,9 @@ export default function HeroSection() {
 
       // Set typing speed based on state
       if (isDeleting) {
-        setTypingSpeed(75) // Faster when deleting
+        setTypingSpeed(50) // Faster when deleting
       } else {
-        setTypingSpeed(150) // Normal speed when typing
+        setTypingSpeed(100) // Normal speed when typing
       }
 
       // If completed typing the word
@@ -57,7 +61,7 @@ export default function HeroSection() {
   }, [displayText, isDeleting, loopNum, typingSpeed])
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-r from-blue-50 to-white pt-20 pb-16 md:pt-32 md:pb-24">
+    <section className="relative overflow-hidden bg-gradient-to-r from-blue-50 to-white pt-16 pb-12 md:pt-28 md:pb-20">
       {/* Background pattern */}
       <div className="absolute inset-0 bg-grid-pattern opacity-10" />
 
@@ -111,31 +115,26 @@ export default function HeroSection() {
           </motion.div>
 
           <motion.div
-            className="relative h-[400px] md:h-[500px] rounded-xl overflow-hidden shadow-2xl md:ml-auto"
+            className="w-full max-w-[600px] ml-auto transform md:translate-y-6 transition-all"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            {/* Decorative elements */}
-            <div className="absolute -top-6 -right-6 w-24 h-24 bg-blue-100 rounded-full z-0" />
-            <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-primary/10 rounded-full z-0" />
-
-            <div className="relative h-full w-full z-10">
-              {/* Using a placeholder image that will definitely work */}
+            <AspectRatio ratio={6 / 5} className="overflow-hidden rounded-xl shadow-2xl relative">
               <Image
-                src="/placeholder-user.jpg"
+                src={heroSrc}
                 alt="Professional entrepreneur"
-                width={400}
-                height={500}
-                className="object-cover rounded-xl"
+                fill
+                className="absolute inset-0 object-cover"
                 priority
                 unoptimized
+                onError={() => setHeroSrc("/placeholder.svg")}
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
                 <p className="text-white font-medium">John Smith</p>
                 <p className="text-white/80 text-sm">Digital growth specialist</p>
               </div>
-            </div>
+            </AspectRatio>
           </motion.div>
         </div>
 

@@ -7,7 +7,6 @@ import Footer from "@/components/layout/footer"
 import { Toaster } from "@/components/ui/toaster"
 import { ThemeProvider } from "@/components/theme-provider"
 import ScrollToTop from "@/components/ui/scroll-to-top"
-import CookieConsentBanner from "@/components/cookie/cookie-consent-banner"
 import TrackingScripts from "@/components/tracking/tracking-scripts"
 import DataLayerProvider from "@/components/tracking/data-layer-provider"
 import { Suspense } from "react"
@@ -65,11 +64,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Cookiebot script - placed in head */}
+        {/* Cookiebot script - placed in head; ID pulled from env var */}
         <Script
           id="Cookiebot"
           src="https://consent.cookiebot.com/uc.js"
-          data-cbid="XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+          data-cbid={process.env.NEXT_PUBLIC_COOKIEBOT_ID}
           data-blockingmode="auto"
           strategy="beforeInteractive"
         />
@@ -93,7 +92,6 @@ export default function RootLayout({
               <Footer />
             </div>
             <ScrollToTop />
-            <CookieConsentBanner />
             <Toaster />
           </DataLayerProvider>
         </ThemeProvider>

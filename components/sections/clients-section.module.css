@@ -1,0 +1,33 @@
+/* components/sections/clients-section.module.css */
+.slider_wrapper {
+  width: 100%;
+  height: auto;
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.slider {
+  display: flex;
+  animation: scroll 80s linear infinite;
+}
+
+.logo_item {
+  width: 166px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo_image {
+  height: auto;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-166px * 8)); /* slides one full set of logos */
+  }
+} 
