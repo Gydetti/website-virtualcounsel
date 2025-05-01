@@ -123,11 +123,13 @@ export default function HeroSection() {
             <div className="relative h-full w-full z-10">
               {/* Using a placeholder image that will definitely work */}
               <Image
-                src="/placeholder.svg"
+                src="/placeholder-user.jpg"
                 alt="Professional entrepreneur"
-                fill
+                width={400}
+                height={500}
                 className="object-cover rounded-xl"
                 priority
+                unoptimized
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
                 <p className="text-white font-medium">John Smith</p>
