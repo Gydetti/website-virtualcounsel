@@ -1,6 +1,7 @@
 import type React from "react"
 import { Poppins, Raleway } from "next/font/google"
 import "./globals.css"
+import Script from "next/script"
 import Header from "@/components/layout/header"
 import Footer from "@/components/layout/footer"
 import { Toaster } from "@/components/ui/toaster"
@@ -9,6 +10,7 @@ import ScrollToTop from "@/components/ui/scroll-to-top"
 import CookieConsentBanner from "@/components/cookie/cookie-consent-banner"
 import TrackingScripts from "@/components/tracking/tracking-scripts"
 import DataLayerProvider from "@/components/tracking/data-layer-provider"
+import { Suspense } from "react"
 import PageViewTracker from "@/components/tracking/page-view-tracker"
 import StructuredData from "@/components/seo/structured-data"
 
@@ -64,13 +66,13 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         {/* Cookiebot script - placed in head */}
-        <script
+        <Script
           id="Cookiebot"
           src="https://consent.cookiebot.com/uc.js"
           data-cbid="XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
           data-blockingmode="auto"
-          type="text/javascript"
-        ></script>
+          strategy="beforeInteractive"
+        />
 
         {/* Structured Data for SEO */}
         <StructuredData type="organization" />
@@ -81,7 +83,9 @@ export default function RootLayout({
           <DataLayerProvider>
             {/* Tracking scripts that respect cookie consent */}
             <TrackingScripts />
-            <PageViewTracker />
+            <Suspense fallback={null}>
+              <PageViewTracker />
+            </Suspense>
 
             <div className="flex min-h-screen flex-col">
               <Header />
