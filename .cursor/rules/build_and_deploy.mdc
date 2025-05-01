@@ -1,0 +1,20 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Build and Deployment Workflow Rule
+
+Always perform the following steps on any code changes before pushing to the `main` branch:
+
+1. **Internal Build**: Run `npm run build` (or your build command) to ensure the application compiles without errors.
+2. **Linter Tests**: Run `npm run lint` and resolve **all** errors and warnings.
+3. **Unit & Integration Tests**: Run `npm test` (or your test command) and verify that **every** test passes.
+4. **Internal Deployment**: Deploy to a staging environment (e.g., `npm run deploy -- --target staging`) or local environment to validate runtime behavior.
+
+After all checks pass with **zero errors** and no regressions or bugs:
+
+5. **Git Push**: Commit any remaining changes and push to the `main` branch. The `main` branch is always live.
+6. **Auto-Deployment to Vercel**: Pushing to `main` triggers an automatic deployment workflow on Vercel.
+
+_Do not skip any step in this workflow—ensuring a fully functional, bug-free codebase is mandatory before going live._
