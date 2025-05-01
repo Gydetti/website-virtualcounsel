@@ -94,10 +94,11 @@ export default function ServicesSection({ services }: ServicesSectionProps) {
 
                 <CardFooter className="card-footer pt-6">
                   <Button
+                    variant={service.popular ? "default" : "outline"}
                     className={`group w-full ${
                       service.popular
-                        ? "bg-primary text-white hover:bg-primary/90"
-                        : "border border-primary text-primary hover:bg-primary hover:text-white"
+                        ? "hover:bg-primary/90"
+                        : "bg-white border border-primary text-primary hover:bg-primary hover:text-white"
                     }`}
                     asChild
                   >
