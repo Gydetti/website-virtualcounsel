@@ -1,7 +1,7 @@
 import type React from "react"
 import { Poppins, Raleway } from "next/font/google"
 import "./globals.css"
-import Script from "next/script"
+// import Script from "next/script" (removed for client-only loading)
 import Header from "@/components/layout/header"
 import Footer from "@/components/layout/footer"
 import { Toaster } from "@/components/ui/toaster"
@@ -12,6 +12,8 @@ import DataLayerProvider from "@/components/tracking/data-layer-provider"
 import { Suspense } from "react"
 import PageViewTracker from "@/components/tracking/page-view-tracker"
 import StructuredData from "@/components/seo/structured-data"
+// import dynamic from 'next/dynamic'
+import CookiebotLoader from '@/components/cookie/CookiebotLoader'
 
 // Poppins for headings
 const poppins = Poppins({
@@ -64,21 +66,15 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Cookiebot script - placed in head; ID pulled from env var */}
-        <Script
-          id="Cookiebot"
-          src="https://consent.cookiebot.com/uc.js"
-          data-cbid={process.env.NEXT_PUBLIC_COOKIEBOT_ID}
-          data-blockingmode="auto"
-          strategy="beforeInteractive"
-        />
-
+        {/* Cookiebot script will now be loaded on the client only via client-only component */}
+        
         {/* Structured Data for SEO */}
         <StructuredData type="organization" />
         <StructuredData type="website" />
       </head>
       <body className={`${poppins.variable} ${raleway.variable} font-sans antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+          <CookiebotLoader />
           <DataLayerProvider>
             {/* Tracking scripts that respect cookie consent */}
             <TrackingScripts />
