@@ -24,6 +24,12 @@
       "rules": {
     "security/no-dangerously-set-inner-html": "off"
   }
+    },
+    {
+      "files": ["**/*.test.{ts,tsx,js,jsx}", "**/*.stories.{ts,tsx,js,jsx}"],
+      "rules": {
+        "jsx-a11y/alt-text": "off"
+      }
     }
   ]
 }

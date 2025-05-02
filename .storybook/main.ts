@@ -1,6 +1,4 @@
-import type { StorybookConfig } from '@storybook/react';
-
-const config: StorybookConfig = {
+const config = {
   stories: ['../components/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
     '@storybook/addon-essentials',
