@@ -16,6 +16,7 @@ import StructuredData from "@/components/seo/structured-data"
 import CookiebotLoader from '@/components/cookie/CookiebotLoader'
 import { defaultMetadata } from '@/lib/metadata'
 import { siteConfig } from '@/lib/site.config'
+import { Partytown } from '@builder.io/partytown/react'
 
 // Poppins for headings
 const poppins = Poppins({
@@ -48,6 +49,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Load Partytown worker for third-party script offloading */}
+        <Partytown forward={['dataLayer.push']} />
         {/* Cookiebot script will now be loaded on the client only via client-only component */}
         
         {/* Structured Data for SEO */}

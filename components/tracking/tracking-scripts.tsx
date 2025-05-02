@@ -16,7 +16,7 @@ export default function TrackingScripts() {
         <>
           <Script
             id="gtm-script"
-            type="text/plain"
+            type="text/partytown"
             data-cookieconsent="statistics"
             strategy="afterInteractive"
             // eslint-disable-next-line react/no-danger
@@ -43,13 +43,13 @@ export default function TrackingScripts() {
         <>
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${siteConfig.tracking.ga4Id}`}
-            type="text/plain"
+            type="text/partytown"
             data-cookieconsent="statistics"
             strategy="afterInteractive"
           />
           <Script
             id="ga4-script"
-            type="text/plain"
+            type="text/partytown"
             data-cookieconsent="statistics"
             strategy="afterInteractive"
             // eslint-disable-next-line react/no-danger
@@ -66,7 +66,7 @@ export default function TrackingScripts() {
       {canLoadMarketing && (
         <Script
           id="facebook-pixel"
-          type="text/plain"
+          type="text/partytown"
           data-cookieconsent="marketing"
           strategy="afterInteractive"
           // eslint-disable-next-line react/no-danger
@@ -82,7 +82,7 @@ export default function TrackingScripts() {
       {canLoadMarketing && (
         <Script
           id="linkedin-insight"
-          type="text/plain"
+          type="text/partytown"
           data-cookieconsent="marketing"
           strategy="afterInteractive"
           // eslint-disable-next-line react/no-danger
@@ -98,7 +98,7 @@ export default function TrackingScripts() {
       {canLoadMarketing && (
         <Script
           id="hubspot-tracking"
-          type="text/plain"
+          type="text/partytown"
           data-cookieconsent="marketing"
           strategy="afterInteractive"
           // eslint-disable-next-line react/no-danger
@@ -114,7 +114,7 @@ export default function TrackingScripts() {
       {canLoadMarketing && (
         <Script
           id="google-ads"
-          type="text/plain"
+          type="text/partytown"
           data-cookieconsent="marketing"
           strategy="afterInteractive"
           // eslint-disable-next-line react/no-danger
