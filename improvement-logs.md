@@ -43,6 +43,13 @@ This document lists the core enhancements still required for an AI-driven build 
 
 **Action**: Implement `enabledPages` in config and update layout/navigation logic.
 
+## 6. Pricing Section
+
+- **Three Cards**: Create a responsive section with three pricing cards matching the template's style.
+- **Customizable Fields**: Allow titles, prices, feature lists, and CTAs to be driven via `siteConfig.sections.pricing`.
+- **Feature Flag**: Add an `enablePricing` boolean under `siteConfig.features` to toggle the pricing section.
+- **Action**: Scaffold `components/sections/pricing-section.tsx`, extend the Zod schema, and integrate the section into the homepage.
+
 ---
 
 ### Next Steps
