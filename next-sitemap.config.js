@@ -2,7 +2,9 @@
 require('ts-node').register({
     project: './tsconfig.json'
 });
-const { siteConfig } = require('./lib/site.config.ts');
+const { siteConfig } = require('./lib/site.config.local.ts');
+// Add fallback for siteUrl if missing
+const siteUrl = siteConfig.site.url && siteConfig.site.url.length > 0 ? siteConfig.site.url : 'http://localhost:3000';
 
 // Build exclusion patterns from feature flags
 const exclusions = [];
@@ -17,7 +19,7 @@ if (!siteConfig.features.enableContactForm) {
 }
 
 module.exports = {
-    siteUrl: siteConfig.site.url,
+    siteUrl,
     generateRobotsTxt: true,
     exclude: exclusions,
     sitemapSize: 5000,
