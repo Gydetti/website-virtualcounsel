@@ -412,7 +412,7 @@ All configuration lives in a single file under `lib/`:
 
 - **lib/site.config.local.ts** – the single source of truth for all public-facing settings (site metadata, theme, navigation links, feature flags, tracking IDs, etc.). This file is now part of the repository and used at build time.
 
-Components import `siteConfig` from `lib/site.config.local.ts`. Populate each field in that file with your client’s values—empty or missing entries (strings left blank, boolean flags set to `false`) will safely disable their respective features.
+Components import `siteConfig` from `lib/site.config.local.ts`. Populate each field in that file with your client's values—empty or missing entries (strings left blank, boolean flags set to `false`) will safely disable their respective features.
 
 1. Populate `lib/site.config.local.ts` with your client-specific values.
 2. Fill in each field with your client's values:
@@ -467,6 +467,16 @@ To enable the built-in newsletter subscription form, configure these environment
 5. When `NEXT_PUBLIC_NEWSLETTER_PROVIDER` is unset or unsupported, the form will be hidden; you can replace it with a static CTA.
 
 The template includes `components/ui/SubscribeForm.tsx`, which automatically selects and renders the proper form based on the provider. After updating your env variables, redeploy so the changes take effect.
+
+### Contact Form Provider
+To enable email forwarding for the contact form, configure these environment variables in your deployment (e.g., Vercel):
+1. `SMTP_HOST` – your SMTP server hostname
+2. `SMTP_PORT` – your SMTP server port
+3. `SMTP_SECURE` – set to `true` if your SMTP server requires SSL/TLS, otherwise `false`
+4. `SMTP_USER` – the SMTP username or service account
+5. `SMTP_PASS` – the SMTP password or API key
+
+Ensure that `siteConfig.contact.email` in `lib/site.config.local.ts` is set to the recipient address for contact form submissions.
 
 ### Tracking
 1. Replace tracking IDs in `components/tracking/tracking-scripts.tsx`
