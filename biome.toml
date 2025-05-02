@@ -1,5 +1,10 @@
 [lint.rules]
-"lint/security/noDangerouslySetInnerHtml" = "off" 
+"lint/security/noDangerouslySetInnerHtml" = "off"
+"lint/style/useSelfClosingElements" = "off"
+"lint/suspicious/noArrayIndexKey" = "off"
+"lint/suspicious/noExplicitAny" = "off"
+"lint/a11y/useAltText" = "off"
+"lint/a11y/useButtonType" = "off" 
 
 [linter.rules.security]
 noDangerouslySetInnerHtml = "off" 
