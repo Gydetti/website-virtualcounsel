@@ -52,6 +52,41 @@ This document lists the core enhancements still required for an AI-driven build 
 
 ---
 
+Here's a quick audit of everything in `improvement-logs.md` and where we stand:
+
+1) Configuration Management & Feature Toggles
+- Zod schema for `siteConfig` in `lib/site.config.ts`: ✅ Done
+- Feature flags (`enableBlog`, `enableServices`, `enableContactForm`): ✅ Done
+  - Note: The originally-mentioned `enableTestimonials` flag isn't in the schema yet.
+- Route gating via `middleware.ts`: ✅ Done
+- Logical grouping of `site.config.local.ts`: ✅ Done
+
+2) Contact Form & CRM Integration
+- `/api/contact` with Nodemailer/SMTP, Zod validation & honeypot: ✅ Done
+- Provider support (SendGrid, Mailchimp, HubSpot, etc.): ❌ Not yet implemented
+- Dynamic fields from config + reCAPTCHA/honeypot:
+  - Honeypot: ✅ Done
+  - Dynamic fields & CAPTCHA: ❌ Pending
+- Confirmation workflow (emails to submitter & owner): ❌ Pending
+
+3) SEO & Sitemap Generation
+- JSON-LD for Organization & Website: ✅ Done
+  - BreadcrumbList, Article, FAQ schemas: ❌ Not yet added
+- Per-page metadata overrides via `generateMetadata` + `defaultMetadata`: ✅ Done
+- `next-sitemap` + `robots.txt` with feature-flag filtering: ✅ Done
+
+4) Performance & Core Web Vitals
+- Script offloading with Partytown: ✅ Done
+- Font loading via `next/font` with `display: 'swap'` & explicit `preload`: ✅ Done
+  - `<link rel="preconnect">` for external fonts: ❌ Not yet added
+- Component boundary audit & lazy-loading non-critical sections: ❌ Pending
+
+5) Feature Toggle Mechanism
+- Hide routes & nav links via an `enabledPages` array: ❌ Not yet implemented
+- Use that array in both UI and sitemap logic: ❌ Pending
+
+**Bottom line:** We've completed the core "Next Steps" list—config validation, flags, middleware, sitemap, Partytown and font preload. What's left are the CRM-provider modes & advanced contact-form features, richer JSON-LD schemas, font preconnect, component-lazy loading, and a more flexible toggle array. Let me know which of these you'd like to tackle next!
+
 ### Next Steps
 
 1. Implement Zod schema for `siteConfig`.
