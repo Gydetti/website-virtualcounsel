@@ -1,5 +1,6 @@
 /**
  * Copy this file to site.config.local.ts and fill in the values.
+ * All default settings live here for merging with your local overrides.
  */
 
 export const siteConfig = {
@@ -8,35 +9,18 @@ export const siteConfig = {
     description: "",
     url: "",
     name: "",
-    openGraph: {
-      image: { url: "", width: 1200, height: 630, alt: "" },
-    },
-    twitterImage: "",
+    openGraph: { image: { url: "", width: 1200, height: 630, alt: "" } },
+    twitterImage: ""
   },
   theme: {
-    colors: {
-      primary: "",
-      secondary: "",
-      accent: ""
-    },
+    colors: { primary: "", secondary: "", accent: "" },
     logo: { src: "", alt: "" },
     favicon: ""
   },
-  navLinks: [
-    /* { label: "", href: "" } */
-  ],
-  footerLinks: [
-    /* { label: "", href: "" } */
-  ],
-  social: {
-    facebook: "",
-    twitter: "",
-    instagram: "",
-    linkedin: ""
-  },
-  cookieConsent: {
-    cookiebotId: ""
-  },
+  navLinks: [],
+  footerLinks: [],
+  social: { facebook: "", twitter: "", instagram: "", linkedin: "" },
+  cookieConsent: { cookiebotId: "" },
   tracking: {
     gtmId: "",
     ga4Id: "",
@@ -66,11 +50,9 @@ export const siteConfig = {
       image: { src: "", alt: "", fallback: "" },
       ctaPrimary: { text: "", href: "" },
       ctaSecondary: { text: "", href: "" },
-      stats: [
-        { value: 0, suffix: "", label: "" }
-      ]
+      stats: [{ value: 0, suffix: "", label: "" }]
     },
-    blog: { limit: 3 },
-    // Add more section configs for services, features, about, process, testimonials, cta, clients...
+    blog: { limit: 3 }
+    // Add other section configs below (services, features, about, process, testimonials, cta, clients...)
   }
 } as const; 

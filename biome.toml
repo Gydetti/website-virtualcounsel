@@ -1,2 +1,5 @@
 [lint.rules]
-"security/no-dangerously-set-inner-html" = "off" 
+"lint/security/noDangerouslySetInnerHtml" = "off" 
+
+[linter.rules.security]
+noDangerouslySetInnerHtml = "off" 
