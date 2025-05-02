@@ -16,7 +16,9 @@ export default function BlogSection({ posts }: BlogSectionProps) {
   return (
     <section id="blog" className="section-padding bg-white relative overflow-hidden">
       {/* Decorative elements */}
+      {/* biome-ignore lint/style/useSelfClosingElements: <explanation> */}
       <div className="absolute top-0 left-1/4 w-72 h-72 bg-blue-50 rounded-full -translate-y-1/2 blur-3xl opacity-70"></div>
+      {/* biome-ignore lint/style/useSelfClosingElements: <explanation> */}
       <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-primary/5 rounded-full translate-y-1/2 blur-3xl"></div>
 
       <div className="container-wide relative z-10">
