@@ -1,4 +1,8 @@
-const { siteConfig } = require('./lib/site.config');
+// Register ts-node to allow TypeScript imports
+require('ts-node').register({
+    project: './tsconfig.json'
+});
+const { siteConfig } = require('./lib/site.config.ts');
 
 // Build exclusion patterns from feature flags
 const exclusions = [];
