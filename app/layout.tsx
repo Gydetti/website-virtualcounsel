@@ -14,6 +14,8 @@ import PageViewTracker from "@/components/tracking/page-view-tracker"
 import StructuredData from "@/components/seo/structured-data"
 // import dynamic from 'next/dynamic'
 import CookiebotLoader from '@/components/cookie/CookiebotLoader'
+import { defaultMetadata } from '@/lib/metadata'
+import { siteConfig } from '@/lib/site.config'
 
 // Poppins for headings
 const poppins = Poppins({
@@ -31,32 +33,12 @@ const raleway = Raleway({
   display: "swap",
 })
 
-export const metadata = {
-  title: "Professional Business Website | For Entrepreneurs and Small Businesses",
-  description:
-    "A modern, responsive website template for entrepreneurs and small businesses looking to establish a strong online presence.",
-  metadataBase: new URL("https://your-domain.com"),
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://your-domain.com",
-    title: "Professional Business Website | For Entrepreneurs and Small Businesses",
-    description:
-      "A modern, responsive website template for entrepreneurs and small businesses looking to establish a strong online presence.",
-    siteName: "Your Business Name",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Professional Business Website | For Entrepreneurs and Small Businesses",
-    description:
-      "A modern, responsive website template for entrepreneurs and small businesses looking to establish a strong online presence.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-    generator: 'v0.dev'
-}
+const siteUrl = siteConfig.site.url || 'http://localhost:3000'
+export const metadata = defaultMetadata({
+  metadataBase: new URL(siteUrl),
+  robots: { index: true, follow: true },
+  generator: 'v0.dev',
+})
 
 export default function RootLayout({
   children,
@@ -69,8 +51,30 @@ export default function RootLayout({
         {/* Cookiebot script will now be loaded on the client only via client-only component */}
         
         {/* Structured Data for SEO */}
-        <StructuredData type="organization" />
-        <StructuredData type="website" />
+        <StructuredData
+          type="organization"
+          data={{
+            name: siteConfig.site.name,
+            url: siteConfig.site.url,
+            logo: siteConfig.theme.logo.src,
+            socialLinks: [
+              siteConfig.social.facebook,
+              siteConfig.social.twitter,
+              siteConfig.social.linkedin,
+              siteConfig.social.instagram,
+            ],
+            telephone: siteConfig.contact.phone,
+            email: siteConfig.contact.email,
+            streetAddress: siteConfig.contact.address.line1,
+            city: siteConfig.contact.address.city,
+            postalCode: siteConfig.contact.address.zip,
+            country: siteConfig.contact.address.country,
+          }}
+        />
+        <StructuredData
+          type="website"
+          data={{ name: siteConfig.site.name, url: siteConfig.site.url }}
+        />
       </head>
       <body className={`${poppins.variable} ${raleway.variable} font-sans antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>

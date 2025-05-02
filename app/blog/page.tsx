@@ -6,15 +6,13 @@ import Image from "next/image"
 import Link from "next/link"
 import { getBlogPosts } from "@/lib/data-utils"
 import type { Metadata } from "next"
+import { defaultMetadata } from '@/lib/metadata'
+import { siteConfig } from '@/lib/site.config'
 
-export const metadata: Metadata = {
-  title: "Blog | Professional Business Website",
+export const metadata = defaultMetadata({
+  title: `${siteConfig.site.name} | Blog`,
   description: "Read our latest articles and insights on business growth, marketing, and more.",
-  openGraph: {
-    title: "Blog | Professional Business Website",
-    description: "Read our latest articles and insights on business growth, marketing, and more.",
-  },
-}
+})
 
 export default async function BlogPage() {
   const allPosts = await getBlogPosts()

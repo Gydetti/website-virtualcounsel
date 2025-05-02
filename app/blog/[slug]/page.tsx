@@ -8,6 +8,8 @@ import { getBlogPostBySlug, getBlogPosts } from "@/lib/data-utils"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import BlogSchema from "@/components/seo/blog-schema"
+import { defaultMetadata } from '@/lib/metadata'
+import { siteConfig } from '@/lib/site.config'
 
 interface BlogPostPageProps {
   params: { slug: string }
@@ -15,23 +17,19 @@ interface BlogPostPageProps {
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const post = await getBlogPostBySlug(params.slug)
-
   if (!post) {
-    return {
-      title: "Post Not Found",
-    }
+    return defaultMetadata({ title: 'Post Not Found' })
   }
-
-  return {
-    title: `${post.title} | Blog`,
+  return defaultMetadata({
+    title: `${post.title} | ${siteConfig.site.name}`,
     description: post.excerpt,
     openGraph: {
-      title: `${post.title} | Blog`,
+      title: `${post.title} | ${siteConfig.site.name}`,
       description: post.excerpt,
-      type: "article",
+      type: 'article',
       publishedTime: post.date,
     },
-  }
+  })
 }
 
 export async function generateStaticParams() {

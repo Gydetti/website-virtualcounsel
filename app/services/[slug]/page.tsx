@@ -8,6 +8,8 @@ import { getServiceBySlug, getServices } from "@/lib/data-utils"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { iconComponents } from "@/lib/icon-utils"
+import { defaultMetadata } from '@/lib/metadata'
+import { siteConfig } from '@/lib/site.config'
 
 interface ServicePageProps {
   params: { slug: string }
@@ -15,21 +17,17 @@ interface ServicePageProps {
 
 export async function generateMetadata({ params }: ServicePageProps): Promise<Metadata> {
   const service = await getServiceBySlug(params.slug)
-
   if (!service) {
-    return {
-      title: "Service Not Found",
-    }
+    return defaultMetadata({ title: 'Service Not Found' })
   }
-
-  return {
-    title: `${service.title} | Professional Business Website`,
+  return defaultMetadata({
+    title: `${service.title} | ${siteConfig.site.name}`,
     description: service.description,
     openGraph: {
-      title: `${service.title} | Professional Business Website`,
+      title: `${service.title} | ${siteConfig.site.name}`,
       description: service.description,
     },
-  }
+  })
 }
 
 export async function generateStaticParams() {
@@ -143,8 +141,8 @@ export default async function ServicePage({ params }: ServicePageProps) {
               <p className="text-lg text-gray-700 mb-8">{service.description}</p>
 
               <div className="space-y-4 mb-8">
-                {service.features.map((feature, index) => (
-                  <div key={index} className="flex items-start">
+                {service.features.map((feature) => (
+                  <div key={feature} className="flex items-start">
                     <div className="flex-shrink-0 h-6 w-6 rounded-full bg-green-100 flex items-center justify-center mr-3">
                       <Check className="h-4 w-4 text-green-600" />
                     </div>
@@ -174,8 +172,8 @@ export default async function ServicePage({ params }: ServicePageProps) {
         <div className="container-wide">
           <h2 className="text-3xl font-bold mb-12 text-center">Key Benefits</h2>
           <div className="grid md:grid-cols-3 gap-8">
-            {benefits.map((benefit, index) => (
-              <Card key={index} className="text-center p-6 hover:shadow-lg transition-shadow">
+            {benefits.map((benefit) => (
+              <Card key={benefit.title} className="text-center p-6 hover:shadow-lg transition-shadow">
                 <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
                   <span className="text-2xl">{benefit.icon}</span>
                 </div>
@@ -194,7 +192,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
             <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gray-200 hidden md:block"></div>
             <div className="space-y-12">
               {process.map((step, index) => (
-                <div key={index} className="relative">
+                <div key={step.title} className="relative">
                   <div className="md:grid md:grid-cols-2 gap-8 items-center">
                     <div className={`md:text-right ${index % 2 === 1 ? "md:order-2" : ""}`}>
                       <div className="bg-white p-6 rounded-lg shadow-md relative">
@@ -207,7 +205,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
                         <p className="text-gray-600">{step.description}</p>
                       </div>
                     </div>
-                    <div className={index % 2 === 1 ? "md:order-1" : ""}></div>
+                    <div className={index % 2 === 1 ? "md:order-1" : ""} />
                   </div>
                 </div>
               ))}
@@ -221,8 +219,8 @@ export default async function ServicePage({ params }: ServicePageProps) {
           <h2 className="text-3xl font-bold mb-12 text-center">Frequently Asked Questions</h2>
           <div className="max-w-3xl mx-auto">
             <div className="space-y-6">
-              {faq.map((item, index) => (
-                <Card key={index} className="overflow-hidden">
+              {faq.map((item) => (
+                <Card key={item.question} className="overflow-hidden">
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-2">{item.question}</h3>
                     <p className="text-gray-600">{item.answer}</p>
@@ -238,8 +236,8 @@ export default async function ServicePage({ params }: ServicePageProps) {
         <div className="container-wide">
           <h2 className="text-3xl font-bold mb-12 text-center">What Our Clients Say</h2>
           <div className="grid md:grid-cols-2 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="p-6">
+            {testimonials.map((testimonial) => (
+              <Card key={testimonial.author} className="p-6">
                 <div className="flex items-start">
                   <div className="relative h-16 w-16 rounded-full overflow-hidden mr-4 flex-shrink-0">
                     <Image

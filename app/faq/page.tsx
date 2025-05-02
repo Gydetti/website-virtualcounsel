@@ -1,9 +1,11 @@
 import FaqClientPage from "./FaqClientPage"
+import { defaultMetadata } from '@/lib/metadata'
+import { siteConfig } from '@/lib/site.config'
 
-export const metadata = {
-  title: "FAQ | Entrepreneur Template",
+export const metadata = defaultMetadata({
+  title: `${siteConfig.site.name} | FAQ`,
   description: "Find answers to frequently asked questions about our services and how we work.",
-}
+})
 
 export default function FaqPage() {
   return <FaqClientPage />

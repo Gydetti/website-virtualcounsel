@@ -9,37 +9,13 @@ import ClientsSection from "@/components/sections/clients-section"
 import BlogSection from "@/components/sections/blog-section"
 import FeaturesSection from "@/components/sections/features-section"
 import { getServices, getBlogPosts } from "@/lib/data-utils"
+import { defaultMetadata } from '@/lib/metadata'
+import { siteConfig } from '@/lib/site.config'
 import type { Metadata } from "next"
 
-export const metadata: Metadata = {
-  title: "Home | Professional Business Website for Entrepreneurs",
-  description:
-    "A modern, responsive website template for entrepreneurs and small businesses looking to establish a strong online presence.",
-  openGraph: {
-    title: "Professional Business Website for Entrepreneurs",
-    description:
-      "A modern, responsive website template for entrepreneurs and small businesses looking to establish a strong online presence.",
-    url: "https://your-domain.com",
-    siteName: "Your Business Name",
-    images: [
-      {
-        url: "https://your-domain.com/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Your Business Name",
-      },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Professional Business Website for Entrepreneurs",
-    description:
-      "A modern, responsive website template for entrepreneurs and small businesses looking to establish a strong online presence.",
-    images: ["https://your-domain.com/twitter-image.jpg"],
-  },
-}
+export const metadata = defaultMetadata({
+  title: `${siteConfig.site.name} | Home`,
+})
 
 export default async function Home() {
   // Fetch data for the homepage

@@ -1,9 +1,11 @@
 import { Badge } from "@/components/ui/badge"
+import { defaultMetadata } from '@/lib/metadata'
+import { siteConfig } from '@/lib/site.config'
 
-export const metadata = {
-  title: "Privacy Policy | Entrepreneur Template",
+export const metadata = defaultMetadata({
+  title: `${siteConfig.site.name} | Privacy Policy`,
   description: "Our privacy policy outlines how we collect, use, and protect your personal information.",
-}
+})
 
 export default function PrivacyPolicyPage() {
   return (

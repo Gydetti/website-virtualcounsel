@@ -16,10 +16,25 @@ module.exports = {
     siteUrl: siteConfig.site.url,
     generateRobotsTxt: true,
     exclude: exclusions,
+    sitemapSize: 5000,
     robotsTxtOptions: {
         policies: [
             { userAgent: '*', allow: '/' },
             { userAgent: '*', disallow: exclusions },
         ],
+    },
+    additionalPaths: async(config) => {
+        const paths = [];
+        if (siteConfig.features.enableBlog) {
+            const { getBlogPosts } = require('./lib/data-utils');
+            const posts = await getBlogPosts();
+            paths.push(...posts.map(p => ({ loc: `/blog/${p.slug}` })));
+        }
+        if (siteConfig.features.enableServices) {
+            const { getServices } = require('./lib/data-utils');
+            const services = await getServices();
+            paths.push(...services.map(s => ({ loc: `/services/${s.slug}` })));
+        }
+        return paths;
     },
 };

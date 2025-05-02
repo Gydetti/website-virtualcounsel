@@ -3,11 +3,13 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
+import { defaultMetadata } from '@/lib/metadata'
+import { siteConfig } from '@/lib/site.config'
 
-export const metadata = {
-  title: "About | Entrepreneur Template",
+export const metadata = defaultMetadata({
+  title: `${siteConfig.site.name} | About`,
   description: "Learn more about our company, our mission, and our team.",
-}
+})
 
 export default function AboutPage() {
   const teamMembers = [
@@ -144,8 +146,8 @@ export default function AboutPage() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            {values.map((value, index) => (
-              <Card key={index} className="p-6">
+            {values.map((value) => (
+              <Card key={value.title} className="p-6">
                 <h3 className="text-xl font-bold mb-4">{value.title}</h3>
                 <p className="text-gray-600">{value.description}</p>
               </Card>
@@ -165,8 +167,8 @@ export default function AboutPage() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {teamMembers.map((member, index) => (
-              <Card key={index} className="overflow-hidden">
+            {teamMembers.map((member) => (
+              <Card key={member.name} className="overflow-hidden">
                 <div className="relative h-64 w-full">
                   <Image src={member.image || "/placeholder.svg"} alt={member.name} fill className="object-cover" />
                 </div>

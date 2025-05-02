@@ -7,15 +7,17 @@ import Link from "next/link"
 import { getServices } from "@/lib/data-utils"
 import type { Metadata } from "next"
 import { iconComponents } from "@/lib/icon-utils"
+import { defaultMetadata } from '@/lib/metadata'
+import { siteConfig } from '@/lib/site.config'
 
-export const metadata: Metadata = {
-  title: "Services | Professional Business Website",
+export const metadata = defaultMetadata({
+  title: `${siteConfig.site.name} | Services`,
   description: "Explore our range of services designed to help entrepreneurs grow their business.",
   openGraph: {
-    title: "Our Services | Professional Business Website",
+    title: `${siteConfig.site.name} | Services`,
     description: "Explore our range of services designed to help entrepreneurs grow their business.",
-  },
-}
+  }
+})
 
 export default async function ServicesPage() {
   const services = await getServices()
