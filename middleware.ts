@@ -4,7 +4,8 @@ import { siteConfig } from './lib/site.config'
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
-  const { features } = siteConfig
+  // Ensure feature flags are defined; default to all enabled if missing
+  const features = siteConfig.features ?? { enableBlog: true, enableServices: true, enableContactForm: true }
 
   const checks: { pattern: RegExp; enabled: boolean }[] = [
     { pattern: /^\/blog(\/|$)/, enabled: features.enableBlog },

@@ -408,14 +408,13 @@ The template is optimized for performance:
 ## Customization Guide
 
 ### Configuration Files
-To make this template fully dynamic for each client, we've centralized all customizable keys, IDs, and copy into two files under `lib/`:
+All configuration lives in a single file under `lib/`:
 
-- **site.config.example.ts** (committed) – the full shape of every setting (empty defaults). Copy this to:
-- **site.config.local.ts** (git-ignored) – fill in your client-specific values (colors, tracking IDs, contact info, section copy, etc.).
+- **lib/site.config.local.ts** – the single source of truth for all public-facing settings (site metadata, theme, navigation links, feature flags, tracking IDs, etc.). This file is now part of the repository and used at build time.
 
-The loader in each component pulls from `siteConfig` in `site.config.local.ts`, so once populated every section—including analytics scripts, newsletter forms, contact info, and hero text—will render dynamically.
+Components import `siteConfig` from `lib/site.config.local.ts`. Populate each field in that file with your client’s values—empty or missing entries (strings left blank, boolean flags set to `false`) will safely disable their respective features.
 
-1. Copy `lib/site.config.example.ts` → `lib/site.config.local.ts`.
+1. Populate `lib/site.config.local.ts` with your client-specific values.
 2. Fill in each field with your client's values:
    - `site` metadata (title, description, URL, og/twitter images)
    - `theme` colors, logo, favicon
@@ -442,19 +441,6 @@ To silence these safely, we've disabled those rules in `.eslintrc.json`:
 }
 ```
 Since all the HTML snippets are static and controlled by you (not end-user input), this is safe and does not compromise XSS protections.
-
-### How It Works
-- **Components** import `siteConfig` from `lib/site.config.local.ts`. 
-- If a value (like `gtmId`) is empty, that `<Script>` block simply won't run.
-- At build time, Next.js bundles your filled-in config, and at runtime the `<Script>` calls fire exactly as if you'd hard-coded them.
-
-### Future AI/Developer Workflow
-1. **Init** – Copy and populate `site.config.example.ts`. 
-2. **Develop** – Edit config values; all UI and scripts will update automatically. 
-3. **Test** – Run `npm run build && npm run lint && npm test`. Ensure zero errors/warnings (apart from disabled inline-script rules). 
-4. **Deploy** – Commit `site.config.local.ts` to internal repo (git-ignored), push code. Vercel will deploy with your config baked in.
-
-This approach makes client onboarding a 5-minute affair—just one config file to change, and your client's branded site is live. Thank you for using this template!
 
 ### Branding
 1. Update colors in `tailwind.config.ts`
@@ -504,3 +490,11 @@ The template includes `components/ui/SubscribeForm.tsx`, which automatically sel
 
 ### Deployment
 The template is ready to deploy on Vercel or any other Next.js-compatible hosting platform.
+
+### Future AI/Developer Workflow
+1. **Init** – Populate `lib/site.config.local.ts` with your client-specific values.
+2. **Develop** – Edit any config values as needed; the UI and scripts will update automatically.
+3. **Test** – Run `npm run build && npm run lint && npm test`; ensure zero errors and no warnings.
+4. **Deploy** – Commit and push `lib/site.config.local.ts` (now tracked) to your repository; Vercel will deploy with this config baked in.
+
+This approach makes client onboarding a 5-minute affair—just one config file to change, and your client's branded site is live. Thank you for using this template!

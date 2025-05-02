@@ -1,40 +1,6 @@
 /* eslint-disable @typescript-eslint/no-require-imports, @typescript-eslint/no-explicit-any */
-import { siteConfig as defaultConfig } from "./site.config.example"
+import { siteConfig as rawConfig } from "./site.config.local"
 import { z } from "zod"
-// Load local overrides if present (gitignored); fallback to empty object
-let localConfig: Partial<typeof defaultConfig> = {}
-try {
-  // @ts-ignore: optional local config
-  localConfig = require("./site.config.local").siteConfig
-} catch {
-  // no local config found, proceed with defaults
-}
-
-type DeepPartial<T> = {
-  [P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P]
-}
-
-function deepMerge<T>(defaults: T, override: DeepPartial<T>): T {
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  const result = { ...defaults } as any
-  for (const key in override) {
-    const overrideValue = override[key]
-    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-    const defaultValue = (defaults as any)[key]
-    // skip undefined, null, or empty-string overrides so defaults stay in place
-    if (overrideValue === undefined || overrideValue === null || overrideValue === "") continue
-    if (
-      overrideValue && typeof overrideValue === "object" && !Array.isArray(overrideValue) &&
-      defaultValue && typeof defaultValue === "object" && !Array.isArray(defaultValue)
-    ) {
-      // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-      result[key] = deepMerge(defaultValue, overrideValue as any)
-    } else {
-      result[key] = overrideValue
-    }
-  }
-  return result as T
-}
 
 // Zod schema for validating siteConfig structure
 const siteConfigSchema = z.object({
@@ -76,6 +42,12 @@ const siteConfigSchema = z.object({
     mailchimp: z.object({ apiKey: z.string(), listId: z.string() }),
     activeCampaign: z.object({ apiUrl: z.string(), token: z.string() }),
   }),
+  // AI-driven feature flags
+  features: z.object({
+    enableBlog: z.boolean(),
+    enableServices: z.boolean(),
+    enableContactForm: z.boolean(),
+  }),
   contact: z.object({
     email: z.string().email().or(z.literal("")),
     phone: z.string(),
@@ -97,9 +69,6 @@ const siteConfigSchema = z.object({
   }),
 })
 
-// Merge defaults and overrides
-const mergedConfig = deepMerge(defaultConfig, localConfig)
-
 // Validate merged config and export
-export const siteConfig = siteConfigSchema.parse(mergedConfig)
+export const siteConfig = siteConfigSchema.parse(rawConfig)
 export type SiteConfig = z.infer<typeof siteConfigSchema> 

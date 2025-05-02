@@ -1,6 +1,6 @@
 /**
- * Copy this file to fill in your client-specific values.
- * All keys must be present (see site.config.ts.example for guidance).
+ * Copy this file to site.config.local.ts and fill in the values.
+ * All default settings live here for merging with your local overrides.
  */
 
 export const siteConfig = {
@@ -13,11 +13,7 @@ export const siteConfig = {
     twitterImage: ""
   },
   theme: {
-    colors: {
-      primary: "",
-      secondary: "",
-      accent: ""
-    },
+    colors: { primary: "", secondary: "", accent: "" },
     logo: { src: "", alt: "" },
     favicon: ""
   },
@@ -39,6 +35,11 @@ export const siteConfig = {
     mailchimp: { apiKey: "", listId: "" },
     activeCampaign: { apiUrl: "", token: "" }
   },
+  features: {
+    enableBlog: true,
+    enableServices: true,
+    enableContactForm: true
+  },
   contact: {
     email: "",
     phone: "",
@@ -57,6 +58,6 @@ export const siteConfig = {
       stats: [{ value: 0, suffix: "", label: "" }]
     },
     blog: { limit: 3 }
-    // Add other section configs below (services, features, etc.)
+    // Add other section configs below (services, features, about, process, testimonials, cta, clients...)
   }
 } as const; 
