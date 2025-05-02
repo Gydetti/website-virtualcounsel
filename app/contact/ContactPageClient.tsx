@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge"
 import { Mail, Phone, MapPin, Clock } from "lucide-react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { siteConfig } from "@/lib/site.config"
+import { z } from "zod"
 
 export default function ContactPageClient() {
   const [formData, setFormData] = useState({
@@ -21,6 +22,7 @@ export default function ContactPageClient() {
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -34,16 +36,27 @@ export default function ContactPageClient() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500))
-
-    setIsSubmitting(false)
-    setSubmitted(true)
-    setFormData({ name: "", email: "", phone: "", subject: "", message: "" })
-
-    // Reset submitted state after 5 seconds
-    setTimeout(() => setSubmitted(false), 5000)
+    setError(null)
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+      const result = await res.json()
+      if (!res.ok || !result.success) {
+        setError(result.error || 'Failed to send message')
+      } else {
+        setSubmitted(true)
+        setFormData({ name: '', email: '', phone: '', subject: '', message: '' })
+        // Hide success after 5 seconds
+        setTimeout(() => setSubmitted(false), 5000)
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Internal error')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -161,6 +174,11 @@ export default function ContactPageClient() {
                     {isSubmitting ? "Sending..." : submitted ? "Message Sent!" : "Send Message"}
                   </Button>
 
+                  {error && (
+                    <div className="mt-4 p-4 bg-red-50 text-red-700 rounded-lg">
+                      {error}
+                    </div>
+                  )}
                   {submitted && (
                     <div className="mt-4 p-4 bg-green-50 text-green-700 rounded-lg">
                       Thank you for your message! We'll get back to you as soon as possible.

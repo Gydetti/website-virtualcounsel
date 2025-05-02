@@ -11,6 +11,7 @@ const contactSchema = z.object({
   phone: z.string().optional(),
   subject: z.string().nonempty(),
   message: z.string().nonempty(),
+  honeypot: z.string().optional(),
 });
 
 export async function POST(request: NextRequest) {
@@ -42,6 +43,11 @@ export async function POST(request: NextRequest) {
         <p><strong>Message:</strong><br/>${data.message.replace(/\n/g, '<br/>')}</p>
       `,
     };
+
+    // Drop spam submissions if honeypot field is filled
+    if (data.honeypot) {
+      return NextResponse.json({ success: true });
+    }
 
     // Send email
     await transporter.sendMail(mailOptions);

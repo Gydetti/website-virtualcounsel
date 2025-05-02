@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
+import { siteConfig } from "@/lib/site.config"
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -23,6 +24,14 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
+
+  // Filter navigation based on feature flags
+  const filteredNavigation = navigation.filter(item => {
+    if (item.href.startsWith('/blog')) return siteConfig.features.enableBlog
+    if (item.href.startsWith('/services')) return siteConfig.features.enableServices
+    if (item.href.startsWith('/contact')) return siteConfig.features.enableContactForm
+    return true
+  })
 
   useEffect(() => {
     const handleScroll = () => {
@@ -77,7 +86,7 @@ export default function Header() {
           </button>
         </div>
         <div className="hidden lg:flex lg:gap-x-8">
-          {navigation.map((item) => (
+          {filteredNavigation.map((item) => (
             <Link
               key={item.name}
               href={item.href}
@@ -144,7 +153,7 @@ export default function Header() {
             </div>
             <div className="mt-6 flow-root px-6">
               <div className="space-y-6 py-6">
-                {navigation.map((item) => (
+                {filteredNavigation.map((item) => (
                   <Link
                     key={item.name}
                     href={item.href}
