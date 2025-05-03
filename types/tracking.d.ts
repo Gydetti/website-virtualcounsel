@@ -2,21 +2,21 @@
 
 interface Window {
   // Google Tag Manager
-  dataLayer: any[]
+  dataLayer: unknown[]
 
   // Google Analytics
-  gtag: (command: string, ...args: any[]) => void
+  gtag: (command: string, ...args: unknown[]) => void
 
   // Facebook Pixel
-  fbq: (command: string, event: string, params?: Record<string, any>) => void
-  _fbq: any
+  fbq: (command: string, event: string, params?: Record<string, unknown>) => void
+  _fbq: unknown
 
   // LinkedIn Insight
-  lintrk: (command: string, params?: Record<string, any>) => void
+  lintrk: (command: string, params?: Record<string, unknown>) => void
   _linkedin_data_partner_ids: string[]
 
   // HubSpot
-  _hsq: any[]
+  _hsq: unknown[]
 
   // Cookiebot
   Cookiebot: {

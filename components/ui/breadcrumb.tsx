@@ -39,7 +39,7 @@ export default function Breadcrumb({
 
   // Generate breadcrumb items for structured data
   const breadcrumbItems = pathNames.map((path, index) => {
-    const href = "/" + pathNames.slice(0, index + 1).join("/")
+    const href = `/${pathNames.slice(0, index + 1).join("/")}`
     const name = capitalizeLinks
       ? path.charAt(0).toUpperCase() + path.slice(1).replace(/-/g, " ")
       : path.replace(/-/g, " ")
@@ -61,7 +61,7 @@ export default function Breadcrumb({
           </li>
           {pathNames.length > 0 && separator}
           {pathNames.map((name, index) => {
-            const href = "/" + pathNames.slice(0, index + 1).join("/")
+            const href = `/${pathNames.slice(0, index + 1).join("/")}`
             const isLast = index === pathNames.length - 1
             const displayName = capitalizeLinks
               ? name.charAt(0).toUpperCase() + name.slice(1).replace(/-/g, " ")
@@ -125,8 +125,6 @@ const BreadcrumbPage = React.forwardRef<HTMLSpanElement, React.ComponentPropsWit
   ({ className, ...props }, ref) => (
     <span
       ref={ref}
-      role="link"
-      aria-disabled="true"
       aria-current="page"
       className={cn("font-normal text-foreground", className)}
       {...props}
