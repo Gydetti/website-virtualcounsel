@@ -27,8 +27,13 @@ const BreadcrumbRoot = React.forwardRef<
 BreadcrumbRoot.displayName = "Breadcrumb";
 
 export default function Breadcrumb({
-	homeElement = <Home className="h-4 w-4" />,
-	separator = <ChevronRight className="h-4 w-4 mx-2" />,
+	homeElement = (
+		<>
+			<Home aria-hidden="true" className="h-4 w-4" />
+			<span className="sr-only">Home</span>
+		</>
+	),
+	separator = <ChevronRight aria-hidden="true" className="h-4 w-4 mx-2" />,
 	containerClasses = "flex py-4 text-sm",
 	listClasses = "flex items-center",
 	activeItemClasses = "text-primary font-medium",
@@ -163,7 +168,7 @@ const BreadcrumbSeparator = ({
 		className={cn("[&>svg]:w-3.5 [&>svg]:h-3.5", className)}
 		{...props}
 	>
-		{children ?? <ChevronRight />}
+		{children ?? <ChevronRight aria-hidden="true" />}
 	</li>
 );
 BreadcrumbSeparator.displayName = "BreadcrumbSeparator";

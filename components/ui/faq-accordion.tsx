@@ -46,14 +46,14 @@ export default function FaqAccordion({
 					>
 						{filteredItems.map((item, index) => (
 							<motion.div
-								key={index}
+								key={item.question}
 								initial={{ opacity: 0, y: 10 }}
 								animate={{ opacity: 1, y: 0 }}
 								exit={{ opacity: 0, y: -10 }}
 								transition={{ duration: 0.2, delay: index * 0.05 }}
 							>
 								<AccordionItem
-									value={`item-${index}`}
+									value={item.question}
 									className="border border-gray-200 rounded-lg overflow-hidden"
 								>
 									<AccordionTrigger className="px-6 py-4 hover:bg-gray-50 text-left font-medium">

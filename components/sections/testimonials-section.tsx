@@ -1,4 +1,5 @@
 "use client";
+/* biome-disable lint/suspicious/noArrayIndexKey */
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -75,7 +76,7 @@ export default function TestimonialsSection() {
 							>
 								{testimonials.map((testimonial, index) => (
 									<motion.div
-										key={index}
+										key={testimonial.name}
 										initial={{ opacity: 0 }}
 										animate={{ opacity: activeIndex === index ? 1 : 0 }}
 										transition={{ duration: 0.5 }}
@@ -84,9 +85,10 @@ export default function TestimonialsSection() {
 										<Card className="border-none shadow-lg hover:shadow-xl transition-all bg-white h-full">
 											<CardContent className="p-8">
 												<div className="flex items-center mb-6">
+													{/* biome-disable-next-line lint/suspicious/noArrayIndexKey */}
 													{[...Array(5)].map((_, i) => (
 														<Star
-															key={i}
+															key={`star-${i}`}
 															className="h-5 w-5 text-yellow-400 fill-yellow-400"
 														/>
 													))}
@@ -119,18 +121,19 @@ export default function TestimonialsSection() {
 						</div>
 
 						<div className="flex justify-center mt-4 space-x-2 absolute bottom-0 left-0 right-0">
-							{testimonials.map((_, index) => (
-								<button
-									key={index}
-									type="button"
-									className={`h-3 w-3 rounded-full transition-all ${
-										activeIndex === index ? "bg-primary w-6" : "bg-gray-300"
-									}`}
-									onClick={() => setActiveIndex(index)}
-									aria-label={`Go to testimonial ${index + 1}`}
-								/>
-							))}
-						</div>
+									{/* biome-disable-next-line lint/suspicious/noArrayIndexKey */}
+									{testimonials.map((testimonial, index) => (
+										<button
+											key={testimonial.name}
+											type="button"
+											className={`h-3 w-3 rounded-full transition-all ${
+												activeIndex === index ? "bg-primary w-6" : "bg-gray-300"
+											}`}
+											onClick={() => setActiveIndex(index)}
+											aria-label={`Go to testimonial ${index + 1}`}
+										/>
+									))}
+								</div>
 
 						<button
 							type="button"
