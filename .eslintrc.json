@@ -15,15 +15,6 @@
     "react-hooks/rules-of-hooks": "off",
     "@next/next/no-img-element": "off",
     "react/no-danger": "off",
-    "@next/next/no-dangerous-html": "off",
-    "lint/security/no-dangerously-set-inner-html": "off"
-  },
-  "overrides": [
-    {
-      "files": ["components/tracking/tracking-scripts.tsx"],
-      "rules": {
-    "security/no-dangerously-set-inner-html": "off"
+    "@next/next/no-before-interactive-script-outside-document": "off"
   }
-    }
-  ]
 }
