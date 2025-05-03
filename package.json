@@ -80,6 +80,7 @@
         "zustand": "latest"
     },
     "devDependencies": {
+        "@biomejs/biome": "^1.9.4",
         "@playwright/test": "^1.52.0",
         "@types/node": "^22",
         "@types/react": "^18.0.0",

@@ -7,13 +7,14 @@ alwaysApply: true
 
 Always perform the following steps on any code changes before pushing to the `main` branch:
 
-1. **Internal Build**: Run `npm run build` (or your build command) to ensure the application compiles without errors.
-2. **Linter Tests**: Run `npm run lint` and resolve **all** errors and warnings.
-3. **Internal Deployment**: Deploy to a staging environment (e.g., `npm run deploy`) or local environment to validate runtime behavior.
+1. **Internal Build**: Run `npm run build` (or your build command) to ensure the application compiles without errors.  
+2. **ESLint Tests**: Run `npm run lint` and resolve **all** errors and warnings.  
+2a. **Biome Linter Tests**: Run `npx biome check .` (or `npm run biome:lint`) and resolve **all** warnings and errors.  
+3. **Internal Deployment**: Deploy to a staging environment (e.g., `npm run deploy`) or local environment to validate runtime behavior.  
 
 After all checks pass with **zero errors** and no regressions or bugs:
 
-5. **Git Push**: Commit any remaining changes and push to the `main` branch. The `main` branch is always live.
-6. **Auto-Deployment to Vercel**: Pushing to `main` triggers an automatic deployment workflow on Vercel.
+4. **Git Push**: Commit any remaining changes and push to the `main` branch. The `main` branch is always live.  
+5. **Auto-Deployment to Vercel**: Pushing to `main` triggers an automatic deployment workflow on Vercel.
 
-_Do not skip any step in this workflow—ensuring a fully functional, bug-free codebase is mandatory before going live._
+_Do not skip any step in this workflow—ensuring a fully functional, bug-free codebase is mandatory before going live._  

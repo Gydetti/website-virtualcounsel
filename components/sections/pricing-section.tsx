@@ -22,14 +22,17 @@ export default function PricingSection({ cards }: PricingSectionProps) {
         <h2 className="section-title">Pricing Plans</h2>
         <p className="section-subtitle">Choose the plan that best fits your needs</p>
       </div>
-      <div className="container-wide grid gap-8 md:grid-cols-3">
+      <div className="container-wide grid gap-8 md:grid-cols-3 items-stretch">
         {cards.map((card) => (
-          <Card key={card.title} className="border shadow-sm hover:shadow-lg transition-shadow">
+          <Card
+            key={card.title}
+            className="flex h-full flex-col justify-between border shadow-sm hover:shadow-lg transition-shadow"
+          >
             <CardHeader className="text-center">
               <CardTitle>{card.title}</CardTitle>
               <div className="mt-2 text-3xl font-bold">{card.price}</div>
             </CardHeader>
-            <CardContent>
+            <CardContent className="flex-grow">
               <ul className="space-y-3">
                 {card.features.map((feature) => (
                   <li key={feature} className="flex items-start">
