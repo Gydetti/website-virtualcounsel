@@ -8,3 +8,6 @@
 
 [linter.rules.security]
 noDangerouslySetInnerHtml = "off" 
+
+[ignore]
+patterns = ["node_modules/**", ".next/**", "Z-EXAMPLE-WEBSITE/**", "test-results/**"] 
