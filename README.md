@@ -501,6 +501,60 @@ Ensure that `siteConfig.contact.email` in `lib/site.config.local.ts` is set to t
 ### Deployment
 The template is ready to deploy on Vercel or any other Next.js-compatible hosting platform.
 
+### Environment Variables
+Configure these environment variables in your hosting platform (e.g., Vercel) under Settings → Environment Variables:
+
+- **NEXT_PUBLIC_COOKIEBOT_ID**: Your Cookiebot ID to load the consent banner via `CookiebotLoader`.
+- **RECAPTCHA_SECRET_KEY**: Secret key for reCAPTCHA verification in contact forms (`app/api/contact/route.ts`).
+- **SMTP_HOST**, **SMTP_PORT**, **SMTP_SECURE**, **SMTP_USER**, **SMTP_PASS**: Credentials for the "smtp" contact-form provider.
+- **SENDGRID_API_KEY**, **SENDGRID_FROM_EMAIL**: Keys for the SendGrid provider in `app/api/contact/route.ts`.
+- **POSTMARK_API_TOKEN**, **POSTMARK_FROM_EMAIL**: Keys for the Postmark provider in `app/api/contact/route.ts`.
+- **MAILCHIMP_TRANSACTIONAL_API_KEY**, **MAILCHIMP_TRANSACTIONAL_FROM_EMAIL**: Keys for Mailchimp Transactional provider in `app/api/contact/route.ts`.
+- **NEXT_PUBLIC_NEWSLETTER_PROVIDER**: Set to `hubspot`, `mailchimp`, or `activecampaign` to enable the subscribe form.
+  - If using `hubspot`, also set **HUBSPOT_PORTAL_ID** and **HUBSPOT_FORM_ID** for your HubSpot form.
+
+### Client Onboarding & Implementation Guide
+This guide walks through the entire codebase structure, customization points, and step-by-step onboarding for a new client (or AI developer agent).
+
+1. Codebase Overview
+   - **app/**: Next.js App Router pages, dynamic routes, global layout (`layout.tsx`), metadata (`robots.ts`, `sitemap.ts`), and API routes (`api/contact`).
+   - **components/**: UI building blocks (`ui/`), layout (`header`, `footer`), sections (`hero`, `services`, `pricing`, etc.), cookie consent & tracking, SEO scripts.
+   - **lib/**: `site.config.local.ts` (client-specific settings), `site.config.ts` (Zod schema), `data-utils.ts` (services & blog data), `metadata.ts` (generateMetadata helpers), `tracking-utils.ts`.
+   - **public/**: Static assets (logo, favicon, images).
+   - **hooks/** and **types/**: Custom React hooks (cookie consent) and shared TypeScript definitions.
+   - Root-level tooling: `package.json`, linting, testing (`vitest.config.ts`, `playwright.config.ts`), Tailwind & PostCSS configs.
+
+2. Onboarding Steps
+    1. **Clone the template** into your workspace.
+    2. **Install dependencies**: `npm install`.
+    3. **Populate client config**:
+       - Copy `lib/site.config.local.ts` → fill in **site**, **theme**, **navLinks**, **footerLinks**, **social**, **cookieConsent**, **tracking**, **newsletter**, **features**, **enabledPages**, **contactForm**, **contact**, **sections**.
+    4. **Set environment variables** (see "Environment Variables"). Use Vercel dashboard or `.env.local`. Secrets should never be committed.
+    5. **Replace branding assets** in `public/`: logo, favicon, images.
+    6. **Customize theme variables** if needed in `app/globals.css` or `tailwind.config.ts` (colors, fonts, radii).
+    7. **Run and verify locally**:
+       - `npm run dev` to preview.
+       - `npm run build && npm run lint && npx biome check . && npm test` to ensure zero errors/warnings.
+    8. **Push to main**: production deployment on Vercel.
+
+3. Key Logic & Customization Points
+    - **Configuration Validation**: `lib/site.config.ts` enforces shape via Zod—missing or invalid fields will throw at build time.
+    - **Layout & Theming**: `app/layout.tsx` wires fonts, theme provider, structured-data, tracking scripts (Partytown + Cookiebot), header/footer composition.
+    - **Feature Flags & Routing**: `siteConfig.features` + `enabledPages` control navigation filters, middleware gating (`middleware.ts`), sitemap & robots entries.
+    - **Data Fetching**: `lib/data-utils.ts` stubs blog and services data—replace with your CMS/API.
+    - **Sections**: each section component (e.g. `hero-section.tsx`, `pricing-section.tsx`, `contact-section.tsx`) reads its slice of `siteConfig.sections`.
+    - **Contact Form**: dynamic fields in `contact-section.tsx`, backend handlers in `app/api/contact/route.ts` supporting `smtp`, `sendgrid`, `postmark`, `mailchimp`, with reCAPTCHA and honeypot spam protection.
+    - **Analytics & Tracking**: `components/tracking/tracking-scripts.tsx` gate GTM, GA4, FB Pixel, LinkedIn, HubSpot, Google Ads based on Cookiebot consent.
+
+4. Best Practices & Pitfalls
+    - Always keep `site.config.local.ts` in sync with `site.config.ts` Zod schema.
+    - Validate environment variables before deploying.
+    - When adding new pages or sections, update `enabledPages`, nav/footer links, sitemap, and middleware matcher.
+    - Use consistent naming for content drives in `sections` and `contactForm.fields`.
+    - Manifest file: update `app/manifest.ts` to reflect your site's `name`, `short_name`, `description`, icons, and `theme_color`, or refactor it to read from `siteConfig`.
+    - Sitemap baseUrl: the `baseUrl` constant in `app/sitemap.ts` is hard-coded; change it to your production domain or derive it from `siteConfig.site.url`.
+    - Navigation configuration: if you decide to use `siteConfig.navLinks` or `siteConfig.footerLinks`, update `components/layout/header.tsx` and `components/layout/footer.tsx` to render from those arrays.
+
 ### Future AI/Developer Workflow
 1. **Init** – Populate `lib/site.config.local.ts` with your client-specific values.
 2. **Develop** – Edit any config values as needed; the UI and scripts will update automatically.
