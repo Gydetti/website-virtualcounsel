@@ -189,7 +189,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
         <div className="container-wide">
           <h2 className="text-3xl font-bold mb-12 text-center">Our Process</h2>
           <div className="relative">
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gray-200 hidden md:block"></div>
+            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gray-200 hidden md:block" />
             <div className="space-y-12">
               {process.map((step, index) => (
                 <div key={step.title} className="relative">

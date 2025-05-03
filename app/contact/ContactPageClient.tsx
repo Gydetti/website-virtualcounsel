@@ -10,15 +10,21 @@ import { Mail, Phone, MapPin, Clock } from "lucide-react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { siteConfig } from "@/lib/site.config"
 import { z } from "zod"
+import ReCAPTCHA from 'react-google-recaptcha'
 
 export default function ContactPageClient() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    subject: "",
-    message: "",
-  })
+  const contactConfig = siteConfig.contactForm
+  if (!contactConfig) return null
+
+  // Initialize form state dynamically
+  const initialFormData: Record<string, string> = contactConfig.fields.reduce((acc, field) => {
+    acc[field.name] = ''
+    return acc
+  }, {} as Record<string, string>)
+  // Add honeypot field
+  initialFormData[contactConfig.honeypotFieldName] = ''
+  const [formData, setFormData] = useState(initialFormData)
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null)
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
@@ -29,8 +35,8 @@ export default function ContactPageClient() {
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSelectChange = (value: string) => {
-    setFormData((prev) => ({ ...prev, subject: value }))
+  const handleRecaptchaChange = (token: string | null) => {
+    setRecaptchaToken(token)
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -38,17 +44,19 @@ export default function ContactPageClient() {
     setIsSubmitting(true)
     setError(null)
     try {
+      const payload = { ...formData, recaptchaToken }
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(payload),
       })
       const result = await res.json()
       if (!res.ok || !result.success) {
         setError(result.error || 'Failed to send message')
       } else {
         setSubmitted(true)
-        setFormData({ name: '', email: '', phone: '', subject: '', message: '' })
+        setFormData(initialFormData)
+        setRecaptchaToken(null)
         // Hide success after 5 seconds
         setTimeout(() => setSubmitted(false), 5000)
       }
@@ -81,97 +89,63 @@ export default function ContactPageClient() {
                 <h2 className="text-2xl font-bold mb-6">Send Us a Message</h2>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                        Your Name <span className="text-red-500">*</span>
+                  {/* Dynamic fields from config */}
+                  {contactConfig.fields.map((field) => (
+                    <div key={field.name}>
+                      <label htmlFor={field.name} className="block text-sm font-medium text-gray-700 mb-1">
+                        {field.label} {field.required && <span className="text-red-500">*</span>}
                       </label>
-                      <Input
-                        id="name"
-                        type="text"
-                        name="name"
-                        placeholder="Enter your full name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-primary focus:border-transparent"
-                      />
+                      {field.type === 'textarea' ? (
+                        <Textarea
+                          id={field.name}
+                          name={field.name}
+                          placeholder={field.placeholder}
+                          value={formData[field.name]}
+                          onChange={handleChange}
+                          required={field.required}
+                          className="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-primary focus:border-transparent"
+                          rows={4}
+                        />
+                      ) : (
+                        <Input
+                          id={field.name}
+                          type={field.type}
+                          name={field.name}
+                          placeholder={field.placeholder}
+                          value={formData[field.name]}
+                          onChange={handleChange}
+                          required={field.required}
+                          className="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-primary focus:border-transparent"
+                        />
+                      )}
                     </div>
+                  ))}
 
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                        Your Email <span className="text-red-500">*</span>
-                      </label>
-                      <Input
-                        id="email"
-                        type="email"
-                        name="email"
-                        placeholder="Enter your email address"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-primary focus:border-transparent"
-                      />
-                    </div>
-                  </div>
+                  {/* Honeypot field (hidden) */}
+                  <input
+                    type="text"
+                    name={contactConfig.honeypotFieldName}
+                    value={formData[contactConfig.honeypotFieldName]}
+                    onChange={handleChange}
+                    className="hidden"
+                    autoComplete="off"
+                    tabIndex={-1}
+                  />
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-                        Phone Number
-                      </label>
-                      <Input
-                        id="phone"
-                        type="tel"
-                        name="phone"
-                        placeholder="Enter your phone number"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-primary focus:border-transparent"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
-                        Subject <span className="text-red-500">*</span>
-                      </label>
-                      <Select value={formData.subject} onValueChange={handleSelectChange} required>
-                        <SelectTrigger id="subject" className="w-full px-4 py-3 rounded-lg border">
-                          <SelectValue placeholder="Select a subject" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="general">General Inquiry</SelectItem>
-                          <SelectItem value="service1">[SERVICE_1_NAME]</SelectItem>
-                          <SelectItem value="service2">[SERVICE_2_NAME]</SelectItem>
-                          <SelectItem value="service3">[SERVICE_3_NAME]</SelectItem>
-                          <SelectItem value="other">Other</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-                      Your Message <span className="text-red-500">*</span>
-                    </label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      placeholder="How can we help you?"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-primary focus:border-transparent"
-                      rows={6}
+                  {/* reCAPTCHA widget */}
+                  {contactConfig.recaptchaSiteKey && (
+                    <ReCAPTCHA
+                      sitekey={contactConfig.recaptchaSiteKey}
+                      onChange={handleRecaptchaChange}
                     />
-                  </div>
+                  )}
 
                   <Button
                     type="submit"
                     className="w-full bg-primary hover:bg-primary/90 text-white py-3 rounded-lg"
                     disabled={isSubmitting}
                   >
-                    {isSubmitting ? "Sending..." : submitted ? "Message Sent!" : "Send Message"}
+                    {isSubmitting ? 'Sending...' : submitted ? 'Message Sent!' : 'Send Message'}
                   </Button>
 
                   {error && (

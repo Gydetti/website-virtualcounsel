@@ -2,24 +2,43 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import Script from 'next/script'
 import { Badge } from "@/components/ui/badge"
 import { ArrowRight, Mail, Phone, MapPin } from "lucide-react"
 import { motion } from "framer-motion"
+import { siteConfig } from '@/lib/site.config'
+
+// Provide typing for the Recaptcha API on the window object
+declare global {
+  interface Window {
+    grecaptcha?: {
+      execute: (siteKey: string, options: { action: string }) => Promise<string>
+    }
+  }
+}
 
 export default function ContactSection() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-  })
+  const fields = siteConfig.contactForm?.fields || []
+  const honeypotName = siteConfig.contactForm?.honeypotFieldName || 'honeypot'
+  const recaptchaKey = siteConfig.contactForm?.recaptchaSiteKey
+  const [formData, setFormData] = useState<Record<string,string>>({})
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+
+  // Initialize form data keys
+  useEffect(() => {
+    const initial: Record<string,string> = {}
+    for (const f of fields) {
+      initial[f.name] = ''
+    }
+    initial[honeypotName] = ''
+    setFormData(initial)
+  }, [fields, honeypotName])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -30,12 +49,34 @@ export default function ContactSection() {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+    // Obtain reCAPTCHA token if configured
+    let recaptchaToken = ''
+    if (recaptchaKey && typeof window !== 'undefined' && window.grecaptcha) {
+      recaptchaToken = await window.grecaptcha.execute(recaptchaKey, { action: 'contact' })
+    }
+
+    // Send data to API
+    const payload = { ...formData, honeypot: formData[honeypotName], recaptchaToken }
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    })
+    const result = await res.json()
+    if (!result.success) {
+      console.error('Contact API error:', result.error || result.errors)
+      setIsSubmitting(false)
+      return
+    }
 
     setIsSubmitting(false)
     setSubmitted(true)
-    setFormData({ name: "", email: "", phone: "", message: "" })
+    // Reset form
+    const reset: Record<string,string> = {}
+    for (const key of Object.keys(formData)) {
+      reset[key] = ''
+    }
+    setFormData(reset)
 
     // Reset submitted state after 5 seconds
     setTimeout(() => setSubmitted(false), 5000)
@@ -43,9 +84,13 @@ export default function ContactSection() {
 
   return (
     <section id="contact" className="section-padding bg-gray-50 relative overflow-hidden">
+      {/* Load reCAPTCHA script if key provided */}
+      {recaptchaKey && (
+        <Script src={`https://www.google.com/recaptcha/api.js?render=${recaptchaKey}`} />
+      )}
       {/* Decorative elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-50/80 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl"></div>
+      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-50/80 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" />
 
       <div className="container-wide relative z-10">
         <div className="text-center mb-16">
@@ -66,52 +111,40 @@ export default function ContactSection() {
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 gap-6">
-                <div>
-                  <Input
-                    type="text"
-                    name="name"
-                    placeholder="Your name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-primary focus:border-transparent"
-                  />
-                </div>
-
-                <div>
-                  <Input
-                    type="email"
-                    name="email"
-                    placeholder="Your email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-primary focus:border-transparent"
-                  />
-                </div>
-
-                <div>
-                  <Input
-                    type="tel"
-                    name="phone"
-                    placeholder="Your phone (optional)"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-primary focus:border-transparent"
-                  />
-                </div>
-
-                <div>
-                  <Textarea
-                    name="message"
-                    placeholder="How can we help you?"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-primary focus:border-transparent"
-                    rows={4}
-                  />
-                </div>
+                {/* Render dynamic form fields */}
+                {fields.map(field => (
+                  <div key={field.name}>
+                    {field.type === 'textarea' ? (
+                      <Textarea
+                        name={field.name}
+                        placeholder={field.placeholder}
+                        value={formData[field.name]}
+                        onChange={handleChange}
+                        required={field.required}
+                        className="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-primary focus:border-transparent"
+                        rows={4}
+                      />
+                    ) : (
+                      <Input
+                        type={field.type}
+                        name={field.name}
+                        placeholder={field.placeholder}
+                        value={formData[field.name]}
+                        onChange={handleChange}
+                        required={field.required}
+                        className="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-primary focus:border-transparent"
+                      />
+                    )}
+                  </div>
+                ))}
+                {/* Honeypot field, hidden from users */}
+                <input
+                  type="text"
+                  name={honeypotName}
+                  value={formData[honeypotName]}
+                  onChange={handleChange}
+                  className="hidden"
+                />
               </div>
 
               <Button type="submit" className="w-full bg-primary hover:bg-primary/90 group" disabled={isSubmitting}>

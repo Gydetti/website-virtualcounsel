@@ -47,7 +47,24 @@ const siteConfigSchema = z.object({
     enableBlog: z.boolean(),
     enableServices: z.boolean(),
     enableContactForm: z.boolean(),
+    enableTestimonials: z.boolean(),
+    enablePricing: z.boolean(),
   }),
+  // pages that should be enabled (controls nav & sitemap)
+  enabledPages: z.array(z.string()).optional(),
+  // Contact form & CRM config
+  contactForm: z.object({
+    provider: z.enum(['smtp','sendgrid','postmark','mailchimp','activeCampaign','hubspot']),
+    fields: z.array(z.object({
+      name: z.string(),
+      type: z.enum(['text','email','tel','textarea']),
+      label: z.string(),
+      placeholder: z.string(),
+      required: z.boolean(),
+    })),
+    recaptchaSiteKey: z.string().optional(),
+    honeypotFieldName: z.string().default('honeypot'),
+  }).optional(),
   contact: z.object({
     email: z.string().email().or(z.literal("")),
     phone: z.string(),
@@ -66,6 +83,14 @@ const siteConfigSchema = z.object({
       stats: z.array(z.object({ value: z.number(), suffix: z.string(), label: z.string() })),
     }),
     blog: z.object({ limit: z.number() }),
+    pricing: z.object({
+      cards: z.array(z.object({
+        title: z.string(),
+        price: z.string(),
+        features: z.array(z.string()),
+        cta: z.object({ text: z.string(), href: z.string() }),
+      })),
+    }).optional(),
   }),
 })
 

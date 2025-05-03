@@ -38,7 +38,21 @@ export const siteConfig = {
   features: {
     enableBlog: true,
     enableServices: true,
-    enableContactForm: true
+    enableContactForm: true,
+    enableTestimonials: true,
+    enablePricing: true,
+  },
+  enabledPages: ['/', '/services', '/about', '/blog', '/faq', '/contact'],
+  contactForm: {
+    provider: 'smtp',
+    fields: [
+      { name: 'name', type: 'text', label: 'Your name', placeholder: 'Your name', required: true },
+      { name: 'email', type: 'email', label: 'Your email', placeholder: 'Your email', required: true },
+      { name: 'phone', type: 'tel', label: 'Your phone (optional)', placeholder: 'Your phone (optional)', required: false },
+      { name: 'message', type: 'textarea', label: 'Message', placeholder: 'How can we help you?', required: true },
+    ],
+    recaptchaSiteKey: '',
+    honeypotFieldName: 'honeypot',
   },
   contact: {
     email: "",
@@ -57,7 +71,29 @@ export const siteConfig = {
       ctaSecondary: { text: "", href: "" },
       stats: [{ value: 0, suffix: "", label: "" }]
     },
-    blog: { limit: 3 }
+    blog: { limit: 3 },
+    pricing: {
+      cards: [
+        {
+          title: 'Basic',
+          price: '$99/mo',
+          features: ['Feature A', 'Feature B', 'Feature C'],
+          cta: { text: 'Choose Basic', href: '/#pricing' },
+        },
+        {
+          title: 'Pro',
+          price: '$199/mo',
+          features: ['Feature A', 'Feature B', 'Feature C', 'Feature D'],
+          cta: { text: 'Choose Pro', href: '/#pricing' },
+        },
+        {
+          title: 'Enterprise',
+          price: '$299/mo',
+          features: ['All Pro features', 'Feature E', 'Feature F'],
+          cta: { text: 'Contact Sales', href: '/contact' },
+        },
+      ],
+    },
     // Add other section configs below (services, features, about, process, testimonials, cta, clients...)
   }
 } as const; 

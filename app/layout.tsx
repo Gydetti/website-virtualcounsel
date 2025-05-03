@@ -51,6 +51,16 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Preconnect to Google Fonts */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* GA4 script for analytics (Partytown) */}
+        <script
+          type="text/partytown"
+          data-cookieconsent="statistics"
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${siteConfig.tracking.ga4Id}`}
+        ></script>
         {/* Load Partytown worker for third-party script offloading */}
         <Partytown forward={['dataLayer.push']} />
         {/* Cookiebot script will now be loaded on the client only via client-only component */}

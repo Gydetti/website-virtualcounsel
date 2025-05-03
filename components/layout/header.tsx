@@ -25,11 +25,19 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
 
+  // Get optional enabledPages list from config
+  const enabledPages = siteConfig.enabledPages
+
   // Filter navigation based on feature flags
   const filteredNavigation = navigation.filter(item => {
-    if (item.href.startsWith('/blog')) return siteConfig.features.enableBlog
-    if (item.href.startsWith('/services')) return siteConfig.features.enableServices
-    if (item.href.startsWith('/contact')) return siteConfig.features.enableContactForm
+    // Exclude pages not in enabledPages
+    if (enabledPages && !enabledPages.includes(item.href)) {
+      return false
+    }
+    // Respect individual feature flags
+    if (item.href.startsWith('/blog') && !siteConfig.features.enableBlog) return false
+    if (item.href.startsWith('/services') && !siteConfig.features.enableServices) return false
+    if (item.href.startsWith('/contact') && !siteConfig.features.enableContactForm) return false
     return true
   })
 

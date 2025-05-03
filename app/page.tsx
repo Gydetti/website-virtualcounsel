@@ -1,13 +1,15 @@
 import HeroSection from "@/components/sections/hero-section"
+import LazySection from "@/components/ui/lazy-section"
+import PricingSection from "@/components/sections/pricing-section"
 import ServicesSection from "@/components/sections/services-section"
+import FeaturesSection from "@/components/sections/features-section"
+import ClientsSection from "@/components/sections/clients-section"
 import AboutSection from "@/components/sections/about-section"
 import ProcessSection from "@/components/sections/process-section"
 import TestimonialsSection from "@/components/sections/testimonials-section"
+import BlogSection from "@/components/sections/blog-section"
 import CtaSection from "@/components/sections/cta-section"
 import ContactSection from "@/components/sections/contact-section"
-import ClientsSection from "@/components/sections/clients-section"
-import BlogSection from "@/components/sections/blog-section"
-import FeaturesSection from "@/components/sections/features-section"
 import { getServices, getBlogPosts } from "@/lib/data-utils"
 import { defaultMetadata } from '@/lib/metadata'
 import { siteConfig } from '@/lib/site.config'
@@ -25,15 +27,37 @@ export default async function Home() {
   return (
     <>
       <HeroSection />
-      <ClientsSection />
-      <ServicesSection services={services} />
-      <FeaturesSection />
-      <AboutSection />
-      <ProcessSection />
-      <TestimonialsSection />
-      <BlogSection posts={blogPosts} />
-      <CtaSection />
-      <ContactSection />
+      {/* Pricing Section */}
+      <LazySection>
+        <PricingSection cards={siteConfig.sections.pricing.cards} />
+      </LazySection>
+      <LazySection>
+        <ClientsSection />
+      </LazySection>
+      <LazySection>
+        <ServicesSection services={services} />
+      </LazySection>
+      <LazySection>
+        <FeaturesSection />
+      </LazySection>
+      <LazySection>
+        <AboutSection />
+      </LazySection>
+      <LazySection>
+        <ProcessSection />
+      </LazySection>
+      <LazySection>
+        <TestimonialsSection />
+      </LazySection>
+      <LazySection>
+        <BlogSection posts={blogPosts} />
+      </LazySection>
+      <LazySection>
+        <CtaSection />
+      </LazySection>
+      <LazySection>
+        <ContactSection />
+      </LazySection>
     </>
   )
 }

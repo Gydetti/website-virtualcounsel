@@ -5,7 +5,7 @@ This document lists the core enhancements still required for an AI-driven build 
 ## 1. Configuration Management & Feature Toggles
 
 - **Schema Validation**: Define a Zod schema for `siteConfig` in `lib/site.config.ts` to enforce config shape and surface misconfigurations at build/runtime.
-- **Feature Flags**: Add boolean flags (e.g., `enableBlog`, `enableServices`, `enableTestimonials`, `enableContactForm`) to toggle pages and sections.
+- **Feature Flags**: Add boolean flags (e.g., `enableBlog`, `enableServices`, `enableTestimonials`, `enableContactForm`, `enablePricing`) to toggle pages and sections.
 - **Route Gating**: Use Next.js `middleware.ts` or App Router handlers to 404 or redirect disabled routes.
 - **Logical Config Grouping**: Refactor `site.config.example.ts` into grouped categories: `seo`, `theme`, `integrations`, `features`, `contactForm`.
 
@@ -52,45 +52,58 @@ This document lists the core enhancements still required for an AI-driven build 
 
 ---
 
-Here's a quick audit of everything in `improvement-logs.md` and where we stand:
+Here's a quick audit of everything in `improvement-logs.md` and where we stand: THIS IS OUTDATED BUT HERE FOR LOGS
 
 1) Configuration Management & Feature Toggles
 - Zod schema for `siteConfig` in `lib/site.config.ts`: ✅ Done
-- Feature flags (`enableBlog`, `enableServices`, `enableContactForm`): ✅ Done
-  - Note: The originally-mentioned `enableTestimonials` flag isn't in the schema yet.
+- Feature flags (`enableBlog`, `enableServices`, `enableContactForm`, `enableTestimonials`, `enablePricing`): ✅ Done
 - Route gating via `middleware.ts`: ✅ Done
 - Logical grouping of `site.config.local.ts`: ✅ Done
 
 2) Contact Form & CRM Integration
 - `/api/contact` with Nodemailer/SMTP, Zod validation & honeypot: ✅ Done
-- Provider support (SendGrid, Mailchimp, HubSpot, etc.): ❌ Not yet implemented
+- Provider support (SendGrid, Postmark, Mailchimp, ActiveCampaign, HubSpot): ❌ Not yet implemented
 - Dynamic fields from config + reCAPTCHA/honeypot:
   - Honeypot: ✅ Done
-  - Dynamic fields & CAPTCHA: ❌ Pending
+  - Dynamic fields: ✅ Done
+  - reCAPTCHA integration: ✅ Done
 - Confirmation workflow (emails to submitter & owner): ❌ Pending
 
 3) SEO & Sitemap Generation
-- JSON-LD for Organization & Website: ✅ Done
-  - BreadcrumbList, Article, FAQ schemas: ❌ Not yet added
-- Per-page metadata overrides via `generateMetadata` + `defaultMetadata`: ✅ Done
+- JSON-LD for Organization, WebSite, BreadcrumbList, Article, FAQ schemas: ✅ Done
+- Per-page metadata overrides via `generateMetadata`, `defaultMetadata`: ✅ Done
 - `next-sitemap` + `robots.txt` with feature-flag filtering: ✅ Done
 
 4) Performance & Core Web Vitals
 - Script offloading with Partytown: ✅ Done
-- Font loading via `next/font` with `display: 'swap'` & explicit `preload`: ✅ Done
-  - `<link rel="preconnect">` for external fonts: ❌ Not yet added
-- Component boundary audit & lazy-loading non-critical sections: ❌ Pending
+- Font loading via `next/font` with `preload: true` and `display: swap`: ✅ Done
+  - `<link rel="preconnect">` for external fonts: ✅ Done
+- Component boundary audit & lazy-load non-critical sections: ✅ Done
 
 5) Feature Toggle Mechanism
-- Hide routes & nav links via an `enabledPages` array: ❌ Not yet implemented
-- Use that array in both UI and sitemap logic: ❌ Pending
+- Hide routes & nav links via an `enabledPages` array: ✅ Done
+- Use this array in both UI and sitemap logic: ✅ Done
 
-**Bottom line:** We've completed the core "Next Steps" list—config validation, flags, middleware, sitemap, Partytown and font preload. What's left are the CRM-provider modes & advanced contact-form features, richer JSON-LD schemas, font preconnect, component-lazy loading, and a more flexible toggle array. Let me know which of these you'd like to tackle next!
+6) Pricing Section
+- Three responsive cards matching template style: ✅ Done
+- Config-driven titles, prices, feature lists, CTAs: ✅ Done
+- Feature flag (`enablePricing`): ✅ Done
+- Scaffolded & integrated `PricingSection`: ✅ Done
+
+**Bottom line:** Core enhancements are now in place—config, toggles, routing, sitemap, performance tweaks, pricing, and dynamic contact form fields. Remaining work includes CRM-provider modes, confirmation workflow, additional JSON-LD schemas (BreadcrumbList, Article, FAQ), and full middleware-driven route gating if expanding beyond App Router checks.
+
 
 ### Next Steps
 
-1. Implement Zod schema for `siteConfig`.
-2. Add feature flags and middleware-based route gating.
-3. Scaffold and test `/api/contact` for all configured providers.
-4. Configure `next-sitemap` with feature-flag filtering.
-5. Integrate Partytown for script offloading and optimize font loading.
+1. Contact Form & CRM Integration  
+- Implement ActiveCampaign and HubSpot transactional email providers in `/api/contact`  
+
+2. SEO & Structured Data  
+- Inject FAQ JSON-LD on the FAQ page  
+
+3. Testing & Documentation  
+- Add unit and integration tests for:
+  - Contact form provider modes and reCAPTCHA validation
+  - FAQ structured-data injection on the FAQ page
+  - Robots.txt and sitemap filtering based on feature flags
+- Update README and documentation to describe new configurations and behaviors
