@@ -22,14 +22,27 @@ const iconMap: Record<string, React.ReactNode> = {
 	Zap: <Zap className="h-10 w-10 text-primary" />,
 };
 
-interface ServicesSectionProps {
+export interface ServicesSectionProps {
+	badgeText?: string;
+	heading?: string;
+	description?: string;
 	services: Service[];
+	viewAllText?: string;
+	viewAllLink?: string;
 }
 
-export default function ServicesSection({ services }: ServicesSectionProps) {
+export default function ServicesSection({
+	badgeText = "Our services",
+	heading = "How we can help you grow",
+	description = "We offer specialized services designed to help entrepreneurs and small businesses thrive in the digital landscape.",
+	services,
+	viewAllText = "View all services",
+	viewAllLink = "/services",
+}: ServicesSectionProps) {
 	return (
 		<section
-			id="services"
+			id="services-section"
+			aria-labelledby="services-section-heading"
 			className="section-padding relative overflow-hidden"
 		>
 			{/* Decorative elements */}
@@ -39,13 +52,12 @@ export default function ServicesSection({ services }: ServicesSectionProps) {
 			<div className="container-wide relative z-10">
 				<div className="text-center mb-16">
 					<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
-						Our services
+						{badgeText}
 					</Badge>
-					<h2 className="section-title">How we can help you grow</h2>
-					<p className="section-subtitle">
-						We offer specialized services designed to help entrepreneurs and
-						small businesses thrive in the digital landscape.
-					</p>
+					<h2 id="services-section-heading" className="section-title">
+						{heading}
+					</h2>
+					<p className="section-subtitle">{description}</p>
 				</div>
 
 				<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -140,8 +152,8 @@ export default function ServicesSection({ services }: ServicesSectionProps) {
 						className="bg-primary hover:bg-primary/90 group"
 						asChild
 					>
-						<Link href="/services">
-							View all services
+						<Link href={viewAllLink}>
+							{viewAllText}
 							<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
 						</Link>
 					</Button>

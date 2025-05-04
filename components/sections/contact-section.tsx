@@ -92,10 +92,7 @@ export default function ContactSection() {
 	};
 
 	return (
-		<section
-			id="contact"
-			className="section-padding relative overflow-hidden"
-		>
+		<section id="contact" className="section-padding relative overflow-hidden">
 			{/* Load reCAPTCHA script if key provided */}
 			{recaptchaKey && (
 				<Script

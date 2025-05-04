@@ -2,8 +2,18 @@
 import { Badge } from "@/components/ui/badge";
 import styles from "./clients-section.module.css";
 
-export default function ClientsSection() {
-	const clients = [
+export interface ClientsSectionProps {
+	badgeText?: string;
+	heading?: string;
+	clients?: { name: string; logo: string }[];
+	repeats?: number;
+	slideWidth?: number;
+}
+
+export default function ClientsSection({
+	badgeText = "Trusted by",
+	heading = "Companies that trust us",
+	clients = [
 		{ name: "TechCorp", logo: "/placeholder.svg?height=60&width=120" },
 		{ name: "InnovateLabs", logo: "/placeholder.svg?height=60&width=120" },
 		{ name: "GrowthPartners", logo: "/placeholder.svg?height=60&width=120" },
@@ -12,19 +22,26 @@ export default function ClientsSection() {
 		{ name: "PeakPerformance", logo: "/placeholder.svg?height=60&width=120" },
 		{ name: "EliteServices", logo: "/placeholder.svg?height=60&width=120" },
 		{ name: "PrimeConsulting", logo: "/placeholder.svg?height=60&width=120" },
-	];
-	const repeats = 3;
-	const slideWidth = 166; // width of each logo item in px
+	],
+	repeats = 3,
+	slideWidth = 166,
+}: ClientsSectionProps) {
 	const totalWidth = clients.length * repeats * slideWidth;
 
 	return (
-		<section className="py-12 relative overflow-hidden">
+		<section
+			id="clients-section"
+			aria-labelledby="clients-section-heading"
+			className="py-12 relative overflow-hidden"
+		>
 			<div className="container-wide relative z-10">
 				<div className="text-center mb-8">
 					<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
-						Trusted by
+						{badgeText}
 					</Badge>
-					<h2 className="text-2xl font-bold">Companies that trust us</h2>
+					<h2 id="clients-section-heading" className="text-2xl font-bold">
+						{heading}
+					</h2>
 				</div>
 
 				<div className="py-4">

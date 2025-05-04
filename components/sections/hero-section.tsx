@@ -98,7 +98,11 @@ export default function HeroSection({
 	}, [displayText, isDeleting, loopNum, typingSpeed, words]);
 
 	return (
-		<section id="hero-section" aria-labelledby="hero-section-heading" className="relative overflow-hidden bg-gradient-to-r from-blue-100 to-transparent pt-16 pb-12 md:pt-28 md:pb-20">
+		<section
+			id="hero-section"
+			aria-labelledby="hero-section-heading"
+			className="relative overflow-hidden bg-gradient-to-r from-blue-100 to-transparent pt-16 pb-12 md:pt-28 md:pb-20"
+		>
 			{/* Background pattern */}
 			<div className="absolute inset-0 bg-grid-pattern opacity-10" />
 
@@ -118,7 +122,10 @@ export default function HeroSection({
 							{badgeText}
 						</Badge>
 
-						<h1 id="hero-section-heading" className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+						<h1
+							id="hero-section-heading"
+							className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
+						>
 							{headline}
 							<br />
 							<span className="text-primary">
@@ -130,9 +137,7 @@ export default function HeroSection({
 							</span>
 						</h1>
 
-						<p className="text-lg text-gray-700 max-w-lg">
-							{subheadline}
-						</p>
+						<p className="text-lg text-gray-700 max-w-lg">{subheadline}</p>
 
 						<div className="flex flex-col sm:flex-row gap-4 pt-4">
 							<Button

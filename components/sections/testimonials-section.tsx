@@ -8,10 +8,23 @@ import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
-export default function TestimonialsSection() {
-	const [activeIndex, setActiveIndex] = useState(0);
+export interface TestimonialsSectionProps {
+	badgeText?: string;
+	heading?: string;
+	subtitle?: string;
+	testimonials?: {
+		quote: string;
+		name: string;
+		title: string;
+		image: string;
+	}[];
+}
 
-	const testimonials = [
+export default function TestimonialsSection({
+	badgeText = "Testimonials",
+	heading = "What our clients say",
+	subtitle = "Don't just take our word for it. Here's what our clients have to say about working with us.",
+	testimonials = [
 		{
 			quote:
 				"Working with this team transformed our online presence. Within three months, our website traffic increased by 150% and our leads doubled. Their strategic approach and attention to detail made all the difference.",
@@ -33,7 +46,9 @@ export default function TestimonialsSection() {
 			title: "Marketing Director, Elevate Inc.",
 			image: "/placeholder.svg?height=60&width=60",
 		},
-	];
+	],
+}: TestimonialsSectionProps) {
+	const [activeIndex, setActiveIndex] = useState(0);
 
 	const nextTestimonial = () => {
 		setActiveIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
@@ -47,7 +62,11 @@ export default function TestimonialsSection() {
 	};
 
 	return (
-		<section id="testimonials" className="section-padding relative overflow-hidden">
+		<section
+			id="testimonials-section"
+			aria-labelledby="testimonials-section-heading"
+			className="section-padding relative overflow-hidden"
+		>
 			{/* Decorative elements */}
 			{/* <div className="absolute top-0 right-1/4 w-72 h-72 bg-blue-100/50 rounded-full -translate-y-1/2 blur-3xl" />
 			<div className="absolute bottom-0 left-1/4 w-72 h-72 bg-primary/5 rounded-full translate-y-1/2 blur-3xl" /> */}
@@ -55,13 +74,12 @@ export default function TestimonialsSection() {
 			<div className="container-wide relative z-10">
 				<div className="text-center mb-16">
 					<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
-						Testimonials
+						{badgeText}
 					</Badge>
-					<h2 className="section-title">What our clients say</h2>
-					<p className="section-subtitle">
-						Don't just take our word for it. Here's what our clients have to say
-						about working with us.
-					</p>
+					<h2 id="testimonials-section-heading" className="section-title">
+						{heading}
+					</h2>
+					<p className="section-subtitle">{subtitle}</p>
 				</div>
 
 				<div className="max-w-3xl mx-auto">
@@ -71,11 +89,16 @@ export default function TestimonialsSection() {
 								className="flex transition-transform duration-500 ease-in-out"
 								style={{ transform: `translateX(-${activeIndex * 100}%)` }}
 							>
-								{testimonials.map((testimonial, index) => (
+								{testimonials.map((testimonial) => (
 									<motion.div
 										key={testimonial.name}
 										initial={{ opacity: 0 }}
-										animate={{ opacity: activeIndex === index ? 1 : 0 }}
+										animate={{
+											opacity:
+												activeIndex === testimonials.indexOf(testimonial)
+													? 1
+													: 0,
+										}}
 										transition={{ duration: 0.5 }}
 										className="w-full flex-shrink-0 sm:px-4 pb-12"
 									>
@@ -96,7 +119,7 @@ export default function TestimonialsSection() {
 												<div className="flex items-center mt-auto">
 													<div className="mr-4">
 														<Image
-															src={testimonial.image || "/placeholder.svg"}
+															src={testimonial.image}
 															alt={testimonial.name}
 															width={60}
 															height={60}
@@ -118,7 +141,6 @@ export default function TestimonialsSection() {
 						</div>
 
 						<div className="flex justify-center mt-4 space-x-2 absolute bottom-0 left-0 right-0">
-							{/* biome-disable-next-line lint/suspicious/noArrayIndexKey */}
 							{testimonials.map((testimonial, index) => (
 								<button
 									key={testimonial.name}
