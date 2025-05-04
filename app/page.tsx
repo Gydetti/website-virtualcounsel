@@ -10,6 +10,8 @@ import ProcessSection from "@/components/sections/process-section";
 import ServicesSection from "@/components/sections/services-section";
 import TestimonialsSection from "@/components/sections/testimonials-section";
 import LazySection from "@/components/ui/lazy-section";
+import ProblemPainSection from "@/components/sections/problem-pain-section";
+import SolutionVisionSection from "@/components/sections/solution-vision-section";
 import { getBlogPosts, getServices } from "@/lib/data-utils";
 import { defaultMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site.config";
@@ -27,35 +29,68 @@ export default async function Home() {
 
 	return (
 		<>
+			{/* --- Research-Driven Homepage Structure for the Homepage --- */}
+
+			{/* 1. Hero Section:
+				- H1: Clear value proposition (Who, What, Why)
+				- Animated word loop for key benefits
+				- Primary CTA above the fold */}
 			<HeroSection />
-			{/* Pricing Section */}
+
+			{/* 2. Value Proposition & Key Benefits:
+				- Scannable bullet list or icons
+				- Focus on outcomes over features
+				- Highlight differentiators */}
 			<LazySection>
-				<PricingSection cards={siteConfig.sections.pricing.cards} />
+				<FeaturesSection />
 			</LazySection>
+
+			{/* 3. Social Proof (Trust Builders):
+				- Client logos or badges
+				- Testimonials with specific outcomes */}
 			<LazySection>
 				<ClientsSection />
 			</LazySection>
 			<LazySection>
-				<ServicesSection services={services} />
-			</LazySection>
-			<LazySection>
-				<FeaturesSection />
-			</LazySection>
-			<LazySection>
-				<AboutSection />
-			</LazySection>
-			<LazySection>
-				<ProcessSection />
-			</LazySection>
-			<LazySection>
 				<TestimonialsSection />
 			</LazySection>
+
+			{/* 4. Empathy for the Problem:
+				- Describe visitor pain points
+				- Outline stakes of inaction */}
 			<LazySection>
-				<BlogSection posts={blogPosts} />
+				<ProblemPainSection />
 			</LazySection>
+
+			{/* 5. Solution & Vision of a Better Future:
+				- Present service as solution
+				- Illustrate the 'after' state with benefits */}
+			<LazySection>
+				<SolutionVisionSection />
+			</LazySection>
+
+			{/* 6. Call-to-Action:
+				- Repeat primary CTA in context */}
 			<LazySection>
 				<CtaSection />
 			</LazySection>
+
+			{/* --- Secondary Sections (Optional) --- */}
+
+			{/* Services Overview:
+				- Brief description of core offerings */}
+			<LazySection>
+				<ServicesSection services={services} />
+			</LazySection>
+
+			{/* Blog Preview:
+				- Latest posts to build authority */}
+			<LazySection>
+				<BlogSection posts={blogPosts} />
+			</LazySection>
+
+			{/* Contact Form:
+				- Easy way for visitors to get in touch */}
 			<LazySection>
 				<ContactSection />
 			</LazySection>

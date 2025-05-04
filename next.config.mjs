@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    // Transpile framer-motion to support export * in client boundaries
+    transpilePackages: ['framer-motion'],
     eslint: {
         ignoreDuringBuilds: true,
     },
