@@ -53,7 +53,6 @@ export default function RootLayout({
 		<html lang="en" suppressHydrationWarning>
 			<head>
 				{/* Preconnect to Google Fonts */}
-				<meta name="description" content={siteConfig.site.description || ""} />
 				<link rel="preconnect" href="https://fonts.googleapis.com" />
 				<link
 					rel="preconnect"
