@@ -18,7 +18,7 @@ A modern, responsive website template for entrepreneurs and small businesses loo
 
 ## Overview
 
-This template is designed for entrepreneurs and small businesses who want to establish a professional online presence. It includes all the essential pages and components needed for a business website, with a focus on lead generation, service presentation, and content marketing.
+This template is designed for entrepreneurs and small businesses who want to establish a professional online presence. It includes all the essential pages and components needed for a business website, with a focus on lead generation, service presentation, and content marketing. The idea is that the admin user (Gydo) will work with AI coding tools to clone this codebase and customize to tailer it to new clients need. It functions as a optimised ready to go codebase to quickly deploy modern smooth and slick websites for entrepreneurs wihtout them having to care about code or any CMS management. 
 
 The template is built with modern web technologies:
 - **Next.js 14+** with App Router for server-side rendering and optimized performance

@@ -12,8 +12,21 @@ async function main() {
     // Ensure public/images folder exists
     await fs.mkdir(publicBase, { recursive: true });
 
-    // Read categories (branding, team, services, blog, testimonials)
-    const categories = await fs.readdir(rawBase);
+    // Read categories (branding, team, services, blog, testimonials), skip if raw folder missing
+    let categories;
+    try {
+        categories = await fs.readdir(rawBase);
+    } catch (err) {
+        if (err.code === 'ENOENT') {
+            console.warn(`⚠️ Raw images directory not found at ${rawBase}, skipping image optimization.`);
+            // Write empty blur map to satisfy build
+            const blurJsonPath = path.join(publicBase, 'blurDataURL.json');
+            await fs.writeFile(blurJsonPath, JSON.stringify({}, null, 2));
+            console.log('✅ No raw images to optimize.');
+            return;
+        }
+        throw err;
+    }
 
     for (const category of categories) {
         const rawDir = path.join(rawBase, category);
