@@ -5,10 +5,10 @@ import { CheckCircle } from "lucide-react";
 
 export default function SolutionVisionSection() {
   return (
-    <section id="solution" className="section-padding bg-gray-50 relative overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-blue-100/20 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary/5 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" />
+    <section id="solution" className="section-padding bg-transparent relative overflow-hidden">
+      {/* Adjust decorative elements positioning/z-index for overlap */}
+      {/* <div className="absolute top-0 right-0 w-64 h-64 bg-blue-100/20 rounded-full -translate-y-1/4 translate-x-1/4 blur-3xl z-0" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/10 rounded-full translate-y-1/2 -translate-x-1/4 blur-3xl z-0" /> */}
 
       <div className="container-wide relative z-10 text-center">
         <Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">

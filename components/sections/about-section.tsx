@@ -11,11 +11,11 @@ export default function AboutSection() {
 	return (
 		<section
 			id="about"
-			className="section-padding bg-gradient-to-r from-blue-50 to-white relative overflow-hidden"
+			className="section-padding relative overflow-hidden"
 		>
 			{/* Decorative elements */}
-			<div className="absolute top-0 right-1/4 w-72 h-72 bg-blue-100/50 rounded-full -translate-y-1/2 blur-3xl" />
-			<div className="absolute bottom-0 left-1/4 w-72 h-72 bg-primary/5 rounded-full translate-y-1/2 blur-3xl" />
+			{/* <div className="absolute top-0 right-1/4 w-72 h-72 bg-blue-100/50 rounded-full -translate-y-1/2 blur-3xl" />
+			<div className="absolute bottom-0 left-1/4 w-72 h-72 bg-primary/5 rounded-full translate-y-1/2 blur-3xl" /> */}
 
 			<div className="container-wide relative z-10">
 				<div className="grid md:grid-cols-2 gap-12 items-center">

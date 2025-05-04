@@ -18,7 +18,7 @@ export default function ClientsSection() {
 	const totalWidth = clients.length * repeats * slideWidth;
 
 	return (
-		<section className="py-12 bg-white relative overflow-hidden">
+		<section className="py-12 relative overflow-hidden">
 			<div className="container-wide relative z-10">
 				<div className="text-center mb-8">
 					<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">

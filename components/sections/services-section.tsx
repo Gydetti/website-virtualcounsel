@@ -30,11 +30,11 @@ export default function ServicesSection({ services }: ServicesSectionProps) {
 	return (
 		<section
 			id="services"
-			className="section-padding bg-gray-50 relative overflow-hidden"
+			className="section-padding relative overflow-hidden"
 		>
 			{/* Decorative elements */}
-			<div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -translate-y-1/2 translate-x-1/2" />
-			<div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-100/20 rounded-full translate-y-1/2 -translate-x-1/2" />
+			{/* <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -translate-y-1/2 translate-x-1/2" />
+			<div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-100/20 rounded-full translate-y-1/2 -translate-x-1/2" /> */}
 
 			<div className="container-wide relative z-10">
 				<div className="text-center mb-16">

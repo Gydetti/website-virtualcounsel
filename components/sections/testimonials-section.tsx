@@ -47,13 +47,10 @@ export default function TestimonialsSection() {
 	};
 
 	return (
-		<section
-			id="testimonials"
-			className="section-padding bg-gray-50 relative overflow-hidden"
-		>
+		<section id="testimonials" className="section-padding relative overflow-hidden">
 			{/* Decorative elements */}
-			<div className="absolute top-0 right-1/4 w-72 h-72 bg-blue-100/50 rounded-full -translate-y-1/2 blur-3xl" />
-			<div className="absolute bottom-0 left-1/4 w-72 h-72 bg-primary/5 rounded-full translate-y-1/2 blur-3xl" />
+			{/* <div className="absolute top-0 right-1/4 w-72 h-72 bg-blue-100/50 rounded-full -translate-y-1/2 blur-3xl" />
+			<div className="absolute bottom-0 left-1/4 w-72 h-72 bg-primary/5 rounded-full translate-y-1/2 blur-3xl" /> */}
 
 			<div className="container-wide relative z-10">
 				<div className="text-center mb-16">

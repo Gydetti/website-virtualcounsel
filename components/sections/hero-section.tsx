@@ -72,7 +72,7 @@ export default function HeroSection() {
 	}, [displayText, isDeleting, loopNum, typingSpeed]);
 
 	return (
-		<section className="relative overflow-hidden bg-gradient-to-r from-blue-50 to-white pt-16 pb-12 md:pt-28 md:pb-20">
+		<section className="relative overflow-hidden bg-gradient-to-r from-blue-100 to-transparent pt-16 pb-12 md:pt-28 md:pb-20">
 			{/* Background pattern */}
 			<div className="absolute inset-0 bg-grid-pattern opacity-10" />
 

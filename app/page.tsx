@@ -37,63 +37,49 @@ export default async function Home() {
 				- Primary CTA above the fold */}
 			<HeroSection />
 
-			{/* 2. Value Proposition & Key Benefits:
-				- Scannable bullet list or icons
-				- Focus on outcomes over features
-				- Highlight differentiators */}
-			<LazySection>
-				<FeaturesSection />
-			</LazySection>
+			{/* Main Content Wrapper on global gradient */}
+			<div className="relative">
+				{/* 2. Value Proposition & Key Benefits */}
+				<LazySection>
+					<FeaturesSection />
+				</LazySection>
 
-			{/* 3. Social Proof (Trust Builders):
-				- Client logos or badges
-				- Testimonials with specific outcomes */}
-			<LazySection>
-				<ClientsSection />
-			</LazySection>
-			<LazySection>
-				<TestimonialsSection />
-			</LazySection>
+				{/* 3. Social Proof */}
+				<LazySection>
+					<ClientsSection />
+				</LazySection>
+				<LazySection>
+					<TestimonialsSection />
+				</LazySection>
 
-			{/* 4. Empathy for the Problem:
-				- Describe visitor pain points
-				- Outline stakes of inaction */}
-			<LazySection>
-				<ProblemPainSection />
-			</LazySection>
+				{/* 4. Empathy for the Problem */}
+				<LazySection>
+					<ProblemPainSection />
+				</LazySection>
 
-			{/* 5. Solution & Vision of a Better Future:
-				- Present service as solution
-				- Illustrate the 'after' state with benefits */}
-			<LazySection>
-				<SolutionVisionSection />
-			</LazySection>
+				{/* 5. Solution & Vision */}
+				<LazySection>
+					<SolutionVisionSection />
+				</LazySection>
 
-			{/* 6. Call-to-Action:
-				- Repeat primary CTA in context */}
-			<LazySection>
-				<CtaSection />
-			</LazySection>
+				{/* 6. Call-to-Action (placed mid-flow) */}
+				<LazySection>
+					<CtaSection />
+				</LazySection>
 
-			{/* --- Secondary Sections (Optional) --- */}
+				{/* --- Secondary Sections (Optional) --- */}
+				<LazySection>
+					<ServicesSection services={services} />
+				</LazySection>
 
-			{/* Services Overview:
-				- Brief description of core offerings */}
-			<LazySection>
-				<ServicesSection services={services} />
-			</LazySection>
+				<LazySection>
+					<BlogSection posts={blogPosts} />
+				</LazySection>
 
-			{/* Blog Preview:
-				- Latest posts to build authority */}
-			<LazySection>
-				<BlogSection posts={blogPosts} />
-			</LazySection>
-
-			{/* Contact Form:
-				- Easy way for visitors to get in touch */}
-			<LazySection>
-				<ContactSection />
-			</LazySection>
+				<LazySection>
+					<ContactSection />
+				</LazySection>
+			</div>
 		</>
 	);
 }

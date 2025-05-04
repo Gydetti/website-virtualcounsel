@@ -65,8 +65,8 @@ export default function ProcessSection() {
 			<div className="absolute inset-0 bg-[url('/placeholder.svg?height=1000&width=1000')] bg-center opacity-5" />
 
 			{/* Decorative elements */}
-			<div className="absolute top-0 left-0 w-96 h-96 bg-blue-50/80 rounded-full -translate-y-1/2 -translate-x-1/2 blur-3xl" />
-			<div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 rounded-full translate-y-1/2 translate-x-1/2 blur-3xl" />
+			{/* <div className="absolute top-0 left-0 w-96 h-96 bg-blue-50/80 rounded-full -translate-y-1/2 -translate-x-1/2 blur-3xl" />
+			<div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 rounded-full translate-y-1/2 translate-x-1/2 blur-3xl" /> */}
 
 			<div className="max-w-4xl mx-auto px-4 relative z-10">
 				<div className="text-center mb-16">

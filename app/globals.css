@@ -75,8 +75,11 @@
 	* {
 		@apply border-border;
 	}
+	html {
+		@apply bg-background;
+	}
 	body {
-		@apply bg-background text-foreground;
+		@apply bg-transparent text-foreground;
 		font-feature-settings: "rlig" 1, "calt" 1;
 	}
 	h1,
@@ -102,7 +105,7 @@
 	}
 
 	.section-padding {
-		@apply py-16 md:py-24 lg:py-32;
+		@apply py-16 md:py-24 lg:py-24;
 	}
 
 	.section-title {

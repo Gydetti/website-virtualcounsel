@@ -5,10 +5,10 @@ import { XCircle } from "lucide-react";
 
 export default function ProblemPainSection() {
   return (
-    <section id="pain" className="section-padding bg-white relative overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-64 h-64 bg-primary/5 rounded-full -translate-y-1/2 -translate-x-1/2 blur-3xl" />
-      <div className="absolute bottom-0 right-0 w-64 h-64 bg-blue-100/20 rounded-full translate-y-1/2 translate-x-1/2 blur-3xl" />
+    <section id="pain" className="section-padding bg-transparent relative overflow-hidden">
+      {/* Ensure decorative elements overlap edges if needed */}
+      {/*<div className="absolute top-0 left-0 w-64 h-64 bg-primary/5 rounded-full -translate-y-1/4 -translate-x-1/4 blur-3xl z-0" />
+      <div className="absolute bottom-0 right-0 w-64 h-64 bg-blue-100/20 rounded-full translate-y-1/4 translate-x-1/4 blur-3xl z-0" />*/}
 
       <div className="container-wide relative z-10 text-center">
         <Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">

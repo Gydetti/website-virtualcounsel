@@ -1,48 +1,29 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
 
 export default function CtaSection() {
 	return (
-		<section className="py-20 bg-primary text-white relative overflow-hidden">
-			{/* Decorative elements */}
-			<div className="absolute top-0 left-0 w-96 h-96 bg-white/10 rounded-full -translate-y-1/2 -translate-x-1/2 blur-3xl" />
-			<div className="absolute bottom-0 right-0 w-96 h-96 bg-white/10 rounded-full translate-y-1/2 translate-x-1/2 blur-3xl" />
+		<section className="section-padding bg-brand-dark text-white relative overflow-hidden">
+			{/* Optional: Add decorative elements matching the dark theme */}
+			<div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+			<div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl" />
 
-			<div className="container-wide px-4 text-center relative z-10">
-				<div className="inline-flex items-center bg-white/20 rounded-full px-4 py-2 mb-6">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="24"
-						height="24"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						strokeWidth="2"
-						strokeLinecap="round"
-						strokeLinejoin="round"
-						className="h-4 w-4 mr-2"
-					>
-						<title>Clock icon</title>
-						<circle cx="12" cy="12" r="10" />
-						<polyline points="12 6 12 12 16 14" />
-					</svg>
-					<span className="text-sm font-medium">Limited time offer</span>
-				</div>
-
-				<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+			<div className="container-wide relative z-10 text-center">
+				<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
+					Get started
+				</Badge>
+				<h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
 					Ready to grow your business?
 				</h2>
-
-				<p className="text-xl mb-8 max-w-2xl mx-auto">
-					Schedule a free consultation today and discover how our services can
-					help you achieve your business goals.
+				<p className="text-lg text-gray-300 max-w-xl mx-auto mb-8">
+					Let's discuss how we can help you achieve your business goals.
 				</p>
-
-				<div className="flex flex-col sm:flex-row justify-center gap-4">
+				<div className="flex justify-center items-center gap-4">
 					<Button
 						size="lg"
-						className="bg-white text-primary hover:bg-gray-100 group"
+						className="bg-white text-brand-dark hover:bg-gray-200 group"
 						asChild
 					>
 						<Link href="/contact">
@@ -50,14 +31,16 @@ export default function CtaSection() {
 							<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
 						</Link>
 					</Button>
-
 					<Button
 						size="lg"
 						variant="outline"
-						className="bg-transparent border-white text-white hover:bg-white/20"
+						className="border-gray-400 text-gray-200 hover:bg-white/10 hover:text-white group"
 						asChild
 					>
-						<Link href="/about">Learn more about us</Link>
+						<Link href="/services">
+							Learn more
+							<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+						</Link>
 					</Button>
 				</div>
 			</div>

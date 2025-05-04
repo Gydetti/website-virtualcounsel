@@ -97,7 +97,7 @@ export default function RootLayout({
 				/>
 			</head>
 			<body
-				className={`${poppins.variable} ${raleway.variable} font-sans antialiased`}
+				className={`${poppins.variable} ${raleway.variable} font-sans antialiased bg-gradient-to-br from-blue-50 to-transparent`}
 			>
 				<ThemeProvider
 					attribute="class"
