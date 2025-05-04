@@ -1,7 +1,7 @@
 {
     "exclude": [
         "node_modules/**",
-        ".next/**/*",
+        ".next/**",
         "Z-EXAMPLE-WEBSITE/**",
         "test-results/**",
         "**/*.test.tsx",
