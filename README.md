@@ -531,12 +531,14 @@ Ensure that `siteConfig.contact.email` in `lib/site.config.local.ts` is set to t
 
 1. Clone the repository
 2. Install dependencies: `npm install`
-3. Run the development server: `npm run dev`
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
+3. Generate optimized assets: `npm run image-optimize` (builds from `assets/images/raw` into `public/images`)
+4. Run the development server: `npm run dev`
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
 
 ### Production Build
-1. Build the project: `npm run build`
-2. Start the production server: `npm start`
+1. Generate optimized assets: `npm run image-optimize`
+2. Build the project: `npm run build`
+3. Start the production server: `npm start`
 
 ### Deployment
 The template is ready to deploy on Vercel or any other Next.js-compatible hosting platform.
