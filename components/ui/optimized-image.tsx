@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useState } from "react";
-import type { ReactEventHandler } from 'react';
+import type { ReactEventHandler } from "react";
 
 interface OptimizedImageProps {
 	src: string;
