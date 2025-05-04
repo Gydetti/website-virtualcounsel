@@ -1,7 +1,5 @@
 # Ignore build artifacts
 node_modules/**
-/.next/**
-**/.next/**
 .next/**
 Z-EXAMPLE-WEBSITE/**
 test-results/**
