@@ -5,10 +5,10 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import CountUp from "react-countup";
+import OptimizedImage from "@/components/ui/optimized-image";
 
 export default function HeroSection() {
 	// Reference to the typing element
@@ -139,13 +139,13 @@ export default function HeroSection() {
 							ratio={6 / 5}
 							className="overflow-hidden rounded-xl shadow-2xl relative"
 						>
-							<Image
+							<OptimizedImage
 								src={heroSrc}
 								alt="Professional entrepreneur"
 								fill
+								sizes="(max-width: 600px) 100vw, 600px"
 								className="absolute inset-0 object-cover"
 								priority
-								unoptimized
 								onError={() => setHeroSrc("/placeholder.svg")}
 							/>
 							<div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">

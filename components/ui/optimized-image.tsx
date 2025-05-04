@@ -3,6 +3,7 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useState } from "react";
+import type { ReactEventHandler } from 'react';
 
 interface OptimizedImageProps {
 	src: string;
@@ -15,6 +16,7 @@ interface OptimizedImageProps {
 	className?: string;
 	objectFit?: "contain" | "cover" | "fill" | "none" | "scale-down";
 	onLoad?: () => void;
+	onError?: ReactEventHandler<HTMLImageElement>;
 }
 
 export default function OptimizedImage({
@@ -28,6 +30,7 @@ export default function OptimizedImage({
 	className,
 	objectFit = "cover",
 	onLoad,
+	onError,
 }: OptimizedImageProps) {
 	const [isLoading, setIsLoading] = useState(true);
 
@@ -60,6 +63,7 @@ export default function OptimizedImage({
 				sizes={sizes || defaultSizes}
 				priority={priority}
 				onLoad={handleImageLoad}
+				onError={onError}
 				className={cn(
 					"transition-opacity duration-300",
 					isLoading ? "opacity-0" : "opacity-100",
