@@ -3,9 +3,10 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
+        "partytown": "partytown copylib public/~partytown",
         "prepare": "npm run setup",
         "dev": "next dev",
-        "build": "npm run image-optimize && next build",
+        "build": "npm run partytown && npm run image-optimize && next build",
         "postbuild": "next-sitemap",
         "sitemap": "next-sitemap",
         "start": "next start",

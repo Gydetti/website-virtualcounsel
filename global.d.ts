@@ -8,4 +8,4 @@ declare module '@mailchimp/mailchimp_transactional';
 declare module 'nodemailer';
 declare module "@sendgrid/mail";
 declare module "postmark";
-declare module "@builder.io/partytown/react";
+declare module "@qwik.dev/partytown/react";

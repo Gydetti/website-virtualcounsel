@@ -15,6 +15,7 @@ A modern, responsive website template for entrepreneurs and small businesses loo
 - [Performance Considerations](#performance-considerations)
 - [Customization Guide](#customization-guide)
 - [Getting Started](#getting-started)
+- [AI-Powered Copy & UX/UI Client Onboarding](#ai-powered-copy--uxui-client-onboarding)
 
 ## Overview
 
@@ -637,3 +638,46 @@ This guide walks through the entire codebase structure, customization points, an
 3. Key Logic & Customization Points
     - **Configuration Validation**: `lib/site.config.ts` enforces shape via Zod—missing or invalid fields will throw at build time.
     - **Layout & Theming**: `app/layout.tsx`
+
+## AI-Powered Copy & UX/UI Client Onboarding
+
+This section outlines how to use Cursor AI to gather client information and apply the best practice research for UI/UX copy customization. Follow these steps:
+
+1. Read Best Practice Documentation  
+   - Cursor AI should load and understand all files under `docs/building/ui-ux-copy-client-customization/` in the following order:  
+     - `00-Research-Report-Complete-Context.md`  
+     - `01-Homepage-Brief.md`  
+     - `02-AboutPage-Brief.md`  
+     - `03-ServicesPage-Brief.md`  
+     - `04-TestimonialsPage-Brief.md`  
+     - `05-ContactPage-Brief.md`  
+     - `06-BlogPage-Brief.md`  
+     - `07-FAQPage-Brief.md`  
+     - `08-SiteWideBestPractices-Brief.md`  
+
+2. Gather Client Information  
+   Use this prompt template to collect core details:
+
+   > Please provide:  
+   > - Business name  
+   > - Core value proposition  
+   > - Target audience  
+   > - Brand voice and tone  
+   > - Primary services/products  
+   > - Key differentiators  
+   > - Specific messages for each page (Homepage, About, Services, Testimonials, Contact, Blog, FAQ)  
+
+3. Map Information to Template Sections  
+   - Homepage: Hero headline, subheadline, CTAs  
+   - About Page: Company story, team bios, mission statement  
+   - Services Page: Service descriptions, benefits, CTAs  
+   - Testimonials Page: Client quotes, photos, ratings  
+   - Contact Page: Contact form text, instructions, business hours  
+   - Blog Page: Post intro, categories, SEO meta  
+   - FAQ Page: Questions, answers, search keywords  
+
+4. Iterate and Refine  
+   - Review AI-generated drafts and adjust for brand consistency and UX clarity.  
+   - Deploy to staging to validate copy flow and layout.
+
+> By following this AI-driven onboarding, we ensure research-backed best practices are applied and streamline client customization.
