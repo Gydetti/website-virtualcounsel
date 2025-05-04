@@ -133,6 +133,7 @@ export default function ContactPageClient() {
 													id={field.name}
 													type={field.type}
 													name={field.name}
+													autoComplete={field.name}
 													placeholder={field.placeholder}
 													value={formData[field.name]}
 													onChange={handleChange}

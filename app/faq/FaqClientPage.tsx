@@ -126,6 +126,7 @@ export default function FaqClientPage() {
 
 						<div className="relative max-w-xl mx-auto">
 							<Input
+								autoComplete="off"
 								type="text"
 								placeholder="Search for answers..."
 								value={searchQuery}

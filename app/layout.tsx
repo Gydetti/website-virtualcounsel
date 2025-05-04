@@ -14,7 +14,7 @@ import ScrollToTop from "@/components/ui/scroll-to-top";
 import { Toaster } from "@/components/ui/toaster";
 import { defaultMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site.config";
-import { Partytown } from "@builder.io/partytown/react";
+import { Partytown } from "@qwik.dev/partytown/react";
 import { Suspense } from "react";
 
 // Poppins for headings
