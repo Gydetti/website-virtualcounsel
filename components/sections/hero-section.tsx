@@ -11,7 +11,44 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import OptimizedImage from "@/components/ui/optimized-image";
 
-export default function HeroSection() {
+export interface HeroSectionProps {
+	badgeText?: string;
+	headline?: string;
+	subheadline?: string;
+	primaryCtaText?: string;
+	primaryCtaLink?: string;
+	secondaryCtaText?: string;
+	secondaryCtaLink?: string;
+	words?: string[];
+	stats?: { value: number; suffix: string; label: string }[];
+	imageSrc?: string;
+	imageAlt?: string;
+}
+
+export default function HeroSection({
+	badgeText = "Digital growth solutions",
+	headline = "Grow your business with",
+	subheadline = "Helping entrepreneurs build their digital presence and grow their business with tailored solutions.",
+	primaryCtaText = "Get started",
+	primaryCtaLink = "/contact",
+	secondaryCtaText = "Learn more about us",
+	secondaryCtaLink = "/about",
+	words = [
+		"more visibility",
+		"more clients",
+		"more time",
+		"more impact",
+		"your business",
+	],
+	stats = [
+		{ value: 95, suffix: "%", label: "Client satisfaction" },
+		{ value: 120, suffix: "+", label: "Projects completed" },
+		{ value: 7, suffix: "+", label: "Years experience" },
+		{ value: 50, suffix: "+", label: "Happy clients" },
+	],
+	imageSrc = "/images/placeholders/placeholder-user.jpg",
+	imageAlt = "Professional entrepreneur",
+}: HeroSectionProps) {
 	// Reference to the typing element
 	const typingRef = useRef<HTMLSpanElement>(null);
 
@@ -21,19 +58,8 @@ export default function HeroSection() {
 	const [loopNum, setLoopNum] = useState(0);
 	const [typingSpeed, setTypingSpeed] = useState(150);
 
-	// Words to cycle through
-	const words = [
-		"more visibility",
-		"more clients",
-		"more time",
-		"more impact",
-		"your business",
-	];
-
 	// Hero image source state with fallback to optimized placeholders
-	const [heroSrc, setHeroSrc] = useState<string>(
-		"/images/placeholders/placeholder-user.jpg",
-	);
+	const [heroSrc, setHeroSrc] = useState<string>(imageSrc);
 
 	useEffect(() => {
 		const handleTyping = () => {
@@ -69,10 +95,10 @@ export default function HeroSection() {
 
 		const timer = setTimeout(handleTyping, typingSpeed);
 		return () => clearTimeout(timer);
-	}, [displayText, isDeleting, loopNum, typingSpeed]);
+	}, [displayText, isDeleting, loopNum, typingSpeed, words]);
 
 	return (
-		<section className="relative overflow-hidden bg-gradient-to-r from-blue-100 to-transparent pt-16 pb-12 md:pt-28 md:pb-20">
+		<section id="hero-section" aria-labelledby="hero-section-heading" className="relative overflow-hidden bg-gradient-to-r from-blue-100 to-transparent pt-16 pb-12 md:pt-28 md:pb-20">
 			{/* Background pattern */}
 			<div className="absolute inset-0 bg-grid-pattern opacity-10" />
 
@@ -89,11 +115,11 @@ export default function HeroSection() {
 						transition={{ duration: 0.5 }}
 					>
 						<Badge className="w-fit bg-blue-100 text-primary hover:bg-blue-200">
-							Digital growth solutions
+							{badgeText}
 						</Badge>
 
-						<h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-							Grow your business with
+						<h1 id="hero-section-heading" className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+							{headline}
 							<br />
 							<span className="text-primary">
 								{/* Fixed height container to prevent layout shifts */}
@@ -105,8 +131,7 @@ export default function HeroSection() {
 						</h1>
 
 						<p className="text-lg text-gray-700 max-w-lg">
-							Helping entrepreneurs build their digital presence and grow their
-							business with tailored solutions.
+							{subheadline}
 						</p>
 
 						<div className="flex flex-col sm:flex-row gap-4 pt-4">
@@ -115,8 +140,8 @@ export default function HeroSection() {
 								className="bg-primary hover:bg-primary/90 group"
 								asChild
 							>
-								<Link href="/contact">
-									Get started
+								<Link href={primaryCtaLink}>
+									{primaryCtaText}
 									<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
 								</Link>
 							</Button>
@@ -127,7 +152,7 @@ export default function HeroSection() {
 								className="border-primary text-primary hover:bg-primary hover:text-white"
 								asChild
 							>
-								<Link href="/about">Learn more about us</Link>
+								<Link href={secondaryCtaLink}>{secondaryCtaText}</Link>
 							</Button>
 						</div>
 					</motion.div>
@@ -144,7 +169,7 @@ export default function HeroSection() {
 						>
 							<OptimizedImage
 								src={heroSrc}
-								alt="Professional entrepreneur"
+								alt={imageAlt}
 								fill
 								sizes="(max-width: 600px) 100vw, 600px"
 								className="absolute inset-0 object-cover"
@@ -164,12 +189,7 @@ export default function HeroSection() {
 				</div>
 
 				<div className="mt-16 bg-white rounded-xl shadow-lg p-6 md:p-8 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-					{[
-						{ value: 95, suffix: "%", label: "Client satisfaction" },
-						{ value: 120, suffix: "+", label: "Projects completed" },
-						{ value: 7, suffix: "+", label: "Years experience" },
-						{ value: 50, suffix: "+", label: "Happy clients" },
-					].map((stat) => (
+					{stats.map((stat) => (
 						<div
 							key={stat.label}
 							className="flex flex-col items-center text-center"
