@@ -1,0 +1,10 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Ensure optimized images are built and staged
+npm run image-optimize
+
+# Stage the entire public/images folder (includes blurDataURL.json)
+git add public/images
+
+# git add public/images public/blurDataURL.json 

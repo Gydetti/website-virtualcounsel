@@ -3,6 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
+        "prepare": "npm run setup",
         "dev": "next dev",
         "build": "npm run image-optimize && next build",
         "postbuild": "next-sitemap",

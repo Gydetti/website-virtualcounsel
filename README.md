@@ -456,6 +456,7 @@ Since all the HTML snippets are static and controlled by you (not end-user input
 #### 1. Raw Assets
 - Master images live in `assets/images/raw/<category>` (e.g. `assets/images/raw/team/jane-doe.jpg`).
 - Default categories: `branding`, `team`, `services`, `blog`, `testimonials`.
+- To include the **current placeholder** images in the same pipeline (for consistent format, responsive sizes, and blurDataURLs), copy them from the `public/` root into `assets/images/raw/placeholders` before running optimization.
 - To onboard a new section, create a raw subfolder (e.g. `assets/images/raw/features`)—the pipeline auto-detects any folder.
 
 #### 2. Generating Optimized Assets
@@ -529,16 +530,65 @@ Ensure that `siteConfig.contact.email` in `lib/site.config.local.ts` is set to t
 
 ## Getting Started
 
-1. Clone the repository
-2. Install dependencies: `npm install`
-3. Generate optimized assets: `npm run image-optimize` (builds from `assets/images/raw` into `public/images`)
-4. Run the development server: `npm run dev`
-5. Open [http://localhost:3000](http://localhost:3000) in your browser
+1. **Clone the repository:**
+   ```bash
+   git clone <repository-url>
+   cd <repository-folder>
+   ```
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+3. **Install Git hooks (Husky):**
+   ```bash
+   npm run prepare
+   ```
+   - Sets up `pre-commit` (runs `npm run image-optimize` and stages `/public/images`) and `pre-push` (runs `npm run build`).
+4. **Generate optimized assets:**
+   ```bash
+   npm run image-optimize
+   ```
+   - Converts `assets/images/raw` → `public/images` (includes responsive variants and `blurDataURL.json`).
+5. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+6. **Open the site:**
+   Navigate to [http://localhost:3000](http://localhost:3000) in your browser.
+
+**Verify build, lint, and tests:**
+```bash
+npm run build
+npm run lint
+npm test
+```
 
 ### Production Build
-1. Generate optimized assets: `npm run image-optimize`
-2. Build the project: `npm run build`
-3. Start the production server: `npm start`
+
+1. **Install dependencies:**
+   ```bash
+   npm ci
+   ```
+2. **Install Git hooks:**
+   ```bash
+   npm run prepare
+   ```
+3. **Generate optimized assets:**
+   ```bash
+   npm run image-optimize
+   ```
+4. **Build for production:**
+   ```bash
+   npm run build
+   ```
+5. **Run tests:**
+   ```bash
+   npm test
+   ```
+6. **Start the production server:**
+   ```bash
+   npm start
+   ```
 
 ### Deployment
 The template is ready to deploy on Vercel or any other Next.js-compatible hosting platform.

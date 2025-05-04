@@ -1,13 +1,14 @@
 "use client";
 
-import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import CountUp from "react-countup";
+
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import OptimizedImage from "@/components/ui/optimized-image";
 
 export default function HeroSection() {
@@ -29,8 +30,10 @@ export default function HeroSection() {
 		"your business",
 	];
 
-	// Hero image source state with fallback
-	const [heroSrc, setHeroSrc] = useState<string>("/placeholder-user.jpg");
+	// Hero image source state with fallback to optimized placeholders
+	const [heroSrc, setHeroSrc] = useState<string>(
+		"/images/placeholders/placeholder-user.jpg",
+	);
 
 	useEffect(() => {
 		const handleTyping = () => {
@@ -146,7 +149,9 @@ export default function HeroSection() {
 								sizes="(max-width: 600px) 100vw, 600px"
 								className="absolute inset-0 object-cover"
 								priority
-								onError={() => setHeroSrc("/placeholder.svg")}
+								onError={() =>
+									setHeroSrc("/images/placeholders/placeholder.svg")
+								}
 							/>
 							<div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
 								<p className="text-white font-medium">John Smith</p>
