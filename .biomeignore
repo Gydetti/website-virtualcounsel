@@ -1,4 +1,14 @@
-node_modules/
-.next/
-Z-EXAMPLE-WEBSITE/
-test-results/
+# Ignore build artifacts
+node_modules/**
+/.next/**
+**/.next/**
+.next/**
+Z-EXAMPLE-WEBSITE/**
+test-results/**
+
+# Ignore test files
+**/*.test.tsx
+**/*.test.ts
+
+# Ignore NFT manifest files
+**/*.nft.json
