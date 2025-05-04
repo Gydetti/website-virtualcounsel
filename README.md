@@ -559,40 +559,31 @@ Configure these environment variables in your hosting platform (e.g., Vercel) un
 This guide walks through the entire codebase structure, customization points, and step-by-step onboarding for a new client.
 
 2. Onboarding Steps
-   1. **Clone this repository** into your local workspace (always start from a fresh clone of the codebase).
-   2. **Install dependencies**: `npm install`.
-   3. **Populate client config**:
-      - Open `lib/site.config.local.ts` and replace each placeholder value with your client's actual data (site metadata, theme colors/logo, navLinks/footerLinks, social URLs, cookieConsent ID, tracking IDs, newsletter settings, contact info, and all section-specific text/images).
-   4. **Set environment variables** (see "Environment Variables"). Use the Vercel dashboard or `.env.local`. Secrets should never be committed.
-   5. **Replace branding assets** in `public/`: logo, favicon, images.
-   6. **Customize theme variables** if needed in `app/globals.css` or `tailwind.config.ts` (colors, fonts, radii).
-   7. **Run and verify locally**:
-      - `npm run dev` to preview.
-      - `npm run build && npm run lint && npx biome check . && npm test` to ensure zero errors/warnings.
-   8. **Push to main**: production deployment on Vercel.
+    1. **Clone this repository** into your local workspace (always start from a fresh clone).
+    2. **Install dependencies**: `npm install`
+    3. **Install Git hooks**: run `npm run prepare`. This adds Husky hooks:
+       - **pre-commit**: automatically runs `npm run image-optimize` and stages `/public/images` + `blurDataURL.json`.
+       - **pre-push**: automatically runs `npm run build`, ensuring everything compiles and optimized assets exist.
+    4. **Generate optimized assets** (when adding or updating masters):
+       ```bash
+       npm run image-optimize
+       ```
+    5. **Populate client config & images**:
+       - Open `lib/site.config.local.ts` and replace placeholder values with your client's data.
+       - Place raw masters in `assets/images/raw/<category>/…` and re-run `npm run image-optimize` to emit optimized variants in `public/images/<category>/…`.
+    6. **Set environment variables**: configure them in your hosting platform or `.env.local` (see "Environment Variables").
+    7. **Customize theme variables** (optional): adjust colors, fonts, etc., in `app/globals.css` or `tailwind.config.ts`.
+    8. **Run and verify locally**:
+       - `npm run dev` to preview.
+       - `npm run build && npm run lint && npm test` to ensure zero errors/warnings.
+    9. **Commit & push**:
+       ```bash
+       git add .
+       git commit -m "chore: onboard new client"
+       git push origin main
+       ```
+       Your CI will then run: image optimization, build, lint, tests—and Vercel will auto-deploy `main`.
 
 3. Key Logic & Customization Points
     - **Configuration Validation**: `lib/site.config.ts` enforces shape via Zod—missing or invalid fields will throw at build time.
-    - **Layout & Theming**: `app/layout.tsx` wires fonts, theme provider, structured-data, tracking scripts (Partytown + Cookiebot), header/footer composition.
-    - **Feature Flags & Routing**: `siteConfig.features` + `enabledPages` control navigation filters, middleware gating (`middleware.ts`), sitemap & robots entries.
-    - **Data Fetching**: `lib/data-utils.ts` stubs blog and services data—replace with your CMS/API.
-    - **Sections**: each section component (e.g. `hero-section.tsx`, `pricing-section.tsx`, `contact-section.tsx`) reads its slice of `siteConfig.sections`.
-    - **Contact Form**: dynamic fields in `contact-section.tsx`, backend handlers in `app/api/contact/route.ts` supporting `smtp`, `sendgrid`, `postmark`, `mailchimp`, with reCAPTCHA and honeypot spam protection.
-    - **Analytics & Tracking**: `components/tracking/tracking-scripts.tsx` gate GTM, GA4, FB Pixel, LinkedIn, HubSpot, Google Ads based on Cookiebot consent.
-
-4. Best Practices & Pitfalls
-    - Always keep `site.config.local.ts` in sync with `site.config.ts` Zod schema.
-    - Validate environment variables before deploying.
-    - When adding new pages or sections, update `enabledPages`, nav/footer links, sitemap, and middleware matcher.
-    - Use consistent naming for content drives in `sections` and `contactForm.fields`.
-    - Manifest file: update `app/manifest.ts` to reflect your site's `name`, `short_name`, `description`, icons, and `theme_color`, or refactor it to read from `siteConfig`.
-    - Sitemap baseUrl: the `baseUrl` constant in `app/sitemap.ts` is hard-coded; change it to your production domain or derive it from `siteConfig.site.url`.
-    - Navigation configuration: if you decide to use `siteConfig.navLinks` or `siteConfig.footerLinks`, update `components/layout/header.tsx` and `components/layout/footer.tsx` to render from those arrays.
-
-### Future AI/Developer Workflow
-1. **Init** – Clone this repository and open `lib/site.config.local.ts` to fill in your client-specific values.
-2. **Develop** – Edit any config or data modules as needed; the UI and scripts will update automatically.
-3. **Test** – Run `npm run build && npm run lint && npm test`; ensure zero errors and no warnings.
-4. **Deploy** – Commit and push your changes (including `site.config.local.ts`) to `main`; Vercel will deploy with this config baked in.
-
-This approach makes client onboarding a 5-minute affair—just a fresh clone and one config file to change, and your client's branded site is live. Thank you for using this template!
+    - **Layout & Theming**: `app/layout.tsx`
