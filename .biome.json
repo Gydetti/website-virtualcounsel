@@ -1,5 +1,13 @@
 {
-    "exclude": ["node_modules", ".next"],
+    "exclude": [
+        "node_modules/**",
+        ".next/**/*",
+        "Z-EXAMPLE-WEBSITE/**",
+        "test-results/**",
+        "**/*.test.tsx",
+        "**/*.test.ts",
+        "**/*.nft.json"
+    ],
     "rules": {
         "lint/suspicious/noArrayIndexKey": "off"
     }
