@@ -1,7 +1,14 @@
-# Ignore build artifacts
+# Ignore Node modules
 node_modules/**
-.next/**
-Z-EXAMPLE-WEBSITE/**
+
+# Ignore Next.js build output
+/.next
+/.next/**
+
+# Ignore example template code directory
+/Z-EXAMPLE-WEBSITE/**
+
+# Ignore test results
 test-results/**
 
 # Ignore test files
@@ -10,3 +17,9 @@ test-results/**
 
 # Ignore NFT manifest files
 **/*.nft.json
+
+# Ignore any .next directory at any depth
+**/.next/**
+
+# Ignore Partytown vendor code
+public/~partytown/**

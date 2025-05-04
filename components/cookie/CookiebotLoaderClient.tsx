@@ -2,8 +2,10 @@
 "use client";
 import dynamic from "next/dynamic";
 
-const CookiebotLoader = dynamic(() => import("./CookiebotLoader"), { ssr: false });
+const CookiebotLoader = dynamic(() => import("./CookiebotLoader"), {
+	ssr: false,
+});
 
 export default function CookiebotLoaderClient() {
-  return <CookiebotLoader />;
-} 
+	return <CookiebotLoader />;
+}

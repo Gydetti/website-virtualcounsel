@@ -148,11 +148,8 @@ export default function StructuredData({
 		}
 	})();
 	return (
-		<script
-			type="application/ld+json"
-			// biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
-			dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
-			key={`structured-data-${type}`}
-		/>
+		<script type="application/ld+json" key={`structured-data-${type}`}>
+			{JSON.stringify(schemaData)}
+		</script>
 	);
 }

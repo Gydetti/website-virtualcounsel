@@ -195,7 +195,7 @@ export async function POST(request: NextRequest) {
 				if (!apiUrl || !apiKey || !fromEmail) {
 					return NextResponse.json(
 						{ success: false, error: "ActiveCampaign env vars not defined" },
-						{ status: 500 }
+						{ status: 500 },
 					);
 				}
 				// Send to site owner
@@ -238,7 +238,7 @@ export async function POST(request: NextRequest) {
 				if (!apiKey || !fromEmailHub) {
 					return NextResponse.json(
 						{ success: false, error: "HubSpot env vars not defined" },
-						{ status: 500 }
+						{ status: 500 },
 					);
 				}
 				// Note: HubSpot transactional email endpoint
@@ -255,7 +255,7 @@ export async function POST(request: NextRequest) {
 								html: ownerHtml,
 							},
 						}),
-					}
+					},
 				);
 				// Send confirmation to submitter
 				await fetch(
@@ -271,7 +271,7 @@ export async function POST(request: NextRequest) {
 								html: confirmationHtml,
 							},
 						}),
-					}
+					},
 				);
 				break;
 			}

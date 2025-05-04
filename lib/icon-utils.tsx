@@ -1,7 +1,10 @@
 import { BarChart2, Code, Globe, Megaphone, Users, Zap } from "lucide-react";
-import type React from "react";
+import type { ComponentType, SVGProps } from "react";
 
-export const iconComponents: Record<string, React.ComponentType<any>> = {
+export const iconComponents: Record<
+	string,
+	ComponentType<SVGProps<SVGSVGElement>>
+> = {
 	Globe,
 	BarChart2,
 	Zap,

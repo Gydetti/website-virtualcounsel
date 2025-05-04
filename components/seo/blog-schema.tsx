@@ -53,10 +53,8 @@ export default function BlogSchema({
 	};
 
 	return (
-		<script
-			type="application/ld+json"
-			dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
-			key="blog-schema"
-		/>
+		<script type="application/ld+json" key="blog-schema">
+			{JSON.stringify(blogSchema)}
+		</script>
 	);
 }

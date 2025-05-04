@@ -9,13 +9,58 @@
 [linter.rules.security]
 noDangerouslySetInnerHtml = "off" 
 
-[ignore]
-patterns = [
+# Enable VCS ignore file for consistent ignore behavior
+[vcs]
+enabled = true
+useIgnoreFile = true
+clientKind = "git"
+
+# Global ignore patterns for build artifacts, dependencies, examples, test output, and vendor scripts
+[files]
+ignore = [
   "node_modules/**",
-  ".next/**",
   "Z-EXAMPLE-WEBSITE/**",
   "test-results/**",
-  "**/*.test.tsx",
-  "**/*.test.ts",
-  "**/*.nft.json",
-] 
+  "public/~partytown/**"
+]
+ignoreUnknown = true
+
+# Formatter should skip these paths too
+[formatter]
+ignore = [
+  "node_modules/**",
+  "Z-EXAMPLE-WEBSITE/**",
+  "test-results/**",
+  "public/~partytown/**"
+]
+
+# Linter should skip these paths too
+[linter]
+ignore = [
+  "node_modules/**",
+  "Z-EXAMPLE-WEBSITE/**",
+  "test-results/**",
+  "public/~partytown/**"
+]
+
+# organizeImports should skip these paths too
+[organizeImports]
+ignore = [
+  "node_modules/**",
+  "Z-EXAMPLE-WEBSITE/**",
+  "test-results/**",
+  "public/~partytown/**"
+]
+
+# Disable Biome for build artifacts and vendor code
+[[overrides]]
+include = ["**/.next/**", "public/~partytown/**"]
+
+[overrides.formatter]
+enabled = false
+
+[overrides.linter]
+enabled = false
+
+[overrides.organizeImports]
+enabled = false 

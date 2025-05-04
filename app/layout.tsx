@@ -1,6 +1,7 @@
 import { Poppins, Raleway } from "next/font/google";
 import type React from "react";
 import "./globals.css";
+import CookiebotLoaderClient from "@/components/cookie/CookiebotLoaderClient";
 import Footer from "@/components/layout/footer";
 // import Script from "next/script" (removed for client-only loading)
 import Header from "@/components/layout/header";
@@ -15,7 +16,6 @@ import { defaultMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site.config";
 import { Partytown } from "@builder.io/partytown/react";
 import { Suspense } from "react";
-import CookiebotLoaderClient from "@/components/cookie/CookiebotLoaderClient";
 
 // Poppins for headings
 const poppins = Poppins({
