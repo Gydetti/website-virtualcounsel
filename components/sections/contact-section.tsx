@@ -28,20 +28,18 @@ export default function ContactSection() {
 	const fields = siteConfig.contactForm?.fields || [];
 	const honeypotName = siteConfig.contactForm?.honeypotFieldName || "honeypot";
 	const recaptchaKey = siteConfig.contactForm?.recaptchaSiteKey;
-	const [formData, setFormData] = useState<Record<string, string>>({});
-
-	const [isSubmitting, setIsSubmitting] = useState(false);
-	const [submitted, setSubmitted] = useState(false);
-
-	// Initialize form data keys
-	useEffect(() => {
+	// Initialize formData with all field keys (always controlled)
+	const [formData, setFormData] = useState<Record<string, string>>(() => {
 		const initial: Record<string, string> = {};
 		for (const f of fields) {
 			initial[f.name] = "";
 		}
 		initial[honeypotName] = "";
-		setFormData(initial);
-	}, [fields, honeypotName]);
+		return initial;
+	});
+
+	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [submitted, setSubmitted] = useState(false);
 
 	const handleChange = (
 		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
