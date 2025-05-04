@@ -1,3 +1,4 @@
+/* biome-disable lint/security/noDangerouslySetInnerHtml */
 "use client";
 
 import * as React from "react";
@@ -76,28 +77,26 @@ const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
 		return null;
 	}
 
-	return (
-		<style
-			dangerouslySetInnerHTML={{
-				__html: Object.entries(THEMES)
-					.map(
-						([theme, prefix]) => `
+	// Generate CSS string for chart theming
+	const cssString = Object.entries(THEMES)
+		.map(
+			([theme, prefix]) => `
 ${prefix} [data-chart=${id}] {
 ${colorConfig
 	.map(([key, itemConfig]) => {
 		const color =
 			itemConfig.theme?.[theme as keyof typeof itemConfig.theme] ||
 			itemConfig.color;
-		return color ? `  --color-${key}: ${color};` : null;
+		return color ? `  --color-${key}: ${color};` : "";
 	})
 	.join("\n")}
 }
 `,
-					)
-					.join("\n"),
-			}}
-		/>
-	);
+		)
+		.join("\n");
+
+	// Inject CSS directly as children to avoid dangerouslySetInnerHTML
+	return <style>{cssString}</style>;
 };
 
 const ChartTooltip = RechartsPrimitive.Tooltip;

@@ -52,10 +52,11 @@ export default function ServiceCard({
 			</CardHeader>
 			<CardContent className="card-content">
 				<ul className="space-y-3">
-					{features.map((feature, i) => (
-						<li key={i} className="flex items-start">
+					{features.map((feature) => (
+						<li key={feature} className="flex items-start">
 							<span className="text-green-500 mr-3 flex-shrink-0 mt-0.5">
 								<svg
+									aria-hidden="true"
 									xmlns="http://www.w3.org/2000/svg"
 									width="24"
 									height="24"
@@ -86,7 +87,7 @@ export default function ServiceCard({
 					asChild
 				>
 					<Link href={`/services/${slug}`}>
-						Learn more
+						{`Learn more about ${title}`}
 						<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
 					</Link>
 				</Button>

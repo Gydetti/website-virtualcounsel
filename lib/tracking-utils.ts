@@ -21,10 +21,9 @@ export const trackGAEvent = (
 };
 
 // Facebook Pixel event tracking
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export const trackFBEvent = (
 	eventName: string,
-	params?: Record<string, any>,
+	params?: Record<string, unknown>,
 ) => {
 	if (typeof window !== "undefined" && window.fbq) {
 		window.fbq("track", eventName, params);
@@ -32,10 +31,9 @@ export const trackFBEvent = (
 };
 
 // LinkedIn Insight event tracking
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export const trackLinkedInEvent = (
 	conversionId: string,
-	params?: Record<string, any>,
+	params?: Record<string, unknown>,
 ) => {
 	if (typeof window !== "undefined" && window.lintrk) {
 		window.lintrk("track", { conversion_id: conversionId, ...params });
@@ -43,10 +41,9 @@ export const trackLinkedInEvent = (
 };
 
 // HubSpot event tracking
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export const trackHubSpotEvent = (
 	eventName: string,
-	params?: Record<string, any>,
+	params?: Record<string, unknown>,
 ) => {
 	if (typeof window !== "undefined" && window._hsq) {
 		window._hsq.push(["trackEvent", { id: eventName, ...params }]);
@@ -74,8 +71,7 @@ export const trackEvent = (
 	category: string,
 	label: string,
 	value?: number,
-	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-	additionalParams?: Record<string, any>,
+	additionalParams?: Record<string, unknown>,
 ) => {
 	// Track in Google Analytics
 	trackGAEvent(eventName, category, label, value);

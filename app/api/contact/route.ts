@@ -189,21 +189,91 @@ export async function POST(request: NextRequest) {
 				break;
 			}
 			case "activeCampaign": {
-				// TODO: implement ActiveCampaign transactional email
-				return NextResponse.json(
-					{
-						success: false,
-						error: "ActiveCampaign provider not yet implemented",
+				const apiUrl = process.env.ACTIVECAMPAIGN_API_URL;
+				const apiKey = process.env.ACTIVECAMPAIGN_API_KEY;
+				const fromEmail = process.env.ACTIVECAMPAIGN_FROM_EMAIL;
+				if (!apiUrl || !apiKey || !fromEmail) {
+					return NextResponse.json(
+						{ success: false, error: "ActiveCampaign env vars not defined" },
+						{ status: 500 }
+					);
+				}
+				// Send to site owner
+				await fetch(`${apiUrl}/api/3/message/send`, {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+						"Api-Token": apiKey,
 					},
-					{ status: 501 },
-				);
+					body: JSON.stringify({
+						message: {
+							to: [{ email: siteConfig.contact.email }],
+							from: { email: fromEmail },
+							subject: ownerSubject,
+							html: ownerHtml,
+						},
+					}),
+				});
+				// Send confirmation to submitter
+				await fetch(`${apiUrl}/api/3/message/send`, {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+						"Api-Token": apiKey,
+					},
+					body: JSON.stringify({
+						message: {
+							to: [{ email: data.email }],
+							from: { email: fromEmail },
+							subject: confirmationSubject,
+							html: confirmationHtml,
+						},
+					}),
+				});
+				break;
 			}
 			case "hubspot": {
-				// TODO: implement HubSpot transactional email
-				return NextResponse.json(
-					{ success: false, error: "HubSpot provider not yet implemented" },
-					{ status: 501 },
+				const apiKey = process.env.HUBSPOT_API_KEY;
+				const fromEmailHub = process.env.HUBSPOT_FROM_EMAIL;
+				if (!apiKey || !fromEmailHub) {
+					return NextResponse.json(
+						{ success: false, error: "HubSpot env vars not defined" },
+						{ status: 500 }
+					);
+				}
+				// Note: HubSpot transactional email endpoint
+				await fetch(
+					`https://api.hubapi.com/email/public/v1/singleEmail/send?hapikey=${apiKey}`,
+					{
+						method: "POST",
+						headers: { "Content-Type": "application/json" },
+						body: JSON.stringify({
+							emailId: fromEmailHub,
+							message: {
+								to: [data.email],
+								subject: ownerSubject,
+								html: ownerHtml,
+							},
+						}),
+					}
 				);
+				// Send confirmation to submitter
+				await fetch(
+					`https://api.hubapi.com/email/public/v1/singleEmail/send?hapikey=${apiKey}`,
+					{
+						method: "POST",
+						headers: { "Content-Type": "application/json" },
+						body: JSON.stringify({
+							emailId: fromEmailHub,
+							message: {
+								to: [siteConfig.contact.email],
+								subject: confirmationSubject,
+								html: confirmationHtml,
+							},
+						}),
+					}
+				);
+				break;
 			}
 			default:
 				return NextResponse.json(

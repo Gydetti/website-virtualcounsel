@@ -4,3 +4,8 @@ declare module "vitest/config";
 declare module "vitest";
 declare module "@testing-library/react";
 declare module "react-google-recaptcha";
+declare module '@mailchimp/mailchimp_transactional';
+declare module 'nodemailer';
+declare module "@sendgrid/mail";
+declare module "postmark";
+declare module "@builder.io/partytown/react";

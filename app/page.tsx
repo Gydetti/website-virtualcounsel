@@ -17,6 +17,7 @@ import type { Metadata } from "next";
 
 export const metadata = defaultMetadata({
 	title: `${siteConfig.site.name} | Home`,
+	description: siteConfig.site.description,
 });
 
 export default async function Home() {

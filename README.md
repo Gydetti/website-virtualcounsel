@@ -410,7 +410,7 @@ The template is optimized for performance:
 ### Configuration Files
 All configuration lives in a single file under `lib/`:
 
-- **lib/site.config.local.ts** – the single source of truth for all public-facing settings (site metadata, theme, navigation links, feature flags, tracking IDs, etc.). This file is now part of the repository and used at build time.
+- **lib/site.config.local.ts** – the single source of truth for all public-facing settings (site metadata, theme, navigation links, feature flags, tracking IDs, etc.). This file is now part of the repository and used at build time. It appears in every fresh clone—simply open it and replace the placeholder values with your client's real data; there's no need to copy or rename it.
 
 Components import `siteConfig` from `lib/site.config.local.ts`. Populate each field in that file with your client's values—empty or missing entries (strings left blank, boolean flags set to `false`) will safely disable their respective features.
 
@@ -451,6 +451,46 @@ Since all the HTML snippets are static and controlled by you (not end-user input
 1. Replace placeholder text in all components
 2. Update images with your own
 3. Modify service and blog data in `lib/data-utils.ts`
+
+### Images & Asset Pipeline
+#### 1. Raw Assets
+- Master images live in `assets/images/raw/<category>` (e.g. `assets/images/raw/team/jane-doe.jpg`).
+- Default categories: `branding`, `team`, `services`, `blog`, `testimonials`.
+- To onboard a new section, create a raw subfolder (e.g. `assets/images/raw/features`)—the pipeline auto-detects any folder.
+
+#### 2. Generating Optimized Assets
+- Run `npm run image-optimize` (automatically invoked in CI via `npm run build`).
+- This copies files to `public/images/<category>` and produces `public/images/blurDataURL.json`.
+
+#### 3. Consuming Assets in Code
+- Reference images in `lib/site.config.local.ts` or your data files: e.g. `photo: "/images/team/jane-doe.jpg"`.
+- In React components, use Next.js `<Image>` or our `OptimizedImage` wrapper:
+  ```tsx
+  import blurMap from '/public/images/blurDataURL.json';
+
+  <OptimizedImage
+    src={member.photo}
+    alt={member.name}
+    width={200}
+    height={200}
+    placeholder="blur"
+    blurDataURL={blurMap[member.photo]}
+  />
+  ```
+
+#### 4. Blur Placeholders
+- The `blurDataURL.json` map holds Base64 previews for each image path.
+- Import it in your components to provide `blurDataURL` when using `placeholder="blur"`.
+
+#### 5. Onboarding New Sections
+- Create matching folders in `assets/images/raw` and `public/images`.
+- Add raw images to `assets/images/raw/<section>`, then run `npm run image-optimize`.
+- Extend your Zod schema (`lib/site.config.ts`) and local config (`lib/site.config.local.ts`) if needed for new image fields.
+- Wire up the images in your new section component using `OptimizedImage`.
+
+#### 6. Commit & CI
+- Commit both `assets/images/raw` and `public/images` (including `blurDataURL.json`).
+- CI will run `npm run build` and optimize assets before merging to `main`.
 
 ### Newsletter Provider
 To enable the built-in newsletter subscription form, configure these environment variables in your deployment (e.g., Vercel):
@@ -514,28 +554,20 @@ Configure these environment variables in your hosting platform (e.g., Vercel) un
   - If using `hubspot`, also set **HUBSPOT_PORTAL_ID** and **HUBSPOT_FORM_ID** for your HubSpot form.
 
 ### Client Onboarding & Implementation Guide
-This guide walks through the entire codebase structure, customization points, and step-by-step onboarding for a new client (or AI developer agent).
-
-1. Codebase Overview
-   - **app/**: Next.js App Router pages, dynamic routes, global layout (`layout.tsx`), metadata (`robots.ts`, `sitemap.ts`), and API routes (`api/contact`).
-   - **components/**: UI building blocks (`ui/`), layout (`header`, `footer`), sections (`hero`, `services`, `pricing`, etc.), cookie consent & tracking, SEO scripts.
-   - **lib/**: `site.config.local.ts` (client-specific settings), `site.config.ts` (Zod schema), `data-utils.ts` (services & blog data), `metadata.ts` (generateMetadata helpers), `tracking-utils.ts`.
-   - **public/**: Static assets (logo, favicon, images).
-   - **hooks/** and **types/**: Custom React hooks (cookie consent) and shared TypeScript definitions.
-   - Root-level tooling: `package.json`, linting, testing (`vitest.config.ts`, `playwright.config.ts`), Tailwind & PostCSS configs.
+This guide walks through the entire codebase structure, customization points, and step-by-step onboarding for a new client.
 
 2. Onboarding Steps
-    1. **Clone the template** into your workspace.
-    2. **Install dependencies**: `npm install`.
-    3. **Populate client config**:
-       - Copy `lib/site.config.local.ts` → fill in **site**, **theme**, **navLinks**, **footerLinks**, **social**, **cookieConsent**, **tracking**, **newsletter**, **features**, **enabledPages**, **contactForm**, **contact**, **sections**.
-    4. **Set environment variables** (see "Environment Variables"). Use Vercel dashboard or `.env.local`. Secrets should never be committed.
-    5. **Replace branding assets** in `public/`: logo, favicon, images.
-    6. **Customize theme variables** if needed in `app/globals.css` or `tailwind.config.ts` (colors, fonts, radii).
-    7. **Run and verify locally**:
-       - `npm run dev` to preview.
-       - `npm run build && npm run lint && npx biome check . && npm test` to ensure zero errors/warnings.
-    8. **Push to main**: production deployment on Vercel.
+   1. **Clone this repository** into your local workspace (always start from a fresh clone of the codebase).
+   2. **Install dependencies**: `npm install`.
+   3. **Populate client config**:
+      - Open `lib/site.config.local.ts` and replace each placeholder value with your client's actual data (site metadata, theme colors/logo, navLinks/footerLinks, social URLs, cookieConsent ID, tracking IDs, newsletter settings, contact info, and all section-specific text/images).
+   4. **Set environment variables** (see "Environment Variables"). Use the Vercel dashboard or `.env.local`. Secrets should never be committed.
+   5. **Replace branding assets** in `public/`: logo, favicon, images.
+   6. **Customize theme variables** if needed in `app/globals.css` or `tailwind.config.ts` (colors, fonts, radii).
+   7. **Run and verify locally**:
+      - `npm run dev` to preview.
+      - `npm run build && npm run lint && npx biome check . && npm test` to ensure zero errors/warnings.
+   8. **Push to main**: production deployment on Vercel.
 
 3. Key Logic & Customization Points
     - **Configuration Validation**: `lib/site.config.ts` enforces shape via Zod—missing or invalid fields will throw at build time.
@@ -556,9 +588,9 @@ This guide walks through the entire codebase structure, customization points, an
     - Navigation configuration: if you decide to use `siteConfig.navLinks` or `siteConfig.footerLinks`, update `components/layout/header.tsx` and `components/layout/footer.tsx` to render from those arrays.
 
 ### Future AI/Developer Workflow
-1. **Init** – Populate `lib/site.config.local.ts` with your client-specific values.
-2. **Develop** – Edit any config values as needed; the UI and scripts will update automatically.
+1. **Init** – Clone this repository and open `lib/site.config.local.ts` to fill in your client-specific values.
+2. **Develop** – Edit any config or data modules as needed; the UI and scripts will update automatically.
 3. **Test** – Run `npm run build && npm run lint && npm test`; ensure zero errors and no warnings.
-4. **Deploy** – Commit and push `lib/site.config.local.ts` (now tracked) to your repository; Vercel will deploy with this config baked in.
+4. **Deploy** – Commit and push your changes (including `site.config.local.ts`) to `main`; Vercel will deploy with this config baked in.
 
-This approach makes client onboarding a 5-minute affair—just one config file to change, and your client's branded site is live. Thank you for using this template!
+This approach makes client onboarding a 5-minute affair—just a fresh clone and one config file to change, and your client's branded site is live. Thank you for using this template!

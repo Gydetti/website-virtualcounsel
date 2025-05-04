@@ -69,6 +69,7 @@ export default function SectionDivider({
 			)}
 		>
 			<svg
+				aria-hidden="true"
 				className={cn("relative block w-full h-12 md:h-16", fill)}
 				viewBox="0 0 1440 100"
 				preserveAspectRatio="none"

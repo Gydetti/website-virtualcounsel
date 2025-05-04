@@ -1,5 +1,11 @@
 "use client";
 
+import { useState } from "react";
+
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
+
+import StructuredData from "@/components/seo/structured-data";
 import {
 	Accordion,
 	AccordionContent,
@@ -9,9 +15,6 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowRight } from "lucide-react";
-import Link from "next/link";
-import { useState } from "react";
 
 export default function FaqClientPage() {
 	const [searchQuery, setSearchQuery] = useState("");
@@ -85,6 +88,11 @@ export default function FaqClientPage() {
 		},
 	];
 
+	// Prepare FAQ structured-data for SEO
+	const faqSchemaData = faqCategories
+		.flatMap((category) => category.questions)
+		.map(({ question, answer }) => ({ question, answer }));
+
 	// Filter questions based on search query
 	const filteredFaqs = searchQuery
 		? faqCategories
@@ -101,6 +109,7 @@ export default function FaqClientPage() {
 
 	return (
 		<>
+			<StructuredData type="faq" data={{ items: faqSchemaData }} />
 			<section className="bg-gradient-to-r from-blue-50 to-white py-16 md:py-24">
 				<div className="container-wide">
 					<div className="text-center max-w-3xl mx-auto">

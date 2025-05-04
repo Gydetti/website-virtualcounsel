@@ -57,7 +57,8 @@ export default function BlogSection({ posts }: BlogSectionProps) {
 									<Image
 										src={post.image || "/placeholder.svg"}
 										alt={post.title}
-										fill
+										width={600}
+										height={400}
 										className="object-cover transition-transform duration-300 hover:scale-105"
 									/>
 								</div>
@@ -84,7 +85,7 @@ export default function BlogSection({ posts }: BlogSectionProps) {
 										asChild
 									>
 										<Link href={`/blog/${post.slug}`}>
-											Read more
+											{`Read more: ${post.title}`}
 											<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
 										</Link>
 									</Button>

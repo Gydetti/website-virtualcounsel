@@ -3,18 +3,18 @@
 import { Button } from "@/components/ui/button";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUp } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export default function ScrollToTop() {
 	const [isVisible, setIsVisible] = useState(false);
 
-	const toggleVisibility = () => {
+	const toggleVisibility = useCallback(() => {
 		if (window.pageYOffset > 300) {
 			setIsVisible(true);
 		} else {
 			setIsVisible(false);
 		}
-	};
+	}, []);
 
 	const scrollToTop = () => {
 		window.scrollTo({
@@ -26,7 +26,7 @@ export default function ScrollToTop() {
 	useEffect(() => {
 		window.addEventListener("scroll", toggleVisibility);
 		return () => window.removeEventListener("scroll", toggleVisibility);
-	}, []);
+	}, [toggleVisibility]);
 
 	return (
 		<AnimatePresence>

@@ -22,10 +22,15 @@ export default function TestimonialCard({
 			<CardContent className="p-8">
 				{rating > 0 && (
 					<div className="flex items-center mb-6">
-						{[...Array(5)].map((_, i) => (
+						{[1, 2, 3, 4, 5].map((star) => (
 							<Star
-								key={i}
-								className={`h-5 w-5 ${i < rating ? "text-yellow-400 fill-yellow-400" : "text-gray-300"}`}
+								key={star}
+								aria-hidden="true"
+								className={`h-5 w-5 ${
+									star <= rating
+										? "text-yellow-400 fill-yellow-400"
+										: "text-gray-300"
+								}`}
 							/>
 						))}
 					</div>

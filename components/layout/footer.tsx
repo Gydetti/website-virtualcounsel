@@ -1,4 +1,3 @@
-import CookieSettingsButton from "@/components/cookie/cookie-settings-button";
 import { SubscribeForm } from "@/components/ui/SubscribeForm";
 import { Button } from "@/components/ui/button";
 import {
@@ -30,7 +29,7 @@ export default function Footer() {
 							<h3 className="text-xl font-bold mb-2 text-white">
 								Subscribe to our newsletter
 							</h3>
-							<p className="text-gray-100">
+							<p className="text-white">
 								Stay updated with the latest insights and news
 							</p>
 						</div>
@@ -56,35 +55,35 @@ export default function Footer() {
 									className="h-10 w-auto brightness-0 invert"
 								/>
 							</Link>
-							<p className="text-gray-300 mb-6 max-w-xs">
+							<p className="text-white mb-6 max-w-xs">
 								We help entrepreneurs and small businesses grow through
 								strategic digital solutions tailored to their unique needs.
 							</p>
 							<div className="flex space-x-4">
 								<Link
 									href="/"
-									className="text-gray-300 hover:text-white transition-colors bg-white/10 p-2 rounded-full hover:bg-white/20"
+									className="text-white hover:text-brand-light transition-colors bg-white/10 p-2 rounded-full"
 									aria-label="Facebook"
 								>
 									<Facebook className="h-5 w-5" />
 								</Link>
 								<Link
 									href="/"
-									className="text-gray-300 hover:text-white transition-colors bg-white/10 p-2 rounded-full hover:bg-white/20"
+									className="text-white hover:text-brand-light transition-colors bg-white/10 p-2 rounded-full"
 									aria-label="Instagram"
 								>
 									<Instagram className="h-5 w-5" />
 								</Link>
 								<Link
 									href="/"
-									className="text-gray-300 hover:text-white transition-colors bg-white/10 p-2 rounded-full hover:bg-white/20"
+									className="text-white hover:text-brand-light transition-colors bg-white/10 p-2 rounded-full"
 									aria-label="Twitter"
 								>
 									<Twitter className="h-5 w-5" />
 								</Link>
 								<Link
 									href="/"
-									className="text-gray-300 hover:text-white transition-colors bg-white/10 p-2 rounded-full hover:bg-white/20"
+									className="text-white hover:text-brand-light transition-colors bg-white/10 p-2 rounded-full"
 									aria-label="LinkedIn"
 								>
 									<Linkedin className="h-5 w-5" />
@@ -98,7 +97,7 @@ export default function Footer() {
 								<li>
 									<Link
 										href="/"
-										className="text-gray-300 hover:text-white transition-colors inline-flex items-center group"
+										className="text-white hover:text-brand-light transition-colors inline-flex items-center group"
 									>
 										<span className="w-0 h-0.5 bg-white transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
 										Home
@@ -107,7 +106,7 @@ export default function Footer() {
 								<li>
 									<Link
 										href="/services"
-										className="text-gray-300 hover:text-white transition-colors inline-flex items-center group"
+										className="text-white hover:text-brand-light transition-colors inline-flex items-center group"
 									>
 										<span className="w-0 h-0.5 bg-white transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
 										Services
@@ -116,7 +115,7 @@ export default function Footer() {
 								<li>
 									<Link
 										href="/about"
-										className="text-gray-300 hover:text-white transition-colors inline-flex items-center group"
+										className="text-white hover:text-brand-light transition-colors inline-flex items-center group"
 									>
 										<span className="w-0 h-0.5 bg-white transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
 										About
@@ -125,7 +124,7 @@ export default function Footer() {
 								<li>
 									<Link
 										href="/blog"
-										className="text-gray-300 hover:text-white transition-colors inline-flex items-center group"
+										className="text-white hover:text-brand-light transition-colors inline-flex items-center group"
 									>
 										<span className="w-0 h-0.5 bg-white transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
 										Blog
@@ -134,7 +133,7 @@ export default function Footer() {
 								<li>
 									<Link
 										href="/faq"
-										className="text-gray-300 hover:text-white transition-colors inline-flex items-center group"
+										className="text-white hover:text-brand-light transition-colors inline-flex items-center group"
 									>
 										<span className="w-0 h-0.5 bg-white transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
 										FAQ
@@ -143,7 +142,7 @@ export default function Footer() {
 								<li>
 									<Link
 										href="/contact"
-										className="text-gray-300 hover:text-white transition-colors inline-flex items-center group"
+										className="text-white hover:text-brand-light transition-colors inline-flex items-center group"
 									>
 										<span className="w-0 h-0.5 bg-white transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
 										Contact
@@ -158,7 +157,7 @@ export default function Footer() {
 								<li>
 									<Link
 										href="/services/web-design-development"
-										className="text-gray-300 hover:text-white transition-colors inline-flex items-center group"
+										className="text-white hover:text-brand-light transition-colors inline-flex items-center group"
 									>
 										<span className="w-0 h-0.5 bg-white transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
 										Web design & development
@@ -167,7 +166,7 @@ export default function Footer() {
 								<li>
 									<Link
 										href="/services/digital-marketing-strategy"
-										className="text-gray-300 hover:text-white transition-colors inline-flex items-center group"
+										className="text-white hover:text-brand-light transition-colors inline-flex items-center group"
 									>
 										<span className="w-0 h-0.5 bg-white transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
 										Digital marketing strategy
@@ -176,7 +175,7 @@ export default function Footer() {
 								<li>
 									<Link
 										href="/services/business-automation"
-										className="text-gray-300 hover:text-white transition-colors inline-flex items-center group"
+										className="text-white hover:text-brand-light transition-colors inline-flex items-center group"
 									>
 										<span className="w-0 h-0.5 bg-white transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
 										Business automation
@@ -185,7 +184,7 @@ export default function Footer() {
 								<li>
 									<Link
 										href="/services/content-creation"
-										className="text-gray-300 hover:text-white transition-colors inline-flex items-center group"
+										className="text-white hover:text-brand-light transition-colors inline-flex items-center group"
 									>
 										<span className="w-0 h-0.5 bg-white transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
 										Content creation
@@ -194,7 +193,7 @@ export default function Footer() {
 								<li>
 									<Link
 										href="/services/seo-optimization"
-										className="text-gray-300 hover:text-white transition-colors inline-flex items-center group"
+										className="text-white hover:text-brand-light transition-colors inline-flex items-center group"
 									>
 										<span className="w-0 h-0.5 bg-white transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
 										SEO optimization
@@ -205,13 +204,13 @@ export default function Footer() {
 
 						<div>
 							<h3 className="font-bold text-lg mb-4">Contact</h3>
-							<ul className="space-y-2 text-gray-300">
+							<ul className="space-y-2 text-white">
 								<li className="flex items-center">
 									<Mail className="h-4 w-4 mr-2" />
 									<span>Email: </span>
 									<a
 										href="mailto:info@example.com"
-										className="ml-1 hover:text-white"
+										className="ml-1 hover:text-brand-light"
 									>
 										info@example.com
 									</a>
@@ -219,7 +218,7 @@ export default function Footer() {
 								<li className="flex items-center">
 									<Phone className="h-4 w-4 mr-2" />
 									<span>Phone: </span>
-									<a href="tel:+31201234567" className="ml-1 hover:text-white">
+									<a href="tel:+31201234567" className="ml-1 hover:text-brand-light">
 										+31 20 123 4567
 									</a>
 								</li>
@@ -262,7 +261,6 @@ export default function Footer() {
 							>
 								Terms of service
 							</Link>
-							<CookieSettingsButton />
 						</div>
 					</div>
 				</div>

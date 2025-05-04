@@ -83,7 +83,7 @@ export default async function BlogPage() {
 												asChild
 											>
 												<Link href={`/blog/${featuredPost.slug}`}>
-													Read Featured Article
+													{`Read featured article: ${featuredPost.title}`}
 													<ArrowRight className="ml-2 h-4 w-4" />
 												</Link>
 											</Button>
@@ -136,7 +136,7 @@ export default async function BlogPage() {
 										asChild
 									>
 										<Link href={`/blog/${post.slug}`}>
-											Read More
+											{`Read more: ${post.title}`}
 											<ArrowRight className="ml-2 h-4 w-4" />
 										</Link>
 									</Button>

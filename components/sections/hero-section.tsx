@@ -124,7 +124,7 @@ export default function HeroSection() {
 								className="border-primary text-primary hover:bg-primary hover:text-white"
 								asChild
 							>
-								<Link href="/about">Learn more</Link>
+								<Link href="/about">Learn more about us</Link>
 							</Button>
 						</div>
 					</motion.div>

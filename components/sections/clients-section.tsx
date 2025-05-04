@@ -39,6 +39,8 @@ export default function ClientsSection() {
 										<img
 											src={client.logo}
 											alt={client.name}
+											width={120}
+											height={60}
 											className={`${styles.logo_image} w-24`}
 										/>
 									</div>

@@ -82,8 +82,7 @@ export default async function ServicesPage() {
 											className="w-full bg-primary hover:bg-primary/90"
 											asChild
 										>
-											<Link href={`/services/${service.slug}`}>
-												Learn More
+											<Link href={`/services/${service.slug}`}>{`Learn more about ${service.title}`}
 												<ArrowRight className="ml-2 h-4 w-4" />
 											</Link>
 										</Button>

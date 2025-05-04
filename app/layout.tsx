@@ -1,8 +1,6 @@
 import { Poppins, Raleway } from "next/font/google";
 import type React from "react";
 import "./globals.css";
-// import dynamic from 'next/dynamic'
-import CookiebotLoader from "@/components/cookie/CookiebotLoader";
 import Footer from "@/components/layout/footer";
 // import Script from "next/script" (removed for client-only loading)
 import Header from "@/components/layout/header";
@@ -17,6 +15,7 @@ import { defaultMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site.config";
 import { Partytown } from "@builder.io/partytown/react";
 import { Suspense } from "react";
+import CookiebotLoaderClient from "@/components/cookie/CookiebotLoaderClient";
 
 // Poppins for headings
 const poppins = Poppins({
@@ -37,10 +36,12 @@ const raleway = Raleway({
 });
 
 const siteUrl = siteConfig.site.url || "http://localhost:3000";
+
 export const metadata = defaultMetadata({
 	metadataBase: new URL(siteUrl),
 	robots: { index: true, follow: true },
 	generator: "v0.dev",
+	description: siteConfig.site.description,
 });
 
 export default function RootLayout({
@@ -52,6 +53,7 @@ export default function RootLayout({
 		<html lang="en" suppressHydrationWarning>
 			<head>
 				{/* Preconnect to Google Fonts */}
+				<meta name="description" content={siteConfig.site.description || ""} />
 				<link rel="preconnect" href="https://fonts.googleapis.com" />
 				<link
 					rel="preconnect"
@@ -82,7 +84,7 @@ export default function RootLayout({
 							siteConfig.social.linkedin,
 							siteConfig.social.instagram,
 						],
-						telephone: siteConfig.contact.phone,
+						phone: siteConfig.contact.phone,
 						email: siteConfig.contact.email,
 						streetAddress: siteConfig.contact.address.line1,
 						city: siteConfig.contact.address.city,
@@ -104,7 +106,7 @@ export default function RootLayout({
 					enableSystem
 					disableTransitionOnChange
 				>
-					<CookiebotLoader />
+					<CookiebotLoaderClient />
 					<DataLayerProvider>
 						{/* Tracking scripts that respect cookie consent */}
 						<TrackingScripts />
