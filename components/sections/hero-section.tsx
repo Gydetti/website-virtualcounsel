@@ -102,7 +102,7 @@ export default function HeroSection({
 		<section
 			id="hero-section"
 			aria-labelledby="hero-section-heading"
-			className="relative overflow-hidden bg-gradient-to-r from-blue-100 to-transparent"
+			className="relative overflow-hidden bg-gradient-to-r from-blue-100 to-white"
 		>
 			{/* Background pattern */}
 			<div className="absolute inset-0 bg-grid-pattern opacity-10" />
@@ -216,6 +216,12 @@ export default function HeroSection({
 					))}
 				</div>
 			</Section>
+
+			{/* soft left-only bottom shadow (20% width gradient) */}
+			<div
+				aria-hidden="true"
+				className="absolute bottom-0 left-0 w-1/5 h-1 bg-gradient-to-r from-black/10 to-transparent pointer-events-none"
+			/>
 		</section>
 	);
 }
