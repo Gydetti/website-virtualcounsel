@@ -86,10 +86,10 @@ export default function ContactPageClient() {
 						<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 							[CONTACT_PAGE_BADGE]
 						</Badge>
-						<h1 className="text-4xl md:text-5xl font-bold mb-6">
+						<h1 className="text-4xl md:text-5xl font-bold mb-6 whitespace-normal break-words">
 							[CONTACT_PAGE_TITLE]
 						</h1>
-						<p className="text-lg text-gray-700 mb-8">
+						<p className="text-lg text-gray-700 mb-8 whitespace-normal break-words">
 							[CONTACT_PAGE_DESCRIPTION: Encourage visitors to reach out and
 							explain how you can help them.]
 						</p>
