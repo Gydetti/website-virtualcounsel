@@ -3,16 +3,33 @@ import BlogSection from "@/components/sections/blog-section";
 import ClientsSection from "@/components/sections/clients-section";
 import ContactSection from "@/components/sections/contact-section";
 import CtaSection from "@/components/sections/cta-section";
-import FeaturesSection from "@/components/sections/features-section";
-import HeroSection from "@/components/sections/hero-section";
+import FeaturesSection, {
+	FeaturesSectionProps,
+} from "@/components/sections/features-section";
+import HeroSection, {
+	HeroSectionProps,
+} from "@/components/sections/hero-section";
 import PricingSection from "@/components/sections/pricing-section";
-import ProblemPainSection from "@/components/sections/problem-pain-section";
+import ProblemPainSection, {
+	ProblemPainSectionProps,
+} from "@/components/sections/problem-pain-section";
 import ProcessSection from "@/components/sections/process-section";
 import ServicesSection from "@/components/sections/services-section";
-import SolutionVisionSection from "@/components/sections/solution-vision-section";
+import SolutionVisionSection, {
+	SolutionVisionSectionProps,
+} from "@/components/sections/solution-vision-section";
 import TestimonialsSection from "@/components/sections/testimonials-section";
 import LazySection from "@/components/ui/lazy-section";
 import { getBlogPosts, getServices } from "@/lib/data-utils";
+import {
+	clientsSectionData,
+	ctaSectionData,
+	featuresSectionData,
+	heroSectionData,
+	problemPainSectionData,
+	solutionVisionSectionData,
+	testimonialsSectionData,
+} from "@/lib/data/homepage";
 import { defaultMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site.config";
 import type { Metadata } from "next";
@@ -31,40 +48,37 @@ export default async function Home() {
 		<>
 			{/* --- Research-Driven Homepage Structure for the Homepage --- */}
 
-			{/* 1. Hero Section:
-				- H1: Clear value proposition (Who, What, Why)
-				- Animated word loop for key benefits
-				- Primary CTA above the fold */}
-			<HeroSection />
+			{/* 1. Hero Section */}
+			<HeroSection {...heroSectionData} />
 
 			{/* Main Content Wrapper on global gradient */}
 			<div className="relative">
 				{/* 2. Value Proposition & Key Benefits */}
 				<LazySection>
-					<FeaturesSection />
+					<FeaturesSection {...featuresSectionData} />
 				</LazySection>
 
 				{/* 3. Social Proof */}
 				<LazySection>
-					<ClientsSection />
+					<ClientsSection {...clientsSectionData} />
 				</LazySection>
 				<LazySection>
-					<TestimonialsSection />
+					<TestimonialsSection {...testimonialsSectionData} />
 				</LazySection>
 
 				{/* 4. Empathy for the Problem */}
 				<LazySection>
-					<ProblemPainSection />
+					<ProblemPainSection {...problemPainSectionData} />
 				</LazySection>
 
 				{/* 5. Solution & Vision */}
 				<LazySection>
-					<SolutionVisionSection />
+					<SolutionVisionSection {...solutionVisionSectionData} />
 				</LazySection>
 
 				{/* 6. Call-to-Action (placed mid-flow) */}
 				<LazySection>
-					<CtaSection />
+					<CtaSection {...ctaSectionData} />
 				</LazySection>
 
 				{/* --- Secondary Sections (Optional) --- */}
