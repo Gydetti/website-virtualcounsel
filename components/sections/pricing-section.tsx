@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import { Section } from "@/components/layout/Section";
 import { Button } from "@/components/ui/button";
 import {
 	Card,
@@ -9,7 +9,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
-import { Section } from "@/components/layout/Section";
+import React from "react";
 
 interface PricingCard {
 	title: string;

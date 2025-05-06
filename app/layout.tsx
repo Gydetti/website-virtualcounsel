@@ -100,7 +100,9 @@ export default function RootLayout({
 				className={`${poppins.variable} ${raleway.variable} font-sans antialiased bg-gradient-to-br from-blue-50 to-transparent`}
 			>
 				{/* Custom React-based cookie banner (disabled by default) */}
-				{siteConfig.features.enableCustomCookieBanner && <CookieConsentBanner />}
+				{siteConfig.features.enableCustomCookieBanner && (
+					<CookieConsentBanner />
+				)}
 				{/* Cookiebot loader for production consent flow */}
 				<CookiebotLoaderClient />
 				<DataLayerProvider>

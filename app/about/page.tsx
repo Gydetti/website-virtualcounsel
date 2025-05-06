@@ -71,9 +71,7 @@ export default function AboutPage() {
 							<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 								[ABOUT_PAGE_BADGE]
 							</Badge>
-							<h1 >
-								[ABOUT_PAGE_TITLE]
-							</h1>
+							<h1>[ABOUT_PAGE_TITLE]</h1>
 							<p className="text-gray-700 mb-6">
 								[ABOUT_PAGE_DESCRIPTION_1: Introduce your company and its
 								mission.]

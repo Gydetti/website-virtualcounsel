@@ -1,8 +1,8 @@
 "use client";
+import { Section } from "@/components/layout/Section";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import { XCircle } from "lucide-react";
-import { Section } from "@/components/layout/Section";
 
 export interface ProblemPainSectionProps {
 	badgeText?: string;
@@ -32,15 +32,10 @@ export default function ProblemPainSection({
 				<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 					{badgeText}
 				</Badge>
-				<h2
-					id="problem-pain-section-heading"
-					className="section-title"
-				>
+				<h2 id="problem-pain-section-heading" className="section-title">
 					{heading}
 				</h2>
-				<p className="text-gray-700 max-w-2xl mx-auto mb-8">
-					{description}
-				</p>
+				<p className="text-gray-700 max-w-2xl mx-auto mb-8">{description}</p>
 				<motion.ul
 					className="grid md:grid-cols-2 gap-6 text-left max-w-3xl mx-auto"
 					initial={{ opacity: 0, y: 20 }}

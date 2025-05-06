@@ -26,9 +26,7 @@ export default function Footer() {
 				<div className="container-wide relative z-10">
 					<div className="flex flex-col md:flex-row items-center justify-between gap-6">
 						<div>
-							<h3 className="text-white mb-2">
-								Subscribe to our newsletter
-							</h3>
+							<h3 className="text-white mb-2">Subscribe to our newsletter</h3>
 							<p className="text-body-base text-white">
 								Stay updated with the latest insights and news
 							</p>

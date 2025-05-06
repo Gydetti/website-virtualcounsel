@@ -147,15 +147,18 @@ export const homepageFaqCategories = [
 		questions: [
 			{
 				question: "What services do you offer?",
-				answer: "We provide digital growth strategy, web design, content marketing, and automation to help businesses scale."
+				answer:
+					"We provide digital growth strategy, web design, content marketing, and automation to help businesses scale.",
 			},
 			{
 				question: "How do I get started?",
-				answer: "You can reach out via our contact form or schedule a consultation to discuss your needs and goals."
+				answer:
+					"You can reach out via our contact form or schedule a consultation to discuss your needs and goals.",
 			},
 			{
 				question: "Which industries do you serve?",
-				answer: "We work with entrepreneurs and small businesses across tech, professional services, e-commerce, and more."
+				answer:
+					"We work with entrepreneurs and small businesses across tech, professional services, e-commerce, and more.",
 			},
 		],
 	},
@@ -164,15 +167,18 @@ export const homepageFaqCategories = [
 		questions: [
 			{
 				question: "Can I customize my service package?",
-				answer: "Absolutely—each package is tailored to your specific goals and budget to ensure the best outcome."
+				answer:
+					"Absolutely—each package is tailored to your specific goals and budget to ensure the best outcome.",
 			},
 			{
 				question: "How long does a typical project take?",
-				answer: "Most projects take between 4 to 8 weeks, depending on the scope and complexity."
+				answer:
+					"Most projects take between 4 to 8 weeks, depending on the scope and complexity.",
 			},
 			{
 				question: "Do you provide ongoing support?",
-				answer: "Yes, we offer maintenance and optimization services after launch to keep your digital presence at peak performance."
+				answer:
+					"Yes, we offer maintenance and optimization services after launch to keep your digital presence at peak performance.",
 			},
 		],
 	},
@@ -181,15 +187,18 @@ export const homepageFaqCategories = [
 		questions: [
 			{
 				question: "What are your pricing options?",
-				answer: "We offer both fixed-price packages and hourly rates, allowing flexibility based on project needs."
+				answer:
+					"We offer both fixed-price packages and hourly rates, allowing flexibility based on project needs.",
 			},
 			{
 				question: "Do you offer payment plans?",
-				answer: "Yes, we can structure payments into milestones to fit your budgeting requirements."
+				answer:
+					"Yes, we can structure payments into milestones to fit your budgeting requirements.",
 			},
 			{
 				question: "Is there a refund policy?",
-				answer: "If you're not satisfied within the first 14 days of service, we offer a full refund."
+				answer:
+					"If you're not satisfied within the first 14 days of service, we offer a full refund.",
 			},
 		],
 	},

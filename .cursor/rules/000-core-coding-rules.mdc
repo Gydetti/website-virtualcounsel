@@ -9,7 +9,7 @@ Always perform the following steps on any code changes before pushing to the `ma
 
 1. **Internal Build**: Run `npm run build` (or your build command) to ensure the application compiles without errors.  
 2. **ESLint Tests**: Run `npm run lint` and resolve **all** errors and warnings.  
-2a. Optional --> **Biome Linter Tests**: Run `npx biome check app components lib hooks` (or `npm run biome:lint`) and resolve **all** warnings and errors. If it is just for making sure everythign is pushed to Git and deployed to Vercel then ignore this. The Biome check is often a best practice note but not mandatory for deployment.
+2a. --> **Biome Linter Tests**: Run `npx biome check app components lib hooks` (or `npm run biome:lint`) and resolve **all** warnings and errors. If it is just for making sure everythign is pushed to Git and deployed to Vercel then ignore this. The Biome check is often a best practice note but not mandatory for deployment. I often would like you to do it though. 
 3. **Internal Deployment**: Deploy to a staging environment (e.g., `npm run deploy`) or local environment to validate runtime behavior.  
 
 After all checks pass with **zero errors** and no regressions or bugs:

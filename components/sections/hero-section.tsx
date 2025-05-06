@@ -6,11 +6,11 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import CountUp from "react-countup";
 
+import { Section } from "@/components/layout/Section";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import OptimizedImage from "@/components/ui/optimized-image";
-import { Section } from "@/components/layout/Section";
 
 export interface HeroSectionProps {
 	badgeText?: string;

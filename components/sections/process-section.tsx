@@ -1,8 +1,8 @@
 "use client";
 
+import { Section } from "@/components/layout/Section";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
-import { Section } from "@/components/layout/Section";
 
 export default function ProcessSection() {
 	const steps = [

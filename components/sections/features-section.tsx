@@ -1,11 +1,11 @@
 "use client";
+import { Section } from "@/components/layout/Section";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import OptimizedImage from "@/components/ui/optimized-image";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle, XCircle } from "lucide-react";
 import Link from "next/link";
-import { Section } from "@/components/layout/Section";
-import OptimizedImage from "@/components/ui/optimized-image";
 
 export interface FeaturesSectionProps {
 	badgeText?: string;
@@ -73,9 +73,7 @@ export default function FeaturesSection({
 						viewport={{ once: true }}
 						className="md:w-4/5 md:mx-auto rounded-lg border border-red-200 bg-red-50/50 backdrop-blur p-6 hover:bg-red-100/50 transition-colors text-gray-800"
 					>
-						<h3 className="text-red-400 mb-4">
-							{withoutTitle}
-						</h3>
+						<h3 className="text-red-400 mb-4">{withoutTitle}</h3>
 						<ul className="space-y-3">
 							{withoutItems.map((item) => (
 								<li key={item} className="flex items-start">
@@ -93,9 +91,7 @@ export default function FeaturesSection({
 						viewport={{ once: true }}
 						className="md:w-4/5 md:mx-auto rounded-lg border border-green-200 bg-green-50/50 backdrop-blur p-6 hover:bg-green-100/50 transition-colors text-gray-800"
 					>
-						<h3 className="text-green-400 mb-4">
-							{withTitle}
-						</h3>
+						<h3 className="text-green-400 mb-4">{withTitle}</h3>
 						<ul className="space-y-3">
 							{withItems.map((item) => (
 								<li key={item} className="flex items-start">

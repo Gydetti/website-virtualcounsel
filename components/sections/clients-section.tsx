@@ -1,8 +1,8 @@
 "use client";
+import { Section } from "@/components/layout/Section";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import styles from "./clients-section.module.css";
-import { Section } from "@/components/layout/Section";
 
 export interface ClientsSectionProps {
 	badgeText?: string;
@@ -52,7 +52,10 @@ export default function ClientsSection({
 					<div className={styles.slider_wrapper}>
 						<div className={styles.slider}>
 							{sliderItems.map((client) => (
-								<div key={`${client.name}-${client.instance}`} className={styles.logo_item}>
+								<div
+									key={`${client.name}-${client.instance}`}
+									className={styles.logo_item}
+								>
 									<Image
 										src={client.logo}
 										alt={client.name}

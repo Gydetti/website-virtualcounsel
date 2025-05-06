@@ -9,6 +9,7 @@ import FeaturesSection, {
 import HeroSection, {
 	HeroSectionProps,
 } from "@/components/sections/hero-section";
+import HomepageFaqSection from "@/components/sections/homepage-faq-section";
 import PricingSection from "@/components/sections/pricing-section";
 import ProblemPainSection, {
 	ProblemPainSectionProps,
@@ -30,11 +31,10 @@ import {
 	solutionVisionSectionData,
 	testimonialsSectionData,
 } from "@/lib/data/homepage";
+import { homepageFaqCategories } from "@/lib/data/homepage";
 import { defaultMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site.config";
 import type { Metadata } from "next";
-import HomepageFaqSection from "@/components/sections/homepage-faq-section";
-import { homepageFaqCategories } from "@/lib/data/homepage";
 
 export const metadata = defaultMetadata({
 	title: `${siteConfig.site.name} | Home`,
@@ -55,7 +55,6 @@ export default async function Home() {
 
 			{/* Main Content Wrapper on global gradient */}
 			<div className="relative">
-
 				{/* 2. Social Proof (Client Logos) */}
 				<LazySection>
 					<ClientsSection {...clientsSectionData} />

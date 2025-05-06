@@ -1,13 +1,13 @@
 "use client";
 /* biome-disable lint/suspicious/noArrayIndexKey */
 
+import { Section } from "@/components/layout/Section";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
-import { Section } from "@/components/layout/Section";
 
 export interface TestimonialsSectionProps {
 	badgeText?: string;
@@ -138,7 +138,9 @@ export default function TestimonialsSection({
 														<h3 className="text-body-base text-gray-900">
 															{testimonial.name}
 														</h3>
-														<p className="text-body-base text-gray-600">{testimonial.title}</p>
+														<p className="text-body-base text-gray-600">
+															{testimonial.title}
+														</p>
 													</div>
 												</div>
 											</CardContent>

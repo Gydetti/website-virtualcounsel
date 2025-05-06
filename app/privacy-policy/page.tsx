@@ -16,9 +16,7 @@ export default function PrivacyPolicyPage() {
 					<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 						Legal
 					</Badge>
-					<h1 >
-						Privacy Policy
-					</h1>
+					<h1>Privacy Policy</h1>
 
 					<div className="prose prose-lg max-w-none">
 						<p>Last Updated: [LAST_UPDATED_DATE]</p>

@@ -149,12 +149,8 @@ export default async function ServicePage({ params }: ServicePageProps) {
 					<div className="grid lg:grid-cols-2 gap-12 items-center">
 						<div>
 							<Badge className="mb-4">{service.icon}</Badge>
-							<h1 >
-								{service.title}
-							</h1>
-							<p className="text-gray-700 mb-8">
-								{service.description}
-							</p>
+							<h1>{service.title}</h1>
+							<p className="text-gray-700 mb-8">{service.description}</p>
 
 							<div className="space-y-4 mb-8">
 								{service.features.map((feature) => (

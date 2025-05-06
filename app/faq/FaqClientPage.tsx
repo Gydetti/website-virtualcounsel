@@ -116,9 +116,7 @@ export default function FaqClientPage() {
 						<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 							[FAQ_PAGE_BADGE]
 						</Badge>
-						<h1 >
-							[FAQ_PAGE_TITLE]
-						</h1>
+						<h1>[FAQ_PAGE_TITLE]</h1>
 						<p className="text-gray-700 mb-8">
 							[FAQ_PAGE_DESCRIPTION: Introduce the FAQ section and encourage
 							users to search for answers.]

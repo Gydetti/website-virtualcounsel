@@ -1,5 +1,6 @@
 "use client";
 
+import { Section } from "@/components/layout/Section";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,7 +15,6 @@ import type { Service } from "@/lib/data-utils";
 import { motion } from "framer-motion";
 import { ArrowRight, BarChart2, Globe, Zap } from "lucide-react";
 import Link from "next/link";
-import { Section } from "@/components/layout/Section";
 
 // Map of icon names to components
 const iconMap: Record<string, React.ReactNode> = {

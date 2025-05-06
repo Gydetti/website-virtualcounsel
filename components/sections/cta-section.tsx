@@ -1,8 +1,8 @@
+import { Section } from "@/components/layout/Section";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { Section } from "@/components/layout/Section";
 
 export interface CtaSectionProps {
 	badgeText?: string;
@@ -38,15 +38,10 @@ export default function CtaSection({
 				<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 					{badgeText}
 				</Badge>
-				<h2
-					id="cta-section-heading"
-					className="section-title text-white"
-				>
+				<h2 id="cta-section-heading" className="section-title text-white">
 					{heading}
 				</h2>
-				<p className="text-gray-300 max-w-xl mx-auto mb-8">
-					{description}
-				</p>
+				<p className="text-gray-300 max-w-xl mx-auto mb-8">{description}</p>
 
 				<div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4">
 					<Button

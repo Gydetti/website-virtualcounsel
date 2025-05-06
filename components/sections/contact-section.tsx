@@ -2,6 +2,7 @@
 
 import type { ChangeEvent, FormEvent } from "react";
 
+import { Section } from "@/components/layout/Section";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,7 +12,6 @@ import { motion } from "framer-motion";
 import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
 import Script from "next/script";
 import { useEffect, useState } from "react";
-import { Section } from "@/components/layout/Section";
 
 // Provide typing for the Recaptcha API on the window object
 declare global {

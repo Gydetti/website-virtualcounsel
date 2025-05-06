@@ -1,9 +1,14 @@
+import { Section } from "@/components/layout/Section";
 import StructuredData from "@/components/seo/structured-data";
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
+import {
+	Accordion,
+	AccordionContent,
+	AccordionItem,
+	AccordionTrigger,
+} from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Section } from "@/components/layout/Section";
 
 export interface FaqItem {
 	question: string;
@@ -33,7 +38,9 @@ export default function HomepageFaqSection({
 	ctaLink = "/contact",
 }: HomepageFaqSectionProps) {
 	// Prepare JSON-LD items for structured-data
-	const faqSchema = categories.flatMap(cat => cat.questions.map(q => ({ question: q.question, answer: q.answer })));
+	const faqSchema = categories.flatMap((cat) =>
+		cat.questions.map((q) => ({ question: q.question, answer: q.answer })),
+	);
 
 	return (
 		<>
@@ -44,15 +51,30 @@ export default function HomepageFaqSection({
 						{badgeText}
 					</Badge>
 					<h2 className="section-title">{heading}</h2>
-					{description && <p className="text-gray-700 mb-8 max-w-2xl mx-auto">{description}</p>}
-					{categories.map(cat => (
-						<div key={cat.category} className="mb-12 text-left max-w-3xl mx-auto">
+					{description && (
+						<p className="text-gray-700 mb-8 max-w-2xl mx-auto">
+							{description}
+						</p>
+					)}
+					{categories.map((cat) => (
+						<div
+							key={cat.category}
+							className="mb-12 text-left max-w-3xl mx-auto"
+						>
 							<h3 className="text-body-base mb-6">{cat.category}</h3>
 							<Accordion type="single" collapsible className="space-y-4">
 								{cat.questions.map((q) => (
-									<AccordionItem key={q.question} value={`faq-${cat.category}-${q.question}`} className="border border-gray-200 rounded-lg overflow-hidden">
-										<AccordionTrigger className="px-6 py-4 text-body-base font-medium">{q.question}</AccordionTrigger>
-										<AccordionContent className="px-6 py-4 text-gray-700">{q.answer}</AccordionContent>
+									<AccordionItem
+										key={q.question}
+										value={`faq-${cat.category}-${q.question}`}
+										className="border border-gray-200 rounded-lg overflow-hidden"
+									>
+										<AccordionTrigger className="px-6 py-4 text-body-base font-medium">
+											{q.question}
+										</AccordionTrigger>
+										<AccordionContent className="px-6 py-4 text-gray-700">
+											{q.answer}
+										</AccordionContent>
 									</AccordionItem>
 								))}
 							</Accordion>
@@ -65,4 +87,4 @@ export default function HomepageFaqSection({
 			</Section>
 		</>
 	);
-} 
+}

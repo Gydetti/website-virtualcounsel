@@ -1,12 +1,12 @@
 "use client";
 
+import { Section } from "@/components/layout/Section";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { Section } from "@/components/layout/Section";
 
 export default function AboutSection() {
 	return (
@@ -44,9 +44,7 @@ export default function AboutSection() {
 					<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 						About us
 					</Badge>
-					<h2 className="section-title">
-						Our story and mission
-					</h2>
+					<h2 className="section-title">Our story and mission</h2>
 					<p className="text-gray-700 mb-6">
 						We're a team of digital experts passionate about helping
 						entrepreneurs succeed. With years of experience across various
@@ -55,13 +53,13 @@ export default function AboutSection() {
 					</p>
 					<p className="text-gray-700 mb-6">
 						Our approach combines strategic thinking with practical solutions.
-						We don't just implement tactics; we develop comprehensive
-						strategies tailored to your specific goals and audience.
+						We don't just implement tactics; we develop comprehensive strategies
+						tailored to your specific goals and audience.
 					</p>
 					<p className="text-gray-700 mb-8">
-						What sets us apart is our commitment to your success. We measure
-						our success by your results, and we're dedicated to helping you
-						achieve sustainable growth.
+						What sets us apart is our commitment to your success. We measure our
+						success by your results, and we're dedicated to helping you achieve
+						sustainable growth.
 					</p>
 
 					<div className="grid grid-cols-2 gap-4 mb-8">

@@ -51,7 +51,9 @@ export default function BlogCard({
 				</CardTitle>
 			</CardHeader>
 			<CardContent>
-				<CardDescription className="text-body-base text-gray-600">{excerpt}</CardDescription>
+				<CardDescription className="text-body-base text-gray-600">
+					{excerpt}
+				</CardDescription>
 			</CardContent>
 			<CardFooter className="pt-0">
 				<Button
