@@ -71,7 +71,7 @@ export default function ProcessSection() {
 			<div className="max-w-4xl mx-auto px-4 relative z-10">
 				<div className="text-center mb-16">
 					<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
-						Our process
+						How we work
 					</Badge>
 					<h2 className="section-title">How we work with you</h2>
 					<p className="section-subtitle">
@@ -81,8 +81,8 @@ export default function ProcessSection() {
 				</div>
 
 				<div className="relative">
-					{/* Timeline line centered */}
-					<div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gray-200 hidden md:block transform -translate-x-1/2" />
+					{/* Timeline line */}
+					<div className="absolute left-[40px] top-0 bottom-0 w-0.5 bg-gray-200 hidden md:block" />
 
 					<div className="space-y-16">
 						{steps.map((step, index) => (
@@ -92,7 +92,7 @@ export default function ProcessSection() {
 								whileInView={{ opacity: 1, y: 0 }}
 								transition={{ duration: 0.5, delay: index * 0.1 }}
 								viewport={{ once: true }}
-								className={`flex flex-col md:items-center gap-8 md:gap-12 ${index % 2 === 1 ? "md:flex-row-reverse" : "md:flex-row"}`}
+								className="flex flex-col md:flex-row gap-8"
 							>
 								<div className="flex-shrink-0 flex items-start justify-center relative z-10">
 									<div className="w-20 h-20 rounded-full flex items-center justify-center text-2xl font-bold shadow-md bg-primary text-white">

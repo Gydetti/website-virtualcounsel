@@ -1,3 +1,4 @@
+import ProcessSection from "@/components/sections/process-section";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -207,38 +208,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
 				</div>
 			</section>
 
-			<section className="py-16 bg-gray-50">
-				<div className="container-wide">
-					<h2 className="text-3xl font-bold mb-12 text-center">Our Process</h2>
-					<div className="relative">
-						<div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gray-200 hidden md:block" />
-						<div className="space-y-16">
-							{process.map((step, index) => (
-								<div
-									key={step.title}
-									className={`flex flex-col md:items-center gap-8 md:gap-12 ${
-										index % 2 === 1 ? "md:flex-row-reverse" : "md:flex-row"
-									}`}
-								>
-									<div className="flex-shrink-0 relative z-10">
-										<div className="flex items-center justify-center h-10 w-10 rounded-full bg-primary text-white font-bold md:mr-6 md:ml-0">
-											{index + 1}
-										</div>
-									</div>
-									<div className="flex-grow bg-white p-6 rounded-lg shadow-md border border-gray-200">
-										<h3 className="text-xl font-bold mb-2 text-left">
-											{step.title}
-										</h3>
-										<p className="text-gray-600 mb-0 text-left">
-											{step.description}
-										</p>
-									</div>
-								</div>
-							))}
-						</div>
-					</div>
-				</div>
-			</section>
+			<ProcessSection />
 
 			<section className="py-16 bg-white">
 				<div className="container-wide">

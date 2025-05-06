@@ -91,6 +91,10 @@ export default async function Home() {
 				</LazySection>
 
 				<LazySection>
+					<ProcessSection />
+				</LazySection>
+
+				<LazySection>
 					<ContactSection />
 				</LazySection>
 			</div>
