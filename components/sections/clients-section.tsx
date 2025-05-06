@@ -1,5 +1,6 @@
 "use client";
 import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
 import styles from "./clients-section.module.css";
 
 export interface ClientsSectionProps {
@@ -53,12 +54,12 @@ export default function ClientsSection({
 										key={`${rIdx}-${client.name}`}
 										className={styles.logo_item}
 									>
-										<img
+										<Image
 											src={client.logo}
 											alt={client.name}
 											width={120}
 											height={60}
-											className={`${styles.logo_image} w-24`}
+											className={`${styles.logo_image} w-24 object-contain`}
 										/>
 									</div>
 								)),
