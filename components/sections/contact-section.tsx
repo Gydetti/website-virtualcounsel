@@ -24,7 +24,17 @@ declare global {
 	}
 }
 
-export default function ContactSection() {
+export interface ContactSectionProps {
+	badgeText?: string;
+	heading?: string;
+	subtitle?: string;
+}
+
+export default function ContactSection({
+	badgeText = "Contact us",
+	heading = "Get in touch",
+	subtitle = "Have questions or ready to start your project? Reach out to us today.",
+}: ContactSectionProps) {
 	const fields = siteConfig.contactForm?.fields || [];
 	const honeypotName = siteConfig.contactForm?.honeypotFieldName || "honeypot";
 	const recaptchaKey = siteConfig.contactForm?.recaptchaSiteKey;
@@ -92,7 +102,11 @@ export default function ContactSection() {
 	};
 
 	return (
-		<section id="contact" className="section-padding relative overflow-hidden">
+		<section
+			id="contact-section"
+			aria-labelledby="contact-section-heading"
+			className="section-padding relative overflow-hidden"
+		>
 			{/* Load reCAPTCHA script if key provided */}
 			{recaptchaKey && (
 				<Script
@@ -106,13 +120,12 @@ export default function ContactSection() {
 			<div className="container-wide relative z-10">
 				<div className="text-center mb-16">
 					<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
-						Contact us
+						{badgeText}
 					</Badge>
-					<h2 className="section-title">Get in touch</h2>
-					<p className="section-subtitle">
-						Have questions or ready to start your project? Reach out to us
-						today.
-					</p>
+					<h2 id="contact-section-heading" className="section-title">
+						{heading}
+					</h2>
+					<p className="section-subtitle">{subtitle}</p>
 				</div>
 
 				<div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">

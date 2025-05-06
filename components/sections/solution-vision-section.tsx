@@ -23,7 +23,8 @@ export default function SolutionVisionSection({
 }: SolutionVisionSectionProps) {
 	return (
 		<section
-			id="solution"
+			id="solution-vision-section"
+			aria-labelledby="solution-vision-section-heading"
 			className="section-padding bg-transparent relative overflow-hidden"
 		>
 			{/* Adjust decorative elements positioning/z-index for overlap */}

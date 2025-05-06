@@ -115,7 +115,8 @@ export default function HeroSection({
 					<motion.div
 						className="flex flex-col justify-center space-y-6 z-10"
 						initial={{ opacity: 0, y: 20 }}
-						animate={{ opacity: 1, y: 0 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						viewport={{ once: true }}
 						transition={{ duration: 0.5 }}
 					>
 						<Badge className="w-fit bg-blue-100 text-primary hover:bg-blue-200">
@@ -165,7 +166,8 @@ export default function HeroSection({
 					<motion.div
 						className="w-full max-w-[600px] ml-auto transform md:translate-y-6 transition-all"
 						initial={{ opacity: 0, y: 20 }}
-						animate={{ opacity: 1, y: 0 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						viewport={{ once: true }}
 						transition={{ duration: 0.5, delay: 0.2 }}
 					>
 						<AspectRatio

@@ -84,7 +84,14 @@ export default function TestimonialsSection({
 
 				<div className="max-w-3xl mx-auto">
 					<div className="relative">
-						<div className="overflow-hidden">
+						<motion.div
+							className="overflow-hidden"
+							initial={{ opacity: 0, y: 20 }}
+							whileInView={{ opacity: 1, y: 0 }}
+							viewport={{ once: true }}
+							transition={{ duration: 0.5 }}
+							style={{ overflowX: "hidden" }}
+						>
 							<div
 								className="flex transition-transform duration-500 ease-in-out"
 								style={{ transform: `translateX(-${activeIndex * 100}%)` }}
@@ -138,7 +145,7 @@ export default function TestimonialsSection({
 									</motion.div>
 								))}
 							</div>
-						</div>
+						</motion.div>
 
 						<div className="flex justify-center mt-4 space-x-2 absolute bottom-0 left-0 right-0">
 							{testimonials.map((testimonial, index) => (

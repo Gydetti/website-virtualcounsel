@@ -23,9 +23,9 @@ export default function ProblemPainSection({
 }: ProblemPainSectionProps) {
 	return (
 		<section
-			id="pain-section"
-			aria-labelledby="pain-section-heading"
-			className="section-padding bg-transparent relative overflow-hidden"
+			id="problem-pain-section"
+			aria-labelledby="problem-pain-section-heading"
+			className="section-padding bg-gray-50 relative overflow-hidden"
 		>
 			{/* Ensure decorative elements overlap edges if needed */}
 			{/*<div className="absolute top-0 left-0 w-64 h-64 bg-primary/5 rounded-full -translate-y-1/4 -translate-x-1/4 blur-3xl z-0" />
@@ -36,7 +36,7 @@ export default function ProblemPainSection({
 					{badgeText}
 				</Badge>
 				<h2
-					id="pain-section-heading"
+					id="problem-pain-section-heading"
 					className="text-3xl md:text-4xl font-bold mb-4"
 				>
 					{heading}
