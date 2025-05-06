@@ -103,7 +103,7 @@ export default async function BlogPage() {
 						{regularPosts.map((post) => (
 							<Card
 								key={post.id}
-								className="h-full overflow-hidden transition-all duration-300 hover:shadow-xl"
+								className="h-full flex flex-col overflow-hidden transition-all duration-300 hover:shadow-xl"
 							>
 								<div className="relative h-48 w-full overflow-hidden">
 									<Image
@@ -129,10 +129,10 @@ export default async function BlogPage() {
 										{post.excerpt}
 									</CardDescription>
 								</CardContent>
-								<CardFooter className="pt-0">
+								<CardFooter className="mt-auto pt-0">
 									<Button
 										variant="link"
-										className="p-0 h-auto text-primary"
+										className="p-0 h-auto whitespace-normal break-words text-primary"
 										asChild
 									>
 										<Link href={`/blog/${post.slug}`}>
