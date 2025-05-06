@@ -37,10 +37,10 @@ export default async function BlogPage() {
 						<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 							Our Blog
 						</Badge>
-						<h1 className="text-4xl md:text-5xl font-bold mb-6">
+						<h1 >
 							Latest Insights & Articles
 						</h1>
-						<p className="text-lg text-gray-700 max-w-3xl mx-auto">
+						<p className="text-gray-700 max-w-3xl mx-auto">
 							Expert advice, industry trends, and practical tips to help you
 							grow your business.
 						</p>

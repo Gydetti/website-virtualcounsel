@@ -124,7 +124,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 						</Link>
 
 						<Badge className="mb-4">{post.category}</Badge>
-						<h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+						<h1 >
 							{post.title}
 						</h1>
 
@@ -247,7 +247,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 						<div className="lg:col-span-1">
 							<Card>
 								<CardContent className="p-6">
-									<h3 className="text-xl font-bold mb-4">About the Author</h3>
+									<h3 className="mb-4">About the Author</h3>
 									<div className="flex items-center mb-4">
 										<div className="relative h-16 w-16 rounded-full overflow-hidden mr-4">
 											<Image
@@ -258,7 +258,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 											/>
 										</div>
 										<div>
-											<h4 className="font-semibold">{author.name}</h4>
+											<h4>{author.name}</h4>
 											<p className="text-sm text-gray-600">{author.title}</p>
 										</div>
 									</div>
@@ -267,7 +267,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 							</Card>
 
 							<div className="mt-8">
-								<h3 className="text-xl font-bold mb-4">Categories</h3>
+								<h3 className="mb-4">Categories</h3>
 								<div className="flex flex-wrap gap-2">
 									<Badge
 										variant="outline"
@@ -324,7 +324,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 									/>
 								</div>
 								<CardContent className="p-6">
-									<h3 className="text-xl font-bold mb-2 hover:text-primary transition-colors">
+									<h3 className="mb-2 hover:text-primary transition-colors">
 										<Link href={`/blog/${relatedPost.slug}`}>
 											{relatedPost.title}
 										</Link>

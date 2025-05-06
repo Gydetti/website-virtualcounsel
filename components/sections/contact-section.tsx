@@ -1,6 +1,6 @@
 "use client";
 
-import type React from "react";
+import type { ChangeEvent, FormEvent } from "react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -11,6 +11,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
 import Script from "next/script";
 import { useEffect, useState } from "react";
+import { Section } from "@/components/layout/Section";
 
 // Provide typing for the Recaptcha API on the window object
 declare global {
@@ -52,13 +53,13 @@ export default function ContactSection({
 	const [submitted, setSubmitted] = useState(false);
 
 	const handleChange = (
-		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+		e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
 	) => {
 		const { name, value } = e.target;
 		setFormData((prev) => ({ ...prev, [name]: value }));
 	};
 
-	const handleSubmit = async (e: React.FormEvent) => {
+	const handleSubmit = async (e: FormEvent) => {
 		e.preventDefault();
 		setIsSubmitting(true);
 
@@ -102,10 +103,10 @@ export default function ContactSection({
 	};
 
 	return (
-		<section
+		<Section
 			id="contact-section"
 			aria-labelledby="contact-section-heading"
-			className="section-padding relative overflow-hidden"
+			className="relative overflow-hidden bg-white"
 		>
 			{/* Load reCAPTCHA script if key provided */}
 			{recaptchaKey && (
@@ -117,7 +118,7 @@ export default function ContactSection({
 			{/* <div className="absolute top-0 right-0 w-96 h-96 bg-blue-50/80 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
 			<div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" /> */}
 
-			<div className="container-wide relative z-10">
+			<div className="relative z-10">
 				<div className="text-center mb-16">
 					<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 						{badgeText}
@@ -136,7 +137,7 @@ export default function ContactSection({
 						viewport={{ once: true }}
 						className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow"
 					>
-						<h3 className="text-2xl font-bold mb-6">Send us a message</h3>
+						<h3 className="mb-6">Send us a message</h3>
 
 						<form onSubmit={handleSubmit} className="space-y-6">
 							<div className="grid grid-cols-1 gap-6">
@@ -208,7 +209,7 @@ export default function ContactSection({
 						className="bg-primary text-white rounded-xl shadow-lg p-8 flex flex-col justify-between hover:shadow-xl transition-shadow"
 					>
 						<div>
-							<h3 className="text-2xl font-bold mb-6">Contact information</h3>
+							<h3 className="mb-6">Contact information</h3>
 
 							<ul className="space-y-6 mb-8">
 								<li className="flex items-start">
@@ -252,7 +253,7 @@ export default function ContactSection({
 						</div>
 
 						<div className="bg-white/10 rounded-lg p-6">
-							<h4 className="font-bold text-lg mb-3">Business hours</h4>
+							<h4 className="mb-3">Business hours</h4>
 							<ul className="space-y-2">
 								<li className="flex justify-between">
 									<span>Monday - Friday</span>
@@ -271,6 +272,6 @@ export default function ContactSection({
 					</motion.div>
 				</div>
 			</div>
-		</section>
+		</Section>
 	);
 }

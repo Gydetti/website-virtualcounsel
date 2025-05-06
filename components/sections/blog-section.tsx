@@ -14,6 +14,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Section } from "@/components/layout/Section";
 
 interface BlogSectionProps {
 	posts: BlogPost[];
@@ -21,12 +22,12 @@ interface BlogSectionProps {
 
 export default function BlogSection({ posts }: BlogSectionProps) {
 	return (
-		<section className="section-padding relative overflow-hidden">
+		<Section className="relative overflow-hidden">
 			{/* Decorative elements */}
 			{/*<div className="absolute top-0 left-1/4 w-72 h-72 bg-blue-50 rounded-full -translate-y-1/2 blur-3xl opacity-70"></div>
 			{/*<div className="absolute bottom-0 right-1/4 w-72 h-72 bg-primary/5 rounded-full translate-y-1/2 blur-3xl"></div>*/}
 
-			<div className="container-wide relative z-10">
+			<div className="relative z-10">
 				<div className="text-center mb-16">
 					<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 						Latest insights
@@ -104,6 +105,6 @@ export default function BlogSection({ posts }: BlogSectionProps) {
 					</Button>
 				</div>
 			</div>
-		</section>
+		</Section>
 	);
 }

@@ -73,7 +73,7 @@ export default function FaqAccordion({
 						exit={{ opacity: 0 }}
 						className="text-center py-12"
 					>
-						<h3 className="text-xl font-bold mb-2">No results found</h3>
+						<h3 className="mb-2">No results found</h3>
 						<p className="text-gray-600">
 							We couldn't find any FAQs matching your search. Please try a
 							different search term.

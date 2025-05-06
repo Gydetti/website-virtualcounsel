@@ -2,6 +2,7 @@
 
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
+import { Section } from "@/components/layout/Section";
 
 export default function ProcessSection() {
 	const steps = [
@@ -58,14 +59,14 @@ export default function ProcessSection() {
 	];
 
 	return (
-		<section id="process" className="section-padding relative overflow-hidden">
+		<Section id="process" className="relative overflow-hidden bg-white">
 			<div className="absolute inset-0 bg-[url('/placeholder.svg?height=1000&width=1000')] bg-center opacity-5" />
 
 			{/* Decorative elements */}
 			{/* <div className="absolute top-0 left-0 w-96 h-96 bg-blue-50/80 rounded-full -translate-y-1/2 -translate-x-1/2 blur-3xl" />
 			<div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 rounded-full translate-y-1/2 translate-x-1/2 blur-3xl" /> */}
 
-			<div className="max-w-4xl mx-auto px-4 relative z-10">
+			<div className="max-w-4xl mx-auto relative z-10">
 				<div className="text-center mb-16">
 					<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 						How we work
@@ -97,14 +98,14 @@ export default function ProcessSection() {
 									</div>
 								</div>
 								<div className="flex-grow bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:shadow-lg transition-shadow">
-									<h3 className="text-xl font-bold mb-1">{step.title}</h3>
+									<h3 className="mb-1">{step.title}</h3>
 									<p className="text-primary font-medium mb-3">
 										{step.subtitle}
 									</p>
 									<p className="text-gray-600 mb-6">{step.description}</p>
 
 									<div className="bg-gray-50 p-6 rounded-lg">
-										<h4 className="font-semibold mb-3">What this includes:</h4>
+										<h4 className="mb-3">What this includes:</h4>
 										<ul className="space-y-2">
 											{step.details.map((detail) => (
 												<li key={detail} className="flex items-start">
@@ -120,6 +121,6 @@ export default function ProcessSection() {
 					</div>
 				</div>
 			</div>
-		</section>
+		</Section>
 	);
 }

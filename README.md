@@ -485,7 +485,7 @@ Since all the HTML snippets are static and controlled by you (not end-user input
 ### Images & Asset Pipeline
 #### 1. Raw Assets
 - Master images live in `assets/images/raw/<category>` (e.g. `assets/images/raw/team/jane-doe.jpg`).
-- Default categories: `branding`, `team`, `services`, `blog`, `testimonials`.
+- Default categories: `branding`, `team`, `services`, `blog`, `testimonials`, `general`.
 - To include the **current placeholder** images in the same pipeline (for consistent format, responsive sizes, and blurDataURLs), copy them from the `public/` root into `assets/images/raw/placeholders` before running optimization.
 - To onboard a new section, create a raw subfolder (e.g. `assets/images/raw/features`)—the pipeline auto-detects any folder.
 
@@ -557,6 +557,47 @@ Ensure that `siteConfig.contact.email` in `lib/site.config.local.ts` is set to t
 1. Modify global styles in `app/globals.css`
 2. Adjust component styles as needed
 3. Add custom fonts if desired
+
+### Section Wrapper & Background Modes
+The template includes a reusable `Section` component (`components/layout/Section.tsx`) that standardizes spacing, centering, and optional full-width backgrounds across all sections. Use the built-in API to choose between a boxed container or a full-bleed layout:
+
+- Default (boxed) mode:
+  ```tsx
+  <Section className="bg-gray-50">
+    {/* content stays within container gutters */}
+  </Section>
+  ```
+  The `Section` component will render:
+  ```html
+  <section class="container mx-auto px-4 py-12 md:py-16 bg-gray-50">
+    ...
+  </section>
+  ```
+
+- Full-bleed mode:
+  ```tsx
+  <Section fullBleed className="bg-brand-dark text-white">
+    {/* content spans full browser width, inner container centers children */}
+  </Section>
+  ```
+  This renders:
+  ```html
+  <section class="bg-brand-dark text-white">
+    <div class="container mx-auto px-4 py-12 md:py-16">
+      ...
+    </div>
+  </section>
+  ```
+
+**Customizing borders, rounding, or shadows:**
+Simply pass Tailwind utility classes via the `className` prop:
+```tsx
+<Section className="border border-gray-200 rounded-lg shadow-sm">
+  {/* content with subtle box effect */}
+</Section>
+```
+
+> **Tip:** When converting an existing section to full-bleed, remove any manual outer `<section>` wrapper and rely on the `fullBleed` prop instead—this keeps your markup consistent and DRY.
 
 ## Getting Started
 

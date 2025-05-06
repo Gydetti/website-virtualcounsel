@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { Button } from "@/components/ui/button";
 import {
 	Card,
@@ -8,7 +9,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
-import React from "react";
+import { Section } from "@/components/layout/Section";
 
 interface PricingCard {
 	title: string;
@@ -23,17 +24,14 @@ interface PricingSectionProps {
 
 export default function PricingSection({ cards }: PricingSectionProps) {
 	return (
-		<section
-			id="pricing"
-			className="section-padding bg-white relative overflow-hidden"
-		>
-			<div className="container-wide text-center mb-16">
+		<Section id="pricing" className="bg-white relative overflow-hidden">
+			<div className="text-center mb-16">
 				<h2 className="section-title">Pricing Plans</h2>
 				<p className="section-subtitle">
 					Choose the plan that best fits your needs
 				</p>
 			</div>
-			<div className="container-wide grid gap-8 md:grid-cols-3 items-stretch">
+			<div className="grid gap-8 md:grid-cols-3 items-stretch">
 				{cards.map((card, idx) => (
 					<Card
 						key={card.title}
@@ -84,6 +82,6 @@ export default function PricingSection({ cards }: PricingSectionProps) {
 					</Card>
 				))}
 			</div>
-		</section>
+		</Section>
 	);
 }

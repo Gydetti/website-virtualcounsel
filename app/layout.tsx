@@ -2,6 +2,7 @@ import { Poppins, Raleway } from "next/font/google";
 import type React from "react";
 import "./globals.css";
 import CookiebotLoaderClient from "@/components/cookie/CookiebotLoaderClient";
+import CookieConsentBanner from "@/components/cookie/cookie-consent-banner";
 import Footer from "@/components/layout/footer";
 // import Script from "next/script" (removed for client-only loading)
 import Header from "@/components/layout/header";
@@ -98,6 +99,9 @@ export default function RootLayout({
 			<body
 				className={`${poppins.variable} ${raleway.variable} font-sans antialiased bg-gradient-to-br from-blue-50 to-transparent`}
 			>
+				{/* Custom React-based cookie banner (disabled by default) */}
+				{siteConfig.features.enableCustomCookieBanner && <CookieConsentBanner />}
+				{/* Cookiebot loader for production consent flow */}
 				<CookiebotLoaderClient />
 				<DataLayerProvider>
 					{/* Tracking scripts that respect cookie consent */}

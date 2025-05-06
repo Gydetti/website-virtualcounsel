@@ -69,6 +69,28 @@
 		--input: 217.2 32.6% 17.5%;
 		--ring: 212.7 26.8% 83.9%;
 	}
+
+	/* Global typography scale */
+	h1 {
+		/* H1: 36px mobile, 48px md, 56px lg */
+		@apply text-4xl md:text-5xl lg:text-[3.5rem] font-bold mb-6;
+	}
+	h2 {
+		/* H2: 32px mobile, 36px md */
+		@apply text-[2rem] md:text-4xl font-bold;
+	}
+	h3 {
+		/* H3: 26px mobile, 32px md */
+		@apply text-[1.625rem] md:text-[2rem] font-semibold;
+	}
+	h4 {
+		/* H4: 20px mobile, 26px md */
+		@apply text-[1.25rem] md:text-[1.625rem] font-semibold;
+	}
+	p {
+		/* Base paragraph: 18px */
+		@apply text-lg leading-relaxed;
+	}
 }
 
 @layer base {
@@ -101,7 +123,8 @@
 
 @layer components {
 	.container-wide {
-		@apply container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+		/* Responsive horizontal padding: 1rem base, 1.5rem sm, 2rem md, 5rem xl+ */
+		@apply container max-w-7xl mx-auto px-4 sm:px-6 md:px-8 xl:px-20;
 	}
 
 	.section-padding {
@@ -109,7 +132,8 @@
 	}
 
 	.section-title {
-		@apply text-3xl md:text-4xl lg:text-5xl font-bold mb-6 whitespace-normal break-words;
+		/* H2 Section Titles: 32px mobile, 36px md */
+		@apply text-[2rem] md:text-[2.25rem] font-bold mb-6 whitespace-normal break-words;
 	}
 
 	.section-subtitle {
@@ -247,4 +271,20 @@
 .hero-pattern {
 	background-color: hsl(var(--background));
 	background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233d5a98' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+@layer utilities {
+	.text-balance {
+		/* Apply balanced wrapping for large headings */
+		text-wrap: balance;
+	}
+	.text-body-lg {
+		@apply text-lg;
+	}
+	.text-body-base {
+		@apply text-base;
+	}
+	.text-caption {
+		@apply text-sm;
+	}
 }

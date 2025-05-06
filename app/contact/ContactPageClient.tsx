@@ -86,10 +86,8 @@ export default function ContactPageClient() {
 						<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 							[CONTACT_PAGE_BADGE]
 						</Badge>
-						<h1 className="text-4xl md:text-5xl font-bold mb-6 whitespace-normal break-words">
-							[CONTACT_PAGE_TITLE]
-						</h1>
-						<p className="text-lg text-gray-700 mb-8 whitespace-normal break-words">
+						<h1 >[CONTACT_PAGE_TITLE]</h1>
+						<p className="text-gray-700 mb-8 whitespace-normal break-words">
 							[CONTACT_PAGE_DESCRIPTION: Encourage visitors to reach out and
 							explain how you can help them.]
 						</p>
@@ -267,7 +265,7 @@ export default function ContactPageClient() {
 								</ul>
 
 								<div className="mt-8">
-									<h3 className="font-bold text-lg mb-4">Follow Us</h3>
+									<h3 className="font-bold mb-4">Follow Us</h3>
 									<div className="flex space-x-4">
 										{siteConfig.social.facebook && (
 											<a
@@ -361,7 +359,7 @@ export default function ContactPageClient() {
 					<div className="bg-gray-200 rounded-xl overflow-hidden h-[400px] md:h-[500px] relative">
 						{/* Replace with actual Google Maps embed or other map service */}
 						<div className="absolute inset-0 flex items-center justify-center bg-gray-300">
-							<p className="text-gray-600 text-lg font-medium">
+							<p className="text-gray-600 font-medium">
 								[MAP_PLACEHOLDER: Replace with your preferred map embed code]
 							</p>
 						</div>

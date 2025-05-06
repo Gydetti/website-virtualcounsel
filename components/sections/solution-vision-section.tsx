@@ -2,6 +2,7 @@
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import { CheckCircle } from "lucide-react";
+import { Section } from "@/components/layout/Section";
 
 export interface SolutionVisionSectionProps {
 	badgeText?: string;
@@ -22,26 +23,26 @@ export default function SolutionVisionSection({
 	],
 }: SolutionVisionSectionProps) {
 	return (
-		<section
+		<Section
 			id="solution-vision-section"
 			aria-labelledby="solution-vision-section-heading"
-			className="section-padding bg-transparent relative overflow-hidden"
+			className="bg-transparent relative overflow-hidden"
 		>
 			{/* Adjust decorative elements positioning/z-index for overlap */}
 			{/* <div className="absolute top-0 right-0 w-64 h-64 bg-blue-100/20 rounded-full -translate-y-1/4 translate-x-1/4 blur-3xl z-0" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/10 rounded-full translate-y-1/2 -translate-x-1/4 blur-3xl z-0" /> */}
 
-			<div className="container-wide relative z-10 text-center">
+			<div className="relative z-10 text-center">
 				<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 					{badgeText}
 				</Badge>
 				<h2
 					id="solution-vision-section-heading"
-					className="text-3xl md:text-4xl font-bold mb-4"
+					className="section-title"
 				>
 					{heading}
 				</h2>
-				<p className="text-lg text-gray-700 max-w-2xl mx-auto mb-8">
+				<p className="text-gray-700 max-w-2xl mx-auto mb-8">
 					{description}
 				</p>
 				<motion.ul
@@ -59,6 +60,6 @@ export default function SolutionVisionSection({
 					))}
 				</motion.ul>
 			</div>
-		</section>
+		</Section>
 	);
 }

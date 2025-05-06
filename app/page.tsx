@@ -55,17 +55,28 @@ export default async function Home() {
 
 			{/* Main Content Wrapper on global gradient */}
 			<div className="relative">
-				{/* 2. Value Proposition & Key Benefits */}
-				<LazySection>
-					<FeaturesSection {...featuresSectionData} />
-				</LazySection>
 
-				{/* 3. Social Proof (Client Logos) */}
+				{/* 2. Social Proof (Client Logos) */}
 				<LazySection>
 					<ClientsSection {...clientsSectionData} />
 				</LazySection>
 
-				{/* 4. Testimonials (Social Proof Quotes) */}
+				{/* 3. Value Proposition & Key Benefits */}
+				<LazySection>
+					<FeaturesSection {...featuresSectionData} />
+				</LazySection>
+
+				{/* 4. Services */}
+				<LazySection>
+					<ServicesSection services={services} />
+				</LazySection>
+
+				{/* 9. Call-to-Action */}
+				<LazySection>
+					<CtaSection {...ctaSectionData} />
+				</LazySection>
+
+				{/* 5. Testimonials (Social Proof Quotes) */}
 				<LazySection>
 					<TestimonialsSection {...testimonialsSectionData} />
 				</LazySection>
@@ -90,24 +101,14 @@ export default async function Home() {
 					<ProcessSection />
 				</LazySection>
 
-				{/* 9. Call-to-Action */}
+				{/* 12. Frequently Asked Questions */}
 				<LazySection>
-					<CtaSection {...ctaSectionData} />
-				</LazySection>
-
-				{/* 10. Services */}
-				<LazySection>
-					<ServicesSection services={services} />
+					<HomepageFaqSection categories={homepageFaqCategories} />
 				</LazySection>
 
 				{/* 11. Blog */}
 				<LazySection>
 					<BlogSection posts={blogPosts} />
-				</LazySection>
-
-				{/* 12. Frequently Asked Questions */}
-				<LazySection>
-					<HomepageFaqSection categories={homepageFaqCategories} />
 				</LazySection>
 
 				{/* 13. Contact */}

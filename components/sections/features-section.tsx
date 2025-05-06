@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle, XCircle } from "lucide-react";
 import Link from "next/link";
+import { Section } from "@/components/layout/Section";
+import OptimizedImage from "@/components/ui/optimized-image";
 
 export interface FeaturesSectionProps {
 	badgeText?: string;
@@ -41,37 +43,37 @@ export default function FeaturesSection({
 	ctaLink = "/services",
 }: FeaturesSectionProps) {
 	return (
-		<section
+		<Section
 			id="features-section"
 			aria-labelledby="features-section-heading"
-			className="section-padding text-gray-800 relative overflow-hidden"
+			className="text-gray-800 relative overflow-hidden"
 		>
 			{/* Ensure decorative elements overlap edges */}
 			{/* <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full -translate-y-1/4 translate-x-1/4 blur-3xl z-0" /> */}
 
-			<div className="container-wide relative z-10">
+			<div className="relative z-10">
 				<div className="max-w-3xl mx-auto text-center mb-12">
 					<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 						{badgeText}
 					</Badge>
 					<h2
 						id="features-section-heading"
-						className="text-3xl md:text-4xl font-bold mb-6 text-gray-900"
+						className="section-title text-gray-900"
 					>
 						{heading}
 					</h2>
-					<p className="text-lg text-gray-700">{description}</p>
+					<p className="text-gray-700">{description}</p>
 				</div>
 
-				<div className="grid md:grid-cols-2 gap-8 mb-16">
+				<div className="relative grid md:grid-cols-2 gap-8 md:gap-0 mb-16">
 					<motion.div
 						initial={{ opacity: 0, x: -20 }}
 						whileInView={{ opacity: 1, x: 0 }}
 						transition={{ duration: 0.5 }}
 						viewport={{ once: true }}
-						className="rounded-lg border border-red-200 bg-red-50/50 backdrop-blur p-6 hover:bg-red-100/50 transition-colors text-gray-800"
+						className="md:w-4/5 md:mx-auto rounded-lg border border-red-200 bg-red-50/50 backdrop-blur p-6 hover:bg-red-100/50 transition-colors text-gray-800"
 					>
-						<h3 className="text-xl font-bold text-red-400 mb-4">
+						<h3 className="text-red-400 mb-4">
 							{withoutTitle}
 						</h3>
 						<ul className="space-y-3">
@@ -89,9 +91,9 @@ export default function FeaturesSection({
 						whileInView={{ opacity: 1, x: 0 }}
 						transition={{ duration: 0.5 }}
 						viewport={{ once: true }}
-						className="rounded-lg border border-green-200 bg-green-50/50 backdrop-blur p-6 hover:bg-green-100/50 transition-colors text-gray-800"
+						className="md:w-4/5 md:mx-auto rounded-lg border border-green-200 bg-green-50/50 backdrop-blur p-6 hover:bg-green-100/50 transition-colors text-gray-800"
 					>
-						<h3 className="text-xl font-bold text-green-400 mb-4">
+						<h3 className="text-green-400 mb-4">
 							{withTitle}
 						</h3>
 						<ul className="space-y-3">
@@ -103,10 +105,28 @@ export default function FeaturesSection({
 							))}
 						</ul>
 					</motion.div>
+
+					{/* Decorative arrow image between cards on desktop */}
+					<motion.div
+						initial={{ opacity: 0 }}
+						whileInView={{ opacity: 1 }}
+						transition={{ duration: 0.5 }}
+						viewport={{ once: true }}
+						className="hidden md:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+					>
+						<OptimizedImage
+							src="/images/general/1 bend arrow right.svg"
+							alt="Arrow indicating transition"
+							width={64}
+							height={64}
+							objectFit="contain"
+							className="opacity-90"
+						/>
+					</motion.div>
 				</div>
 
-				<div className="text-center">
-					<Button
+				{/*<div className="text-center">
+					 <Button
 						size="lg"
 						className="bg-primary text-white hover:bg-primary/90 group"
 						asChild
@@ -115,9 +135,9 @@ export default function FeaturesSection({
 							{ctaText}
 							<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
 						</Link>
-					</Button>
-				</div>
+					</Button> 
+				</div>*/}
 			</div>
-		</section>
+		</Section>
 	);
 }

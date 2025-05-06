@@ -26,10 +26,10 @@ export default function Footer() {
 				<div className="container-wide relative z-10">
 					<div className="flex flex-col md:flex-row items-center justify-between gap-6">
 						<div>
-							<h3 className="text-xl font-bold mb-2 text-white">
+							<h3 className="text-white mb-2">
 								Subscribe to our newsletter
 							</h3>
-							<p className="text-white">
+							<p className="text-body-base text-white">
 								Stay updated with the latest insights and news
 							</p>
 						</div>
@@ -55,7 +55,7 @@ export default function Footer() {
 									className="h-10 w-auto brightness-0 invert"
 								/>
 							</Link>
-							<p className="text-white mb-6 max-w-xs">
+							<p className="text-body-base text-white mb-6 max-w-xs">
 								We help entrepreneurs and small businesses grow through
 								strategic digital solutions tailored to their unique needs.
 							</p>
@@ -92,7 +92,7 @@ export default function Footer() {
 						</div>
 
 						<div>
-							<h3 className="font-bold text-lg mb-4">Quick links</h3>
+							<h3 className="mb-4">Quick links</h3>
 							<ul className="space-y-2">
 								<li>
 									<Link
@@ -152,7 +152,7 @@ export default function Footer() {
 						</div>
 
 						<div>
-							<h3 className="font-bold text-lg mb-4">Services</h3>
+							<h3 className="mb-4">Services</h3>
 							<ul className="space-y-2">
 								<li>
 									<Link
@@ -203,7 +203,7 @@ export default function Footer() {
 						</div>
 
 						<div>
-							<h3 className="font-bold text-lg mb-4">Contact</h3>
+							<h3 className="mb-4">Contact</h3>
 							<ul className="space-y-2 text-white">
 								<li className="flex items-center">
 									<Mail className="h-4 w-4 mr-2" />

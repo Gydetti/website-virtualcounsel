@@ -10,6 +10,7 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import OptimizedImage from "@/components/ui/optimized-image";
+import { Section } from "@/components/layout/Section";
 
 export interface HeroSectionProps {
 	badgeText?: string;
@@ -101,7 +102,7 @@ export default function HeroSection({
 		<section
 			id="hero-section"
 			aria-labelledby="hero-section-heading"
-			className="relative overflow-hidden bg-gradient-to-r from-blue-100 to-transparent pt-16 pb-12 md:pt-28 md:pb-20"
+			className="relative overflow-hidden bg-gradient-to-r from-blue-100 to-transparent"
 		>
 			{/* Background pattern */}
 			<div className="absolute inset-0 bg-grid-pattern opacity-10" />
@@ -110,7 +111,7 @@ export default function HeroSection({
 			<div className="absolute top-20 right-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
 			<div className="absolute bottom-10 left-10 w-72 h-72 bg-blue-100/20 rounded-full blur-3xl" />
 
-			<div className="container-wide relative z-10">
+			<Section className="relative z-10">
 				<div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
 					<motion.div
 						className="flex flex-col justify-center space-y-6 z-10"
@@ -125,7 +126,7 @@ export default function HeroSection({
 
 						<h1
 							id="hero-section-heading"
-							className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
+							className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance"
 						>
 							{headline}
 							<br />
@@ -138,7 +139,7 @@ export default function HeroSection({
 							</span>
 						</h1>
 
-						<p className="text-lg text-gray-700 max-w-lg">{subheadline}</p>
+						<p className="text-gray-700 max-w-lg">{subheadline}</p>
 
 						<div className="flex flex-col sm:flex-row gap-4 pt-4">
 							<Button
@@ -214,7 +215,7 @@ export default function HeroSection({
 						</div>
 					))}
 				</div>
-			</div>
+			</Section>
 		</section>
 	);
 }

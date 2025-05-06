@@ -74,7 +74,7 @@ export default function Header() {
 			<nav
 				className={cn(
 					"container-wide flex items-center justify-between transition-all duration-300",
-					scrolled ? "py-4 lg:py-2" : "py-4 lg:py-6",
+					scrolled ? "py-2.5" : "py-5",
 				)}
 				aria-label="Global"
 			>

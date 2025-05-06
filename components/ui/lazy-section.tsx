@@ -24,7 +24,7 @@ export default function LazySection({
 	children,
 	threshold = 0.1,
 	className = "",
-	animation = "fade",
+	animation = "slide-up",
 	delay = 0,
 }: LazySectionProps) {
 	const [isVisible, setIsVisible] = useState(false);

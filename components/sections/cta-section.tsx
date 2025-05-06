@@ -2,6 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { Section } from "@/components/layout/Section";
 
 export interface CtaSectionProps {
 	badgeText?: string;
@@ -23,28 +24,30 @@ export default function CtaSection({
 	secondaryCtaLink = "/services",
 }: CtaSectionProps) {
 	return (
-		<section
+		<Section
 			id="cta-section"
 			aria-labelledby="cta-section-heading"
-			className="section-padding bg-brand-dark text-white relative overflow-hidden"
+			fullBleed
+			className="bg-brand-dark text-white relative overflow-hidden"
 		>
-			{/* Optional: Add decorative elements matching the dark theme */}
+			{/* Decorative elements matching the dark theme */}
 			<div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
 			<div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl" />
 
-			<div className="container-wide relative z-10 text-center">
+			<div className="relative z-10 text-center">
 				<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 					{badgeText}
 				</Badge>
 				<h2
 					id="cta-section-heading"
-					className="text-3xl md:text-4xl font-bold mb-4 text-white"
+					className="section-title text-white"
 				>
 					{heading}
 				</h2>
-				<p className="text-lg text-gray-300 max-w-xl mx-auto mb-8">
+				<p className="text-gray-300 max-w-xl mx-auto mb-8">
 					{description}
 				</p>
+
 				<div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4">
 					<Button
 						size="lg"
@@ -69,6 +72,6 @@ export default function CtaSection({
 					</Button>
 				</div>
 			</div>
-		</section>
+		</Section>
 	);
 }

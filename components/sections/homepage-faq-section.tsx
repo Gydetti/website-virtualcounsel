@@ -3,6 +3,7 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { Section } from "@/components/layout/Section";
 
 export interface FaqItem {
 	question: string;
@@ -37,31 +38,31 @@ export default function HomepageFaqSection({
 	return (
 		<>
 			<StructuredData type="faq" data={{ items: faqSchema }} />
-			<section id="faq-homepage" className="section-padding bg-white">
-				<div className="container-wide mx-auto text-center">
+			<Section id="faq-homepage">
+				<div className="text-center">
 					<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 						{badgeText}
 					</Badge>
-					<h2 className="text-3xl md:text-4xl font-bold mb-4">{heading}</h2>
-					{description && <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">{description}</p>}
+					<h2 className="section-title">{heading}</h2>
+					{description && <p className="text-gray-700 mb-8 max-w-2xl mx-auto">{description}</p>}
 					{categories.map(cat => (
 						<div key={cat.category} className="mb-12 text-left max-w-3xl mx-auto">
-							<h3 className="text-2xl font-semibold mb-6">{cat.category}</h3>
+							<h3 className="text-body-base mb-6">{cat.category}</h3>
 							<Accordion type="single" collapsible className="space-y-4">
 								{cat.questions.map((q) => (
 									<AccordionItem key={q.question} value={`faq-${cat.category}-${q.question}`} className="border border-gray-200 rounded-lg overflow-hidden">
-										<AccordionTrigger className="px-6 py-4 font-medium">{q.question}</AccordionTrigger>
+										<AccordionTrigger className="px-6 py-4 text-body-base font-medium">{q.question}</AccordionTrigger>
 										<AccordionContent className="px-6 py-4 text-gray-700">{q.answer}</AccordionContent>
 									</AccordionItem>
 								))}
 							</Accordion>
 						</div>
 					))}
-					<Button asChild className="mt-8 bg-primary hover:bg-primary/90">
+					<Button className="mt-8" asChild>
 						<Link href={ctaLink}>{ctaText}</Link>
 					</Button>
 				</div>
-			</section>
+			</Section>
 		</>
 	);
 } 

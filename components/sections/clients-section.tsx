@@ -2,13 +2,12 @@
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import styles from "./clients-section.module.css";
+import { Section } from "@/components/layout/Section";
 
 export interface ClientsSectionProps {
 	badgeText?: string;
 	heading?: string;
 	clients?: { name: string; logo: string }[];
-	repeats?: number;
-	slideWidth?: number;
 }
 
 export default function ClientsSection({
@@ -24,50 +23,49 @@ export default function ClientsSection({
 		{ name: "EliteServices", logo: "/placeholder.svg?height=60&width=120" },
 		{ name: "PrimeConsulting", logo: "/placeholder.svg?height=60&width=120" },
 	],
-	repeats = 3,
-	slideWidth = 166,
 }: ClientsSectionProps) {
-	const totalWidth = clients.length * repeats * slideWidth;
+	// Only display up to 6 logos, then duplicate for infinite scroll
+	const displayClients = clients.slice(0, 6);
+	// Duplicate with an instance flag for unique, stable keys
+	const sliderItems = [
+		...displayClients.map((c) => ({ ...c, instance: 0 })),
+		...displayClients.map((c) => ({ ...c, instance: 1 })),
+	];
 
 	return (
-		<section
+		<Section
 			id="clients-section"
 			aria-labelledby="clients-section-heading"
-			className="py-12 relative overflow-hidden"
+			className="relative overflow-hidden"
 		>
-			<div className="container-wide relative z-10">
+			<div className="relative z-10">
 				<div className="text-center mb-8">
 					<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 						{badgeText}
 					</Badge>
-					<h2 id="clients-section-heading" className="text-2xl font-bold">
+					<h2 id="clients-section-heading" className="section-title">
 						{heading}
 					</h2>
 				</div>
 
 				<div className="py-4">
 					<div className={styles.slider_wrapper}>
-						<div className={styles.slider} style={{ width: `${totalWidth}px` }}>
-							{Array.from({ length: repeats }).flatMap((_, rIdx) =>
-								clients.map((client) => (
-									<div
-										key={`${rIdx}-${client.name}`}
-										className={styles.logo_item}
-									>
-										<Image
-											src={client.logo}
-											alt={client.name}
-											width={120}
-											height={60}
-											className={`${styles.logo_image} w-24 object-contain`}
-										/>
-									</div>
-								)),
-							)}
+						<div className={styles.slider}>
+							{sliderItems.map((client) => (
+								<div key={`${client.name}-${client.instance}`} className={styles.logo_item}>
+									<Image
+										src={client.logo}
+										alt={client.name}
+										width={120}
+										height={60}
+										className={`${styles.logo_image} w-24 object-contain`}
+									/>
+								</div>
+							))}
 						</div>
 					</div>
 				</div>
 			</div>
-		</section>
+		</Section>
 	);
 }

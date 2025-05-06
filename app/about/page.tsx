@@ -71,14 +71,14 @@ export default function AboutPage() {
 							<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 								[ABOUT_PAGE_BADGE]
 							</Badge>
-							<h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+							<h1 >
 								[ABOUT_PAGE_TITLE]
 							</h1>
-							<p className="text-lg text-gray-700 mb-6">
+							<p className="text-gray-700 mb-6">
 								[ABOUT_PAGE_DESCRIPTION_1: Introduce your company and its
 								mission.]
 							</p>
-							<p className="text-lg text-gray-700 mb-8">
+							<p className="text-gray-700 mb-8">
 								[ABOUT_PAGE_DESCRIPTION_2: Share your company's story and what
 								makes it unique.]
 							</p>
@@ -130,7 +130,7 @@ export default function AboutPage() {
 							[OUR_STORY_BADGE]
 						</Badge>
 						<h2 className="text-3xl font-bold mb-6">[OUR_STORY_TITLE]</h2>
-						<p className="text-lg text-gray-700 max-w-3xl mx-auto">
+						<p className="text-gray-700 max-w-3xl mx-auto">
 							[OUR_STORY_DESCRIPTION: A brief overview of your company's
 							journey.]
 						</p>
@@ -138,17 +138,17 @@ export default function AboutPage() {
 
 					<div className="grid md:grid-cols-3 gap-8">
 						<Card className="p-6">
-							<h3 className="text-xl font-bold mb-4">[MILESTONE_1_TITLE]</h3>
+							<h3 className="mb-4">[MILESTONE_1_TITLE]</h3>
 							<p className="text-gray-600 mb-2">[MILESTONE_1_DATE]</p>
 							<p>[MILESTONE_1_DESCRIPTION]</p>
 						</Card>
 						<Card className="p-6">
-							<h3 className="text-xl font-bold mb-4">[MILESTONE_2_TITLE]</h3>
+							<h3 className="mb-4">[MILESTONE_2_TITLE]</h3>
 							<p className="text-gray-600 mb-2">[MILESTONE_2_DATE]</p>
 							<p>[MILESTONE_2_DESCRIPTION]</p>
 						</Card>
 						<Card className="p-6">
-							<h3 className="text-xl font-bold mb-4">[MILESTONE_3_TITLE]</h3>
+							<h3 className="mb-4">[MILESTONE_3_TITLE]</h3>
 							<p className="text-gray-600 mb-2">[MILESTONE_3_DATE]</p>
 							<p>[MILESTONE_3_DESCRIPTION]</p>
 						</Card>
@@ -163,7 +163,7 @@ export default function AboutPage() {
 							[OUR_VALUES_BADGE]
 						</Badge>
 						<h2 className="text-3xl font-bold mb-6">[OUR_VALUES_TITLE]</h2>
-						<p className="text-lg text-gray-700 max-w-3xl mx-auto">
+						<p className="text-gray-700 max-w-3xl mx-auto">
 							[OUR_VALUES_DESCRIPTION: Explain why your values matter and how
 							they guide your business.]
 						</p>
@@ -187,7 +187,7 @@ export default function AboutPage() {
 							[OUR_TEAM_BADGE]
 						</Badge>
 						<h2 className="text-3xl font-bold mb-6">[OUR_TEAM_TITLE]</h2>
-						<p className="text-lg text-gray-700 max-w-3xl mx-auto">
+						<p className="text-gray-700 max-w-3xl mx-auto">
 							[OUR_TEAM_DESCRIPTION: Introduce your team and their collective
 							expertise.]
 						</p>
@@ -205,7 +205,7 @@ export default function AboutPage() {
 									/>
 								</div>
 								<CardContent className="p-6">
-									<h3 className="text-xl font-bold mb-1">{member.name}</h3>
+									<h3 className="mb-1">{member.name}</h3>
 									<p className="text-primary font-medium mb-4">{member.role}</p>
 									<p className="text-gray-600">{member.bio}</p>
 								</CardContent>

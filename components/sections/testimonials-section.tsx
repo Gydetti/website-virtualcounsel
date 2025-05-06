@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
+import { Section } from "@/components/layout/Section";
 
 export interface TestimonialsSectionProps {
 	badgeText?: string;
@@ -62,16 +63,16 @@ export default function TestimonialsSection({
 	};
 
 	return (
-		<section
+		<Section
 			id="testimonials-section"
 			aria-labelledby="testimonials-section-heading"
-			className="section-padding relative overflow-hidden"
+			className="relative overflow-hidden"
 		>
 			{/* Decorative elements */}
 			{/* <div className="absolute top-0 right-1/4 w-72 h-72 bg-blue-100/50 rounded-full -translate-y-1/2 blur-3xl" />
 			<div className="absolute bottom-0 left-1/4 w-72 h-72 bg-primary/5 rounded-full translate-y-1/2 blur-3xl" /> */}
 
-			<div className="container-wide relative z-10">
+			<div className="relative z-10">
 				<div className="text-center mb-16">
 					<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 						{badgeText}
@@ -120,7 +121,7 @@ export default function TestimonialsSection({
 														/>
 													))}
 												</div>
-												<p className="text-lg text-gray-700 italic mb-8 line-clamp-6">
+												<p className="text-body-base text-gray-700 italic mb-8 line-clamp-6">
 													"{testimonial.quote}"
 												</p>
 												<div className="flex items-center mt-auto">
@@ -134,10 +135,10 @@ export default function TestimonialsSection({
 														/>
 													</div>
 													<div>
-														<h3 className="font-bold text-gray-900">
+														<h3 className="text-body-base text-gray-900">
 															{testimonial.name}
 														</h3>
-														<p className="text-gray-600">{testimonial.title}</p>
+														<p className="text-body-base text-gray-600">{testimonial.title}</p>
 													</div>
 												</div>
 											</CardContent>
@@ -181,6 +182,6 @@ export default function TestimonialsSection({
 					</div>
 				</div>
 			</div>
-		</section>
+		</Section>
 	);
 }

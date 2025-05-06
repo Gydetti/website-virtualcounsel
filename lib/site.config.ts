@@ -58,6 +58,8 @@ const siteConfigSchema = z.object({
 		enableContactForm: z.boolean(),
 		enableTestimonials: z.boolean(),
 		enablePricing: z.boolean(),
+		/** Toggle for custom React-based cookie consent banner */
+		enableCustomCookieBanner: z.boolean().optional().default(false),
 	}),
 	// pages that should be enabled (controls nav & sitemap)
 	enabledPages: z.array(z.string()).optional(),

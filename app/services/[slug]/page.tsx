@@ -149,10 +149,10 @@ export default async function ServicePage({ params }: ServicePageProps) {
 					<div className="grid lg:grid-cols-2 gap-12 items-center">
 						<div>
 							<Badge className="mb-4">{service.icon}</Badge>
-							<h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+							<h1 >
 								{service.title}
 							</h1>
-							<p className="text-lg text-gray-700 mb-8">
+							<p className="text-gray-700 mb-8">
 								{service.description}
 							</p>
 

@@ -14,7 +14,7 @@ export default function TermsOfServicePage() {
 					<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 						Legal
 					</Badge>
-					<h1 className="text-3xl md:text-4xl font-bold mb-8">
+					<h1 >
 						Terms of Service
 					</h1>
 

@@ -38,10 +38,10 @@ export default async function ServicesPage() {
 						<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 							Our Services
 						</Badge>
-						<h1 className="text-4xl md:text-5xl font-bold mb-6">
+						<h1 >
 							How We Help You Grow
 						</h1>
-						<p className="text-lg text-gray-700 mb-8">
+						<p className="text-gray-700 mb-8">
 							We offer specialized services designed to help entrepreneurs and
 							small businesses thrive in the digital landscape.
 						</p>
@@ -103,7 +103,7 @@ export default async function ServicesPage() {
 							<h2 className="text-3xl font-bold mb-6">
 								Why Choose Our Services
 							</h2>
-							<p className="text-lg text-gray-700 mb-6">
+							<p className="text-gray-700 mb-6">
 								We understand the unique challenges entrepreneurs face in
 								today's digital landscape. Our services are designed with your
 								specific needs in mind.

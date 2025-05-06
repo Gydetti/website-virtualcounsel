@@ -40,7 +40,7 @@ export default function CookieConsentBanner() {
 						{!showDetails ? (
 							<div className="p-6">
 								<div className="flex items-start justify-between mb-4">
-									<h3 className="text-lg font-semibold">Cookie settings</h3>
+									<h3>Cookie settings</h3>
 									<Button
 										variant="ghost"
 										size="icon"
@@ -71,7 +71,7 @@ export default function CookieConsentBanner() {
 						) : (
 							<div className="p-6">
 								<div className="flex items-start justify-between mb-4">
-									<h3 className="text-lg font-semibold">Cookie preferences</h3>
+									<h3>Cookie preferences</h3>
 									<Button
 										variant="ghost"
 										size="icon"
@@ -92,8 +92,8 @@ export default function CookieConsentBanner() {
 									<TabsContent value="essential" className="space-y-4">
 										<div className="flex items-center justify-between">
 											<div>
-												<h4 className="font-medium">Essential cookies</h4>
-												<p className="text-sm text-gray-500">
+												<h4 className="mb-1">Essential cookies</h4>
+												<p className="text-caption text-gray-500">
 													These cookies are necessary for the website to
 													function and cannot be switched off.
 												</p>
@@ -104,8 +104,8 @@ export default function CookieConsentBanner() {
 									<TabsContent value="analytics" className="space-y-4">
 										<div className="flex items-center justify-between">
 											<div>
-												<h4 className="font-medium">Analytics cookies</h4>
-												<p className="text-sm text-gray-500">
+												<h4 className="mb-1">Analytics cookies</h4>
+												<p className="text-caption text-gray-500">
 													These cookies allow us to count visits and traffic
 													sources so we can measure and improve the performance
 													of our site.
@@ -120,8 +120,8 @@ export default function CookieConsentBanner() {
 									<TabsContent value="marketing" className="space-y-4">
 										<div className="flex items-center justify-between">
 											<div>
-												<h4 className="font-medium">Marketing cookies</h4>
-												<p className="text-sm text-gray-500">
+												<h4 className="mb-1">Marketing cookies</h4>
+												<p className="text-caption text-gray-500">
 													These cookies may be set through our site by our
 													advertising partners to build a profile of your
 													interests.
@@ -136,8 +136,8 @@ export default function CookieConsentBanner() {
 									<TabsContent value="preferences" className="space-y-4">
 										<div className="flex items-center justify-between">
 											<div>
-												<h4 className="font-medium">Preference cookies</h4>
-												<p className="text-sm text-gray-500">
+												<h4 className="mb-1">Preference cookies</h4>
+												<p className="text-caption text-gray-500">
 													These cookies enable personalized features and
 													functionality on our website.
 												</p>

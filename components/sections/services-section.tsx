@@ -14,6 +14,7 @@ import type { Service } from "@/lib/data-utils";
 import { motion } from "framer-motion";
 import { ArrowRight, BarChart2, Globe, Zap } from "lucide-react";
 import Link from "next/link";
+import { Section } from "@/components/layout/Section";
 
 // Map of icon names to components
 const iconMap: Record<string, React.ReactNode> = {
@@ -40,16 +41,16 @@ export default function ServicesSection({
 	viewAllLink = "/services",
 }: ServicesSectionProps) {
 	return (
-		<section
+		<Section
 			id="services-section"
 			aria-labelledby="services-section-heading"
-			className="section-padding relative overflow-hidden"
+			className="relative overflow-hidden"
 		>
 			{/* Decorative elements */}
 			{/* <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -translate-y-1/2 translate-x-1/2" />
 			<div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-100/20 rounded-full translate-y-1/2 -translate-x-1/2" /> */}
 
-			<div className="container-wide relative z-10">
+			<div className="relative z-10">
 				<div className="text-center mb-16">
 					<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 						{badgeText}
@@ -83,7 +84,7 @@ export default function ServicesSection({
 									</div>
 								)}
 
-								<CardHeader className={service.popular ? "pt-12" : ""}>
+								<CardHeader className="pt-12">
 									<div className="mb-6 bg-primary/10 w-16 h-16 rounded-lg flex items-center justify-center">
 										{iconMap[service.icon] || (
 											<Globe className="h-10 w-10 text-primary" />
@@ -146,7 +147,7 @@ export default function ServicesSection({
 					))}
 				</div>
 
-				<div className="text-center mt-12 flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4">
+				{/*<div className="text-center mt-12 flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4">
 					<Button
 						size="lg"
 						className="bg-primary hover:bg-primary/90 group w-full sm:w-auto whitespace-normal break-words"
@@ -157,8 +158,8 @@ export default function ServicesSection({
 							<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
 						</Link>
 					</Button>
-				</div>
+				</div>*/}
 			</div>
-		</section>
+		</Section>
 	);
 }

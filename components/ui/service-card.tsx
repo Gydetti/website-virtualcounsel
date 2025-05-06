@@ -46,7 +46,7 @@ export default function ServiceCard({
 					{icon}
 				</div>
 				<CardTitle className="text-xl font-bold">{title}</CardTitle>
-				<CardDescription className="text-gray-600">
+				<CardDescription className="text-body-base text-gray-600">
 					{description}
 				</CardDescription>
 			</CardHeader>
