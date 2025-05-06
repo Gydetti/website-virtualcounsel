@@ -1,4 +1,3 @@
-import FaqSection from "@/app/faq/FaqClientPage";
 import AboutSection from "@/components/sections/about-section";
 import BlogSection from "@/components/sections/blog-section";
 import ClientsSection from "@/components/sections/clients-section";
@@ -34,6 +33,8 @@ import {
 import { defaultMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site.config";
 import type { Metadata } from "next";
+import HomepageFaqSection from "@/components/sections/homepage-faq-section";
+import { homepageFaqCategories } from "@/lib/data/homepage";
 
 export const metadata = defaultMetadata({
 	title: `${siteConfig.site.name} | Home`,
@@ -104,9 +105,9 @@ export default async function Home() {
 					<BlogSection posts={blogPosts} />
 				</LazySection>
 
-				{/* 12. FAQ */}
+				{/* 12. Frequently Asked Questions */}
 				<LazySection>
-					<FaqSection />
+					<HomepageFaqSection categories={homepageFaqCategories} />
 				</LazySection>
 
 				{/* 13. Contact */}

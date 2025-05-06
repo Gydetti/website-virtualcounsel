@@ -58,10 +58,7 @@ export default function ProcessSection() {
 	];
 
 	return (
-		<section
-			id="process"
-			className="section-padding bg-white relative overflow-hidden"
-		>
+		<section id="process" className="section-padding relative overflow-hidden">
 			<div className="absolute inset-0 bg-[url('/placeholder.svg?height=1000&width=1000')] bg-center opacity-5" />
 
 			{/* Decorative elements */}
