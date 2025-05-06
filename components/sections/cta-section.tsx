@@ -59,7 +59,7 @@ export default function CtaSection({
 					<Button
 						size="lg"
 						variant="outline"
-						className="border-gray-400 text-gray-200 hover:bg-white/10 hover:text-white group w-full sm:w-auto whitespace-normal"
+						className="bg-transparent border-gray-400 text-gray-200 hover:bg-white/10 hover:text-white group w-full sm:w-auto whitespace-normal"
 						asChild
 					>
 						<Link href={secondaryCtaLink}>

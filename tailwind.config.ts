@@ -94,6 +94,9 @@ const config = {
 				blink: "blink 1s step-end infinite",
 				typing: "typing 3.5s steps(40, end)",
 			},
+			backgroundImage: {
+				'concrete-texture': "url('/images/textures/concrete_texture_overlay_cleaned.png')",
+			},
 		},
 	},
 	plugins: [require("tailwindcss-animate")],

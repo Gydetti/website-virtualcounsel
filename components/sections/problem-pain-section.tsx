@@ -22,11 +22,7 @@ export default function ProblemPainSection({
 	],
 }: ProblemPainSectionProps) {
 	return (
-		<section
-			id="problem-pain-section"
-			aria-labelledby="problem-pain-section-heading"
-			className="section-padding bg-gray-50 relative overflow-hidden"
-		>
+		<section id="pain" className="section-padding">
 			{/* Ensure decorative elements overlap edges if needed */}
 			{/*<div className="absolute top-0 left-0 w-64 h-64 bg-primary/5 rounded-full -translate-y-1/4 -translate-x-1/4 blur-3xl z-0" />
       <div className="absolute bottom-0 right-0 w-64 h-64 bg-blue-100/20 rounded-full translate-y-1/4 translate-x-1/4 blur-3xl z-0" />*/}

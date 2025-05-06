@@ -131,6 +131,15 @@
 	.card-equal-height .card-footer {
 		@apply mt-auto;
 	}
+
+	.texture-bg {
+		@apply relative overflow-hidden;
+	}
+	.texture-bg::before {
+		content: "";
+		@apply absolute inset-0 bg-concrete-texture bg-cover bg-center opacity-10;
+		z-index: 0;
+	}
 }
 
 /* Custom classes without @apply to avoid potential syntax issues */
