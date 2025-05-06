@@ -197,6 +197,30 @@ Custom 404 error page.
 - Client logos carousel
 - Grayscale to color hover effect
 
+#### Homepage FAQ Section (`components/sections/homepage-faq-section.tsx`)
+- Accordion-based FAQ list optimized for the homepage (no search bar)
+- Pulls data from `lib/data/homepage.ts` via the `homepageFaqCategories` export
+- Usage example in `app/page.tsx`:
+```tsx
+<HomepageFaqSection categories={homepageFaqCategories} />
+```
+
+### Data-Driven Section Component Pattern
+When you add or update a section component, follow this structure for consistency:
+1. **Data Definition** – Declare your content shape in a file under `lib/data/` and export it (e.g., `homepageFaqCategories`).
+2. **Section Component** – Create a component under `components/sections/` that accepts props matching your data shape.
+3. **Page Integration** – Import both the data and component into your page (e.g., `app/page.tsx`), then render the section with `<LazySection>` for deferred loading:
+   ```tsx
+   import { homepageFaqCategories } from '@/lib/data/homepage';
+   import HomepageFaqSection from '@/components/sections/homepage-faq-section';
+
+   <LazySection>
+     <HomepageFaqSection categories={homepageFaqCategories} />
+   </LazySection>
+   ```
+4. **Styling & Behavior** – Ensure the section adheres to the design tokens and responsive utility classes in `globals.css` and `tailwind.config.ts`.
+5. **SEO & Accessibility** – Use `StructuredData` for schema markup if applicable, and semantic HTML for headings, lists, and interactive elements.
+
 ### UI Components
 
 #### Service Card (`components/ui/service-card.tsx`)
@@ -452,6 +476,11 @@ Since all the HTML snippets are static and controlled by you (not end-user input
 1. Replace placeholder text in all components
 2. Update images with your own
 3. Modify service and blog data in `lib/data-utils.ts`
+
+#### Content Data vs Component Defaults
+- Components define built-in default prop values (e.g. in `components/.../hero-section.tsx`) so they render standalone with reasonable fallbacks.
+- The actual live copy for each page lives in data modules under `lib/data/` (for example `lib/data/homepage.ts`).  
+- To change real site text, images, links, and stats, update the corresponding data file; only edit component defaults when you need to adjust fallback behavior.
 
 ### Images & Asset Pipeline
 #### 1. Raw Assets
