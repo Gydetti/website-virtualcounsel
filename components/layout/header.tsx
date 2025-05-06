@@ -68,7 +68,7 @@ export default function Header() {
 		<header
 			className={cn(
 				"sticky top-0 z-50 w-full transition-all duration-300",
-				scrolled ? "bg-white/80 backdrop-blur-md shadow-sm" : "bg-transparent",
+				scrolled ? "bg-white/80 backdrop-blur-md shadow-sm" : "bg-white",
 			)}
 		>
 			<nav
