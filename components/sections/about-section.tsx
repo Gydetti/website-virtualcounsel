@@ -12,7 +12,7 @@ export default function AboutSection() {
 	return (
 		<Section
 			id="about"
-			className="relative overflow-hidden bg-gradient-to-r from-blue-100 to-white relative z-10"
+			className="relative overflow-hidden bg-gradient-to-r from-blue-100 to-white z-10"
 		>
 			<div className="grid md:grid-cols-2 gap-12 items-center">
 				<motion.div

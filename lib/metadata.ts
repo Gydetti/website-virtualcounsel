@@ -10,12 +10,19 @@ export function defaultMetadata(overrides: Partial<Metadata> = {}): Metadata {
 	const ogOverrides = overrides.openGraph || {};
 	const ogUrl = (ogOverrides.url ?? siteConfig.site.url) || undefined;
 	const rawOgImages = ogOverrides.images ?? [siteConfig.site.openGraph.image];
-	const validOgImages = (Array.isArray(rawOgImages) ? rawOgImages : []).filter(
-		(img) => {
-			if (typeof img === "string") return img.trim() !== "";
-			return img && typeof img.url === "string" && img.url.trim() !== "";
-		},
-	);
+	const validOgImages = (Array.isArray(rawOgImages) ? rawOgImages : []).filter((img) => {
+		if (typeof img === "string") {
+			return img.trim() !== "";
+		}
+		if (img instanceof URL) {
+			const str = img.toString();
+			return str.trim() !== "";
+		}
+		if (img && typeof (img as { url?: unknown }).url === "string") {
+			return (img as { url: string }).url.trim() !== "";
+		}
+		return false;
+	});
 	const openGraph: Metadata["openGraph"] = {
 		title: ogOverrides.title ?? siteConfig.site.name,
 		description: ogOverrides.description ?? siteConfig.site.description,

@@ -70,8 +70,6 @@ export const clientsSectionData: ClientsSectionProps = {
 		{ name: "EliteServices", logo: "/placeholder.svg?height=60&width=120" },
 		{ name: "PrimeConsulting", logo: "/placeholder.svg?height=60&width=120" },
 	],
-	repeats: 3,
-	slideWidth: 166,
 };
 
 export const testimonialsSectionData: TestimonialsSectionProps = {
