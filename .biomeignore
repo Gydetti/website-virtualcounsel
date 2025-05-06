@@ -8,6 +8,8 @@ node_modules/**
 # Ignore example template code directory
 /Z-EXAMPLE-WEBSITE/**
 docs/Z-EXAMPLE-WEBSITE/**
+docs/building/inspiration/**
+inspiration/**
 
 # Ignore test results
 test-results/**

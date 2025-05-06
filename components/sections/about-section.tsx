@@ -12,7 +12,7 @@ export default function AboutSection() {
 	return (
 		<Section
 			id="about"
-			className="relative overflow-hidden bg-gradient-to-r from-blue-100 to-white z-10"
+			className="relative overflow-hidden bg-gradient-to-r from-blue-100 via-transparent to-transparent z-10"
 		>
 			<div className="grid md:grid-cols-2 gap-12 items-center">
 				<motion.div
@@ -22,8 +22,8 @@ export default function AboutSection() {
 					viewport={{ once: true }}
 					className="relative"
 				>
-					<div className="absolute -top-6 -left-6 w-24 h-24 bg-blue-100 rounded-full z-0" />
-					<div className="absolute -bottom-6 -right-6 w-32 h-32 bg-primary/10 rounded-full z-0" />
+					<div className="absolute -top-6 -left-6 w-24 h-24 bg-primary/10 rounded-full z-0" />
+					<div className="absolute -bottom-6 -right-6 w-32 h-32 bg-primary/20 rounded-full z-0" />
 
 					<div className="relative h-[400px] md:h-[500px] rounded-xl overflow-hidden shadow-2xl z-10">
 						<Image

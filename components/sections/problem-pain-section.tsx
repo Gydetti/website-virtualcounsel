@@ -1,55 +1,92 @@
 "use client";
 import { Section } from "@/components/layout/Section";
-import { Badge } from "@/components/ui/badge";
+import { AlertTriangle } from "lucide-react";
 import { motion } from "framer-motion";
-import { XCircle } from "lucide-react";
 
 export interface ProblemPainSectionProps {
 	badgeText?: string;
 	heading?: string;
 	description?: string;
-	points?: string[];
+	calloutText?: string;
+	cards?: { title: string; description: string }[];
 }
 
 export default function ProblemPainSection({
-	badgeText = "Understand the Pain",
-	heading = "Recognize Your Challenges",
-	description = "Acknowledge the core obstacles visitors face and outline what's at stake if these issues go unaddressed.",
-	points = [
-		"Inconsistent lead flow and weak pipeline",
-		"Wasted time on ineffective marketing",
-		"Falling behind more visible competitors",
-		"Unpredictable or stagnant growth",
+	badgeText = "The Reality For Most Realtors",
+	heading = "Struggling to stand out in a crowded market?",
+	description =
+		"Most real estate professionals face the same challenges: inconsistent leads, wasted marketing dollars, and not enough time. Without addressing these issues, your business remains vulnerable.",
+	calloutText =
+		"\"Without a strategic approach to lead generation, realtors risk stagnation while competitors capture market share. The cost of inaction isn't just lost revenue today—it's diminished growth potential for years to come.\"",
+	cards = [
+		{
+			title: "Wasted Ad Spend",
+			description:
+				"Without a targeted strategy, you're throwing money at ads that don't convert to quality leads.",
+		},
+		{
+			title: "Time Drain",
+			description:
+				"Hours spent on ineffective prospecting means less time for closing deals and personal life.",
+		},
+		{
+			title: "Inconsistent Results",
+			description:
+				"The feast-or-famine cycle creates stress and makes business growth impossible to predict.",
+		},
+		{
+			title: "Competitive Pressure",
+			description:
+				"As more agents adopt digital strategies, those without effective systems fall further behind.",
+		},
 	],
 }: ProblemPainSectionProps) {
 	return (
-		<Section id="pain" className="relative">
-			{/* Ensure decorative elements overlap edges if needed */}
-			{/*<div className="absolute top-0 left-0 w-64 h-64 bg-primary/5 rounded-full -translate-y-1/4 -translate-x-1/4 blur-3xl z-0" />
-      <div className="absolute bottom-0 right-0 w-64 h-64 bg-blue-100/20 rounded-full translate-y-1/4 translate-x-1/4 blur-3xl z-0" />*/}
-
-			<div className="relative z-10 text-center">
-				<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
-					{badgeText}
-				</Badge>
-				<h2 id="problem-pain-section-heading" className="section-title">
-					{heading}
-				</h2>
-				<p className="text-gray-700 max-w-2xl mx-auto mb-8">{description}</p>
-				<motion.ul
-					className="grid md:grid-cols-2 gap-6 text-left max-w-3xl mx-auto"
-					initial={{ opacity: 0, y: 20 }}
-					whileInView={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.5 }}
-					viewport={{ once: true }}
-				>
-					{points.map((point) => (
-						<li key={point} className="flex items-start">
-							<XCircle className="text-red-400 mr-3 mt-1 h-5 w-5 flex-shrink-0" />
-							<span>{point}</span>
-						</li>
-					))}
-				</motion.ul>
+		<Section id="pain" className="bg-gradient-to-b from-transparent to-secondary/10">
+			<div className="bg-gray-900 text-white rounded-[30px] border border-gray-700/50 shadow-lg p-12">
+				<div className="grid gap-12 lg:grid-cols-2">
+					<motion.div
+						initial={{ opacity: 0, x: -50 }}
+						whileInView={{ opacity: 1, x: 0 }}
+						transition={{ duration: 0.6 }}
+						viewport={{ once: true }}
+						className="flex flex-col justify-center space-y-8"
+					>
+						<div className="space-y-4">
+							<div className="inline-flex items-center space-x-2 text-secondary">
+								<AlertTriangle className="h-5 w-5" />
+								<span className="font-medium">{badgeText}</span>
+							</div>
+							<h2 className="section-title text-white">
+								{heading}
+							</h2>
+							<p className="max-w-[600px] text-gray-400 md:text-xl">
+								{description}
+							</p>
+						</div>
+						{calloutText && (
+							<div className="rounded-lg bg-gray-800 p-6">
+								<p className="text-lg font-medium">{calloutText}</p>
+							</div>
+						)}
+					</motion.div>
+					<motion.div
+						initial={{ opacity: 0, x: 50 }}
+						whileInView={{ opacity: 1, x: 0 }}
+						transition={{ duration: 0.6 }}
+						viewport={{ once: true }}
+						className="grid grid-cols-1 gap-6 sm:grid-cols-2"
+					>
+						{cards.map((card) => (
+							<div key={card.title} className="rounded-lg bg-gray-800 p-6">
+								<h3 className="mb-3 text-xl font-bold text-secondary">
+									{card.title}
+								</h3>
+								<p className="text-gray-300 text-base md:text-lg">{card.description}</p>
+							</div>
+						))}
+					</motion.div>
+				</div>
 			</div>
 		</Section>
 	);

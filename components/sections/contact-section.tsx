@@ -106,7 +106,7 @@ export default function ContactSection({
 		<Section
 			id="contact-section"
 			aria-labelledby="contact-section-heading"
-			className="relative overflow-hidden bg-white"
+			className="relative overflow-hidden "
 		>
 			{/* Load reCAPTCHA script if key provided */}
 			{recaptchaKey && (
@@ -129,7 +129,7 @@ export default function ContactSection({
 					<p className="section-subtitle">{subtitle}</p>
 				</div>
 
-				<div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+				<div className="grid md:grid-cols-2 gap-4 sm:gap-8 md:gap-12 max-w-4xl mx-auto">
 					<motion.div
 						initial={{ opacity: 0, x: -20 }}
 						whileInView={{ opacity: 1, x: 0 }}
@@ -208,67 +208,47 @@ export default function ContactSection({
 						viewport={{ once: true }}
 						className="bg-primary text-white rounded-xl shadow-lg p-8 flex flex-col justify-between hover:shadow-xl transition-shadow"
 					>
-						<div>
-							<h3 className="mb-6">Contact information</h3>
+						<h3 className="mb-6">Contact information</h3>
 
-							<ul className="space-y-6 mb-8">
-								<li className="flex items-start">
-									<Mail className="h-6 w-6 mr-4 flex-shrink-0 mt-1" />
-									<div>
-										<p className="font-semibold mb-1">Email</p>
-										<a
-											href="mailto:info@example.com"
-											className="text-white/80 hover:text-white transition-colors"
-										>
-											info@example.com
-										</a>
-									</div>
-								</li>
+						<ul className="space-y-6">
+							<li className="flex items-start">
+								<Mail className="h-6 w-6 mr-4 flex-shrink-0 mt-1" />
+								<div>
+									<p className="font-semibold mb-1">Email</p>
+									<a
+										href="mailto:info@example.com"
+										className="text-white/80 hover:text-white transition-colors"
+									>
+										info@example.com
+									</a>
+								</div>
+							</li>
 
-								<li className="flex items-start">
-									<Phone className="h-6 w-6 mr-4 flex-shrink-0 mt-1" />
-									<div>
-										<p className="font-semibold mb-1">Phone</p>
-										<a
-											href="tel:+31201234567"
-											className="text-white/80 hover:text-white transition-colors"
-										>
-											+31 20 123 4567
-										</a>
-									</div>
-								</li>
+							<li className="flex items-start">
+								<Phone className="h-6 w-6 mr-4 flex-shrink-0 mt-1" />
+								<div>
+									<p className="font-semibold mb-1">Phone</p>
+									<a
+										href="tel:+31201234567"
+										className="text-white/80 hover:text-white transition-colors"
+									>
+										+31 20 123 4567
+									</a>
+								</div>
+							</li>
 
-								<li className="flex items-start">
-									<MapPin className="h-6 w-6 mr-4 flex-shrink-0 mt-1" />
-									<div>
-										<p className="font-semibold mb-1">Address</p>
-										<address className="text-white/80 not-italic">
-											Herengracht 182
-											<br />
-											1016 BR Amsterdam, Netherlands
-										</address>
-									</div>
-								</li>
-							</ul>
-						</div>
-
-						<div className="bg-white/10 rounded-lg p-6">
-							<h4 className="mb-3">Business hours</h4>
-							<ul className="space-y-2">
-								<li className="flex justify-between">
-									<span>Monday - Friday</span>
-									<span>9:00 - 17:00</span>
-								</li>
-								<li className="flex justify-between">
-									<span>Saturday</span>
-									<span>By appointment</span>
-								</li>
-								<li className="flex justify-between">
-									<span>Sunday</span>
-									<span>Closed</span>
-								</li>
-							</ul>
-						</div>
+							<li className="flex items-start">
+								<MapPin className="h-6 w-6 mr-4 flex-shrink-0 mt-1" />
+								<div>
+									<p className="font-semibold mb-1">Address</p>
+									<address className="text-white/80 not-italic">
+										Herengracht 182
+										<br />
+										1016 BR Amsterdam, Netherlands
+									</address>
+								</div>
+							</li>
+						</ul>
 					</motion.div>
 				</div>
 			</div>

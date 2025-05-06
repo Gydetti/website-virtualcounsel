@@ -15,16 +15,16 @@ export function Section({
 }: SectionProps) {
 	// Horizontal padding: 1rem base, 1.5rem sm, 2rem md, 5rem xl & above
 	const containerClasses =
-		"container mx-auto px-4 sm:px-6 md:px-8 xl:px-20 py-12 md:py-16";
+		"container mx-auto px-4 sm:px-6 md:px-8 xl:px-20 py-8 sm:py-12 md:py-16";
 	if (fullBleed) {
 		return (
-			<section className={className} {...rest}>
+			<section className={`overflow-hidden ${className}`} {...rest}>
 				<div className={containerClasses}>{children}</div>
 			</section>
 		);
 	}
 	return (
-		<section className={`${containerClasses} ${className}`} {...rest}>
+		<section className={`overflow-hidden ${containerClasses} ${className}`} {...rest}>
 			{children}
 		</section>
 	);

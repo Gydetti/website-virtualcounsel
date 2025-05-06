@@ -1,4 +1,11 @@
 import { Badge } from "@/components/ui/badge";
+import { siteConfig } from "@/lib/site.config";
+import { notFound } from "next/navigation";
+
+// Disable this page if not enabled
+if (siteConfig.enabledPages && !siteConfig.enabledPages.includes("/terms-of-service")) {
+	notFound();
+}
 
 export const metadata = {
 	title: "Terms of Service | Entrepreneur Template",

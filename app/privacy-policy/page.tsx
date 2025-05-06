@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { defaultMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site.config";
+import { notFound } from "next/navigation";
 
 export const metadata = defaultMetadata({
 	title: `${siteConfig.site.name} | Privacy Policy`,
@@ -9,6 +10,14 @@ export const metadata = defaultMetadata({
 });
 
 export default function PrivacyPolicyPage() {
+	// Disable this page if not enabled in config
+	if (
+		siteConfig.enabledPages &&
+		!siteConfig.enabledPages.includes("/privacy-policy")
+	) {
+		notFound();
+	}
+
 	return (
 		<section className="py-16 md:py-24">
 			<div className="container-wide">

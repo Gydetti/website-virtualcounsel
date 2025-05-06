@@ -1,6 +1,12 @@
 import { defaultMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site.config";
+import { notFound } from "next/navigation";
 import ContactPageClient from "./ContactPageClient";
+
+// Disable this page if contact form feature is off or page not enabled
+if (!siteConfig.features.enableContactForm || (siteConfig.enabledPages && !siteConfig.enabledPages.includes("/contact"))) {
+	notFound();
+}
 
 export const metadata = defaultMetadata({
 	title: `${siteConfig.site.name} | Contact`,

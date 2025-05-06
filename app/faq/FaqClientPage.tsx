@@ -156,7 +156,7 @@ export default function FaqClientPage() {
 					{filteredFaqs.length > 0 ? (
 						filteredFaqs.map((category) => (
 							<div key={category.category} className="mb-12">
-								<h2 className="text-2xl font-bold mb-6">{category.category}</h2>
+								<h2 className="text-[1.625rem] md:text-[2rem] font-semibold mb-6">{category.category}</h2>
 								<Accordion type="single" collapsible className="space-y-4">
 									{category.questions.map((faq) => (
 										<AccordionItem
@@ -164,10 +164,10 @@ export default function FaqClientPage() {
 											value={`${/* replaced index-based value */ ""}`}
 											className="border border-gray-200 rounded-lg overflow-hidden"
 										>
-											<AccordionTrigger className="px-6 py-4 hover:bg-gray-50 text-left font-medium">
+											<AccordionTrigger className="px-6 py-4 text-body-base font-medium hover:bg-gray-50 text-left">
 												{faq.question}
 											</AccordionTrigger>
-											<AccordionContent className="px-6 py-4 bg-gray-50 text-gray-700">
+											<AccordionContent className="px-6 py-4 text-body-base bg-gray-50 text-gray-700">
 												{faq.answer}
 											</AccordionContent>
 										</AccordionItem>

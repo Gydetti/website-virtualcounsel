@@ -53,13 +53,25 @@ const siteConfigSchema = z.object({
 	}),
 	// AI-driven feature flags
 	features: z.object({
-		enableBlog: z.boolean(),
-		enableServices: z.boolean(),
-		enableContactForm: z.boolean(),
-		enableTestimonials: z.boolean(),
-		enablePricing: z.boolean(),
+		enableBlog: z.boolean().optional().default(true),
+		enableServices: z.boolean().optional().default(false),
+		enableContactForm: z.boolean().optional().default(true),
+		enableTestimonials:z.boolean().optional().default(true),
+		enablePricing: z.boolean().optional().default(false),
+		enableHeroSection: z.boolean().optional().default(true),
 		/** Toggle for custom React-based cookie consent banner */
 		enableCustomCookieBanner: z.boolean().optional().default(false),
+		enableClientsSection: z.boolean().optional().default(true),
+		enableFeaturesSection: z.boolean().optional().default(false),
+		enableCtaSection: z.boolean().optional().default(true),
+		enableAboutSection: z.boolean().optional().default(true),
+		enableProblemPainSection: z.boolean().optional().default(true),
+		enableSolutionVisionSection: z.boolean().optional().default(true),
+		enableProcessSection: z.boolean().optional().default(true),
+		enableFaqSection: z.boolean().optional().default(false),
+		enableInspirationHeroSection: z.boolean().optional().default(false),
+		/** Toggle for the 'Why Choose Us' value proposition section */
+		enableValuePropSection: z.boolean().optional().default(true),
 	}),
 	// pages that should be enabled (controls nav & sitemap)
 	enabledPages: z.array(z.string()).optional(),

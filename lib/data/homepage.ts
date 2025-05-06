@@ -5,6 +5,8 @@ import type { HeroSectionProps } from "@/components/sections/hero-section";
 import type { ProblemPainSectionProps } from "@/components/sections/problem-pain-section";
 import type { SolutionVisionSectionProps } from "@/components/sections/solution-vision-section";
 import type { TestimonialsSectionProps } from "@/components/sections/testimonials-section";
+import type { ValuePropSectionProps } from "@/components/sections/value-prop-section";
+import { CheckCircle } from "lucide-react";
 
 export const heroSectionData: HeroSectionProps = {
 	badgeText: "Digital growth solutions",
@@ -30,6 +32,10 @@ export const heroSectionData: HeroSectionProps = {
 	],
 	imageSrc: "/images/placeholders/placeholder-user.jpg",
 	imageAlt: "Professional entrepreneur",
+	showHelpedStats: true,
+	showOverlayStat: true,
+	overlayTitle: "Average Results",
+	overlayValue: "+127% Leads",
 };
 
 export const featuresSectionData: FeaturesSectionProps = {
@@ -103,29 +109,52 @@ export const testimonialsSectionData: TestimonialsSectionProps = {
 };
 
 export const problemPainSectionData: ProblemPainSectionProps = {
-	badgeText: "Understand the Pain",
-	heading: "Recognize Your Challenges",
+	badgeText: "The Reality For Most Realtors",
+	heading: "Struggling to stand out in a crowded market?",
 	description:
-		"Acknowledge the core obstacles visitors face and outline what's at stake if these issues go unaddressed.",
-	points: [
-		"Inconsistent lead flow and weak pipeline",
-		"Wasted time on ineffective marketing",
-		"Falling behind more visible competitors",
-		"Unpredictable or stagnant growth",
+		"Most real estate professionals face the same challenges: inconsistent leads, wasted marketing dollars, and not enough time. Without addressing these issues, your business remains vulnerable.",
+	calloutText:
+		"\"Without a strategic approach to lead generation, realtors risk stagnation while competitors capture market share. The cost of inaction isn't just lost revenue today—it's diminished growth potential for years to come.\"",
+	cards: [
+		{
+			title: "Wasted Ad Spend",
+			description:
+				"Without a targeted strategy, you're throwing money at ads that don't convert to quality leads.",
+		},
+		{
+			title: "Time Drain",
+			description:
+				"Hours spent on ineffective prospecting means less time for closing deals and personal life.",
+		},
+		{
+			title: "Inconsistent Results",
+			description:
+				"The feast-or-famine cycle creates stress and makes business growth impossible to predict.",
+		},
+		{
+			title: "Competitive Pressure",
+			description:
+				"As more agents adopt digital strategies, those without effective systems fall further behind.",
+		},
 	],
 };
 
 export const solutionVisionSectionData: SolutionVisionSectionProps = {
-	badgeText: "Experience the Solution",
-	heading: "How We Transform Your Business",
+	badgeText: "The Solution",
+	heading: "Transform your real estate business with our proven system",
 	description:
-		"Through our proven process, we resolve core challenges and drive tangible growth—envision a future where your goals become reality.",
+		"Through our 12-week coaching program, you'll develop a customized marketing strategy that delivers consistent results without consuming your valuable time.",
 	benefits: [
-		"A steady pipeline of qualified leads",
-		"Efficient strategies tailored to your goals",
-		"A standout brand that attracts attention",
-		"Measurable, sustainable business growth",
+		"A consistent flow of qualified leads every month",
+		"Automated systems that work while you sleep",
+		"More time to focus on high-value activities",
+		"Confidence in your marketing strategy",
+		"Sustainable business growth without burnout",
 	],
+	calloutText:
+		"Stop struggling with ineffective marketing and start thriving with a system designed specifically for real estate success.",
+	calloutLinkText: "See how it works",
+	calloutLinkHref: "/about",
 };
 
 export const ctaSectionData: CtaSectionProps = {
@@ -136,6 +165,33 @@ export const ctaSectionData: CtaSectionProps = {
 	primaryCtaLink: "/contact",
 	secondaryCtaText: "Learn more",
 	secondaryCtaLink: "/services",
+};
+
+export const valuePropSectionData: ValuePropSectionProps = {
+	badgeText: "Why Choose Us",
+	heading: "Transform Your Real Estate Business",
+	subheading:
+		"Our unique approach combines proven marketing strategies with real estate expertise to deliver results that matter.",
+	benefits: [
+		{
+			title: "Save 10+ Hours Weekly",
+			description:
+				"Our streamlined systems eliminate manual prospecting, giving you back precious time for closing deals.",
+			icon: CheckCircle,
+		},
+		{
+			title: "Personalized Strategy",
+			description:
+				"Unlike generic marketing courses, we create custom plans based on your specific market and strengths.",
+			icon: CheckCircle,
+		},
+		{
+			title: "Proven Results",
+			description:
+				"Our clients see an average 127% increase in qualified leads within the first 90 days of implementation.",
+			icon: CheckCircle,
+		},
+	],
 };
 
 // Add homepage FAQ data

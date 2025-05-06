@@ -5,12 +5,14 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import CountUp from "react-countup";
+import Image from "next/image";
 
 import { Section } from "@/components/layout/Section";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import OptimizedImage from "@/components/ui/optimized-image";
+import { siteConfig } from "@/lib/site.config";
 
 export interface HeroSectionProps {
 	badgeText?: string;
@@ -20,10 +22,20 @@ export interface HeroSectionProps {
 	primaryCtaLink?: string;
 	secondaryCtaText?: string;
 	secondaryCtaLink?: string;
+	/** Show the secondary CTA button next to the primary CTA */
+	showSecondaryCta?: boolean;
 	words?: string[];
 	stats?: { value: number; suffix: string; label: string }[];
 	imageSrc?: string;
 	imageAlt?: string;
+	/** Show the avatars and helped count under CTAs */
+	showHelpedStats?: boolean;
+	/** Show overlay stat box on the hero image */
+	showOverlayStat?: boolean;
+	/** Title for the overlay stat */
+	overlayTitle?: string;
+	/** Value for the overlay stat */
+	overlayValue?: string;
 }
 
 export default function HeroSection({
@@ -49,6 +61,11 @@ export default function HeroSection({
 	],
 	imageSrc = "/images/placeholders/placeholder-user.jpg",
 	imageAlt = "Professional entrepreneur",
+	showHelpedStats = true,
+	showOverlayStat = false,
+	overlayTitle = "Average Results",
+	overlayValue = "+127% Leads",
+	showSecondaryCta = true,
 }: HeroSectionProps) {
 	// Reference to the typing element
 	const typingRef = useRef<HTMLSpanElement>(null);
@@ -108,11 +125,11 @@ export default function HeroSection({
 			<div className="absolute inset-0 bg-grid-pattern opacity-10" />
 
 			{/* Floating elements for visual interest */}
-			<div className="absolute top-20 right-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
-			<div className="absolute bottom-10 left-10 w-72 h-72 bg-blue-100/20 rounded-full blur-3xl" />
+			<div className="hidden sm:block absolute top-20 right-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+			<div className="hidden sm:block absolute bottom-10 left-10 w-72 h-72 bg-blue-100/20 rounded-full blur-3xl" />
 
 			<Section className="relative z-10">
-				<div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
+				<div className="grid md:grid-cols-2 gap-4 sm:gap-8 md:gap-12 lg:gap-16 items-center">
 					<motion.div
 						className="flex flex-col justify-center space-y-6 z-10"
 						initial={{ opacity: 0, y: 20 }}
@@ -144,7 +161,7 @@ export default function HeroSection({
 						<div className="flex flex-col sm:flex-row gap-4 pt-4">
 							<Button
 								size="lg"
-								className="bg-primary hover:bg-primary/90 group"
+								className={`bg-primary hover:bg-primary/90 group ${!showSecondaryCta ? 'w-full sm:w-auto' : ''}`}
 								asChild
 							>
 								<Link href={primaryCtaLink}>
@@ -153,19 +170,42 @@ export default function HeroSection({
 								</Link>
 							</Button>
 
-							<Button
-								size="lg"
-								variant="outline"
-								className="border-primary text-primary hover:bg-primary hover:text-white"
-								asChild
-							>
-								<Link href={secondaryCtaLink}>{secondaryCtaText}</Link>
-							</Button>
+							{showSecondaryCta && (
+								<Button
+									size="lg"
+									variant="ghost"
+									className="bg-transparent text-primary hover:text-primary/80 hover:bg-transparent"
+									asChild
+								>
+									<Link href={secondaryCtaLink}>{secondaryCtaText}</Link>
+								</Button>
+							)}
 						</div>
+
+						{showHelpedStats && (
+							<div className="flex items-center space-x-4 mt-6 text-sm">
+								<div className="flex -space-x-2">
+									{[1, 2, 3, 4].map((i) => (
+										<div key={i} className="inline-block h-8 w-8 rounded-full ring-2 ring-white overflow-hidden bg-gray-200">
+											<Image
+												src="/placeholder.svg?height=32&width=32"
+												alt="User avatar"
+												width={32}
+												height={32}
+												className="h-full w-full object-cover"
+											/>
+										</div>
+									))}
+								</div>
+								<div className="text-gray-700">
+									<span className="font-medium">100+</span> realtors helped this year
+								</div>
+							</div>
+						)}
 					</motion.div>
 
 					<motion.div
-						className="w-full max-w-[600px] ml-auto transform md:translate-y-6 transition-all"
+						className="relative w-full max-w-[600px] ml-auto transform md:translate-y-6 transition-all"
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true }}
@@ -173,7 +213,7 @@ export default function HeroSection({
 					>
 						<AspectRatio
 							ratio={6 / 5}
-							className="overflow-hidden rounded-xl shadow-2xl relative"
+							className="overflow-visible rounded-xl shadow-2xl relative"
 						>
 							<OptimizedImage
 								src={heroSrc}
@@ -192,6 +232,37 @@ export default function HeroSection({
 									Digital growth specialist
 								</p>
 							</div>
+							{/* Overlay stat box inside image container */}
+							{showOverlayStat && (
+								<div
+									className="hidden md:block absolute -bottom-6 -left-6 h-24 w-2/3 rounded-xl p-4 shadow-lg z-10"
+									style={{ backgroundColor: siteConfig.theme.colors.accent }}
+								>
+									<div className="flex items-center space-x-4">
+										<div className="flex h-12 w-12 items-center justify-center rounded-full bg-white">
+											<svg
+												aria-hidden="true"
+												xmlns="http://www.w3.org/2000/svg"
+												width="24"
+												height="24"
+												viewBox="0 0 24 24"
+												fill="none"
+												stroke="currentColor"
+												strokeWidth="2"
+												strokeLinecap="round"
+												strokeLinejoin="round"
+												style={{ color: siteConfig.theme.colors.accent }}
+											>
+												<path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+											</svg>
+										</div>
+										<div className="text-white">
+											<p className="text-sm font-medium">{overlayTitle}</p>
+											<p className="text-xl font-bold">{overlayValue}</p>
+										</div>
+									</div>
+								</div>
+							)}
 						</AspectRatio>
 					</motion.div>
 				</div>

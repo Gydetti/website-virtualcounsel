@@ -2,6 +2,7 @@
 import { Section } from "@/components/layout/Section";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import styles from "./clients-section.module.css";
 
 export interface ClientsSectionProps {
@@ -38,37 +39,42 @@ export default function ClientsSection({
 			aria-labelledby="clients-section-heading"
 			className="relative overflow-hidden"
 		>
-			<div className="relative z-10">
-				<div className="text-center mb-8">
+			<motion.div
+				initial={{ opacity: 0, y: 50 }}
+				whileInView={{ opacity: 1, y: 0 }}
+				transition={{ duration: 0.5 }}
+				viewport={{ once: true }}
+				className="relative z-10"
+			>
+				<div className="text-center mb-4">
 					<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 						{badgeText}
 					</Badge>
-					<h2 id="clients-section-heading" className="section-title">
-						{heading}
-					</h2>
 				</div>
 
 				<div className="py-4">
-					<div className={styles.slider_wrapper}>
-						<div className={styles.slider}>
-							{sliderItems.map((client) => (
-								<div
-									key={`${client.name}-${client.instance}`}
-									className={styles.logo_item}
-								>
-									<Image
-										src={client.logo}
-										alt={client.name}
-										width={120}
-										height={60}
-										className={`${styles.logo_image} w-24 object-contain`}
-									/>
-								</div>
-							))}
+					<div className="py-2">
+						<div className={styles.slider_wrapper}>
+							<div className={styles.slider}>
+								{sliderItems.map((client) => (
+									<div
+										key={`${client.name}-${client.instance}`}
+										className={styles.logo_item}
+									>
+										<Image
+											src={client.logo}
+											alt={client.name}
+											width={120}
+											height={60}
+											className={`${styles.logo_image} w-24 object-contain`}
+										/>
+									</div>
+								))}
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+			</motion.div>
 		</Section>
 	);
 }

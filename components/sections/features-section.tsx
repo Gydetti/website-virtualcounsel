@@ -65,7 +65,7 @@ export default function FeaturesSection({
 					<p className="text-gray-700">{description}</p>
 				</div>
 
-				<div className="relative grid md:grid-cols-2 gap-8 md:gap-0 mb-16">
+				<div className="relative grid md:grid-cols-2 gap-8 md:gap-0 mb-0">
 					<motion.div
 						initial={{ opacity: 0, x: -20 }}
 						whileInView={{ opacity: 1, x: 0 }}

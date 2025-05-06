@@ -57,6 +57,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 		notFound();
 	}
 
+	// Disable this post if blogging is turned off
+	if (!siteConfig.features.enableBlog) {
+		notFound();
+	}
+
 	// Get related posts (excluding current post)
 	const allPosts = await getBlogPosts();
 	const relatedPosts = allPosts.filter((p) => p.id !== post.id).slice(0, 3);

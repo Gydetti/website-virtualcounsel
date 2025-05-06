@@ -31,8 +31,8 @@ export default function CtaSection({
 			className="bg-brand-dark text-white relative overflow-hidden"
 		>
 			{/* Decorative elements matching the dark theme */}
-			<div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
-			<div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl" />
+			<div className="hidden sm:block absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+			<div className="hidden sm:block absolute bottom-0 left-0 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl" />
 
 			<div className="relative z-10 text-center">
 				<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
@@ -43,7 +43,7 @@ export default function CtaSection({
 				</h2>
 				<p className="text-gray-300 max-w-xl mx-auto mb-8">{description}</p>
 
-				<div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4">
+				<div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4 sm:gap-8 md:gap-12">
 					<Button
 						size="lg"
 						className="bg-white text-brand-dark hover:bg-gray-200 group w-full sm:w-auto whitespace-normal"

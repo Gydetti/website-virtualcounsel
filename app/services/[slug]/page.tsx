@@ -48,6 +48,11 @@ export default async function ServicePage({ params }: ServicePageProps) {
 		notFound();
 	}
 
+	// Disable this page if services feature is off or page not enabled
+	if (!siteConfig.features.enableServices || (siteConfig.enabledPages && !siteConfig.enabledPages.includes("/services"))) {
+		notFound();
+	}
+
 	const IconComponent = iconComponents[service.icon] || iconComponents.Globe;
 
 	// Additional service details

@@ -1,3 +1,5 @@
+"use client";
+
 import { Section } from "@/components/layout/Section";
 import StructuredData from "@/components/seo/structured-data";
 import {
@@ -9,6 +11,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 export interface FaqItem {
 	question: string;
@@ -46,11 +49,17 @@ export default function HomepageFaqSection({
 		<>
 			<StructuredData type="faq" data={{ items: faqSchema }} />
 			<Section id="faq-homepage">
-				<div className="text-center">
+				<motion.div
+					initial={{ opacity: 0, y: 50 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.5 }}
+					viewport={{ once: true }}
+					className="text-center"
+				>
 					<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 						{badgeText}
 					</Badge>
-					<h2 className="section-title">{heading}</h2>
+					<h2 className="section-title mb-12">{heading}</h2>
 					{description && (
 						<p className="text-gray-700 mb-8 max-w-2xl mx-auto">
 							{description}
@@ -83,7 +92,7 @@ export default function HomepageFaqSection({
 					<Button className="mt-8" asChild>
 						<Link href={ctaLink}>{ctaText}</Link>
 					</Button>
-				</div>
+				</motion.div>
 			</Section>
 		</>
 	);

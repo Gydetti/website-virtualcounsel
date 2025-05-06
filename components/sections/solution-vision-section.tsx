@@ -1,60 +1,102 @@
 "use client";
 import { Section } from "@/components/layout/Section";
 import { Badge } from "@/components/ui/badge";
-import { motion } from "framer-motion";
 import { CheckCircle } from "lucide-react";
+import { motion } from "framer-motion";
 
 export interface SolutionVisionSectionProps {
+	/** Label above the heading */
 	badgeText?: string;
+	/** Main heading text */
 	heading?: string;
+	/** Subheading or description text */
 	description?: string;
+	/** List of benefit items */
 	benefits?: string[];
+	/** Callout box text */
+	calloutText?: string;
+	/** Callout link text */
+	calloutLinkText?: string;
+	/** Callout link URL */
+	calloutLinkHref?: string;
 }
 
 export default function SolutionVisionSection({
-	badgeText = "Experience the Solution",
-	heading = "How We Transform Your Business",
-	description = "Through our proven process, we resolve core challenges and drive tangible growth—envision a future where your goals become reality.",
+	badgeText = "The Solution",
+	heading = "Transform your real estate business with our proven system",
+	description = "Through our 12-week coaching program, you'll develop a customized marketing strategy that delivers consistent results without consuming your valuable time.",
 	benefits = [
-		"A steady pipeline of qualified leads",
-		"Efficient strategies tailored to your goals",
-		"A standout brand that attracts attention",
-		"Measurable, sustainable business growth",
+		"A consistent flow of qualified leads every month",
+		"Automated systems that work while you sleep",
+		"More time to focus on high-value activities",
+		"Confidence in your marketing strategy",
+		"Sustainable business growth without burnout",
 	],
+	calloutText = "Stop struggling with ineffective marketing and start thriving with a system designed specifically for real estate success.",
+	calloutLinkText = "See how it works",
+	calloutLinkHref = "/about",
 }: SolutionVisionSectionProps) {
 	return (
-		<Section
-			id="solution-vision-section"
-			aria-labelledby="solution-vision-section-heading"
-			className="bg-transparent relative overflow-hidden"
-		>
-			{/* Adjust decorative elements positioning/z-index for overlap */}
-			{/* <div className="absolute top-0 right-0 w-64 h-64 bg-blue-100/20 rounded-full -translate-y-1/4 translate-x-1/4 blur-3xl z-0" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/10 rounded-full translate-y-1/2 -translate-x-1/4 blur-3xl z-0" /> */}
-
-			<div className="relative z-10 text-center">
-				<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
+		<Section id="solution-vision-section" className="bg-gradient-to-b from-secondary/10 via-transparent to-transparent">
+			{/* Animate header */}
+			<motion.div
+				initial={{ opacity: 0, x: -50 }}
+				whileInView={{ opacity: 1, x: 0 }}
+				transition={{ duration: 0.6 }}
+				viewport={{ once: true }}
+				className="text-center mb-16 max-w-4xl mx-auto"
+			>
+				<Badge className="mb-4 bg-secondary/10 text-secondary px-3 py-1 rounded-full text-sm">
 					{badgeText}
 				</Badge>
-				<h2 id="solution-vision-section-heading" className="section-title">
-					{heading}
-				</h2>
-				<p className="text-gray-700 max-w-2xl mx-auto mb-8">{description}</p>
-				<motion.ul
-					className="grid md:grid-cols-2 gap-6 text-left max-w-3xl mx-auto"
-					initial={{ opacity: 0, y: 20 }}
+				<h2 className="section-title text-3xl sm:text-4xl md:text-5xl">{heading}</h2>
+				<p className="section-subtitle">{description}</p>
+			</motion.div>
+
+			{/* Imagine having */}
+			<motion.div
+				initial={{ opacity: 0, y: 50 }}
+				whileInView={{ opacity: 1, y: 0 }}
+				transition={{ duration: 0.6, delay: 0.2 }}
+				viewport={{ once: true }}
+				className="text-center mb-8"
+			>
+				<h3 className="font-semibold text-lg">Imagine having:</h3>
+			</motion.div>
+
+			{/* Benefits Grid */}
+			<motion.div
+				initial={{ opacity: 0, y: 50 }}
+				whileInView={{ opacity: 1, y: 0 }}
+				transition={{ duration: 0.6, delay: 0.4 }}
+				viewport={{ once: true }}
+				className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto"
+			>
+				{benefits.map((b) => (
+					<div key={b} className="flex items-start space-x-2">
+						<CheckCircle className="h-5 w-5 text-secondary mt-1" />
+						<span className="text-gray-700">{b}</span>
+					</div>
+				))}
+			</motion.div>
+
+			{/* Callout Card */}
+			{calloutText && (
+				<motion.div
+					initial={{ opacity: 0, y: 50 }}
 					whileInView={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.5 }}
+					transition={{ duration: 0.6, delay: 0.6 }}
 					viewport={{ once: true }}
+					className="mt-16 max-w-4xl mx-auto bg-secondary/10 p-6 rounded-lg"
 				>
-					{benefits.map((benefit) => (
-						<li key={benefit} className="flex items-start">
-							<CheckCircle className="text-green-400 mr-3 mt-1 h-5 w-5 flex-shrink-0" />
-							<span>{benefit}</span>
-						</li>
-					))}
-				</motion.ul>
-			</div>
+					<p className="text-gray-900 font-medium mb-2">{calloutText}</p>
+					{calloutLinkText && (
+						<a href={calloutLinkHref} className="text-secondary font-semibold">
+							{calloutLinkText} →
+						</a>
+					)}
+				</motion.div>
+			)}
 		</Section>
 	);
 }

@@ -2,6 +2,7 @@ import { SubscribeForm } from "@/components/ui/SubscribeForm";
 import { Button } from "@/components/ui/button";
 import {
 	ArrowRight,
+	ExternalLink,
 	Facebook,
 	Instagram,
 	Linkedin,
@@ -246,22 +247,33 @@ export default function Footer() {
 					</div>
 
 					<div className="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-						<p className="text-gray-400 text-sm">
+						<p className="text-gray-200 text-sm">
 							© {currentYear} Your Company Name. All rights reserved.
 						</p>
 						<div className="flex space-x-6 mt-4 md:mt-0">
+						<Link
+								href="https://groeienmetgydo.nl"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="inline-flex items-center text-gray-100 hover:text-white text-sm"
+							>
+								<span>Website gemaakt met 🍌 door Groeien met Gydo</span>
+								<ExternalLink className="ml-1 h-4 w-4" />
+							</Link>
+							
 							<Link
 								href="/privacy-policy"
-								className="text-gray-400 hover:text-white text-sm"
+								className="text-gray-200 hover:text-white text-sm"
 							>
 								Privacy policy
 							</Link>
 							<Link
 								href="/terms-of-service"
-								className="text-gray-400 hover:text-white text-sm"
+								className="text-gray-200 hover:text-white text-sm"
 							>
 								Terms of service
 							</Link>
+							
 						</div>
 					</div>
 				</div>

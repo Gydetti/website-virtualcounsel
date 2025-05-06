@@ -22,7 +22,7 @@ interface BlogSectionProps {
 
 export default function BlogSection({ posts }: BlogSectionProps) {
 	return (
-		<Section className="relative overflow-hidden">
+		<Section className="relative overflow-hidden bg-gradient-to-br from-blue-50 to-transparent">
 			{/* Decorative elements */}
 			{/*<div className="absolute top-0 left-1/4 w-72 h-72 bg-blue-50 rounded-full -translate-y-1/2 blur-3xl opacity-70"></div>
 			{/*<div className="absolute bottom-0 right-1/4 w-72 h-72 bg-primary/5 rounded-full translate-y-1/2 blur-3xl"></div>*/}
@@ -39,7 +39,7 @@ export default function BlogSection({ posts }: BlogSectionProps) {
 					</p>
 				</div>
 
-				<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+				<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 md:gap-12 lg:gap-16">
 					{posts.map((post, index) => (
 						<motion.div
 							key={post.id}

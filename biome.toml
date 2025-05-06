@@ -21,7 +21,8 @@ ignore = [
   "node_modules/**",
   "Z-EXAMPLE-WEBSITE/**",
   "test-results/**",
-  "public/~partytown/**"
+  "public/~partytown/**",
+  "docs/building/inspiration/**"
 ]
 ignoreUnknown = true
 
@@ -31,7 +32,8 @@ ignore = [
   "node_modules/**",
   "Z-EXAMPLE-WEBSITE/**",
   "test-results/**",
-  "public/~partytown/**"
+  "public/~partytown/**",
+  "docs/building/inspiration/**"
 ]
 
 # Linter should skip these paths too
@@ -40,7 +42,8 @@ ignore = [
   "node_modules/**",
   "Z-EXAMPLE-WEBSITE/**",
   "test-results/**",
-  "public/~partytown/**"
+  "public/~partytown/**",
+  "docs/building/inspiration/**"
 ]
 
 # organizeImports should skip these paths too

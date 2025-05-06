@@ -137,7 +137,7 @@
 	}
 
 	.section-subtitle {
-		@apply text-lg text-gray-700 max-w-3xl mx-auto whitespace-normal break-words;
+		@apply text-lg text-gray-700 max-w-3xl mx-auto whitespace-normal break-words leading-relaxed;
 	}
 
 	.bg-grid-pattern {
@@ -161,8 +161,13 @@
 	}
 	.texture-bg::before {
 		content: "";
-		@apply absolute inset-0 bg-concrete-texture bg-cover bg-center opacity-10;
+		@apply absolute inset-0 bg-concrete-texture bg-cover bg-center opacity-30;
 		z-index: 0;
+	}
+
+	.responsive-gap {
+		/* mobile: gap-4, sm:gap-8, md:gap-12 */
+		@apply gap-4 sm:gap-8 md:gap-12;
 	}
 }
 

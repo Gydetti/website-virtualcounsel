@@ -15,6 +15,12 @@ import { ArrowRight, Check } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
+
+// Disable this page if services feature is off or page not enabled
+if (!siteConfig.features.enableServices || (siteConfig.enabledPages && !siteConfig.enabledPages.includes("/services"))) {
+	notFound();
+}
 
 export const metadata = defaultMetadata({
 	title: `${siteConfig.site.name} | Services`,

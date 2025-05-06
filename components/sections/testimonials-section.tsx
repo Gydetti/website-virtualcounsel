@@ -66,7 +66,7 @@ export default function TestimonialsSection({
 		<Section
 			id="testimonials-section"
 			aria-labelledby="testimonials-section-heading"
-			className="relative overflow-hidden"
+			className="relative overflow-hidden "
 		>
 			{/* Decorative elements */}
 			{/* <div className="absolute top-0 right-1/4 w-72 h-72 bg-blue-100/50 rounded-full -translate-y-1/2 blur-3xl" />
@@ -182,6 +182,14 @@ export default function TestimonialsSection({
 							<ChevronRight aria-hidden="true" className="h-6 w-6" />
 						</button>
 					</div>
+				</div>
+			</div>
+
+			{/* Authority Badge */}
+			<div className="mt-16 flex justify-center">
+				<div className="inline-flex items-center rounded-full border border-primary bg-white text-primary px-6 py-2 text-sm font-medium shadow-lg dark:bg-gray-800 dark:text-primary-foreground">
+					<span className="mr-2 h-2 w-2 rounded-full bg-primary dark:bg-primary-foreground" />
+					Certified Real Estate Marketing Specialist
 				</div>
 			</div>
 		</Section>

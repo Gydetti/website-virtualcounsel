@@ -5,11 +5,20 @@ import { defaultMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site.config";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import OptimizedImage from "@/components/ui/optimized-image";
+import { Section } from "@/components/layout/Section";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { notFound } from "next/navigation";
 
 export const metadata = defaultMetadata({
 	title: `${siteConfig.site.name} | About`,
 	description: "Learn more about our company, our mission, and our team.",
 });
+
+// Disable this page if not enabled in config
+if (siteConfig.enabledPages && !siteConfig.enabledPages.includes("/about")) {
+	notFound();
+}
 
 export default function AboutPage() {
 	const teamMembers = [
@@ -64,61 +73,43 @@ export default function AboutPage() {
 
 	return (
 		<>
-			<section className="bg-gradient-to-r from-blue-50 to-white py-16 md:py-24">
-				<div className="container-wide">
-					<div className="grid lg:grid-cols-2 gap-12 items-center">
-						<div>
+			{/* About Hero */}
+			<section className="relative overflow-hidden bg-gradient-to-r from-blue-100 to-transparent">
+				{/* Background patterns */}
+				<div className="absolute inset-0 bg-grid-pattern opacity-10" />
+				<div className="absolute top-20 right-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+				<div className="absolute bottom-10 left-10 w-72 h-72 bg-blue-100/20 rounded-full blur-3xl" />
+
+				<Section className="relative z-10">
+					<div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
+						<div className="relative z-10">
 							<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 								[ABOUT_PAGE_BADGE]
 							</Badge>
-							<h1>[ABOUT_PAGE_TITLE]</h1>
+							<h1 id="about-page-heading" className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance mb-6">
+								[ABOUT_PAGE_TITLE]
+							</h1>
 							<p className="text-gray-700 mb-6">
-								[ABOUT_PAGE_DESCRIPTION_1: Introduce your company and its
-								mission.]
+								[ABOUT_PAGE_DESCRIPTION_1: Introduce your company and its mission.]
 							</p>
-							<p className="text-gray-700 mb-8">
-								[ABOUT_PAGE_DESCRIPTION_2: Share your company's story and what
-								makes it unique.]
+							<p className="text-gray-700">
+								[ABOUT_PAGE_DESCRIPTION_2: Share your company's story and what makes it unique.]
 							</p>
-
-							<div className="grid grid-cols-2 gap-4 mb-8">
-								<div className="bg-white p-4 rounded-lg shadow-sm">
-									<div className="font-bold text-primary text-xl">
-										[STAT_1_VALUE]
-									</div>
-									<div className="text-gray-600">[STAT_1_LABEL]</div>
-								</div>
-								<div className="bg-white p-4 rounded-lg shadow-sm">
-									<div className="font-bold text-primary text-xl">
-										[STAT_2_VALUE]
-									</div>
-									<div className="text-gray-600">[STAT_2_LABEL]</div>
-								</div>
-								<div className="bg-white p-4 rounded-lg shadow-sm">
-									<div className="font-bold text-primary text-xl">
-										[STAT_3_VALUE]
-									</div>
-									<div className="text-gray-600">[STAT_3_LABEL]</div>
-								</div>
-								<div className="bg-white p-4 rounded-lg shadow-sm">
-									<div className="font-bold text-primary text-xl">
-										[STAT_4_VALUE]
-									</div>
-									<div className="text-gray-600">[STAT_4_LABEL]</div>
-								</div>
-							</div>
 						</div>
 
-						<div className="relative h-[400px] md:h-[500px] rounded-xl overflow-hidden shadow-2xl">
-							<Image
-								src="/placeholder.svg?height=500&width=500"
-								alt="About Our Company"
-								fill
-								className="object-cover"
-							/>
+						<div className="transform md:translate-y-6 transition-all w-full max-w-[600px] ml-auto">
+							<AspectRatio ratio={6 / 5} className="overflow-hidden rounded-xl shadow-2xl relative">
+								<OptimizedImage
+									src="/images/placeholders/placeholder-user.jpg"
+									alt="About Our Company"
+									fill
+									sizes="(max-width: 600px) 100vw, 600px"
+									className="absolute inset-0 object-cover"
+								/>
+							</AspectRatio>
 						</div>
 					</div>
-				</div>
+				</Section>
 			</section>
 
 			<section className="py-16 bg-white">

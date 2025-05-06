@@ -1,4 +1,6 @@
 import { Badge } from "@/components/ui/badge";
+import { siteConfig } from "@/lib/site.config";
+import { notFound } from "next/navigation";
 
 export const metadata = {
 	title: "Cookie Policy | Entrepreneur Template",
@@ -7,6 +9,11 @@ export const metadata = {
 };
 
 export default function CookiePolicyPage() {
+	// Disable this page if not enabled in config
+	if (siteConfig.enabledPages && !siteConfig.enabledPages.includes("/cookie-policy")) {
+		notFound();
+	}
+
 	return (
 		<section className="py-16 md:py-24">
 			<div className="container-wide">
