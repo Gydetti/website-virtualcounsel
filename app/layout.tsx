@@ -6,7 +6,6 @@ import Footer from "@/components/layout/footer";
 // import Script from "next/script" (removed for client-only loading)
 import Header from "@/components/layout/header";
 import StructuredData from "@/components/seo/structured-data";
-import { ThemeProvider } from "@/components/theme-provider";
 import DataLayerProvider from "@/components/tracking/data-layer-provider";
 import PageViewTracker from "@/components/tracking/page-view-tracker";
 import TrackingScripts from "@/components/tracking/tracking-scripts";
@@ -99,29 +98,22 @@ export default function RootLayout({
 			<body
 				className={`${poppins.variable} ${raleway.variable} font-sans antialiased bg-gradient-to-br from-blue-50 to-transparent`}
 			>
-				<ThemeProvider
-					attribute="class"
-					defaultTheme="light"
-					enableSystem
-					disableTransitionOnChange
-				>
-					<CookiebotLoaderClient />
-					<DataLayerProvider>
-						{/* Tracking scripts that respect cookie consent */}
-						<TrackingScripts />
-						<Suspense fallback={null}>
-							<PageViewTracker />
-						</Suspense>
+				<CookiebotLoaderClient />
+				<DataLayerProvider>
+					{/* Tracking scripts that respect cookie consent */}
+					<TrackingScripts />
+					<Suspense fallback={null}>
+						<PageViewTracker />
+					</Suspense>
 
-						<div className="flex min-h-screen flex-col">
-							<Header />
-							<main className="flex-1">{children}</main>
-							<Footer />
-						</div>
-						<ScrollToTop />
-						<Toaster />
-					</DataLayerProvider>
-				</ThemeProvider>
+					<div className="flex min-h-screen flex-col">
+						<Header />
+						<main className="flex-1">{children}</main>
+						<Footer />
+					</div>
+					<ScrollToTop />
+					<Toaster />
+				</DataLayerProvider>
 			</body>
 		</html>
 	);
