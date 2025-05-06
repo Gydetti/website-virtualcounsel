@@ -9,7 +9,10 @@ import Link from "next/link";
 
 export default function AboutSection() {
 	return (
-		<section id="about" className="section-padding relative overflow-hidden">
+		<section
+			id="about"
+			className="section-padding relative overflow-hidden bg-gradient-to-r from-blue-100 to-white"
+		>
 			{/* Decorative elements */}
 			{/* <div className="absolute top-0 right-1/4 w-72 h-72 bg-blue-100/50 rounded-full -translate-y-1/2 blur-3xl" />
 			<div className="absolute bottom-0 left-1/4 w-72 h-72 bg-primary/5 rounded-full translate-y-1/2 blur-3xl" /> */}

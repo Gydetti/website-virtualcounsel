@@ -101,7 +101,7 @@ export default function HeroSection({
 		<section
 			id="hero-section"
 			aria-labelledby="hero-section-heading"
-			className="relative overflow-hidden bg-gradient-to-r from-blue-100 to-transparent pt-16 pb-12 md:pt-28 md:pb-20"
+			className="relative overflow-hidden bg-gradient-to-r from-blue-100 to-transparent pt-16 pb-12 md:pt-28 md:pb-20 border-b border-transparent shadow-2xl"
 		>
 			{/* Background pattern */}
 			<div className="absolute inset-0 bg-grid-pattern opacity-10" />
