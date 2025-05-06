@@ -79,7 +79,7 @@
 		@apply bg-background;
 	}
 	body {
-		@apply bg-transparent text-foreground;
+		@apply bg-transparent text-foreground overflow-x-hidden;
 		font-feature-settings: "rlig" 1, "calt" 1;
 	}
 	h1,

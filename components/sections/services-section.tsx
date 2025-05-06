@@ -128,7 +128,7 @@ export default function ServicesSection({
 								<CardFooter className="card-footer pt-6">
 									<Button
 										variant={service.popular ? "default" : "outline"}
-										className={`group w-full ${
+										className={`group w-full whitespace-normal break-words ${
 											service.popular
 												? "hover:bg-primary/90"
 												: "bg-white border border-primary text-primary hover:bg-primary hover:text-white"
@@ -146,10 +146,10 @@ export default function ServicesSection({
 					))}
 				</div>
 
-				<div className="text-center mt-12">
+				<div className="text-center mt-12 flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4">
 					<Button
 						size="lg"
-						className="bg-primary hover:bg-primary/90 group"
+						className="bg-primary hover:bg-primary/90 group w-full sm:w-auto whitespace-normal break-words"
 						asChild
 					>
 						<Link href={viewAllLink}>
