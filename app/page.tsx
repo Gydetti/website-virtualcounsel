@@ -1,3 +1,4 @@
+import FaqSection from "@/app/faq/FaqClientPage";
 import AboutSection from "@/components/sections/about-section";
 import BlogSection from "@/components/sections/blog-section";
 import ClientsSection from "@/components/sections/clients-section";
@@ -103,7 +104,12 @@ export default async function Home() {
 					<BlogSection posts={blogPosts} />
 				</LazySection>
 
-				{/* 12. Contact */}
+				{/* 12. FAQ */}
+				<LazySection>
+					<FaqSection />
+				</LazySection>
+
+				{/* 13. Contact */}
 				<LazySection>
 					<ContactSection />
 				</LazySection>
