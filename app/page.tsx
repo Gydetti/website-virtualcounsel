@@ -58,38 +58,52 @@ export default async function Home() {
 					<FeaturesSection {...featuresSectionData} />
 				</LazySection>
 
-				{/* 3. Social Proof */}
+				{/* 3. Social Proof (Client Logos) */}
 				<LazySection>
 					<ClientsSection {...clientsSectionData} />
 				</LazySection>
+
+				{/* 4. Testimonials (Social Proof Quotes) */}
 				<LazySection>
 					<TestimonialsSection {...testimonialsSectionData} />
 				</LazySection>
 
-				{/* 4. Empathy for the Problem */}
+				{/* 5. About Me (Trust Builder) */}
+				<LazySection>
+					<AboutSection />
+				</LazySection>
+
+				{/* 6. Empathy for the Problem */}
 				<LazySection>
 					<ProblemPainSection {...problemPainSectionData} />
 				</LazySection>
 
-				{/* 5. Solution & Vision */}
+				{/* 7. Solution & Vision */}
 				<LazySection>
 					<SolutionVisionSection {...solutionVisionSectionData} />
 				</LazySection>
 
-				{/* 6. Call-to-Action (placed mid-flow) */}
+				{/* 8. Process (How It Works) */}
+				<LazySection>
+					<ProcessSection />
+				</LazySection>
+
+				{/* 9. Call-to-Action */}
 				<LazySection>
 					<CtaSection {...ctaSectionData} />
 				</LazySection>
 
-				{/* --- Secondary Sections (Optional) --- */}
+				{/* 10. Services */}
 				<LazySection>
 					<ServicesSection services={services} />
 				</LazySection>
 
+				{/* 11. Blog */}
 				<LazySection>
 					<BlogSection posts={blogPosts} />
 				</LazySection>
 
+				{/* 12. Contact */}
 				<LazySection>
 					<ContactSection />
 				</LazySection>
