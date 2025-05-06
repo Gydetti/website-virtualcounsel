@@ -109,11 +109,11 @@
 	}
 
 	.section-title {
-		@apply text-3xl md:text-4xl lg:text-5xl font-bold mb-6;
+		@apply text-3xl md:text-4xl lg:text-5xl font-bold mb-6 whitespace-normal break-words;
 	}
 
 	.section-subtitle {
-		@apply text-lg text-gray-700 max-w-3xl mx-auto;
+		@apply text-lg text-gray-700 max-w-3xl mx-auto whitespace-normal break-words;
 	}
 
 	.bg-grid-pattern {
