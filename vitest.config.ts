@@ -3,11 +3,11 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import { defineConfig } from "vitest/config";
 
 export default defineConfig({
-	plugins: [react(), tsconfigPaths()],
-	test: {
-		environment: "jsdom",
-		globals: true,
-		setupFiles: ["./vitest.setup.ts"],
-		include: ["**/*.test.{ts,tsx}"],
-	},
+  plugins: [react(), tsconfigPaths()],
+  test: {
+    environment: "jsdom",
+    globals: true,
+    setupFiles: ["./vitest.setup.ts"],
+    include: ["**/*.test.{ts,tsx}"],
+  },
 });
