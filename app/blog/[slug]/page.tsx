@@ -19,6 +19,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
+import { Section } from "@/components/layout/Section";
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -120,240 +121,234 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
     <>
       <BlogSchema {...blogSchemaData} />
       <StructuredData type="article" data={blogSchemaData} />
-      <section className="pt-8 md:pt-16 pb-0 bg-gradient-to-r from-blue-50 to-white">
-        <div className="container-wide">
-          <div className="max-w-4xl mx-auto">
-            {/* Back link and category badge grouped to prevent overlap on small screens */}
-            <div className="flex flex-wrap items-center gap-3 mb-6">
-              <Link
-                href="/blog"
-                className="inline-flex items-center text-primary hover:underline"
-              >
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to all articles
-              </Link>
-              <Badge>{post.category}</Badge>
-            </div>
-            <h1>{post.title}</h1>
+      <Section className="bg-gradient-to-r from-blue-50 to-white">
+        <div className="max-w-4xl mx-auto">
+          {/* Back link and category badge grouped to prevent overlap on small screens */}
+          <div className="flex flex-wrap items-center gap-3 mb-6">
+            <Link
+              href="/blog"
+              className="inline-flex items-center text-primary hover:underline"
+            >
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Back to all articles
+            </Link>
+            <Badge>{post.category}</Badge>
+          </div>
+          <h1>{post.title}</h1>
 
-            <div className="flex flex-wrap items-center gap-4 text-gray-600 mb-8">
+          <div className="flex flex-wrap items-center gap-4 text-gray-600 mb-8">
+            <div className="flex items-center">
+              <User className="h-4 w-4 mr-2" />
+              <span>{author.name}</span>
+            </div>
+            <div className="flex items-center">
+              <Calendar className="h-4 w-4 mr-2" />
+              <span>{post.date}</span>
+            </div>
+            <div className="flex items-center">
+              <Clock className="h-4 w-4 mr-2" />
+              <span>5 min read</span>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      <Section>
+        <div className="grid lg:grid-cols-4 gap-8 md:gap-12">
+          <div className="lg:col-span-3">
+            <div className="relative h-[400px] w-full mb-8 rounded-xl overflow-hidden">
+              <Image
+                src={post.image || "/placeholder.svg"}
+                alt={post.title}
+                fill
+                className="object-cover"
+              />
+            </div>
+
+            <article className="prose prose-lg space-y-6">
+              {/* biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation> */}
+              <div dangerouslySetInnerHTML={{ __html: content }} />
+            </article>
+
+            <div className="flex items-center justify-between mt-12 pt-8 border-t">
               <div className="flex items-center">
-                <User className="h-4 w-4 mr-2" />
-                <span>{author.name}</span>
+                <span className="mr-4">Share this article:</span>
+                <div className="flex space-x-2">
+                  <Button
+                    size="icon"
+                    variant="ghost"
+                    aria-label="Share on Twitter"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-hidden="true"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="h-5 w-5"
+                    >
+                      <title>Twitter</title>
+                      <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
+                    </svg>
+                  </Button>
+                  <Button
+                    size="icon"
+                    variant="ghost"
+                    aria-label="Share on Facebook"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-hidden="true"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="h-5 w-5"
+                    >
+                      <title>Facebook</title>
+                      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                    </svg>
+                  </Button>
+                  <Button
+                    size="icon"
+                    variant="ghost"
+                    aria-label="Share on LinkedIn"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-hidden="true"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="h-5 w-5"
+                    >
+                      <title>LinkedIn</title>
+                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                      <rect x="2" y="9" width="4" height="12" />
+                      <circle cx="4" cy="4" r="2" />
+                    </svg>
+                  </Button>
+                  <Button size="icon" variant="ghost" aria-label="Copy link">
+                    <Share2 className="h-5 w-5" />
+                  </Button>
+                </div>
               </div>
-              <div className="flex items-center">
-                <Calendar className="h-4 w-4 mr-2" />
-                <span>{post.date}</span>
-              </div>
-              <div className="flex items-center">
-                <Clock className="h-4 w-4 mr-2" />
-                <span>5 min read</span>
+            </div>
+          </div>
+
+          <div className="lg:col-span-1">
+            <Card>
+              <CardContent className="p-6">
+                <h3 className="mb-4">About the Author</h3>
+                <div className="flex items-center mb-4">
+                  <div className="relative h-16 w-16 rounded-full overflow-hidden mr-4">
+                    <Image
+                      src={author.image || "/placeholder.svg"}
+                      alt={author.name}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div>
+                    <h4>{author.name}</h4>
+                    <p className="text-sm text-gray-600">{author.title}</p>
+                  </div>
+                </div>
+                <p className="text-gray-600 text-sm">{author.bio}</p>
+              </CardContent>
+            </Card>
+
+            <div className="mt-8">
+              <h3 className="mb-4">Categories</h3>
+              <div className="flex flex-wrap gap-2">
+                <Badge
+                  variant="outline"
+                  className="cursor-pointer hover:bg-primary hover:text-white"
+                >
+                  Digital Marketing
+                </Badge>
+                <Badge
+                  variant="outline"
+                  className="cursor-pointer hover:bg-primary hover:text-white"
+                >
+                  Web Design
+                </Badge>
+                <Badge
+                  variant="outline"
+                  className="cursor-pointer hover:bg-primary hover:text-white"
+                >
+                  Business Growth
+                </Badge>
+                <Badge
+                  variant="outline"
+                  className="cursor-pointer hover:bg-primary hover:text-white"
+                >
+                  SEO
+                </Badge>
+                <Badge
+                  variant="outline"
+                  className="cursor-pointer hover:bg-primary hover:text-white"
+                >
+                  Social Media
+                </Badge>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
-      <section className="pt-0 md:pt-16 pb-16">
-        <div className="container-wide">
-          <div className="grid lg:grid-cols-4 gap-8 md:gap-12">
-            <div className="lg:col-span-3">
-              <div className="relative h-[400px] w-full mb-8 rounded-xl overflow-hidden">
+      <Section className="bg-gray-50">
+        <h2 className="text-3xl font-bold mb-12">Related Articles</h2>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {relatedPosts.map((relatedPost) => (
+            <Card
+              key={relatedPost.id}
+              className="overflow-hidden transition-all duration-300 hover:shadow-xl"
+            >
+              <div className="relative h-48 w-full overflow-hidden">
                 <Image
-                  src={post.image || "/placeholder.svg"}
-                  alt={post.title}
+                  src={relatedPost.image || "/placeholder.svg"}
+                  alt={relatedPost.title}
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-300 hover:scale-105"
                 />
               </div>
-
-              <article className="prose prose-lg space-y-6">
-                {/* biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation> */}
-                <div dangerouslySetInnerHTML={{ __html: content }} />
-              </article>
-
-              <div className="flex items-center justify-between mt-12 pt-8 border-t">
-                <div className="flex items-center">
-                  <span className="mr-4">Share this article:</span>
-                  <div className="flex space-x-2">
-                    <Button
-                      size="icon"
-                      variant="ghost"
-                      aria-label="Share on Twitter"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        aria-hidden="true"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="h-5 w-5"
-                      >
-                        <title>Twitter</title>
-                        <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
-                      </svg>
-                    </Button>
-                    <Button
-                      size="icon"
-                      variant="ghost"
-                      aria-label="Share on Facebook"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        aria-hidden="true"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="h-5 w-5"
-                      >
-                        <title>Facebook</title>
-                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                      </svg>
-                    </Button>
-                    <Button
-                      size="icon"
-                      variant="ghost"
-                      aria-label="Share on LinkedIn"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        aria-hidden="true"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="h-5 w-5"
-                      >
-                        <title>LinkedIn</title>
-                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                        <rect x="2" y="9" width="4" height="12" />
-                        <circle cx="4" cy="4" r="2" />
-                      </svg>
-                    </Button>
-                    <Button size="icon" variant="ghost" aria-label="Copy link">
-                      <Share2 className="h-5 w-5" />
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="lg:col-span-1">
-              <Card>
-                <CardContent className="p-6">
-                  <h3 className="mb-4">About the Author</h3>
-                  <div className="flex items-center mb-4">
-                    <div className="relative h-16 w-16 rounded-full overflow-hidden mr-4">
-                      <Image
-                        src={author.image || "/placeholder.svg"}
-                        alt={author.name}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                    <div>
-                      <h4>{author.name}</h4>
-                      <p className="text-sm text-gray-600">{author.title}</p>
-                    </div>
-                  </div>
-                  <p className="text-gray-600 text-sm">{author.bio}</p>
-                </CardContent>
-              </Card>
-
-              <div className="mt-8">
-                <h3 className="mb-4">Categories</h3>
-                <div className="flex flex-wrap gap-2">
-                  <Badge
-                    variant="outline"
-                    className="cursor-pointer hover:bg-primary hover:text-white"
-                  >
-                    Digital Marketing
-                  </Badge>
-                  <Badge
-                    variant="outline"
-                    className="cursor-pointer hover:bg-primary hover:text-white"
-                  >
-                    Web Design
-                  </Badge>
-                  <Badge
-                    variant="outline"
-                    className="cursor-pointer hover:bg-primary hover:text-white"
-                  >
-                    Business Growth
-                  </Badge>
-                  <Badge
-                    variant="outline"
-                    className="cursor-pointer hover:bg-primary hover:text-white"
-                  >
-                    SEO
-                  </Badge>
-                  <Badge
-                    variant="outline"
-                    className="cursor-pointer hover:bg-primary hover:text-white"
-                  >
-                    Social Media
-                  </Badge>
-                </div>
-              </div>
-            </div>
-          </div>
+              <CardContent className="p-6">
+                <h3 className="mb-2 hover:text-primary transition-colors">
+                  <Link href={`/blog/${relatedPost.slug}`}>
+                    {relatedPost.title}
+                  </Link>
+                </h3>
+                <p className="text-gray-600 mb-4">{relatedPost.excerpt}</p>
+                <Button
+                  variant="link"
+                  className="p-0 h-auto text-primary"
+                  asChild
+                >
+                  <Link href={`/blog/${relatedPost.slug}`}>
+                    Read More
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
         </div>
-      </section>
-
-      <section className="section-padding bg-gray-50">
-        <div className="container-wide">
-          <h2 className="text-3xl font-bold mb-12">Related Articles</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {relatedPosts.map((relatedPost) => (
-              <Card
-                key={relatedPost.id}
-                className="overflow-hidden transition-all duration-300 hover:shadow-xl"
-              >
-                <div className="relative h-48 w-full overflow-hidden">
-                  <Image
-                    src={relatedPost.image || "/placeholder.svg"}
-                    alt={relatedPost.title}
-                    fill
-                    className="object-cover transition-transform duration-300 hover:scale-105"
-                  />
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="mb-2 hover:text-primary transition-colors">
-                    <Link href={`/blog/${relatedPost.slug}`}>
-                      {relatedPost.title}
-                    </Link>
-                  </h3>
-                  <p className="text-gray-600 mb-4">{relatedPost.excerpt}</p>
-                  <Button
-                    variant="link"
-                    className="p-0 h-auto text-primary"
-                    asChild
-                  >
-                    <Link href={`/blog/${relatedPost.slug}`}>
-                      Read More
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+      </Section>
     </>
   );
 }

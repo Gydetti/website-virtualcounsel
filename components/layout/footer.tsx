@@ -13,9 +13,21 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { siteConfig } from "@/lib/site.config";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const { enabledPages, features, navLinks } = siteConfig;
+  const filteredQuickLinks = navLinks.filter((link) => {
+    if (enabledPages && !enabledPages.includes(link.href)) return false;
+    if (link.href.startsWith("/blog") && !features.enableBlog) return false;
+    if (link.href.startsWith("/services") && !features.enableServices) return false;
+    if (link.href.startsWith("/contact") && !features.enableContactForm) return false;
+    return true;
+  });
+  const showServicesSection =
+    features.enableServices &&
+    (!enabledPages || enabledPages.includes("/services"));
 
   return (
     <>
@@ -93,63 +105,22 @@ export default function Footer() {
             <div>
               <h3 className="mb-4">Quick links</h3>
               <ul className="space-y-2">
-                <li>
-                  <Link
-                    href="/"
-                    className="text-white hover:text-brand-light transition-colors inline-flex items-center group"
-                  >
-                    <span className="w-0 h-0.5 bg-white transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/services"
-                    className="text-white hover:text-brand-light transition-colors inline-flex items-center group"
-                  >
-                    <span className="w-0 h-0.5 bg-white transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
-                    Services
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/about"
-                    className="text-white hover:text-brand-light transition-colors inline-flex items-center group"
-                  >
-                    <span className="w-0 h-0.5 bg-white transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
-                    About
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/blog"
-                    className="text-white hover:text-brand-light transition-colors inline-flex items-center group"
-                  >
-                    <span className="w-0 h-0.5 bg-white transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
-                    Blog
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/faq"
-                    className="text-white hover:text-brand-light transition-colors inline-flex items-center group"
-                  >
-                    <span className="w-0 h-0.5 bg-white transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
-                    FAQ
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/contact"
-                    className="text-white hover:text-brand-light transition-colors inline-flex items-center group"
-                  >
-                    <span className="w-0 h-0.5 bg-white transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
-                    Contact
-                  </Link>
-                </li>
+                {filteredQuickLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-white hover:text-brand-light transition-colors inline-flex items-center group"
+                    >
+                      <span className="w-0 h-0.5 bg-white transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
+                      {link.text}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
 
+            {/* Services section */}
+            {showServicesSection && (
             <div>
               <h3 className="mb-4">Services</h3>
               <ul className="space-y-2">
@@ -200,6 +171,7 @@ export default function Footer() {
                 </li>
               </ul>
             </div>
+            )}
 
             <div>
               <h3 className="mb-4">Contact</h3>

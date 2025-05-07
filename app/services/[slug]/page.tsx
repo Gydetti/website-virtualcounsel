@@ -11,6 +11,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Section } from "@/components/layout/Section";
 
 interface ServicePageProps {
   params: Promise<{ slug: string }>;
@@ -146,53 +147,53 @@ export default async function ServicePage(props: ServicePageProps) {
 
   return (
     <>
-      <section className="bg-gradient-to-r from-blue-50 to-white py-16 md:py-24">
-        <div className="container-wide">
-          <Link
-            href="/services"
-            className="inline-flex items-center text-primary mb-6 hover:underline"
-          >
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to all services
-          </Link>
+      <Section className="bg-gradient-to-r from-blue-50 to-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
+            {service.title}
+          </Badge>
+        </div>
+      </Section>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <Badge className="mb-4">{service.icon}</Badge>
-              <h1>{service.title}</h1>
-              <p className="text-gray-700 mb-8">{service.description}</p>
+      <Section className="bg-white">
+        <div className="grid md:grid-cols-2 gap-8 items-start">
+          <div>
+            <IconComponent className="h-20 w-20 text-primary mb-6" />
+            <h1 className="text-3xl font-bold mb-4 break-words">
+              {service.title}
+            </h1>
+            <p className="text-gray-700 mb-8">{service.description}</p>
 
-              <div className="space-y-4 mb-8">
-                {service.features.map((feature) => (
-                  <div key={feature} className="flex items-start">
-                    <div className="flex-shrink-0 h-6 w-6 rounded-full bg-green-100 flex items-center justify-center mr-3">
-                      <Check className="h-4 w-4 text-green-600" />
-                    </div>
-                    <span>{feature}</span>
+            <div className="space-y-4 mb-8">
+              {service.features.map((feature) => (
+                <div key={feature} className="flex items-start">
+                  <div className="flex-shrink-0 h-6 w-6 rounded-full bg-green-100 flex items-center justify-center mr-3">
+                    <Check className="h-4 w-4 text-green-600" />
                   </div>
-                ))}
-              </div>
-
-              <Button
-                size="lg"
-                className="bg-primary hover:bg-primary/90"
-                asChild
-              >
-                <Link href="/contact">
-                  Schedule a Consultation
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
+                  <span>{feature}</span>
+                </div>
+              ))}
             </div>
 
-            <div className="relative h-[400px] rounded-xl overflow-hidden shadow-xl">
-              <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
-                <IconComponent className="h-32 w-32 text-primary/30" />
-              </div>
+            <Button
+              size="lg"
+              className="bg-primary hover:bg-primary/90"
+              asChild
+            >
+              <Link href="/contact">
+                Schedule a Consultation
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+
+          <div className="relative h-[400px] rounded-xl overflow-hidden shadow-xl">
+            <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+              <IconComponent className="h-32 w-32 text-primary/30" />
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
       <section className="py-16 bg-white">
         <div className="container-wide">

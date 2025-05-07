@@ -224,7 +224,7 @@ export default function HeroSection({
                 alt={imageAlt}
                 fill
                 sizes="(max-width: 600px) 100vw, 600px"
-                className="absolute inset-0 object-cover"
+                className="absolute inset-0 object-cover rounded-xl"
                 priority
                 onError={() =>
                   setHeroSrc("/images/placeholders/placeholder.svg")
