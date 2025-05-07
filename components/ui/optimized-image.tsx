@@ -33,11 +33,19 @@ export default function OptimizedImage({
 	onError,
 }: OptimizedImageProps) {
 	const [isLoading, setIsLoading] = useState(true);
+	const [hasError, setHasError] = useState(false);
 
 	// Handle image load
 	const handleImageLoad = () => {
 		setIsLoading(false);
 		if (onLoad) onLoad();
+	};
+
+	// Handle image error and fallback to default placeholder
+	const handleImageError: ReactEventHandler<HTMLImageElement> = (event) => {
+		setHasError(true);
+		setIsLoading(false);
+		if (onError) onError(event);
 	};
 
 	// Default sizes if not provided
@@ -55,15 +63,15 @@ export default function OptimizedImage({
 				/>
 			)}
 			<Image
-				src={src || "/placeholder.svg"}
+				src={hasError ? "/placeholder.svg" : src || "/placeholder.svg"}
 				alt={alt}
 				width={fill ? undefined : width}
 				height={fill ? undefined : height}
 				fill={fill}
 				sizes={sizes || defaultSizes}
 				priority={priority}
-				onLoad={handleImageLoad}
-				onError={onError}
+				onLoadingComplete={handleImageLoad}
+				onError={handleImageError}
 				className={cn(
 					"transition-opacity duration-300",
 					isLoading ? "opacity-0" : "opacity-100",

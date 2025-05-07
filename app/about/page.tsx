@@ -89,7 +89,7 @@ export default function AboutPage() {
 							</Badge>
 							<h1
 								id="about-page-heading"
-								className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance mb-6"
+								className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance break-words break-all whitespace-normal max-w-full mb-6"
 							>
 								[ABOUT_PAGE_TITLE]
 							</h1>
