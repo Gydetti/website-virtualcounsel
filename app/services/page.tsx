@@ -80,10 +80,10 @@ export default async function ServicesPage() {
                       <div className="mb-4">
                         <IconComponent className="h-10 w-10 text-primary" />
                       </div>
-                      <CardTitle className="text-xl font-bold">
+                      <CardTitle className="text-xl font-bold break-words">
                         {service.title}
                       </CardTitle>
-                      <CardDescription className="text-gray-600">
+                      <CardDescription className="text-gray-600 break-words">
                         {service.description}
                       </CardDescription>
                     </CardHeader>

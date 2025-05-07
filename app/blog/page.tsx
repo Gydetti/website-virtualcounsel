@@ -72,7 +72,7 @@ export default async function BlogPage() {
                         <Badge className="w-fit mb-4">
                           {featuredPost.category}
                         </Badge>
-                        <CardTitle className="text-2xl md:text-3xl font-bold mb-4">
+                        <CardTitle className="text-2xl md:text-3xl font-bold break-words mb-4">
                           <Link
                             href={`/blog/${featuredPost.slug}`}
                             className="hover:text-primary transition-colors"
@@ -80,7 +80,7 @@ export default async function BlogPage() {
                             {featuredPost.title}
                           </Link>
                         </CardTitle>
-                        <CardDescription className="text-gray-600 mb-6 text-lg">
+                        <CardDescription className="text-gray-600 mb-6 text-lg break-words">
                           {featuredPost.excerpt}
                         </CardDescription>
                         <div className="flex items-center justify-between mt-auto">
@@ -133,12 +133,12 @@ export default async function BlogPage() {
                         </Badge>
                         <span className="text-xs text-gray-500">{post.date}</span>
                       </div>
-                      <CardTitle className="text-xl font-bold hover:text-primary transition-colors">
+                      <CardTitle className="text-xl font-bold break-words hover:text-primary transition-colors">
                         <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <CardDescription className="text-gray-600">
+                      <CardDescription className="text-gray-600 break-words">
                         {post.excerpt}
                       </CardDescription>
                     </CardContent>
