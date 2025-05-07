@@ -13,12 +13,13 @@ const __dirname = dirname(fileURLToPath(
 // No createRequire needed here
 
 const nextConfig = {
-    // Transpile framer-motion and alias to its CJS build to avoid ESM export * errors in client boundaries
-    transpilePackages: ['framer-motion'],
+    // We alias 'framer-motion' to a lightweight stub that strips all animations
+    // and prevents runtime crashes in the app/router SSR.
+    transpilePackages: [],
     webpack: (config, { isServer }) => {
         config.resolve.alias = {
             ...(config.resolve.alias || {}),
-            'framer-motion': path.resolve(__dirname, 'node_modules/framer-motion/dist/framer-motion.js'),
+            'framer-motion': path.resolve(__dirname, 'lib/stub-framer-motion.tsx'),
         };
         // Inject React automatically in all bundles to ensure React is defined everywhere
         config.plugins.push(
