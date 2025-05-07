@@ -1,10 +1,10 @@
 **CRITICAL DISCLAIMER:**
 
-*   **This is a TEMPLATE and NOT bespoke legal advice.** While based on a real example and common practice, it cannot account for the specific services, risks, client types, and business model of each individual entrepreneur.
-*   **Each client MUST customize this template.** They need to ensure it accurately reflects how they do business and the specific agreements they make.
-*   **Professional Review Recommended:** Even though you are providing this, for complex or high-risk services, they might still benefit from a quick review tailored to *their specific offering*.
-*   **These terms must be provided to the client *before or at the time* of concluding the agreement** ("ter hand gesteld") in a way they can save and access them, for them to be validly applicable. Simply having them on a website might not always be enough without active acceptance.
-*   The `{{ }}` placeholders indicate information that MUST be filled in or adapted by each client.
+- **This is a TEMPLATE and NOT bespoke legal advice.** While based on a real example and common practice, it cannot account for the specific services, risks, client types, and business model of each individual entrepreneur.
+- **Each client MUST customize this template.** They need to ensure it accurately reflects how they do business and the specific agreements they make.
+- **Professional Review Recommended:** Even though you are providing this, for complex or high-risk services, they might still benefit from a quick review tailored to _their specific offering_.
+- **These terms must be provided to the client _before or at the time_ of concluding the agreement** ("ter hand gesteld") in a way they can save and access them, for them to be validly applicable. Simply having them on a website might not always be enough without active acceptance.
+- The `{{ }}` placeholders indicate information that MUST be filled in or adapted by each client.
 
 ---
 
@@ -20,11 +20,10 @@ Website: `{{URL van jouw website}}`
 
 **Artikel 1: Definities**
 1.1 In deze algemene voorwaarden wordt verstaan onder:
-    *   **Opdrachtnemer:** `{{Naam van jouw onderneming/praktijk}}`, die deze algemene voorwaarden gebruikt voor het aanbieden van diensten.
-    *   **Opdrachtgever:** De natuurlijke persoon of rechtspersoon die een opdracht voor werkzaamheden verstrekt aan Opdrachtnemer.
-    *   **Diensten:** Alle door Opdrachtnemer aan Opdrachtgever te leveren producten en diensten, waaronder `{{korte, generieke omschrijving van de soort diensten, bijv. advies, coaching, ontwerp, training, etc.}}`, zoals nader gespecificeerd in de offerte of overeenkomst.
-    *   **Overeenkomst:** De overeenkomst tussen Opdrachtnemer en Opdrachtgever op grond waarvan Opdrachtnemer Diensten verleent.
-    *   `{{Voeg hier eventueel een specifieke rol toe indien cruciaal voor de dienst, bijv. 'Deelnemer' voor een training, maar houd het anders algemeen.}}`
+_ **Opdrachtnemer:** `{{Naam van jouw onderneming/praktijk}}`, die deze algemene voorwaarden gebruikt voor het aanbieden van diensten.
+_ **Opdrachtgever:** De natuurlijke persoon of rechtspersoon die een opdracht voor werkzaamheden verstrekt aan Opdrachtnemer.
+_ **Diensten:** Alle door Opdrachtnemer aan Opdrachtgever te leveren producten en diensten, waaronder `{{korte, generieke omschrijving van de soort diensten, bijv. advies, coaching, ontwerp, training, etc.}}`, zoals nader gespecificeerd in de offerte of overeenkomst.
+_ **Overeenkomst:** De overeenkomst tussen Opdrachtnemer en Opdrachtgever op grond waarvan Opdrachtnemer Diensten verleent. \* `{{Voeg hier eventueel een specifieke rol toe indien cruciaal voor de dienst, bijv. 'Deelnemer' voor een training, maar houd het anders algemeen.}}`
 
 **Artikel 2: Toepasselijkheid**
 2.1 Deze algemene voorwaarden zijn van toepassing op alle aanbiedingen, offertes en Overeenkomsten waarbij Opdrachtnemer Diensten aanbiedt of levert.
