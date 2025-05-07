@@ -865,3 +865,15 @@ This section outlines how to use Cursor AI to gather client information and appl
    - Deploy to staging to validate copy flow and layout.
 
 > By following this AI-driven onboarding, we ensure research-backed best practices are applied and streamline client customization.
+
+## CI & Quality Gates
+
+We've introduced a `ci:verify` npm script that runs a full build, lint (with zero warnings), and tests in one command:
+
+```bash
+npm run ci:verify
+```
+
+A GitHub Actions workflow is configured in `.github/workflows/ci.yml` to automatically run these checks on every pull request and push to the `main` branch. This ensures your site builds cleanly and passes all quality checks before deploying.
+
+If you ever need to revert to the previous setup, simply remove the `ci:verify` script from `package.json` and delete the `.github/workflows/ci.yml` file—your Husky hooks (image optimization on commit, build on push) will continue enforcing the existing workflow.

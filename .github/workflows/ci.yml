@@ -1,13 +1,14 @@
 name: CI
 
 on:
-  push:
-    branches: [main]
   pull_request:
-    branches: ["*"]
+    branches: [ main ]
+  push:
+    branches: [ main ]
 
 jobs:
-  build:
+  build-lint-test:
+    name: Build, Lint & Test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -16,20 +17,20 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18.x
-          cache: "npm"
+          node-version: 18
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Generate optimized assets
+      - name: Verify image optimization
         run: npm run image-optimize
 
       - name: Build application
         run: npm run build
 
-      - name: Lint code
-        run: npm run lint
+      - name: Lint (zero warnings)
+        run: npm run lint -- --max-warnings=0
 
       - name: Run tests
-        run: npm test || exit 1
+        run: npm test
