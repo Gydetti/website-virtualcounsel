@@ -163,7 +163,7 @@ export const ctaSectionData: CtaSectionProps = {
 	description: "Let's discuss how we can help you achieve your business goals.",
 	primaryCtaText: "Schedule a consultation",
 	primaryCtaLink: "/contact",
-	secondaryCtaText: "Learn more",
+	secondaryCtaText: "Learn more about our services",
 	secondaryCtaLink: "/services",
 };
 
