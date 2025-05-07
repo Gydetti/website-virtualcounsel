@@ -1,11 +1,11 @@
 "use client";
-import type * as React from "react";
+import type { ReactNode } from "react";
 
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 interface LazySectionProps {
-	children: React.ReactNode;
+	children: ReactNode;
 	threshold?: number;
 	className?: string;
 	animation?:

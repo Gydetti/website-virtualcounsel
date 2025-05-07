@@ -71,13 +71,17 @@ export default async function Home() {
 					</LazySection>
 				)}
 
-				{/* Empathy for the Problem & Solution (Pain and Solution Sections Animated Together) */}
+				{/* Empathy for the Problem (Pain Section) */}
 				{features.enableProblemPainSection && (
 					<LazySection>
 						<ProblemPainSection {...problemPainSectionData} />
-						{features.enableSolutionVisionSection && (
-							<SolutionVisionSection {...solutionVisionSectionData} />
-						)}
+					</LazySection>
+				)}
+
+				{/* Solution & Vision */}
+				{features.enableSolutionVisionSection && (
+					<LazySection>
+						<SolutionVisionSection {...solutionVisionSectionData} />
 					</LazySection>
 				)}
 

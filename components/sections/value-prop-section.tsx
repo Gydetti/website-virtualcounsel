@@ -2,7 +2,6 @@
 
 import { Section } from "@/components/layout/Section";
 import { Badge } from "@/components/ui/badge";
-import { motion } from "framer-motion";
 import { CheckCircle } from "lucide-react";
 import type { ComponentType, SVGProps } from "react";
 
@@ -56,26 +55,14 @@ export default function ValuePropSection({
 			id="value-prop-section"
 			className="bg-gradient-to-b from-white/70 to-white/0"
 		>
-			<motion.div
-				initial={{ opacity: 0, y: 50 }}
-				whileInView={{ opacity: 1, y: 0 }}
-				transition={{ duration: 0.5 }}
-				viewport={{ once: true }}
-				className="text-center mb-16"
-			>
+			<div className="text-center mb-16">
 				<Badge className="mb-4 bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground">
 					{badgeText}
 				</Badge>
 				<h2 className="section-title">{heading}</h2>
 				<p className="section-subtitle">{subheading}</p>
-			</motion.div>
-			<motion.div
-				initial={{ opacity: 0, y: 50 }}
-				whileInView={{ opacity: 1, y: 0 }}
-				transition={{ duration: 0.5, delay: 0.2 }}
-				viewport={{ once: true }}
-				className="grid grid-cols-1 gap-8 mt-16 md:grid-cols-2 lg:grid-cols-3"
-			>
+			</div>
+			<div className="grid grid-cols-1 gap-8 mt-16 md:grid-cols-2 lg:grid-cols-3">
 				{benefits.map((benefit) => {
 					const Icon =
 						iconMap[benefit.icon as keyof typeof iconMap] ?? CheckCircle;
@@ -94,7 +81,7 @@ export default function ValuePropSection({
 						</div>
 					);
 				})}
-			</motion.div>
+			</div>
 		</Section>
 	);
 }

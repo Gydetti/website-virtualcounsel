@@ -1,7 +1,6 @@
 "use client";
 import { Section } from "@/components/layout/Section";
 import { Badge } from "@/components/ui/badge";
-import { motion } from "framer-motion";
 import Image from "next/image";
 import styles from "./clients-section.module.css";
 
@@ -39,13 +38,7 @@ export default function ClientsSection({
 			aria-labelledby="clients-section-heading"
 			className="relative overflow-hidden"
 		>
-			<motion.div
-				initial={{ opacity: 0, y: 50 }}
-				whileInView={{ opacity: 1, y: 0 }}
-				transition={{ duration: 0.5 }}
-				viewport={{ once: true }}
-				className="relative z-10"
-			>
+			<div className="relative z-10">
 				<div className="text-center mb-4">
 					<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 						{badgeText}
@@ -74,7 +67,7 @@ export default function ClientsSection({
 						</div>
 					</div>
 				</div>
-			</motion.div>
+			</div>
 		</Section>
 	);
 }

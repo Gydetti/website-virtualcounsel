@@ -1,7 +1,6 @@
 "use client";
 import { Section } from "@/components/layout/Section";
 import { Badge } from "@/components/ui/badge";
-import { motion } from "framer-motion";
 import { CheckCircle } from "lucide-react";
 
 export interface SolutionVisionSectionProps {
@@ -41,14 +40,8 @@ export default function SolutionVisionSection({
 			id="solution-vision-section"
 			className="bg-gradient-to-b from-secondary/10 via-transparent to-transparent"
 		>
-			{/* Animate header */}
-			<motion.div
-				initial={{ opacity: 0, x: -50 }}
-				whileInView={{ opacity: 1, x: 0 }}
-				transition={{ duration: 0.6 }}
-				viewport={{ once: true }}
-				className="text-center mb-16 max-w-4xl mx-auto"
-			>
+			{/* Header */}
+			<div className="text-center mb-16 max-w-4xl mx-auto">
 				<Badge className="mb-4 bg-secondary/10 text-secondary px-3 py-1 rounded-full text-sm">
 					{badgeText}
 				</Badge>
@@ -56,51 +49,33 @@ export default function SolutionVisionSection({
 					{heading}
 				</h2>
 				<p className="section-subtitle">{description}</p>
-			</motion.div>
+			</div>
 
 			{/* Imagine having */}
-			<motion.div
-				initial={{ opacity: 0, y: 50 }}
-				whileInView={{ opacity: 1, y: 0 }}
-				transition={{ duration: 0.6, delay: 0.2 }}
-				viewport={{ once: true }}
-				className="text-center mb-8"
-			>
+			<div className="text-center mb-8">
 				<h3 className="font-semibold text-lg">Imagine having:</h3>
-			</motion.div>
+			</div>
 
 			{/* Benefits Grid */}
-			<motion.div
-				initial={{ opacity: 0, y: 50 }}
-				whileInView={{ opacity: 1, y: 0 }}
-				transition={{ duration: 0.6, delay: 0.4 }}
-				viewport={{ once: true }}
-				className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto"
-			>
+			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
 				{benefits.map((b) => (
 					<div key={b} className="flex items-start space-x-2">
 						<CheckCircle className="h-5 w-5 text-secondary mt-1" />
 						<span className="text-gray-700">{b}</span>
 					</div>
 				))}
-			</motion.div>
+			</div>
 
 			{/* Callout Card */}
 			{calloutText && (
-				<motion.div
-					initial={{ opacity: 0, y: 50 }}
-					whileInView={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.6, delay: 0.6 }}
-					viewport={{ once: true }}
-					className="mt-16 max-w-4xl mx-auto bg-secondary/10 p-6 rounded-lg"
-				>
+				<div className="mt-16 max-w-4xl mx-auto bg-secondary/10 p-6 rounded-lg">
 					<p className="text-gray-900 font-medium mb-2">{calloutText}</p>
 					{calloutLinkText && (
 						<a href={calloutLinkHref} className="text-secondary font-semibold">
 							{calloutLinkText} →
 						</a>
 					)}
-				</motion.div>
+				</div>
 			)}
 		</Section>
 	);

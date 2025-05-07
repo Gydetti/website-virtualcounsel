@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import type * as React from "react";
+import type { FormEvent } from "react";
 import { useEffect, useState } from "react";
 
 declare const process: {
@@ -52,7 +52,7 @@ export function SubscribeForm() {
 		"idle" | "loading" | "success" | "error"
 	>("idle");
 
-	async function handleSubscribe(e: React.FormEvent) {
+	async function handleSubscribe(e: FormEvent) {
 		e.preventDefault();
 		if (!email) return;
 		setStatus("loading");

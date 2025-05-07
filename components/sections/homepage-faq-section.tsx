@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
 import Link from "next/link";
 
 export interface FaqItem {
@@ -49,13 +48,7 @@ export default function HomepageFaqSection({
 		<>
 			<StructuredData type="faq" data={{ items: faqSchema }} />
 			<Section id="faq-homepage">
-				<motion.div
-					initial={{ opacity: 0, y: 50 }}
-					whileInView={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.5 }}
-					viewport={{ once: true }}
-					className="text-center"
-				>
+				<div className="text-center">
 					<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 						{badgeText}
 					</Badge>
@@ -92,7 +85,7 @@ export default function HomepageFaqSection({
 					<Button className="mt-8" asChild>
 						<Link href={ctaLink}>{ctaText}</Link>
 					</Button>
-				</motion.div>
+				</div>
 			</Section>
 		</>
 	);

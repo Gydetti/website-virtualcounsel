@@ -1,6 +1,5 @@
 "use client";
 import { Section } from "@/components/layout/Section";
-import { motion } from "framer-motion";
 import { AlertTriangle } from "lucide-react";
 
 export interface ProblemPainSectionProps {
@@ -46,13 +45,7 @@ export default function ProblemPainSection({
 		>
 			<div className="bg-gray-900 text-white rounded-[30px] border border-gray-700/50 shadow-lg p-12">
 				<div className="grid gap-12 lg:grid-cols-2">
-					<motion.div
-						initial={{ opacity: 0, x: -50 }}
-						whileInView={{ opacity: 1, x: 0 }}
-						transition={{ duration: 0.6 }}
-						viewport={{ once: true }}
-						className="flex flex-col justify-center space-y-8"
-					>
+					<div className="flex flex-col justify-center space-y-8">
 						<div className="space-y-4">
 							<div className="inline-flex items-center space-x-2 text-secondary">
 								<AlertTriangle className="h-5 w-5" />
@@ -68,14 +61,8 @@ export default function ProblemPainSection({
 								<p className="text-lg font-medium">{calloutText}</p>
 							</div>
 						)}
-					</motion.div>
-					<motion.div
-						initial={{ opacity: 0, x: 50 }}
-						whileInView={{ opacity: 1, x: 0 }}
-						transition={{ duration: 0.6 }}
-						viewport={{ once: true }}
-						className="grid grid-cols-1 gap-6 sm:grid-cols-2"
-					>
+					</div>
+					<div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
 						{cards.map((card) => (
 							<div key={card.title} className="rounded-lg bg-gray-800 p-6">
 								<h3 className="mb-3 text-xl font-bold text-secondary">
@@ -86,7 +73,7 @@ export default function ProblemPainSection({
 								</p>
 							</div>
 						))}
-					</motion.div>
+					</div>
 				</div>
 			</div>
 		</Section>
