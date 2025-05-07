@@ -106,21 +106,21 @@ export default function AboutPage() {
             <div className="grid md:grid-cols-3 gap-8">
               {/* Milestones with staggered entry and depth */}
               <LazySection delay={0} className="h-full">
-                <Card className="p-6 w-full whitespace-normal shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <Card className="p-6 w-full h-full whitespace-normal shadow-lg hover:shadow-xl transition-shadow duration-300">
                   <h3 className="mb-4">Short milestone title</h3>
                   <p className="text-gray-600 mb-2">Date of milestone</p>
                   <p>Brief summary of milestone importance</p>
                 </Card>
               </LazySection>
               <LazySection delay={0.1} className="h-full">
-                <Card className="p-6 w-full whitespace-normal shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <Card className="p-6 w-full h-full whitespace-normal shadow-lg hover:shadow-xl transition-shadow duration-300">
                   <h3 className="mb-4">Short milestone title</h3>
                   <p className="text-gray-600 mb-2">Date of milestone</p>
                   <p>Brief summary of milestone importance</p>
                 </Card>
               </LazySection>
               <LazySection delay={0.2} className="h-full">
-                <Card className="p-6 w-full whitespace-normal shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <Card className="p-6 w-full h-full whitespace-normal shadow-lg hover:shadow-xl transition-shadow duration-300">
                   <h3 className="mb-4">Short milestone title</h3>
                   <p className="text-gray-600 mb-2">Date of milestone</p>
                   <p>Brief summary of milestone importance</p>
@@ -154,7 +154,7 @@ export default function AboutPage() {
                   delay={index * 0.1}
                   className="h-full"
                 >
-                  <Card className="p-6 w-full whitespace-normal shadow-lg hover:shadow-xl transition-shadow duration-300">
+                  <Card className="p-6 w-full h-full whitespace-normal shadow-lg hover:shadow-xl transition-shadow duration-300">
                     <h3 className="text-xl font-bold mb-4">{value.title}</h3>
                     <p className="text-gray-600">{value.description}</p>
                   </Card>
