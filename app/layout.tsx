@@ -44,6 +44,8 @@ export const metadata = defaultMetadata({
 	description: siteConfig.site.description,
 });
 
+export const dynamic = 'force-dynamic';
+
 export default function RootLayout({
 	children,
 }: {
