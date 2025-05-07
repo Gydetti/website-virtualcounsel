@@ -1,48 +1,48 @@
 /* components/sections/clients-section.module.css */
 .slider_wrapper {
-	width: 100%;
-	/* max of 6 logos visible: 6 × logo_item width (166px) */
-	max-width: calc(166px * 6);
-	height: auto;
-	margin: auto;
-	position: relative;
-	overflow: hidden;
+  width: 100%;
+  /* max of 6 logos visible: 6 × logo_item width (166px) */
+  max-width: calc(166px * 6);
+  height: auto;
+  margin: auto;
+  position: relative;
+  overflow: hidden;
 }
 
 .slider {
-	display: flex;
-	animation: scroll 80s linear infinite;
+  display: flex;
+  animation: scroll 80s linear infinite;
 }
 
 .logo_item {
-	/* Responsive item width: 3 per row on mobile, 4 on sm, 6 on lg */
-	flex: 0 0 33.333%; /* mobile: 3 items */
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  /* Responsive item width: 3 per row on mobile, 4 on sm, 6 on lg */
+  flex: 0 0 33.333%; /* mobile: 3 items */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .logo_image {
-	height: auto;
+  height: auto;
 }
 
 @keyframes scroll {
-	0% {
-		transform: translateX(0);
-	}
-	100% {
-		transform: translateX(-100%);
-	}
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
 
 @media (min-width: 640px) {
-	.logo_item {
-		flex: 0 0 25%; /* sm: 4 items */
-	}
+  .logo_item {
+    flex: 0 0 25%; /* sm: 4 items */
+  }
 }
 
 @media (min-width: 1024px) {
-	.logo_item {
-		flex: 0 0 16.666%; /* lg: 6 items */
-	}
+  .logo_item {
+    flex: 0 0 16.666%; /* lg: 6 items */
+  }
 }

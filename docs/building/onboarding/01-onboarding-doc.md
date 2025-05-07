@@ -285,6 +285,8 @@ export const siteConfig = {
 
 ## Section Components & Data
 
+> **IMPORTANT:** All content for each section lives in a data file under `lib/data/`. Currently, the only data file is `lib/data/homepage.ts`, which exports `heroSectionData`, `featuresSectionData`, `clientsSectionData`, and other homepage-related data. Never edit the component files in `components/sections/` directly to change text, images, links, or stats; always update the corresponding data file. When you add new pages or custom sections, create a new data file (e.g. `lib/data/services.ts`) exporting the appropriate `<SectionName>SectionData`.
+
 **Pattern:** Data-driven.
 
 1. **Data file:** `lib/data/<section>.ts` exports typed arrays/objects.
