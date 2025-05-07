@@ -1,0 +1,6 @@
+# Ignore placeholder stub pages until they are filled in
+app/about/**
+app/faq/**
+app/privacy-policy/**
+app/terms-of-service/**
+app/cookie-policy/** 

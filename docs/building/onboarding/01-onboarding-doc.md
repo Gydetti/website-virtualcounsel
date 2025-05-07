@@ -185,7 +185,11 @@ export const siteConfig = {
     provider: "hubspot",
     hubspot: { portalId: "123", formId: "456" } /*..*/,
   },
-  features: { enableBlog: true, enableServices: true /*..*/ },
+  features: {
+    enableBlog: true,
+    enableServices: true,
+    enableFooterServices: true /*..*/,
+  },
   enabledPages: ["/", "/services", "/about", "/contact"],
   contactForm: {
     provider: "smtp",
