@@ -82,7 +82,7 @@ export default function AboutPage() {
 
 				<Section className="relative z-10">
 					<div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
-						<LazySection animation="slide-right" className="relative z-10">
+						<LazySection className="relative z-10">
 							<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 								[ABOUT_PAGE_BADGE]
 							</Badge>

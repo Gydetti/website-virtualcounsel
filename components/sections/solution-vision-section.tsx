@@ -27,7 +27,7 @@ const textVariants = {
 	visible: (i: number) => ({
 		opacity: 1,
 		y: 0,
-		transition: { duration: 0.3, delay: i * 0.1, ease: "easeOut" },
+		transition: { duration: 0.8, delay: i * 0.3, ease: "easeIn" },
 	}),
 };
 
@@ -84,7 +84,7 @@ export default function SolutionVisionSection({
 				initial={{ opacity: 0, y: 20 }}
 				whileInView={{ opacity: 1, y: 0 }}
 				viewport={{ once: true }}
-				transition={{ duration: 0.5, ease: "easeOut" }}
+				transition={{ duration: 0.8, ease: "easeOut" }}
 				className="mx-auto max-w-4xl bg-white/20 backdrop-blur-lg rounded-xl shadow-2xl p-12 space-y-8"
 			>
 				<h3 className="font-semibold text-lg text-center mt-0 mb-0">
@@ -103,7 +103,7 @@ export default function SolutionVisionSection({
 			{/* Callout Card Animation */}
 			{calloutText && (
 				<motion.div
-					custom={5}
+					custom={1}
 					initial="hidden"
 					whileInView="visible"
 					viewport={{ once: true }}

@@ -72,7 +72,7 @@ export default function ValuePropSection({
 							key={benefit.title}
 							initial={{ opacity: 0, y: 20 }}
 							whileInView={{ opacity: 1, y: 0 }}
-							transition={{ duration: 0.5, delay: idx * 0.1 }}
+							transition={{ duration: 0.8, delay: idx * 0.2 }}
 							viewport={{ once: true }}
 							className="flex flex-col items-start space-y-3 rounded-lg border p-6 shadow-sm hover:shadow-md"
 						>

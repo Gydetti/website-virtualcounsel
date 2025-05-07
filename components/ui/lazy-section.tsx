@@ -74,7 +74,7 @@ export default function LazySection({
 			x: 0,
 			scale: 1,
 			transition: {
-				duration: 0.5,
+				duration: 0.8,
 				delay: delay,
 				ease: "easeOut",
 			},
