@@ -10,8 +10,8 @@ import {
 } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export interface FaqItem {
 	question: string;

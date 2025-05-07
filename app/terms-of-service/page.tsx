@@ -3,7 +3,10 @@ import { siteConfig } from "@/lib/site.config";
 import { notFound } from "next/navigation";
 
 // Disable this page if not enabled
-if (siteConfig.enabledPages && !siteConfig.enabledPages.includes("/terms-of-service")) {
+if (
+	siteConfig.enabledPages &&
+	!siteConfig.enabledPages.includes("/terms-of-service")
+) {
 	notFound();
 }
 

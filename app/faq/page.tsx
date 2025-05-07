@@ -1,7 +1,7 @@
 import { defaultMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site.config";
-import FaqClientPage from "./FaqClientPage";
 import { notFound } from "next/navigation";
+import FaqClientPage from "./FaqClientPage";
 
 // Disable this page if not enabled in config
 if (siteConfig.enabledPages && !siteConfig.enabledPages.includes("/faq")) {

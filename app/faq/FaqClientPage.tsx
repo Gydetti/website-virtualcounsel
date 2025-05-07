@@ -156,7 +156,9 @@ export default function FaqClientPage() {
 					{filteredFaqs.length > 0 ? (
 						filteredFaqs.map((category) => (
 							<div key={category.category} className="mb-12">
-								<h2 className="text-[1.625rem] md:text-[2rem] font-semibold mb-6">{category.category}</h2>
+								<h2 className="text-[1.625rem] md:text-[2rem] font-semibold mb-6">
+									{category.category}
+								</h2>
 								<Accordion type="single" collapsible className="space-y-4">
 									{category.questions.map((faq) => (
 										<AccordionItem

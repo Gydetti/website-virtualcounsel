@@ -1,3 +1,4 @@
+// No default React import needed
 import type {
 	BlogPosting,
 	BreadcrumbList,

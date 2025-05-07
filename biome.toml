@@ -4,7 +4,8 @@
 "lint/suspicious/noArrayIndexKey" = "off"
 "lint/suspicious/noExplicitAny" = "off"
 "lint/a11y/useAltText" = "off"
-"lint/a11y/useButtonType" = "off" 
+"lint/a11y/useButtonType" = "off"
+"lint/style/useImportType" = "off" 
 
 [linter.rules.security]
 noDangerouslySetInnerHtml = "off" 

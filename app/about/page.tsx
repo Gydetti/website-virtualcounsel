@@ -1,13 +1,13 @@
+import { Section } from "@/components/layout/Section";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import OptimizedImage from "@/components/ui/optimized-image";
 import { defaultMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site.config";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
-import OptimizedImage from "@/components/ui/optimized-image";
-import { Section } from "@/components/layout/Section";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { notFound } from "next/navigation";
 
 export const metadata = defaultMetadata({
@@ -86,19 +86,27 @@ export default function AboutPage() {
 							<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 								[ABOUT_PAGE_BADGE]
 							</Badge>
-							<h1 id="about-page-heading" className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance mb-6">
+							<h1
+								id="about-page-heading"
+								className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance mb-6"
+							>
 								[ABOUT_PAGE_TITLE]
 							</h1>
 							<p className="text-gray-700 mb-6">
-								[ABOUT_PAGE_DESCRIPTION_1: Introduce your company and its mission.]
+								[ABOUT_PAGE_DESCRIPTION_1: Introduce your company and its
+								mission.]
 							</p>
 							<p className="text-gray-700">
-								[ABOUT_PAGE_DESCRIPTION_2: Share your company's story and what makes it unique.]
+								[ABOUT_PAGE_DESCRIPTION_2: Share your company's story and what
+								makes it unique.]
 							</p>
 						</div>
 
 						<div className="transform md:translate-y-6 transition-all w-full max-w-[600px] ml-auto">
-							<AspectRatio ratio={6 / 5} className="overflow-hidden rounded-xl shadow-2xl relative">
+							<AspectRatio
+								ratio={6 / 5}
+								className="overflow-hidden rounded-xl shadow-2xl relative"
+							>
 								<OptimizedImage
 									src="/images/placeholders/placeholder-user.jpg"
 									alt="About Our Company"

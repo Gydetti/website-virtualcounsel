@@ -19,6 +19,7 @@ import SolutionVisionSection, {
 	SolutionVisionSectionProps,
 } from "@/components/sections/solution-vision-section";
 import TestimonialsSection from "@/components/sections/testimonials-section";
+import ValuePropSection from "@/components/sections/value-prop-section";
 import LazySection from "@/components/ui/lazy-section";
 import { getBlogPosts, getServices } from "@/lib/data-utils";
 import {
@@ -35,7 +36,6 @@ import { homepageFaqCategories } from "@/lib/data/homepage";
 import { defaultMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site.config";
 import type { Metadata } from "next";
-import ValuePropSection from "@/components/sections/value-prop-section";
 
 export const metadata = defaultMetadata({
 	title: `${siteConfig.site.name} | Home`,
@@ -57,8 +57,6 @@ export default async function Home() {
 
 			{/* Main Content Wrapper on global gradient */}
 			<div className="relative">
-				
-
 				{/* Value Proposition (Why Choose Us) */}
 				{features.enableValuePropSection && (
 					<LazySection>
@@ -96,8 +94,6 @@ export default async function Home() {
 						<ServicesSection services={services} />
 					</LazySection>
 				) */}
-
-				
 
 				{/* Testimonials (Social Proof Quotes) */}
 				{features.enableTestimonials && (

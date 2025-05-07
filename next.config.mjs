@@ -1,14 +1,31 @@
 /** @type {import('next').NextConfig} */
 
+import path from 'node:path';
+import { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import webpack from 'webpack';
+const __dirname = dirname(fileURLToPath(
+    import.meta.url));
+
 // Use 'main' field first to load CJS entry for framer-motion
 // so that export * is transformed and avoids client boundary errors
-// via resolving CJS before ESM modules
+// via resolving CJS before ESM module
 // No createRequire needed here
 
 const nextConfig = {
-    // (removed experimental.esmExternals override to allow Next.js default ESM handling)
-    // Transpile framer-motion to support export * in client boundaries
-    transpilePackages: ["framer-motion"],
+    // Transpile framer-motion and alias to its CJS build to avoid ESM export * errors in client boundaries
+    transpilePackages: ['framer-motion'],
+    webpack: (config, { isServer }) => {
+        config.resolve.alias = {
+            ...(config.resolve.alias || {}),
+            'framer-motion': path.resolve(__dirname, 'node_modules/framer-motion/dist/framer-motion.js'),
+        };
+        // Inject React automatically in all bundles to ensure React is defined everywhere
+        config.plugins.push(
+            new webpack.ProvidePlugin({ React: 'react' })
+        );
+        return config;
+    },
     eslint: {
         ignoreDuringBuilds: true,
     },
@@ -18,17 +35,8 @@ const nextConfig = {
     images: {
         unoptimized: true,
     },
-    // Redirect legacy placeholder.svg requests to optimized placeholder
     async rewrites() {
-        return [{
-            source: "/placeholder.svg",
-            destination: "/images/placeholders/placeholder.svg",
-        }, ];
-    },
-    webpack: (config) => {
-        // prefer CommonJS 'main' over ESM 'module' entrypoints
-        config.resolve.mainFields = ['main', 'module', 'browser'];
-        return config;
+        return [{ source: '/placeholder.svg', destination: '/images/placeholders/placeholder.svg' }];
     },
 };
 

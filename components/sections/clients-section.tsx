@@ -1,8 +1,8 @@
 "use client";
 import { Section } from "@/components/layout/Section";
 import { Badge } from "@/components/ui/badge";
-import Image from "next/image";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import styles from "./clients-section.module.css";
 
 export interface ClientsSectionProps {

@@ -1,11 +1,10 @@
 "use client";
 
-import type React from "react";
-
 import { useEffect } from "react";
+import type { ReactNode } from "react";
 
 interface DataLayerProviderProps {
-	children: React.ReactNode;
+	children: ReactNode;
 }
 
 export default function DataLayerProvider({

@@ -9,7 +9,6 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
-import React from "react";
 import { motion } from "framer-motion";
 
 interface PricingCard {
@@ -47,9 +46,7 @@ export default function PricingSection({ cards }: PricingSectionProps) {
 						transition={{ duration: 0.5, delay: idx * 0.1 }}
 						viewport={{ once: true }}
 					>
-						<Card
-							className="relative flex h-full flex-col justify-between border border-gray-200 bg-white shadow-sm transition-transform duration-300 hover:scale-105 hover:shadow-lg"
-						>
+						<Card className="relative flex h-full flex-col justify-between border border-gray-200 bg-white shadow-sm transition-transform duration-300 hover:scale-105 hover:shadow-lg">
 							{idx === 1 && (
 								<div className="absolute top-0 right-0 mt-4 mr-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-semibold uppercase">
 									Popular

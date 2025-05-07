@@ -1,6 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import type * as React from "react";
 import { useEffect, useState } from "react";
 
 declare const process: {

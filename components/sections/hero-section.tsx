@@ -2,10 +2,10 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import CountUp from "react-countup";
-import Image from "next/image";
 
 import { Section } from "@/components/layout/Section";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
@@ -161,7 +161,7 @@ export default function HeroSection({
 						<div className="flex flex-col sm:flex-row gap-4 pt-4">
 							<Button
 								size="lg"
-								className={`bg-primary hover:bg-primary/90 group ${!showSecondaryCta ? 'w-full sm:w-auto' : ''}`}
+								className={`bg-primary hover:bg-primary/90 group ${!showSecondaryCta ? "w-full sm:w-auto" : ""}`}
 								asChild
 							>
 								<Link href={primaryCtaLink}>
@@ -186,7 +186,10 @@ export default function HeroSection({
 							<div className="flex items-center space-x-4 mt-6 text-sm">
 								<div className="flex -space-x-2">
 									{[1, 2, 3, 4].map((i) => (
-										<div key={i} className="inline-block h-8 w-8 rounded-full ring-2 ring-white overflow-hidden bg-gray-200">
+										<div
+											key={i}
+											className="inline-block h-8 w-8 rounded-full ring-2 ring-white overflow-hidden bg-gray-200"
+										>
 											<Image
 												src="/placeholder.svg?height=32&width=32"
 												alt="User avatar"
@@ -198,7 +201,8 @@ export default function HeroSection({
 									))}
 								</div>
 								<div className="text-gray-700">
-									<span className="font-medium">100+</span> realtors helped this year
+									<span className="font-medium">100+</span> realtors helped this
+									year
 								</div>
 							</div>
 						)}

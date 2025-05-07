@@ -10,7 +10,10 @@ export const metadata = {
 
 export default function CookiePolicyPage() {
 	// Disable this page if not enabled in config
-	if (siteConfig.enabledPages && !siteConfig.enabledPages.includes("/cookie-policy")) {
+	if (
+		siteConfig.enabledPages &&
+		!siteConfig.enabledPages.includes("/cookie-policy")
+	) {
 		notFound();
 	}
 

@@ -52,7 +52,15 @@ export const siteConfig = {
 		enableFaqSection: false,
 		enableInspirationHeroSection: false,
 	},
-	enabledPages: ["/", "/services", "/about", "/blog", "/faq", "/contact"],
+	enabledPages: [
+		"/",
+		"/services",
+		"/about",
+		"/blog",
+		"/faq",
+		"/contact",
+		"/terms-of-service",
+	],
 	contactForm: {
 		provider: "smtp",
 		fields: [

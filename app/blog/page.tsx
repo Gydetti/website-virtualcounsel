@@ -18,7 +18,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 // Disable this page if blog feature is off or page not enabled
-if (!siteConfig.features.enableBlog || (siteConfig.enabledPages && !siteConfig.enabledPages.includes("/blog"))) {
+if (
+	!siteConfig.features.enableBlog ||
+	(siteConfig.enabledPages && !siteConfig.enabledPages.includes("/blog"))
+) {
 	notFound();
 }
 

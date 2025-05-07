@@ -56,7 +56,7 @@ const siteConfigSchema = z.object({
 		enableBlog: z.boolean().optional().default(true),
 		enableServices: z.boolean().optional().default(false),
 		enableContactForm: z.boolean().optional().default(true),
-		enableTestimonials:z.boolean().optional().default(true),
+		enableTestimonials: z.boolean().optional().default(true),
 		enablePricing: z.boolean().optional().default(false),
 		enableHeroSection: z.boolean().optional().default(true),
 		/** Toggle for custom React-based cookie consent banner */

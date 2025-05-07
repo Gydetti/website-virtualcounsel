@@ -49,7 +49,10 @@ export default async function ServicePage({ params }: ServicePageProps) {
 	}
 
 	// Disable this page if services feature is off or page not enabled
-	if (!siteConfig.features.enableServices || (siteConfig.enabledPages && !siteConfig.enabledPages.includes("/services"))) {
+	if (
+		!siteConfig.features.enableServices ||
+		(siteConfig.enabledPages && !siteConfig.enabledPages.includes("/services"))
+	) {
 		notFound();
 	}
 

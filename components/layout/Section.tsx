@@ -24,7 +24,10 @@ export function Section({
 		);
 	}
 	return (
-		<section className={`overflow-hidden ${containerClasses} ${className}`} {...rest}>
+		<section
+			className={`overflow-hidden ${containerClasses} ${className}`}
+			{...rest}
+		>
 			{children}
 		</section>
 	);

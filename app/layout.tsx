@@ -1,5 +1,6 @@
 import { Poppins, Raleway } from "next/font/google";
-import type React from "react";
+import { Suspense } from "react";
+import type { ReactNode } from "react";
 import "./globals.css";
 import CookiebotLoaderClient from "@/components/cookie/CookiebotLoaderClient";
 import CookieConsentBanner from "@/components/cookie/cookie-consent-banner";
@@ -15,7 +16,6 @@ import { Toaster } from "@/components/ui/toaster";
 import { defaultMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site.config";
 import { Partytown } from "@qwik.dev/partytown/react";
-import { Suspense } from "react";
 
 // Poppins for headings
 const poppins = Poppins({

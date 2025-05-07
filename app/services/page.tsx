@@ -18,7 +18,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 // Disable this page if services feature is off or page not enabled
-if (!siteConfig.features.enableServices || (siteConfig.enabledPages && !siteConfig.enabledPages.includes("/services"))) {
+if (
+	!siteConfig.features.enableServices ||
+	(siteConfig.enabledPages && !siteConfig.enabledPages.includes("/services"))
+) {
 	notFound();
 }
 

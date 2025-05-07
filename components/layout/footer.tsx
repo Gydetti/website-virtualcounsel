@@ -251,7 +251,7 @@ export default function Footer() {
 							© {currentYear} Your Company Name. All rights reserved.
 						</p>
 						<div className="flex space-x-6 mt-4 md:mt-0">
-						<Link
+							<Link
 								href="https://groeienmetgydo.nl"
 								target="_blank"
 								rel="noopener noreferrer"
@@ -260,7 +260,7 @@ export default function Footer() {
 								<span>Website gemaakt met 🍌 door Groeien met Gydo</span>
 								<ExternalLink className="ml-1 h-4 w-4" />
 							</Link>
-							
+
 							<Link
 								href="/privacy-policy"
 								className="text-gray-200 hover:text-white text-sm"
@@ -273,7 +273,6 @@ export default function Footer() {
 							>
 								Terms of service
 							</Link>
-							
 						</div>
 					</div>
 				</div>

@@ -1,8 +1,8 @@
 "use client";
 import { Section } from "@/components/layout/Section";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
+import { CheckCircle } from "lucide-react";
 
 export interface SolutionVisionSectionProps {
 	/** Label above the heading */
@@ -37,7 +37,10 @@ export default function SolutionVisionSection({
 	calloutLinkHref = "/about",
 }: SolutionVisionSectionProps) {
 	return (
-		<Section id="solution-vision-section" className="bg-gradient-to-b from-secondary/10 via-transparent to-transparent">
+		<Section
+			id="solution-vision-section"
+			className="bg-gradient-to-b from-secondary/10 via-transparent to-transparent"
+		>
 			{/* Animate header */}
 			<motion.div
 				initial={{ opacity: 0, x: -50 }}
@@ -49,7 +52,9 @@ export default function SolutionVisionSection({
 				<Badge className="mb-4 bg-secondary/10 text-secondary px-3 py-1 rounded-full text-sm">
 					{badgeText}
 				</Badge>
-				<h2 className="section-title text-3xl sm:text-4xl md:text-5xl">{heading}</h2>
+				<h2 className="section-title text-3xl sm:text-4xl md:text-5xl">
+					{heading}
+				</h2>
 				<p className="section-subtitle">{description}</p>
 			</motion.div>
 

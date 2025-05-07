@@ -177,19 +177,19 @@ export const valuePropSectionData: ValuePropSectionProps = {
 			title: "Save 10+ Hours Weekly",
 			description:
 				"Our streamlined systems eliminate manual prospecting, giving you back precious time for closing deals.",
-			icon: CheckCircle,
+			icon: "check-circle",
 		},
 		{
 			title: "Personalized Strategy",
 			description:
 				"Unlike generic marketing courses, we create custom plans based on your specific market and strengths.",
-			icon: CheckCircle,
+			icon: "check-circle",
 		},
 		{
 			title: "Proven Results",
 			description:
 				"Our clients see an average 127% increase in qualified leads within the first 90 days of implementation.",
-			icon: CheckCircle,
+			icon: "check-circle",
 		},
 	],
 };

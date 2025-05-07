@@ -1,7 +1,7 @@
 "use client";
 import { Section } from "@/components/layout/Section";
-import { AlertTriangle } from "lucide-react";
 import { motion } from "framer-motion";
+import { AlertTriangle } from "lucide-react";
 
 export interface ProblemPainSectionProps {
 	badgeText?: string;
@@ -14,10 +14,8 @@ export interface ProblemPainSectionProps {
 export default function ProblemPainSection({
 	badgeText = "The Reality For Most Realtors",
 	heading = "Struggling to stand out in a crowded market?",
-	description =
-		"Most real estate professionals face the same challenges: inconsistent leads, wasted marketing dollars, and not enough time. Without addressing these issues, your business remains vulnerable.",
-	calloutText =
-		"\"Without a strategic approach to lead generation, realtors risk stagnation while competitors capture market share. The cost of inaction isn't just lost revenue today—it's diminished growth potential for years to come.\"",
+	description = "Most real estate professionals face the same challenges: inconsistent leads, wasted marketing dollars, and not enough time. Without addressing these issues, your business remains vulnerable.",
+	calloutText = "\"Without a strategic approach to lead generation, realtors risk stagnation while competitors capture market share. The cost of inaction isn't just lost revenue today—it's diminished growth potential for years to come.\"",
 	cards = [
 		{
 			title: "Wasted Ad Spend",
@@ -42,7 +40,10 @@ export default function ProblemPainSection({
 	],
 }: ProblemPainSectionProps) {
 	return (
-		<Section id="pain" className="bg-gradient-to-b from-transparent to-secondary/10">
+		<Section
+			id="pain"
+			className="bg-gradient-to-b from-transparent to-secondary/10"
+		>
 			<div className="bg-gray-900 text-white rounded-[30px] border border-gray-700/50 shadow-lg p-12">
 				<div className="grid gap-12 lg:grid-cols-2">
 					<motion.div
@@ -57,9 +58,7 @@ export default function ProblemPainSection({
 								<AlertTriangle className="h-5 w-5" />
 								<span className="font-medium">{badgeText}</span>
 							</div>
-							<h2 className="section-title text-white">
-								{heading}
-							</h2>
+							<h2 className="section-title text-white">{heading}</h2>
 							<p className="max-w-[600px] text-gray-400 md:text-xl">
 								{description}
 							</p>
@@ -82,7 +81,9 @@ export default function ProblemPainSection({
 								<h3 className="mb-3 text-xl font-bold text-secondary">
 									{card.title}
 								</h3>
-								<p className="text-gray-300 text-base md:text-lg">{card.description}</p>
+								<p className="text-gray-300 text-base md:text-lg">
+									{card.description}
+								</p>
 							</div>
 						))}
 					</motion.div>

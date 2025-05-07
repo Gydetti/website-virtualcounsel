@@ -1,4 +1,5 @@
 "use client";
+import type * as React from "react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -13,7 +14,6 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { siteConfig } from "@/lib/site.config";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
-import type React from "react";
 import { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { z } from "zod";
