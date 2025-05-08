@@ -184,8 +184,8 @@ export default function TestimonialsSection({
 
       {/* Authority Badge */}
       <div className="mt-16 flex justify-center">
-        <div className="inline-flex items-center rounded-full border border-primary bg-white text-primary px-6 py-2 text-sm font-medium shadow-lg dark:bg-gray-800 dark:text-primary-foreground">
-          <span className="mr-2 h-2 w-2 rounded-full bg-primary dark:bg-primary-foreground" />
+        <div className="inline-flex items-center rounded-full border border-secondary bg-white px-6 py-2 text-sm font-medium shadow-lg dark:bg-gray-800 dark:text-primary-foreground">
+          <span className="mr-2 h-2 w-2 rounded-full bg-secondary dark:bg-primary-foreground" />
           Show that you are certified or an expert in your field
         </div>
       </div>

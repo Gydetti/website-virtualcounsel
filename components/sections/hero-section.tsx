@@ -282,7 +282,9 @@ export default function HeroSection({
                   scrollSpyDelay={500}
                 />
               </div>
-              <p className="text-gray-600 text-sm md:text-base">{stat.label}</p>
+              <p className="text-gray-600 text-sm md:text-base m-0">
+                {stat.label}
+              </p>
             </div>
           ))}
         </div>
