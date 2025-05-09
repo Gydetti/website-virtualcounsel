@@ -1,3 +1,25 @@
+import type { ReactNode } from "react";
+
+// Define specific section prop types
+export interface TextSectionProps {
+	content: string;
+}
+export interface ImageSectionProps {
+	src: string;
+	alt: string;
+	width?: number;
+	height?: number;
+}
+export interface FormSectionProps {
+	formEmbed?: ReactNode;
+}
+
+// Union type for resource sections
+export type ResourceSection =
+	| { type: "text"; props: TextSectionProps }
+	| { type: "image"; props: ImageSectionProps }
+	| { type: "form"; props: FormSectionProps };
+
 // Define the Resource type and data accessors
 export type Resource = {
 	slug: string;
@@ -5,10 +27,7 @@ export type Resource = {
 	title: string;
 	subtitle?: string;
 	heroImage: string;
-	sections: Array<{
-		type: string;
-		props: Record<string, unknown>;
-	}>;
+	sections: ResourceSection[];
 };
 
 // Sample resource data with guideline copy

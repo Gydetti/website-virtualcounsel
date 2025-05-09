@@ -7,21 +7,64 @@ alwaysApply: true
 
 Always perform the following steps on any code changes before pushing to the `main` branch:
 
-- 1. **Clear Cache**: Remove the Next.js build cache by deleting the `.next` directory (e.g., `rm -rf .next`).
-- 2. **Internal Build**: Run `npm run build` (or your build command) to ensure the application compiles without errors.  
-- 3. **ESLint Tests**: Run `npm run lint` and resolve **all** errors and warnings.  
-- 3a. **Biome Linter Tests**: Run `npx biome check app components lib hooks` (or `npm run biome:lint`) and resolve **all** warnings and errors. If it is just for making sure everything is pushed to Git and deployed to Vercel then ignore this. The Biome check is often a best practice note but not mandatory for deployment. I often would like you to do it though. 
-- 4. **Internal Deployment**: Deploy to a staging environment (e.g., `npm run deploy`) or local environment to validate runtime behavior.  
+1. **Clear Cache**  
+   Remove the Next.js build cache by deleting the `.next` directory:  
+   ```bash
+   rm -rf .next
+   ```
 
-After all checks pass with **zero errors** and no regressions or bugs:
+2. **Internal Build**  
+   Ensure the application compiles without errors:  
+   ```bash
+   npm run build
+   ```
 
-- 5. **Git Push**: Commit any remaining changes and push to the `main` branch. The `main` branch is always live.  
-- 6. **Auto-Deployment to Vercel**: Pushing to `main` triggers an automatic deployment workflow on Vercel.  
-- 7. Run `npm run lint -- --fix` to auto-sort imports.
+3. **Lint & Import Sorting**  
+   Run ESLint and auto–fix imports:  
+   ```bash
+   npm run lint
+   npm run lint -- --fix
+   ```  
+   Then (optionally) run Biome to catch any additional style issues:  
+   ```bash
+   npx biome check app components lib hooks
+   ```
+
+4. **Unit & Integration Tests**  
+   Run Vitest to validate all unit and integration tests pass:  
+   ```bash
+   npm test
+   ```  
+   (Optionally, include coverage reports: `npx vitest run --coverage`.)
+
+5. **E2E / Smoke Tests**  
+   Run your end-to-end and smoke tests (Playwright):  
+   ```bash
+   npx playwright test
+   ```
+
+6. **Internal Deployment**  
+   Deploy to a staging environment to validate runtime behavior:  
+   ```bash
+   npm run deploy
+   ```
+   – Manually browse key pages (home, landing, resource) to confirm nothing is broken.
+
+After **every** build, lint, and test step passes with **zero errors**, **zero warnings**, and **all tests green**:
+
+7. **Git Push**  
+   Commit any final changes and push to the `main` branch.  
+
+8. **Auto-Deployment to Vercel**  
+   Pushing to `main` will trigger your Vercel workflow and deploy to production.
 
 _Do not skip any step in this workflow—ensuring a fully functional, bug-free codebase is mandatory before going live._  
 
- **ESLint `simple-import-sort` Rule (Date: 2025-04-28):**
-    *   **Issue:** Repeated build failures occurred due to the `simple-import-sort/imports` and `simple-import-sort/exports` ESLint rules, even after attempting manual sorting.
-    *   **Resolution:** Manually guessing the correct order for this rule can be unreliable. The most effective way to fix these errors is to run the project's lint command with the autofix flag (e.g., `npm run lint -- --fix` or `bun run lint --fix`). This ensures the specific sorting convention configured for the project is applied correctly.
-    *   **Workflow:** Always run the lint autofixer before committing changes, especially after adding new files (like Shadcn components) or significantly modifying imports/exports.
+## ESLint `simple-import-sort` Rule (Date: 2025-04-28)
+
+- **Issue:** Builds were failing due to unsorted imports (`simple-import-sort/imports` & `simple-import-sort/exports`).  
+- **Resolution:** Always run ESLint with `--fix` to apply the project’s configured sort order reliably.  
+- **Workflow Reminder:** After adding or updating imports/exports (e.g. when scaffolding new pages or sections), be sure to re-run:  
+  ```bash
+  npm run lint -- --fix
+  ```
