@@ -15,6 +15,7 @@ import ScrollToTop from "@/components/ui/scroll-to-top";
 import { Toaster } from "@/components/ui/toaster";
 import { defaultMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site.config";
+import { heroSectionData } from "@/lib/data/homepage";
 import { Partytown } from "@qwik.dev/partytown/react";
 
 // Poppins for headings
@@ -59,6 +60,8 @@ export default function RootLayout({
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
+        {/* Preload LCP hero image */}
+        <link rel="preload" href={heroSectionData.imageSrc} as="image" />
         {/* GA4 script for analytics (Partytown) */}
         <script
           type="text/partytown"

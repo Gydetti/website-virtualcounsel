@@ -39,7 +39,7 @@ export default function ProblemPainSection({
       id="pain"
       className="bg-gradient-to-b from-transparent to-secondary/10"
     >
-      <div className="bg-gray-900 text-white rounded-[30px] border border-gray-700/50 shadow-lg p-12">
+      <div className="bg-gray-900 text-white rounded-[30px] border border-gray-700/50 shadow-lg p-6 sm:p-12">
         <div className="grid gap-12 lg:grid-cols-2">
           <div className="flex flex-col justify-center space-y-8">
             <div className="space-y-4">

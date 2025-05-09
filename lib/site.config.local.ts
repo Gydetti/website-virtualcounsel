@@ -17,8 +17,19 @@ export const siteConfig = {
     logo: { src: "", alt: "" },
     favicon: "",
   },
-  navLinks: [],
-  footerLinks: [],
+  navLinks: [
+    { text: "Home", href: "/" },
+    { text: "Services", href: "/services" },
+    { text: "About", href: "/about" },
+    { text: "Blog", href: "/blog" },
+    { text: "FAQ", href: "/faq" },
+    { text: "Contact", href: "/contact" },
+  ],
+  footerLinks: [
+    { text: "Privacy Policy", href: "/privacy-policy" },
+    { text: "Terms of Service", href: "/terms-of-service" },
+    { text: "Cookie Policy", href: "/cookie-policy" },
+  ],
   social: { facebook: "", twitter: "", instagram: "", linkedin: "" },
   cookieConsent: { cookiebotId: "" },
   tracking: {

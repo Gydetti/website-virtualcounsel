@@ -10,7 +10,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { navigationItems } from "./navigation";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -20,8 +19,8 @@ export default function Header() {
   // Get optional enabledPages list from config
   const enabledPages = siteConfig.enabledPages;
 
-  // Filter navigation based on feature flags
-  const filteredNavigation = navigationItems.filter((item) => {
+  // Filter navigation based on siteConfig.navLinks and feature flags
+  const filteredNavigation = siteConfig.navLinks.filter((item) => {
     // Exclude pages not in enabledPages
     if (enabledPages && !enabledPages.includes(item.href)) {
       return false;
@@ -74,15 +73,21 @@ export default function Header() {
       >
         <div className="flex lg:flex-1">
           <Link href="/" className="-m-1.5 p-1.5">
-            <span className="sr-only">Your Company Name</span>
+            <span className="sr-only">{siteConfig.site.name}</span>
             <div className="h-10 w-auto flex items-center">
-              <Image
-                src="/placeholder.svg?height=40&width=150"
-                alt="Your Company Name Logo"
-                width={150}
-                height={40}
-                className="h-10 w-auto"
-              />
+              {siteConfig.theme.logo.src ? (
+                <Image
+                  src={siteConfig.theme.logo.src}
+                  alt={siteConfig.theme.logo.alt}
+                  width={150}
+                  height={40}
+                  className="h-10 w-auto"
+                />
+              ) : (
+                <span className="text-xl font-bold">
+                  {siteConfig.site.name}
+                </span>
+              )}
             </div>
           </Link>
         </div>
@@ -99,7 +104,7 @@ export default function Header() {
         <div className="hidden lg:flex lg:gap-x-8">
           {filteredNavigation.map((item) => (
             <Link
-              key={item.name}
+              key={item.href}
               href={item.href}
               className={cn(
                 "text-sm font-medium transition-colors relative group",
@@ -110,7 +115,7 @@ export default function Header() {
                     : "text-gray-700 hover:text-primary",
               )}
             >
-              {item.name}
+              {item.text}
               <span
                 className={cn(
                   "absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300",
@@ -146,15 +151,21 @@ export default function Header() {
                 className="-m-1.5 p-1.5"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                <span className="sr-only">Your Company Name</span>
+                <span className="sr-only">{siteConfig.site.name}</span>
                 <div className="h-10 w-auto flex items-center">
-                  <Image
-                    src="/placeholder.svg?height=40&width=150"
-                    alt="Your Company Name Logo"
-                    width={150}
-                    height={40}
-                    className="h-10 w-auto"
-                  />
+                  {siteConfig.theme.logo.src ? (
+                    <Image
+                      src={siteConfig.theme.logo.src}
+                      alt={siteConfig.theme.logo.alt}
+                      width={150}
+                      height={40}
+                      className="h-10 w-auto"
+                    />
+                  ) : (
+                    <span className="text-xl font-bold">
+                      {siteConfig.site.name}
+                    </span>
+                  )}
                 </div>
               </Link>
               <button
@@ -170,7 +181,7 @@ export default function Header() {
               <div className="space-y-6 py-6">
                 {filteredNavigation.map((item) => (
                   <Link
-                    key={item.name}
+                    key={item.href}
                     href={item.href}
                     className={cn(
                       "block text-base font-medium hover:text-primary",
@@ -180,7 +191,7 @@ export default function Header() {
                     )}
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    {item.name}
+                    {item.text}
                   </Link>
                 ))}
               </div>

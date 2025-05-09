@@ -218,10 +218,10 @@ export default function ContactSection({
                 <div>
                   <p className="font-semibold mb-1">Email</p>
                   <a
-                    href="mailto:info@example.com"
+                    href={`mailto:${siteConfig.contact.email}`}
                     className="text-white/80 hover:text-white transition-colors"
                   >
-                    info@example.com
+                    {siteConfig.contact.email}
                   </a>
                 </div>
               </li>
@@ -231,10 +231,10 @@ export default function ContactSection({
                 <div>
                   <p className="font-semibold mb-1">Phone</p>
                   <a
-                    href="tel:+31201234567"
+                    href={`tel:${siteConfig.contact.phone}`}
                     className="text-white/80 hover:text-white transition-colors"
                   >
-                    +31 20 123 4567
+                    {siteConfig.contact.phone}
                   </a>
                 </div>
               </li>
@@ -244,9 +244,18 @@ export default function ContactSection({
                 <div>
                   <p className="font-semibold mb-1">Address</p>
                   <address className="text-white/80 not-italic">
-                    Herengracht 182
+                    {siteConfig.contact.address.line1}
+                    {siteConfig.contact.address.line2 && (
+                      <>
+                        <br />
+                        {siteConfig.contact.address.line2}
+                      </>
+                    )}
                     <br />
-                    1016 BR Amsterdam, Netherlands
+                    {siteConfig.contact.address.zip}{" "}
+                    {siteConfig.contact.address.city}
+                    <br />
+                    {siteConfig.contact.address.country}
                   </address>
                 </div>
               </li>

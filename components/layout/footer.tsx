@@ -15,20 +15,13 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { navigationItems } from "./navigation";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const { enabledPages, features } = siteConfig;
-  const filteredQuickLinks = navigationItems.filter((link) => {
-    if (enabledPages && !enabledPages.includes(link.href)) return false;
-    if (link.href.startsWith("/blog") && !features.enableBlog) return false;
-    if (link.href.startsWith("/services") && !features.enableServices)
-      return false;
-    if (link.href.startsWith("/contact") && !features.enableContactForm)
-      return false;
-    return true;
-  });
+  const filteredQuickLinks = (siteConfig.navLinks || []).filter(
+    (link) => !enabledPages || enabledPages.includes(link.href),
+  );
   const showFooterServices =
     features.enableServices &&
     features.enableFooterServices &&
@@ -70,42 +63,55 @@ export default function Footer() {
           >
             <div>
               <Link href="/" className="inline-block mb-4">
-                <Image
-                  src="/placeholder.svg?height=40&width=150"
-                  alt="Your Company Name Logo"
-                  width={150}
-                  height={40}
-                  className="h-10 w-auto brightness-0 invert"
-                />
+                {siteConfig.theme.logo.src ? (
+                  <Image
+                    src={siteConfig.theme.logo.src}
+                    alt={siteConfig.theme.logo.alt}
+                    width={150}
+                    height={40}
+                    className="h-10 w-auto brightness-0 invert"
+                  />
+                ) : (
+                  <span className="text-xl font-bold text-white">
+                    {siteConfig.site.name}
+                  </span>
+                )}
               </Link>
               <p className="text-body-base text-white mb-6 max-w-xs">
-                We help entrepreneurs and small businesses grow through
-                strategic digital solutions tailored to their unique needs.
+                {siteConfig.site.description}
               </p>
               <div className="flex space-x-4">
                 <Link
-                  href="/"
+                  href={siteConfig.social.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-white hover:text-brand-light transition-colors bg-white/10 p-2 rounded-full"
                   aria-label="Facebook"
                 >
                   <Facebook className="h-5 w-5" />
                 </Link>
                 <Link
-                  href="/"
+                  href={siteConfig.social.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-white hover:text-brand-light transition-colors bg-white/10 p-2 rounded-full"
                   aria-label="Instagram"
                 >
                   <Instagram className="h-5 w-5" />
                 </Link>
                 <Link
-                  href="/"
+                  href={siteConfig.social.twitter}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-white hover:text-brand-light transition-colors bg-white/10 p-2 rounded-full"
                   aria-label="Twitter"
                 >
                   <Twitter className="h-5 w-5" />
                 </Link>
                 <Link
-                  href="/"
+                  href={siteConfig.social.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-white hover:text-brand-light transition-colors bg-white/10 p-2 rounded-full"
                   aria-label="LinkedIn"
                 >
@@ -121,10 +127,12 @@ export default function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
+                      target={link.external ? "_blank" : undefined}
+                      rel={link.external ? "noopener noreferrer" : undefined}
                       className="text-white hover:text-brand-light transition-colors inline-flex items-center group"
                     >
                       <span className="w-0 h-0.5 bg-white transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
-                      {link.name}
+                      {link.text}
                     </Link>
                   </li>
                 ))}
@@ -192,29 +200,38 @@ export default function Footer() {
                   <Mail className="h-4 w-4 mr-2" />
                   <span>Email: </span>
                   <a
-                    href="mailto:info@example.com"
+                    href={`mailto:${siteConfig.contact.email}`}
                     className="ml-1 hover:text-brand-light"
                   >
-                    info@example.com
+                    {siteConfig.contact.email}
                   </a>
                 </li>
                 <li className="flex items-center">
                   <Phone className="h-4 w-4 mr-2" />
                   <span>Phone: </span>
                   <a
-                    href="tel:+31201234567"
+                    href={`tel:${siteConfig.contact.phone}`}
                     className="ml-1 hover:text-brand-light"
                   >
-                    +31 20 123 4567
+                    {siteConfig.contact.phone}
                   </a>
                 </li>
                 <li className="flex items-start">
                   <MapPin className="h-4 w-4 mr-2 mt-1" />
                   <span>Address: </span>
                   <address className="ml-1 not-italic">
-                    Herengracht 182
+                    {siteConfig.contact.address.line1}
+                    {siteConfig.contact.address.line2 && (
+                      <>
+                        <br />
+                        {siteConfig.contact.address.line2}
+                      </>
+                    )}
                     <br />
-                    1016 BR Amsterdam, Netherlands
+                    {siteConfig.contact.address.zip}{" "}
+                    {siteConfig.contact.address.city}
+                    <br />
+                    {siteConfig.contact.address.country}
                   </address>
                 </li>
               </ul>
@@ -232,7 +249,7 @@ export default function Footer() {
 
           <div className="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-200 text-sm">
-              © {currentYear} Your Company Name. All rights reserved.
+              © {currentYear} {siteConfig.site.name}. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <Link

@@ -128,7 +128,10 @@ export default function HeroSection({
       <div className="hidden sm:block absolute top-20 right-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
       <div className="hidden sm:block absolute bottom-10 left-10 w-72 h-72 bg-blue-100/20 rounded-full blur-3xl" />
 
-      <Section className="relative z-10">
+      <Section
+        fullBleed={false}
+        className="relative z-10 pb-16 sm:py-12 md:py-16"
+      >
         <div className="grid md:grid-cols-2 gap-4 sm:gap-8 md:gap-12 lg:gap-16 items-center">
           <motion.div
             className="flex flex-col justify-center space-y-6 z-10"
@@ -230,7 +233,7 @@ export default function HeroSection({
                 }
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6 rounded-b-xl">
-                <p className="text-white font-medium">I</p>
+                <p className="text-white font-medium"> </p>
               </div>
               {/* Overlay stat box inside image container */}
               {showOverlayStat && (
