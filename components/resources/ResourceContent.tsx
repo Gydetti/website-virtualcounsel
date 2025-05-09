@@ -9,15 +9,24 @@ export default function ResourceContent({ resource }: { resource: Resource }) {
 	return (
 		<>
 			{/* Hero Section */}
-			<section className="resource-hero">
-				<h1>{resource.title}</h1>
-				{resource.subtitle && <p>{resource.subtitle}</p>}
-				<Image
-					src={resource.heroImage}
-					alt={resource.title}
-					width={1200}
-					height={600}
-				/>
+			<section className="resource-hero py-16 bg-white">
+				<div className="container mx-auto px-4 text-center">
+					<h1 className="text-4xl md:text-5xl font-bold mb-4">
+						{resource.title}
+					</h1>
+					{resource.subtitle && (
+						<p className="text-lg text-gray-600 mb-6">{resource.subtitle}</p>
+					)}
+					<div className="mx-auto w-full max-w-4xl">
+						<Image
+							src={resource.heroImage}
+							alt={resource.title}
+							width={1200}
+							height={600}
+							className="rounded-lg shadow-md"
+						/>
+					</div>
+				</div>
 			</section>
 
 			{/* Dynamic Sections */}
