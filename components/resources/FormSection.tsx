@@ -1,6 +1,11 @@
 import { trackEvent } from "@/lib/tracking-utils";
-import { cloneElement, isValidElement } from "react";
-import type { ReactNode } from "react";
+import {
+	type FormHTMLAttributes,
+	type ReactElement,
+	type ReactNode,
+	cloneElement,
+	isValidElement,
+} from "react";
 
 export interface FormSectionProps {
 	/** ReactNode for embedding a 3rd-party form component */
@@ -16,7 +21,11 @@ export default function FormSection({
 	let embedNode = formEmbed;
 	// Attach onSubmit handler to trigger tracking if embed supports it
 	if (resourceSlug && embedNode && isValidElement(embedNode)) {
-		embedNode = cloneElement(embedNode, {
+		// Clone only if it's a form element, cast to include onSubmit
+		const formElement = embedNode as ReactElement<
+			FormHTMLAttributes<HTMLFormElement>
+		>;
+		embedNode = cloneElement(formElement, {
 			onSubmit: () => {
 				trackEvent("landing_form_submit", "resource", resourceSlug);
 			},
