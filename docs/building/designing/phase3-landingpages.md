@@ -7,6 +7,40 @@ We're laying the structural foundation so any future client can spin up GDPR-com
 > - `/landing/[slug]` → slim header/footer, hidden from main nav, ideal for paid-ads funnels
 > - `/resources/[slug]` → full header/footer, included in nav/sitemap, ideal for organic discovery
 
+
+## 🚀 Phase 3 Scaffolding Summary
+
+Before you dive in, here’s a quick recap of what’s been implemented:
+
+- **Shared Data Layer**  
+  • Created `lib/data/resources.ts` exporting a `Resource` type and two async helpers:  
+    - `getResources()` returns all resources (stubbed).  
+    - `getResourceBySlug(slug)` looks up a single resource by slug.
+
+- **Resource Content Component**  
+  • Added `components/resources/ResourceContent.tsx` to render:  
+    - A top “Hero” section (title, subtitle, hero image).  
+    - Dynamic sub‐sections based on `resource.sections`:  
+      – `TextSection` (`components/resources/TextSection.tsx`)  
+      – `FormSection` (`components/resources/FormSection.tsx`)  
+      – `ImageSection` (`components/resources/ImageSection.tsx`)
+
+- **Landing Pages (Paid‐Ads Funnels)**  
+  • `app/landing/layout.tsx` for a slim header/footer wrapper.  
+  • `components/layout/LandingHeader.tsx` & `LandingFooter.tsx` stubs.  
+  • `app/landing/[slug]/page.tsx` uses `generateStaticParams`, fetches `resource`, and renders it inside `LandingLayout`.
+
+- **Resource Pages (Organic Discovery)**  
+  • `app/resources/page.tsx` lists all resources with links.  
+  • `app/resources/[slug]/page.tsx` renders each resource detail via `ResourceContent`.
+
+- **Configuration & Guards**  
+  • Introduced `features.enableLandingPages` in both `lib/site.config.local.ts` and Zod schema (`lib/site.config.ts`).  
+  • Updated `middleware.ts` to rewrite `/landing/*` to 404 when that flag is off.  
+  • Added `/resources` to `navLinks` and `enabledPages`, leaving `/landing` unlisted.
+
+All new code has been formatted, linted, type-checked, and confirmed building (with zero errors). Feel free to drop in real resource data, wire up your form embed, and flip the feature flag to see your landing and resource pages live!```
+
 ---
 
 ## 1. Folder Structure
