@@ -70,6 +70,7 @@ const siteConfigSchema = z.object({
 		enableProcessSection: z.boolean().optional().default(true),
 		enableFaqSection: z.boolean().optional().default(false),
 		enableInspirationHeroSection: z.boolean().optional().default(false),
+		enableLandingPages: z.boolean().optional().default(false),
 		/** Toggle for the 'Why Choose Us' value proposition section */
 		enableValuePropSection: z.boolean().optional().default(true),
 		/** Toggle for displaying the 'Services' column in the footer */

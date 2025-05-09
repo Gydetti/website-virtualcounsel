@@ -9,12 +9,14 @@ export function middleware(request: NextRequest) {
     enableBlog: true,
     enableServices: true,
     enableContactForm: true,
+    enableLandingPages: true,
   };
 
   const checks: { pattern: RegExp; enabled: boolean }[] = [
     { pattern: /^\/blog(\/|$)/, enabled: features.enableBlog },
     { pattern: /^\/services(\/|$)/, enabled: features.enableServices },
     { pattern: /^\/contact(\/|$)/, enabled: features.enableContactForm },
+    { pattern: /^\/landing(\/|$)/, enabled: features.enableLandingPages },
   ];
 
   for (const { pattern, enabled } of checks) {
@@ -29,5 +31,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/blog/:path*", "/services/:path*", "/contact/:path*"],
+  matcher: ["/blog/:path*", "/services/:path*", "/contact/:path*", "/landing/:path*"],
 };

@@ -22,6 +22,7 @@ export const siteConfig = {
 		{ text: "Services", href: "/services" },
 		{ text: "About", href: "/about" },
 		{ text: "Blog", href: "/blog" },
+		{ text: "Resources", href: "/resources" },
 		{ text: "FAQ", href: "/faq" },
 		{ text: "Contact", href: "/contact" },
 	],
@@ -62,6 +63,7 @@ export const siteConfig = {
 		enableProcessSection: false,
 		enableFaqSection: false,
 		enableInspirationHeroSection: false,
+		enableLandingPages: true,
 	},
 	enabledPages: [
 		"/",
@@ -69,6 +71,7 @@ export const siteConfig = {
 		"/about",
 		"/blog",
 		"/faq",
+		"/resources",
 		"/contact",
 		"/terms-of-service",
 	],
