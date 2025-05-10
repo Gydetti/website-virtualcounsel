@@ -4,11 +4,9 @@ Please Read all the following files.
 /Users/gydorutten/Coding/Klanten/gmg-template-website-2025/docs/building/onboarding/README.md
 /Users/gydorutten/Coding/Klanten/gmg-template-website-2025/docs/building/general/deepdive/phase1.md
 
-
 @phase1.md 
 @01-onboarding-doc.md 
 @README.md 
-
 
 And also, explain me the rules that you have attached with you here! Let's see if you know them properly.
 As a reminder: always run the build + test actions after making significant changes: be proactive in your work, you do need to report on me if there are issues or if you decide to apply quick fixes or temporary solutions: then you need to report in with me.
