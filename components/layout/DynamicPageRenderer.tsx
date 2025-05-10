@@ -76,25 +76,23 @@ const getSectionData = async (
 			case "ServicesPreviewSection": {
 				const services = await getServices();
 				return {
-					id: sectionConfig.id,
-					badgeText: "Our Core Services",
-					heading: "Services We Offer",
-					description: "Explore our range of expert services.",
-					services: services.slice(0, 3), // Preview 3 services
-					viewAllCta: { text: "View All Services", href: "/services" }, // Ensure ServicesSection uses this prop
+					...homepageData.servicesPreviewSectionData, // Spread static data
+					id: sectionConfig.id, // Ensure ID from pageStructure is preserved
+					services: services.slice(0, 3), // Add dynamic services, limit to 3
 				};
 			}
 			case "BlogPreviewSection": {
 				const blogLimit = siteConfig.sectionsDataKeys?.blog?.limit || 3;
 				const posts = await getBlogPosts(blogLimit);
 				return {
-					id: sectionConfig.id,
-					badgeText: "From Our Blog",
-					heading: "Latest News",
-					posts: posts,
-					viewAllCta: { text: "View All Posts", href: "/blog" }, // Ensure BlogSection uses this prop
+					...homepageData.blogPreviewSectionData, // Spread static data
+					id: sectionConfig.id, // Ensure ID from pageStructure is preserved
+					posts: posts, // Add dynamic posts
 				};
 			}
+			// Example for a future PricingSection, if it's added to pageStructures
+			// case "PricingSection":
+			//   return homepageData.pricingSectionData;
 			default:
 				console.warn(
 					`Data for section type "${sectionConfig.sectionType}" (id: ${sectionConfig.id}) not implemented for homepage.`,

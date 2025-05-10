@@ -1,5 +1,6 @@
 import { z } from "zod";
 import {
+	blogSectionDataSchema,
 	clientsSectionDataSchema,
 	ctaSectionDataSchema,
 	featuresSectionDataSchema,
@@ -7,6 +8,7 @@ import {
 	homepageFaqSectionDataSchema,
 	pricingSectionDataSchema,
 	problemPainSectionDataSchema,
+	servicesSectionDataSchema,
 	solutionVisionSectionDataSchema,
 	testimonialsSectionDataSchema,
 	valuePropSectionDataSchema,
@@ -368,6 +370,29 @@ export const homepageFaqSectionData: z.infer<
 	cta: { text: "View All FAQs", href: "/faq" },
 };
 
+// ++ Data for Services Preview Section on Homepage (Corrected) ++
+export const servicesPreviewSectionData: Omit<
+	z.infer<typeof servicesSectionDataSchema>,
+	"services"
+> = {
+	title: "Services We Offer", // Schema has 'title', not 'heading'. No 'badgeText' in schema.
+	description:
+		"Explore our range of expert services designed to help your business thrive.",
+	viewAllCta: { text: "View All Services", href: "/services" },
+	displayType: "grid", // Added as per schema, can be overridden if needed by component
+};
+
+// ++ Data for Blog Preview Section on Homepage ++
+export const blogPreviewSectionData: Omit<
+	z.infer<typeof blogSectionDataSchema>,
+	"posts"
+> = {
+	badgeText: "From Our Blog",
+	heading: "Latest Articles & Insights",
+	subtitle: "Stay updated with our latest news, tips, and industry insights.",
+	viewAllCta: { text: "View All Posts", href: "/blog" },
+};
+
 // Schema validation for all exported data objects
 try {
 	heroSectionDataSchema.parse(heroSectionData);
@@ -375,6 +400,24 @@ try {
 	clientsSectionDataSchema.parse(clientsSectionData);
 	testimonialsSectionDataSchema.parse(testimonialsSectionData);
 	pricingSectionDataSchema.parse(pricingSectionData);
+	servicesSectionDataSchema.parse({
+		...servicesPreviewSectionData,
+		services: [],
+	});
+	blogSectionDataSchema.parse({
+		...blogPreviewSectionData,
+		posts: [
+			{
+				id: "mock-post-validation",
+				title: "Mock Post for Validation",
+				excerpt: "This is a mock excerpt to satisfy Zod validation.",
+				date: "2024-01-01",
+				category: "Mock Category",
+				image: { src: "/placeholder.svg", alt: "Mock Validation Image" },
+				slug: "mock-post-slug-validation",
+			},
+		],
+	});
 	problemPainSectionDataSchema.parse(problemPainSectionData);
 	solutionVisionSectionDataSchema.parse(solutionVisionSectionData);
 	ctaSectionDataSchema.parse(ctaSectionData);
