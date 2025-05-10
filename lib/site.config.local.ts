@@ -156,5 +156,11 @@ export const siteConfig: SiteConfigSchema = {
 				{ id: "home-cta", sectionType: "CtaSection" },
 			],
 		},
+		{
+			path: "/resources/:slug",
+			sections: [
+				{ id: "resource-main-content", sectionType: "ResourceDetailSection" },
+			],
+		},
 	],
-};
+} as const;

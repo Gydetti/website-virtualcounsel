@@ -1,5 +1,5 @@
 import LandingLayout from "@/app/landing/layout";
-import ResourceContent from "@/components/resources/ResourceContent";
+import ResourceDetailSection from "@/components/sections/ResourceDetailSection";
 import { getResourceBySlug, getResources } from "@/lib/data/resources";
 import { notFound } from "next/navigation";
 
@@ -17,7 +17,7 @@ export default async function LandingPage({
 
 	return (
 		<LandingLayout>
-			<ResourceContent resource={resource} />
+			<ResourceDetailSection resource={resource} />
 		</LandingLayout>
 	);
 }

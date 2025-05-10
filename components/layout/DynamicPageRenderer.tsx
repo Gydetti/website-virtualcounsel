@@ -6,6 +6,7 @@ import type {
 import type { ComponentType, FC } from "react";
 import type { z } from "zod";
 
+import ResourceDetailSection from "@/components/sections/ResourceDetailSection"; // ++ Import ResourceDetailSection
 import BlogSection from "@/components/sections/blog-section"; // For BlogPreviewSection
 import ClientsSection from "@/components/sections/clients-section";
 import CtaSection from "@/components/sections/cta-section";
@@ -27,6 +28,7 @@ import TestimonialsSection from "@/components/sections/testimonials-section";
 import { getBlogPosts, getServices } from "@/lib/data-utils"; // Now using these
 // ++ NEW IMPORTS FOR DATA ++
 import * as homepageData from "@/lib/data/homepage";
+import { getResourceBySlug } from "@/lib/data/resources"; // ++ Corrected import source
 import { siteConfig } from "@/lib/site.config.local"; // For blog limit
 
 // Define the type for the component props
@@ -52,6 +54,7 @@ const sectionComponentMap: Record<
 	TestimonialsSection: TestimonialsSection,
 	BlogPreviewSection: BlogSection, // Map preview type to actual component
 	CtaSection: CtaSection,
+	ResourceDetailSection: ResourceDetailSection, // ++ Add mapping
 	// Add other mappings here:
 	// "AboutSection": AboutSection,
 	// "FeaturesSection": FeaturesSection,
@@ -76,32 +79,46 @@ const getSectionData = async (
 			case "ServicesPreviewSection": {
 				const services = await getServices();
 				return {
-					...homepageData.servicesPreviewSectionData, // Spread static data
-					id: sectionConfig.id, // Ensure ID from pageStructure is preserved
-					services: services.slice(0, 3), // Add dynamic services, limit to 3
+					...homepageData.servicesPreviewSectionData,
+					id: sectionConfig.id,
+					services: services.slice(0, 3),
 				};
 			}
 			case "BlogPreviewSection": {
 				const blogLimit = siteConfig.sectionsDataKeys?.blog?.limit || 3;
 				const posts = await getBlogPosts(blogLimit);
 				return {
-					...homepageData.blogPreviewSectionData, // Spread static data
-					id: sectionConfig.id, // Ensure ID from pageStructure is preserved
-					posts: posts, // Add dynamic posts
+					...homepageData.blogPreviewSectionData,
+					id: sectionConfig.id,
+					posts: posts,
 				};
 			}
-			// Example for a future PricingSection, if it's added to pageStructures
-			// case "PricingSection":
-			//   return homepageData.pricingSectionData;
 			default:
 				console.warn(
 					`Data for section type "${sectionConfig.sectionType}" (id: ${sectionConfig.id}) not implemented for homepage.`,
 				);
-				return { id: sectionConfig.id }; // Fallback
+				return { id: sectionConfig.id };
 		}
 	}
-	console.warn(`Data fetching for page "${pagePath}" is not implemented.`);
-	return { id: sectionConfig.id }; // Fallback for other pages
+
+	if (pagePath.startsWith("/resources/")) {
+		const slug = pagePath.substring("/resources/".length);
+		if (slug && sectionConfig.sectionType === "ResourceDetailSection") {
+			const resource = await getResourceBySlug(slug);
+			if (resource) {
+				return { resource: resource };
+			}
+			console.warn(
+				`Resource with slug "${slug}" not found for ResourceDetailSection.`,
+			);
+			return { resource: null };
+		}
+	}
+
+	console.warn(
+		`Data fetching for section type "${sectionConfig.sectionType}" on page "${pagePath}" (id: ${sectionConfig.id}) is not implemented.`,
+	);
+	return { id: sectionConfig.id };
 };
 
 // DynamicPageRenderer becomes an async component

@@ -1,6 +1,3 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
 # Ensure optimized images are built and staged
 npm run image-optimize
 
