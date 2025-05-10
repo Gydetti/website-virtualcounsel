@@ -19,7 +19,7 @@ export interface ImageSectionProps {
 	height?: number;
 }
 export interface FormSectionProps {
-	formEmbed?: ReactNode;
+	formEmbed?: React.ReactNode;
 }
 
 // Union type for resource sections

@@ -172,5 +172,18 @@ export const siteConfig: SiteConfigSchema = {
 				{ id: "resources-list-main", sectionType: "ResourceListSection" },
 			],
 		},
+		{
+			path: "/about",
+			seo: {
+				title: "About Our Company",
+				description:
+					"Learn more about our company, our mission, and our values.",
+			},
+			sections: [
+				{ id: "about-main-content", sectionType: "AboutSection" },
+				{ id: "about-testimonials", sectionType: "TestimonialsSection" },
+				{ id: "about-cta", sectionType: "CtaSection" },
+			],
+		},
 	],
-} as const;
+};

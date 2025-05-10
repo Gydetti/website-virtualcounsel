@@ -8,6 +8,7 @@ import type { z } from "zod";
 
 import ResourceDetailSection from "@/components/sections/ResourceDetailSection"; // ++ Import ResourceDetailSection
 import ResourceListSection from "@/components/sections/ResourceListSection"; // ++ Import
+import AboutSection from "@/components/sections/about-section"; // ++ Import
 import BlogSection from "@/components/sections/blog-section"; // For BlogPreviewSection
 import ClientsSection from "@/components/sections/clients-section";
 import CtaSection from "@/components/sections/cta-section";
@@ -27,6 +28,7 @@ import TestimonialsSection from "@/components/sections/testimonials-section";
 // import ProblemPainSection from "@/components/sections/problem-pain-section";
 
 import { getBlogPosts, getServices } from "@/lib/data-utils"; // Now using these
+import { aboutPageMainContentData } from "@/lib/data/aboutPageData"; // ++ Import about page data
 // ++ NEW IMPORTS FOR DATA ++
 import * as homepageData from "@/lib/data/homepage";
 import {
@@ -46,24 +48,17 @@ interface DynamicPageRendererProps {
 	// allSectionsData: Record<string, unknown>; // Using unknown for potential future prop
 }
 
-// Mapping from sectionType string to the actual React component
-// This needs to be populated with all valid section components
-const sectionComponentMap: Record<
-	string,
-	ComponentType<Record<string, unknown>>
-> = {
+// Corrected sectionComponentMap
+const sectionComponentMap: Record<string, ComponentType<any>> = {
 	HeroSection: HeroSection,
 	ClientsSection: ClientsSection,
-	ServicesPreviewSection: ServicesSection, // Map preview type to actual component
+	ServicesPreviewSection: ServicesSection,
 	TestimonialsSection: TestimonialsSection,
-	BlogPreviewSection: BlogSection, // Map preview type to actual component
+	BlogPreviewSection: BlogSection,
 	CtaSection: CtaSection,
-	ResourceDetailSection: ResourceDetailSection, // ++ Add mapping
-	ResourceListSection: ResourceListSection, // ++ Add mapping
-	// Add other mappings here:
-	// "AboutSection": AboutSection,
-	// "FeaturesSection": FeaturesSection,
-	// etc.
+	ResourceDetailSection: ResourceDetailSection,
+	ResourceListSection: ResourceListSection,
+	AboutSection: AboutSection,
 };
 
 // Async data fetching
@@ -127,6 +122,22 @@ const getSectionData = async (
 				id: sectionConfig.id,
 				resources: resources,
 			};
+		}
+	}
+
+	if (pagePath === "/about") {
+		switch (sectionConfig.sectionType) {
+			case "AboutSection":
+				return aboutPageMainContentData;
+			case "TestimonialsSection":
+				return homepageData.testimonialsSectionData;
+			case "CtaSection":
+				return homepageData.ctaSectionData;
+			default:
+				console.warn(
+					`Data for section type "${sectionConfig.sectionType}" (id: ${sectionConfig.id}) not implemented for /about page.`,
+				);
+				return { id: sectionConfig.id };
 		}
 	}
 
