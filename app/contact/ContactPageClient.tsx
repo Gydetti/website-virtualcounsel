@@ -13,7 +13,7 @@ import {
 	SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { siteConfig } from "@/lib/site.config";
+import { siteConfig } from "@/lib/siteConfig";
 import {
 	Facebook,
 	Instagram,

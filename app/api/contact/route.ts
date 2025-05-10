@@ -5,7 +5,7 @@ import type { NextRequest } from "next/server";
 import nodemailer from "nodemailer";
 import { Client as PostmarkClient } from "postmark";
 import { z } from "zod";
-import { siteConfig } from "../../../lib/site.config";
+import { siteConfig } from "../../../lib/siteConfig";
 
 // Define schema for contact form payload
 const contactSchema = z.object({

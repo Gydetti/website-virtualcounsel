@@ -1,5 +1,5 @@
 import { defaultMetadata } from "@/lib/metadata";
-import { siteConfig } from "@/lib/site.config";
+import { siteConfig } from "@/lib/siteConfig";
 import { notFound } from "next/navigation";
 import ContactPageClient from "./ContactPageClient";
 

@@ -10,6 +10,7 @@ node_modules/**
 docs/Z-EXAMPLE-WEBSITE/**
 docs/building/inspiration/**
 inspiration/**
+docs/archived/**
 
 # Ignore test results
 test-results/**

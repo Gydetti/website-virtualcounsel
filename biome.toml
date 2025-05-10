@@ -23,6 +23,7 @@ ignore = [
   "Z-EXAMPLE-WEBSITE/**",
   "test-results/**",
   "public/~partytown/**",
+  "docs/archived/**",
   "docs/building/inspiration/**"
 ]
 ignoreUnknown = true
@@ -33,6 +34,7 @@ ignore = [
   "node_modules/**",
   "Z-EXAMPLE-WEBSITE/**",
   "test-results/**",
+  "docs/archived/**",
   "public/~partytown/**",
   "docs/building/inspiration/**"
 ]
@@ -44,7 +46,8 @@ ignore = [
   "Z-EXAMPLE-WEBSITE/**",
   "test-results/**",
   "public/~partytown/**",
-  "docs/building/inspiration/**"
+  "docs/building/inspiration/**",
+  "docs/archived/**"
 ]
 
 # organizeImports should skip these paths too
@@ -52,6 +55,7 @@ ignore = [
 ignore = [
   "node_modules/**",
   "Z-EXAMPLE-WEBSITE/**",
+  "docs/archived/**",
   "test-results/**",
   "public/~partytown/**"
 ]

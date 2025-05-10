@@ -1,31 +1,23 @@
 "use client";
 import { Section } from "@/components/layout/Section";
 import { Badge } from "@/components/ui/badge";
+import type { clientsSectionDataSchema } from "@/lib/schemas/sections.schema";
 import Image from "next/image";
+import type { z } from "zod";
 import styles from "./clients-section.module.css";
 
-export interface ClientsSectionProps {
-	badgeText?: string;
-	heading?: string;
-	clients?: { name: string; logo: string }[];
-}
+// Updated props type alias
+export type ClientsSectionProps = z.infer<typeof clientsSectionDataSchema>;
 
 export default function ClientsSection({
-	badgeText = "Trusted by",
-	heading = "Companies that trust us",
-	clients = [
-		{ name: "TechCorp", logo: "/placeholder.svg?height=60&width=120" },
-		{ name: "InnovateLabs", logo: "/placeholder.svg?height=60&width=120" },
-		{ name: "GrowthPartners", logo: "/placeholder.svg?height=60&width=120" },
-		{ name: "FutureVision", logo: "/placeholder.svg?height=60&width=120" },
-		{ name: "NextLevel", logo: "/placeholder.svg?height=60&width=120" },
-		{ name: "PeakPerformance", logo: "/placeholder.svg?height=60&width=120" },
-		{ name: "EliteServices", logo: "/placeholder.svg?height=60&width=120" },
-		{ name: "PrimeConsulting", logo: "/placeholder.svg?height=60&width=120" },
-	],
+	badgeText,
+	heading,
+	clients,
 }: ClientsSectionProps) {
-	// Only display up to 6 logos, then duplicate for infinite scroll
-	const displayClients = clients.slice(0, 6);
+	// If clients is undefined or empty, perhaps render nothing or a placeholder.
+	// For now, proceeding with the assumption that data layer provides valid clients array if section is enabled.
+	const displayClients =
+		clients && clients.length > 0 ? clients.slice(0, 6) : [];
 	// Duplicate with an instance flag for unique, stable keys
 	const sliderItems = [
 		...displayClients.map((c) => ({ ...c, instance: 0 })),
@@ -55,8 +47,8 @@ export default function ClientsSection({
 										className={styles.logo_item}
 									>
 										<Image
-											src={client.logo}
-											alt={client.name}
+											src={client.logo.src}
+											alt={client.logo.alt}
 											width={120}
 											height={60}
 											className={`${styles.logo_image} w-24 object-contain`}

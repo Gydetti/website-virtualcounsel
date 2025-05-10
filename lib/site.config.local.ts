@@ -5,17 +5,24 @@
 
 export const siteConfig = {
 	site: {
-		title: "",
-		description: "",
-		url: "",
-		name: "",
-		openGraph: { image: { url: "", width: 1200, height: 630, alt: "" } },
-		twitterImage: "",
+		title: "Placeholder Title",
+		description: "Placeholder description for the site.",
+		url: "https://placeholder.com",
+		name: "Placeholder Site Name",
+		openGraph: {
+			image: {
+				url: "/images/og-placeholder.png",
+				width: 1200,
+				height: 630,
+				alt: "OpenGraph Placeholder",
+			},
+		},
+		twitterImage: "/images/twitter-placeholder.png",
 	},
 	theme: {
 		colors: { primary: "#1E3A8A", secondary: "#60A5FA", accent: "#3B82F6" },
-		logo: { src: "", alt: "" },
-		favicon: "",
+		logo: { src: "/logo-placeholder.svg", alt: "Placeholder Logo" },
+		favicon: "/favicon-placeholder.ico",
 	},
 	navLinks: [
 		{ text: "Home", href: "/" },
@@ -42,10 +49,16 @@ export const siteConfig = {
 		googleAdsId: "",
 	},
 	newsletter: {
-		provider: "",
-		hubspot: { portalId: "", formId: "" },
-		mailchimp: { apiKey: "", listId: "" },
-		activeCampaign: { apiUrl: "", token: "" },
+		provider: "mailchimp",
+		hubspot: { portalId: "hs-placeholder", formId: "hs-form-placeholder" },
+		mailchimp: {
+			apiKey: "mc-apikey-placeholder",
+			listId: "mc-listid-placeholder",
+		},
+		activeCampaign: {
+			apiUrl: "https://placeholder.api-us1.com",
+			token: "ac-token-placeholder",
+		},
 	},
 	features: {
 		enableHeroSection: true,
@@ -107,14 +120,20 @@ export const siteConfig = {
 				required: true,
 			},
 		],
-		recaptchaSiteKey: "",
+		recaptchaSiteKey: "recaptcha-placeholder-sitekey",
 		honeypotFieldName: "honeypot",
 	},
 	contact: {
-		email: "",
-		phone: "",
-		address: { line1: "", line2: "", city: "", zip: "", country: "" },
-		hours: { monFri: "", sat: "", sun: "" },
+		email: "contact@placeholder.com",
+		phone: "+1-555-123-4567",
+		address: {
+			line1: "123 Placeholder St",
+			line2: "Suite 4B",
+			city: "Placeholder City",
+			zip: "90210",
+			country: "Placeholder Country",
+		},
+		hours: { monFri: "9am - 5pm", sat: "10am - 2pm", sun: "Closed" },
 	},
 	sections: {
 		hero: {

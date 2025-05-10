@@ -1,5 +1,5 @@
 import { getBlogPosts, getServices } from "@/lib/data-utils";
-import { siteConfig } from "@/lib/site.config";
+import { siteConfig } from "@/lib/siteConfig";
 import type { MetadataRoute } from "next";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

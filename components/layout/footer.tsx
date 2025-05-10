@@ -1,6 +1,6 @@
 import { SubscribeForm } from "@/components/ui/SubscribeForm";
 import { Button } from "@/components/ui/button";
-import { siteConfig } from "@/lib/site.config";
+import { siteConfig } from "@/lib/siteConfig";
 import { cn } from "@/lib/utils";
 import {
 	ArrowRight,

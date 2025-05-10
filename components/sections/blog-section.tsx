@@ -10,17 +10,27 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
-import type { BlogPost } from "@/lib/data-utils";
+import type { blogSectionDataSchema } from "@/lib/schemas/sections.schema";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import type { z } from "zod";
 
-interface BlogSectionProps {
-	posts: BlogPost[];
-}
+// Updated props type alias using Zod schema
+export type BlogSectionProps = z.infer<typeof blogSectionDataSchema>;
 
-export default function BlogSection({ posts }: BlogSectionProps) {
+export default function BlogSection({
+	badgeText,
+	heading,
+	subtitle,
+	posts,
+	viewAllCta,
+}: BlogSectionProps) {
+	if (!posts || posts.length === 0) {
+		// Schema enforces min(1) for posts
+		return null;
+	}
 	return (
 		<Section className="relative overflow-hidden bg-gradient-to-br from-blue-50 to-transparent">
 			{/* Decorative elements */}
@@ -29,16 +39,13 @@ export default function BlogSection({ posts }: BlogSectionProps) {
 
 			<div className="relative z-10">
 				<div className="text-center mb-16">
-					<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
-						Short label introducing recent posts
-					</Badge>
-					<h2 className="section-title">
-						Blog section heading: showcase latest articles
-					</h2>
-					<p className="section-subtitle">
-						Brief description highlighting purpose of this section and its value
-						to readers.
-					</p>
+					{badgeText && (
+						<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
+							{badgeText}
+						</Badge>
+					)}
+					{heading && <h2 className="section-title">{heading}</h2>}
+					{subtitle && <p className="section-subtitle">{subtitle}</p>}
 				</div>
 
 				<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 md:gap-12 lg:gap-16">
@@ -53,10 +60,10 @@ export default function BlogSection({ posts }: BlogSectionProps) {
 							<Card className="h-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border-gray-200 shadow-sm">
 								<div className="relative h-48 w-full overflow-hidden">
 									<Image
-										src={post.image || "/placeholder.svg"}
-										alt={post.title}
-										width={600}
-										height={400}
+										src={post.coverImage?.src || "/placeholder.svg"}
+										alt={post.coverImage?.alt || post.title}
+										width={post.coverImage?.width || 600}
+										height={post.coverImage?.height || 400}
 										className="object-cover transition-transform duration-300 hover:scale-105"
 									/>
 								</div>
@@ -65,7 +72,13 @@ export default function BlogSection({ posts }: BlogSectionProps) {
 										<Badge variant="outline" className="text-xs font-normal">
 											{post.category}
 										</Badge>
-										<span className="text-xs text-gray-500">{post.date}</span>
+										<span className="text-xs text-gray-500">
+											{new Date(post.date).toLocaleDateString("en-US", {
+												year: "numeric",
+												month: "long",
+												day: "numeric",
+											})}
+										</span>
 									</div>
 									<CardTitle className="text-xl font-bold hover:text-primary transition-colors">
 										<Link href={`/blog/${post.slug}`}>{post.title}</Link>
@@ -93,19 +106,21 @@ export default function BlogSection({ posts }: BlogSectionProps) {
 					))}
 				</div>
 
-				<div className="flex justify-center mt-12">
-					<Button
-						size="lg"
-						variant="outline"
-						className="border-primary text-primary hover:bg-primary hover:text-white group"
-						asChild
-					>
-						<Link href="/blog">
-							View all posts (link to full blog archive)
-							<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-						</Link>
-					</Button>
-				</div>
+				{viewAllCta?.href && viewAllCta?.text && (
+					<div className="flex justify-center mt-12">
+						<Button
+							size="lg"
+							variant="outline"
+							className="border-primary text-primary hover:bg-primary hover:text-white group"
+							asChild
+						>
+							<Link href={viewAllCta.href}>
+								{viewAllCta.text}
+								<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+							</Link>
+						</Button>
+					</div>
+				)}
 			</div>
 		</Section>
 	);

@@ -12,7 +12,7 @@ import {
 import LazySection from "@/components/ui/lazy-section";
 import { getBlogPosts } from "@/lib/data-utils";
 import { defaultMetadata } from "@/lib/metadata";
-import { siteConfig } from "@/lib/site.config";
+import { siteConfig } from "@/lib/siteConfig";
 import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
@@ -61,8 +61,8 @@ export default async function BlogPage() {
 									<div className="grid md:grid-cols-2 gap-6">
 										<div className="relative h-64 md:h-full">
 											<Image
-												src={featuredPost.image || "/placeholder.svg"}
-												alt={featuredPost.title}
+												src={featuredPost.coverImage?.src || "/placeholder.svg"}
+												alt={featuredPost.coverImage?.alt || featuredPost.title}
 												fill
 												className="object-cover"
 											/>
@@ -84,7 +84,14 @@ export default async function BlogPage() {
 											</CardDescription>
 											<div className="flex items-center justify-between mt-auto">
 												<span className="text-sm text-gray-500">
-													{featuredPost.date}
+													{new Date(featuredPost.date).toLocaleDateString(
+														"en-US",
+														{
+															year: "numeric",
+															month: "long",
+															day: "numeric",
+														},
+													)}
 												</span>
 												<Button
 													variant="link"
@@ -117,8 +124,8 @@ export default async function BlogPage() {
 								<Card className="h-full flex flex-col overflow-hidden transition-all duration-300 hover:shadow-xl">
 									<div className="relative h-48 w-full overflow-hidden">
 										<Image
-											src={post.image || "/placeholder.svg"}
-											alt={post.title}
+											src={post.coverImage?.src || "/placeholder.svg"}
+											alt={post.coverImage?.alt || post.title}
 											fill
 											className="object-cover transition-transform duration-300 hover:scale-105"
 										/>
@@ -128,7 +135,13 @@ export default async function BlogPage() {
 											<Badge variant="outline" className="text-xs font-normal">
 												{post.category}
 											</Badge>
-											<span className="text-xs text-gray-500">{post.date}</span>
+											<span className="text-xs text-gray-500">
+												{new Date(post.date).toLocaleDateString("en-US", {
+													year: "numeric",
+													month: "long",
+													day: "numeric",
+												})}
+											</span>
 										</div>
 										<CardTitle className="text-xl font-bold break-words hover:text-primary transition-colors">
 											<Link href={`/blog/${post.slug}`}>{post.title}</Link>

@@ -1,4 +1,4 @@
-import { siteConfig } from "@/lib/site.config";
+import { siteConfig } from "@/lib/siteConfig";
 
 export default function LandingFooter() {
 	return (

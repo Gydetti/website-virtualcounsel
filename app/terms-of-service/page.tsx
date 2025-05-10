@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/badge";
-import { siteConfig } from "@/lib/site.config";
+import { siteConfig } from "@/lib/siteConfig";
 import { notFound } from "next/navigation";
 
 // Disable this page if not enabled

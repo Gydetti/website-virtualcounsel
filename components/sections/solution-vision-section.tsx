@@ -1,25 +1,18 @@
 "use client";
 import { Section } from "@/components/layout/Section";
 import { Badge } from "@/components/ui/badge";
+import type {
+	ctaSchema,
+	solutionVisionSectionDataSchema,
+} from "@/lib/schemas/sections.schema"; // ctaSchema for calloutCta
 import { motion } from "framer-motion";
 import { CheckCircle } from "lucide-react";
+import type { z } from "zod";
 
-export interface SolutionVisionSectionProps {
-	/** Label above the heading */
-	badgeText?: string;
-	/** Main heading text */
-	heading?: string;
-	/** Subheading or description text */
-	description?: string;
-	/** List of benefit items */
-	benefits?: string[];
-	/** Callout box text */
-	calloutText?: string;
-	/** Callout link text */
-	calloutLinkText?: string;
-	/** Callout link URL */
-	calloutLinkHref?: string;
-}
+// Updated props type alias using Zod schema
+export type SolutionVisionSectionProps = z.infer<
+	typeof solutionVisionSectionDataSchema
+>;
 
 // Micro-animation variants for text elements
 const textVariants = {
@@ -32,19 +25,12 @@ const textVariants = {
 };
 
 export default function SolutionVisionSection({
-	badgeText = "The Solution",
-	heading = "Transform your real estate business with our proven system",
-	description = "Through our 12-week coaching program, you'll develop a customized marketing strategy that delivers consistent results without consuming your valuable time.",
-	benefits = [
-		"A consistent flow of qualified leads every month",
-		"Automated systems that work while you sleep",
-		"More time to focus on high-value activities",
-		"Confidence in your marketing strategy",
-		"Sustainable business growth without burnout",
-	],
-	calloutText = "Stop struggling with ineffective marketing and start thriving with a system designed specifically for real estate success.",
-	calloutLinkText = "See how it works",
-	calloutLinkHref = "/about",
+	badgeText,
+	heading,
+	description,
+	benefits,
+	calloutText,
+	calloutCta, // Replaces calloutLinkText and calloutLinkHref
 }: SolutionVisionSectionProps) {
 	return (
 		<Section
@@ -90,14 +76,16 @@ export default function SolutionVisionSection({
 				<h3 className="font-semibold text-lg text-center mt-0 mb-0">
 					Imagine having:
 				</h3>
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-					{benefits.map((b) => (
-						<div key={b} className="flex items-start space-x-2">
-							<CheckCircle className="h-5 w-5 text-secondary mt-1" />
-							<span className="text-gray-700">{b}</span>
-						</div>
-					))}
-				</div>
+				{benefits && benefits.length > 0 && (
+					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+						{benefits.map((b) => (
+							<div key={b} className="flex items-start space-x-2">
+								<CheckCircle className="h-5 w-5 text-secondary mt-1" />
+								<span className="text-gray-700">{b}</span>
+							</div>
+						))}
+					</div>
+				)}
 			</motion.div>
 
 			{/* Callout Card Animation */}
@@ -111,9 +99,9 @@ export default function SolutionVisionSection({
 					className="mt-16 max-w-4xl mx-auto bg-secondary/10 p-6 rounded-lg"
 				>
 					<p className="text-gray-900 font-medium mb-2">{calloutText}</p>
-					{calloutLinkText && (
-						<a href={calloutLinkHref} className="text-secondary font-semibold">
-							{calloutLinkText} →
+					{calloutCta?.href && calloutCta?.text && (
+						<a href={calloutCta.href} className="text-secondary font-semibold">
+							{calloutCta.text} →
 						</a>
 					)}
 				</motion.div>

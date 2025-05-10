@@ -1,6 +1,6 @@
 /* biome-disable-file */
 "use client";
-import { siteConfig } from "@/lib/site.config";
+import { siteConfig } from "@/lib/siteConfig";
 import Script from "next/script";
 
 export default function TrackingScripts() {

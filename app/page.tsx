@@ -27,14 +27,14 @@ import {
 	ctaSectionData,
 	featuresSectionData,
 	heroSectionData,
+	homepageFaqSectionData,
 	problemPainSectionData,
 	solutionVisionSectionData,
 	testimonialsSectionData,
 	valuePropSectionData,
 } from "@/lib/data/homepage";
-import { homepageFaqCategories } from "@/lib/data/homepage";
 import { defaultMetadata } from "@/lib/metadata";
-import { siteConfig } from "@/lib/site.config";
+import { siteConfig } from "@/lib/siteConfig";
 import type { Metadata } from "next";
 
 export const metadata = defaultMetadata({
@@ -116,24 +116,29 @@ export default async function Home() {
 					</LazySection>
 				)}
 
-				{/* Process (How It Works) */}
-				{features.enableProcessSection && (
+				{/* Process (How It Works) - disabled until processSectionData is available */}
+				{/* {features.enableProcessSection && (
 					<LazySection>
 						<ProcessSection />
 					</LazySection>
-				)}
+				)} */}
 
 				{/* Frequently Asked Questions */}
 				{features.enableFaqSection && (
 					<LazySection>
-						<HomepageFaqSection categories={homepageFaqCategories} />
+						<HomepageFaqSection {...homepageFaqSectionData} />
 					</LazySection>
 				)}
 
 				{/* Blog */}
 				{features.enableBlog && (
 					<LazySection>
-						<BlogSection posts={blogPosts} />
+						<BlogSection
+							posts={blogPosts.map((post) => ({
+								...post,
+								image: post.coverImage,
+							}))}
+						/>
 					</LazySection>
 				)}
 

@@ -1,31 +1,17 @@
 // This is a utility file to simulate fetching data from an API or database
 // In a real application, you would replace this with actual data fetching logic
 
-export type Service = {
-	id: string;
-	title: string;
-	description: string;
-	icon: string;
-	features: string[];
-	popular: boolean;
-	slug: string;
-};
+import { z } from "zod";
+import { blogPostSchema } from "./schemas/pages.schema";
+import type { serviceItemSchema } from "./schemas/sections.schema"; // Service items are often part of sections
 
-export type BlogPost = {
-	id: string;
-	title: string;
-	excerpt: string;
-	date: string;
-	category: string;
-	image: string;
-	slug: string;
-	featured?: boolean;
-};
+// Type alias for inferred types for cleaner usage in function signatures
+export type ServiceType = z.infer<typeof serviceItemSchema>;
+export type BlogPostType = z.infer<typeof blogPostSchema>;
 
 // Sample services data
-export const getServices = async (): Promise<Service[]> => {
-	// In a real app, this would be an API call
-	return [
+export const getServices = async (): Promise<ServiceType[]> => {
+	const servicesData: ServiceType[] = [
 		{
 			id: "service-1",
 			title: "Web Design & Development",
@@ -74,31 +60,47 @@ export const getServices = async (): Promise<Service[]> => {
 			slug: "business-automation",
 		},
 	];
+	// In a real app, this data would be fetched and then validated.
+	// For mock data, we assume it conforms. We can add parsing for robustness:
+	// return z.array(serviceItemSchema).parse(servicesData);
+	return servicesData;
 };
 
 // Sample blog posts data
-export const getBlogPosts = async (limit?: number): Promise<BlogPost[]> => {
-	// In a real app, this would be an API call
-	const posts = [
+export const getBlogPosts = async (limit?: number): Promise<BlogPostType[]> => {
+	const postsDataRaw = [
 		{
 			id: "post-1",
 			title: "5 Ways to Improve Your Online Presence",
 			excerpt:
 				"Learn the essential strategies to boost your visibility online and attract more customers to your business.",
-			date: "April 15, 2025",
+			date: "2025-04-15",
 			category: "Digital Marketing",
-			image: "/placeholder.svg?height=300&width=600",
+			coverImage: {
+				src: "/placeholder.svg?height=300&width=600",
+				alt: "Improve Online Presence",
+			},
+			content: "Full blog post content for post-1 would go here...",
 			slug: "improve-online-presence",
 			featured: true,
+			author: {
+				name: "Default Author",
+				image: { src: "/placeholder.svg", alt: "Author" },
+			},
+			seo: { title: "SEO Title for Post 1" },
 		},
 		{
 			id: "post-2",
 			title: "The Importance of Mobile-First Design",
 			excerpt:
 				"With most web traffic coming from mobile devices, here's why your website needs to prioritize mobile users.",
-			date: "March 28, 2025",
+			date: "2025-03-28",
 			category: "Web Design",
-			image: "/placeholder.svg?height=300&width=600",
+			coverImage: {
+				src: "/placeholder.svg?height=300&width=600",
+				alt: "Mobile-First Design",
+			},
+			content: "Full blog post content for post-2...",
 			slug: "mobile-first-design",
 		},
 		{
@@ -106,9 +108,13 @@ export const getBlogPosts = async (limit?: number): Promise<BlogPost[]> => {
 			title: "Automating Your Client Onboarding Process",
 			excerpt:
 				"Discover how automation can streamline your client onboarding and create a better first impression.",
-			date: "March 10, 2025",
+			date: "2025-03-10",
 			category: "Automation",
-			image: "/placeholder.svg?height=300&width=600",
+			coverImage: {
+				src: "/placeholder.svg?height=300&width=600",
+				alt: "Client Onboarding Automation",
+			},
+			content: "Full blog post content for post-3...",
 			slug: "automating-client-onboarding",
 		},
 		{
@@ -116,9 +122,13 @@ export const getBlogPosts = async (limit?: number): Promise<BlogPost[]> => {
 			title: "How to Create Content That Converts",
 			excerpt:
 				"Learn the secrets to creating engaging content that not only attracts readers but turns them into customers.",
-			date: "February 22, 2025",
+			date: "2025-02-22",
 			category: "Content Marketing",
-			image: "/placeholder.svg?height=300&width=600",
+			coverImage: {
+				src: "/placeholder.svg?height=300&width=600",
+				alt: "Content That Converts",
+			},
+			content: "Full blog post content for post-4...",
 			slug: "content-that-converts",
 		},
 		{
@@ -126,9 +136,13 @@ export const getBlogPosts = async (limit?: number): Promise<BlogPost[]> => {
 			title: "Building Trust with Your Online Audience",
 			excerpt:
 				"Explore proven strategies to establish credibility and build lasting trust with your online audience.",
-			date: "February 5, 2025",
+			date: "2025-02-05",
 			category: "Brand Building",
-			image: "/placeholder.svg?height=300&width=600",
+			coverImage: {
+				src: "/placeholder.svg?height=300&width=600",
+				alt: "Building Trust Online",
+			},
+			content: "Full blog post content for post-5...",
 			slug: "building-trust-online",
 		},
 		{
@@ -136,24 +150,46 @@ export const getBlogPosts = async (limit?: number): Promise<BlogPost[]> => {
 			title: "The ROI of Professional Web Design",
 			excerpt:
 				"Understand the real business impact and return on investment from professional web design services.",
-			date: "January 18, 2025",
+			date: "2025-01-18",
 			category: "Web Design",
-			image: "/placeholder.svg?height=300&width=600",
+			coverImage: {
+				src: "/placeholder.svg?height=300&width=600",
+				alt: "ROI Web Design",
+			},
+			content: "Full blog post content for post-6...",
 			slug: "roi-web-design",
 		},
 	];
 
+	const postsDataForValidation = postsDataRaw.map((post) => ({
+		...post,
+		author: post.author || {
+			name: "Default Author",
+			image: { src: "/placeholder.svg", alt: "Author" },
+		},
+		seo: post.seo || { title: post.title },
+	}));
+
+	const validatedPosts = z.array(blogPostSchema).parse(postsDataForValidation);
+
+	// Convert Date to ISO string and alias coverImage to image for BlogSection
+	const postsWithImage = validatedPosts.map((post) => ({
+		...post,
+		date: post.date,
+		image: post.coverImage,
+	}));
+
 	if (limit) {
-		return posts.slice(0, limit);
+		return postsWithImage.slice(0, limit);
 	}
 
-	return posts;
+	return postsWithImage;
 };
 
 // Get a single service by slug
 export const getServiceBySlug = async (
 	slug: string,
-): Promise<Service | undefined> => {
+): Promise<ServiceType | undefined> => {
 	const services = await getServices();
 	return services.find((service) => service.slug === slug);
 };
@@ -161,7 +197,7 @@ export const getServiceBySlug = async (
 // Get a single blog post by slug
 export const getBlogPostBySlug = async (
 	slug: string,
-): Promise<BlogPost | undefined> => {
+): Promise<BlogPostType | undefined> => {
 	const posts = await getBlogPosts();
 	return posts.find((post) => post.slug === slug);
 };

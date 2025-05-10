@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { siteConfig } from "./lib/site.config";
+import { siteConfig } from "./lib/siteConfig";
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;

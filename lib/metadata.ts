@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { siteConfig } from "./site.config";
+import { siteConfig } from "./siteConfig";
 
 // Returns default metadata using siteConfig values, overridable via spreads
 export function defaultMetadata(overrides: Partial<Metadata> = {}): Metadata {

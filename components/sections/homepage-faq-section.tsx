@@ -10,7 +10,9 @@ import {
 } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import type { ctaSchema } from "@/lib/schemas/common.schema";
 import Link from "next/link";
+import type { z } from "zod";
 
 export interface FaqItem {
 	question: string;
@@ -27,8 +29,7 @@ export interface HomepageFaqSectionProps {
 	heading?: string;
 	description?: string;
 	categories: FaqCategory[];
-	ctaText?: string;
-	ctaLink?: string;
+	cta?: z.infer<typeof ctaSchema>;
 }
 
 export default function HomepageFaqSection({
@@ -36,8 +37,7 @@ export default function HomepageFaqSection({
 	heading = "Invite users to explore common questions",
 	description,
 	categories,
-	ctaText = "See all FAQs",
-	ctaLink = "/contact",
+	cta = { text: "See all FAQs", href: "/contact" },
 }: HomepageFaqSectionProps) {
 	// Prepare JSON-LD items for structured-data
 	const faqSchema = categories.flatMap((cat) =>
@@ -83,7 +83,9 @@ export default function HomepageFaqSection({
 						</div>
 					))}
 					<Button className="mt-8" asChild>
-						<Link href={ctaLink}>{ctaText}</Link>
+						<Link href={cta.href || "/contact"}>
+							{cta.text || "See all FAQs"}
+						</Link>
 					</Button>
 				</div>
 			</Section>

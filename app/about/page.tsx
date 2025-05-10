@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import LazySection from "@/components/ui/lazy-section";
 import { testimonialsSectionData } from "@/lib/data/homepage";
 import { defaultMetadata } from "@/lib/metadata";
-import { siteConfig } from "@/lib/site.config";
+import { siteConfig } from "@/lib/siteConfig";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";

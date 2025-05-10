@@ -12,7 +12,7 @@ import LazySection from "@/components/ui/lazy-section";
 import { getServices } from "@/lib/data-utils";
 import { iconComponents } from "@/lib/icon-utils";
 import { defaultMetadata } from "@/lib/metadata";
-import { siteConfig } from "@/lib/site.config";
+import { siteConfig } from "@/lib/siteConfig";
 import { ArrowRight, Check } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";

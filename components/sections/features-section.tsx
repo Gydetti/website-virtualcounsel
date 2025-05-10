@@ -3,45 +3,27 @@ import { Section } from "@/components/layout/Section";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import OptimizedImage from "@/components/ui/optimized-image";
+import type { featuresSectionDataSchema } from "@/lib/schemas/sections.schema";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle, XCircle } from "lucide-react";
 import Link from "next/link";
+import type { z } from "zod";
 
-export interface FeaturesSectionProps {
-	badgeText?: string;
-	heading?: string;
-	description?: string;
-	withoutTitle?: string;
-	withoutItems?: string[];
-	withTitle?: string;
-	withItems?: string[];
-	ctaText?: string;
-	ctaLink?: string;
-}
+// Updated props type alias using Zod schema
+export type FeaturesSectionProps = z.infer<typeof featuresSectionDataSchema>;
 
 export default function FeaturesSection({
-	badgeText = "Short label introducing benefits comparison",
-	heading = "Section heading comparing before and after scenarios",
-	description = "Brief description explaining feature impact on business outcomes",
-	withoutTitle = "Subheading for without-services scenario",
-	withoutItems = [
-		"Placeholder item for negative scenario",
-		"Placeholder item for negative scenario",
-		"Placeholder item for negative scenario",
-		"Placeholder item for negative scenario",
-		"Placeholder item for negative scenario",
-	],
-	withTitle = "Subheading for with-services scenario",
-	withItems = [
-		"Placeholder item for positive outcome",
-		"Placeholder item for positive outcome",
-		"Placeholder item for positive outcome",
-		"Placeholder item for positive outcome",
-		"Placeholder item for positive outcome",
-	],
-	ctaText = "Link text for exploring services",
-	ctaLink = "/services",
+	badgeText,
+	heading,
+	description,
+	comparison,
+	cta, // cta is in schema, but rendering is commented out in component
 }: FeaturesSectionProps) {
+	const withoutTitle = comparison?.without?.title;
+	const withoutItems = comparison?.without?.items;
+	const withTitle = comparison?.with?.title;
+	const withItems = comparison?.with?.items;
+
 	return (
 		<Section
 			id="features-section"
@@ -53,54 +35,67 @@ export default function FeaturesSection({
 
 			<div className="relative z-10">
 				<div className="max-w-3xl mx-auto text-center mb-12">
-					<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
-						{badgeText}
-					</Badge>
-					<h2
-						id="features-section-heading"
-						className="section-title text-gray-900"
-					>
-						{heading}
-					</h2>
-					<p className="text-gray-700">{description}</p>
+					{badgeText && (
+						<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
+							{badgeText}
+						</Badge>
+					)}
+					{heading && (
+						<h2
+							id="features-section-heading"
+							className="section-title text-gray-900"
+						>
+							{heading}
+						</h2>
+					)}
+					{description && <p className="text-gray-700">{description}</p>}
 				</div>
 
 				<div className="relative grid md:grid-cols-2 gap-8 md:gap-0 mb-0">
-					<motion.div
-						initial={{ opacity: 0, x: -20 }}
-						whileInView={{ opacity: 1, x: 0 }}
-						transition={{ duration: 0.5 }}
-						viewport={{ once: true }}
-						className="md:w-4/5 md:mx-auto rounded-lg border border-red-200 bg-red-50/50 backdrop-blur p-6 hover:bg-red-100/50 transition-colors text-gray-800"
-					>
-						<h3 className="text-red-400 mb-4">{withoutTitle}</h3>
-						<ul className="space-y-3">
-							{withoutItems.map((item) => (
-								<li key={item} className="flex items-start">
-									<XCircle className="text-red-400 mr-2 h-5 w-5 flex-shrink-0 mt-0.5" />
-									<span className="text-gray-700">{item}</span>
-								</li>
-							))}
-						</ul>
-					</motion.div>
+					{comparison?.without?.items &&
+						comparison.without.items.length > 0 && (
+							<motion.div
+								initial={{ opacity: 0, x: -20 }}
+								whileInView={{ opacity: 1, x: 0 }}
+								transition={{ duration: 0.5 }}
+								viewport={{ once: true }}
+								className="md:w-4/5 md:mx-auto rounded-lg border border-red-200 bg-red-50/50 backdrop-blur p-6 hover:bg-red-100/50 transition-colors text-gray-800"
+							>
+								{withoutTitle && (
+									<h3 className="text-red-400 mb-4">{withoutTitle}</h3>
+								)}
+								<ul className="space-y-3">
+									{withoutItems?.map((item) => (
+										<li key={item} className="flex items-start">
+											<XCircle className="text-red-400 mr-2 h-5 w-5 flex-shrink-0 mt-0.5" />
+											<span className="text-gray-700">{item}</span>
+										</li>
+									))}
+								</ul>
+							</motion.div>
+						)}
 
-					<motion.div
-						initial={{ opacity: 0, x: 20 }}
-						whileInView={{ opacity: 1, x: 0 }}
-						transition={{ duration: 0.5 }}
-						viewport={{ once: true }}
-						className="md:w-4/5 md:mx-auto rounded-lg border border-green-200 bg-green-50/50 backdrop-blur p-6 hover:bg-green-100/50 transition-colors text-gray-800"
-					>
-						<h3 className="text-green-400 mb-4">{withTitle}</h3>
-						<ul className="space-y-3">
-							{withItems.map((item) => (
-								<li key={item} className="flex items-start">
-									<CheckCircle className="text-green-400 mr-2 h-5 w-5 flex-shrink-0 mt-0.5" />
-									<span className="text-gray-700">{item}</span>
-								</li>
-							))}
-						</ul>
-					</motion.div>
+					{comparison?.with?.items && comparison.with.items.length > 0 && (
+						<motion.div
+							initial={{ opacity: 0, x: 20 }}
+							whileInView={{ opacity: 1, x: 0 }}
+							transition={{ duration: 0.5 }}
+							viewport={{ once: true }}
+							className="md:w-4/5 md:mx-auto rounded-lg border border-green-200 bg-green-50/50 backdrop-blur p-6 hover:bg-green-100/50 transition-colors text-gray-800"
+						>
+							{withTitle && (
+								<h3 className="text-green-400 mb-4">{withTitle}</h3>
+							)}
+							<ul className="space-y-3">
+								{withItems?.map((item) => (
+									<li key={item} className="flex items-start">
+										<CheckCircle className="text-green-400 mr-2 h-5 w-5 flex-shrink-0 mt-0.5" />
+										<span className="text-gray-700">{item}</span>
+									</li>
+								))}
+							</ul>
+						</motion.div>
+					)}
 
 					{/* Decorative arrow image between cards on desktop */}
 					<motion.div

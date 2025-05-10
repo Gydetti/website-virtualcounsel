@@ -9,34 +9,39 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
+import type {
+	pricingCardSchema,
+	pricingSectionDataSchema,
+} from "@/lib/schemas/sections.schema";
+import type { z } from "zod";
 
-interface PricingCard {
-	title: string;
-	price: string;
-	features: string[];
-	cta: { text: string; href: string };
-}
+// Updated props type alias using Zod schema
+export type PricingSectionProps = z.infer<typeof pricingSectionDataSchema>;
 
-interface PricingSectionProps {
-	cards: PricingCard[];
-}
-
-export default function PricingSection({ cards }: PricingSectionProps) {
+export default function PricingSection({
+	badgeText, // Added from schema
+	heading, // Added from schema
+	description, // Added from schema
+	cards,
+}: PricingSectionProps) {
+	if (!cards || cards.length === 0) {
+		// Schema enforces min(1) for cards
+		return null;
+	}
 	return (
 		<Section id="pricing" className="bg-white relative overflow-hidden">
 			<div className="text-center mb-16">
-				<h2 className="section-title">Section heading for pricing plans</h2>
-				<p className="section-subtitle">
-					Brief subtitle explaining pricing options and plan differences
-				</p>
+				{/* Badge could be added here if desired, using badgeText from props */}
+				{heading && <h2 className="section-title">{heading}</h2>}
+				{description && <p className="section-subtitle">{description}</p>}
 			</div>
 			<div className="grid gap-8 md:grid-cols-3 items-stretch">
-				{cards.map((card, idx) => (
+				{cards.map((card: z.infer<typeof pricingCardSchema>) => (
 					<Card
-						key={card.title}
+						key={card.id} // Use card.id
 						className="relative flex h-full flex-col justify-between border border-gray-200 bg-white shadow-sm transition-transform duration-300 hover:scale-105 hover:shadow-lg"
 					>
-						{idx === 1 && (
+						{card.popular && (
 							<div className="absolute top-0 right-0 mt-4 mr-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-semibold uppercase">
 								Popular
 							</div>
@@ -71,12 +76,14 @@ export default function PricingSection({ cards }: PricingSectionProps) {
 							</ul>
 						</CardContent>
 						<CardFooter className="text-center px-6 py-6">
-							<Button
-								asChild
-								className="w-full bg-primary hover:bg-primary/90 py-3 text-sm font-semibold"
-							>
-								<a href={card.cta.href}>{card.cta.text}</a>
-							</Button>
+							{card.cta?.href && card.cta?.text && (
+								<Button
+									asChild
+									className="w-full bg-primary hover:bg-primary/90 py-3 text-sm font-semibold"
+								>
+									<a href={card.cta.href}>{card.cta.text}</a>
+								</Button>
+							)}
 						</CardFooter>
 					</Card>
 				))}

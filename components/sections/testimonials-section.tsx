@@ -4,49 +4,32 @@
 import { Section } from "@/components/layout/Section";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
+import type {
+	testimonialItemSchema,
+	testimonialsSectionDataSchema,
+} from "@/lib/schemas/sections.schema";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
+import type { z } from "zod";
 
-export interface TestimonialsSectionProps {
-	badgeText?: string;
-	heading?: string;
-	subtitle?: string;
-	testimonials?: {
-		quote: string;
-		name: string;
-		title: string;
-		image: string;
-	}[];
-}
+// Updated props type alias using Zod schema
+export type TestimonialsSectionProps = z.infer<
+	typeof testimonialsSectionDataSchema
+>;
 
 export default function TestimonialsSection({
-	badgeText = "Short label for testimonials section",
-	heading = "Section heading for customer testimonials",
-	subtitle = "Brief subtitle explaining purpose of testimonials",
-	testimonials = [
-		{
-			quote: "Testimonial quote placeholder: highlight key benefit or feedback",
-			name: "Author name: full name",
-			title: "Author title or role",
-			image: "/placeholder.svg?height=60&width=60",
-		},
-		{
-			quote: "Testimonial quote placeholder: highlight satisfaction",
-			name: "Author name: full name",
-			title: "Author title or role",
-			image: "/placeholder.svg?height=60&width=60",
-		},
-		{
-			quote: "Testimonial quote placeholder: highlight outcome or metric",
-			name: "Author name: full name",
-			title: "Author title or role",
-			image: "/placeholder.svg?height=60&width=60",
-		},
-	],
+	badgeText,
+	heading,
+	subtitle,
+	testimonials,
 }: TestimonialsSectionProps) {
 	const [activeIndex, setActiveIndex] = useState(0);
+
+	if (!testimonials || testimonials.length === 0) {
+		return null; // Or some placeholder if the section must render
+	}
 
 	const nextTestimonial = () => {
 		setActiveIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
@@ -94,15 +77,12 @@ export default function TestimonialsSection({
 								className="flex transition-transform duration-500 ease-in-out"
 								style={{ transform: `translateX(-${activeIndex * 100}%)` }}
 							>
-								{testimonials.map((testimonial) => (
+								{testimonials.map((testimonial, index) => (
 									<motion.div
-										key={testimonial.name}
+										key={testimonial.id}
 										initial={{ opacity: 0 }}
 										animate={{
-											opacity:
-												activeIndex === testimonials.indexOf(testimonial)
-													? 1
-													: 0,
+											opacity: activeIndex === index ? 1 : 0,
 										}}
 										transition={{ duration: 0.5 }}
 										className="w-full flex-shrink-0 sm:px-4 pb-12"
@@ -110,24 +90,36 @@ export default function TestimonialsSection({
 										<Card className="border-none shadow-lg hover:shadow-xl transition-all bg-white h-full">
 											<CardContent className="p-8">
 												<div className="flex items-center mb-6">
-													{[1, 2, 3, 4, 5].map((star) => (
-														<Star
-															key={star}
-															aria-hidden="true"
-															className="h-5 w-5 text-yellow-400 fill-yellow-400"
-														/>
-													))}
+													{testimonial.rating && testimonial.rating > 0
+														? Array.from({ length: 5 }).map((_, starIndex) => (
+																<Star
+																	key={`${testimonial.id}-star-${starIndex}`}
+																	aria-hidden="true"
+																	className={`h-5 w-5 ${
+																		starIndex < (testimonial.rating || 0)
+																			? "text-yellow-400 fill-yellow-400"
+																			: "text-gray-300 fill-gray-300"
+																	}`}
+																/>
+															))
+														: Array.from({ length: 5 }).map((_, starIndex) => (
+																<Star
+																	key={`${testimonial.id}-star-${starIndex}`}
+																	aria-hidden="true"
+																	className="h-5 w-5 text-gray-300 fill-gray-300"
+																/>
+															))}
 												</div>
 												<p className="text-body-base text-gray-700 italic mb-8 line-clamp-6">
-													"{testimonial.quote}"
+													&quot;{testimonial.quote}&quot;
 												</p>
 												<div className="flex items-center mt-auto">
 													<div className="mr-4">
 														<Image
-															src={testimonial.image}
-															alt={testimonial.name}
-															width={60}
-															height={60}
+															src={testimonial.image.src}
+															alt={testimonial.image.alt}
+															width={testimonial.image.width || 60}
+															height={testimonial.image.height || 60}
 															className="rounded-full border-2 border-gray-100"
 														/>
 													</div>
@@ -150,7 +142,7 @@ export default function TestimonialsSection({
 						<div className="flex justify-center mt-4 space-x-2 absolute bottom-0 left-0 right-0">
 							{testimonials.map((testimonial, index) => (
 								<button
-									key={testimonial.name}
+									key={testimonial.id}
 									type="button"
 									className={`h-3 w-3 rounded-full transition-all ${
 										activeIndex === index ? "bg-primary w-6" : "bg-gray-300"

@@ -11,10 +11,14 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
-import type { Service } from "@/lib/data-utils";
+import type {
+	serviceItemSchema,
+	servicesSectionDataSchema,
+} from "@/lib/schemas/sections.schema";
 import { motion } from "framer-motion";
 import { ArrowRight, BarChart2, Globe, Zap } from "lucide-react";
 import Link from "next/link";
+import type { z } from "zod";
 
 // Map of icon names to components
 const iconMap: Record<string, React.ReactNode> = {
@@ -23,23 +27,22 @@ const iconMap: Record<string, React.ReactNode> = {
 	Zap: <Zap className="h-10 w-10 text-primary" />,
 };
 
-export interface ServicesSectionProps {
-	badgeText?: string;
-	heading?: string;
-	description?: string;
-	services: Service[];
-	viewAllText?: string;
-	viewAllLink?: string;
-}
+// Updated props type alias using Zod schema
+export type ServicesSectionProps = z.infer<typeof servicesSectionDataSchema>;
 
 export default function ServicesSection({
-	badgeText = "Short label introducing services overview",
-	heading = "Section heading summarizing service offerings",
-	description = "Brief description explaining services offered and client benefits",
+	badgeText,
+	heading,
+	description,
 	services,
-	viewAllText = "Link text for viewing all services",
-	viewAllLink = "/services",
+	// displayType is part of schema, but not used for rendering logic here yet
+	viewAllCta, // Replaces viewAllText and viewAllLink
 }: ServicesSectionProps) {
+	if (!services || services.length === 0) {
+		// Schema implies services array is required, but good to check
+		return null;
+	}
+
 	return (
 		<Section
 			id="services-section"
@@ -62,7 +65,7 @@ export default function ServicesSection({
 				</div>
 
 				<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-					{services.map((service, idx) => (
+					{services.map((service: z.infer<typeof serviceItemSchema>, idx) => (
 						<motion.div
 							key={service.id}
 							initial={{ opacity: 0, y: 20 }}
@@ -100,7 +103,7 @@ export default function ServicesSection({
 
 								<CardContent className="card-content">
 									<ul className="space-y-3">
-										{service.features.map((feature) => (
+										{service.features?.map((feature) => (
 											<li key={feature} className="flex items-start">
 												<span className="text-green-500 mr-3 flex-shrink-0 mt-0.5">
 													<svg
@@ -147,18 +150,20 @@ export default function ServicesSection({
 					))}
 				</div>
 
-				{/*<div className="text-center mt-12 flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4">
-					<Button
-						size="lg"
-						className="bg-primary hover:bg-primary/90 group w-full sm:w-auto whitespace-normal break-words"
-						asChild
-					>
-						<Link href={viewAllLink}>
-							{viewAllText}
-							<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-						</Link>
-					</Button>
-				</div>*/}
+				{viewAllCta?.href && viewAllCta?.text && (
+					<div className="text-center mt-12 flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4">
+						<Button
+							size="lg"
+							className="bg-primary hover:bg-primary/90 group w-full sm:w-auto whitespace-normal break-words"
+							asChild
+						>
+							<Link href={viewAllCta.href}>
+								{viewAllCta.text}
+								<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+							</Link>
+						</Button>
+					</div>
+				)}
 			</div>
 		</Section>
 	);

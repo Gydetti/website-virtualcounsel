@@ -1,6 +1,6 @@
 import { getResourceBySlug } from "@/lib/data/resources";
 import { defaultMetadata } from "@/lib/metadata";
-import { siteConfig } from "@/lib/site.config";
+import { siteConfig } from "@/lib/siteConfig";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 

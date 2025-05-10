@@ -40,7 +40,9 @@ entrepreneur-website-template/
 │ ├── blog/ # Blog section with dynamic routes
 │ ├── contact/ # Contact page
 │ ├── faq/ # FAQ page
+│ ├── landing/ # Landing pages for paid-ads funnels
 │ ├── privacy-policy/ # Privacy policy page
+│ ├── resources/ # Resource pages (e-books, whitepapers, case studies)
 │ ├── services/ # Services section with dynamic routes
 │ ├── terms-of-service/ # Terms of service page
 │ ├── cookie-policy/ # Cookie policy page
@@ -131,6 +133,22 @@ Company information page with:
 ### Contact Page (`app/contact/page.tsx`)
 
 Contact form and information page.
+
+### Landing Pages (`app/landing/[slug]/page.tsx`)
+
+- Slim, focused pages designed for paid advertising campaigns and specific funnels.
+- Minimal header and footer to reduce distractions and maximize conversion.
+- Content is dynamically pulled from `lib/data/resources.ts`, sharing data with the full `/resources` pages.
+- Not typically included in main site navigation or sitemap to maintain targeted traffic flow.
+
+### Resource Pages (`app/resources/page.tsx` and `app/resources/[slug]/page.tsx`)
+
+- **Index Page (`app/resources/page.tsx`)**: Lists all available resources (e-books, whitepapers, case studies, etc.).
+- **Detail Page (`app/resources/[slug]/page.tsx`)**:
+    - Provides full content for each resource, using a shared `ResourceContent` component.
+    - Includes the standard site header and footer for full navigation.
+    - Designed for organic discovery, SEO, and inclusion in the sitemap.
+    - Shares its underlying data with the corresponding `/landing/[slug]` page.
 
 ### FAQ Page (`app/faq/page.tsx`)
 
@@ -233,6 +251,13 @@ Custom 404 error page.
 ```tsx
 <HomepageFaqSection categories={homepageFaqCategories} />
 ```
+
+### Resource Content & Section Components (`components/resources/`)
+
+- **`ResourceContent.tsx`**: A shared component that renders the main content for both `/landing/[slug]` and `/resources/[slug]` pages. It typically includes a hero section and then dynamically renders a series of sub-sections.
+- **`TextSection.tsx`**: Renders a block of text content for a resource.
+- **`ImageSection.tsx`**: Renders an image within a resource page.
+- **`FormSection.tsx`**: Renders a form (often an embed from a third-party provider like HubSpot) within a resource, typically used for lead capture on landing pages.
 
 ### Data-Driven Section Component Pattern
 
@@ -877,3 +902,27 @@ npm run ci:verify
 A GitHub Actions workflow is configured in `.github/workflows/ci.yml` to automatically run these checks on every pull request and push to the `main` branch. This ensures your site builds cleanly and passes all quality checks before deploying.
 
 If you ever need to revert to the previous setup, simply remove the `ci:verify` script from `package.json` and delete the `.github/workflows/ci.yml` file—your Husky hooks (image optimization on commit, build on push) will continue enforcing the existing workflow.
+
+## Landing & Resource Page Architecture
+
+The template features a dual-route system for content like e-books, whitepapers, or case studies, allowing them to be served both as focused landing pages and as fully integrated site resources:
+
+- **Shared Data Layer (`lib/data/resources.ts`)**:
+    - Defines a `Resource` type.
+    - Exports functions like `getResources()` and `getResourceBySlug(slug)` to fetch resource data. This data source is the single source of truth for content displayed on both landing and resource pages.
+- **Shared Content Component (`components/resources/ResourceContent.tsx`)**:
+    - Renders the actual content of a resource (hero, text sections, images, forms).
+    - Used by both `/landing/[slug]/page.tsx` and `/resources/[slug]/page.tsx`.
+- **Landing Pages (`app/landing/[slug]/page.tsx`)**:
+    - Wrapped in `app/landing/layout.tsx` which provides a minimal header (`LandingHeader.tsx`) and footer (`LandingFooter.tsx`).
+    - Designed for targeted campaigns (e.g., paid ads).
+    - Hidden from main navigation and sitemap to ensure focused user journeys.
+    - Feature flag: `siteConfig.features.enableLandingPages` controls their availability (guarded by `middleware.ts`).
+- **Resource Pages (`app/resources/[slug]/page.tsx`)**:
+    - Use the standard site layout (full header and footer).
+    - `app/resources/page.tsx` serves as an index, listing all available resources.
+    - Designed for organic discovery and included in the sitemap.
+- **Form Integration**:
+    - `components/resources/FormSection.tsx` typically handles form embeds (e.g., HubSpot, Typeform) for lead capture, especially on landing pages.
+
+This architecture ensures content is managed in one place (`lib/data/resources.ts`) but can be presented in two distinct contexts optimized for different acquisition channels.

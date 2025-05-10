@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { siteConfig } from "@/lib/site.config";
+import { siteConfig } from "@/lib/siteConfig";
 import { motion } from "framer-motion";
 import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
 import Script from "next/script";
@@ -25,16 +25,15 @@ declare global {
 	}
 }
 
-export interface ContactSectionProps {
-	badgeText?: string;
-	heading?: string;
-	subtitle?: string;
-}
+import type { contactSectionDataSchema } from "@/lib/schemas/sections.schema";
+// Updated props type alias using Zod schema
+import type { z } from "zod";
+export type ContactSectionProps = z.infer<typeof contactSectionDataSchema>;
 
 export default function ContactSection({
-	badgeText = "Contact us",
-	heading = "Invite users to reach out",
-	subtitle = "Brief instruction encouraging visitors to reach out and explaining response process",
+	badgeText,
+	heading,
+	subtitle,
 }: ContactSectionProps) {
 	const fields = siteConfig.contactForm?.fields || [];
 	const honeypotName = siteConfig.contactForm?.honeypotFieldName || "honeypot";
@@ -120,13 +119,17 @@ export default function ContactSection({
 
 			<div className="relative z-10">
 				<div className="text-center mb-16">
-					<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
-						{badgeText}
-					</Badge>
-					<h2 id="contact-section-heading" className="section-title">
-						{heading}
-					</h2>
-					<p className="section-subtitle">{subtitle}</p>
+					{badgeText && (
+						<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
+							{badgeText}
+						</Badge>
+					)}
+					{heading && (
+						<h2 id="contact-section-heading" className="section-title">
+							{heading}
+						</h2>
+					)}
+					{subtitle && <p className="section-subtitle">{subtitle}</p>}
 				</div>
 
 				<div className="grid md:grid-cols-2 gap-4 sm:gap-8 md:gap-12 max-w-4xl mx-auto">

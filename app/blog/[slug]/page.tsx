@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { getBlogPostBySlug, getBlogPosts } from "@/lib/data-utils";
 import { defaultMetadata } from "@/lib/metadata";
-import { siteConfig } from "@/lib/site.config";
+import { siteConfig } from "@/lib/siteConfig";
 import {
 	ArrowLeft,
 	ArrowRight,
@@ -113,7 +113,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
 		description: post.excerpt,
 		datePublished: post.date,
 		authorName: author.name,
-		imageUrl: post.image || "/placeholder.svg",
+		imageUrl: post.coverImage?.src || "/placeholder.svg",
 		url: `${siteConfig.site.url}/blog/${post.slug}`,
 	};
 
@@ -144,7 +144,11 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
 						<div className="flex items-center">
 							<Calendar className="h-4 w-4 mr-2" />
 							<span className="text-sm text-gray-500">
-								Publication date (e.g. 'Aug 10, 2023')
+								{new Date(post.date).toLocaleDateString("en-US", {
+									year: "numeric",
+									month: "long",
+									day: "numeric",
+								})}
 							</span>
 						</div>
 						<div className="flex items-center">
@@ -162,8 +166,8 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
 					<div className="lg:col-span-3">
 						<div className="relative h-[400px] w-full mb-8 rounded-xl overflow-hidden">
 							<Image
-								src={post.image || "/placeholder.svg"}
-								alt={post.title}
+								src={post.coverImage?.src || "/placeholder.svg"}
+								alt={post.coverImage?.alt || post.title}
 								fill
 								className="object-cover"
 							/>
@@ -327,8 +331,8 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
 						>
 							<div className="relative h-48 w-full overflow-hidden">
 								<Image
-									src={relatedPost.image || "/placeholder.svg"}
-									alt={relatedPost.title}
+									src={relatedPost.coverImage?.src || "/placeholder.svg"}
+									alt={relatedPost.coverImage?.alt || relatedPost.title}
 									fill
 									className="object-cover transition-transform duration-300 hover:scale-105"
 								/>

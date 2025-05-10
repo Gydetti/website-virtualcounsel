@@ -15,7 +15,7 @@ import ScrollToTop from "@/components/ui/scroll-to-top";
 import { Toaster } from "@/components/ui/toaster";
 import { heroSectionData } from "@/lib/data/homepage";
 import { defaultMetadata } from "@/lib/metadata";
-import { siteConfig } from "@/lib/site.config";
+import { siteConfig } from "@/lib/siteConfig";
 import { Partytown } from "@qwik.dev/partytown/react";
 
 // Poppins for headings
