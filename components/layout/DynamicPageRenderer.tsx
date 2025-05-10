@@ -48,7 +48,7 @@ interface DynamicPageRendererProps {
 	// allSectionsData: Record<string, unknown>; // Using unknown for potential future prop
 }
 
-// Corrected sectionComponentMap
+// biome-ignore lint: Diverse section components in map, type safety at component prop level.
 const sectionComponentMap: Record<string, ComponentType<any>> = {
 	HeroSection: HeroSection,
 	ClientsSection: ClientsSection,
