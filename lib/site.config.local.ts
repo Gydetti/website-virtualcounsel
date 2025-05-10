@@ -162,5 +162,15 @@ export const siteConfig: SiteConfigSchema = {
 				{ id: "resource-main-content", sectionType: "ResourceDetailSection" },
 			],
 		},
+		{
+			path: "/resources",
+			seo: {
+				title: "Helpful Resources",
+				description: "Explore our collection of e-books, guides, and tools.",
+			},
+			sections: [
+				{ id: "resources-list-main", sectionType: "ResourceListSection" },
+			],
+		},
 	],
 } as const;

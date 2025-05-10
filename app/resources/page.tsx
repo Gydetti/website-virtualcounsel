@@ -1,21 +1,42 @@
-import { getResources } from "@/lib/data/resources";
-import type { Resource } from "@/lib/data/resources";
-import Link from "next/link";
+import DynamicPageRenderer from "@/components/layout/DynamicPageRenderer";
+import { defaultMetadata } from "@/lib/metadata";
+import { siteConfig } from "@/lib/site.config.local";
+import type { Metadata } from "next";
 
-export default async function ResourcesPage() {
-	const resources: Resource[] = await getResources();
-	return (
-		<section className="resources-list py-8">
-			<div className="container mx-auto">
-				<h1>Resources</h1>
-				<ul className="list-disc list-inside mt-4">
-					{resources.map((r) => (
-						<li key={r.slug}>
-							<Link href={`/resources/${r.slug}`}>{r.title}</Link>
-						</li>
-					))}
-				</ul>
+// Find the page structure for the resources index page
+const resourcesIndexPageStructure = siteConfig.pageStructures?.find(
+	(p) => p.path === "/resources",
+);
+
+// Generate metadata: prioritize page-specific SEO from structure, then site defaults
+export async function generateMetadata(): Promise<Metadata> {
+	const pageSeo = resourcesIndexPageStructure?.seo;
+	const title = pageSeo?.title || "Resources";
+	const description =
+		pageSeo?.description ||
+		`Explore various resources offered by ${siteConfig.site.name}.`;
+
+	return defaultMetadata({
+		title: `${title} | ${siteConfig.site.name}`,
+		description: description,
+	});
+}
+
+export default async function ResourcesIndexPage() {
+	if (!resourcesIndexPageStructure) {
+		return (
+			<div className="container py-12 text-center">
+				<p className="text-xl text-red-600">
+					Resources page structure is not defined in site configuration.
+				</p>
 			</div>
-		</section>
+		);
+	}
+
+	return (
+		<DynamicPageRenderer
+			pagePath="/resources"
+			pageStructure={resourcesIndexPageStructure}
+		/>
 	);
 }

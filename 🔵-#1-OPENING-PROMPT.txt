@@ -2,9 +2,7 @@ Please Read all the following files.
 
 /Users/gydorutten/Coding/Klanten/gmg-template-website-2025/docs/building/onboarding/01-onboarding-doc.md
 /Users/gydorutten/Coding/Klanten/gmg-template-website-2025/docs/building/onboarding/README.md
-/Users/gydorutten/Coding/Klanten/gmg-template-website-2025/docs/building/general/deepdive/phase1.md
 
-@phase1.md 
 @01-onboarding-doc.md 
 @README.md 
 

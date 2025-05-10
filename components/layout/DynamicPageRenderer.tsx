@@ -7,6 +7,7 @@ import type { ComponentType, FC } from "react";
 import type { z } from "zod";
 
 import ResourceDetailSection from "@/components/sections/ResourceDetailSection"; // ++ Import ResourceDetailSection
+import ResourceListSection from "@/components/sections/ResourceListSection"; // ++ Import
 import BlogSection from "@/components/sections/blog-section"; // For BlogPreviewSection
 import ClientsSection from "@/components/sections/clients-section";
 import CtaSection from "@/components/sections/cta-section";
@@ -28,7 +29,10 @@ import TestimonialsSection from "@/components/sections/testimonials-section";
 import { getBlogPosts, getServices } from "@/lib/data-utils"; // Now using these
 // ++ NEW IMPORTS FOR DATA ++
 import * as homepageData from "@/lib/data/homepage";
-import { getResourceBySlug } from "@/lib/data/resources"; // ++ Corrected import source
+import {
+	getResourceBySlug as getResourceBySlugFromData,
+	getResources,
+} from "@/lib/data/resources"; // Alias to avoid conflict if used directly
 import { siteConfig } from "@/lib/site.config.local"; // For blog limit
 
 // Define the type for the component props
@@ -55,6 +59,7 @@ const sectionComponentMap: Record<
 	BlogPreviewSection: BlogSection, // Map preview type to actual component
 	CtaSection: CtaSection,
 	ResourceDetailSection: ResourceDetailSection, // ++ Add mapping
+	ResourceListSection: ResourceListSection, // ++ Add mapping
 	// Add other mappings here:
 	// "AboutSection": AboutSection,
 	// "FeaturesSection": FeaturesSection,
@@ -104,7 +109,7 @@ const getSectionData = async (
 	if (pagePath.startsWith("/resources/")) {
 		const slug = pagePath.substring("/resources/".length);
 		if (slug && sectionConfig.sectionType === "ResourceDetailSection") {
-			const resource = await getResourceBySlug(slug);
+			const resource = await getResourceBySlugFromData(slug);
 			if (resource) {
 				return { resource: resource };
 			}
@@ -112,6 +117,16 @@ const getSectionData = async (
 				`Resource with slug "${slug}" not found for ResourceDetailSection.`,
 			);
 			return { resource: null };
+		}
+	}
+
+	if (pagePath === "/resources") {
+		if (sectionConfig.sectionType === "ResourceListSection") {
+			const resources = await getResources();
+			return {
+				id: sectionConfig.id,
+				resources: resources,
+			};
 		}
 	}
 
