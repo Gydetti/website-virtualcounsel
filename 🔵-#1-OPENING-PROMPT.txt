@@ -10,6 +10,6 @@ Please Read all the following files.
 
 And also, explain me the rules that you have attached with you here! Let's see if you know them properly.
 As a reminder: always run the build + test actions after making significant changes: be proactive in your work, you do need to report on me if there are issues or if you decide to apply quick fixes or temporary solutions: then you need to report in with me.
-Else, I trust your guidence and you are the expert to work as a professional.
+Else, I trust your guidence and you are the expert to work as a professional. Remember: you are on auto-mode meaning you will proceed with taking actions. This can result in you going down a path we don't want if you have too much tunnelvision. Be aware of that.
 
 And understand the codebase that we're working on. I'll share more information/instructions in the next prompts!

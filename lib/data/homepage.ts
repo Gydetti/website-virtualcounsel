@@ -5,6 +5,7 @@ import {
 	featuresSectionDataSchema,
 	heroSectionDataSchema,
 	homepageFaqSectionDataSchema,
+	pricingSectionDataSchema,
 	problemPainSectionDataSchema,
 	solutionVisionSectionDataSchema,
 	testimonialsSectionDataSchema,
@@ -263,6 +264,38 @@ export const valuePropSectionData: z.infer<typeof valuePropSectionDataSchema> =
 		],
 	};
 
+export const pricingSectionData: z.infer<typeof pricingSectionDataSchema> = {
+	badgeText: "Simple & Transparent",
+	heading: "Our Pricing Plans",
+	description: "Choose the plan that fits your needs.",
+	cards: [
+		{
+			id: "price-basic",
+			title: "Basic",
+			price: "$99/mo",
+			features: ["Feature A", "Feature B", "Feature C"],
+			cta: { text: "Choose Basic", href: "/#pricing" },
+			popular: false,
+		},
+		{
+			id: "price-pro",
+			title: "Pro",
+			price: "$199/mo",
+			features: ["Feature A", "Feature B", "Feature C", "Feature D"],
+			cta: { text: "Choose Pro", href: "/#pricing" },
+			popular: true,
+		},
+		{
+			id: "price-enterprise",
+			title: "Enterprise",
+			price: "$299/mo",
+			features: ["All Pro features", "Feature E", "Feature F"],
+			cta: { text: "Contact Sales", href: "/contact" },
+			popular: false,
+		},
+	],
+};
+
 export const homepageFaqSectionData: z.infer<
 	typeof homepageFaqSectionDataSchema
 > = {
@@ -341,6 +374,7 @@ try {
 	featuresSectionDataSchema.parse(featuresSectionData);
 	clientsSectionDataSchema.parse(clientsSectionData);
 	testimonialsSectionDataSchema.parse(testimonialsSectionData);
+	pricingSectionDataSchema.parse(pricingSectionData);
 	problemPainSectionDataSchema.parse(problemPainSectionData);
 	solutionVisionSectionDataSchema.parse(solutionVisionSectionData);
 	ctaSectionDataSchema.parse(ctaSectionData);

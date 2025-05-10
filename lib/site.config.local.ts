@@ -1,9 +1,11 @@
+import type { SiteConfigSchema } from "./schemas/siteConfig.schema";
+
 /**
  * Copy this file to site.config.local.ts and fill in the values.
  * All default settings live here for merging with your local overrides.
  */
 
-export const siteConfig = {
+export const siteConfig: SiteConfigSchema = {
 	site: {
 		title: "Placeholder Title",
 		description: "Placeholder description for the site.",
@@ -77,6 +79,9 @@ export const siteConfig = {
 		enableFaqSection: false,
 		enableInspirationHeroSection: false,
 		enableLandingPages: true,
+		enableCustomCookieBanner: false,
+		enableValuePropSection: true,
+		enableFooterServices: true,
 	},
 	enabledPages: [
 		"/",
@@ -135,45 +140,13 @@ export const siteConfig = {
 		},
 		hours: { monFri: "9am - 5pm", sat: "10am - 2pm", sun: "Closed" },
 	},
-	sections: {
-		hero: {
-			badge: "",
-			preTitle: "",
-			words: [""],
-			subtitle: "",
-			image: { src: "", alt: "", fallback: "" },
-			ctaPrimary: { text: "", href: "" },
-			ctaSecondary: { text: "", href: "" },
-			stats: [{ value: 0, suffix: "", label: "" }],
-		},
+	sectionsDataKeys: {
 		blog: { limit: 3 },
-		pricing: {
-			cards: [
-				{
-					title: "Basic",
-					price: "$99/mo",
-					features: ["Feature A", "Feature B", "Feature C"],
-					cta: { text: "Choose Basic", href: "/#pricing" },
-				},
-				{
-					title: "Pro",
-					price: "$199/mo",
-					features: ["Feature A", "Feature B", "Feature C", "Feature D"],
-					cta: { text: "Choose Pro", href: "/#pricing" },
-				},
-				{
-					title: "Enterprise",
-					price: "$299/mo",
-					features: ["All Pro features", "Feature E", "Feature F"],
-					cta: { text: "Contact Sales", href: "/contact" },
-				},
-			],
-		},
-		// Add other section configs below (services, features, about, process, testimonials, cta, clients...)
 	},
 	pageStructures: [
 		{
 			path: "/",
+			seo: undefined,
 			sections: [
 				{ id: "home-hero", sectionType: "HeroSection" },
 				{ id: "home-clients", sectionType: "ClientsSection" },
@@ -184,4 +157,4 @@ export const siteConfig = {
 			],
 		},
 	],
-} as const;
+};

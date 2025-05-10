@@ -6,14 +6,28 @@ import type {
 import type { ComponentType, FC } from "react";
 import type { z } from "zod";
 
-// --- Section Component Imports (examples, to be expanded) ---
-// import HeroSection from "@/components/sections/hero-section";
-// import ClientsSection from "@/components/sections/clients-section";
-// import ServicesPreviewSection from "@/components/sections/services-preview-section"; // Example
-// import TestimonialsSection from "@/components/sections/testimonials-section";
-// import BlogPreviewSection from "@/components/sections/blog-preview-section"; // Example
-// import CtaSection from "@/components/sections/cta-section";
-// We will need to import all actual section components that can be dynamically rendered.
+import BlogSection from "@/components/sections/blog-section"; // For BlogPreviewSection
+import ClientsSection from "@/components/sections/clients-section";
+import CtaSection from "@/components/sections/cta-section";
+// --- Section Component Imports ---
+import HeroSection from "@/components/sections/hero-section";
+import ServicesSection from "@/components/sections/services-section"; // For ServicesPreviewSection
+import TestimonialsSection from "@/components/sections/testimonials-section";
+// Import other sections as needed for other pages later:
+// import AboutSection from "@/components/sections/about-section";
+// import FeaturesSection from "@/components/sections/features-section";
+// import ContactSection from "@/components/sections/contact-section";
+// import ValuePropSection from "@/components/sections/value-prop-section";
+// import ProcessSection from "@/components/sections/process-section";
+// import SolutionVisionSection from "@/components/sections/solution-vision-section";
+// import HomepageFaqSection from "@/components/sections/homepage-faq-section";
+// import PricingSection from "@/components/sections/pricing-section";
+// import ProblemPainSection from "@/components/sections/problem-pain-section";
+
+// ++ NEW IMPORTS FOR DATA ++
+import * as homepageData from "@/lib/data/homepage";
+// import { getServices, getBlogPosts } from "@/lib/data-utils"; // Async, for future enhancement
+// import { siteConfig } from "@/lib/site.config.local"; // For blog limit, if using async getBlogPosts
 
 // Define the type for the component props
 type PageStructure = z.infer<typeof pageStructureSchema>;
@@ -32,35 +46,67 @@ const sectionComponentMap: Record<
 	string,
 	ComponentType<Record<string, unknown>>
 > = {
-	// HeroSection: HeroSection,
-	// ClientsSection: ClientsSection,
-	// ServicesPreviewSection: ServicesPreviewSection,
-	// TestimonialsSection: TestimonialsSection,
-	// BlogPreviewSection: BlogPreviewSection,
-	// CtaSection: CtaSection,
-	// Add other section components here as they are created/refactored
-	// e.g., "AboutContentSection": AboutContentSection, "TeamSection": TeamSection
+	HeroSection: HeroSection,
+	ClientsSection: ClientsSection,
+	ServicesPreviewSection: ServicesSection, // Map preview type to actual component
+	TestimonialsSection: TestimonialsSection,
+	BlogPreviewSection: BlogSection, // Map preview type to actual component
+	CtaSection: CtaSection,
+	// Add other mappings here:
+	// "AboutSection": AboutSection,
+	// "FeaturesSection": FeaturesSection,
+	// etc.
 };
 
-// Placeholder for data fetching logic for dynamic sections
-// This is a critical part and will need careful design.
-// It might involve fetching from `lib/data/` files based on pagePath and sectionType,
-// or using a more structured data retrieval mechanism.
-const getSectionData = (
+// Synchronous data fetching for initial implementation
+const getSyncSectionData = (
 	pagePath: string,
-	sectionConfig: PageSectionConfig, // Use the inferred type
-	// allSectionsData: Record<string, unknown>
+	sectionConfig: PageSectionConfig,
 ): Record<string, unknown> => {
-	// Return Record<string, unknown>
-	// TODO: Implement actual data fetching/retrieval logic.
-	// For now, return placeholder data or an empty object.
-	// Example: if (pagePath === "/" && sectionConfig.sectionType === "HeroSection") {
-	//   return homepageData.heroSection; // Assuming homepageData is accessible
-	// }
-	console.warn(
-		`Data fetching for section type "${sectionConfig.sectionType}" on page "${pagePath}" (id: ${sectionConfig.id}) is not yet implemented.`,
-	);
-	return { id: sectionConfig.id }; // Pass at least the ID for keying
+	if (pagePath === "/") {
+		switch (sectionConfig.sectionType) {
+			case "HeroSection":
+				return homepageData.heroSectionData;
+			case "ClientsSection":
+				return homepageData.clientsSectionData;
+			case "TestimonialsSection":
+				return homepageData.testimonialsSectionData;
+			case "CtaSection":
+				return homepageData.ctaSectionData;
+			case "ServicesPreviewSection":
+				console.warn(
+					"ServicesPreviewSection data is using placeholder; requires async data or prop refinement.",
+				);
+				// This placeholder needs to align with ServicesSection's expected props
+				return {
+					id: sectionConfig.id,
+					badgeText: "Our Core Services",
+					heading: "Services We Offer",
+					description: "Explore our range of expert services.",
+					services: [], // Placeholder
+					cta: { text: "View All Services", href: "/services" },
+				};
+			case "BlogPreviewSection":
+				console.warn(
+					"BlogPreviewSection data is using placeholder; requires async data or prop refinement.",
+				);
+				// This placeholder needs to align with BlogSection's expected props
+				return {
+					id: sectionConfig.id,
+					badgeText: "From Our Blog",
+					heading: "Latest News",
+					posts: [], // Placeholder
+					cta: { text: "View All Posts", href: "/blog" },
+				};
+			default:
+				console.warn(
+					`Sync data for section type "${sectionConfig.sectionType}" (id: ${sectionConfig.id}) not implemented for homepage.`,
+				);
+				return { id: sectionConfig.id }; // Fallback
+		}
+	}
+	console.warn(`Sync data fetching for page "${pagePath}" is not implemented.`);
+	return { id: sectionConfig.id }; // Fallback for other pages
 };
 
 const DynamicPageRenderer: FC<DynamicPageRendererProps> = ({
@@ -95,7 +141,7 @@ const DynamicPageRenderer: FC<DynamicPageRendererProps> = ({
 				}
 
 				// Fetch or resolve data for this specific section instance
-				const sectionData = getSectionData(
+				const sectionData = getSyncSectionData(
 					pagePath,
 					sectionConfig,
 					// allSectionsData

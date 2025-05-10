@@ -8,6 +8,8 @@
 - All code changes must adhere to existing coding standards, documentation practices, and the project's overall architectural patterns unless explicitly stated otherwise in this plan.
 - New files or significant refactors should include necessary JSDoc/TSDoc comments.
 
+
+Quick note: when forming this doc, I think we didn't include "Resources" section but we need to include everything in teh codebase of course!
 ---
 
 ## Part 1: Granular Zod Schemas & Data Contract Establishment

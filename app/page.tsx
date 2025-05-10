@@ -1,154 +1,50 @@
-import AboutSection from "@/components/sections/about-section";
-import BlogSection from "@/components/sections/blog-section";
-import ClientsSection from "@/components/sections/clients-section";
-import ContactSection from "@/components/sections/contact-section";
-import CtaSection from "@/components/sections/cta-section";
-import FeaturesSection, {
-	FeaturesSectionProps,
-} from "@/components/sections/features-section";
-import HeroSection, {
-	HeroSectionProps,
-} from "@/components/sections/hero-section";
-import HomepageFaqSection from "@/components/sections/homepage-faq-section";
-import ProblemPainSection, {
-	ProblemPainSectionProps,
-} from "@/components/sections/problem-pain-section";
-import ProcessSection from "@/components/sections/process-section";
-import ServicesSection from "@/components/sections/services-section";
-import SolutionVisionSection, {
-	SolutionVisionSectionProps,
-} from "@/components/sections/solution-vision-section";
-import TestimonialsSection from "@/components/sections/testimonials-section";
-import ValuePropSection from "@/components/sections/value-prop-section";
-import LazySection from "@/components/ui/lazy-section";
-import { getBlogPosts, getServices } from "@/lib/data-utils";
-import {
-	clientsSectionData,
-	ctaSectionData,
-	featuresSectionData,
-	heroSectionData,
-	homepageFaqSectionData,
-	problemPainSectionData,
-	solutionVisionSectionData,
-	testimonialsSectionData,
-	valuePropSectionData,
-} from "@/lib/data/homepage";
+import DynamicPageRenderer from "@/components/layout/DynamicPageRenderer";
 import { defaultMetadata } from "@/lib/metadata";
-import { siteConfig } from "@/lib/siteConfig";
+import { siteConfig } from "@/lib/site.config.local"; // Use the local config for data
 import type { Metadata } from "next";
 
-export const metadata = defaultMetadata({
-	title: `${siteConfig.site.name} | Home`,
-	description: siteConfig.site.description,
-});
+// Find the page structure for the homepage
+const homepageStructure = siteConfig.pageStructures?.find(
+	(p) => p.path === "/",
+);
+
+// Generate metadata: prioritize page-specific SEO from structure, then site defaults
+export async function generateMetadata(): Promise<Metadata> {
+	const pageSeo = homepageStructure?.seo;
+	const title = pageSeo?.title || `${siteConfig.site.name} | Home`;
+	const description = pageSeo?.description || siteConfig.site.description;
+	// Add other SEO fields like keywords, openGraph overrides if present in pageSeo
+
+	return defaultMetadata({
+		title: title,
+		description: description,
+		// Potentially pass openGraph: pageSeo?.openGraph if you want to override fully
+	});
+}
 
 export default async function Home() {
-	// Fetch data for the homepage
-	const services = await getServices();
-	const blogPosts = await getBlogPosts(3); // Limit to 3 posts for the homepage
-	const { features } = siteConfig;
-
-	return (
-		<>
-			{/* --- Research-Driven Homepage Structure for the Homepage --- */}
-
-			{/* 1. Hero Section */}
-			{features.enableHeroSection && <HeroSection {...heroSectionData} />}
-
-			{/* Main Content Wrapper on global gradient */}
-			<div className="relative">
-				{/* Value Proposition (Why Choose Us) */}
-				{features.enableValuePropSection && (
-					<LazySection>
-						<ValuePropSection {...valuePropSectionData} />
-					</LazySection>
-				)}
-
-				{/* Social Proof (Client Logos) */}
-				{features.enableClientsSection && (
-					<LazySection>
-						<ClientsSection {...clientsSectionData} />
-					</LazySection>
-				)}
-
-				{/* Empathy for the Problem & Solution (Animated Together) */}
-				{features.enableProblemPainSection && (
-					<LazySection>
-						<ProblemPainSection {...problemPainSectionData} />
-						{features.enableSolutionVisionSection && (
-							<SolutionVisionSection {...solutionVisionSectionData} />
-						)}
-					</LazySection>
-				)}
-
-				{/* Value Proposition & Key Benefits */}
-				{features.enableFeaturesSection && (
-					<LazySection>
-						<FeaturesSection {...featuresSectionData} />
-					</LazySection>
-				)}
-
-				{/* Services */}
-				{/* features.enableServices && (
-					<LazySection>
-						<ServicesSection services={services} />
-					</LazySection>
-				) */}
-
-				{/* Testimonials (Social Proof Quotes) */}
-				{features.enableTestimonials && (
-					<LazySection>
-						<TestimonialsSection {...testimonialsSectionData} />
-					</LazySection>
-				)}
-
-				{/* Call-to-Action */}
-				{features.enableCtaSection && (
-					<LazySection>
-						<CtaSection {...ctaSectionData} />
-					</LazySection>
-				)}
-
-				{/* About Me (Trust Builder) */}
-				{features.enableAboutSection && (
-					<LazySection>
-						<AboutSection />
-					</LazySection>
-				)}
-
-				{/* Process (How It Works) - disabled until processSectionData is available */}
-				{/* {features.enableProcessSection && (
-					<LazySection>
-						<ProcessSection />
-					</LazySection>
-				)} */}
-
-				{/* Frequently Asked Questions */}
-				{features.enableFaqSection && (
-					<LazySection>
-						<HomepageFaqSection {...homepageFaqSectionData} />
-					</LazySection>
-				)}
-
-				{/* Blog */}
-				{features.enableBlog && (
-					<LazySection>
-						<BlogSection
-							posts={blogPosts.map((post) => ({
-								...post,
-								image: post.coverImage,
-							}))}
-						/>
-					</LazySection>
-				)}
-
-				{/* Contact */}
-				{features.enableContactForm && (
-					<LazySection>
-						<ContactSection />
-					</LazySection>
-				)}
+	if (!homepageStructure) {
+		// Fallback or error if homepage structure is not defined in site.config.local.ts
+		// This should ideally not happen if config is correct.
+		return (
+			<div className="container py-12 text-center">
+				<p className="text-xl text-red-600">
+					Homepage structure is not defined in site configuration.
+				</p>
+				<p>
+					Please check <code>lib/site.config.local.ts</code> and ensure a{" "}
+					<code>pageStructures</code> entry with <code>path: "/"</code> exists.
+				</p>
 			</div>
-		</>
+		);
+	}
+
+	// The DynamicPageRenderer will internally handle fetching/passing data to sections
+	// based on the 'homepageStructure' and its 'pagePath' prop.
+	return (
+		<DynamicPageRenderer
+			pagePath="/"
+			pageStructure={{ ...homepageStructure }}
+		/>
 	);
 }
