@@ -24,10 +24,10 @@ import TestimonialsSection from "@/components/sections/testimonials-section";
 // import PricingSection from "@/components/sections/pricing-section";
 // import ProblemPainSection from "@/components/sections/problem-pain-section";
 
+import { getBlogPosts, getServices } from "@/lib/data-utils"; // Now using these
 // ++ NEW IMPORTS FOR DATA ++
 import * as homepageData from "@/lib/data/homepage";
-// import { getServices, getBlogPosts } from "@/lib/data-utils"; // Async, for future enhancement
-// import { siteConfig } from "@/lib/site.config.local"; // For blog limit, if using async getBlogPosts
+import { siteConfig } from "@/lib/site.config.local"; // For blog limit
 
 // Define the type for the component props
 type PageStructure = z.infer<typeof pageStructureSchema>;
@@ -58,11 +58,11 @@ const sectionComponentMap: Record<
 	// etc.
 };
 
-// Synchronous data fetching for initial implementation
-const getSyncSectionData = (
+// Async data fetching
+const getSectionData = async (
 	pagePath: string,
 	sectionConfig: PageSectionConfig,
-): Record<string, unknown> => {
+): Promise<Record<string, unknown>> => {
 	if (pagePath === "/") {
 		switch (sectionConfig.sectionType) {
 			case "HeroSection":
@@ -73,43 +73,41 @@ const getSyncSectionData = (
 				return homepageData.testimonialsSectionData;
 			case "CtaSection":
 				return homepageData.ctaSectionData;
-			case "ServicesPreviewSection":
-				console.warn(
-					"ServicesPreviewSection data is using placeholder; requires async data or prop refinement.",
-				);
-				// This placeholder needs to align with ServicesSection's expected props
+			case "ServicesPreviewSection": {
+				const services = await getServices();
 				return {
 					id: sectionConfig.id,
 					badgeText: "Our Core Services",
 					heading: "Services We Offer",
 					description: "Explore our range of expert services.",
-					services: [], // Placeholder
-					cta: { text: "View All Services", href: "/services" },
+					services: services.slice(0, 3), // Preview 3 services
+					viewAllCta: { text: "View All Services", href: "/services" }, // Ensure ServicesSection uses this prop
 				};
-			case "BlogPreviewSection":
-				console.warn(
-					"BlogPreviewSection data is using placeholder; requires async data or prop refinement.",
-				);
-				// This placeholder needs to align with BlogSection's expected props
+			}
+			case "BlogPreviewSection": {
+				const blogLimit = siteConfig.sectionsDataKeys?.blog?.limit || 3;
+				const posts = await getBlogPosts(blogLimit);
 				return {
 					id: sectionConfig.id,
 					badgeText: "From Our Blog",
 					heading: "Latest News",
-					posts: [], // Placeholder
-					cta: { text: "View All Posts", href: "/blog" },
+					posts: posts,
+					viewAllCta: { text: "View All Posts", href: "/blog" }, // Ensure BlogSection uses this prop
 				};
+			}
 			default:
 				console.warn(
-					`Sync data for section type "${sectionConfig.sectionType}" (id: ${sectionConfig.id}) not implemented for homepage.`,
+					`Data for section type "${sectionConfig.sectionType}" (id: ${sectionConfig.id}) not implemented for homepage.`,
 				);
 				return { id: sectionConfig.id }; // Fallback
 		}
 	}
-	console.warn(`Sync data fetching for page "${pagePath}" is not implemented.`);
+	console.warn(`Data fetching for page "${pagePath}" is not implemented.`);
 	return { id: sectionConfig.id }; // Fallback for other pages
 };
 
-const DynamicPageRenderer: FC<DynamicPageRendererProps> = ({
+// DynamicPageRenderer becomes an async component
+const DynamicPageRenderer: FC<DynamicPageRendererProps> = async ({
 	pagePath,
 	pageStructure,
 	// allSectionsData
@@ -119,37 +117,35 @@ const DynamicPageRenderer: FC<DynamicPageRendererProps> = ({
 		return <p>No sections configured for this page.</p>;
 	}
 
+	// Fetch data for all sections in parallel
+	const sectionsWithDataPromises = pageStructure.sections.map((sectionConfig) =>
+		getSectionData(pagePath, sectionConfig).then((data) => ({
+			...sectionConfig,
+			data,
+		})),
+	);
+	const sectionsWithData = await Promise.all(sectionsWithDataPromises);
+
 	return (
 		<>
-			{pageStructure.sections.map((sectionConfig) => {
-				const Component = sectionComponentMap[sectionConfig.sectionType];
+			{sectionsWithData.map((section) => {
+				const Component = sectionComponentMap[section.sectionType];
 
 				if (!Component) {
 					console.error(
-						`Error: Unknown section type "${sectionConfig.sectionType}" for id "${sectionConfig.id}" on page "${pagePath}". Check component map.`,
+						`Error: Unknown section type "${section.sectionType}" for id "${section.id}" on page "${pagePath}". Check component map.`,
 					);
 					// Render a fallback or an error message in development
 					return (
-						<div
-							key={sectionConfig.id}
-							className="py-8 text-center text-red-500"
-						>
-							Unknown section type: {sectionConfig.sectionType} (ID:{" "}
-							{sectionConfig.id})
+						<div key={section.id} className="py-8 text-center text-red-500">
+							Unknown section type: {section.sectionType} (ID: {section.id})
 						</div>
 					);
 				}
 
-				// Fetch or resolve data for this specific section instance
-				const sectionData = getSyncSectionData(
-					pagePath,
-					sectionConfig,
-					// allSectionsData
-				);
-
 				return (
-					<LazySection key={sectionConfig.id}>
-						<Component {...sectionData} />
+					<LazySection key={section.id}>
+						<Component {...section.data} />
 					</LazySection>
 				);
 			})}
