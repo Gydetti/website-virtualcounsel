@@ -1,0 +1,15 @@
+Please Read all the following files. 
+
+/Users/gydorutten/Coding/Klanten/gmg-template-website-2025/docs/building/onboarding/01-onboarding-doc.md
+/Users/gydorutten/Coding/Klanten/gmg-template-website-2025/docs/building/onboarding/README.md
+/Users/gydorutten/Coding/Klanten/gmg-template-website-2025/docs/building/general/deepdive/phase1.md
+
+
+@phase1.md 
+@01-onboarding-doc.md 
+@README.md 
+
+
+And also, explain me the rules that you have attached with you here! Let's see if you know them properly.
+
+And understand the codebase that we're working on. I'll share more information/instructions in the next prompts!

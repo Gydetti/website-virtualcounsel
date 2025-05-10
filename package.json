@@ -7,7 +7,7 @@
         "prepare": "npm run setup",
         "dev": "next dev",
         "build": "npm run partytown && npm run image-optimize && next build",
-        "postbuild": "echo \"Skipping sitemap generation for now\"",
+        "postbuild": "next-sitemap",
         "sitemap": "next-sitemap",
         "start": "next start",
         "lint": "next lint",

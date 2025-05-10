@@ -2,6 +2,11 @@
 require("ts-node").register({
     project: "./tsconfig.json",
     preferTsExts: true,
+    // esm: true, // Experimental ESM support - did not work
+    // Override compiler options for ts-node in this specific context
+    compilerOptions: {
+        module: "commonjs" // Force module output to CommonJS for ts-node
+    }
 });
 const { siteConfig } = require("./lib/site.config.local.ts");
 // Add fallback for siteUrl if missing

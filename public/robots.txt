@@ -1,0 +1,12 @@
+# *
+User-agent: *
+Allow: /
+
+# *
+User-agent: *
+
+# Host
+Host: https://placeholder.com
+
+# Sitemaps
+Sitemap: https://placeholder.com/sitemap.xml
