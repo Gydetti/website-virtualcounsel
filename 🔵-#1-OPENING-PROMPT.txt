@@ -11,5 +11,7 @@ Please Read all the following files.
 
 
 And also, explain me the rules that you have attached with you here! Let's see if you know them properly.
+As a reminder: always run the build + test actions after making significant changes: be proactive in your work, you do need to report on me if there are issues or if you decide to apply quick fixes or temporary solutions: then you need to report in with me.
+Else, I trust your guidence and you are the expert to work as a professional.
 
 And understand the codebase that we're working on. I'll share more information/instructions in the next prompts!

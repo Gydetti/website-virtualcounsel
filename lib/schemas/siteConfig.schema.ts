@@ -199,6 +199,24 @@ const sectionsDataKeysSchema = z
 	})
 	.optional();
 
+// ++ NEW SCHEMAS FOR DYNAMIC PAGE COMPOSITION ++
+export const pageSectionConfigSchema = z.object({
+	id: z.string().min(1, "Section config ID cannot be empty"), // Unique ID for this instance of the section on a page
+	sectionType: z.string().min(1, "Section type cannot be empty"), // Corresponds to a key/name of a section component
+	// TODO: Add fields for section-specific data overrides or a generic data object/key
+	// e.g., dataKey: z.string().optional(), variant: z.string().optional()
+	// For now, we'll assume data is fetched by the section component or a page-level data aggregator
+});
+
+export const pageStructureSchema = z.object({
+	path: z.string().min(1, "Page path cannot be empty"), // e.g., "/", "/about"
+	seo: seoSchema.optional(),
+	sections: z
+		.array(pageSectionConfigSchema)
+		.min(1, "Page must have at least one section"),
+});
+// ++ END OF NEW SCHEMAS ++
+
 // --- Main siteConfigSchema composition ---
 export const siteConfigSchema = z.object({
 	site: siteMetaSchema,
@@ -217,6 +235,8 @@ export const siteConfigSchema = z.object({
 	contactForm: contactFormSchemaDefinition,
 	contact: contactDetailsSchema,
 	sectionsDataKeys: sectionsDataKeysSchema,
+	// ++ ADDING NEW FIELD FOR PAGE STRUCTURES ++
+	pageStructures: z.array(pageStructureSchema).optional(),
 });
 
 export type SiteConfigSchema = z.infer<typeof siteConfigSchema>;

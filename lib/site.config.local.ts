@@ -171,4 +171,17 @@ export const siteConfig = {
 		},
 		// Add other section configs below (services, features, about, process, testimonials, cta, clients...)
 	},
+	pageStructures: [
+		{
+			path: "/",
+			sections: [
+				{ id: "home-hero", sectionType: "HeroSection" },
+				{ id: "home-clients", sectionType: "ClientsSection" },
+				{ id: "home-services-preview", sectionType: "ServicesPreviewSection" },
+				{ id: "home-testimonials", sectionType: "TestimonialsSection" },
+				{ id: "home-blog-preview", sectionType: "BlogPreviewSection" },
+				{ id: "home-cta", sectionType: "CtaSection" },
+			],
+		},
+	],
 } as const;
