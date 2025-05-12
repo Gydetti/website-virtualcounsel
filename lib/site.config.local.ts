@@ -42,7 +42,7 @@ export const siteConfig: SiteConfigSchema = {
 			src: "/images/placeholders/placeholder-logo4.svg", // <--- Path to site logo
 			alt: "Placeholder Logo", // <--- Alt text for logo
 		},
-		favicon: "/favicon-placeholder.ico", // <--- Path to site favicon
+		favicon: "/favicon.ico", // <--- Path to site favicon
 		// Theme foundation values for dynamic CSS variables
 		typography: {
 			headingFont: "Poppins",

@@ -46,14 +46,41 @@ export const metadata = defaultMetadata({
 	description: siteConfig.site.description ?? "",
 });
 
+// Helper functions to inline theme CSS variables at SSR
+function hexToRgbServer(hex: string): string {
+	const cleanHex = hex.replace("#", "");
+	const r = Number.parseInt(cleanHex.substring(0, 2), 16);
+	const g = Number.parseInt(cleanHex.substring(2, 4), 16);
+	const b = Number.parseInt(cleanHex.substring(4, 6), 16);
+	return `${r}, ${g}, ${b}`;
+}
+
+function getThemeCssVars(theme: typeof siteConfig.theme): string {
+	return `
+		--primary: ${theme.colors.primary};
+		--primary-rgb: ${hexToRgbServer(theme.colors.primary)};
+		--secondary: ${theme.colors.secondary};
+		--secondary-rgb: ${hexToRgbServer(theme.colors.secondary)};
+		--accent: ${theme.colors.accent};
+		--accent-rgb: ${hexToRgbServer(theme.colors.accent)};
+		${theme.colors.background ? `--background: ${theme.colors.background};` : ""}
+		${theme.colors.header ? `--header: ${theme.colors.header};` : ""}
+		${theme.colors.body ? `--body: ${theme.colors.body};` : ""}
+		${theme.colors.lightGrey ? `--light-grey: ${theme.colors.lightGrey};` : ""}
+	`.trim();
+}
+
 export default function RootLayout({
 	children,
 }: {
 	children: React.ReactNode;
 }) {
+	const themeCssVars = getThemeCssVars(siteConfig.theme);
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<head>
+				{/* Inline theme CSS variables to prevent FOUC */}
+				<style>{`:root {${themeCssVars}}`}</style>
 				{/* Preconnect to Google Fonts */}
 				<link rel="preconnect" href="https://fonts.googleapis.com" />
 				<link
@@ -106,7 +133,7 @@ export default function RootLayout({
 						url: siteConfig.site.url ?? "",
 					}}
 				/>
-				<link rel="icon" href="public/favicon.ico" />
+				<link rel="icon" href="/favicon.ico" />
 			</head>
 			<body
 				className={`${poppins.variable} ${raleway.variable} font-sans antialiased bg-gradient-to-br from-blue-50 to-transparent`}

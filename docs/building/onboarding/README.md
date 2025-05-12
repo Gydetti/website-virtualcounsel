@@ -980,3 +980,21 @@ This codebase is designed for maximum flexibility, automation, and AI-driven cus
 ---
 
 This setup ensures the site is always styled, always dynamic, and always ready for AI or human-driven customization.
+
+## AI Assistant Guide: Dynamic Theming & Configuration
+
+> **Performance Note (Flagged for Future Refactor by Gydo):**
+>
+> If you do **not** need runtime theme switching (e.g., dark mode, live preview, A/B tests, or user-driven theme changes), you can safely remove the `ThemeVariablesProvider` client component and move all CSS variable generation logic into your server layout (`app/layout.tsx`).
+>
+> **Benefits:**
+> - Less client-side JavaScript and a smaller bundle
+> - Faster hydration and first paint (all theme tokens are present immediately)
+> - No risk of mismatch or flash between SSR and client
+>
+> **Tradeoff:**
+> - You lose the ability to change theme tokens at runtime without a full page reload (but for static/admin-driven theming, this is not needed).
+>
+> **Conclusion:**
+> For static, admin-driven theming (the current use case), this is a net win for performance and simplicity. If you ever want runtime theme switching, you can reintroduce a client-side provider.
+
