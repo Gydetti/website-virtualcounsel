@@ -1,3 +1,7 @@
+
+----
+
+
 # Phase 1: Foundational Architecture for AI Customization & Modularity
 
 **Objective**: To refactor and enhance the codebase with a strong foundation for AI-driven customization, content modularity, and theme flexibility. This phase focuses on establishing clear data contracts, component prop standards, dynamic page structures, and a more powerful theme engine.

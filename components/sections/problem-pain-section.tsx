@@ -1,9 +1,10 @@
 "use client";
 import { Section } from "@/components/layout/Section";
 import type { problemPainSectionDataSchema } from "@/lib/schemas/sections.schema";
-import { motion } from "framer-motion";
 import { AlertTriangle } from "lucide-react";
 import type { z } from "zod";
+import LazySection from "@/components/ui/lazy-section";
+import { motion } from "framer-motion";
 
 // Updated props type alias using Zod schema
 export type ProblemPainSectionProps = z.infer<
@@ -22,11 +23,9 @@ export default function ProblemPainSection({
 			id="pain"
 			className="bg-gradient-to-b from-transparent to-[rgba(var(--accent-rgb),0.1)]"
 		>
-			<motion.div
-				initial={{ opacity: 0, y: 50 }}
-				whileInView={{ opacity: 1, y: 0 }}
-				transition={{ duration: 0.6 }}
-				viewport={{ once: true }}
+			<LazySection
+				animation="slide-up"
+				delay={0}
 				className="bg-gray-900 text-white rounded-[30px] border border-gray-700/50 shadow-lg p-6 sm:p-12"
 			>
 				<div className="grid gap-12 lg:grid-cols-2">
@@ -75,7 +74,7 @@ export default function ProblemPainSection({
 						</div>
 					)}
 				</div>
-			</motion.div>
+			</LazySection>
 		</Section>
 	);
 }

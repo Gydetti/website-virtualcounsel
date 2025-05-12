@@ -1,101 +1,9 @@
-# Codebase Sanity Check & Quality Assurance Report (2024-05-10)
-
-## 1. General Structure & Documentation
-- **Onboarding & README**: Excellent, detailed onboarding (`01-onboarding-doc.md`) and README. All key steps, file locations, and best practices are covered. No action needed.
-- **Documentation**: Docs folder is well-organized. Consider adding a `CONTRIBUTING.md` for external collaborators.
-
-## 2. Configuration & Environment
-- **site.config.local.ts**: All required fields present, with clear placeholders. Zod schema in `site.config.ts` enforces shape and validation. ✅
-- **.env.example**: Present and referenced in onboarding. Ensure all new env vars are always added here.
-- **Environment Variable Usage**: All providers (SMTP, SendGrid, Postmark, Mailchimp, ActiveCampaign, HubSpot, Cookiebot, reCAPTCHA) are supported and documented. ✅
-
-## 3. Build, Lint, Test, Deploy Workflow
-- **Scripts**: All required scripts (`build`, `lint`, `test`, `deploy`, `ci:verify`, `image-optimize`, etc.) are present and well-structured in `package.json`.
-- **Husky Hooks**: Pre-commit (image-optimize, stage images) and pre-push (build) are enforced. ✅
-- **CI/CD**: `.github/workflows/ci.yml` runs build, lint (zero warnings), type-check, and tests. Matches onboarding and README. ✅
-- **Vercel**: Ready for auto-deploy on push to `main`. Ensure Vercel env vars are always up to date.
-- **Cache Clearing**: `.next` is not committed. The build process inherently handles necessary caching; explicit user-facing script for `rm -rf .next` might be useful for troubleshooting specific local dev issues but isn't strictly missing from the robust CI setup.
-
-## 4. Linting, Formatting, Import Sorting
-- **ESLint**: Configured with relevant rules. The onboarding guide mentions `simple-import-sort` conventions via `npm run lint -- --fix`. Rules for inline script safety (`react/no-danger`, etc.) are appropriately managed as per documentation. ✅
-- **Biome**: Configured and documented as an optional step in the workflow. ✅
-- **Prettier**: Present and used for formatting. ✅
-- **Lint-Staged**: Present in `package.json` but not explicitly detailed in the `pre-commit` hook's direct execution flow in `.husky/pre-commit`. However, `npm run lint -- --fix` (which includes Prettier via ESLint integration or separate Prettier runs) is typically part of a robust local setup. The `ci:verify` script ensures linting passes before merge. For local pre-commit, consider explicitly adding linting/formatting steps if not already covered by `npm run image-optimize`'s parent script or individual developer practices encouraged by `lint-staged` setup.
-
-## 5. Type Safety
-- **TypeScript**: Strict config (implied by `tsc --noEmit`), `type-check` script, and type definitions in `types/`. ✅
-- **Zod Validation**: `site.config.ts` uses Zod for runtime validation of `site.config.local.ts`, which is excellent. ✅
-
-## 6. Testing & Coverage
-- **Vitest**: Configured for unit/integration tests. `vitest.setup.ts` polyfills for Framer Motion. ✅
-- **Playwright**: Configured for E2E/smoke tests. `tests/resource-pages.spec.ts` exists. The documentation encourages adding at least one smoke test (e.g., homepage loads) and creating the `tests/` folder if it doesn't exist. Coverage is good. ✅
-- **Test Utilities**: Coverage reporting (`npx vitest run --coverage`) is documented. Suggestion to add `jest-axe` is noted. ✅
-
-## 7. Image & Asset Pipeline
-- **Raw Assets**: Categories present in `assets/images/raw/`. ✅
-- **Optimized Images**: `public/images/` and `blurDataURL.json` present. `image-optimize` script and pre-commit hook enforce pipeline. ✅
-- **Usage**: `OptimizedImage` component and `blurDataURL` usage are documented and implemented. ✅
-
-## 8. SEO, Metadata, & Performance
-- **SEO**: Metadata, Open Graph, Twitter Card, canonical URLs, `robots.ts`, `sitemap.ts`, `manifest.ts`, and `StructuredData` component all indicate a strong SEO foundation. ✅
-- **Performance**: Next.js image optimization is enabled (`images.unoptimized = false` in `next.config.mjs`). Code splitting, lazy loading (`LazySection`), and Framer Motion for animations are used. ✅
-- **Web Vitals**: No explicit web-vitals reporting setup found in documentation; a good suggestion for future enhancement.
-
-## 9. Accessibility (a11y)
-- **WCAG**: Components are built with `shadcn/ui` which prioritizes accessibility. Semantic HTML and ARIA attributes are generally handled well by `shadcn/ui` and Next.js. The suggestion to add automated `jest-axe` tests is valuable. ✅
-
-## 10. Cookie Consent & Tracking
-- **Cookiebot**: Integrated via `NEXT_PUBLIC_COOKIEBOT_ID` and `CookiebotLoaderClient`. Fallback `CookieConsentBanner` is available via feature flag. Tracking scripts (`TrackingScripts`) respect consent. ✅
-- **Data Layer**: `DataLayerProvider` and `PageViewTracker` are implemented. ✅
-
-## 11. Theming, Branding, & Customization
-- **Tailwind**: Custom tokens (`brand.*`), container settings, and font families (`--font-poppins`, `--font-raleway`) are correctly configured in `tailwind.config.ts` and `app/globals.css`. ✅
-- **Global Styles**: `app/globals.css` and font imports in `app/layout.tsx` are correct. ✅
-- **Logo/Favicon**: Paths referenced in `site.config.local.ts` and assets should be placed in `public/`. ✅
-
-## 12. Section & Page Structure
-- **Sections**: A comprehensive set of section components exists in `components/sections/`. They are data-driven using content from `lib/data/` (e.g., `lib/data/homepage.ts`). ✅
-- **Dynamic Routes**: Blog (`app/blog/[slug]`) and Services (`app/services/[slug]`) dynamic routing is set up. ✅
-- **404/Error**: Custom `app/not-found.tsx` and `app/error.tsx` are present. ✅
-
-## 13. Middleware & Feature Flags
-- **middleware.ts**: Handles route rewriting for disabled features based on `siteConfig.features`. Logic for adding new gated sections is documented. ✅
-
-## 14. Newsletter & Contact
-- **Newsletter**: Multiple providers (Mailchimp, HubSpot, ActiveCampaign) supported via `NEXT_PUBLIC_NEWSLETTER_PROVIDER` and corresponding API keys. `SubscribeForm.tsx` handles provider logic. ✅
-- **Contact Form**: Supports multiple email providers (SMTP, SendGrid, Postmark, etc.) configured via environment variables and `siteConfig.contactForm.provider`. reCAPTCHA and honeypot are included. ✅
-
-## 15. Internationalization (i18n)
-- **Optional**: Not built-in, but the onboarding document (`01-onboarding-doc.md`) provides guidance on adding `next-intl` or `next-translate`. ✅
-
----
-
-# Optimization Suggestions & Action Items
-
-1.  **Add CONTRIBUTING.md**: For external collaborators, document PR, commit message conventions, and review process.
-2.  **Expand Test Coverage**: Continue adding Playwright E2E tests for all critical user flows (e.g., contact form submission, newsletter subscription, navigation through all `enabledPages`) and more Vitest unit/integration tests for complex components or utilities.
-3.  **Automated a11y Testing**: Integrate `jest-axe` with Vitest as suggested in `01-onboarding-doc.md` to catch accessibility issues earlier.
-4.  **Web Vitals Reporting**: Implement `reportWebVitals` in `app/layout.tsx` or a dedicated utility to send Core Web Vitals data to an analytics platform for real-user monitoring.
-5.  **Automated Dependency Updates**: Set up Dependabot or Renovate via GitHub to automatically create PRs for dependency updates, helping to keep the project secure and up-to-date.
-6.  **CI: Add Coverage Upload**: Configure CI to upload Vitest coverage reports to a service like Codecov or Coveralls for better visibility into test coverage trends.
-7.  **Security Audit**: Include `npm audit --audit-level=moderate` (or higher) as a regular check in CI or local dev workflow to catch known vulnerabilities.
-8.  **PWA Enhancements & Testing**: Further develop PWA features (e.g., offline support via service workers if not already comprehensive) and add Lighthouse CI to the GitHub Actions workflow to test PWA compliance, performance, and accessibility on commits.
-9.  **Storybook for UI Components**: Consider adding Storybook for isolated UI component development, testing, and documentation, which can improve developer experience and visual regression testing capabilities.
-10. **Refine `lint-staged` Configuration**: Ensure `lint-staged` in `package.json` is fully leveraged by the pre-commit hook, perhaps by making the hook simpler and relying more on `lint-staged` to run formatting, linting, and even related tests on staged files.
-11. **Environment Variable Validation**: While Zod validates `siteConfig`, consider adding a startup check or build step that verifies the presence of all *required* environment variables from `.env.example` to prevent runtime errors due to missing configuration, especially for backend functionalities like email sending.
-
----
-
-**Summary:**
-> The codebase demonstrates a very high level of quality, organization, and adherence to best practices. The documentation is thorough, and the setup for development, testing, and deployment is robust. The outlined optimization suggestions are primarily aimed at further enhancing an already excellent foundation, focusing on deeper automation in testing, security, and developer tooling.
-
----
 
 # Proactive Enhancements & Future Vision for the Entrepreneur Template
 
 This section focuses on strategic enhancements to elevate the template beyond a standard website, aligning with the goal of creating high-converting, modern, and AI-customizable sites for entrepreneurs.
 
-## 1. AI-Agent Customization Readiness & Workflow
+## 1. AI-Agent Customization Readiness & Workflow = DONE
 
 To make the template exceptionally easy for an AI agent (or yourself with AI assistance) to customize based on scraped client data:
 
@@ -190,3 +98,97 @@ While the current focus is frontend, a minimal, secure API layer could add value
 *   **ARIA Live Regions**: For dynamic content updates (e.g., form validation errors, search results), ensure proper use of ARIA live regions for screen reader users.
 
 By thoughtfully integrating these enhancements, the template can become a powerful, differentiated asset for your business, enabling rapid, high-quality, and modern website creation for entrepreneurs.
+
+
+# Codebase Sanity Check & Quality Assurance Report (2024-05-10)
+
+## 1. General Structure & Documentation
+- **Onboarding & README**: Excellent, detailed onboarding (`01-onboarding-doc.md`) and README. All key steps, file locations, and best practices are covered. No action needed.
+- **Documentation**: Docs folder is well-organized. Consider adding a `CONTRIBUTING.md` for external collaborators.
+
+## 2. Configuration & Environment
+- **site.config.local.ts**: All required fields present, with clear placeholders. Zod schema in `site.config.ts` enforces shape and validation. ✅
+- **.env.example**: Present and referenced in onboarding. Ensure all new env vars are always added here.
+- **Environment Variable Usage**: All providers (SMTP, SendGrid, Postmark, Mailchimp, ActiveCampaign, HubSpot, Cookiebot, reCAPTCHA) are supported and documented. ✅
+
+## 3. Build, Lint, Test, Deploy Workflow
+- **Scripts**: All required scripts (`build`, `lint`, `test`, `deploy`, `ci:verify`, `image-optimize`, etc.) are present and well-structured in `package.json`.
+- **Husky Hooks**: Pre-commit (image-optimize, stage images) and pre-push (build) are enforced. ✅
+- **CI/CD**: `.github/workflows/ci.yml` runs build, lint (zero warnings), type-check, and tests. Matches onboarding and README. ✅
+- **Vercel**: Ready for auto-deploy on push to `main`. Ensure Vercel env vars are always up to date.
+- **Cache Clearing**: `.next` is not committed. The build process inherently handles necessary caching; explicit user-facing script for `rm -rf .next` might be useful for troubleshooting specific local dev issues but isn't strictly missing from the robust CI setup.
+
+## 4. Linting, Formatting, Import Sorting
+- **ESLint**: Configured with relevant rules. The onboarding guide mentions `simple-import-sort` conventions via `npm run lint -- --fix`. Rules for inline script safety (`react/no-danger`, etc.) are appropriately managed as per documentation. ✅
+- **Biome**: Configured and documented as an optional step in the workflow. ✅
+- **Prettier**: Present and used for formatting. ✅
+- **Lint-Staged**: Present in `package.json` but not explicitly detailed in the `pre-commit` hook's direct execution flow in `.husky/pre-commit`. However, `npm run lint -- --fix` (which includes Prettier via ESLint integration or separate Prettier runs) is typically part of a robust local setup. The `ci:verify` script ensures linting passes before merge. For local pre-commit, consider explicitly adding linting/formatting steps if not already covered by `npm run image-optimize`'s parent script or individual developer practices encouraged by `lint-staged` setup.
+
+## 5. Type Safety
+- **TypeScript**: Strict config (implied by `tsc --noEmit`), `type-check` script, and type definitions in `types/`. ✅
+- **Zod Validation**: `site.config.ts` uses Zod for runtime validation of `site.config.local.ts`, which is excellent. ✅
+
+## 6. Testing & Coverage
+- **Vitest**: Configured for unit/integration tests. `vitest.setup.ts` polyfills for Framer Motion. ✅
+- **Playwright**: Configured for E2E/smoke tests. `tests/resource-pages.spec.ts` exists. The documentation encourages adding at least one smoke test (e.g., homepage loads) and creating the `tests/` folder if it doesn't exist. Coverage is good. ✅
+- **Test Utilities**: Coverage reporting (`npx vitest run --coverage`) is documented. Suggestion to add `jest-axe` is noted. ✅
+
+## 7. Image & Asset Pipeline
+- **Raw Assets**: Categories present in `assets/images/raw/`. ✅
+- **Optimized Images**: `public/images/` and `blurDataURL.json` present. `image-optimize` script and pre-commit hook enforce pipeline. ✅
+- **Usage**: `OptimizedImage` component and `blurDataURL` usage are documented and implemented. ✅
+
+## 8. SEO, Metadata, & Performance
+- **SEO**: Metadata, Open Graph, Twitter Card, canonical URLs, `robots.ts`, `sitemap.ts`, `manifest.ts`, and `StructuredData` component all indicate a strong SEO foundation. ✅
+- **Performance**: Next.js image optimization is enabled (`images.unoptimized = false` in `next.config.mjs`). Code splitting, lazy loading (`LazySection`), and Framer Motion for animations are used. ✅
+- **Web Vitals**: No explicit web-vitals reporting setup found in documentation; a good suggestion for future enhancement.
+
+## 9. Accessibility (a11y)
+- **WCAG**: Components are built with `shadcn/ui` which prioritizes accessibility. Semantic HTML and ARIA attributes are generally handled well by `shadcn/ui` and Next.js. The suggestion to add automated `jest-axe` tests is valuable. ✅
+
+## 10. Cookie Consent & Tracking
+- **Cookiebot**: Integrated via `NEXT_PUBLIC_COOKIEBOT_ID` and `CookiebotLoaderClient`. Fallback `CookieConsentBanner` is available via feature flag. Tracking scripts (`TrackingScripts`) respect consent. ✅
+- **Data Layer**: `DataLayerProvider` and `PageViewTracker` are implemented. ✅
+
+## 11. Theming, Branding, & Customization
+- **Tailwind**: Custom tokens (`brand.*`), container settings, and font families (`--font-poppins`, `--font-raleway`) are correctly configured in `tailwind.config.ts` and `app/globals.css`. ✅
+- **Global Styles**: `app/globals.css` and font imports in `app/layout.tsx` are correct. ✅
+- **Logo/Favicon**: Paths referenced in `site.config.local.ts` and assets should be placed in `public/`. ✅
+
+## 12. Section & Page Structure
+- **Sections**: A comprehensive set of section components exists in `components/sections/`. They are data-driven using content from `lib/data/` (e.g., `lib/data/homepage.ts`). ✅
+- **Dynamic Routes**: Blog (`app/blog/[slug]`) and Services (`app/services/[slug]`) dynamic routing is set up. ✅
+- **404/Error**: Custom `app/not-found.tsx` and `app/error.tsx` are present. ✅
+
+## 13. Middleware & Feature Flags
+- **middleware.ts**: Handles route rewriting for disabled features based on `siteConfig.features`. Logic for adding new gated sections is documented. ✅
+
+## 14. Newsletter & Contact
+- **Newsletter**: Multiple providers (Mailchimp, HubSpot, ActiveCampaign) supported via `NEXT_PUBLIC_NEWSLETTER_PROVIDER` and corresponding API keys. `SubscribeForm.tsx` handles provider logic. ✅
+- **Contact Form**: Supports multiple email providers (SMTP, SendGrid, Postmark, etc.) configured via environment variables and `siteConfig.contactForm.provider`. reCAPTCHA and honeypot are included. ✅
+
+## 15. Internationalization (i18n)
+- **Optional**: Not built-in, but the onboarding document (`01-onboarding-doc.md`) provides guidance on adding `next-intl` or `next-translate`. ✅
+
+---
+
+# Optimization Suggestions & Action Items
+
+1.  **Add CONTRIBUTING.md**: For external collaborators, document PR, commit message conventions, and review process.
+2.  **Expand Test Coverage**: Continue adding Playwright E2E tests for all critical user flows (e.g., contact form submission, newsletter subscription, navigation through all `enabledPages`) and more Vitest unit/integration tests for complex components or utilities.
+3.  **Automated a11y Testing**: Integrate `jest-axe` with Vitest as suggested in `01-onboarding-doc.md` to catch accessibility issues earlier.
+4.  **Web Vitals Reporting**: Implement `reportWebVitals` in `app/layout.tsx` or a dedicated utility to send Core Web Vitals data to an analytics platform for real-user monitoring.
+5.  **Automated Dependency Updates**: Set up Dependabot or Renovate via GitHub to automatically create PRs for dependency updates, helping to keep the project secure and up-to-date.
+6.  **CI: Add Coverage Upload**: Configure CI to upload Vitest coverage reports to a service like Codecov or Coveralls for better visibility into test coverage trends.
+7.  **Security Audit**: Include `npm audit --audit-level=moderate` (or higher) as a regular check in CI or local dev workflow to catch known vulnerabilities.
+8.  **PWA Enhancements & Testing**: Further develop PWA features (e.g., offline support via service workers if not already comprehensive) and add Lighthouse CI to the GitHub Actions workflow to test PWA compliance, performance, and accessibility on commits.
+9.  **Storybook for UI Components**: Consider adding Storybook for isolated UI component development, testing, and documentation, which can improve developer experience and visual regression testing capabilities.
+10. **Refine `lint-staged` Configuration**: Ensure `lint-staged` in `package.json` is fully leveraged by the pre-commit hook, perhaps by making the hook simpler and relying more on `lint-staged` to run formatting, linting, and even related tests on staged files.
+11. **Environment Variable Validation**: While Zod validates `siteConfig`, consider adding a startup check or build step that verifies the presence of all *required* environment variables from `.env.example` to prevent runtime errors due to missing configuration, especially for backend functionalities like email sending.
+
+---
+
+**Summary:**
+> The codebase demonstrates a very high level of quality, organization, and adherence to best practices. The documentation is thorough, and the setup for development, testing, and deployment is robust. The outlined optimization suggestions are primarily aimed at further enhancing an already excellent foundation, focusing on deeper automation in testing, security, and developer tooling.
+
+---
