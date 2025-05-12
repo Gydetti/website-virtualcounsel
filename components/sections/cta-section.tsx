@@ -47,7 +47,8 @@ export default function CtaSection({
 						{primaryCta?.href && primaryCta?.text && (
 							<Button
 								size="lg"
-								className="bg-white text-brand-dark hover:bg-gray-200 group w-full sm:w-auto whitespace-normal"
+								variant="white"
+								className="group w-full sm:w-auto whitespace-normal"
 								asChild
 							>
 								<Link href={primaryCta.href}>

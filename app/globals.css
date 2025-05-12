@@ -4,6 +4,38 @@
 
 @layer base {
 	:root {
+		/* Theme CSS Variables Defaults */
+		/* Colors */
+		--primary: #1e3a8a;
+		--secondary: #60a5fa;
+		--accent: #3b82f6;
+
+		/* Typography */
+		--font-heading: Poppins, sans-serif;
+		--font-body: Raleway, sans-serif;
+		--font-base-size: 16px;
+
+		/* Spacing Scale */
+		--space-xs: 0.25rem;
+		--space-sm: 0.5rem;
+		--space-md: 1rem;
+		--space-lg: 1.5rem;
+		--space-xl: 2rem;
+
+		/* Borders */
+		--radius-base: 0.5rem;
+		--border-width-base: 1px;
+		--border-color-base: #e5e7eb;
+
+		/* Shadows */
+		--shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+		--shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+		--shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.15);
+
+		/* Layout */
+		--container-max-width: 1280px;
+		--container-padding: 1rem;
+
 		--background: 0 0% 100%;
 		--foreground: 222.2 84% 4.9%;
 
@@ -13,16 +45,13 @@
 		--popover: 0 0% 100%;
 		--popover-foreground: 222.2 84% 4.9%;
 
-		--primary: 221 70% 45%;
-		--primary-foreground: 210 40% 98%;
+		--primary-foreground: #fff;
 
-		--secondary: 28 100% 64%;
 		--secondary-foreground: 222.2 47.4% 11.2%;
 
 		--muted: 210 40% 96.1%;
 		--muted-foreground: 215.4 16.3% 46.9%;
 
-		--accent: 210 40% 96.1%;
 		--accent-foreground: 222.2 47.4% 11.2%;
 
 		--destructive: 0 84.2% 60.2%;
@@ -204,34 +233,6 @@
 	transform: translateY(-0.25rem);
 }
 
-.btn-primary {
-	background-color: hsl(var(--primary));
-	color: white;
-	transition: background-color 0.2s;
-}
-.btn-primary:hover {
-	background-color: hsl(var(--primary) / 0.9);
-}
-
-.btn-secondary {
-	background-color: hsl(var(--brand-secondary));
-	color: white;
-	transition: background-color 0.2s;
-}
-.btn-secondary:hover {
-	background-color: hsl(var(--brand-secondary) / 0.9);
-}
-
-.btn-outline {
-	border: 1px solid hsl(var(--primary));
-	color: hsl(var(--primary));
-	transition: all 0.2s;
-}
-.btn-outline:hover {
-	background-color: hsl(var(--primary));
-	color: white;
-}
-
 /* Custom animations */
 @keyframes float {
 	0% {
@@ -295,5 +296,30 @@
 	}
 	.text-caption {
 		@apply text-sm;
+	}
+}
+
+/* Spark effect utility */
+.btn-spark {
+	@apply relative overflow-hidden;
+}
+.btn-spark::before {
+	content: "";
+	position: absolute;
+	top: -50%;
+	left: -50%;
+	width: 200%;
+	height: 200%;
+	background: conic-gradient(
+		from 0deg,
+		transparent 330deg,
+		rgba(255, 255, 255, 0.6) 360deg
+	);
+	animation: spark-spin 1.8s linear infinite;
+	pointer-events: none;
+}
+@keyframes spark-spin {
+	to {
+		transform: rotate(360deg);
 	}
 }

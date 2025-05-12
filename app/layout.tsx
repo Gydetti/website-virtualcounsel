@@ -2,6 +2,7 @@ import { Poppins, Raleway } from "next/font/google";
 import { Suspense } from "react";
 import type { ReactNode } from "react";
 import "./globals.css";
+import ThemeVariablesProvider from "@/components/ThemeVariablesProvider";
 import CookiebotLoaderClient from "@/components/cookie/CookiebotLoaderClient";
 import CookieConsentBanner from "@/components/cookie/cookie-consent-banner";
 import Footer from "@/components/layout/footer";
@@ -116,21 +117,23 @@ export default function RootLayout({
 				)}
 				{/* Cookiebot loader for production consent flow */}
 				<CookiebotLoaderClient />
-				<DataLayerProvider>
-					{/* Tracking scripts that respect cookie consent */}
-					<TrackingScripts />
-					<Suspense fallback={null}>
-						<PageViewTracker />
-					</Suspense>
+				<ThemeVariablesProvider>
+					<DataLayerProvider>
+						{/* Tracking scripts that respect cookie consent */}
+						<TrackingScripts />
+						<Suspense fallback={null}>
+							<PageViewTracker />
+						</Suspense>
 
-					<div className="flex min-h-screen flex-col">
-						<Header />
-						<main className="flex-1">{children}</main>
-						<Footer />
-					</div>
-					<ScrollToTop />
-					<Toaster />
-				</DataLayerProvider>
+						<div className="flex min-h-screen flex-col">
+							<Header />
+							<main className="flex-1">{children}</main>
+							<Footer />
+						</div>
+						<ScrollToTop />
+						<Toaster />
+					</DataLayerProvider>
+				</ThemeVariablesProvider>
 			</body>
 		</html>
 	);

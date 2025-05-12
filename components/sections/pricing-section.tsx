@@ -77,10 +77,7 @@ export default function PricingSection({
 						</CardContent>
 						<CardFooter className="text-center px-6 py-6">
 							{card.cta?.href && card.cta?.text && (
-								<Button
-									asChild
-									className="w-full bg-primary hover:bg-primary/90 py-3 text-sm font-semibold"
-								>
+								<Button asChild className="w-full py-3 text-sm font-semibold">
 									<a href={card.cta.href}>{card.cta.text}</a>
 								</Button>
 							)}

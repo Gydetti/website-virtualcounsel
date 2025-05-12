@@ -82,7 +82,7 @@ export default function HomepageFaqSection({
 							</Accordion>
 						</div>
 					))}
-					<Button className="mt-8" asChild>
+					<Button size="lg" className="mt-8" asChild>
 						<Link href={cta.href || "/contact"}>
 							{cta.text || "See all FAQs"}
 						</Link>

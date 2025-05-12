@@ -116,18 +116,16 @@ export default function FeaturesSection({
 					</motion.div>
 				</div>
 
-				{/*<div className="text-center">
-					 <Button
-						size="lg"
-						className="bg-primary text-white hover:bg-primary/90 group"
-						asChild
-					>
-						<Link href={ctaLink}>
-							{ctaText}
-							<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-						</Link>
-					</Button> 
-				</div>*/}
+				<div className="text-center">
+					{cta?.href && cta?.text && (
+						<Button size="lg" className="group" asChild>
+							<Link href={cta.href}>
+								{cta.text}
+								<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+							</Link>
+						</Button>
+					)}
+				</div>
 			</div>
 		</Section>
 	);

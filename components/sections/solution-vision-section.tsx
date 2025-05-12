@@ -32,7 +32,7 @@ export default function SolutionVisionSection({
 	return (
 		<Section
 			id="solution-vision-section"
-			className="bg-gradient-to-b from-secondary/10 via-transparent to-transparent "
+			className="bg-gradient-to-b from-[rgba(var(--secondary-rgb),0.1)] via-transparent to-transparent"
 		>
 			{/* Header Animations */}
 			<motion.div
@@ -93,7 +93,7 @@ export default function SolutionVisionSection({
 					whileInView="visible"
 					viewport={{ once: true }}
 					variants={textVariants}
-					className="mt-16 max-w-4xl mx-auto bg-secondary/10 p-6 rounded-lg"
+					className="mt-16 max-w-4xl mx-auto bg-[rgba(var(--secondary-rgb),0.1)] p-6 rounded-lg"
 				>
 					<p className="text-gray-900 font-medium mb-2">{calloutText}</p>
 					{calloutCta?.href && calloutCta?.text && (

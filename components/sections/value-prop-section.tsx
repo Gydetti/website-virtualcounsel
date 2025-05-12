@@ -34,7 +34,7 @@ export default function ValuePropSection({
 		>
 			<div className="text-center mb-16">
 				{badgeText && (
-					<Badge className="mb-4 bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground">
+					<Badge className="mb-4 bg-[rgba(var(--primary-rgb),0.1)] text-primary dark:bg-[rgba(var(--primary-rgb),0.2)] dark:text-primary-foreground">
 						{badgeText}
 					</Badge>
 				)}
@@ -54,7 +54,7 @@ export default function ValuePropSection({
 							viewport={{ once: true }}
 							className="flex flex-col items-start space-y-3 rounded-lg border p-6 shadow-sm hover:shadow-md"
 						>
-							<div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-foreground">
+							<div className="flex h-12 w-12 items-center justify-center rounded-full bg-[rgba(var(--primary-rgb),0.1)] text-primary dark:bg-[rgba(var(--primary-rgb),0.2)] dark:text-primary-foreground">
 								<Icon className="h-6 w-6" />
 							</div>
 							<h3 className="text-xl font-bold">{benefit.title}</h3>

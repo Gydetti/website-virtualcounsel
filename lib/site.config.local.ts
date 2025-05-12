@@ -30,8 +30,8 @@ export const siteConfig: SiteConfigSchema = {
 	// THEME & BRANDING: Colors, logo, favicon.
 	theme: {
 		colors: {
-			primary: "#1E3A8A", // <--- Main brand color
-			secondary: "#60A5FA", // <--- Secondary brand color
+			primary: "#2563EB", // <--- Restored primary blue (Tailwind blue-600)
+			secondary: "#FF9D48", // <--- Restored secondary orange (Tailwind orange-500)
 			accent: "#3B82F6", // <--- Accent color for highlights, CTAs etc.
 		},
 		logo: {
@@ -39,6 +39,33 @@ export const siteConfig: SiteConfigSchema = {
 			alt: "Placeholder Logo", // <--- Alt text for logo
 		},
 		favicon: "/favicon-placeholder.ico", // <--- Path to site favicon
+		// Theme foundation values for dynamic CSS variables
+		typography: {
+			headingFont: "Poppins",
+			bodyFont: "Raleway",
+			baseSize: "16px",
+		},
+		spacing: {
+			xs: "0.25rem",
+			sm: "0.5rem",
+			md: "1rem",
+			lg: "1.5rem",
+			xl: "2rem",
+		},
+		borders: {
+			radiusBase: "0.5rem",
+			widthBase: "1px",
+			colorBase: "#e5e7eb",
+		},
+		shadows: {
+			sm: "0 1px 2px rgba(0, 0, 0, 0.05)",
+			md: "0 4px 6px rgba(0, 0, 0, 0.1)",
+			lg: "0 10px 15px rgba(0, 0, 0, 0.15)",
+		},
+		layout: {
+			containerMaxWidth: "1280px",
+			containerPadding: "1rem",
+		},
 	},
 	// NAVIGATION LINKS: Main site navigation (header).
 	navLinks: [

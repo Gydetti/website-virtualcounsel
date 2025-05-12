@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { ctaSchema, imageSchema, linkSchema, seoSchema } from "./common.schema";
+import { themeSchema } from "./theme.schema";
 /* eslint-disable @typescript-eslint/no-require-imports, @typescript-eslint/no-explicit-any */
 // We will import specific schemas from common.schema.ts later
 // import { imageSchema, linkSchema } from "./common.schema";
@@ -219,7 +220,7 @@ export const pageStructureSchema = z.object({
 // --- Main siteConfigSchema composition ---
 export const siteConfigSchema = z.object({
 	site: siteMetaSchema,
-	theme: themeSchemaDefinition,
+	theme: themeSchema,
 	navLinks: z
 		.array(linkSchema)
 		.min(1, "Navigation links cannot be empty if defined")

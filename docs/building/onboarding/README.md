@@ -929,3 +929,54 @@ The template features a dual-route system for content like e-books, whitepapers,
     - `components/resources/FormSection.tsx` typically handles form embeds (e.g., HubSpot, Typeform) for lead capture, especially on landing pages.
 
 This architecture ensures content is managed in one place (`lib/data/resources.ts`) but can be presented in two distinct contexts optimized for different acquisition channels.
+
+## AI Assistant Guide: Dynamic Theming & Configuration
+
+This codebase is designed for maximum flexibility, automation, and AI-driven customization. Here's how dynamic theming and configuration work:
+
+### Centralized Theme Config
+- **All theme values** (colors, fonts, spacing, borders, etc.) are set in `lib/site.config.local.ts`.
+- This config is the single source of truth for branding and design tokens.
+
+### globals.css: Fallbacks & SSR Safety
+- `app/globals.css` defines default CSS variables for all theme tokens (e.g., `--primary`, `--font-heading`).
+- These ensure the site renders with sensible defaults during SSR or before JS loads, preventing a "flash of unstyled content" (FOUC).
+- **At runtime,** the `ThemeVariablesProvider` component reads the config and sets the real values on `:root` via JS, making the site fully dynamic.
+
+### Dual CSS Variable Pattern for Colors
+- For each theme color (primary, secondary, accent, etc.), both a hex and an RGB variable are set:
+  - `--primary: #2563EB;`
+  - `--primary-rgb: 37,99,235;`
+- This allows for both solid and alpha/opacity color utilities in Tailwind and CSS.
+
+### Keeping Config and CSS in Sync
+- The values in `site.config.local.ts` **should always match** the defaults in `globals.css`.
+- If you change a color, font, or spacing in the config, update the fallback in `globals.css` as well.
+- This prevents mismatches and visual glitches during SSR/initial load.
+
+### Adding New Theme Tokens
+- To add a new color (e.g., info, warning):
+  1. Add both `--info` and `--info-rgb` to `globals.css` with sensible defaults.
+  2. Add the color to `site.config.local.ts`.
+  3. Update `ThemeVariablesProvider` to set both variables at runtime.
+  4. Add new Button/component variants as needed.
+
+### Legacy CSS Classes
+- Old classes like `.btn-primary`, `.btn-secondary`, `.btn-outline` are deprecated.
+- Use the Button component and its variants for all buttons.
+- Remove legacy classes to avoid confusion.
+
+### Best Practices for AI Agents & Developers
+- Always use theme variables—never hardcode colors or fonts in components.
+- Use the Button component for all buttons, not custom classes.
+- When onboarding a new client, update only `site.config.local.ts` and (optionally) the fallbacks in `globals.css`.
+- Ensure `ThemeVariablesProvider` is mounted at the top level so all components get the correct theme values.
+
+### Why Are Colors/Fonts in Both Places?
+- `globals.css` provides SSR/FOUC-safe fallbacks.
+- `site.config.local.ts` is the dynamic, runtime source of truth.
+- `ThemeVariablesProvider` syncs the two at runtime.
+
+---
+
+This setup ensures the site is always styled, always dynamic, and always ready for AI or human-driven customization.

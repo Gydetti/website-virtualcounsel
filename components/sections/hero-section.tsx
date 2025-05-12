@@ -94,7 +94,7 @@ export default function HeroSection({
 			<div className="absolute inset-0 bg-grid-pattern opacity-10" />
 
 			{/* Floating elements for visual interest */}
-			<div className="hidden sm:block absolute top-20 right-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+			<div className="hidden sm:block absolute top-20 right-10 w-64 h-64 bg-[rgba(var(--primary-rgb),0.05)] rounded-full blur-3xl" />
 			<div className="hidden sm:block absolute bottom-10 left-10 w-72 h-72 bg-blue-100/20 rounded-full blur-3xl" />
 
 			<Section
@@ -110,7 +110,7 @@ export default function HeroSection({
 						transition={{ duration: 0.4 }}
 					>
 						{badgeText && (
-							<Badge className="w-fit bg-primary/10 text-primary hover:bg-primary/20">
+							<Badge className="w-fit bg-[rgba(var(--primary-rgb),0.1)] text-primary hover:bg-[rgba(var(--primary-rgb),0.2)]">
 								{badgeText}
 							</Badge>
 						)}
@@ -139,7 +139,7 @@ export default function HeroSection({
 								{primaryCta?.text && primaryCta.href && (
 									<Button
 										size="lg"
-										className={`bg-primary hover:bg-primary/90 group ${!showSecondaryCta || !secondaryCta?.text ? "w-full sm:w-auto" : ""}`}
+										className={`group ${!showSecondaryCta || !secondaryCta?.text ? "w-full sm:w-auto" : ""}`}
 										asChild
 									>
 										<Link href={primaryCta.href}>

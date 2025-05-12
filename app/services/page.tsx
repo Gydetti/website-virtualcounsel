@@ -147,7 +147,7 @@ export default async function ServicesPage() {
 
 							<Button
 								size="lg"
-								className="mt-8 whitespace-normal break-words bg-primary hover:bg-primary/90"
+								className="mt-8 whitespace-normal break-words group"
 								asChild
 							>
 								<Link href="/contact">
@@ -182,7 +182,7 @@ export default async function ServicesPage() {
 						</p>
 						<Button
 							size="lg"
-							className="whitespace-normal break-words bg-white text-primary hover:bg-gray-100"
+							className="whitespace-normal break-words group"
 							asChild
 						>
 							<Link href="/contact">

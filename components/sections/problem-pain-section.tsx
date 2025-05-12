@@ -20,7 +20,7 @@ export default function ProblemPainSection({
 	return (
 		<Section
 			id="pain"
-			className="bg-gradient-to-b from-transparent to-secondary/10"
+			className="bg-gradient-to-b from-transparent to-[rgba(var(--secondary-rgb),0.1)]"
 		>
 			<motion.div
 				initial={{ opacity: 0, y: 50 }}

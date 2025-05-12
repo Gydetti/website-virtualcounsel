@@ -41,7 +41,7 @@ export default function ServiceCard({
 				</div>
 			)}
 			<CardHeader className={`${popular ? "pt-12" : ""}`}>
-				<div className="mb-6 bg-primary/10 w-16 h-16 rounded-lg flex items-center justify-center">
+				<div className="mb-6 bg-[rgba(var(--primary-rgb),0.1)] w-16 h-16 rounded-lg flex items-center justify-center">
 					{icon}
 				</div>
 				<CardTitle className="text-xl font-bold">{title}</CardTitle>
@@ -78,11 +78,8 @@ export default function ServiceCard({
 			</CardContent>
 			<CardFooter className="card-footer pt-6">
 				<Button
-					className={`group w-full ${
-						popular
-							? "bg-primary hover:bg-primary/90"
-							: "border border-primary text-primary hover:bg-primary hover:text-white"
-					}`}
+					className="group w-full"
+					variant={popular ? "default" : "outline"}
 					asChild
 				>
 					<Link href={`/services/${slug}`}>

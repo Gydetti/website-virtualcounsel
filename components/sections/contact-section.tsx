@@ -184,7 +184,7 @@ export default function ContactSection({
 
 							<Button
 								type="submit"
-								className="w-full bg-primary hover:bg-primary/90 group"
+								className="w-full group"
 								disabled={isSubmitting}
 							>
 								{isSubmitting

@@ -36,8 +36,8 @@ export default function AboutSection({
 				>
 					{image?.src && (
 						<>
-							<div className="absolute -top-6 -left-6 w-24 h-24 bg-primary/10 rounded-full z-0" />
-							<div className="absolute -bottom-6 -right-6 w-32 h-32 bg-primary/20 rounded-full z-0" />
+							<div className="absolute -top-6 -left-6 w-24 h-24 bg-[rgba(var(--primary-rgb),0.1)] rounded-full z-0" />
+							<div className="absolute -bottom-6 -right-6 w-32 h-32 bg-[rgba(var(--primary-rgb),0.2)] rounded-full z-0" />
 							<OptimizedImage
 								src={image.src}
 								alt={image.alt || "About our company"}

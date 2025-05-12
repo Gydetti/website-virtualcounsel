@@ -88,7 +88,7 @@ export default function ServicesSection({
 								)}
 
 								<CardHeader className="pt-12">
-									<div className="mb-6 bg-primary/10 w-16 h-16 rounded-lg flex items-center justify-center">
+									<div className="mb-6 bg-[rgba(var(--primary-rgb),0.1)] w-16 h-16 rounded-lg flex items-center justify-center">
 										{iconMap[service.icon ?? "Globe"] || (
 											<Globe className="h-10 w-10 text-primary" />
 										)}
@@ -154,7 +154,7 @@ export default function ServicesSection({
 					<div className="text-center mt-12 flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4">
 						<Button
 							size="lg"
-							className="bg-primary hover:bg-primary/90 group w-full sm:w-auto whitespace-normal break-words"
+							className="group w-full sm:w-auto whitespace-normal break-words"
 							asChild
 						>
 							<Link href={viewAllCta.href}>
