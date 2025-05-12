@@ -4,6 +4,7 @@
 import { Section } from "@/components/layout/Section";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
+import LazySection from "@/components/ui/lazy-section";
 import type {
 	testimonialItemSchema,
 	testimonialsSectionDataSchema,
@@ -13,7 +14,6 @@ import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import type { z } from "zod";
-import LazySection from "@/components/ui/lazy-section";
 
 // Updated props type alias using Zod schema
 export type TestimonialsSectionProps = z.infer<

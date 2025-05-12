@@ -2,8 +2,8 @@
 
 import { Section } from "@/components/layout/Section";
 import { Badge } from "@/components/ui/badge";
-import type { processSectionDataSchema } from "@/lib/schemas/sections.schema";
 import LazySection from "@/components/ui/lazy-section";
+import type { processSectionDataSchema } from "@/lib/schemas/sections.schema";
 import type { z } from "zod";
 
 // Updated props type alias using Zod schema

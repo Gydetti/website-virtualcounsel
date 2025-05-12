@@ -1,11 +1,11 @@
 "use client";
 import { Section } from "@/components/layout/Section";
 import { Badge } from "@/components/ui/badge";
+import LazySection from "@/components/ui/lazy-section";
 import type { solutionVisionSectionDataSchema } from "@/lib/schemas/sections.schema";
 import { motion } from "framer-motion";
 import { CheckCircle } from "lucide-react";
 import type { z } from "zod";
-import LazySection from "@/components/ui/lazy-section";
 
 // Updated props type alias using Zod schema
 export type SolutionVisionSectionProps = z.infer<
@@ -36,7 +36,11 @@ export default function SolutionVisionSection({
 			className="bg-gradient-to-b from-[rgba(var(--accent-rgb),0.1)] via-transparent to-transparent"
 		>
 			{/* Scroll reveal header */}
-			<LazySection animation="slide-up" delay={0} className="text-center mb-16 max-w-4xl mx-auto">
+			<LazySection
+				animation="slide-up"
+				delay={0}
+				className="text-center mb-16 max-w-4xl mx-auto"
+			>
 				<motion.div custom={0} variants={textVariants} className="mb-4">
 					<Badge variant="secondary" className="px-3 py-1 rounded-full text-sm">
 						{badgeText}

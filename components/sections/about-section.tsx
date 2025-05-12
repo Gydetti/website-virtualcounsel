@@ -3,13 +3,13 @@
 import { Section } from "@/components/layout/Section";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import LazySection from "@/components/ui/lazy-section";
 import OptimizedImage from "@/components/ui/optimized-image";
 import type { aboutSectionDataSchema } from "@/lib/schemas/sections.schema";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import type { z } from "zod";
-import LazySection from "@/components/ui/lazy-section";
 
 // Updated props type alias using Zod schema
 export type AboutSectionProps = z.infer<typeof aboutSectionDataSchema>;

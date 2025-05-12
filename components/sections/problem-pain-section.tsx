@@ -1,10 +1,10 @@
 "use client";
 import { Section } from "@/components/layout/Section";
+import LazySection from "@/components/ui/lazy-section";
 import type { problemPainSectionDataSchema } from "@/lib/schemas/sections.schema";
+import { motion } from "framer-motion";
 import { AlertTriangle } from "lucide-react";
 import type { z } from "zod";
-import LazySection from "@/components/ui/lazy-section";
-import { motion } from "framer-motion";
 
 // Updated props type alias using Zod schema
 export type ProblemPainSectionProps = z.infer<

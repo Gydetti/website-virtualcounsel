@@ -9,12 +9,12 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
+import LazySection from "@/components/ui/lazy-section";
 import type {
 	pricingCardSchema,
 	pricingSectionDataSchema,
 } from "@/lib/schemas/sections.schema";
 import type { z } from "zod";
-import LazySection from "@/components/ui/lazy-section";
 
 // Updated props type alias using Zod schema
 export type PricingSectionProps = z.infer<typeof pricingSectionDataSchema>;
@@ -37,7 +37,11 @@ export default function PricingSection({
 				{description && <p className="section-subtitle">{description}</p>}
 			</LazySection>
 			<div className="grid gap-8 md:grid-cols-3 items-stretch">
-				<LazySection animation="fade" delay={0.1} className="grid gap-8 md:grid-cols-3 items-stretch">
+				<LazySection
+					animation="fade"
+					delay={0.1}
+					className="grid gap-8 md:grid-cols-3 items-stretch"
+				>
 					{cards.map((card: z.infer<typeof pricingCardSchema>) => (
 						<Card
 							key={card.id} // Use card.id

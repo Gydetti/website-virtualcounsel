@@ -10,10 +10,10 @@ import {
 } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import LazySection from "@/components/ui/lazy-section";
 import type { ctaSchema } from "@/lib/schemas/common.schema";
 import Link from "next/link";
 import type { z } from "zod";
-import LazySection from "@/components/ui/lazy-section";
 
 export interface FaqItem {
 	question: string;

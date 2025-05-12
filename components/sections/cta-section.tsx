@@ -1,11 +1,11 @@
 import { Section } from "@/components/layout/Section";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import LazySection from "@/components/ui/lazy-section";
 import type { ctaSectionDataSchema } from "@/lib/schemas/sections.schema";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import type { z } from "zod";
-import LazySection from "@/components/ui/lazy-section";
 
 // Updated props type alias using Zod schema
 export type CtaSectionProps = z.infer<typeof ctaSectionDataSchema>;
@@ -28,7 +28,11 @@ export default function CtaSection({
 			<div className="hidden sm:block absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
 			<div className="hidden sm:block absolute bottom-0 left-0 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl" />
 
-			<LazySection animation="slide-up" delay={0} className="relative z-10 text-center">
+			<LazySection
+				animation="slide-up"
+				delay={0}
+				className="relative z-10 text-center"
+			>
 				{badgeText && (
 					<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 						{badgeText}

@@ -11,6 +11,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
+import LazySection from "@/components/ui/lazy-section";
 import type {
 	serviceItemSchema,
 	servicesSectionDataSchema,
@@ -18,7 +19,6 @@ import type {
 import { ArrowRight, BarChart2, Globe, Zap } from "lucide-react";
 import Link from "next/link";
 import type { z } from "zod";
-import LazySection from "@/components/ui/lazy-section";
 
 // Map of icon names to components
 const iconMap: Record<string, React.ReactNode> = {

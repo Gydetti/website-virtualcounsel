@@ -2,8 +2,8 @@
 
 import { Section } from "@/components/layout/Section";
 import { Badge } from "@/components/ui/badge";
-import type { valuePropSectionDataSchema } from "@/lib/schemas/sections.schema";
 import LazySection from "@/components/ui/lazy-section";
+import type { valuePropSectionDataSchema } from "@/lib/schemas/sections.schema";
 import { CheckCircle } from "lucide-react";
 import type { ComponentType, SVGProps } from "react";
 import type { z } from "zod";

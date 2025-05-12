@@ -1,9 +1,9 @@
 "use client";
 import type { ReactNode } from "react";
 
+import { siteConfig } from "@/lib/siteConfig";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { siteConfig } from "@/lib/siteConfig";
 
 interface LazySectionProps {
 	children: ReactNode;
@@ -33,7 +33,9 @@ export default function LazySection({
 	// Combine user classes and overflow hiding for horizontal slide animations
 	const wrapperClass = [
 		className,
-		animation === "slide-left" || animation === "slide-right" ? "overflow-x-hidden" : "",
+		animation === "slide-left" || animation === "slide-right"
+			? "overflow-x-hidden"
+			: "",
 	]
 		.filter(Boolean)
 		.join(" ");

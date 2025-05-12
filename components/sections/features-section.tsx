@@ -2,13 +2,13 @@
 import { Section } from "@/components/layout/Section";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import LazySection from "@/components/ui/lazy-section";
 import OptimizedImage from "@/components/ui/optimized-image";
 import type { featuresSectionDataSchema } from "@/lib/schemas/sections.schema";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle, XCircle } from "lucide-react";
 import Link from "next/link";
 import type { z } from "zod";
-import LazySection from "@/components/ui/lazy-section";
 
 // Updated props type alias using Zod schema
 export type FeaturesSectionProps = z.infer<typeof featuresSectionDataSchema>;
@@ -53,25 +53,26 @@ export default function FeaturesSection({
 				</div>
 
 				<div className="relative grid md:grid-cols-2 gap-8 md:gap-0 mb-0">
-					{comparison?.without?.items && comparison.without.items.length > 0 && (
-						<LazySection
-							animation="slide-left"
-							delay={0}
-							className="md:w-4/5 md:mx-auto rounded-lg border border-red-200 bg-red-50/50 backdrop-blur p-6 hover:bg-red-100/50 transition-colors text-gray-800"
-						>
-							{withoutTitle && (
-								<h3 className="text-red-400 mb-4">{withoutTitle}</h3>
-							)}
-							<ul className="space-y-3">
-								{withoutItems?.map((item) => (
-									<li key={item} className="flex items-start">
-										<XCircle className="text-red-400 mr-2 h-5 w-5 flex-shrink-0 mt-0.5" />
-										<span className="text-gray-700">{item}</span>
-									</li>
-								))}
-							</ul>
-						</LazySection>
-					)}
+					{comparison?.without?.items &&
+						comparison.without.items.length > 0 && (
+							<LazySection
+								animation="slide-left"
+								delay={0}
+								className="md:w-4/5 md:mx-auto rounded-lg border border-red-200 bg-red-50/50 backdrop-blur p-6 hover:bg-red-100/50 transition-colors text-gray-800"
+							>
+								{withoutTitle && (
+									<h3 className="text-red-400 mb-4">{withoutTitle}</h3>
+								)}
+								<ul className="space-y-3">
+									{withoutItems?.map((item) => (
+										<li key={item} className="flex items-start">
+											<XCircle className="text-red-400 mr-2 h-5 w-5 flex-shrink-0 mt-0.5" />
+											<span className="text-gray-700">{item}</span>
+										</li>
+									))}
+								</ul>
+							</LazySection>
+						)}
 
 					{comparison?.with?.items && comparison.with.items.length > 0 && (
 						<LazySection
