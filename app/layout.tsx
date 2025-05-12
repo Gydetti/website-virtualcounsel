@@ -2,7 +2,6 @@ import { Poppins, Raleway } from "next/font/google";
 import { Suspense } from "react";
 import type { ReactNode } from "react";
 import "./globals.css";
-import ThemeVariablesProvider from "@/components/ThemeVariablesProvider";
 import CookiebotLoaderClient from "@/components/cookie/CookiebotLoaderClient";
 import CookieConsentBanner from "@/components/cookie/cookie-consent-banner";
 import Footer from "@/components/layout/footer";
@@ -55,10 +54,59 @@ function hexToRgbServer(hex: string): string {
 	return `${r}, ${g}, ${b}`;
 }
 
+// Helper to convert hex to HSL (for light/dark variants)
+function hexToHslServer(hex: string): [number, number, number] {
+	const cleanHex = hex.replace("#", "");
+	const r = Number.parseInt(cleanHex.substring(0, 2), 16) / 255;
+	const g = Number.parseInt(cleanHex.substring(2, 4), 16) / 255;
+	const b = Number.parseInt(cleanHex.substring(4, 6), 16) / 255;
+	const max = Math.max(r, g, b);
+	const min = Math.min(r, g, b);
+	let h = 0;
+	let s = 0;
+	const l = (max + min) / 2;
+	if (max !== min) {
+		const d = max - min;
+		s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+		switch (max) {
+			case r:
+				h = (g - b) / d + (g < b ? 6 : 0);
+				break;
+			case g:
+				h = (b - r) / d + 2;
+				break;
+			case b:
+				h = (r - g) / d + 4;
+				break;
+		}
+		h /= 6;
+	}
+	return [Math.round(h * 360), Math.round(s * 100), Math.round(l * 100)];
+}
+
+function hslToHexServer(h: number, s: number, l: number): string {
+	const s1 = s / 100;
+	const l1 = l / 100;
+	const k = (n: number) => (n + h / 30) % 12;
+	const a = s1 * Math.min(l1, 1 - l1);
+	const f = (n: number) => {
+		const color = l1 - a * Math.max(Math.min(k(n) - 3, 9 - k(n), 1), -1);
+		return Math.round(255 * color)
+			.toString(16)
+			.padStart(2, "0");
+	};
+	return `#${f(0)}${f(8)}${f(4)}`;
+}
+
 function getThemeCssVars(theme: typeof siteConfig.theme): string {
+	const [h, s, l] = hexToHslServer(theme.colors.primary);
+	const primaryLight = hslToHexServer(h, s, Math.min(l + 20, 100));
+	const primaryDark = hslToHexServer(h, s, Math.max(l - 20, 0));
 	return `
 		--primary: ${theme.colors.primary};
 		--primary-rgb: ${hexToRgbServer(theme.colors.primary)};
+		--primary-light: ${primaryLight};
+		--primary-dark: ${primaryDark};
 		--secondary: ${theme.colors.secondary};
 		--secondary-rgb: ${hexToRgbServer(theme.colors.secondary)};
 		--accent: ${theme.colors.accent};
@@ -67,6 +115,24 @@ function getThemeCssVars(theme: typeof siteConfig.theme): string {
 		${theme.colors.header ? `--header: ${theme.colors.header};` : ""}
 		${theme.colors.body ? `--body: ${theme.colors.body};` : ""}
 		${theme.colors.lightGrey ? `--light-grey: ${theme.colors.lightGrey};` : ""}
+		--white: #fff;
+		--black: #000;
+		--font-heading: ${theme.typography.headingFont};
+		--font-body: ${theme.typography.bodyFont};
+		--font-base-size: ${theme.typography.baseSize};
+		--space-xs: ${theme.spacing.xs};
+		--space-sm: ${theme.spacing.sm};
+		--space-md: ${theme.spacing.md};
+		--space-lg: ${theme.spacing.lg};
+		--space-xl: ${theme.spacing.xl};
+		--radius-base: ${theme.borders.radiusBase};
+		--border-width-base: ${theme.borders.widthBase};
+		--border-color-base: ${theme.borders.colorBase};
+		--shadow-sm: ${theme.shadows.sm};
+		--shadow-md: ${theme.shadows.md};
+		--shadow-lg: ${theme.shadows.lg};
+		--container-max-width: ${theme.layout.containerMaxWidth};
+		--container-padding: ${theme.layout.containerPadding};
 	`.trim();
 }
 
@@ -144,23 +210,21 @@ export default function RootLayout({
 				)}
 				{/* Cookiebot loader for production consent flow */}
 				<CookiebotLoaderClient />
-				<ThemeVariablesProvider>
-					<DataLayerProvider>
-						{/* Tracking scripts that respect cookie consent */}
-						<TrackingScripts />
-						<Suspense fallback={null}>
-							<PageViewTracker />
-						</Suspense>
+				<DataLayerProvider>
+					{/* Tracking scripts that respect cookie consent */}
+					<TrackingScripts />
+					<Suspense fallback={null}>
+						<PageViewTracker />
+					</Suspense>
 
-						<div className="flex min-h-screen flex-col">
-							<Header />
-							<main className="flex-1">{children}</main>
-							<Footer />
-						</div>
-						<ScrollToTop />
-						<Toaster />
-					</DataLayerProvider>
-				</ThemeVariablesProvider>
+					<div className="flex min-h-screen flex-col">
+						<Header />
+						<main className="flex-1">{children}</main>
+						<Footer />
+					</div>
+					<ScrollToTop />
+					<Toaster />
+				</DataLayerProvider>
 			</body>
 		</html>
 	);

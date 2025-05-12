@@ -211,10 +211,10 @@ Quick note: when forming this doc, I think we didn't include "Resources" section
 2.  **Update `site.config.local.ts` with Theme Foundation**:
     *   Populate the new theme structure in `site.config.local.ts` with current/sensible default values.
 
-3.  **Implement CSS Variable Generation (`app/layout.tsx` or `components/ThemeVariablesProvider.tsx`)**:
-    *   Create a client component (`ThemeVariablesProvider`) or logic within `app/layout.tsx` that:
+3.  **Implement CSS Variable Generation (`app/layout.tsx`)**:
+    *   Create logic within `app/layout.tsx` that:
         *   Reads the theme object from the (now validated) `siteConfig`.
-        *   Generates a comprehensive set of CSS custom properties and injects them into the `:root` element (or a specific theme provider wrapper) via a `<style>` tag or by setting inline styles on `document.documentElement`.
+        *   Generates a comprehensive set of CSS custom properties and injects them into the `:root` element via a `<style>` tag.
         *   Example: `--theme-font-heading: 'Poppins'; --theme-color-primary: #FF0000; --theme-spacing-md: 1rem;`
 
 4.  **Refactor `tailwind.config.ts` and `app/globals.css`**:
@@ -242,8 +242,7 @@ Below are the remaining tasks to complete Phase 1:
 - Flesh out `lib/schemas/theme.schema.ts` with advanced theme sub-schemas (typography, spacing scale, borders, shadows, layout).
 - Update `lib/schemas/siteConfig.schema.ts` to integrate the new theme schema.
 - Populate the `theme` object in `lib/site.config.local.ts` with placeholder values for all new theme properties.
-- Implement a `ThemeVariablesProvider` (or similar) to inject CSS custom properties based on the validated theme config.
-- Refactor `app/layout.tsx` (or add a top-level theme provider wrapper) to include CSS variable injection.
+- Implement server-side CSS variable injection in `app/layout.tsx` to inject CSS custom properties based on the validated theme config.
 - Refactor `tailwind.config.ts` to use CSS variables for colors, fonts, spacing (borderRadius, shadows, container settings).
 - Update `app/globals.css` to define and use the CSS variables (fallbacks, base styles, and utility classes).
 - Re-run the full build (`npm run build`), lint and auto-fix imports (`npm run lint -- --fix`), unit/integration tests (`npm test`), and E2E tests (`npx playwright test`) to ensure zero errors or warnings.

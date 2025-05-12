@@ -19,7 +19,7 @@ For every theme color (primary, secondary, accent, etc.), expose **both**:
   - `--primary-rgb: 37,99,235;`
   - `--secondary-rgb: 255,157,72;`
 
-This is handled automatically in `ThemeVariablesProvider.tsx` by converting the hex to RGB and setting both variables on `:root`.
+This is handled automatically in `app/layout.tsx` by converting the hex to RGB and setting both variables on `:root` at build/SSR time.
 
 ## How to Use in Tailwind & Components
 
@@ -31,8 +31,8 @@ This is handled automatically in `ThemeVariablesProvider.tsx` by converting the 
 
 ## Migration Steps (One-Time Codebase Update)
 
-1. **ThemeVariablesProvider:**
-   - For each color in `siteConfig.theme.colors`, set both `--color` (hex) and `--color-rgb` (computed RGB) on `:root`.
+1. **Server-side CSS Variable Injection:**
+   - For each color in `siteConfig.theme.colors`, set both `--color` (hex) and `--color-rgb` (computed RGB) on `:root` in a `<style>` tag in `app/layout.tsx`.
 2. **Tailwind Config:**
    - Keep color utilities mapped to `var(--primary)`, `var(--secondary)`, etc. for solid fills.
    - For alpha/opacity, use arbitrary values: `bg-[rgba(var(--secondary-rgb),0.1)]`.
@@ -62,7 +62,7 @@ colors: {
 }
 ```
 
-**ThemeVariablesProvider.tsx**
+**app/layout.tsx**
 ```ts
 root.style.setProperty('--secondary', theme.colors.secondary);
 root.style.setProperty('--secondary-rgb', '255,157,72');

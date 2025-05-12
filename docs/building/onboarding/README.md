@@ -941,7 +941,7 @@ This codebase is designed for maximum flexibility, automation, and AI-driven cus
 ### globals.css: Fallbacks & SSR Safety
 - `app/globals.css` defines default CSS variables for all theme tokens (e.g., `--primary`, `--font-heading`).
 - These ensure the site renders with sensible defaults during SSR or before JS loads, preventing a "flash of unstyled content" (FOUC).
-- **At runtime,** the `ThemeVariablesProvider` component reads the config and sets the real values on `:root` via JS, making the site fully dynamic.
+- **At build/SSR time,** the theme config is read and all CSS variables are injected into the <head> via a <style> tag in `app/layout.tsx`, making the site fully dynamic without any client-side provider.
 
 ### Dual CSS Variable Pattern for Colors
 - For each theme color (primary, secondary, accent, etc.), both a hex and an RGB variable are set:
@@ -958,7 +958,7 @@ This codebase is designed for maximum flexibility, automation, and AI-driven cus
 - To add a new color (e.g., info, warning):
   1. Add both `--info` and `--info-rgb` to `globals.css` with sensible defaults.
   2. Add the color to `site.config.local.ts`.
-  3. Update `ThemeVariablesProvider` to set both variables at runtime.
+  3. Update the server-side CSS variable generator in `app/layout.tsx` to set both variables at build/SSR time.
   4. Add new Button/component variants as needed.
 
 ### Legacy CSS Classes
@@ -970,12 +970,12 @@ This codebase is designed for maximum flexibility, automation, and AI-driven cus
 - Always use theme variables—never hardcode colors or fonts in components.
 - Use the Button component for all buttons, not custom classes.
 - When onboarding a new client, update only `site.config.local.ts` and (optionally) the fallbacks in `globals.css`.
-- Ensure `ThemeVariablesProvider` is mounted at the top level so all components get the correct theme values.
+- All theme variables are now injected server-side; no client provider is needed.
 
 ### Why Are Colors/Fonts in Both Places?
 - `globals.css` provides SSR/FOUC-safe fallbacks.
 - `site.config.local.ts` is the dynamic, runtime source of truth.
-- `ThemeVariablesProvider` syncs the two at runtime.
+- The server-side logic in `app/layout.tsx` syncs the two at build/SSR time.
 
 ---
 
@@ -985,7 +985,7 @@ This setup ensures the site is always styled, always dynamic, and always ready f
 
 > **Performance Note (Flagged for Future Refactor by Gydo):**
 >
-> If you do **not** need runtime theme switching (e.g., dark mode, live preview, A/B tests, or user-driven theme changes), you can safely remove the `ThemeVariablesProvider` client component and move all CSS variable generation logic into your server layout (`app/layout.tsx`).
+> If you do **not** need runtime theme switching (e.g., dark mode, live preview, A/B tests, or user-driven theme changes), you can safely keep all CSS variable generation logic in your server layout (`app/layout.tsx`) and do not need a client-side provider.
 >
 > **Benefits:**
 > - Less client-side JavaScript and a smaller bundle

@@ -1,7 +1,7 @@
 /* Spark Button Effect - Theme Variable Version */
 :root {
 	--transition: 0.25s;
-	--spark: 3s; /* Controls the overall speed of one full beam cycle */
+	--spark: 2.5s; /* Controls the overall speed of one full beam cycle */
 	/* --speed: 1.2s; -- This variable is not currently used by the beam animations */
 }
 
