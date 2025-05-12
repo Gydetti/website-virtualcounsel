@@ -5,6 +5,7 @@ import type { solutionVisionSectionDataSchema } from "@/lib/schemas/sections.sch
 import { motion } from "framer-motion";
 import { CheckCircle } from "lucide-react";
 import type { z } from "zod";
+import LazySection from "@/components/ui/lazy-section";
 
 // Updated props type alias using Zod schema
 export type SolutionVisionSectionProps = z.infer<
@@ -34,13 +35,8 @@ export default function SolutionVisionSection({
 			id="solution-vision-section"
 			className="bg-gradient-to-b from-[rgba(var(--accent-rgb),0.1)] via-transparent to-transparent"
 		>
-			{/* Header Animations */}
-			<motion.div
-				initial="hidden"
-				whileInView="visible"
-				viewport={{ once: true }}
-				className="text-center mb-16 max-w-4xl mx-auto "
-			>
+			{/* Scroll reveal header */}
+			<LazySection animation="slide-up" delay={0} className="text-center mb-16 max-w-4xl mx-auto">
 				<motion.div custom={0} variants={textVariants} className="mb-4">
 					<Badge variant="secondary" className="px-3 py-1 rounded-full text-sm">
 						{badgeText}
@@ -60,7 +56,7 @@ export default function SolutionVisionSection({
 				>
 					{description}
 				</motion.p>
-			</motion.div>
+			</LazySection>
 
 			{/* Unified motion glass card for subheading & benefits */}
 			<motion.div
