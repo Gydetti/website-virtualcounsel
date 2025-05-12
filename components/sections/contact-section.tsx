@@ -106,7 +106,7 @@ export default function ContactSection({
 		<Section
 			id="contact-section"
 			aria-labelledby="contact-section-heading"
-			className="relative overflow-hidden "
+			className="relative overflow-hidden bg-transparent"
 		>
 			{/* Load reCAPTCHA script if key provided */}
 			{recaptchaKey && (

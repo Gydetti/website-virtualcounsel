@@ -55,7 +55,7 @@ export default function BlogSection({
 							animation="fade"
 							delay={index * 0.1}
 						>
-							<Card className="h-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border-gray-200 shadow-sm">
+							<Card className="w-full h-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border-gray-200 shadow-sm">
 								<div className="relative h-48 w-full overflow-hidden">
 									<Image
 										src={post.image?.src || "/placeholder.svg"}

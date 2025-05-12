@@ -151,7 +151,7 @@ export default function TestimonialsSection({
 
 				<button
 					type="button"
-					className="hidden sm:inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input hover:bg-accent hover:text-accent-foreground absolute top-1/2 -left-12 -translate-y-1/2 bg-white/90 shadow-lg hover:shadow-xl z-10 rounded-full h-12 w-12"
+					className="hidden sm:inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input hover:bg-accent hover:text-accent-foreground absolute top-1/2 left-4 -translate-y-1/2 bg-white/90 shadow-lg hover:shadow-xl z-10 rounded-full h-12 w-12"
 					onClick={prevTestimonial}
 					aria-label="Previous testimonial"
 				>
@@ -160,7 +160,7 @@ export default function TestimonialsSection({
 
 				<button
 					type="button"
-					className="hidden sm:inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input hover:bg-accent hover:text-accent-foreground absolute top-1/2 -right-12 -translate-y-1/2 bg-white/90 shadow-lg hover:shadow-xl z-10 rounded-full h-12 w-12"
+					className="hidden sm:inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input hover:bg-accent hover:text-accent-foreground absolute top-1/2 right-4 -translate-y-1/2 bg-white/90 shadow-lg hover:shadow-xl z-10 rounded-full h-12 w-12"
 					onClick={nextTestimonial}
 					aria-label="Next testimonial"
 				>

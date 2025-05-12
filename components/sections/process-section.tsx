@@ -56,7 +56,7 @@ export default function ProcessSection({
 										{step.number || String(index + 1).padStart(2, "0")}
 									</div>
 								</div>
-								<div className="flex-grow bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:shadow-lg transition-shadow">
+								<div className="flex-grow w-full bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:shadow-lg transition-shadow">
 									<h3 className="mb-1">{step.title}</h3>
 									{step.subtitle && (
 										<p className="text-primary font-medium mb-3">

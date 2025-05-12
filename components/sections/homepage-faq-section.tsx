@@ -86,11 +86,13 @@ export default function HomepageFaqSection({
 						</Accordion>
 					</LazySection>
 				))}
-				<Button size="lg" className="mt-8" asChild>
-					<Link href={cta.href || "/contact"}>
-						{cta.text || "See all FAQs"}
-					</Link>
-				</Button>
+				<div className="flex justify-center mt-8">
+					<Button size="lg" asChild>
+						<Link href={cta.href || "/contact"}>
+							{cta.text || "See all FAQs"}
+						</Link>
+					</Button>
+				</div>
 			</Section>
 		</>
 	);

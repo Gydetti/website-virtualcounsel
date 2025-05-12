@@ -50,7 +50,7 @@ export default function ValuePropSection({
 							key={benefit.id}
 							animation="slide-up"
 							delay={idx * 0.2}
-							className="flex flex-col items-start space-y-3 rounded-lg border p-6 shadow-sm hover:shadow-md"
+							className="flex flex-col items-start space-y-3 rounded-lg p-6 shadow-sm hover:shadow-md"
 						>
 							<div className="flex h-12 w-12 items-center justify-center rounded-full bg-[rgba(var(--primary-rgb),0.1)] text-primary dark:bg-[rgba(var(--primary-rgb),0.2)] dark:text-primary-foreground">
 								<Icon className="h-6 w-6" />

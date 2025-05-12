@@ -30,12 +30,10 @@ export default function LazySection({
 	const [isVisible, setIsVisible] = useState(false);
 	const ref = useRef<HTMLDivElement>(null);
 
-	// Add horizontal overflow hiding for horizontal slide animations
+	// Combine user classes and overflow hiding for horizontal slide animations
 	const wrapperClass = [
 		className,
-		animation === "slide-left" || animation === "slide-right"
-			? "overflow-x-hidden"
-			: "",
+		animation === "slide-left" || animation === "slide-right" ? "overflow-x-hidden" : "",
 	]
 		.filter(Boolean)
 		.join(" ");
