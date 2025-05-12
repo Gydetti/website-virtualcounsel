@@ -2,9 +2,8 @@
 import { Section } from "@/components/layout/Section";
 import { Badge } from "@/components/ui/badge";
 import type {
-	ctaSchema,
 	solutionVisionSectionDataSchema,
-} from "@/lib/schemas/sections.schema"; // ctaSchema for calloutCta
+} from "@/lib/schemas/sections.schema";
 import { motion } from "framer-motion";
 import { CheckCircle } from "lucide-react";
 import type { z } from "zod";

@@ -37,7 +37,8 @@ export const serviceItemSchema = z.object({
 });
 
 export const servicesSectionDataSchema = z.object({
-	title: z.string().optional(),
+	badgeText: z.string().optional(),
+	heading: z.string().optional(),
 	description: z.string().optional(),
 	services: z.array(serviceItemSchema),
 	displayType: z.enum(["grid", "list", "carousel"]).optional().default("grid"),

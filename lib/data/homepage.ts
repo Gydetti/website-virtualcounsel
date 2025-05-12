@@ -375,7 +375,7 @@ export const servicesPreviewSectionData: Omit<
 	z.infer<typeof servicesSectionDataSchema>,
 	"services"
 > = {
-	title: "Services We Offer", // Schema has 'title', not 'heading'. No 'badgeText' in schema.
+	heading: "Services We Offer",
 	description:
 		"Explore our range of expert services designed to help your business thrive.",
 	viewAllCta: { text: "View All Services", href: "/services" },
