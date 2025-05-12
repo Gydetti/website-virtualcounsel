@@ -70,7 +70,7 @@ export default function OptimizedImage({
 				fill={fill}
 				sizes={sizes || defaultSizes}
 				priority={priority}
-				onLoadingComplete={handleImageLoad}
+				onLoad={handleImageLoad}
 				onError={handleImageError}
 				className={cn(
 					"transition-opacity duration-300",

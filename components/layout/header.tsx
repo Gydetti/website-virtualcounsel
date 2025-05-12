@@ -71,8 +71,8 @@ export default function Header() {
 				)}
 				aria-label="Global"
 			>
-				<div className="flex lg:flex-1">
-					<Link href="/" className="-m-0 p-1.5">
+				<div className={cn("flex lg:flex-1 transition-transform duration-300 origin-left", scrolled ? "scale-90" : "scale-100")}>
+					<Link href="/" className="-m-1.5 p-1.5">
 						<span className="sr-only">{siteConfig.site.name}</span>
 						<div className="h-10 w-auto flex items-center">
 							{siteConfig.theme.logo.src ? (

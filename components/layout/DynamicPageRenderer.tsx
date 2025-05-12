@@ -129,6 +129,10 @@ const getSectionData = async (
 				return homepageData.homepageFaqSectionData;
 			case "AboutSection":
 				return homepageData.aboutSectionData;
+			case "ProcessSection":
+				return homepageData.processSectionData;
+			case "ContactSection":
+				return homepageData.contactSectionData;
 			default:
 				console.warn(
 					`Data for section type "${sectionConfig.sectionType}" (id: ${sectionConfig.id}) not implemented for homepage.`,

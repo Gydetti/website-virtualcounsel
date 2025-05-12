@@ -194,13 +194,13 @@ export const siteConfig: SiteConfigSchema = {
 				{ id: "home-problem-pain", sectionType: "ProblemPainSection" },
 				{ id: "home-solution-vision", sectionType: "SolutionVisionSection" },
 				{ id: "home-features", sectionType: "FeaturesSection" },
-				{ id: "home-services", sectionType: "ServicesSection" }, // <--- Or use ServicesPreviewSection for a summary
 				{ id: "home-testimonials", sectionType: "TestimonialsSection" },
 				{ id: "home-cta", sectionType: "CtaSection" },
 				{ id: "home-about", sectionType: "AboutSection" },
+				{ id: "home-services", sectionType: "ServicesSection" }, // <--- Or use ServicesPreviewSection for a summary
 				{ id: "home-process", sectionType: "ProcessSection" },
-				{ id: "home-faq", sectionType: "HomepageFaqSection" }, // <--- FAQ specifically for homepage
 				{ id: "home-blog", sectionType: "BlogSection" }, // <--- Or use BlogPreviewSection for a summary
+				{ id: "home-faq", sectionType: "HomepageFaqSection" }, // <--- FAQ specifically for homepage
 				{ id: "home-contact", sectionType: "ContactSection" },
 			],
 		},

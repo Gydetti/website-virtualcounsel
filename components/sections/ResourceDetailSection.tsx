@@ -5,9 +5,7 @@ import type {
 import type { z } from "zod";
 
 // Updated paths for the new block components
-import FormBlock from "@/components/content-blocks/FormBlock";
-import ImageBlock from "@/components/content-blocks/ImageBlock";
-import TextBlock from "@/components/content-blocks/TextBlock";
+import ContentBlockRenderer from "@/components/content-blocks/ContentBlockRenderer";
 import Image from "next/image";
 
 interface ResourceDetailSectionProps {
@@ -45,26 +43,9 @@ export default function ResourceDetailSection({
 
 			{/* Dynamic Content Blocks from resource.sections */}
 			{resource.sections.map(
-				(section: z.infer<typeof resourceContentBlockSchema>, i) => {
-					const key = `${section.type}-${i}`;
-					switch (section.type) {
-						case "text":
-							return <TextBlock key={key} content={section.content} />;
-						case "form":
-							return <FormBlock key={key} {...section} />;
-						case "image":
-							return (
-								<ImageBlock
-									key={key}
-									{...section.image}
-									caption={section.caption}
-								/>
-							);
-						default:
-							console.error("Unhandled resource section type", section);
-							return null;
-					}
-				},
+				(block, i) => (
+					<ContentBlockRenderer key={`${block.type}-${i}`} block={block} />
+				),
 			)}
 		</>
 	);

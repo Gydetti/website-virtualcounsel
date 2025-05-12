@@ -1,48 +1,87 @@
 import { z } from "zod";
-import { imageSchema, seoSchema } from "./common.schema"; // Assuming cta might be a block type later
+import { ctaSchema, imageSchema, linkSchema } from "./common.schema";
 
-// Block type for simple text content
-export const textBlockSchema = z.object({
-	type: z.literal("text"),
-	content: z.string().min(1, "Text content cannot be empty"),
+// Base block type for discrimination
+const baseBlockSchema = z.object({
+	id: z.string().uuid().optional(), // Optional unique ID for React keys or CMS linking
 });
 
-// Block type for images
-export const imageBlockSchema = z.object({
+// Specific Block Schemas
+export const headingBlockSchema = baseBlockSchema.extend({
+	type: z.literal("heading"),
+	level: z.enum(["h1", "h2", "h3", "h4", "h5", "h6"]),
+	text: z.string().nonempty(),
+});
+
+export const textBlockSchema = baseBlockSchema.extend({
+	type: z.literal("text"),
+	// Allowing string for simple cases, could be extended for Markdown/HTML later
+	content: z.string().nonempty(), 
+});
+
+export const imageBlockSchema = baseBlockSchema.extend({
 	type: z.literal("image"),
-	image: imageSchema, // Reuses common imageSchema { src, alt, width, height, blurDataURL }
+	image: imageSchema, // Use the common image schema
 	caption: z.string().optional(),
 });
 
-// Block type for forms (e.g., Hubspot, Mailchimp embeds)
-// For data, we store config rather than ReactNode
-export const formBlockConfigSchema = z.object({
-	provider: z.enum(["hubspot", "mailchimp", "custom"]).optional(), // Made optional, can be identified by other fields
-	portalId: z.string().optional(), // Example: for Hubspot
-	formId: z.string().optional(), // Example: for Hubspot
-	embedCode: z.string().optional(), // For custom HTML embeds
-	// Add other necessary fields based on how forms will be rendered
+export const videoBlockSchema = baseBlockSchema.extend({
+	type: z.literal("video"),
+	src: z.string().url(), // Expecting a URL for the video source
+	caption: z.string().optional(),
 });
 
-export const formBlockSchema = z.object({
+export const quoteBlockSchema = baseBlockSchema.extend({
+	type: z.literal("quote"),
+	text: z.string().nonempty(),
+	author: z.string().optional(),
+	source: linkSchema.optional(), // Optional link for the source
+});
+
+// Use the shape of ctaSchema directly for simplicity
+export const ctaBlockSchema = baseBlockSchema.extend({
+	type: z.literal("cta"),
+	...ctaSchema.shape, // Includes text, href, external?, variant?
+});
+
+export const listBlockSchema = baseBlockSchema.extend({
+	type: z.literal("list"),
+	ordered: z.boolean().default(false),
+	items: z.array(z.string().nonempty()).nonempty(), // Ensure items are non-empty strings and the array has at least one item
+});
+
+// Add other block types as needed, e.g., code block, divider, form embed
+
+// Form block schemas for contact or embed forms
+export const formBlockConfigSchema = z.object({
+	provider: z.enum(["hubspot", "mailchimp", "custom"]).optional(),
+	portalId: z.string().optional(),
+	formId: z.string().optional(),
+	embedCode: z.string().optional(),
+});
+
+export const formBlockSchema = baseBlockSchema.extend({
 	type: z.literal("form"),
 	config: formBlockConfigSchema,
-	// Placeholder for a title or intro text before the form
 	title: z.string().optional(),
 	description: z.string().optional(),
 });
 
-// Discriminated union of all content block types for resources
+// Resource content blocks include all block types including forms
 export const resourceContentBlockSchema = z.discriminatedUnion("type", [
+	headingBlockSchema,
 	textBlockSchema,
 	imageBlockSchema,
+	videoBlockSchema,
+	quoteBlockSchema,
+	ctaBlockSchema,
+	listBlockSchema,
 	formBlockSchema,
-	// Future block types can be added here (e.g., video, quote, cta)
 ]);
 
-// Schema for an individual resource (e.g., e-book, whitepaper)
+// Schema for individual resource pages
 export const resourceSchema = z.object({
-	slug: z.string().min(1),
+	slug: z.string().nonempty(),
 	resourceType: z.enum([
 		"ebook",
 		"whitepaper",
@@ -51,14 +90,25 @@ export const resourceSchema = z.object({
 		"report",
 		"template",
 		"other",
-	]), // Renamed from 'type' to avoid conflict, made more generic
-	title: z.string().min(1),
+	]),
+	title: z.string().nonempty(),
 	subtitle: z.string().optional(),
-	heroImage: imageSchema, // Main image for the resource
-	sections: z
-		.array(resourceContentBlockSchema)
-		.min(1, "Resource must have at least one content section"),
-	seo: seoSchema.optional(),
-	publishedDate: z.string().pipe(z.coerce.date()).optional(), // Example of additional metadata
-	// author: authorSchema.optional(), // If resources have authors (authorSchema from pages.schema.ts or common)
+	heroImage: imageSchema,
+	sections: z.array(resourceContentBlockSchema).min(1),
+	seo: z.any().optional(),
+	publishedDate: z.string().optional(),
 });
+
+export const contentBlockSchema = z.discriminatedUnion("type", [
+	headingBlockSchema,
+	textBlockSchema,
+	imageBlockSchema,
+	videoBlockSchema,
+	quoteBlockSchema,
+	ctaBlockSchema,
+	listBlockSchema,
+	formBlockSchema,
+	// Add other block schemas here
+]);
+
+export type ContentBlock = z.infer<typeof contentBlockSchema>;

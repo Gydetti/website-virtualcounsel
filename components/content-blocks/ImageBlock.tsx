@@ -1,32 +1,34 @@
-import Image from "next/image";
+import type { FC } from "react";
+import Image from "next/image"; // Use standard Next.js Image
 
-export interface ImageBlockProps {
-	src: string;
-	alt: string;
-	width?: number;
-	height?: number;
+interface ImageBlockProps {
+	image: {
+		src: string;
+		alt: string;
+		width?: number;
+		height?: number;
+	};
 	caption?: string;
 }
 
-export default function ImageBlock({
-	src,
-	alt,
-	width = 800,
-	height = 600,
-	caption,
-}: ImageBlockProps) {
+const ImageBlock: FC<ImageBlockProps> = ({ image, caption }) => {
+	// Default width/height or fetch from image metadata if available
+	const width = image.width || 800; // Example default
+	const height = image.height || 600; // Example default
+
 	return (
-		<section className="image-block py-8">
-			<div className="container mx-auto text-center">
-				<Image
-					src={src}
-					alt={alt}
-					width={width}
-					height={height}
-					className="mx-auto"
-				/>
-				{caption && <p className="text-sm text-gray-600 mt-2">{caption}</p>}
-			</div>
-		</section>
+		<figure>
+			<Image
+				src={image.src}
+				alt={image.alt}
+				width={width}
+				height={height}
+				className="rounded-lg shadow-md"
+				priority
+			/>
+			{caption && <figcaption>{caption}</figcaption>}
+		</figure>
 	);
-}
+};
+
+export default ImageBlock;

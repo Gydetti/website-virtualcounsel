@@ -21,7 +21,7 @@ export default function ProcessSection({
 	}
 
 	return (
-		<Section id="process" className="relative overflow-hidden bg-white">
+		<Section id="process" className="relative overflow-hidden">
 			<div className="absolute inset-0 bg-[url('/placeholder.svg?height=1000&width=1000')] bg-center opacity-5" />
 
 			{/* Decorative elements */}
