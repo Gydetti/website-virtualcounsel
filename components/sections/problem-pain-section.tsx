@@ -1,6 +1,7 @@
 "use client";
 import { Section } from "@/components/layout/Section";
 import type { problemPainSectionDataSchema } from "@/lib/schemas/sections.schema";
+import { motion } from "framer-motion";
 import { AlertTriangle } from "lucide-react";
 import type { z } from "zod";
 
@@ -21,7 +22,13 @@ export default function ProblemPainSection({
 			id="pain"
 			className="bg-gradient-to-b from-transparent to-secondary/10"
 		>
-			<div className="bg-gray-900 text-white rounded-[30px] border border-gray-700/50 shadow-lg p-6 sm:p-12">
+			<motion.div
+				initial={{ opacity: 0, y: 50 }}
+				whileInView={{ opacity: 1, y: 0 }}
+				transition={{ duration: 0.6 }}
+				viewport={{ once: true }}
+				className="bg-gray-900 text-white rounded-[30px] border border-gray-700/50 shadow-lg p-6 sm:p-12"
+			>
 				<div className="grid gap-12 lg:grid-cols-2">
 					<div className="flex flex-col justify-center space-y-8">
 						<div className="space-y-4">
@@ -48,20 +55,27 @@ export default function ProblemPainSection({
 					</div>
 					{cards && cards.length > 0 && (
 						<div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-							{cards.map((card) => (
-								<div key={card.id} className="rounded-lg bg-gray-800 p-6">
+							{cards.map((card, idx) => (
+								<motion.div
+									key={card.id}
+									initial={{ opacity: 0, y: 20 }}
+									whileInView={{ opacity: 1, y: 0 }}
+									transition={{ duration: 0.5, delay: idx * 0.2 }}
+									viewport={{ once: true }}
+									className="rounded-lg bg-gray-800 p-6"
+								>
 									<h3 className="mb-3 text-xl font-bold text-secondary">
 										{card.title}
 									</h3>
 									<p className="text-gray-300 text-base md:text-lg">
 										{card.description}
 									</p>
-								</div>
+								</motion.div>
 							))}
 						</div>
 					)}
 				</div>
-			</div>
+			</motion.div>
 		</Section>
 	);
 }

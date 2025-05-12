@@ -20,7 +20,7 @@ export default function Header() {
 	const enabledPages = siteConfig.enabledPages;
 
 	// Filter navigation based on siteConfig.navLinks and feature flags
-	const filteredNavigation = siteConfig.navLinks.filter((item) => {
+	const filteredNavigation = (siteConfig.navLinks ?? []).filter((item) => {
 		// Exclude pages not in enabledPages
 		if (enabledPages && !enabledPages.includes(item.href)) {
 			return false;
@@ -72,7 +72,7 @@ export default function Header() {
 				aria-label="Global"
 			>
 				<div className="flex lg:flex-1">
-					<Link href="/" className="-m-1.5 p-1.5">
+					<Link href="/" className="-m-0 p-1.5">
 						<span className="sr-only">{siteConfig.site.name}</span>
 						<div className="h-10 w-auto flex items-center">
 							{siteConfig.theme.logo.src ? (
@@ -81,7 +81,7 @@ export default function Header() {
 									alt={siteConfig.theme.logo.alt}
 									width={150}
 									height={40}
-									className="h-10 w-auto"
+									className="h-14 w-auto"
 								/>
 							) : (
 								<span className="text-xl font-bold">

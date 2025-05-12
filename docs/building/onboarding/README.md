@@ -370,6 +370,7 @@ The template includes integrations with popular analytics and tracking platforms
 - Implementation in `components/tracking/tracking-scripts.tsx`
 - Placeholder: `GTM-XXXXXXX`
 - Loads only when analytics consent is given
+- **Optimization:** *Tracking scripts are only injected if both consent is given and the corresponding tracking ID in `siteConfig.tracking` is set (non-empty). This prevents empty or broken script loads, improves performance, and keeps onboarding/automation simple—just add the ID to enable a platform.*
 
 ### Google Analytics 4
 
@@ -415,6 +416,8 @@ The `lib/tracking-utils.ts` file provides utility functions for tracking events 
 ## Cookie Consent System
 
 The template includes a comprehensive cookie consent system that complies with GDPR and other privacy regulations:
+
+- **Tracking script optimization:** *Tracking scripts are only injected if both consent is given and the corresponding tracking ID in `siteConfig.tracking` is set (non-empty). This prevents empty or broken script loads, improves performance, and keeps onboarding/automation simple—just add the ID to enable a platform.*
 
 ### Cookie Consent Hook (`hooks/use-cookie-consent.tsx`)
 

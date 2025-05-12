@@ -59,7 +59,7 @@ export default async function ServicePage(props: ServicePageProps) {
 		notFound();
 	}
 
-	const IconComponent = iconComponents[service.icon] || iconComponents.Globe;
+	const IconComponent = iconComponents[service.icon ?? "Globe"] || iconComponents.Globe;
 
 	// Additional service details
 	const benefits = [
@@ -84,21 +84,25 @@ export default async function ServicePage(props: ServicePageProps) {
 
 	const process = [
 		{
+			id: "step-1",
 			title: "Discovery",
 			description:
 				"We start by understanding your business, goals, and challenges.",
 		},
 		{
+			id: "step-2",
 			title: "Strategy",
 			description:
 				"We develop a customized plan tailored to your specific needs.",
 		},
 		{
+			id: "step-3",
 			title: "Implementation",
 			description:
 				"Our team executes the strategy with precision and attention to detail.",
 		},
 		{
+			id: "step-4",
 			title: "Optimization",
 			description:
 				"We continuously monitor and improve to ensure optimal results.",
@@ -165,7 +169,7 @@ export default async function ServicePage(props: ServicePageProps) {
 						<p className="text-gray-700 mb-8">{service.description}</p>
 
 						<div className="space-y-4 mb-8">
-							{service.features.map((feature) => (
+							{service.features?.map((feature) => (
 								<div key={feature} className="flex items-start">
 									<div className="flex-shrink-0 h-6 w-6 rounded-full bg-green-100 flex items-center justify-center mr-3">
 										<Check className="h-4 w-4 text-green-600" />
@@ -217,7 +221,7 @@ export default async function ServicePage(props: ServicePageProps) {
 				</div>
 			</section>
 
-			<ProcessSection />
+			<ProcessSection steps={process} />
 
 			<section className="py-16 bg-white">
 				<div className="container-wide">

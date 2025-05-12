@@ -133,7 +133,6 @@ const featureFlagsSchema = z.object({
 	enableSolutionVisionSection: z.boolean().optional().default(true),
 	enableProcessSection: z.boolean().optional().default(true),
 	enableFaqSection: z.boolean().optional().default(false),
-	enableInspirationHeroSection: z.boolean().optional().default(false),
 	enableLandingPages: z.boolean().optional().default(false),
 	enableValuePropSection: z.boolean().optional().default(true),
 	enableFooterServices: z.boolean().optional().default(true),

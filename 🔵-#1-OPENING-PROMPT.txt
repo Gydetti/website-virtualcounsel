@@ -12,4 +12,4 @@ As a reminder: always run the build + test actions after making significant chan
 Else, I trust your guidence and you are the expert to work as a professional.
 Remember: you are on auto-mode meaning you will proceed with taking actions. This can result in you going down a path we don't want if you have too much tunnelvision. Be aware of that.
 
-And understand the codebase that we're working on. I'll share more information/instructions in the next prompts!
+And understand the codebase that we're working on @gmg-template-website-2025. I'll share more information/instructions in the next prompts!

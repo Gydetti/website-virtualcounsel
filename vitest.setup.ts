@@ -9,19 +9,19 @@ import { afterEach, beforeAll } from "vitest";
 
 // Polyfill IntersectionObserver for framer-motion in JSDOM
 beforeAll(() => {
-  class IntersectionObserver {
-    observe() {}
-    unobserve() {}
-    disconnect() {}
-  }
-  Object.defineProperty(globalThis, "IntersectionObserver", {
-    writable: true,
-    configurable: true,
-    value: IntersectionObserver,
-  });
+	class IntersectionObserver {
+		observe() {}
+		unobserve() {}
+		disconnect() {}
+	}
+	Object.defineProperty(globalThis, "IntersectionObserver", {
+		writable: true,
+		configurable: true,
+		value: IntersectionObserver,
+	});
 });
 
 // Cleanup after each test
 afterEach(() => {
-  cleanup();
+	cleanup();
 });

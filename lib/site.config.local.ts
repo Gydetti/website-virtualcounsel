@@ -23,7 +23,10 @@ export const siteConfig: SiteConfigSchema = {
 	},
 	theme: {
 		colors: { primary: "#1E3A8A", secondary: "#60A5FA", accent: "#3B82F6" },
-		logo: { src: "/logo-placeholder.svg", alt: "Placeholder Logo" },
+		logo: {
+			src: "/images/placeholders/placeholder-logo.svg",
+			alt: "Placeholder Logo",
+		},
 		favicon: "/favicon-placeholder.ico",
 	},
 	navLinks: [
@@ -75,9 +78,9 @@ export const siteConfig: SiteConfigSchema = {
 		enableAboutSection: true,
 		enableProblemPainSection: true,
 		enableSolutionVisionSection: true,
-		enableProcessSection: false,
-		enableFaqSection: false,
-		enableInspirationHeroSection: false,
+		enableProcessSection: true,
+		enableFaqSection: true,
+
 		enableLandingPages: true,
 		enableCustomCookieBanner: false,
 		enableValuePropSection: true,
@@ -149,11 +152,19 @@ export const siteConfig: SiteConfigSchema = {
 			seo: undefined,
 			sections: [
 				{ id: "home-hero", sectionType: "HeroSection" },
+				{ id: "home-value-prop", sectionType: "ValuePropSection" },
 				{ id: "home-clients", sectionType: "ClientsSection" },
-				{ id: "home-services-preview", sectionType: "ServicesPreviewSection" },
+				{ id: "home-problem-pain", sectionType: "ProblemPainSection" },
+				{ id: "home-solution-vision", sectionType: "SolutionVisionSection" },
+				{ id: "home-features", sectionType: "FeaturesSection" },
+				{ id: "home-services", sectionType: "ServicesSection" },
 				{ id: "home-testimonials", sectionType: "TestimonialsSection" },
-				{ id: "home-blog-preview", sectionType: "BlogPreviewSection" },
 				{ id: "home-cta", sectionType: "CtaSection" },
+				{ id: "home-about", sectionType: "AboutSection" },
+				{ id: "home-process", sectionType: "ProcessSection" },
+				{ id: "home-faq", sectionType: "HomepageFaqSection" },
+				{ id: "home-blog", sectionType: "BlogSection" },
+				{ id: "home-contact", sectionType: "ContactSection" },
 			],
 		},
 		{

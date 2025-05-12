@@ -60,10 +60,10 @@ export default function BlogSection({
 							<Card className="h-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border-gray-200 shadow-sm">
 								<div className="relative h-48 w-full overflow-hidden">
 									<Image
-										src={post.coverImage?.src || "/placeholder.svg"}
-										alt={post.coverImage?.alt || post.title}
-										width={post.coverImage?.width || 600}
-										height={post.coverImage?.height || 400}
+										src={post.image?.src || "/placeholder.svg"}
+										alt={post.image?.alt || post.title}
+										width={post.image?.width || 600}
+										height={post.image?.height || 400}
 										className="object-cover transition-transform duration-300 hover:scale-105"
 									/>
 								</div>

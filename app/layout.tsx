@@ -42,7 +42,7 @@ export const metadata = defaultMetadata({
 	metadataBase: new URL(siteUrl),
 	robots: { index: true, follow: true },
 	generator: "v0.dev",
-	description: siteConfig.site.description,
+	description: siteConfig.site.description ?? "",
 });
 
 export default function RootLayout({
@@ -61,7 +61,7 @@ export default function RootLayout({
 					crossOrigin="anonymous"
 				/>
 				{/* Preload LCP hero image */}
-				<link rel="preload" href={heroSectionData.imageSrc} as="image" />
+				<link rel="preload" href={heroSectionData.image?.src ?? ""} as="image" />
 				{/* GA4 script for analytics (Partytown) */}
 				<script
 					type="text/partytown"
@@ -77,26 +77,26 @@ export default function RootLayout({
 				<StructuredData
 					type="organization"
 					data={{
-						name: siteConfig.site.name,
-						url: siteConfig.site.url,
-						logo: siteConfig.theme.logo.src,
+						name: siteConfig.site.name ?? "",
+						url: siteConfig.site.url ?? "",
+						logo: siteConfig.theme.logo.src ?? "",
 						socialLinks: [
-							siteConfig.social.facebook,
-							siteConfig.social.twitter,
-							siteConfig.social.linkedin,
-							siteConfig.social.instagram,
+							siteConfig.social?.facebook ?? "",
+							siteConfig.social?.twitter ?? "",
+							siteConfig.social?.linkedin ?? "",
+							siteConfig.social?.instagram ?? "",
 						],
-						phone: siteConfig.contact.phone,
-						email: siteConfig.contact.email,
-						streetAddress: siteConfig.contact.address.line1,
-						city: siteConfig.contact.address.city,
-						postalCode: siteConfig.contact.address.zip,
-						country: siteConfig.contact.address.country,
+						phone: siteConfig.contact.phone ?? "",
+						email: siteConfig.contact.email ?? "",
+						streetAddress: siteConfig.contact.address?.line1 ?? "",
+						city: siteConfig.contact.address?.city ?? "",
+						postalCode: siteConfig.contact.address?.zip ?? "",
+						country: siteConfig.contact.address?.country ?? "",
 					}}
 				/>
 				<StructuredData
 					type="website"
-					data={{ name: siteConfig.site.name, url: siteConfig.site.url }}
+					data={{ name: siteConfig.site.name ?? "", url: siteConfig.site.url ?? "" }}
 				/>
 			</head>
 			<body

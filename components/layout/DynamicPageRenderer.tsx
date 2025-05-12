@@ -11,21 +11,19 @@ import ResourceListSection from "@/components/sections/ResourceListSection"; // 
 import AboutSection from "@/components/sections/about-section"; // ++ Import
 import BlogSection from "@/components/sections/blog-section"; // For BlogPreviewSection
 import ClientsSection from "@/components/sections/clients-section";
+import ContactSection from "@/components/sections/contact-section";
 import CtaSection from "@/components/sections/cta-section";
+// Import other sections as needed for other pages later:
+import FeaturesSection from "@/components/sections/features-section";
 // --- Section Component Imports ---
 import HeroSection from "@/components/sections/hero-section";
+import HomepageFaqSection from "@/components/sections/homepage-faq-section";
+import ProblemPainSection from "@/components/sections/problem-pain-section";
+import ProcessSection from "@/components/sections/process-section";
 import ServicesSection from "@/components/sections/services-section"; // For ServicesPreviewSection
+import SolutionVisionSection from "@/components/sections/solution-vision-section";
 import TestimonialsSection from "@/components/sections/testimonials-section";
-// Import other sections as needed for other pages later:
-// import AboutSection from "@/components/sections/about-section";
-// import FeaturesSection from "@/components/sections/features-section";
-// import ContactSection from "@/components/sections/contact-section";
-// import ValuePropSection from "@/components/sections/value-prop-section";
-// import ProcessSection from "@/components/sections/process-section";
-// import SolutionVisionSection from "@/components/sections/solution-vision-section";
-// import HomepageFaqSection from "@/components/sections/homepage-faq-section";
-// import PricingSection from "@/components/sections/pricing-section";
-// import ProblemPainSection from "@/components/sections/problem-pain-section";
+import ValuePropSection from "@/components/sections/value-prop-section";
 
 import { getBlogPosts, getServices } from "@/lib/data-utils"; // Now using these
 import { aboutPageMainContentData } from "@/lib/data/aboutPageData"; // ++ Import about page data
@@ -51,14 +49,23 @@ interface DynamicPageRendererProps {
 // biome-ignore lint: Diverse section components in map, type safety at component prop level.
 const sectionComponentMap: Record<string, ComponentType<any>> = {
 	HeroSection: HeroSection,
+	ValuePropSection: ValuePropSection,
 	ClientsSection: ClientsSection,
+	ProblemPainSection: ProblemPainSection,
+	SolutionVisionSection: SolutionVisionSection,
+	FeaturesSection: FeaturesSection,
 	ServicesPreviewSection: ServicesSection,
+	ServicesSection: ServicesSection,
 	TestimonialsSection: TestimonialsSection,
-	BlogPreviewSection: BlogSection,
 	CtaSection: CtaSection,
+	AboutSection: AboutSection,
+	ProcessSection: ProcessSection,
+	HomepageFaqSection: HomepageFaqSection,
+	BlogPreviewSection: BlogSection,
+	BlogSection: BlogSection,
+	ContactSection: ContactSection,
 	ResourceDetailSection: ResourceDetailSection,
 	ResourceListSection: ResourceListSection,
-	AboutSection: AboutSection,
 };
 
 // Async data fetching
@@ -70,8 +77,16 @@ const getSectionData = async (
 		switch (sectionConfig.sectionType) {
 			case "HeroSection":
 				return homepageData.heroSectionData;
+			case "ValuePropSection":
+				return homepageData.valuePropSectionData;
 			case "ClientsSection":
 				return homepageData.clientsSectionData;
+			case "ProblemPainSection":
+				return homepageData.problemPainSectionData;
+			case "SolutionVisionSection":
+				return homepageData.solutionVisionSectionData;
+			case "FeaturesSection":
+				return homepageData.featuresSectionData;
 			case "TestimonialsSection":
 				return homepageData.testimonialsSectionData;
 			case "CtaSection":
@@ -84,6 +99,14 @@ const getSectionData = async (
 					services: services.slice(0, 3),
 				};
 			}
+			case "ServicesSection": {
+				const services = await getServices();
+				return {
+					...homepageData.servicesPreviewSectionData,
+					id: sectionConfig.id,
+					services,
+				};
+			}
 			case "BlogPreviewSection": {
 				const blogLimit = siteConfig.sectionsDataKeys?.blog?.limit || 3;
 				const posts = await getBlogPosts(blogLimit);
@@ -93,6 +116,17 @@ const getSectionData = async (
 					posts: posts,
 				};
 			}
+			case "BlogSection": {
+				const blogLimit = siteConfig.sectionsDataKeys?.blog?.limit || 3;
+				const posts = await getBlogPosts(blogLimit);
+				return {
+					...homepageData.blogPreviewSectionData,
+					id: sectionConfig.id,
+					posts,
+				};
+			}
+			case "HomepageFaqSection":
+				return homepageData.homepageFaqSectionData;
 			default:
 				console.warn(
 					`Data for section type "${sectionConfig.sectionType}" (id: ${sectionConfig.id}) not implemented for homepage.`,
@@ -167,31 +201,52 @@ const DynamicPageRenderer: FC<DynamicPageRendererProps> = async ({
 	);
 	const sectionsWithData = await Promise.all(sectionsWithDataPromises);
 
-	return (
-		<>
-			{sectionsWithData.map((section) => {
-				const Component = sectionComponentMap[section.sectionType];
-
-				if (!Component) {
-					console.error(
-						`Error: Unknown section type "${section.sectionType}" for id "${section.id}" on page "${pagePath}". Check component map.`,
-					);
-					// Render a fallback or an error message in development
-					return (
-						<div key={section.id} className="py-8 text-center text-red-500">
-							Unknown section type: {section.sectionType} (ID: {section.id})
-						</div>
-					);
-				}
-
-				return (
-					<LazySection key={section.id}>
-						<Component {...section.data} />
-					</LazySection>
-				);
-			})}
-		</>
-	);
+	// Group Problem and Solution sections to share background
+	const elements = [];
+	for (let i = 0; i < sectionsWithData.length; i++) {
+		const section = sectionsWithData[i];
+		// Skip section if its feature flag is explicitly disabled
+		const featureFlagKey = `enable${section.sectionType}` as keyof typeof siteConfig.features;
+		if (siteConfig.features[featureFlagKey] === false) {
+			continue;
+		}
+		// Group ProblemPainSection & SolutionVisionSection if both enabled
+		if (
+			section.sectionType === "ProblemPainSection" &&
+			siteConfig.features.enableProblemPainSection &&
+			i + 1 < sectionsWithData.length &&
+			sectionsWithData[i + 1].sectionType === "SolutionVisionSection" &&
+			siteConfig.features.enableSolutionVisionSection
+		) {
+			const nextSection = sectionsWithData[i + 1];
+			elements.push(
+				<LazySection key={`${section.id}-${nextSection.id}`} animation="none">
+					<ProblemPainSection {...section.data} />
+					<SolutionVisionSection {...nextSection.data} />
+				</LazySection>,
+			);
+			i++; // Skip the next section as it's already rendered
+			continue;
+		}
+		const Component = sectionComponentMap[section.sectionType];
+		if (!Component) {
+			console.error(
+				`Error: Unknown section type "${section.sectionType}" for id "${section.id}" on page "${pagePath}". Check component map.`,
+			);
+			elements.push(
+				<div key={section.id} className="py-8 text-center text-red-500">
+					Unknown section type: {section.sectionType} (ID: {section.id})
+				</div>,
+			);
+			continue;
+		}
+		elements.push(
+			<LazySection key={section.id}>
+				<Component {...section.data} />
+			</LazySection>,
+		);
+	}
+	return <>{elements}</>;
 };
 
 export default DynamicPageRenderer;

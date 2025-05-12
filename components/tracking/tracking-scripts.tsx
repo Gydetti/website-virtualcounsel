@@ -15,7 +15,7 @@ export default function TrackingScripts() {
 	return (
 		<>
 			{/* Google Tag Manager */}
-			{canLoadAnalytics && (
+			{canLoadAnalytics && siteConfig.tracking.gtmId && (
 				<>
 					<Script
 						id="gtm-script"
@@ -42,7 +42,7 @@ export default function TrackingScripts() {
 			)}
 
 			{/* Google Analytics 4 */}
-			{canLoadAnalytics && (
+			{canLoadAnalytics && siteConfig.tracking.ga4Id && (
 				<>
 					<Script
 						src={`https://www.googletagmanager.com/gtag/js?id=${siteConfig.tracking.ga4Id}`}
@@ -64,7 +64,7 @@ export default function TrackingScripts() {
 			)}
 
 			{/* Facebook Pixel */}
-			{canLoadMarketing && (
+			{canLoadMarketing && siteConfig.tracking.fbPixelId && (
 				<Script
 					id="facebook-pixel"
 					type="text/partytown"
@@ -78,7 +78,7 @@ export default function TrackingScripts() {
 			)}
 
 			{/* LinkedIn Insight Tag */}
-			{canLoadMarketing && (
+			{canLoadMarketing && siteConfig.tracking.linkedinId && (
 				<Script
 					id="linkedin-insight"
 					type="text/partytown"
@@ -92,7 +92,7 @@ export default function TrackingScripts() {
 			)}
 
 			{/* HubSpot Tracking Code */}
-			{canLoadMarketing && (
+			{canLoadMarketing && siteConfig.tracking.hubspotId && (
 				<Script
 					id="hubspot-tracking"
 					type="text/partytown"
@@ -106,7 +106,7 @@ export default function TrackingScripts() {
 			)}
 
 			{/* Google Ads Conversion Tracking */}
-			{canLoadMarketing && (
+			{canLoadMarketing && siteConfig.tracking.googleAdsId && (
 				<Script
 					id="google-ads"
 					type="text/partytown"

@@ -11,7 +11,7 @@ describe("FormBlock", () => {
 	it("renders placeholder when config is insufficient", () => {
 		const mockProps: FormBlockProps = {
 			type: "form",
-			config: { provider: "unknown" },
+			config: { provider: "custom" },
 		};
 		render(<FormBlock {...mockProps} />);
 		expect(
