@@ -62,7 +62,7 @@ export default async function ServicesPage() {
 				<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 					{services.map((service, index) => {
 						const IconComponent =
-							iconComponents[service.icon] || iconComponents.Globe;
+							iconComponents[service.icon ?? "Globe"] || iconComponents.Globe;
 
 						return (
 							<LazySection key={service.id} delay={index * 0.1}>

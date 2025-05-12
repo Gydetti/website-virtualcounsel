@@ -221,7 +221,7 @@ export default function ContactSection({
 								<div>
 									<p className="font-semibold mb-1">Email</p>
 									<a
-										href={`mailto:${siteConfig.contact.email}`}
+										href={`mailto:${siteConfig.contact.email ?? ""}`}
 										className="text-white/80 hover:text-white transition-colors"
 									>
 										{siteConfig.contact.email}
@@ -234,7 +234,7 @@ export default function ContactSection({
 								<div>
 									<p className="font-semibold mb-1">Phone</p>
 									<a
-										href={`tel:${siteConfig.contact.phone}`}
+										href={`tel:${siteConfig.contact.phone ?? ""}`}
 										className="text-white/80 hover:text-white transition-colors"
 									>
 										{siteConfig.contact.phone}
@@ -247,18 +247,18 @@ export default function ContactSection({
 								<div>
 									<p className="font-semibold mb-1">Address</p>
 									<address className="text-white/80 not-italic">
-										{siteConfig.contact.address.line1}
-										{siteConfig.contact.address.line2 && (
+										{siteConfig.contact.address?.line1 ?? ""}
+										{siteConfig.contact.address?.line2 && (
 											<>
 												<br />
 												{siteConfig.contact.address.line2}
 											</>
 										)}
 										<br />
-										{siteConfig.contact.address.zip}{" "}
-										{siteConfig.contact.address.city}
+										{siteConfig.contact.address?.zip ?? ""}{" "}
+										{siteConfig.contact.address?.city ?? ""}
 										<br />
-										{siteConfig.contact.address.country}
+										{siteConfig.contact.address?.country ?? ""}
 									</address>
 								</div>
 							</li>

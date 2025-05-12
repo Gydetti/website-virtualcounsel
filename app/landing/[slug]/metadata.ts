@@ -19,7 +19,14 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 		openGraph: {
 			title: `${resource.title} | ${siteConfig.site.name}`,
 			description: resource.subtitle ?? siteConfig.site.description,
-			images: [{ url: resource.heroImage.src, alt: resource.heroImage.alt, width: resource.heroImage.width, height: resource.heroImage.height }],
+			images: [
+				{
+					url: resource.heroImage.src,
+					alt: resource.heroImage.alt,
+					width: resource.heroImage.width,
+					height: resource.heroImage.height,
+				},
+			],
 			type: "website",
 		},
 	});

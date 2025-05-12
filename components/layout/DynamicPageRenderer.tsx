@@ -127,6 +127,8 @@ const getSectionData = async (
 			}
 			case "HomepageFaqSection":
 				return homepageData.homepageFaqSectionData;
+			case "AboutSection":
+				return homepageData.aboutSectionData;
 			default:
 				console.warn(
 					`Data for section type "${sectionConfig.sectionType}" (id: ${sectionConfig.id}) not implemented for homepage.`,
@@ -206,7 +208,8 @@ const DynamicPageRenderer: FC<DynamicPageRendererProps> = async ({
 	for (let i = 0; i < sectionsWithData.length; i++) {
 		const section = sectionsWithData[i];
 		// Skip section if its feature flag is explicitly disabled
-		const featureFlagKey = `enable${section.sectionType}` as keyof typeof siteConfig.features;
+		const featureFlagKey =
+			`enable${section.sectionType}` as keyof typeof siteConfig.features;
 		if (siteConfig.features[featureFlagKey] === false) {
 			continue;
 		}

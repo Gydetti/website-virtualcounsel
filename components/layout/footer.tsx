@@ -82,7 +82,7 @@ export default function Footer() {
 							</p>
 							<div className="flex space-x-4">
 								<Link
-									href={siteConfig.social.facebook}
+									href={siteConfig.social.facebook ?? ""}
 									target="_blank"
 									rel="noopener noreferrer"
 									className="text-white hover:text-brand-light transition-colors bg-white/10 p-2 rounded-full"
@@ -91,7 +91,7 @@ export default function Footer() {
 									<Facebook className="h-5 w-5" />
 								</Link>
 								<Link
-									href={siteConfig.social.instagram}
+									href={siteConfig.social.instagram ?? ""}
 									target="_blank"
 									rel="noopener noreferrer"
 									className="text-white hover:text-brand-light transition-colors bg-white/10 p-2 rounded-full"
@@ -100,7 +100,7 @@ export default function Footer() {
 									<Instagram className="h-5 w-5" />
 								</Link>
 								<Link
-									href={siteConfig.social.twitter}
+									href={siteConfig.social.twitter ?? ""}
 									target="_blank"
 									rel="noopener noreferrer"
 									className="text-white hover:text-brand-light transition-colors bg-white/10 p-2 rounded-full"
@@ -109,7 +109,7 @@ export default function Footer() {
 									<Twitter className="h-5 w-5" />
 								</Link>
 								<Link
-									href={siteConfig.social.linkedin}
+									href={siteConfig.social.linkedin ?? ""}
 									target="_blank"
 									rel="noopener noreferrer"
 									className="text-white hover:text-brand-light transition-colors bg-white/10 p-2 rounded-full"
@@ -200,7 +200,7 @@ export default function Footer() {
 									<Mail className="h-4 w-4 mr-2" />
 									<span>Email: </span>
 									<a
-										href={`mailto:${siteConfig.contact.email}`}
+										href={`mailto:${siteConfig.contact.email ?? ""}`}
 										className="ml-1 hover:text-brand-light"
 									>
 										{siteConfig.contact.email}
@@ -210,7 +210,7 @@ export default function Footer() {
 									<Phone className="h-4 w-4 mr-2" />
 									<span>Phone: </span>
 									<a
-										href={`tel:${siteConfig.contact.phone}`}
+										href={`tel:${siteConfig.contact.phone ?? ""}`}
 										className="ml-1 hover:text-brand-light"
 									>
 										{siteConfig.contact.phone}
@@ -220,18 +220,18 @@ export default function Footer() {
 									<MapPin className="h-4 w-4 mr-2 mt-1" />
 									<span>Address: </span>
 									<address className="ml-1 not-italic">
-										{siteConfig.contact.address.line1}
-										{siteConfig.contact.address.line2 && (
+										{siteConfig.contact.address?.line1 ?? ""}
+										{siteConfig.contact.address?.line2 && (
 											<>
 												<br />
 												{siteConfig.contact.address.line2}
 											</>
 										)}
 										<br />
-										{siteConfig.contact.address.zip}{" "}
-										{siteConfig.contact.address.city}
+										{siteConfig.contact.address?.zip ?? ""}{" "}
+										{siteConfig.contact.address?.city ?? ""}
 										<br />
-										{siteConfig.contact.address.country}
+										{siteConfig.contact.address?.country ?? ""}
 									</address>
 								</li>
 							</ul>

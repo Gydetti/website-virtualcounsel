@@ -1,9 +1,7 @@
 "use client";
 import { Section } from "@/components/layout/Section";
 import { Badge } from "@/components/ui/badge";
-import type {
-	solutionVisionSectionDataSchema,
-} from "@/lib/schemas/sections.schema";
+import type { solutionVisionSectionDataSchema } from "@/lib/schemas/sections.schema";
 import { motion } from "framer-motion";
 import { CheckCircle } from "lucide-react";
 import type { z } from "zod";

@@ -1,4 +1,7 @@
-import type { resourceSchema } from "@/lib/schemas/contentBlocks.schema";
+import type {
+	resourceContentBlockSchema,
+	resourceSchema,
+} from "@/lib/schemas/contentBlocks.schema";
 import type { z } from "zod";
 
 // Updated paths for the new block components
@@ -41,29 +44,28 @@ export default function ResourceDetailSection({
 			</section>
 
 			{/* Dynamic Content Blocks from resource.sections */}
-			{resource.sections.map((section, i) => {
-				const key = `${section.type}-${i}`;
-				switch (section.type) {
-					case "text":
-						return <TextBlock key={key} content={section.content} />;
-					case "form":
-						return <FormBlock key={key} {...section} />;
-					case "image":
-						return (
-							<ImageBlock
-								key={key}
-								{...section.image}
-								caption={section.caption}
-							/>
-						);
-					default:
-						console.error(
-							`Unhandled resource section type: ${section.type}`,
-							section,
-						);
-						return null;
-				}
-			})}
+			{resource.sections.map(
+				(section: z.infer<typeof resourceContentBlockSchema>, i) => {
+					const key = `${section.type}-${i}`;
+					switch (section.type) {
+						case "text":
+							return <TextBlock key={key} content={section.content} />;
+						case "form":
+							return <FormBlock key={key} {...section} />;
+						case "image":
+							return (
+								<ImageBlock
+									key={key}
+									{...section.image}
+									caption={section.caption}
+								/>
+							);
+						default:
+							console.error("Unhandled resource section type", section);
+							return null;
+					}
+				},
+			)}
 		</>
 	);
 }

@@ -89,7 +89,7 @@ export default function ServicesSection({
 
 								<CardHeader className="pt-12">
 									<div className="mb-6 bg-primary/10 w-16 h-16 rounded-lg flex items-center justify-center">
-										{iconMap[service.icon] || (
+										{iconMap[service.icon ?? "Globe"] || (
 											<Globe className="h-10 w-10 text-primary" />
 										)}
 									</div>

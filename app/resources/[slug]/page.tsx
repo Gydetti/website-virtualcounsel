@@ -33,14 +33,16 @@ export async function generateMetadata({
 		title: `${title} | ${siteConfig.site.name}`,
 		description: description,
 		openGraph: {
-			image: resource.heroImage
-				? {
-						url: resource.heroImage.src,
-						alt: resource.heroImage.alt,
-						width: resource.heroImage.width,
-						height: resource.heroImage.height,
-					}
-				: undefined,
+			images: resource.heroImage
+				? [
+						{
+							url: resource.heroImage.src,
+							alt: resource.heroImage.alt,
+							width: resource.heroImage.width,
+							height: resource.heroImage.height,
+						},
+					]
+				: [],
 		},
 	});
 }

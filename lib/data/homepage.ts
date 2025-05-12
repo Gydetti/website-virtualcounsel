@@ -1,5 +1,6 @@
 import { z } from "zod";
 import {
+	aboutSectionDataSchema,
 	blogSectionDataSchema,
 	clientsSectionDataSchema,
 	ctaSectionDataSchema,
@@ -393,6 +394,30 @@ export const blogPreviewSectionData: Omit<
 	viewAllCta: { text: "View All Posts", href: "/blog" },
 };
 
+export const aboutSectionData: z.infer<typeof aboutSectionDataSchema> = {
+	badgeText: "About Section",
+	heading: "Tell Your Company Story",
+	paragraphs: [
+		"Use this section to introduce your company, its mission, and core values.",
+		"Highlight key milestones, achievements, or what makes your team unique.",
+		"Connect with your audience on a personal level.",
+	],
+	image: {
+		src: "/placeholder.svg?height=400&width=600",
+		alt: "Placeholder image representing company or team",
+	},
+	stats: [
+		{ id: "stat-experience", value: "10+ Years", label: "Industry Experience" },
+		{ id: "stat-clients", value: "500+ Happy", label: "Clients Served" },
+		{
+			id: "stat-projects",
+			value: "1000+ Projects",
+			label: "Successfully Delivered",
+		},
+	],
+	cta: { text: "Learn More About Us", href: "/about" },
+};
+
 // Schema validation for all exported data objects
 try {
 	heroSectionDataSchema.parse(heroSectionData);
@@ -423,6 +448,7 @@ try {
 	ctaSectionDataSchema.parse(ctaSectionData);
 	valuePropSectionDataSchema.parse(valuePropSectionData);
 	homepageFaqSectionDataSchema.parse(homepageFaqSectionData);
+	aboutSectionDataSchema.parse(aboutSectionData);
 } catch (error) {
 	console.error(
 		"Error validating homepage data:",

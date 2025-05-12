@@ -59,7 +59,8 @@ export default async function ServicePage(props: ServicePageProps) {
 		notFound();
 	}
 
-	const IconComponent = iconComponents[service.icon ?? "Globe"] || iconComponents.Globe;
+	const IconComponent =
+		iconComponents[service.icon ?? "Globe"] || iconComponents.Globe;
 
 	// Additional service details
 	const benefits = [

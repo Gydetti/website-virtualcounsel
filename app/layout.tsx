@@ -61,7 +61,11 @@ export default function RootLayout({
 					crossOrigin="anonymous"
 				/>
 				{/* Preload LCP hero image */}
-				<link rel="preload" href={heroSectionData.image?.src ?? ""} as="image" />
+				<link
+					rel="preload"
+					href={heroSectionData.image?.src ?? ""}
+					as="image"
+				/>
 				{/* GA4 script for analytics (Partytown) */}
 				<script
 					type="text/partytown"
@@ -96,7 +100,10 @@ export default function RootLayout({
 				/>
 				<StructuredData
 					type="website"
-					data={{ name: siteConfig.site.name ?? "", url: siteConfig.site.url ?? "" }}
+					data={{
+						name: siteConfig.site.name ?? "",
+						url: siteConfig.site.url ?? "",
+					}}
 				/>
 			</head>
 			<body

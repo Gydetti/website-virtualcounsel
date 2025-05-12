@@ -41,10 +41,9 @@ export default function AboutSection({
 							<OptimizedImage
 								src={image.src}
 								alt={image.alt || "About our company"}
-								width={image.width || 500} // Provide default/required dimensions
-								height={image.height || 500}
-								fill={false} // Explicitly false if width/height are given, or true if parent has fixed size and fill is intended
-								className="h-auto w-full max-h-[400px] md:max-h-[500px] rounded-xl shadow-2xl z-10 object-cover"
+								fill
+								className="relative aspect-[3/2] w-full max-w-xl mx-auto rounded-xl shadow-2xl z-10"
+								objectFit="cover"
 								priority
 							/>
 						</>
