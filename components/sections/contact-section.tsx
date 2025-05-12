@@ -12,6 +12,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
 import Script from "next/script";
 import { useEffect, useState } from "react";
+import LazySection from "@/components/ui/lazy-section";
 
 // Provide typing for the Recaptcha API on the window object
 declare global {
@@ -133,13 +134,7 @@ export default function ContactSection({
 				</div>
 
 				<div className="grid md:grid-cols-2 gap-4 sm:gap-8 md:gap-12 max-w-4xl mx-auto">
-					<motion.div
-						initial={{ opacity: 0, x: -20 }}
-						whileInView={{ opacity: 1, x: 0 }}
-						transition={{ duration: 0.5 }}
-						viewport={{ once: true }}
-						className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow"
-					>
+					<LazySection animation="slide-up" delay={0} className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow">
 						<h3 className="mb-6">
 							Form title prompting user to send a message
 						</h3>
@@ -204,15 +199,9 @@ export default function ContactSection({
 								</div>
 							)}
 						</form>
-					</motion.div>
+					</LazySection>
 
-					<motion.div
-						initial={{ opacity: 0, x: 20 }}
-						whileInView={{ opacity: 1, x: 0 }}
-						transition={{ duration: 0.5 }}
-						viewport={{ once: true }}
-						className="bg-primary text-white rounded-xl shadow-lg p-8 flex flex-col justify-between hover:shadow-xl transition-shadow"
-					>
+					<LazySection animation="slide-up" delay={0.1} className="bg-primary text-white rounded-xl shadow-lg p-8 flex flex-col justify-between hover:shadow-xl transition-shadow">
 						<h3 className="mb-6">Contact information</h3>
 
 						<ul className="space-y-6">
@@ -263,7 +252,7 @@ export default function ContactSection({
 								</div>
 							</li>
 						</ul>
-					</motion.div>
+					</LazySection>
 				</div>
 			</div>
 		</Section>

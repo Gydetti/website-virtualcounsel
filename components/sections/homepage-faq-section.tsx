@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import type { ctaSchema } from "@/lib/schemas/common.schema";
 import Link from "next/link";
 import type { z } from "zod";
+import LazySection from "@/components/ui/lazy-section";
 
 export interface FaqItem {
 	question: string;
@@ -48,7 +49,7 @@ export default function HomepageFaqSection({
 		<>
 			<StructuredData type="faq" data={{ items: faqSchema }} />
 			<Section id="faq-homepage">
-				<div className="text-center">
+				<LazySection animation="slide-up" delay={0} className="text-center">
 					<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 						{badgeText}
 					</Badge>
@@ -58,36 +59,38 @@ export default function HomepageFaqSection({
 							{description}
 						</p>
 					)}
-					{categories.map((cat) => (
-						<div
-							key={cat.category}
-							className="mb-12 text-left max-w-3xl mx-auto"
-						>
-							<h3 className="text-body-base mb-6">{cat.category}</h3>
-							<Accordion type="single" collapsible className="space-y-4">
-								{cat.questions.map((q) => (
-									<AccordionItem
-										key={q.question}
-										value={`faq-${cat.category}-${q.question}`}
-										className="border border-gray-200 rounded-lg overflow-hidden"
-									>
-										<AccordionTrigger className="px-6 py-4 text-body-base font-medium">
-											{q.question}
-										</AccordionTrigger>
-										<AccordionContent className="px-6 py-4 text-gray-700">
-											{q.answer}
-										</AccordionContent>
-									</AccordionItem>
-								))}
-							</Accordion>
-						</div>
-					))}
-					<Button size="lg" className="mt-8" asChild>
-						<Link href={cta.href || "/contact"}>
-							{cta.text || "See all FAQs"}
-						</Link>
-					</Button>
-				</div>
+				</LazySection>
+				{categories.map((cat) => (
+					<LazySection
+						key={cat.category}
+						animation="slide-up"
+						delay={0.1}
+						className="mb-12 text-left max-w-3xl mx-auto"
+					>
+						<h3 className="text-body-base mb-6">{cat.category}</h3>
+						<Accordion type="single" collapsible className="space-y-4">
+							{cat.questions.map((q) => (
+								<AccordionItem
+									key={q.question}
+									value={`faq-${cat.category}-${q.question}`}
+									className="border border-gray-200 rounded-lg overflow-hidden"
+								>
+									<AccordionTrigger className="px-6 py-4 text-body-base font-medium">
+										{q.question}
+									</AccordionTrigger>
+									<AccordionContent className="px-6 py-4 text-gray-700">
+										{q.answer}
+									</AccordionContent>
+								</AccordionItem>
+							))}
+						</Accordion>
+					</LazySection>
+				))}
+				<Button size="lg" className="mt-8" asChild>
+					<Link href={cta.href || "/contact"}>
+						{cta.text || "See all FAQs"}
+					</Link>
+				</Button>
 			</Section>
 		</>
 	);

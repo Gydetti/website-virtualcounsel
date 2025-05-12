@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import type { z } from "zod";
+import LazySection from "@/components/ui/lazy-section";
 
 // Updated props type alias using Zod schema
 export type AboutSectionProps = z.infer<typeof aboutSectionDataSchema>;
@@ -27,13 +28,7 @@ export default function AboutSection({
 			className="relative overflow-hidden bg-gradient-to-r from-blue-100 via-transparent to-transparent z-10"
 		>
 			<div className="grid md:grid-cols-2 gap-12 items-center">
-				<motion.div
-					initial={{ opacity: 0, x: -20 }}
-					whileInView={{ opacity: 1, x: 0 }}
-					transition={{ duration: 0.5 }}
-					viewport={{ once: true }}
-					className="relative"
-				>
+				<LazySection animation="slide-up" delay={0} className="relative">
 					{image?.src && (
 						<>
 							<div className="absolute -top-6 -left-6 w-24 h-24 bg-[rgba(var(--primary-rgb),0.1)] rounded-full z-0" />
@@ -48,14 +43,9 @@ export default function AboutSection({
 							/>
 						</>
 					)}
-				</motion.div>
+				</LazySection>
 
-				<motion.div
-					initial={{ opacity: 0, x: 20 }}
-					whileInView={{ opacity: 1, x: 0 }}
-					transition={{ duration: 0.5 }}
-					viewport={{ once: true }}
-				>
+				<LazySection animation="slide-up" delay={0.1}>
 					{badgeText && (
 						<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 							{badgeText}
@@ -96,7 +86,7 @@ export default function AboutSection({
 							</Link>
 						</Button>
 					)}
-				</motion.div>
+				</LazySection>
 			</div>
 		</Section>
 	);

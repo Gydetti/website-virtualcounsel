@@ -77,7 +77,7 @@ const sampleResourcesData: z.infer<typeof resourceSchema>[] = [
 					provider: "custom",
 					embedCode: "<!-- Placeholder for custom form embed code -->",
 				},
-				id: "d3c9g0e4-3f4g-6b5c-9d7e-3c4d5e6f7a8b",
+				id: "d3c9e0e4-3f4a-6b5c-9d7e-3c4d5e6f7a8b",
 			},
 		],
 		// seo: { title: "...", description: "..." } // SEO data can be added here
