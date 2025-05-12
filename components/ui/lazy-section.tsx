@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { siteConfig } from "@/lib/siteConfig";
 
 interface LazySectionProps {
 	children: ReactNode;
@@ -81,8 +82,8 @@ export default function LazySection({
 		},
 	};
 
-	// If animation is none, just render children
-	if (animation === "none") {
+	// If animations are globally disabled or set to none, just render children without motion
+	if (!siteConfig.features.enableStaggeredAnimations || animation === "none") {
 		return (
 			<div ref={ref} className={wrapperClass}>
 				{children}

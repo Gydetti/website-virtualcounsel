@@ -16,6 +16,7 @@ import OptimizedImage from "@/components/ui/optimized-image";
 import type { heroSectionDataSchema } from "@/lib/schemas/sections.schema";
 import { siteConfig } from "@/lib/siteConfig";
 import type { z } from "zod";
+import LazySection from "@/components/ui/lazy-section";
 
 export type HeroSectionProps = z.infer<typeof heroSectionDataSchema>;
 
@@ -105,13 +106,7 @@ export default function HeroSection({
 				className="relative z-10 pb-16 sm:py-12 md:py-16"
 			>
 				<div className="grid md:grid-cols-2 gap-4 sm:gap-8 md:gap-12 lg:gap-16 items-center">
-					<motion.div
-						className="flex flex-col justify-center space-y-6 z-10"
-						initial={{ opacity: 0, y: 20 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						viewport={{ once: true }}
-						transition={{ duration: 0.4 }}
-					>
+					<LazySection animation="slide-up" delay={0} className="flex flex-col justify-center space-y-6 z-10">
 						{badgeText && (
 							<Badge className="w-fit bg-[rgba(var(--primary-rgb),0.1)] text-primary hover:bg-[rgba(var(--primary-rgb),0.2)]">
 								{badgeText}
@@ -192,15 +187,9 @@ export default function HeroSection({
 								</div>
 							</div>
 						)}
-					</motion.div>
+					</LazySection>
 
-					<motion.div
-						className="relative w-full max-w-[600px] ml-auto transform md:translate-y-6"
-						initial={{ opacity: 0, y: 20 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						viewport={{ once: true }}
-						transition={{ duration: 0.5, delay: 0.2 }}
-					>
+					<LazySection animation="slide-up" delay={0.2} className="relative w-full max-w-[600px] ml-auto transform md:translate-y-6">
 						<AspectRatio
 							ratio={6 / 5}
 							className="overflow-visible rounded-xl shadow-2xl relative"
@@ -248,7 +237,7 @@ export default function HeroSection({
 								</div>
 							)}
 						</AspectRatio>
-					</motion.div>
+					</LazySection>
 				</div>
 
 				<div className="mt-16 bg-white rounded-xl shadow-lg p-6 md:p-8 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">

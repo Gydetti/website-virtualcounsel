@@ -134,6 +134,7 @@ const featureFlagsSchema = z.object({
 	enableFaqSection: z.boolean().optional().default(false),
 	enableLandingPages: z.boolean().optional().default(false),
 	enableValuePropSection: z.boolean().optional().default(true),
+	enableStaggeredAnimations: z.boolean().optional().default(true),
 	enableFooterServices: z.boolean().optional().default(true),
 });
 

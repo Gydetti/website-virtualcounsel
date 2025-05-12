@@ -125,6 +125,8 @@ export const siteConfig: SiteConfigSchema = {
 	},
 	// FEATURE FLAGS: Toggle sections/features on or off site-wide.
 	features: {
+		// Toggle scroll-driven & staggered animations across all sections
+		enableStaggeredAnimations: true,
 		enableHeroSection: true, // <--- Toggle Hero section display
 		enableBlog: true, // <--- Toggle Blog feature (includes pages & sections)
 		enableServices: true, // <--- Toggle Services feature
