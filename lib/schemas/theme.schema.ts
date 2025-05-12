@@ -37,15 +37,31 @@ export const layoutSchema = z.object({
 
 export const themeSchema = z.object({
 	colors: z.object({
-		primary: z
+		primary: z.string().regex(/^#[0-9A-Fa-f]{6}$/, {
+			message: "Invalid primary color hex",
+		}),
+		secondary: z.string().regex(/^#[0-9A-Fa-f]{6}$/, {
+			message: "Invalid secondary color hex",
+		}),
+		accent: z.string().regex(/^#[0-9A-Fa-f]{6}$/, {
+			message: "Invalid accent color hex",
+		}),
+		background: z
 			.string()
-			.regex(/^#[0-9A-Fa-f]{6}$/, { message: "Invalid primary color hex" }),
-		secondary: z
+			.regex(/^#[0-9A-Fa-f]{6}$/, { message: "Invalid background color hex" })
+			.optional(),
+		header: z
 			.string()
-			.regex(/^#[0-9A-Fa-f]{6}$/, { message: "Invalid secondary color hex" }),
-		accent: z
+			.regex(/^#[0-9A-Fa-f]{6}$/, { message: "Invalid header color hex" })
+			.optional(),
+		body: z
 			.string()
-			.regex(/^#[0-9A-Fa-f]{6}$/, { message: "Invalid accent color hex" }),
+			.regex(/^#[0-9A-Fa-f]{6}$/, { message: "Invalid body color hex" })
+			.optional(),
+		lightGrey: z
+			.string()
+			.regex(/^#[0-9A-Fa-f]{6}$/, { message: "Invalid light grey color hex" })
+			.optional(),
 	}),
 	logo: imageSchema,
 	favicon: z.string().min(1, "Favicon path cannot be empty"),

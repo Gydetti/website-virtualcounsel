@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import CountUp from "react-countup";
 
@@ -84,6 +85,8 @@ export default function HeroSection({
 	const imageToDisplay = currentImageSrc || defaultImageSrc;
 	const imageAltText = image?.alt || "Hero image";
 
+	const router = useRouter();
+
 	return (
 		<section
 			id="hero-section"
@@ -139,13 +142,14 @@ export default function HeroSection({
 								{primaryCta?.text && primaryCta.href && (
 									<Button
 										size="lg"
+										variant="spark"
 										className={`group ${!showSecondaryCta || !secondaryCta?.text ? "w-full sm:w-auto" : ""}`}
-										asChild
+										onClick={() => {
+											if (primaryCta?.href) router.push(primaryCta.href);
+										}}
 									>
-										<Link href={primaryCta.href}>
-											{primaryCta.text}
-											<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-										</Link>
+										{primaryCta.text}
+										<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
 									</Button>
 								)}
 
@@ -216,7 +220,7 @@ export default function HeroSection({
 							{showOverlayStat && overlayTitle && overlayValue && (
 								<div
 									className="hidden md:block absolute -bottom-6 -left-6 h-24 w-2/3 rounded-xl p-4 shadow-lg z-10"
-									style={{ backgroundColor: siteConfig.theme.colors.accent }}
+									style={{ backgroundColor: siteConfig.theme.colors.secondary }}
 								>
 									<div className="flex items-center space-x-4">
 										<div className="flex h-12 w-12 items-center justify-center rounded-full bg-white">
@@ -231,7 +235,7 @@ export default function HeroSection({
 												strokeWidth="2"
 												strokeLinecap="round"
 												strokeLinejoin="round"
-												style={{ color: siteConfig.theme.colors.accent }}
+												style={{ color: siteConfig.theme.colors.secondary }}
 											>
 												<path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
 											</svg>

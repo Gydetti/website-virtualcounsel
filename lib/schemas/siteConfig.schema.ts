@@ -27,15 +27,13 @@ const siteMetaSchema = z.object({
 });
 
 const themeColorsSchema = z.object({
-	primary: z
-		.string()
-		.regex(/^#[0-9A-Fa-f]{6}$/, { message: "Invalid primary color hex" }),
-	secondary: z
-		.string()
-		.regex(/^#[0-9A-Fa-f]{6}$/, { message: "Invalid secondary color hex" }),
-	accent: z
-		.string()
-		.regex(/^#[0-9A-Fa-f]{6}$/, { message: "Invalid accent color hex" }),
+	primary: z.string(),
+	secondary: z.string(),
+	accent: z.string(),
+	background: z.string().optional(),
+	header: z.string().optional(),
+	body: z.string().optional(),
+	lightGrey: z.string().optional(),
 });
 
 const themeSchemaDefinition = z.object({

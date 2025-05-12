@@ -31,8 +31,12 @@ export const siteConfig: SiteConfigSchema = {
 	theme: {
 		colors: {
 			primary: "#2563EB", // <--- Restored primary blue (Tailwind blue-600)
-			secondary: "#FF9D48", // <--- Restored secondary orange (Tailwind orange-500)
-			accent: "#3B82F6", // <--- Accent color for highlights, CTAs etc.
+			secondary: "#3B82F6", // <--- Restored secondary
+			accent: "#FF9D48", // <--- Accent color for highlights, CTAs etc (Tailwind orange-500)
+			background: "#F8F8F8", // <--- Light grey/white background
+			header: "#1F1F1F", // <--- Header/title color (dark black)
+			body: "#2B2A33", // <--- Body text color (black-dark gray)
+			lightGrey: "#EFEFF0", // <--- Light grey for backgrounds, cards, etc.
 		},
 		logo: {
 			src: "/images/placeholders/placeholder-logo4.svg", // <--- Path to site logo

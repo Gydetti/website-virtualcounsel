@@ -20,7 +20,7 @@ export default function ProblemPainSection({
 	return (
 		<Section
 			id="pain"
-			className="bg-gradient-to-b from-transparent to-[rgba(var(--secondary-rgb),0.1)]"
+			className="bg-gradient-to-b from-transparent to-[rgba(var(--accent-rgb),0.1)]"
 		>
 			<motion.div
 				initial={{ opacity: 0, y: 50 }}
@@ -33,7 +33,7 @@ export default function ProblemPainSection({
 					<div className="flex flex-col justify-center space-y-8">
 						<div className="space-y-4">
 							{badgeText && (
-								<div className="inline-flex items-center space-x-2 text-secondary">
+								<div className="inline-flex items-center space-x-2 text-accent">
 									<AlertTriangle className="h-5 w-5" />
 									<span className="font-medium">{badgeText}</span>
 								</div>
@@ -60,11 +60,11 @@ export default function ProblemPainSection({
 									key={card.id}
 									initial={{ opacity: 0, y: 20 }}
 									whileInView={{ opacity: 1, y: 0 }}
-									transition={{ duration: 0.5, delay: idx * 0.2 }}
+									transition={{ duration: 0.4, delay: idx * 0.2 }}
 									viewport={{ once: true }}
 									className="rounded-lg bg-gray-800 p-6"
 								>
-									<h3 className="mb-3 text-xl font-bold text-secondary">
+									<h3 className="mb-3 text-xl font-bold text-accent">
 										{card.title}
 									</h3>
 									<p className="text-gray-300 text-base md:text-lg">

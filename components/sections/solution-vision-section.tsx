@@ -17,7 +17,7 @@ const textVariants = {
 	visible: (i: number) => ({
 		opacity: 1,
 		y: 0,
-		transition: { duration: 0.6, delay: i * 0.3, ease: "easeIn" },
+		transition: { duration: 0.4, delay: i * 0.2, ease: "easeIn" },
 	}),
 };
 
@@ -32,7 +32,7 @@ export default function SolutionVisionSection({
 	return (
 		<Section
 			id="solution-vision-section"
-			className="bg-gradient-to-b from-[rgba(var(--secondary-rgb),0.1)] via-transparent to-transparent"
+			className="bg-gradient-to-b from-[rgba(var(--accent-rgb),0.1)] via-transparent to-transparent"
 		>
 			{/* Header Animations */}
 			<motion.div
@@ -77,7 +77,7 @@ export default function SolutionVisionSection({
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 						{benefits.map((b) => (
 							<div key={b} className="flex items-start space-x-2">
-								<CheckCircle className="h-5 w-5 text-secondary mt-1" />
+								<CheckCircle className="h-5 w-5 text-accent mt-1" />
 								<span className="text-gray-700">{b}</span>
 							</div>
 						))}
@@ -93,7 +93,7 @@ export default function SolutionVisionSection({
 					whileInView="visible"
 					viewport={{ once: true }}
 					variants={textVariants}
-					className="mt-16 max-w-4xl mx-auto bg-[rgba(var(--secondary-rgb),0.1)] p-6 rounded-lg"
+					className="mt-16 max-w-4xl mx-auto bg-[rgba(var(--accent-rgb),0.1)] p-6 rounded-lg"
 				>
 					<p className="text-gray-900 font-medium mb-2">{calloutText}</p>
 					{calloutCta?.href && calloutCta?.text && (
