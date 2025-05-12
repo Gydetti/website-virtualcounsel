@@ -3,18 +3,18 @@ import {
 	aboutSectionDataSchema,
 	blogSectionDataSchema,
 	clientsSectionDataSchema,
+	contactSectionDataSchema,
 	ctaSectionDataSchema,
 	featuresSectionDataSchema,
 	heroSectionDataSchema,
 	homepageFaqSectionDataSchema,
 	pricingSectionDataSchema,
 	problemPainSectionDataSchema,
+	processSectionDataSchema,
 	servicesSectionDataSchema,
 	solutionVisionSectionDataSchema,
 	testimonialsSectionDataSchema,
 	valuePropSectionDataSchema,
-	processSectionDataSchema,
-	contactSectionDataSchema,
 	// Import other section schemas as needed
 } from "../schemas/sections.schema";
 
@@ -424,60 +424,66 @@ export const aboutSectionData: z.infer<typeof aboutSectionDataSchema> = {
 export const processSectionData: z.infer<typeof processSectionDataSchema> = {
 	badgeText: "Our Method",
 	heading: "How We Achieve Results",
-	subtitle: "A clear, step-by-step overview of our proven process, designed for transparency and client success.",
+	subtitle:
+		"A clear, step-by-step overview of our proven process, designed for transparency and client success.",
 	steps: [
 		{
 			id: "step-01",
 			number: "01",
 			title: "Discovery & Strategy",
-			description: "Understand your goals, audience, and challenges to create a tailored plan.",
+			description:
+				"Understand your goals, audience, and challenges to create a tailored plan.",
 			details: [
 				"Initial consultation and needs assessment.",
 				"Market research and competitor analysis.",
-				"Defining key performance indicators (KPIs)."
-			]
+				"Defining key performance indicators (KPIs).",
+			],
 		},
 		{
 			id: "step-02",
 			number: "02",
 			title: "Design & Development",
-			description: "Crafting a user-centric design and building a robust, scalable solution.",
+			description:
+				"Crafting a user-centric design and building a robust, scalable solution.",
 			details: [
 				"Wireframing and prototyping based on UX best practices.",
 				"Visual design aligned with your brand identity.",
-				"Agile development sprints for iterative progress."
-			]
+				"Agile development sprints for iterative progress.",
+			],
 		},
 		{
 			id: "step-03",
 			number: "03",
 			title: "Testing & Launch",
-			description: "Ensuring quality through rigorous testing before a seamless deployment.",
+			description:
+				"Ensuring quality through rigorous testing before a seamless deployment.",
 			details: [
 				"Comprehensive QA across devices and browsers.",
 				"Performance and security testing.",
-				"Go-live strategy and post-launch monitoring."
-			]
+				"Go-live strategy and post-launch monitoring.",
+			],
 		},
 		{
 			id: "step-04",
 			number: "04",
 			title: "Growth & Optimization",
-			description: "Continuously analyzing data to refine strategies and drive ongoing improvement.",
+			description:
+				"Continuously analyzing data to refine strategies and drive ongoing improvement.",
 			details: [
 				"Regular performance reporting and insights.",
 				"A/B testing and conversion rate optimization (CRO).",
-				"Adapting to market changes and new opportunities."
-			]
-		}
-	]
+				"Adapting to market changes and new opportunities.",
+			],
+		},
+	],
 };
 
 // ++ Data for Contact Section on Homepage ++
 export const contactSectionData: z.infer<typeof contactSectionDataSchema> = {
 	badgeText: "Get In Touch",
 	heading: "Contact Us Today",
-	subtitle: "Have questions or ready to start your project? Reach out and we'll get back to you shortly. Use the form below or contact us directly via email or phone."
+	subtitle:
+		"Have questions or ready to start your project? Reach out and we'll get back to you shortly. Use the form below or contact us directly via email or phone.",
 	// Note: The actual form fields and contact details (email, phone, address)
 	// are pulled from siteConfig by the ContactSection component itself.
 	// This data object is just for the introductory text specific to the homepage instance.

@@ -16,7 +16,7 @@ export const headingBlockSchema = baseBlockSchema.extend({
 export const textBlockSchema = baseBlockSchema.extend({
 	type: z.literal("text"),
 	// Allowing string for simple cases, could be extended for Markdown/HTML later
-	content: z.string().nonempty(), 
+	content: z.string().nonempty(),
 });
 
 export const imageBlockSchema = baseBlockSchema.extend({

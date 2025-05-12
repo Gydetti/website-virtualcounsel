@@ -29,15 +29,15 @@ export const siteConfig: SiteConfigSchema = {
 	},
 	// THEME & BRANDING: Colors, logo, favicon.
 	theme: {
-		colors: { 
+		colors: {
 			primary: "#1E3A8A", // <--- Main brand color
 			secondary: "#60A5FA", // <--- Secondary brand color
-			accent: "#3B82F6"  // <--- Accent color for highlights, CTAs etc.
-		}, 
-		logo: { 
+			accent: "#3B82F6", // <--- Accent color for highlights, CTAs etc.
+		},
+		logo: {
 			src: "/images/placeholders/placeholder-logo4.svg", // <--- Path to site logo
-			alt: "Placeholder Logo" // <--- Alt text for logo
-		}, 
+			alt: "Placeholder Logo", // <--- Alt text for logo
+		},
 		favicon: "/favicon-placeholder.ico", // <--- Path to site favicon
 	},
 	// NAVIGATION LINKS: Main site navigation (header).
@@ -57,15 +57,15 @@ export const siteConfig: SiteConfigSchema = {
 		{ text: "Cookie Policy", href: "/cookie-policy" },
 	],
 	// SOCIAL MEDIA LINKS: URLs for social media profiles.
-	social: { 
+	social: {
 		facebook: "", // <--- Facebook page URL
 		twitter: "", // <--- Twitter profile URL
 		instagram: "", // <--- Instagram profile URL
-		linkedin: "" // <--- LinkedIn profile URL
+		linkedin: "", // <--- LinkedIn profile URL
 	},
 	// COOKIE CONSENT: Configuration for cookie consent banner.
-	cookieConsent: { 
-		cookiebotId: "" // <--- Cookiebot ID, if using Cookiebot service
+	cookieConsent: {
+		cookiebotId: "", // <--- Cookiebot ID, if using Cookiebot service
 	},
 	// TRACKING IDS: IDs for analytics and marketing platforms.
 	tracking: {
@@ -128,7 +128,8 @@ export const siteConfig: SiteConfigSchema = {
 	// CONTACT FORM SETTINGS: Configuration for the contact form.
 	contactForm: {
 		provider: "smtp", // <--- smtp | sendgrid | postmark | etc. | "" (disabled)
-		fields: [ // <--- Define fields for the contact form
+		fields: [
+			// <--- Define fields for the contact form
 			{
 				name: "name",
 				type: "text",
@@ -165,17 +166,19 @@ export const siteConfig: SiteConfigSchema = {
 	contact: {
 		email: "contact@placeholder.com", // <--- Main contact email
 		phone: "+1-555-123-4567", // <--- Main contact phone number
-		address: { // <--- Physical address (optional)
+		address: {
+			// <--- Physical address (optional)
 			line1: "123 Placeholder St",
 			line2: "Suite 4B",
 			city: "Placeholder City",
 			zip: "90210",
 			country: "Placeholder Country",
 		},
-		hours: { // <--- Business hours (optional)
-			monFri: "9am - 5pm", 
-			sat: "10am - 2pm", 
-			sun: "Closed" 
+		hours: {
+			// <--- Business hours (optional)
+			monFri: "9am - 5pm",
+			sat: "10am - 2pm",
+			sun: "Closed",
 		},
 	},
 	// SECTIONS DATA KEYS: Configuration for specific data aspects of sections (e.g., limits).
@@ -187,7 +190,8 @@ export const siteConfig: SiteConfigSchema = {
 		{
 			path: "/", // <--- HOMEPAGE STRUCTURE
 			seo: undefined, // <--- SEO overrides for homepage (title, description, etc.)
-			sections: [ // <--- Sections on the homepage, IN ORDER OF APPEARANCE
+			sections: [
+				// <--- Sections on the homepage, IN ORDER OF APPEARANCE
 				{ id: "home-hero", sectionType: "HeroSection" }, // <--- ID is unique key for React, sectionType maps to component
 				{ id: "home-value-prop", sectionType: "ValuePropSection" },
 				{ id: "home-clients", sectionType: "ClientsSection" },

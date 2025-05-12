@@ -105,7 +105,7 @@ export default function RootLayout({
 						url: siteConfig.site.url ?? "",
 					}}
 				/>
-				<link rel="icon" href="public/favicon.ico"/>
+				<link rel="icon" href="public/favicon.ico" />
 			</head>
 			<body
 				className={`${poppins.variable} ${raleway.variable} font-sans antialiased bg-gradient-to-br from-blue-50 to-transparent`}

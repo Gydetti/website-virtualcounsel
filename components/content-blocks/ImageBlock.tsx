@@ -1,5 +1,5 @@
-import type { FC } from "react";
 import Image from "next/image"; // Use standard Next.js Image
+import type { FC } from "react";
 
 interface ImageBlockProps {
 	image: {

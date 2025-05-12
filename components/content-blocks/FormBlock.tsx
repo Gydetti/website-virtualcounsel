@@ -20,7 +20,6 @@ const FormBlock: FC<FormBlockProps> = ({ config, title, description }) => {
 				{title && <h2 className="text-2xl font-semibold mb-4">{title}</h2>}
 				{description && <p className="mb-6">{description}</p>}
 				{config.embedCode ? (
-					
 					<div
 						className="form-embed"
 						// biome-ignore lint/security/noDangerouslySetInnerHtml: Form embed code is trusted and sanitized by the CMS

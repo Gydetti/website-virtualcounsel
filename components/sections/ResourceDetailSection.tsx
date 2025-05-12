@@ -42,11 +42,9 @@ export default function ResourceDetailSection({
 			</section>
 
 			{/* Dynamic Content Blocks from resource.sections */}
-			{resource.sections.map(
-				(block, i) => (
-					<ContentBlockRenderer key={`${block.type}-${i}`} block={block} />
-				),
-			)}
+			{resource.sections.map((block, i) => (
+				<ContentBlockRenderer key={`${block.type}-${i}`} block={block} />
+			))}
 		</>
 	);
 }
