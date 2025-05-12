@@ -11,11 +11,11 @@ import {
 	CardTitle,
 } from "@/components/ui/card";
 import type { blogSectionDataSchema } from "@/lib/schemas/sections.schema";
-import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import type { z } from "zod";
+import LazySection from "@/components/ui/lazy-section";
 
 // Updated props type alias using Zod schema
 export type BlogSectionProps = z.infer<typeof blogSectionDataSchema>;
@@ -50,12 +50,10 @@ export default function BlogSection({
 
 				<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 md:gap-12 lg:gap-16">
 					{posts.map((post, index) => (
-						<motion.div
+						<LazySection
 							key={post.id}
-							initial={{ opacity: 0, y: 20 }}
-							whileInView={{ opacity: 1, y: 0 }}
-							transition={{ duration: 0.5, delay: index * 0.1 }}
-							viewport={{ once: true }}
+							animation="fade"
+							delay={index * 0.1}
 						>
 							<Card className="h-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border-gray-200 shadow-sm">
 								<div className="relative h-48 w-full overflow-hidden">
@@ -102,7 +100,7 @@ export default function BlogSection({
 									</Button>
 								</CardFooter>
 							</Card>
-						</motion.div>
+						</LazySection>
 					))}
 				</div>
 

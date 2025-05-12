@@ -3,7 +3,7 @@
 import { Section } from "@/components/layout/Section";
 import { Badge } from "@/components/ui/badge";
 import type { processSectionDataSchema } from "@/lib/schemas/sections.schema";
-import { motion } from "framer-motion";
+import LazySection from "@/components/ui/lazy-section";
 import type { z } from "zod";
 
 // Updated props type alias using Zod schema
@@ -45,12 +45,10 @@ export default function ProcessSection({
 
 					<div className="space-y-16">
 						{steps.map((step, index) => (
-							<motion.div
+							<LazySection
 								key={step.id}
-								initial={{ opacity: 0, y: 20 }}
-								whileInView={{ opacity: 1, y: 0 }}
-								transition={{ duration: 0.5, delay: index * 0.1 }}
-								viewport={{ once: true }}
+								animation="slide-up"
+								delay={index * 0.1}
 								className="flex flex-col md:flex-row gap-8"
 							>
 								<div className="flex-shrink-0 flex items-start justify-center relative z-10">
@@ -81,7 +79,7 @@ export default function ProcessSection({
 										</div>
 									)}
 								</div>
-							</motion.div>
+							</LazySection>
 						))}
 					</div>
 				</div>

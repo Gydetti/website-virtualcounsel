@@ -3,7 +3,7 @@
 import { Section } from "@/components/layout/Section";
 import { Badge } from "@/components/ui/badge";
 import type { valuePropSectionDataSchema } from "@/lib/schemas/sections.schema";
-import { motion } from "framer-motion";
+import LazySection from "@/components/ui/lazy-section";
 import { CheckCircle } from "lucide-react";
 import type { ComponentType, SVGProps } from "react";
 import type { z } from "zod";
@@ -46,12 +46,10 @@ export default function ValuePropSection({
 					const Icon =
 						iconMap[benefit.icon as keyof typeof iconMap] ?? CheckCircle;
 					return (
-						<motion.div
+						<LazySection
 							key={benefit.id}
-							initial={{ opacity: 0, y: 20 }}
-							whileInView={{ opacity: 1, y: 0 }}
-							transition={{ duration: 0.8, delay: idx * 0.2 }}
-							viewport={{ once: true }}
+							animation="slide-up"
+							delay={idx * 0.2}
 							className="flex flex-col items-start space-y-3 rounded-lg border p-6 shadow-sm hover:shadow-md"
 						>
 							<div className="flex h-12 w-12 items-center justify-center rounded-full bg-[rgba(var(--primary-rgb),0.1)] text-primary dark:bg-[rgba(var(--primary-rgb),0.2)] dark:text-primary-foreground">
@@ -61,7 +59,7 @@ export default function ValuePropSection({
 							<p className="text-gray-500 dark:text-gray-400">
 								{benefit.description}
 							</p>
-						</motion.div>
+						</LazySection>
 					);
 				})}
 			</div>
