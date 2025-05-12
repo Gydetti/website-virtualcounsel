@@ -56,6 +56,7 @@ const sampleResourcesData: z.infer<typeof resourceSchema>[] = [
 				type: "text",
 				content:
 					"Introduce the resource: who it's for, why it's valuable, and what your reader will learn.",
+				id: "b1a7e8c2-1f2d-4e3a-9b5c-1a2b3c4d5e6f",
 			},
 			{
 				type: "image",
@@ -66,17 +67,17 @@ const sampleResourcesData: z.infer<typeof resourceSchema>[] = [
 					height: 600,
 				},
 				caption: "A sneak peek inside the guide.",
+				id: "c2b8f9d3-2e3f-5a4b-8c6d-2b3c4d5e6f7a",
 			},
 			{
 				type: "form",
 				title: "Download Your Free E-Book",
 				description: "Enter your details below to get instant access.",
 				config: {
-					// Example: provider: "hubspot", portalId: "YOUR_PORTAL_ID", formId: "YOUR_FORM_ID"
-					// For now, an empty config or a placeholder for a custom embed that would be filled later
 					provider: "custom",
 					embedCode: "<!-- Placeholder for custom form embed code -->",
 				},
+				id: "d3c9g0e4-3f4g-6b5c-9d7e-3c4d5e6f7a8b",
 			},
 		],
 		// seo: { title: "...", description: "..." } // SEO data can be added here

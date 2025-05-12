@@ -23,10 +23,13 @@ const ContentBlockRenderer: FC<ContentBlockRendererProps> = ({ block }) => {
 		case "image":
 			return <ImageBlock image={block.image} caption={block.caption} />;
 		case "video":
-			return <VideoBlock src={block.src} caption={block.caption} />;
+			return (
+				<VideoBlock type={block.type} src={block.src} caption={block.caption} />
+			);
 		case "quote":
 			return (
 				<QuoteBlock
+					type={block.type}
 					text={block.text}
 					author={block.author}
 					source={block.source}
@@ -35,6 +38,7 @@ const ContentBlockRenderer: FC<ContentBlockRendererProps> = ({ block }) => {
 		case "cta":
 			return (
 				<CtaBlock
+					type={block.type}
 					text={block.text}
 					href={block.href}
 					external={block.external}
