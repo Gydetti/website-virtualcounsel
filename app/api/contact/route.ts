@@ -8,7 +8,7 @@ import { z } from "zod";
 import { siteConfig } from "../../../lib/siteConfig";
 
 // Define schema for contact form payload
-const contactSchema = z.object({
+export const contactSchema = z.object({
 	name: z.string().nonempty(),
 	email: z.string().email(),
 	phone: z.string().optional(),

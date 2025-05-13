@@ -169,6 +169,7 @@ export const siteConfig: SiteConfigSchema = {
 		"/resources",
 		"/contact",
 		"/terms-of-service", // <--- Example legal page
+		"/testimonials",
 	],
 	// CONTACT FORM SETTINGS: Configuration for the contact form.
 	contactForm: {
