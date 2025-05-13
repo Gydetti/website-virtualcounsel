@@ -1,6 +1,6 @@
 "use client";
 import { siteConfig } from "@/lib/siteConfig";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 
@@ -9,6 +9,7 @@ export default function PageTransitionWrapper({
 }: { children: ReactNode }) {
 	const pathname = usePathname();
 	const { enablePageTransitions, pageTransitionVariant } = siteConfig.features;
+	const shouldReduceMotion = useReducedMotion();
 
 	const pageVariants = {
 		fade: {
@@ -28,22 +29,23 @@ export default function PageTransitionWrapper({
 		},
 	};
 
+	// If page transitions are disabled or user prefers reduced motion, render children directly
+	if (!enablePageTransitions || shouldReduceMotion) {
+		return <>{children}</>;
+	}
+
 	return (
 		<AnimatePresence exitBeforeEnter>
-			{enablePageTransitions ? (
-				<motion.main
-					key={pathname}
-					className="flex-1"
-					initial="initial"
-					animate="animate"
-					exit="exit"
-					variants={pageVariants[pageTransitionVariant]}
-				>
-					{children}
-				</motion.main>
-			) : (
-				<>{children}</>
-			)}
+			<motion.main
+				key={pathname}
+				className="flex-1"
+				initial="initial"
+				animate="animate"
+				exit="exit"
+				variants={pageVariants[pageTransitionVariant]}
+			>
+				{children}
+			</motion.main>
 		</AnimatePresence>
 	);
 }
