@@ -2,7 +2,7 @@
 import type { ReactNode } from "react";
 
 import { siteConfig } from "@/lib/siteConfig";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 interface LazySectionProps {
@@ -29,6 +29,8 @@ export default function LazySection({
 }: LazySectionProps) {
 	const [isVisible, setIsVisible] = useState(false);
 	const ref = useRef<HTMLDivElement>(null);
+	// Respect users' reduced-motion preference
+	const shouldReduceMotion = useReducedMotion();
 
 	// Compute overflow class for slide animations
 	const overflowClass =
@@ -86,8 +88,8 @@ export default function LazySection({
 		},
 	};
 
-	// If animations are globally disabled or set to none, just render children without motion
-	if (!siteConfig.features.enableStaggeredAnimations || animation === "none") {
+	// If reduced-motion is requested, animations globally disabled, or set to none, render children without motion
+	if (shouldReduceMotion || !siteConfig.features.enableStaggeredAnimations || animation === "none") {
 		return (
 			<div ref={ref} className={combinedClass}>
 				{children}
