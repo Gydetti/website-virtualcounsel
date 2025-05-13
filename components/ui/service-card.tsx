@@ -7,6 +7,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
+import { siteConfig } from "@/lib/siteConfig";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
@@ -27,9 +28,12 @@ export default function ServiceCard({
 	popular = false,
 	slug,
 }: ServiceCardProps) {
+	const microClass = siteConfig.features.enableMicroInteractions
+		? "transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+		: "";
 	return (
 		<Card
-			className={`card-equal-height h-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${
+			className={`card-equal-height h-full overflow-hidden ${microClass} ${
 				popular
 					? "border-primary shadow-lg relative"
 					: "border-gray-200 shadow-sm"

@@ -12,9 +12,12 @@ import Link from "next/link";
 import type { z } from "zod";
 
 // Updated props type alias using Zod schema
-export type AboutSectionProps = z.infer<typeof aboutSectionDataSchema>;
+export type AboutSectionProps = z.infer<typeof aboutSectionDataSchema> & {
+	variant?: "imageLeft" | "imageRight" | "centered";
+};
 
 export default function AboutSection({
+	variant = "imageLeft",
 	badgeText,
 	heading,
 	paragraphs,
@@ -22,13 +25,24 @@ export default function AboutSection({
 	stats,
 	cta,
 }: AboutSectionProps) {
+	const containerClasses =
+		variant === "centered"
+			? "grid grid-cols-1 gap-12 items-center text-center"
+			: "grid md:grid-cols-2 gap-12 items-center";
+	const imageOrderClass = variant === "imageRight" ? "md:order-2" : "";
+	const contentOrderClass = variant === "imageRight" ? "md:order-1" : "";
+
 	return (
 		<Section
 			id="about"
 			className="relative overflow-hidden bg-gradient-to-r from-blue-100 via-transparent to-transparent z-10"
 		>
-			<div className="grid md:grid-cols-2 gap-12 items-center">
-				<LazySection animation="slide-up" delay={0} className="relative">
+			<div className={containerClasses}>
+				<LazySection
+					animation="slide-up"
+					delay={0}
+					className={`relative ${imageOrderClass}`}
+				>
 					{image?.src && (
 						<>
 							<div className="absolute -top-6 -left-6 w-24 h-24 bg-[rgba(var(--primary-rgb),0.1)] rounded-full z-0" />
@@ -45,7 +59,11 @@ export default function AboutSection({
 					)}
 				</LazySection>
 
-				<LazySection animation="slide-up" delay={0.1}>
+				<LazySection
+					animation="slide-up"
+					delay={0.1}
+					className={contentOrderClass}
+				>
 					{badgeText && (
 						<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 							{badgeText}

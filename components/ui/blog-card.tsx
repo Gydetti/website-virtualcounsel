@@ -8,6 +8,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
+import { siteConfig } from "@/lib/siteConfig";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -29,8 +30,13 @@ export default function BlogCard({
 	image,
 	slug,
 }: BlogCardProps) {
+	const microClass = siteConfig.features.enableMicroInteractions
+		? "transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+		: "";
 	return (
-		<Card className="h-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border-gray-200 shadow-sm">
+		<Card
+			className={`h-full overflow-hidden border-gray-200 shadow-sm ${microClass}`}
+		>
 			<div className="relative h-48 w-full overflow-hidden">
 				<Image
 					src={image || "/placeholder.svg"}

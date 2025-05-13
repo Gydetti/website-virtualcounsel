@@ -127,6 +127,18 @@ export const siteConfig: SiteConfigSchema = {
 	features: {
 		// Toggle scroll-driven & staggered animations across all sections
 		enableStaggeredAnimations: true,
+		// FIRST_EDIT: Toggle page-level route transition animations
+		enablePageTransitions: false,
+		// FIRST_EDIT: Variant for page transition animations (fade, slide, cover)
+		pageTransitionVariant: "cover",
+		// FIRST_EDIT: Toggle interactive/animated backgrounds (canvas, particles)
+		enableAdvancedBackgrounds: true,
+		// FIRST_EDIT: Choose which animated background style to use (none, gradient, particles, parallax, noise, wave, image)
+		animatedBackgroundType: "none",
+		// FIRST_EDIT: Optional background image URL to use when animatedBackgroundType is "image"
+		backgroundImageUrl: "/images/placeholders/placeholder.svg",
+		// FIRST_EDIT: Toggle micro-interactions and hover animations
+		enableMicroInteractions: true,
 		enableHeroSection: true, // <--- Toggle Hero section display
 		enableBlog: true, // <--- Toggle Blog feature (includes pages & sections)
 		enableServices: true, // <--- Toggle Services feature

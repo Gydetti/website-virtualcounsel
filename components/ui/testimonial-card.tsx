@@ -1,4 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { siteConfig } from "@/lib/siteConfig";
 import { Star } from "lucide-react";
 import Image from "next/image";
 
@@ -17,8 +18,11 @@ export default function TestimonialCard({
 	image,
 	rating = 5,
 }: TestimonialProps) {
+	const microClass = siteConfig.features.enableMicroInteractions
+		? "transition-all hover:shadow-xl"
+		: "";
 	return (
-		<Card className="border-none shadow-lg hover:shadow-xl transition-all bg-white h-full">
+		<Card className={`border-none bg-white h-full shadow-lg ${microClass}`}>
 			<CardContent className="p-8">
 				{rating > 0 && (
 					<div className="flex items-center mb-6">

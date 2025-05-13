@@ -30,13 +30,17 @@ export default function LazySection({
 	const [isVisible, setIsVisible] = useState(false);
 	const ref = useRef<HTMLDivElement>(null);
 
-	// Combine user classes and overflow hiding for horizontal slide animations
-	const wrapperClass = [
-		className,
+	// Compute overflow class for slide animations
+	const overflowClass =
 		animation === "slide-left" || animation === "slide-right"
 			? "overflow-x-hidden"
-			: "",
-	]
+			: "";
+	// Wrapper should fill available height to align grid items
+	const wrapperClass = [overflowClass, "h-full"].filter(Boolean).join(" ");
+	// Inner content should also fill wrapper for consistent sizing
+	const innerClass = [className, "h-full"].filter(Boolean).join(" ");
+	// Combined classes for no-animation mode (overflow + styling + full height)
+	const combinedClass = [overflowClass, className, "h-full"]
 		.filter(Boolean)
 		.join(" ");
 
@@ -85,7 +89,7 @@ export default function LazySection({
 	// If animations are globally disabled or set to none, just render children without motion
 	if (!siteConfig.features.enableStaggeredAnimations || animation === "none") {
 		return (
-			<div ref={ref} className={wrapperClass}>
+			<div ref={ref} className={combinedClass}>
 				{children}
 			</div>
 		);
@@ -94,7 +98,7 @@ export default function LazySection({
 	return (
 		<div ref={ref} className={wrapperClass}>
 			<motion.div
-				className={wrapperClass}
+				className={innerClass}
 				initial="hidden"
 				animate={isVisible ? "visible" : "hidden"}
 				variants={variants}

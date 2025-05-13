@@ -135,6 +135,27 @@ const featureFlagsSchema = z.object({
 	enableLandingPages: z.boolean().optional().default(false),
 	enableValuePropSection: z.boolean().optional().default(true),
 	enableStaggeredAnimations: z.boolean().optional().default(true),
+	enablePageTransitions: z.boolean().optional().default(false),
+	pageTransitionVariant: z
+		.enum(["fade", "slide", "cover"])
+		.optional()
+		.default("fade"),
+	enableAdvancedBackgrounds: z.boolean().optional().default(false),
+	animatedBackgroundType: z
+		.enum([
+			"none",
+			"gradient",
+			"particles",
+			"parallax",
+			"noise",
+			"wave",
+			"image",
+		])
+		.optional()
+		.default("gradient"),
+	// Optional image URL for the 'image' background type
+	backgroundImageUrl: z.string().optional(),
+	enableMicroInteractions: z.boolean().optional().default(false),
 	enableFooterServices: z.boolean().optional().default(true),
 });
 
@@ -202,6 +223,7 @@ const sectionsDataKeysSchema = z
 export const pageSectionConfigSchema = z.object({
 	id: z.string().min(1, "Section config ID cannot be empty"), // Unique ID for this instance of the section on a page
 	sectionType: z.string().min(1, "Section type cannot be empty"), // Corresponds to a key/name of a section component
+	variant: z.enum(["imageLeft", "imageRight", "centered"]).optional(),
 	// TODO: Add fields for section-specific data overrides or a generic data object/key
 	// e.g., dataKey: z.string().optional(), variant: z.string().optional()
 	// For now, we'll assume data is fetched by the section component or a page-level data aggregator

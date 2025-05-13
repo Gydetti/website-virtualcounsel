@@ -5,6 +5,7 @@ import { forwardRef } from "react";
 import type { ButtonHTMLAttributes } from "react";
 import "./spark-button.css";
 
+import { siteConfig } from "@/lib/siteConfig";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
@@ -49,6 +50,9 @@ export interface ButtonProps
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 	({ className, variant, size, asChild = false, children, ...props }, ref) => {
+		const microClass = siteConfig.features.enableMicroInteractions
+			? "transition-transform hover:scale-[1.025] duration-200"
+			: "";
 		const Comp = asChild ? Slot : "button";
 
 		if (variant === "spark") {
@@ -58,6 +62,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 					type={props.type || "button"}
 					className={cn(
 						buttonVariants({ variant: "default", size }),
+						microClass,
 						"spark-button",
 						className,
 					)}
@@ -74,7 +79,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
 		return (
 			<Comp
-				className={cn(buttonVariants({ variant, size, className }))}
+				className={cn(buttonVariants({ variant, size }), microClass, className)}
 				ref={ref}
 				{...props}
 			>

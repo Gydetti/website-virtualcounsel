@@ -18,9 +18,12 @@ import type { heroSectionDataSchema } from "@/lib/schemas/sections.schema";
 import { siteConfig } from "@/lib/siteConfig";
 import type { z } from "zod";
 
-export type HeroSectionProps = z.infer<typeof heroSectionDataSchema>;
+export type HeroSectionProps = z.infer<typeof heroSectionDataSchema> & {
+	variant?: "imageLeft" | "imageRight" | "centered";
+};
 
 export default function HeroSection({
+	variant = "imageRight",
 	badgeText,
 	headline,
 	subheadline,
@@ -109,7 +112,7 @@ export default function HeroSection({
 					<LazySection
 						animation="slide-up"
 						delay={0}
-						className="flex flex-col justify-center space-y-6 z-10"
+						className={`flex flex-col justify-center space-y-6 z-10 ${variant === "imageLeft" ? "md:order-2" : ""}`}
 					>
 						{badgeText && (
 							<Badge className="w-fit bg-[rgba(var(--primary-rgb),0.1)] text-primary hover:bg-[rgba(var(--primary-rgb),0.2)]">
@@ -196,7 +199,7 @@ export default function HeroSection({
 					<LazySection
 						animation="slide-up"
 						delay={0.2}
-						className="relative w-full max-w-[600px] ml-auto transform md:translate-y-6"
+						className={`relative w-full max-w-[600px] transform md:translate-y-6 ${variant === "imageLeft" ? "md:order-1" : "ml-auto"}`}
 					>
 						<AspectRatio
 							ratio={6 / 5}

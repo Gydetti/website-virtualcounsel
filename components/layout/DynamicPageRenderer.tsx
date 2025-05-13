@@ -249,7 +249,7 @@ const DynamicPageRenderer: FC<DynamicPageRendererProps> = async ({
 		}
 		elements.push(
 			<LazySection key={section.id}>
-				<Component {...section.data} />
+				<Component variant={section.variant} {...section.data} />
 			</LazySection>,
 		);
 	}

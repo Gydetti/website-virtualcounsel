@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import "./globals.css";
 import CookiebotLoaderClient from "@/components/cookie/CookiebotLoaderClient";
 import CookieConsentBanner from "@/components/cookie/cookie-consent-banner";
+import PageTransitionWrapper from "@/components/layout/PageTransitionWrapper";
 import Footer from "@/components/layout/footer";
 // import Script from "next/script" (removed for client-only loading)
 import Header from "@/components/layout/header";
@@ -11,6 +12,7 @@ import StructuredData from "@/components/seo/structured-data";
 import DataLayerProvider from "@/components/tracking/data-layer-provider";
 import PageViewTracker from "@/components/tracking/page-view-tracker";
 import TrackingScripts from "@/components/tracking/tracking-scripts";
+import BackgroundCanvas from "@/components/ui/BackgroundCanvas";
 import ScrollToTop from "@/components/ui/scroll-to-top";
 import { Toaster } from "@/components/ui/toaster";
 import { heroSectionData } from "@/lib/data/homepage";
@@ -204,6 +206,8 @@ export default function RootLayout({
 			<body
 				className={`${poppins.variable} ${raleway.variable} font-sans antialiased bg-gradient-to-br from-blue-50 to-transparent`}
 			>
+				{/* FIRST_EDIT: Animated background canvas */}
+				{siteConfig.features.enableAdvancedBackgrounds && <BackgroundCanvas />}
 				{/* Custom React-based cookie banner (disabled by default) */}
 				{siteConfig.features.enableCustomCookieBanner && (
 					<CookieConsentBanner />
@@ -219,7 +223,7 @@ export default function RootLayout({
 
 					<div className="flex min-h-screen flex-col">
 						<Header />
-						<main className="flex-1">{children}</main>
+						<PageTransitionWrapper>{children}</PageTransitionWrapper>
 						<Footer />
 					</div>
 					<ScrollToTop />
