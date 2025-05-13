@@ -9,6 +9,8 @@ import type { z } from "zod";
 import ResourceDetailSection from "@/components/sections/ResourceDetailSection"; // ++ Import ResourceDetailSection
 import ResourceListSection from "@/components/sections/ResourceListSection"; // ++ Import
 import AboutSection from "@/components/sections/about-section"; // ++ Import
+import AboutSocialProofSection from "@/components/sections/about-social-proof-section";
+import AboutValuesSection from "@/components/sections/about-values-section";
 import BlogSection from "@/components/sections/blog-section"; // For BlogPreviewSection
 import ClientsSection from "@/components/sections/clients-section";
 import ContactSection from "@/components/sections/contact-section";
@@ -24,11 +26,13 @@ import ServicesSection from "@/components/sections/services-section"; // For Ser
 import SolutionVisionSection from "@/components/sections/solution-vision-section";
 import TestimonialsSection from "@/components/sections/testimonials-section";
 import ValuePropSection from "@/components/sections/value-prop-section";
-import AboutValuesSection from "@/components/sections/about-values-section";
-import AboutSocialProofSection from "@/components/sections/about-social-proof-section";
 
 import { getBlogPosts, getServices } from "@/lib/data-utils"; // Now using these
-import { aboutPageMainContentData, aboutValuesSectionData, aboutSocialProofSectionData } from "@/lib/data/aboutPageData"; // ++ Import about page data and new aboutValues/aboutSocialProof data
+import {
+	aboutPageMainContentData,
+	aboutSocialProofSectionData,
+	aboutValuesSectionData,
+} from "@/lib/data/aboutPageData"; // ++ Import about page data and new aboutValues/aboutSocialProof data
 // ++ NEW IMPORTS FOR DATA ++
 import * as homepageData from "@/lib/data/homepage";
 import {

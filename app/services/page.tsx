@@ -1,4 +1,5 @@
 import { Section } from "@/components/layout/Section";
+import ServicesOverviewSection from "@/components/sections/services-overview-section";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,6 +11,7 @@ import {
 } from "@/components/ui/card";
 import LazySection from "@/components/ui/lazy-section";
 import { getServices } from "@/lib/data-utils";
+import { servicesOverviewSectionData } from "@/lib/data/servicesPageData";
 import { iconComponents } from "@/lib/icon-utils";
 import { defaultMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/lib/siteConfig";
@@ -18,8 +20,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import ServicesOverviewSection from "@/components/sections/services-overview-section";
-import { servicesOverviewSectionData } from "@/lib/data/servicesPageData";
 
 // Disable this page if services feature is off or page not enabled
 if (
@@ -107,9 +107,7 @@ export default async function ServicesPage() {
 								<div className="flex-shrink-0 h-6 w-6 rounded-full bg-green-100 flex items-center justify-center mr-3">
 									<Check className="h-4 w-4 text-green-600" />
 								</div>
-								<span>
-									Tailored solutions for your specific business needs
-								</span>
+								<span>Tailored solutions for your specific business needs</span>
 							</div>
 							<div className="flex items-start">
 								<div className="flex-shrink-0 h-6 w-6 rounded-full bg-green-100 flex items-center justify-center mr-3">

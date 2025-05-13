@@ -273,7 +273,16 @@ const socialProofItemSchema = z.object({
 export const aboutSocialProofSectionDataSchema = z.object({
 	badgeText: z.string().optional(),
 	heading: z.string().optional(),
-	socialProof: z.array(socialProofItemSchema).min(1, "Must provide at least one social proof item"),
+	socialProof: z
+		.array(socialProofItemSchema)
+		.min(1, "Must provide at least one social proof item"),
+});
+
+// Add schema for Services Overview section
+export const servicesOverviewSectionDataSchema = z.object({
+	badgeText: z.string().optional(),
+	heading: z.string().optional(),
+	description: z.string().optional(),
 });
 
 // End of section-specific schemas for now.
