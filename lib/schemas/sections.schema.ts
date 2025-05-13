@@ -255,5 +255,26 @@ export const pricingSectionDataSchema = z.object({
 	// Add any section-wide options if needed, e.g., disclaimer, currencyToggle
 });
 
+// Add schema for About Values & Philosophy section
+export const aboutValuesSectionDataSchema = z.object({
+	badgeText: z.string().optional(),
+	heading: z.string().optional(),
+	values: z.array(z.string().min(1)).min(1, "Must provide at least one value"),
+});
+
+// Add schema for About Social Proof snippet section
+const socialProofItemSchema = z.object({
+	id: z.string().min(1),
+	quote: z.string().min(1),
+	name: z.string().min(1),
+	title: z.string().optional(),
+	image: imageSchema.optional(),
+});
+export const aboutSocialProofSectionDataSchema = z.object({
+	badgeText: z.string().optional(),
+	heading: z.string().optional(),
+	socialProof: z.array(socialProofItemSchema).min(1, "Must provide at least one social proof item"),
+});
+
 // End of section-specific schemas for now.
 // The old placeholderSectionsSchema can be removed.

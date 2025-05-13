@@ -108,7 +108,7 @@ export default function HeroSection({
 				fullBleed={false}
 				className="relative z-10 pb-16 sm:py-12 md:py-16"
 			>
-				<div className="grid md:grid-cols-2 gap-4 sm:gap-8 md:gap-12 lg:gap-16 items-center">
+				<div className="grid md:grid-cols-2 gap-8 sm:gap-8 md:gap-12 lg:gap-16 items-center">
 					<LazySection
 						animation="slide-up"
 						delay={0}

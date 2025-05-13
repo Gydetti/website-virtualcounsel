@@ -277,7 +277,9 @@ export const siteConfig: SiteConfigSchema = {
 					"Learn more about our company, our mission, and our values.",
 			},
 			sections: [
-				{ id: "about-main-content", sectionType: "AboutSection" }, // <--- Main content for the About page
+				{ id: "about-main-content", sectionType: "AboutSection" },
+				{ id: "about-values", sectionType: "AboutValuesSection" },
+				{ id: "about-social-proof", sectionType: "AboutSocialProofSection" },
 				{ id: "about-testimonials", sectionType: "TestimonialsSection" },
 				{ id: "about-cta", sectionType: "CtaSection" },
 			],

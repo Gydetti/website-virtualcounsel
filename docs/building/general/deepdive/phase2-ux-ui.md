@@ -1,3 +1,15 @@
+4. Next Steps & Recommendations
+Implement Page-Specific Enhancements
+Tackle each page brief in turn (Homepage → About → Services → Testimonials → Contact → Blog → FAQ).
+Accessibility Refinements
+Add reduced-motion toggles, ARIA roles, focus traps/modals where needed.
+Performance & SEO Tuning
+Address high-impact Lighthouse recommendations from lighthouse-report.html.
+Document Scroll-Reveal Strategy
+Formalize guidelines on when to use inline <motion.div> vs <LazySection>.
+Finalize & Merge
+Clear .next, rebuild, lint+fix, tests, deploy to staging for manual QA, then push to main.
+
 # Phase 2: High-Impact UX/UI Enhancement Blueprint
 
 > **DISCLAIMER:** This document was authored on 2025-05-12, immediately after completing Phase 1 foundational work. The codebase may have evolved since; always verify current file structure and config before proceeding.  

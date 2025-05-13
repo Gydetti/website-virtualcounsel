@@ -41,3 +41,44 @@ try {
 	);
 	// Potentially throw error in build to ensure data conforms
 }
+
+// Data for About Values & Philosophy section
+export const aboutValuesSectionData = {
+	badgeText: "Our Values",
+	heading: "Our Core Beliefs",
+	values: ["Integrity", "Innovation", "Empathy"],
+};
+
+// Data for About Social Proof snippet section
+export const aboutSocialProofSectionData = {
+	badgeText: "Experience & Trust",
+	heading: "What Clients Are Saying",
+	socialProof: [
+		{
+			id: "sp1",
+			quote: "Working with them transformed our business - their expertise is unmatched.",
+			name: "Alex Martinez",
+			title: "CEO, Tech Solutions",
+			image: { src: "/images/testimonials/alex.jpg", alt: "Alex Martinez", width: 60, height: 60 },
+		},
+		{
+			id: "sp2",
+			quote: "Their team truly cares about our success and delivers beyond expectations.",
+			name: "Samantha Lee",
+			title: "Founder, Creative Co.",
+			image: { src: "/images/testimonials/samantha.jpg", alt: "Samantha Lee", width: 60, height: 60 },
+		},
+	],
+};
+
+// Validate new data
+import { aboutValuesSectionDataSchema, aboutSocialProofSectionDataSchema } from "@/lib/schemas/sections.schema";
+try {
+	aboutValuesSectionDataSchema.parse(aboutValuesSectionData);
+	aboutSocialProofSectionDataSchema.parse(aboutSocialProofSectionData);
+} catch (error) {
+	console.error(
+		"Error validating About values or social proof data:",
+		error instanceof Error ? error.message : error,
+	);
+}
