@@ -540,6 +540,15 @@ The template is optimized for performance:
 - Animate **once** per viewport entry to maintain performance.
 - To synchronize multiple adjacent sections (e.g., Pain & Solution), wrap them together in a single `<LazySection>` for unified animation.
 
+### Animations & UX/UI Feature Flags
+
+- **Global Scroll-Reveal Animations:** Behind `siteConfig.features.enableStaggeredAnimations`, wrap content in `<LazySection animation="..." delay={...}>…</LazySection>` to animate on scroll; these respect users' `prefers-reduced-motion` setting.
+- **Page Transitions:** Controlled by `siteConfig.features.enablePageTransitions` with variant selected via `siteConfig.features.pageTransitionVariant` (`fade` | `slide` | `cover`), implemented in `components/layout/PageTransitionWrapper`.
+- **Animated Backgrounds:** Gated by `siteConfig.features.enableAdvancedBackgrounds` and configured via `siteConfig.features.animatedBackgroundType` (`none`, `gradient`, `particles`, `parallax`, `noise`, `wave`, `image`) and optional `siteConfig.features.backgroundImageUrl`, rendered by `components/ui/BackgroundCanvas`.
+- **Section Layout Variants:** Many section components (Hero, About, Services, etc.) accept a `variant` prop (`imageLeft` | `imageRight` | `centered`) to reorder layouts via config without code changes.
+- **Micro-Interactions:** Toggle subtle hover effects, button scales, progress indicators, and interactive counters via `siteConfig.features.enableMicroInteractions` using CSS-only Tailwind utilities.
+- **Accessibility Fallback:** All animations (scroll-reveal, page transitions, backgrounds) automatically disable when users request reduced motion via `prefers-reduced-motion`.
+
 ## Customization Guide
 
 ### Configuration Files

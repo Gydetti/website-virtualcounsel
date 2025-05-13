@@ -75,7 +75,7 @@ export default function HomepageFaqSection({
 									value={`faq-${cat.category}-${q.question}`}
 									className="border border-gray-200 rounded-lg overflow-hidden"
 								>
-									<AccordionTrigger className="px-6 py-4 text-body-base font-medium">
+									<AccordionTrigger className="px-6 py-2 text-body-base font-medium">
 										{q.question}
 									</AccordionTrigger>
 									<AccordionContent className="px-6 py-4 text-gray-700">

@@ -35,7 +35,7 @@ export default function PageTransitionWrapper({
 	}
 
 	return (
-		<AnimatePresence exitBeforeEnter>
+		<AnimatePresence mode="wait">
 			<motion.main
 				key={pathname}
 				className="flex-1"

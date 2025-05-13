@@ -89,7 +89,11 @@ export default function LazySection({
 	};
 
 	// If reduced-motion is requested, animations globally disabled, or set to none, render children without motion
-	if (shouldReduceMotion || !siteConfig.features.enableStaggeredAnimations || animation === "none") {
+	if (
+		shouldReduceMotion ||
+		!siteConfig.features.enableStaggeredAnimations ||
+		animation === "none"
+	) {
 		return (
 			<div ref={ref} className={combinedClass}>
 				{children}
