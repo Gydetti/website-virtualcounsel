@@ -1007,3 +1007,66 @@ This setup ensures the site is always styled, always dynamic, and always ready f
 > **Conclusion:**
 > For static, admin-driven theming (the current use case), this is a net win for performance and simplicity. If you ever want runtime theme switching, you can reintroduce a client-side provider.
 
+
+### Custom Color‐Opacity Utilities
+
+1. **CSS Variable Injection** (in `app/layout.tsx`):
+
+   ```ts
+   // at SSR build time we inject:
+   --primary: #2563EB;
+   --primary-rgb: 37,99,235;
+   --secondary: #FF9D48;
+   --secondary-rgb: 255,157,72;
+   // …etc for accent, muted, destructive, popover, card…
+   ```
+
+2. **Tailwind Plugin** (in `tailwind.config.ts`):
+
+   ```ts
+   import plugin from 'tailwindcss/plugin';
+
+   export default {
+     // …
+     plugins: [
+       // …other plugins…
+       plugin(({ matchUtilities, theme }) => {
+         const colors = ['primary','secondary','destructive','muted','accent','popover','card'];
+         for (const color of colors) {
+           matchUtilities({
+             [`bg-${color}`]:   v => ({ backgroundColor: `rgba(var(--${color}-rgb), ${v})` }),
+             [`text-${color}`]: v => ({ color:          `rgba(var(--${color}-rgb), ${v})` }),
+             [`border-${color}`]: v => ({ borderColor:  `rgba(var(--${color}-rgb), ${v})` }),
+           }, { values: theme('opacity.0') });
+         }
+       }),
+     ],
+   };
+   ```
+
+3. **How to Use**:
+
+   ```html
+   <!-- 10% primary fill, 80% secondary text, 50% muted border -->
+   <div class="bg-primary-10 text-secondary-80 border-muted-50">
+     …
+   </div>
+   ```
+
+   Compiles to:
+
+   ```css
+   background-color: rgba(var(--primary-rgb), 0.1);
+   color:            rgba(var(--secondary-rgb), 0.8);
+   border-color:     rgba(var(--muted-rgb), 0.5);
+   ```
+
+4. **Explicit Fallback** (if you need an arbitrary opacity):
+
+   ```html
+   <div class="bg-[rgba(var(--primary-rgb),0.4)]">
+     …
+   </div>
+   ```
+
+With this in place, any future AI or human can instantly see how to write and extend color-opacity utilities—and you’ll never accidentally ship a broken `text-primary/40` again.

@@ -89,7 +89,7 @@ export default function ContactPageClient() {
 	return (
 		<>
 			<LazySection>
-				<section className="bg-gradient-to-r from-blue-50 to-white py-16 md:py-24">
+				<section className="bg-gradient-to-r from-blue-100 via-transparent to-transparent py-16 md:py-24">
 					<div className="container-wide">
 						<div className="text-center max-w-3xl mx-auto">
 							<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
@@ -106,7 +106,7 @@ export default function ContactPageClient() {
 			</LazySection>
 
 			<LazySection>
-				<section className="py-16 bg-white">
+				<section className="py-16">
 					<div className="container-wide">
 						<div className="grid lg:grid-cols-3 gap-12 items-stretch">
 							<div className="lg:col-span-2">
@@ -176,7 +176,7 @@ export default function ContactPageClient() {
 
 										<Button
 											type="submit"
-											className="w-full bg-primary hover:bg-primary/90 text-white py-3 rounded-lg"
+											className="w-full bg-primary hover:bg-primary-90 text-white py-3 rounded-lg"
 											disabled={isSubmitting}
 										>
 											{isSubmitting

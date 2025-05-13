@@ -182,7 +182,7 @@ export default async function ServicePage(props: ServicePageProps) {
 
 						<Button
 							size="lg"
-							className="bg-primary hover:bg-primary/90"
+							className="bg-primary hover:bg-primary-90"
 							asChild
 						>
 							<Link href="/contact">
@@ -194,7 +194,7 @@ export default async function ServicePage(props: ServicePageProps) {
 
 					<div className="relative h-[400px] rounded-xl overflow-hidden shadow-xl">
 						<div className="absolute inset-0 flex items-center justify-center bg-gray-100">
-							<IconComponent className="h-32 w-32 text-primary/30" />
+							<IconComponent className="h-32 w-32 text-primary-30" />
 						</div>
 					</div>
 				</div>
@@ -211,7 +211,7 @@ export default async function ServicePage(props: ServicePageProps) {
 								key={benefit.title}
 								className="text-center p-6 hover:shadow-lg transition-shadow"
 							>
-								<div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
+								<div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary-10 text-primary mb-4">
 									<span className="text-2xl">{benefit.icon}</span>
 								</div>
 								<h3 className="text-xl font-bold mb-2">{benefit.title}</h3>

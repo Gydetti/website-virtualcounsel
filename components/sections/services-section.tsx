@@ -50,7 +50,7 @@ export default function ServicesSection({
 			className="relative overflow-hidden "
 		>
 			{/* Decorative elements */}
-			{/* <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -translate-y-1/2 translate-x-1/2" />
+			{/* <div className="absolute top-0 right-0 w-64 h-64 bg-primary-5 rounded-full -translate-y-1/2 translate-x-1/2" />
 			<div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-100/20 rounded-full translate-y-1/2 -translate-x-1/2" /> */}
 
 			<div className="relative z-10">
@@ -132,7 +132,7 @@ export default function ServicesSection({
 										variant={service.popular ? "default" : "outline"}
 										className={`group w-full whitespace-normal break-words ${
 											service.popular
-												? "hover:bg-primary/90"
+												? "hover:bg-primary-90"
 												: "bg-white border border-primary text-primary hover:bg-primary hover:text-white"
 										}`}
 										asChild

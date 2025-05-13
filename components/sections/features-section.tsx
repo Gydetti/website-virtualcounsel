@@ -32,7 +32,7 @@ export default function FeaturesSection({
 			className="text-gray-800 relative overflow-hidden"
 		>
 			{/* Ensure decorative elements overlap edges */}
-			{/* <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full -translate-y-1/4 translate-x-1/4 blur-3xl z-0" /> */}
+			{/* <div className="absolute top-0 right-0 w-96 h-96 bg-primary-5 rounded-full -translate-y-1/4 translate-x-1/4 blur-3xl z-0" /> */}
 
 			<div className="relative z-10">
 				<div className="max-w-3xl mx-auto text-center mb-12">

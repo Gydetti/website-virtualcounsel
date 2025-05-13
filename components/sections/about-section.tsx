@@ -95,7 +95,7 @@ export default function AboutSection({
 					{cta?.href && cta?.text && (
 						<Button
 							size="lg"
-							className="bg-primary hover:bg-primary/90 group"
+							className="bg-primary hover:bg-primary-90 group"
 							asChild
 						>
 							<Link href={cta.href}>

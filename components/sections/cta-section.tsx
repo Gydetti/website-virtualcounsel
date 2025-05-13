@@ -25,7 +25,7 @@ export default function CtaSection({
 			className="bg-brand-dark text-white relative overflow-hidden py-8"
 		>
 			{/* Decorative elements matching the dark theme */}
-			<div className="hidden sm:block absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+			<div className="hidden sm:block absolute top-0 right-0 w-96 h-96 bg-primary-10 rounded-full blur-3xl" />
 			<div className="hidden sm:block absolute bottom-0 left-0 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl" />
 
 			<LazySection

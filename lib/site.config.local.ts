@@ -80,6 +80,7 @@ export const siteConfig: SiteConfigSchema = {
 		{ text: "Resources", href: "/resources" },
 		{ text: "FAQ", href: "/faq" },
 		{ text: "Contact", href: "/contact" },
+		{ text: "Testimonials", href: "/testimonials" },
 	],
 	// FOOTER LINKS: Links appearing in the site footer (e.g., legal pages).
 	footerLinks: [

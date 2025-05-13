@@ -22,8 +22,10 @@ export default function TestimonialCard({
 		? "transition-all hover:shadow-xl"
 		: "";
 	return (
-		<Card className={`border-none bg-white h-full shadow-lg ${microClass}`}>
-			<CardContent className="p-8">
+		<Card
+			className={`border-none bg-white flex flex-col h-full shadow-lg ${microClass}`}
+		>
+			<CardContent className="p-8 flex flex-col flex-1">
 				{rating > 0 && (
 					<div className="flex items-center mb-6">
 						{[1, 2, 3, 4, 5].map((star) => (

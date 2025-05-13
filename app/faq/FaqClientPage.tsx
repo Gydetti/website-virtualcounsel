@@ -154,7 +154,7 @@ export default function FaqClientPage() {
 			</LazySection>
 
 			<LazySection>
-				<section className="py-16 bg-white">
+				<section className="py-16">
 					<div className="container-wide">
 						{filteredFaqs.length > 0 ? (
 							filteredFaqs.map((category, idx) => (
@@ -213,7 +213,7 @@ export default function FaqClientPage() {
 						</p>
 						<Button
 							size="lg"
-							className="bg-primary hover:bg-primary/90"
+							className="bg-primary hover:bg-primary-90"
 							asChild
 						>
 							<Link href="/contact">

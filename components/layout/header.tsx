@@ -131,7 +131,7 @@ export default function Header() {
 					))}
 				</div>
 				<div className="hidden lg:flex lg:flex-1 lg:justify-end">
-					<Button asChild className="bg-primary hover:bg-primary/90 group">
+					<Button asChild className="bg-primary hover:bg-primary-90 group">
 						<Link href="/contact">
 							Main CTA button
 							<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -203,7 +203,7 @@ export default function Header() {
 							<div className="mt-4">
 								<Button
 									asChild
-									className="w-full bg-primary hover:bg-primary/90 group"
+									className="w-full bg-primary hover:bg-primary-90 group"
 								>
 									<Link
 										href="/contact"

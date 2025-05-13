@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
 
 const config = {
 	darkMode: ["class"],
@@ -100,7 +101,36 @@ const config = {
 			},
 		},
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [
+		require("tailwindcss-animate"),
+		plugin(({ matchUtilities, theme }) => {
+			const colors = [
+				"primary",
+				"secondary",
+				"destructive",
+				"muted",
+				"accent",
+				"popover",
+				"card",
+			];
+			for (const color of colors) {
+				matchUtilities(
+					{
+						[`bg-${color}`]: (value) => ({
+							"background-color": `rgba(var(--${color}-rgb), ${value})`,
+						}),
+						[`text-${color}`]: (value) => ({
+							color: `rgba(var(--${color}-rgb), ${value})`,
+						}),
+						[`border-${color}`]: (value) => ({
+							"border-color": `rgba(var(--${color}-rgb), ${value})`,
+						}),
+					},
+					{ values: theme("opacity") },
+				);
+			}
+		}),
+	],
 } satisfies Config;
 
 export default config;

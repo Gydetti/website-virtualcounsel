@@ -35,7 +35,7 @@ export default function BlogSection({
 		<Section className="relative overflow-hidden bg-gradient-to-br from-blue-50 to-transparent">
 			{/* Decorative elements */}
 			{/*<div className="absolute top-0 left-1/4 w-72 h-72 bg-blue-50 rounded-full -translate-y-1/2 blur-3xl opacity-70"></div>
-			{/*<div className="absolute bottom-0 right-1/4 w-72 h-72 bg-primary/5 rounded-full translate-y-1/2 blur-3xl"></div>*/}
+			{/*<div className="absolute bottom-0 right-1/4 w-72 h-72 bg-primary-5 rounded-full translate-y-1/2 blur-3xl"></div>*/}
 
 			<div className="relative z-10">
 				<div className="text-center mb-16">

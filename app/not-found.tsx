@@ -13,7 +13,7 @@ export default function NotFound() {
 				The page you are looking for might have been removed, had its name
 				changed, or is temporarily unavailable.
 			</p>
-			<Button size="lg" className="bg-primary hover:bg-primary/90" asChild>
+			<Button size="lg" className="bg-primary hover:bg-primary-90" asChild>
 				<Link href="/">
 					<ArrowLeft className="mr-2 h-4 w-4" />
 					Back to Home

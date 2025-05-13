@@ -51,7 +51,7 @@ export default function TestimonialsSection({
 		>
 			{/* Decorative elements */}
 			{/* <div className="absolute top-0 right-1/4 w-72 h-72 bg-blue-100/50 rounded-full -translate-y-1/2 blur-3xl" />
-			<div className="absolute bottom-0 left-1/4 w-72 h-72 bg-primary/5 rounded-full translate-y-1/2 blur-3xl" /> */}
+			<div className="absolute bottom-0 left-1/4 w-72 h-72 bg-primary-5 rounded-full translate-y-1/2 blur-3xl" /> */}
 
 			<div className="relative z-10">
 				<div className="text-center mb-16">
@@ -138,7 +138,7 @@ export default function TestimonialsSection({
 
 					<button
 						type="button"
-						className="hidden sm:inline-flex items-center justify-center transition-colors absolute top-1/2 -translate-y-1/2 -left-8 bg-white/90 border border-input rounded-full h-12 w-12 shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/10 hover:text-primary z-10"
+						className="hidden sm:inline-flex items-center justify-center transition-colors absolute top-1/2 -translate-y-1/2 -left-8 bg-white/90 border border-input rounded-full h-12 w-12 shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary-10 hover:text-primary z-10"
 						onClick={prevTestimonial}
 						aria-label="Previous testimonial"
 					>
@@ -147,7 +147,7 @@ export default function TestimonialsSection({
 
 					<button
 						type="button"
-						className="hidden sm:inline-flex items-center justify-center transition-colors absolute top-1/2 -translate-y-1/2 -right-8 bg-white/90 border border-input rounded-full h-12 w-12 shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/10 hover:text-primary z-10"
+						className="hidden sm:inline-flex items-center justify-center transition-colors absolute top-1/2 -translate-y-1/2 -right-8 bg-white/90 border border-input rounded-full h-12 w-12 shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary-10 hover:text-primary z-10"
 						onClick={nextTestimonial}
 						aria-label="Next testimonial"
 					>

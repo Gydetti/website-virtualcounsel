@@ -47,7 +47,7 @@ export default async function ServicesPage() {
 		<>
 			<ServicesOverviewSection {...servicesOverviewSectionData} />
 
-			<Section className="bg-white">
+			<Section className="">
 				<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 					{services.map((service, index) => {
 						const IconComponent =
@@ -58,7 +58,7 @@ export default async function ServicesPage() {
 								<Card className="overflow-hidden transition-all duration-300 hover:shadow-xl h-full flex flex-col">
 									<div className="relative h-48 w-full overflow-hidden">
 										<div className="absolute inset-0 flex items-center justify-center bg-gray-100">
-											<IconComponent className="h-16 w-16 text-primary/40" />
+											<IconComponent className="h-16 w-16 text-primary-40" />
 										</div>
 									</div>
 									<CardHeader>
@@ -75,7 +75,7 @@ export default async function ServicesPage() {
 									<CardFooter className="mt-auto">
 										<Button
 											size="lg"
-											className="w-full whitespace-normal break-words bg-primary hover:bg-primary/90"
+											className="w-full whitespace-normal break-words bg-primary hover:bg-primary-90"
 											asChild
 										>
 											<Link href={`/services/${service.slug}`}>

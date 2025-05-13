@@ -18,6 +18,7 @@ interface LazySectionProps {
 		| "zoom"
 		| "none";
 	delay?: number;
+	fullHeight?: boolean;
 }
 
 export default function LazySection({
@@ -26,6 +27,7 @@ export default function LazySection({
 	className = "",
 	animation = "slide-up",
 	delay = 0,
+	fullHeight,
 }: LazySectionProps) {
 	const [isVisible, setIsVisible] = useState(false);
 	const ref = useRef<HTMLDivElement>(null);
@@ -37,12 +39,27 @@ export default function LazySection({
 		animation === "slide-left" || animation === "slide-right"
 			? "overflow-x-hidden"
 			: "";
-	// Wrapper should fill available height to align grid items
-	const wrapperClass = [overflowClass, "h-full"].filter(Boolean).join(" ");
-	// Inner content should also fill wrapper for consistent sizing
-	const innerClass = [className, "h-full"].filter(Boolean).join(" ");
-	// Combined classes for no-animation mode (overflow + styling + full height)
-	const combinedClass = [overflowClass, className, "h-full"]
+
+	// Determine whether to fill height: slide-up/down by default, override if prop provided
+	const defaultFullHeight =
+		animation === "slide-up" || animation === "slide-down";
+	const useFullHeight =
+		fullHeight !== undefined ? fullHeight : defaultFullHeight;
+
+	// Wrapper controls overflow and optionally full height to align grid items
+	const wrapperClass = [overflowClass, useFullHeight ? "h-full" : ""]
+		.filter(Boolean)
+		.join(" ");
+	// Inner content can also fill wrapper for consistent sizing when fullHeight
+	const innerClass = [className, useFullHeight ? "h-full" : ""]
+		.filter(Boolean)
+		.join(" ");
+	// Combined classes for no-animation mode (overflow + styling + optional full height)
+	const combinedClass = [
+		overflowClass,
+		className,
+		useFullHeight ? "h-full" : "",
+	]
 		.filter(Boolean)
 		.join(" ");
 

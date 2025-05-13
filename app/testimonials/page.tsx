@@ -1,4 +1,5 @@
 import { Section } from "@/components/layout/Section";
+import { Badge } from "@/components/ui/badge";
 import LazySection from "@/components/ui/lazy-section";
 import TestimonialCard from "@/components/ui/testimonial-card";
 import * as homepageData from "@/lib/data/homepage";
@@ -32,23 +33,36 @@ export default function TestimonialsPage() {
 	return (
 		<>
 			{/* Introduction Section */}
-			<Section className="py-12 bg-white" id="testimonials-intro">
-				<div className="text-center max-w-3xl mx-auto mb-8">
+			<Section
+				className="bg-gradient-to-r from-blue-50 to-white py-12"
+				id="testimonials-intro"
+			>
+				<LazySection
+					animation="slide-up"
+					delay={0}
+					className="text-center mb-16"
+				>
 					{badgeText && (
-						<p className="text-sm font-semibold text-primary mb-2">
+						<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 							{badgeText}
-						</p>
+						</Badge>
 					)}
-					{heading && <h1 className="text-4xl font-bold">{heading}</h1>}
-					{subtitle && <p className="mt-4 text-gray-600">{subtitle}</p>}
-				</div>
+					{heading && <h1 className="section-title">{heading}</h1>}
+					{subtitle && <p className="section-subtitle">{subtitle}</p>}
+				</LazySection>
 			</Section>
 
 			{/* Testimonials Grid Section */}
 			<Section className="py-12 bg-gray-50" id="testimonials-list">
 				<div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 					{testimonials.map((t, idx) => (
-						<LazySection key={t.id} animation="fade" delay={idx * 0.1}>
+						<LazySection
+							key={t.id}
+							animation="slide-up"
+							delay={idx * 0.1}
+							fullHeight
+							className="h-full"
+						>
 							<TestimonialCard
 								quote={t.quote}
 								name={t.name}
@@ -73,7 +87,7 @@ export default function TestimonialsPage() {
 					</p>
 					<Link
 						href="/contact"
-						className="inline-block px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition"
+						className="inline-block px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary-90 transition"
 					>
 						Contact Us
 					</Link>
