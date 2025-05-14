@@ -418,6 +418,28 @@ export const aboutSectionData: z.infer<typeof aboutSectionDataSchema> = {
 		},
 	],
 	cta: { text: "Learn More About Us", href: "/about" },
+	philosophy: {
+		title: "My Philosophy",
+		text: "I believe that the best results come from a collaborative approach where we work together as partners to achieve your goals. My clients aren't just customers – they're collaborators in the journey to success.",
+	},
+	featureCards: [
+		{
+			id: "certified",
+			title: "Certified Professional",
+			description: "Industry-recognized credentials and certifications",
+			icon: "Star",
+			iconBg: "bg-amber-100",
+			iconColor: "text-amber-600",
+		},
+		{
+			id: "proven",
+			title: "Proven Results",
+			description: "Track record of success with measurable outcomes",
+			icon: "CheckCircle",
+			iconBg: "bg-emerald-100",
+			iconColor: "text-emerald-600",
+		},
+	],
 };
 
 // ++ Data for Process Section on Homepage ++

@@ -105,6 +105,23 @@ export const aboutSectionDataSchema = z.object({
 	image: imageSchema.optional(),
 	stats: z.array(aboutStatItemSchema).optional(),
 	cta: ctaSchema.optional(),
+	// Add optional philosophy section
+	philosophy: z
+		.object({ title: z.string(), text: z.string() })
+		.optional(),
+	// Add optional feature cards
+	featureCards: z
+		.array(
+			z.object({
+				id: z.string(),
+				title: z.string(),
+				description: z.string(),
+				icon: z.string(),
+				iconBg: z.string(),
+				iconColor: z.string(),
+			})
+		)
+		.optional(),
 });
 
 export const processStepSchema = z.object({

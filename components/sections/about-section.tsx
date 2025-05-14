@@ -7,13 +7,25 @@ import LazySection from "@/components/ui/lazy-section";
 import OptimizedImage from "@/components/ui/optimized-image";
 import type { aboutSectionDataSchema } from "@/lib/schemas/sections.schema";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, CheckCircle, Star } from "lucide-react";
 import Link from "next/link";
 import type { z } from "zod";
 
 // Updated props type alias using Zod schema
 export type AboutSectionProps = z.infer<typeof aboutSectionDataSchema> & {
 	variant?: "imageLeft" | "imageRight" | "centered";
+	philosophy?: {
+		title: string;
+		text: string;
+	};
+	featureCards?: {
+		id: string;
+		title: string;
+		description: string;
+		icon: string;
+		iconBg: string;
+		iconColor: string;
+	}[];
 };
 
 export default function AboutSection({
@@ -24,6 +36,8 @@ export default function AboutSection({
 	image,
 	stats,
 	cta,
+	philosophy,
+	featureCards,
 }: AboutSectionProps) {
 	const containerClasses =
 		variant === "centered"
@@ -101,6 +115,47 @@ export default function AboutSection({
 											<div className="text-gray-600">{stat.label}</div>
 										</div>
 									))}
+								</div>
+							</LazySection>
+						)}
+						{/* Philosophy Box */}
+						{philosophy && (
+							<LazySection animation="fade-up" delay={0.6} className="mt-8">
+								<div className="rounded-xl border border-gray-200 bg-gray-50 p-8 shadow-sm">
+									<h3 className="text-xl font-semibold text-gray-900">
+										{philosophy.title}
+									</h3>
+									<p className="mt-2 text-gray-600 leading-relaxed">
+										{philosophy.text}
+									</p>
+								</div>
+							</LazySection>
+						)}
+						{/* Feature Cards */}
+						{featureCards && featureCards.length > 0 && (
+							<LazySection animation="fade-up" delay={0.7} className="mt-8">
+								<div className="grid gap-4 sm:grid-cols-2">
+									{featureCards.map((card) => {
+										const Icon = card.icon === 'Star' ? Star : CheckCircle;
+										return (
+											<div
+												key={card.id}
+												className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm"
+											>
+												<div
+													className={`flex h-12 w-12 items-center justify-center rounded-full ${card.iconBg}`}
+												>
+													<Icon className={`${card.iconColor} h-6 w-6`} />
+												</div>
+												<h3 className="mt-4 text-lg font-semibold text-gray-900">
+													{card.title}
+												</h3>
+												<p className="mt-2 text-sm text-gray-600">
+													{card.description}
+												</p>
+											</div>
+										);
+									})}
 								</div>
 							</LazySection>
 						)}
