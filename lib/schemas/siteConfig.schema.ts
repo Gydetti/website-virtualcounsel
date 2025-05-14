@@ -38,7 +38,8 @@ const themeColorsSchema = z.object({
 
 const themeSchemaDefinition = z.object({
 	colors: themeColorsSchema,
-	logo: imageSchema,
+	// Support optional subtitle for the logo
+	logo: imageSchema.extend({ subtitle: z.string().optional() }),
 	favicon: z.string().min(1, "Favicon path cannot be empty"),
 });
 

@@ -63,7 +63,7 @@ export const themeSchema = z.object({
 			.regex(/^#[0-9A-Fa-f]{6}$/, { message: "Invalid light grey color hex" })
 			.optional(),
 	}),
-	logo: imageSchema,
+	logo: imageSchema.extend({ subtitle: z.string().optional() }),
 	favicon: z.string().min(1, "Favicon path cannot be empty"),
 	typography: typographySchema,
 	spacing: spacingScaleSchema,

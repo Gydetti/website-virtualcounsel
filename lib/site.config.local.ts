@@ -41,6 +41,7 @@ export const siteConfig: SiteConfigSchema = {
 		logo: {
 			src: "/images/placeholders/placeholder-logo4.svg", // <--- Path to site logo
 			alt: "Placeholder Logo", // <--- Alt text for logo
+			subtitle: "Consultant", // <--- Optional subtitle text displayed next to the logo
 		},
 		favicon: "/favicon.ico", // <--- Path to site favicon
 		// Theme foundation values for dynamic CSS variables

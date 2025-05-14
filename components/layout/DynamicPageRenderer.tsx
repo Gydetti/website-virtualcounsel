@@ -219,9 +219,9 @@ const DynamicPageRenderer: FC<DynamicPageRendererProps> = async ({
 	);
 	const sectionsWithData = await Promise.all(sectionsWithDataPromises);
 
-	// Configure stagger timing
-	const delayStep = 0.15; // 150ms between section animations
-	const maxDelay = 0.6; // cap maximum delay at 600ms
+	// Configure stagger timing (reduced for snappier feel)
+	const delayStep = 0.1; // 100ms between section animations
+	const maxDelay = 0.3; // cap maximum delay at 300ms
 	// Group Problem and Solution sections to share background
 	const elements = [];
 	for (let i = 0; i < sectionsWithData.length; i++) {

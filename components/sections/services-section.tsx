@@ -56,7 +56,7 @@ export default function ServicesSection({
 			<div className="relative z-10">
 				<div className="text-center mb-16">
 					<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
-						{badgeText}
+						{badgeText || 'Our Services'}
 					</Badge>
 					<h2 id="services-section-heading" className="section-title">
 						{heading}
@@ -130,9 +130,9 @@ export default function ServicesSection({
 								<CardFooter className="card-footer pt-6">
 									<Button
 										variant={service.popular ? "default" : "outline"}
-										className={`group w-full whitespace-normal break-words ${
+										className={`group w-full whitespace-normal break-words shadow-none hover:shadow-none hover:scale-100 ${
 											service.popular
-												? "" // Rely on default variant's hover which includes brightness
+												? "" // Rely on default variant's hover brightness
 												: "bg-white border border-primary text-primary hover:bg-primary hover:text-white"
 										}`}
 										asChild

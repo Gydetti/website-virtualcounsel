@@ -122,6 +122,8 @@ export const aboutSectionDataSchema = z.object({
 			})
 		)
 		.optional(),
+	// Add optional features list (bullet items)
+	featuresList: z.array(z.string()).optional(),
 });
 
 export const processStepSchema = z.object({

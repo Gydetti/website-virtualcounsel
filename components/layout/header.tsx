@@ -66,8 +66,10 @@ export default function Header() {
 		>
 			<nav
 				className={cn(
-					"container-wide flex items-center justify-between transition-all duration-300",
-					scrolled ? "py-2.5" : "py-5",
+					"container-wide px-2 sm:px-3 md:px-4 xl:px-10 flex items-center justify-between transition-all duration-300",
+					scrolled
+						? "py-2.5"
+						: "py-5",
 				)}
 				aria-label="Global"
 			>
@@ -79,20 +81,24 @@ export default function Header() {
 				>
 					<Link href="/" className="-m-1.5 p-1.5">
 						<span className="sr-only">{siteConfig.site.name}</span>
-						<div className="h-10 w-auto flex items-center">
-							{siteConfig.theme.logo.src ? (
-								<Image
-									src={siteConfig.theme.logo.src}
-									alt={siteConfig.theme.logo.alt}
-									width={150}
-									height={40}
-									className="h-14 w-auto"
-								/>
-							) : (
-								<span className="text-xl font-bold">
+						<div className="flex items-center gap-3">
+							<Image
+								src={siteConfig.theme.logo.src}
+								alt={siteConfig.theme.logo.alt}
+								width={150}
+								height={40}
+								className="h-14 w-auto"
+							/>
+							<div className="flex flex-col">
+								<span className="text-lg font-semibold leading-tight text-gray-900">
 									{siteConfig.site.name}
 								</span>
-							)}
+								{siteConfig.theme.logo.subtitle && (
+									<span className="text-sm text-gray-500 leading-snug">
+										{siteConfig.theme.logo.subtitle}
+									</span>
+								)}
+							</div>
 						</div>
 					</Link>
 				</div>
@@ -157,20 +163,24 @@ export default function Header() {
 								onClick={() => setMobileMenuOpen(false)}
 							>
 								<span className="sr-only">{siteConfig.site.name}</span>
-								<div className="h-10 w-auto flex items-center">
-									{siteConfig.theme.logo.src ? (
-										<Image
-											src={siteConfig.theme.logo.src}
-											alt={siteConfig.theme.logo.alt}
-											width={150}
-											height={40}
-											className="h-10 w-auto"
-										/>
-									) : (
-										<span className="text-xl font-bold">
+								<div className="flex items-center gap-3">
+									<Image
+										src={siteConfig.theme.logo.src}
+										alt={siteConfig.theme.logo.alt}
+										width={150}
+										height={40}
+										className="h-10 w-auto"
+									/>
+									<div className="flex flex-col">
+										<span className="text-lg font-semibold leading-tight text-gray-900">
 											{siteConfig.site.name}
 										</span>
-									)}
+										{siteConfig.theme.logo.subtitle && (
+											<span className="text-sm text-gray-500 leading-snug">
+												{siteConfig.theme.logo.subtitle}
+											</span>
+										)}
+									</div>
 								</div>
 							</Link>
 							<button
