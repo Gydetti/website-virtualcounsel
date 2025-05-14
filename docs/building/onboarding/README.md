@@ -204,9 +204,12 @@ Custom 404 error page.
 
 #### About Section (`components/sections/about-section.tsx`)
 
-- Company introduction
-- Statistics and achievements
-- Image with decorative elements
+- Company introduction with optional badge, heading, paragraphs, and CTA
+- Philosophy box highlighting core beliefs
+- Feature cards showcasing key credentials or benefits
+- Supports `variant` prop:
+  - default: two-column layout without an image (text & CTA on left, content on right)
+  - `classic`: legacy image-left layout with statistics and decorative image
 
 #### Process Section (`components/sections/process-section.tsx`)
 
@@ -1069,4 +1072,4 @@ This setup ensures the site is always styled, always dynamic, and always ready f
    </div>
    ```
 
-With this in place, any future AI or human can instantly see how to write and extend color-opacity utilities—and you’ll never accidentally ship a broken `text-primary/40` again.
+With this in place, any future AI or human can instantly see how to write and extend color-opacity utilities—and you'll never accidentally ship a broken `text-primary/40` again.

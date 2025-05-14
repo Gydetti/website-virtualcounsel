@@ -65,6 +65,7 @@
 - **Data for each section** lives in `lib/data/<section>.ts` and is validated by Zod
 - **Never hardcode content in components**—always update the data file
 - **Dynamic routes** (e.g., `/services/[slug]`, `/blog/[slug]`, `/resources/[slug]`) fetch their data from `lib/data/` or a CMS
+- **Section component variants**: Many section components accept a `variant` prop (`imageLeft`, `imageRight`, `centered`, and now `classic`). For `AboutSection`, the default variant renders a two-column layout without an image (text left, content right). Use `variant="classic"` to enable the original image-left layout with statistics.
 - **Landing/Resource Pages:**
   - Shared data layer in `lib/data/resources.ts`
   - Shared content component in `components/resources/ResourceContent.tsx`
