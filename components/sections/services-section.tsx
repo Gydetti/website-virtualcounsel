@@ -49,9 +49,9 @@ export default function ServicesSection({
 			aria-labelledby="services-section-heading"
 			className="relative overflow-hidden "
 		>
-			{/* Decorative elements */}
-			{/* <div className="absolute top-0 right-0 w-64 h-64 bg-primary-5 rounded-full -translate-y-1/2 translate-x-1/2" />
-			<div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-100/20 rounded-full translate-y-1/2 -translate-x-1/2" /> */}
+			{/* Decorative elements - re-enabled and styled with theme colors */}
+			<div className="hidden sm:block absolute top-0 right-0 w-64 h-64 bg-[rgba(var(--primary-rgb),0.03)] rounded-full -translate-y-1/3 translate-x-1/3 blur-3xl pointer-events-none" />
+			<div className="hidden sm:block absolute bottom-0 left-0 w-72 h-72 bg-[rgba(var(--secondary-rgb),0.03)] rounded-full translate-y-1/3 -translate-x-1/3 blur-3xl pointer-events-none" />
 
 			<div className="relative z-10">
 				<div className="text-center mb-16">
@@ -73,10 +73,10 @@ export default function ServicesSection({
 							className="h-full"
 						>
 							<Card
-								className={`card-equal-height h-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${
+								className={`card-equal-height h-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-gradient-to-b from-white to-blue-50/30 ${
 									service.popular
 										? "border-primary shadow-lg relative"
-										: "border-gray-200 shadow-sm"
+										: "border-[#e5e7eb80] shadow-lg"
 								}`}
 							>
 								{service.popular && (
@@ -132,7 +132,7 @@ export default function ServicesSection({
 										variant={service.popular ? "default" : "outline"}
 										className={`group w-full whitespace-normal break-words ${
 											service.popular
-												? "hover:bg-primary-90"
+												? "" // Rely on default variant's hover which includes brightness
 												: "bg-white border border-primary text-primary hover:bg-primary hover:text-white"
 										}`}
 										asChild

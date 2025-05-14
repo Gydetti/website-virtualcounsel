@@ -33,9 +33,9 @@ export default function BlogSection({
 	}
 	return (
 		<Section className="relative overflow-hidden bg-gradient-to-br from-blue-50 to-transparent">
-			{/* Decorative elements */}
-			{/*<div className="absolute top-0 left-1/4 w-72 h-72 bg-blue-50 rounded-full -translate-y-1/2 blur-3xl opacity-70"></div>
-			{/*<div className="absolute bottom-0 right-1/4 w-72 h-72 bg-primary-5 rounded-full translate-y-1/2 blur-3xl"></div>*/}
+			{/* Decorative elements - re-enabled and styled with theme colors */}
+			<div className="hidden sm:block absolute top-0 left-1/4 w-72 h-72 bg-[rgba(var(--secondary-rgb),0.02)] rounded-full -translate-y-1/2 blur-3xl pointer-events-none opacity-70" />
+			<div className="hidden sm:block absolute bottom-0 right-1/4 w-72 h-72 bg-[rgba(var(--primary-rgb),0.02)] rounded-full translate-y-1/2 blur-3xl pointer-events-none" />
 
 			<div className="relative z-10">
 				<div className="text-center mb-16">
@@ -51,7 +51,7 @@ export default function BlogSection({
 				<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 md:gap-12 lg:gap-16">
 					{posts.map((post, index) => (
 						<LazySection key={post.id} animation="fade" delay={index * 0.1}>
-							<Card className="w-full h-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border-gray-200 shadow-sm">
+							<Card className="w-full h-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-gradient-to-b from-white to-blue-50/30 border border-[#e5e7eb80] shadow-lg">
 								<div className="relative h-48 w-full overflow-hidden">
 									<Image
 										src={post.image?.src || "/placeholder.svg"}

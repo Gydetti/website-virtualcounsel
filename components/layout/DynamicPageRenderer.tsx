@@ -219,6 +219,9 @@ const DynamicPageRenderer: FC<DynamicPageRendererProps> = async ({
 	);
 	const sectionsWithData = await Promise.all(sectionsWithDataPromises);
 
+	// Configure stagger timing
+	const delayStep = 0.15; // 150ms between section animations
+	const maxDelay = 0.6; // cap maximum delay at 600ms
 	// Group Problem and Solution sections to share background
 	const elements = [];
 	for (let i = 0; i < sectionsWithData.length; i++) {
@@ -259,8 +262,11 @@ const DynamicPageRenderer: FC<DynamicPageRendererProps> = async ({
 			);
 			continue;
 		}
+		// Compute clamped delay for this section
+		const rawDelay = i * delayStep;
+		const sectionDelay = Math.min(rawDelay, maxDelay);
 		elements.push(
-			<LazySection key={section.id}>
+			<LazySection key={section.id} animation="fade-up" delay={sectionDelay}>
 				<Component variant={section.variant} {...section.data} />
 			</LazySection>,
 		);

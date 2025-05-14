@@ -17,16 +17,20 @@ const ImageBlock: FC<ImageBlockProps> = ({ image, caption }) => {
 	const height = image.height || 600; // Example default
 
 	return (
-		<figure>
+		<figure className="my-8 max-w-full mx-auto">
 			<Image
 				src={image.src}
 				alt={image.alt}
 				width={width}
 				height={height}
-				className="rounded-lg shadow-md"
-				priority
+				className="rounded-xl shadow-xl w-full h-auto" // Removed object-cover and aspect-[16/9]
+				priority // Consider making this conditional if multiple images are on a page
 			/>
-			{caption && <figcaption>{caption}</figcaption>}
+			{caption && (
+				<figcaption className="mt-3 text-sm text-center text-gray-600 leading-snug">
+					{caption}
+				</figcaption>
+			)}
 		</figure>
 	);
 };

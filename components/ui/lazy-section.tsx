@@ -7,10 +7,13 @@ import { useEffect, useRef, useState } from "react";
 
 interface LazySectionProps {
 	children: ReactNode;
+	/** Intersection threshold (fraction in view) to start animation */
 	threshold?: number;
 	className?: string;
+	/** Animation style: fade only, slide with fade, zoom, or none */
 	animation?:
 		| "fade"
+		| "fade-up"
 		| "slide-up"
 		| "slide-down"
 		| "slide-left"
@@ -18,15 +21,20 @@ interface LazySectionProps {
 		| "zoom"
 		| "none";
 	delay?: number;
+	/** Animation duration in seconds */
+	duration?: number;
 	fullHeight?: boolean;
 }
 
 export default function LazySection({
 	children,
-	threshold = 0.1,
+	// Start as soon as any part of element is in view
+	threshold = 0,
 	className = "",
 	animation = "slide-up",
 	delay = 0,
+	// Global default duration shortened for snappier feel (reduced from 0.6)
+	duration = 0.4,
 	fullHeight,
 }: LazySectionProps) {
 	const [isVisible, setIsVisible] = useState(false);
@@ -87,9 +95,20 @@ export default function LazySection({
 	const variants = {
 		hidden: {
 			opacity: 0,
-			y: animation === "slide-up" ? 50 : animation === "slide-down" ? -50 : 0,
+			// For slide-up and fade-up, move up from below with different offsets
+			y: animation === "slide-up"
+				? 50
+				: animation === "fade-up"
+				? 20
+				: animation === "slide-down"
+				? -50
+				: 0,
 			x:
-				animation === "slide-left" ? 50 : animation === "slide-right" ? -50 : 0,
+				animation === "slide-left"
+					? 50
+					: animation === "slide-right"
+					? -50
+					: 0,
 			scale: animation === "zoom" ? 0.95 : 1,
 		},
 		visible: {
@@ -98,7 +117,7 @@ export default function LazySection({
 			x: 0,
 			scale: 1,
 			transition: {
-				duration: 0.8,
+				duration: duration,
 				delay: delay,
 				ease: "easeOut",
 			},

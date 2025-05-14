@@ -112,7 +112,7 @@ export default function FaqClientPage() {
 		<>
 			<StructuredData type="faq" data={{ items: faqSchemaData }} />
 			<LazySection>
-				<section className="bg-gradient-to-r from-blue-50 to-white py-16 md:py-24">
+				<section className="relative overflow-hidden bg-gradient-to-r from-blue-100 via-transparent to-transparent py-16 md:py-24 z-10">
 					<div className="container-wide">
 						<div className="text-center max-w-3xl mx-auto">
 							<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">

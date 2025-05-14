@@ -49,9 +49,9 @@ export default function TestimonialsSection({
 			aria-labelledby="testimonials-section-heading"
 			className="relative overflow-hidden "
 		>
-			{/* Decorative elements */}
-			{/* <div className="absolute top-0 right-1/4 w-72 h-72 bg-blue-100/50 rounded-full -translate-y-1/2 blur-3xl" />
-			<div className="absolute bottom-0 left-1/4 w-72 h-72 bg-primary-5 rounded-full translate-y-1/2 blur-3xl" /> */}
+			{/* Decorative elements - re-enabled and styled with theme colors */}
+			<div className="hidden sm:block absolute top-0 right-1/4 w-72 h-72 bg-[rgba(var(--accent-rgb),0.03)] rounded-full -translate-y-1/2 blur-3xl pointer-events-none" />
+			<div className="hidden sm:block absolute bottom-0 left-1/4 w-72 h-72 bg-[rgba(var(--primary-rgb),0.03)] rounded-full translate-y-1/2 blur-3xl pointer-events-none" />
 
 			<div className="relative z-10">
 				<div className="text-center mb-16">
@@ -84,7 +84,7 @@ export default function TestimonialsSection({
 									transition={{ duration: 0.5 }}
 									className="w-full flex-shrink-0 sm:px-4 pb-12"
 								>
-									<Card className="border-none shadow-lg hover:shadow-xl transition-all bg-white h-full">
+									<Card className="border border-[#e5e7eb80] shadow-lg hover:shadow-xl transition-all bg-gradient-to-br from-white to-blue-50/10 backdrop-blur-sm h-full">
 										<CardContent className="p-8">
 											<div className="flex items-center mb-6">
 												{testimonial.rating && testimonial.rating > 0

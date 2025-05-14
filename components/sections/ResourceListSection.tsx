@@ -25,39 +25,42 @@ export default function ResourceListSection({
 	}
 
 	return (
-		<section id={id} className="py-12 bg-gray-50">
+		<section id={id} className="relative overflow-hidden bg-gradient-to-r from-blue-100 via-transparent to-transparent py-12 z-10">
 			<div className="container mx-auto px-4">
 				<h2 className="text-3xl font-bold text-center mb-10">{title}</h2>
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 					{resources.map((resource) => (
-						<Link
-							href={`/resources/${resource.slug}`}
+						<article
 							key={resource.slug}
-							className="block group bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+							className="group relative flex flex-col overflow-hidden rounded-lg border border-[#e5e7eb80] bg-gradient-to-b from-white to-blue-50/30 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
 						>
-							{resource.heroImage && (
-								<div className="relative h-48 w-full mb-4 rounded overflow-hidden">
-									<Image
-										src={resource.heroImage.src}
-										alt={resource.heroImage.alt}
-										fill
-										style={{ objectFit: "cover" }}
-										sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-									/>
+							<Link href={`/resources/${resource.slug}`} className="block h-full">
+								<div className="relative h-48 w-full overflow-hidden sm:h-56">
+									{resource.heroImage && (
+										<Image
+											src={resource.heroImage.src}
+											alt={resource.heroImage.alt}
+											fill
+											style={{ objectFit: "cover" }}
+											sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+										/>
+									)}
 								</div>
-							)}
-							<h3 className="text-xl font-semibold mb-2 text-blue-700 group-hover:text-blue-800">
-								{resource.title}
-							</h3>
-							{resource.subtitle && (
-								<p className="text-gray-600 text-sm line-clamp-3">
-									{resource.subtitle}
-								</p>
-							)}
-							<span className="mt-4 inline-block text-blue-600 group-hover:underline">
-								Read more &rarr;
-							</span>
-						</Link>
+								<div className="p-6">
+									<h3 className="text-xl font-semibold mb-2 text-blue-700 group-hover:text-blue-800">
+										{resource.title}
+									</h3>
+									{resource.subtitle && (
+										<p className="text-gray-600 text-sm line-clamp-3">
+											{resource.subtitle}
+										</p>
+									)}
+									<span className="mt-4 inline-block text-blue-600 group-hover:underline">
+										Read more &rarr;
+									</span>
+								</div>
+							</Link>
+						</article>
 					))}
 				</div>
 			</div>

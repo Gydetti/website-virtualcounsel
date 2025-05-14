@@ -64,46 +64,57 @@ export default function AboutSection({
 					delay={0.1}
 					className={contentOrderClass}
 				>
-					{badgeText && (
-						<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
-							{badgeText}
-						</Badge>
-					)}
-					{heading && <h2 className="section-title">{heading}</h2>}
-					{paragraphs?.map((p) => (
-						<p key={p.slice(0, 16)} className="text-gray-700 mb-6 last:mb-8">
-							{p}
-						</p>
-					))}
-
-					{stats && stats.length > 0 && (
-						<div className="grid grid-cols-2 gap-4 mb-8">
-							{stats.map((stat) => (
-								<div
-									key={stat.id}
-									className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow"
-								>
-									<div className="font-bold text-primary text-xl">
-										{stat.value}
-									</div>
-									<div className="text-gray-600">{stat.label}</div>
+					{/* Content column: granular fade-up animations */}
+					<div className={contentOrderClass}>
+						{badgeText && (
+							<LazySection animation="fade-up" delay={0.2}>
+								<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
+									{badgeText}
+								</Badge>
+							</LazySection>
+						)}
+						{heading && (
+							<LazySection animation="fade-up" delay={0.3}>
+								<h2 className="section-title">{heading}</h2>
+							</LazySection>
+						)}
+						{paragraphs && paragraphs.length > 0 && (
+							<LazySection animation="fade-up" delay={0.4}>
+								{paragraphs.map((p) => (
+									<p key={p.slice(0, 16)} className="text-gray-700 mb-6 last:mb-8">
+										{p}
+									</p>
+								))}
+							</LazySection>
+						)}
+						{stats && stats.length > 0 && (
+							<LazySection animation="fade-up" delay={0.5}>
+								<div className="grid grid-cols-2 gap-4 mb-8">
+									{stats.map((stat) => (
+										<div
+											key={stat.id}
+											className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+										>
+											<div className="font-bold text-primary text-xl">
+												{stat.value}
+											</div>
+											<div className="text-gray-600">{stat.label}</div>
+										</div>
+									))}
 								</div>
-							))}
-						</div>
-					)}
-
-					{cta?.href && cta?.text && (
-						<Button
-							size="lg"
-							className="bg-primary hover:bg-primary-90 group"
-							asChild
-						>
-							<Link href={cta.href}>
-								{cta.text}
-								<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-							</Link>
-						</Button>
-					)}
+							</LazySection>
+						)}
+						{cta?.href && cta?.text && (
+							<LazySection animation="fade-up" delay={0.6}>
+								<Button size="lg" className="bg-primary hover:bg-primary-90 group" asChild>
+									<Link href={cta.href}>
+										{cta.text}
+										<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+									</Link>
+								</Button>
+							</LazySection>
+						)}
+					</div>
 				</LazySection>
 			</div>
 		</Section>

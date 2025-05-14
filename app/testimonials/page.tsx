@@ -34,7 +34,7 @@ export default function TestimonialsPage() {
 		<>
 			{/* Introduction Section */}
 			<Section
-				className="bg-gradient-to-r from-blue-50 to-white py-12"
+				className="relative overflow-hidden bg-gradient-to-r from-blue-100 via-transparent to-transparent z-10 py-12"
 				id="testimonials-intro"
 			>
 				<LazySection

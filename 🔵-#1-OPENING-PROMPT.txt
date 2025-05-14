@@ -1,5 +1,11 @@
 Please Read all the following files. 
 
+Core onboarding file:
+docs/1-core-building-instructions-manual.md
+
+@1-core-building-instructions-manual.md 
+
+And supportive but maybe a bit outdated docs:
 /Users/gydorutten/Coding/Klanten/gmg-template-website-2025/docs/building/onboarding/01-onboarding-doc.md
 /Users/gydorutten/Coding/Klanten/gmg-template-website-2025/docs/building/onboarding/README.md
 
