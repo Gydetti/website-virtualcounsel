@@ -134,7 +134,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
 						</Link>
 						<Badge>{post.category}</Badge>
 					</div>
-					<h1>{post.title}</h1>
+					<h1 className="text-[var(--font-heading-size)]">{post.title}</h1>
 
 					<div className="flex flex-wrap items-center gap-4 text-gray-600 mb-8">
 						<div className="flex items-center">

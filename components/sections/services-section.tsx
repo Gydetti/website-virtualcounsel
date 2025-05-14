@@ -56,9 +56,12 @@ export default function ServicesSection({
 			<div className="relative z-10">
 				<div className="text-center mb-16">
 					<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
-						{badgeText || 'Our Services'}
+						{badgeText || "Our Services"}
 					</Badge>
-					<h2 id="services-section-heading" className="section-title">
+					<h2
+						id="services-section-heading"
+						className="text-[var(--font-subheading-size)]"
+					>
 						{heading}
 					</h2>
 					<p className="section-subtitle">{description}</p>

@@ -33,7 +33,9 @@ export default function PricingSection({
 		<Section id="pricing" className="bg-white relative overflow-hidden">
 			<LazySection animation="slide-up" delay={0} className="text-center mb-16">
 				{/* Badge could be added here if desired, using badgeText from props */}
-				{heading && <h2 className="section-title">{heading}</h2>}
+				{heading && (
+					<h2 className="text-[var(--font-subheading-size)]">{heading}</h2>
+				)}
 				{description && <p className="section-subtitle">{description}</p>}
 			</LazySection>
 			<div className="grid gap-8 md:grid-cols-3 items-stretch">

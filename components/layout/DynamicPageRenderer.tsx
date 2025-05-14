@@ -22,6 +22,7 @@ import HeroSection from "@/components/sections/hero-section";
 import HomepageFaqSection from "@/components/sections/homepage-faq-section";
 import ProblemPainSection from "@/components/sections/problem-pain-section";
 import ProcessSection from "@/components/sections/process-section";
+import ProcessSectionHome from "@/components/sections/process-section-home";
 import ServicesSection from "@/components/sections/services-section"; // For ServicesPreviewSection
 import SolutionVisionSection from "@/components/sections/solution-vision-section";
 import TestimonialsSection from "@/components/sections/testimonials-section";
@@ -68,6 +69,7 @@ const sectionComponentMap: Record<string, ComponentType<any>> = {
 	AboutValuesSection: AboutValuesSection,
 	AboutSocialProofSection: AboutSocialProofSection,
 	ProcessSection: ProcessSection,
+	ProcessSectionHome: ProcessSectionHome,
 	HomepageFaqSection: HomepageFaqSection,
 	BlogPreviewSection: BlogSection,
 	BlogSection: BlogSection,
@@ -138,6 +140,8 @@ const getSectionData = async (
 			case "AboutSection":
 				return homepageData.aboutSectionData;
 			case "ProcessSection":
+				return homepageData.processSectionData;
+			case "ProcessSectionHome":
 				return homepageData.processSectionData;
 			case "ContactSection":
 				return homepageData.contactSectionData;

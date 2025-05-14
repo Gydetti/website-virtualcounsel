@@ -96,19 +96,16 @@ export default function LazySection({
 		hidden: {
 			opacity: 0,
 			// For slide-up and fade-up, move up from below with different offsets
-			y: animation === "slide-up"
-				? 50
-				: animation === "fade-up"
-				? 20
-				: animation === "slide-down"
-				? -50
-				: 0,
-			x:
-				animation === "slide-left"
+			y:
+				animation === "slide-up"
 					? 50
-					: animation === "slide-right"
-					? -50
-					: 0,
+					: animation === "fade-up"
+						? 20
+						: animation === "slide-down"
+							? -50
+							: 0,
+			x:
+				animation === "slide-left" ? 50 : animation === "slide-right" ? -50 : 0,
 			scale: animation === "zoom" ? 0.95 : 1,
 		},
 		visible: {

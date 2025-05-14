@@ -164,7 +164,7 @@ export default async function ServicePage(props: ServicePageProps) {
 				<div className="grid md:grid-cols-2 gap-8 items-start">
 					<div>
 						<IconComponent className="h-20 w-20 text-primary mb-6" />
-						<h1 className="text-3xl font-bold mb-4 break-words">
+						<h1 className="text-[var(--font-heading-size)] mb-4 break-words">
 							{service.title}
 						</h1>
 						<p className="text-gray-700 mb-8">{service.description}</p>

@@ -1,4 +1,5 @@
 import { Section } from "@/components/layout/Section";
+import ProcessSection from "@/components/sections/process-section";
 import ServicesOverviewSection from "@/components/sections/services-overview-section";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -11,6 +12,7 @@ import {
 } from "@/components/ui/card";
 import LazySection from "@/components/ui/lazy-section";
 import { getServices } from "@/lib/data-utils";
+import { processSectionData } from "@/lib/data/homepage";
 import { servicesOverviewSectionData } from "@/lib/data/servicesPageData";
 import { iconComponents } from "@/lib/icon-utils";
 import { defaultMetadata } from "@/lib/metadata";
@@ -154,6 +156,9 @@ export default async function ServicesPage() {
 						</div>
 					</LazySection>
 				</div>
+				<LazySection>
+					<ProcessSection {...processSectionData} />
+				</LazySection>
 			</Section>
 
 			<LazySection>

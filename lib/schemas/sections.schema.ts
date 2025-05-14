@@ -106,9 +106,7 @@ export const aboutSectionDataSchema = z.object({
 	stats: z.array(aboutStatItemSchema).optional(),
 	cta: ctaSchema.optional(),
 	// Add optional philosophy section
-	philosophy: z
-		.object({ title: z.string(), text: z.string() })
-		.optional(),
+	philosophy: z.object({ title: z.string(), text: z.string() }).optional(),
 	// Add optional feature cards
 	featureCards: z
 		.array(
@@ -119,7 +117,7 @@ export const aboutSectionDataSchema = z.object({
 				icon: z.string(),
 				iconBg: z.string(),
 				iconColor: z.string(),
-			})
+			}),
 		)
 		.optional(),
 	// Add optional features list (bullet items)

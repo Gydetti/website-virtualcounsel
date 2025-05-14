@@ -35,7 +35,9 @@ export default function ProcessSection({
 							{badgeText}
 						</Badge>
 					)}
-					{heading && <h2 className="section-title">{heading}</h2>}
+					{heading && (
+						<h2 className="text-[var(--font-subheading-size)]">{heading}</h2>
+					)}
 					{subtitle && <p className="section-subtitle">{subtitle}</p>}
 				</div>
 

@@ -4,13 +4,13 @@ import type {
 } from "@/lib/schemas/contentBlocks.schema";
 import type { z } from "zod";
 
-import { Section } from "@/components/layout/Section";
 import ContentBlockRenderer from "@/components/content-blocks/ContentBlockRenderer";
 import FormBlock from "@/components/content-blocks/FormBlock"; // Assuming FormBlock can be used
+import { Section } from "@/components/layout/Section";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import Image from "next/image";
 import LazySection from "@/components/ui/lazy-section";
+import Image from "next/image";
 
 interface ResourceDetailSectionProps {
 	resource: z.infer<typeof resourceSchema>;
@@ -23,27 +23,43 @@ export default function ResourceDetailSection({
 	// Placeholder form configuration - this would ideally come from resource data or a central config
 	const downloadFormConfig = {
 		fields: [
-			{ name: "name", type: "text", label: "Full Name", placeholder: "Your full name", required: true },
-			{ name: "email", type: "email", label: "Email Address", placeholder: "your@email.com", required: true },
+			{
+				name: "name",
+				type: "text",
+				label: "Full Name",
+				placeholder: "Your full name",
+				required: true,
+			},
+			{
+				name: "email",
+				type: "email",
+				label: "Email Address",
+				placeholder: "your@email.com",
+				required: true,
+			},
 		],
 		submitButtonText: "Download Your Free E-Book",
 		// action: "/api/submit-resource-form" // Placeholder for form submission endpoint
 	};
 	// Hero image variables with fallback to placeholder
-	const imgSrc = resource.heroImage?.src || '/images/placeholders/placeholder.svg';
-	const imgAlt = resource.heroImage?.alt || 'Placeholder hero image';
+	const imgSrc =
+		resource.heroImage?.src || "/images/placeholders/placeholder.svg";
+	const imgAlt = resource.heroImage?.alt || "Placeholder hero image";
 	const imgWidth = resource.heroImage?.width || 700;
 	const imgHeight = resource.heroImage?.height || 1000;
 
 	return (
-		<Section id={`resource-${resource.slug}-detail`} className="relative overflow-hidden bg-gradient-to-r from-blue-100 via-transparent to-transparent py-12 md:py-20 z-10">
+		<Section
+			id={`resource-${resource.slug}-detail`}
+			className="relative overflow-hidden bg-gradient-to-r from-blue-100 via-transparent to-transparent py-12 md:py-20 z-10"
+		>
 			<div className="container mx-auto px-4">
 				{/* Enhanced Hero Area for the Resource */}
 				<div className="grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center mb-12 md:mb-20">
 					{/* Hero Items: sequential fade-up animations */}
 					<div className="text-center md:text-left">
 						<LazySection animation="fade-up" delay={0.1}>
-							<h1 className="text-4xl lg:text-5xl font-bold mb-4 text-balance">
+							<h1 className="text-[var(--font-heading-size)] lg:text-[var(--font-heading-size-lg)] mb-4 text-balance">
 								{resource.title}
 							</h1>
 						</LazySection>
@@ -62,23 +78,54 @@ export default function ResourceDetailSection({
 								</h3>
 								<ul className="list-none space-y-2 text-left text-gray-700">
 									<li className="flex items-start">
-										<svg className="w-5 h-5 text-blue-600 mr-2 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+										<svg
+											className="w-5 h-5 text-blue-600 mr-2 flex-shrink-0 mt-1"
+											fill="currentColor"
+											viewBox="0 0 20 20"
+											aria-hidden="true"
+										>
 											<title>Checkmark</title>
-											<path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+											<path
+												fillRule="evenodd"
+												d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+												clipRule="evenodd"
+											/>
 										</svg>
-										<span>Placeholder benefit 1: Unlock exclusive insights.</span>
+										<span>
+											Placeholder benefit 1: Unlock exclusive insights.
+										</span>
 									</li>
 									<li className="flex items-start">
-										<svg className="w-5 h-5 text-blue-600 mr-2 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+										<svg
+											className="w-5 h-5 text-blue-600 mr-2 flex-shrink-0 mt-1"
+											fill="currentColor"
+											viewBox="0 0 20 20"
+											aria-hidden="true"
+										>
 											<title>Checkmark</title>
-											<path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+											<path
+												fillRule="evenodd"
+												d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+												clipRule="evenodd"
+											/>
 										</svg>
-										<span>Placeholder benefit 2: Master advanced techniques.</span>
+										<span>
+											Placeholder benefit 2: Master advanced techniques.
+										</span>
 									</li>
 									<li className="flex items-start">
-										<svg className="w-5 h-5 text-blue-600 mr-2 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+										<svg
+											className="w-5 h-5 text-blue-600 mr-2 flex-shrink-0 mt-1"
+											fill="currentColor"
+											viewBox="0 0 20 20"
+											aria-hidden="true"
+										>
 											<title>Checkmark</title>
-											<path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+											<path
+												fillRule="evenodd"
+												d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+												clipRule="evenodd"
+											/>
 										</svg>
 										<span>Placeholder benefit 3: Accelerate your growth.</span>
 									</li>
@@ -107,9 +154,7 @@ export default function ResourceDetailSection({
 									</CardTitle>
 								</CardHeader>
 								<CardContent>
-									<FormBlock
-										config={downloadFormConfig}
-									/>
+									<FormBlock config={downloadFormConfig} />
 								</CardContent>
 							</Card>
 						</LazySection>
@@ -121,7 +166,11 @@ export default function ResourceDetailSection({
 					{resource.sections
 						.filter((block) => block.type !== "image")
 						.map((block, i) => (
-							<LazySection key={`${block.type}-${i}`} animation="fade-up" delay={(i + 3) * 0.2}>
+							<LazySection
+								key={`${block.type}-${i}`}
+								animation="fade-up"
+								delay={(i + 3) * 0.2}
+							>
 								<ContentBlockRenderer block={block} />
 							</LazySection>
 						))}

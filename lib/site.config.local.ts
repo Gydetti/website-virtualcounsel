@@ -153,7 +153,7 @@ export const siteConfig: SiteConfigSchema = {
 		enableAboutSection: true, // <--- Toggle About section display (e.g., on homepage)
 		enableProblemPainSection: true, // <--- Toggle Problem/Pain section display
 		enableSolutionVisionSection: true, // <--- Toggle Solution/Vision section display
-		enableProcessSection: true, // <--- Toggle Process/how-it-works section display
+		enableProcessSection: false, // <--- Toggle Process/how-it-works section display (disabled on homepage)
 		enableFaqSection: true, // <--- Toggle FAQ section display (e.g., on homepage)
 		enableValuePropSection: true, // <--- Toggle Value Proposition section display
 
@@ -250,7 +250,7 @@ export const siteConfig: SiteConfigSchema = {
 				{ id: "home-cta", sectionType: "CtaSection" },
 				{ id: "home-about", sectionType: "AboutSection" },
 				{ id: "home-services", sectionType: "ServicesSection" }, // <--- Or use ServicesPreviewSection for a summary
-				{ id: "home-process", sectionType: "ProcessSection" },
+				{ id: "home-process", sectionType: "ProcessSectionHome" },
 				{ id: "home-blog", sectionType: "BlogSection" }, // <--- Or use BlogPreviewSection for a summary
 				{ id: "home-faq", sectionType: "HomepageFaqSection" }, // <--- FAQ specifically for homepage
 				{ id: "home-contact", sectionType: "ContactSection" },

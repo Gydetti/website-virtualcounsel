@@ -122,7 +122,7 @@ export default function HeroSection({
 
 						<h1
 							id="hero-section-heading"
-							className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance"
+							className="text-[var(--font-heading-size)] lg:text-[var(--font-heading-size-lg)] font-bold leading-tight text-balance"
 						>
 							{headline && <span className="block">{headline}</span>}
 							{typingWords && typingWords.length > 0 && (

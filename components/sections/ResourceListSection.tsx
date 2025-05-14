@@ -25,16 +25,24 @@ export default function ResourceListSection({
 	}
 
 	return (
-		<section id={id} className="relative overflow-hidden bg-gradient-to-r from-blue-100 via-transparent to-transparent py-12 z-10">
+		<section
+			id={id}
+			className="relative overflow-hidden bg-gradient-to-r from-blue-100 via-transparent to-transparent py-12 z-10"
+		>
 			<div className="container mx-auto px-4">
-				<h2 className="text-3xl font-bold text-center mb-10">{title}</h2>
+				<h2 className="text-[var(--font-subheading-size)] font-bold text-center mb-10">
+					{title}
+				</h2>
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 					{resources.map((resource) => (
 						<article
 							key={resource.slug}
 							className="group relative flex flex-col overflow-hidden rounded-lg border border-[#e5e7eb80] bg-gradient-to-b from-white to-blue-50/30 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
 						>
-							<Link href={`/resources/${resource.slug}`} className="block h-full">
+							<Link
+								href={`/resources/${resource.slug}`}
+								className="block h-full"
+							>
 								<div className="relative h-48 w-full overflow-hidden sm:h-56">
 									{resource.heroImage && (
 										<Image

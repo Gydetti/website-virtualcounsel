@@ -67,9 +67,7 @@ export default function Header() {
 			<nav
 				className={cn(
 					"container-wide px-2 sm:px-3 md:px-4 xl:px-10 flex items-center justify-between transition-all duration-300",
-					scrolled
-						? "py-2.5"
-						: "py-5",
+					scrolled ? "py-2.5" : "py-5",
 				)}
 				aria-label="Global"
 			>
@@ -136,7 +134,7 @@ export default function Header() {
 						</Link>
 					))}
 				</div>
-				<div className="hidden lg:flex lg:flex-1 lg:justify-end">
+				<div className="hidden lg:flex lg:items-center lg:ml-8">
 					<Button asChild className="bg-primary hover:bg-primary-90 group">
 						<Link href="/contact">
 							Main CTA button

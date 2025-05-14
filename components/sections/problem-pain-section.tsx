@@ -38,7 +38,9 @@ export default function ProblemPainSection({
 								</div>
 							)}
 							{heading && (
-								<h2 className="section-title text-white">{heading}</h2>
+								<h2 className="text-[var(--font-subheading-size)] text-white">
+									{heading}
+								</h2>
 							)}
 							{description && (
 								<p className="max-w-[600px] text-gray-400 md:text-xl">

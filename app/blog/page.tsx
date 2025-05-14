@@ -48,7 +48,9 @@ export default async function BlogPage() {
 						<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 							Short label introducing blog section
 						</Badge>
-						<h1>Blog page heading summarizing section purpose</h1>
+						<h1 className="text-[var(--font-heading-size)]">
+							Blog page heading
+						</h1>
 						<p className="text-gray-700 max-w-3xl mx-auto">
 							Brief description explaining content focus and reader benefits.
 						</p>

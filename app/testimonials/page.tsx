@@ -47,7 +47,9 @@ export default function TestimonialsPage() {
 							{badgeText}
 						</Badge>
 					)}
-					{heading && <h1 className="section-title">{heading}</h1>}
+					{heading && (
+						<h1 className="text-[var(--font-heading-size)]">{heading}</h1>
+					)}
 					{subtitle && <p className="section-subtitle">{subtitle}</p>}
 				</LazySection>
 			</Section>

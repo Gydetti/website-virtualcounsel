@@ -118,7 +118,9 @@ export default function FaqClientPage() {
 							<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 								Short label introducing FAQ section
 							</Badge>
-							<h1>Section title inviting users to find answers</h1>
+							<h1 className="text-[var(--font-heading-size)]">
+								Section title inviting users to find answers
+							</h1>
 							<p className="text-gray-700 mb-8">
 								Brief subtitle explaining purpose of this FAQ page
 							</p>

@@ -58,7 +58,10 @@ export default function TestimonialsSection({
 					<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 						{badgeText}
 					</Badge>
-					<h2 id="testimonials-section-heading" className="section-title">
+					<h2
+						id="testimonials-section-heading"
+						className="text-[var(--font-subheading-size)]"
+					>
 						{heading}
 					</h2>
 					<p className="section-subtitle">{subtitle}</p>

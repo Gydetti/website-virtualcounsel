@@ -39,7 +39,10 @@ export default function CtaSection({
 					</Badge>
 				)}
 				{heading && (
-					<h2 id="cta-section-heading" className="section-title text-white">
+					<h2
+						id="cta-section-heading"
+						className="text-[var(--font-subheading-size)] text-white"
+					>
 						{heading}
 					</h2>
 				)}

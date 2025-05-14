@@ -95,7 +95,9 @@ export default function ContactPageClient() {
 							<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
 								Contact section
 							</Badge>
-							<h1>Section heading inviting users to reach out</h1>
+							<h1 className="text-[var(--font-heading-size)]">
+								Section heading inviting users to reach out
+							</h1>
 							<p className="text-gray-700 mb-8 whitespace-normal break-words">
 								Brief subtitle explaining how visitors can reach out and what to
 								expect

@@ -49,9 +49,16 @@ export default function AboutSection({
 	// Legacy 'classic' two-column layout with image left and original content
 	if (variant === "classic") {
 		return (
-			<Section id="about" className="relative overflow-hidden bg-gradient-to-r from-blue-100 via-transparent to-transparent z-10">
+			<Section
+				id="about"
+				className="relative overflow-hidden bg-gradient-to-r from-blue-100 via-transparent to-transparent z-10"
+			>
 				<div className={containerClasses}>
-					<LazySection animation="slide-up" delay={0} className={`relative ${imageOrderClass}`}>
+					<LazySection
+						animation="slide-up"
+						delay={0}
+						className={`relative ${imageOrderClass}`}
+					>
 						{image?.src && (
 							<OptimizedImage
 								src={image.src}
@@ -63,22 +70,33 @@ export default function AboutSection({
 							/>
 						)}
 					</LazySection>
-					<LazySection animation="slide-up" delay={0.1} className={contentOrderClass}>
+					<LazySection
+						animation="slide-up"
+						delay={0.1}
+						className={contentOrderClass}
+					>
 						<div className={contentOrderClass}>
 							{badgeText && (
 								<LazySection animation="fade-up" delay={0.2}>
-									<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">{badgeText}</Badge>
+									<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
+										{badgeText}
+									</Badge>
 								</LazySection>
 							)}
 							{heading && (
 								<LazySection animation="fade-up" delay={0.3}>
-									<h2 className="section-title">{heading}</h2>
+									<h1 className="text-[var(--font-heading-size)]">{heading}</h1>
 								</LazySection>
 							)}
 							{paragraphs && paragraphs.length > 0 && (
 								<LazySection animation="fade-up" delay={0.4}>
 									{paragraphs.map((p) => (
-										<p key={p.slice(0, 16)} className="text-gray-700 mb-6 last:mb-8">{p}</p>
+										<p
+											key={p.slice(0, 16)}
+											className="text-gray-700 mb-6 last:mb-8"
+										>
+											{p}
+										</p>
 									))}
 								</LazySection>
 							)}
@@ -86,8 +104,13 @@ export default function AboutSection({
 								<LazySection animation="fade-up" delay={0.5}>
 									<div className="grid grid-cols-2 gap-4 mb-8">
 										{stats.map((stat) => (
-											<div key={stat.id} className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-												<div className="font-bold text-primary text-xl">{stat.value}</div>
+											<div
+												key={stat.id}
+												className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+											>
+												<div className="font-bold text-primary text-xl">
+													{stat.value}
+												</div>
 												<div className="text-gray-600">{stat.label}</div>
 											</div>
 										))}
@@ -97,8 +120,12 @@ export default function AboutSection({
 							{philosophy && (
 								<LazySection animation="fade-up" delay={0.6} className="mt-8">
 									<div className="rounded-xl border border-gray-200 bg-gray-50 p-8 shadow-sm hover:shadow-md transition-shadow">
-										<h3 className="text-xl font-semibold text-gray-900">{philosophy.title}</h3>
-										<p className="mt-2 text-gray-600 leading-relaxed">{philosophy.text}</p>
+										<h3 className="text-xl font-semibold text-gray-900">
+											{philosophy.title}
+										</h3>
+										<p className="mt-2 text-gray-600 leading-relaxed">
+											{philosophy.text}
+										</p>
 									</div>
 								</LazySection>
 							)}
@@ -106,14 +133,23 @@ export default function AboutSection({
 								<LazySection animation="fade-up" delay={0.7} className="mt-8">
 									<div className="grid gap-4 sm:grid-cols-2">
 										{featureCards.map((card) => {
-											const Icon = card.icon === 'Star' ? Star : CheckCircle;
+											const Icon = card.icon === "Star" ? Star : CheckCircle;
 											return (
-												<div key={card.id} className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
-													<div className={`flex h-12 w-12 items-center justify-center rounded-full ${card.iconBg}`}>
+												<div
+													key={card.id}
+													className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow"
+												>
+													<div
+														className={`flex h-12 w-12 items-center justify-center rounded-full ${card.iconBg}`}
+													>
 														<Icon className={`${card.iconColor} h-6 w-6`} />
 													</div>
-													<h3 className="mt-4 text-lg font-semibold text-gray-900">{card.title}</h3>
-													<p className="mt-2 text-sm text-gray-600">{card.description}</p>
+													<h3 className="mt-4 text-lg font-semibold text-gray-900">
+														{card.title}
+													</h3>
+													<p className="mt-2 text-sm text-gray-600">
+														{card.description}
+													</p>
 												</div>
 											);
 										})}
@@ -122,7 +158,11 @@ export default function AboutSection({
 							)}
 							{cta?.href && cta?.text && (
 								<LazySection animation="fade-up" delay={0.8}>
-									<Button size="lg" className="bg-primary hover:bg-primary-90 group" asChild>
+									<Button
+										size="lg"
+										className="bg-primary hover:bg-primary-90 group"
+										asChild
+									>
 										<Link href={cta.href}>
 											{cta.text}
 											<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -144,7 +184,11 @@ export default function AboutSection({
 		>
 			<div className={containerClasses}>
 				{/* Left column: text & CTA */}
-				<LazySection animation="slide-up" delay={0} className={contentOrderClass}>
+				<LazySection
+					animation="slide-up"
+					delay={0}
+					className={contentOrderClass}
+				>
 					{badgeText && (
 						<LazySection animation="fade-up" delay={0.2}>
 							<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
@@ -154,13 +198,16 @@ export default function AboutSection({
 					)}
 					{heading && (
 						<LazySection animation="fade-up" delay={0.3}>
-							<h2 className="section-title">{heading}</h2>
+							<h1 className="text-[var(--font-heading-size)]">{heading}</h1>
 						</LazySection>
 					)}
 					{paragraphs && paragraphs.length > 0 && (
 						<LazySection animation="fade-up" delay={0.4}>
 							{paragraphs.map((p) => (
-								<p key={p.slice(0, 16)} className="text-gray-700 mb-6 last:mb-8">
+								<p
+									key={p.slice(0, 16)}
+									className="text-gray-700 mb-6 last:mb-8"
+								>
 									{p}
 								</p>
 							))}
@@ -168,7 +215,11 @@ export default function AboutSection({
 					)}
 					{cta?.href && cta?.text && (
 						<LazySection animation="fade-up" delay={0.5}>
-							<Button size="lg" className="bg-primary hover:bg-primary-90 group" asChild>
+							<Button
+								size="lg"
+								className="bg-primary hover:bg-primary-90 group"
+								asChild
+							>
 								<Link href={cta.href}>
 									{cta.text}
 									<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -178,12 +229,20 @@ export default function AboutSection({
 					)}
 				</LazySection>
 				{/* Right column: philosophy and feature cards (image hidden by default) */}
-				<LazySection animation="slide-up" delay={0.1} className={imageOrderClass}>
+				<LazySection
+					animation="slide-up"
+					delay={0.1}
+					className={imageOrderClass}
+				>
 					{philosophy && (
 						<LazySection animation="fade-up" delay={0.6}>
 							<div className="rounded-xl border border-gray-200 bg-gray-50 p-8 shadow-sm hover:shadow-md transition-shadow mb-6">
-								<h3 className="text-xl font-semibold text-gray-900">{philosophy.title}</h3>
-								<p className="mt-2 text-gray-600 leading-relaxed">{philosophy.text}</p>
+								<h3 className="text-xl font-semibold text-gray-900">
+									{philosophy.title}
+								</h3>
+								<p className="mt-2 text-gray-600 leading-relaxed">
+									{philosophy.text}
+								</p>
 							</div>
 						</LazySection>
 					)}
@@ -191,17 +250,23 @@ export default function AboutSection({
 						<LazySection animation="fade-up" delay={0.7}>
 							<div className="grid gap-4 sm:grid-cols-2">
 								{featureCards.map((card) => {
-									const Icon = card.icon === 'Star' ? Star : CheckCircle;
+									const Icon = card.icon === "Star" ? Star : CheckCircle;
 									return (
 										<div
 											key={card.id}
 											className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow"
 										>
-											<div className={`flex h-12 w-12 items-center justify-center rounded-full ${card.iconBg}`}>
+											<div
+												className={`flex h-12 w-12 items-center justify-center rounded-full ${card.iconBg}`}
+											>
 												<Icon className={`${card.iconColor} h-6 w-6`} />
 											</div>
-											<h3 className="mt-4 text-lg font-semibold text-gray-900">{card.title}</h3>
-											<p className="mt-2 text-sm text-gray-600">{card.description}</p>
+											<h3 className="mt-4 text-lg font-semibold text-gray-900">
+												{card.title}
+											</h3>
+											<p className="mt-2 text-sm text-gray-600">
+												{card.description}
+											</p>
 										</div>
 									);
 								})}
