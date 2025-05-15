@@ -20,6 +20,8 @@ clientKind = "git"
 [files]
 ignore = [
   "node_modules/**",
+  ".next/**",
+  "**/.next/**",
   "Z-EXAMPLE-WEBSITE/**",
   "test-results/**",
   "public/~partytown/**",
@@ -32,6 +34,8 @@ ignoreUnknown = true
 [formatter]
 ignore = [
   "node_modules/**",
+  ".next/**",
+  "**/.next/**",
   "Z-EXAMPLE-WEBSITE/**",
   "test-results/**",
   "docs/archived/**",
@@ -43,6 +47,8 @@ ignore = [
 [linter]
 ignore = [
   "node_modules/**",
+  ".next/**",
+  "**/.next/**",
   "Z-EXAMPLE-WEBSITE/**",
   "test-results/**",
   "public/~partytown/**",
@@ -54,6 +60,8 @@ ignore = [
 [organizeImports]
 ignore = [
   "node_modules/**",
+  ".next/**",
+  "**/.next/**",
   "Z-EXAMPLE-WEBSITE/**",
   "docs/archived/**",
   "test-results/**",
