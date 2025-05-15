@@ -152,6 +152,7 @@ export default function RootLayout({
 					rel="preload"
 					href={heroSectionData.image?.src ?? ""}
 					as="image"
+					fetchPriority="high"
 				/>
 				{/* GA4 script for analytics (Partytown) */}
 				<script

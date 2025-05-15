@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import CountUp from "react-countup";
+import dynamic from "next/dynamic";
 
 import { Section } from "@/components/layout/Section";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
@@ -16,6 +16,8 @@ import type { heroSectionDataSchema } from "@/lib/schemas/sections.schema";
 import { siteConfig } from "@/lib/siteConfig";
 import type { z } from "zod";
 import LazySection from "@/components/ui/lazy-section";
+
+const HeroStats = dynamic(() => import("@/components/sections/hero-stats"), { ssr: false });
 
 export type HeroSectionProps = z.infer<typeof heroSectionDataSchema> & {
 	variant?: "imageLeft" | "imageRight" | "centered";
@@ -250,37 +252,7 @@ export default function HeroSection({
 					</LazySection>
 				</div>
 
-				{siteConfig.features.enableHeroStats && (
-					<LazySection
-						animation="slide-up"
-						delay={0.4}
-						className="mt-20"
-					>
-						<div className="bg-white rounded-xl shadow-lg p-6 md:p-8 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-							{stats &&
-								stats.length > 0 &&
-								stats.map((stat) => (
-									<div
-										key={stat.label}
-										className="flex flex-col items-center text-center"
-									>
-										<div className="text-primary font-bold text-3xl md:text-4xl mb-2">
-											<CountUp
-												end={stat.value}
-												suffix={stat.suffix}
-												duration={2.5}
-												enableScrollSpy
-												scrollSpyDelay={500}
-											/>
-										</div>
-										<p className="text-gray-600 text-sm md:text-base m-0">
-											{stat.label}
-										</p>
-									</div>
-								))}
-						</div>
-					</LazySection>
-				)}
+				{siteConfig.features.enableHeroStats && <HeroStats stats={stats} />}
 			</Section>
 
 			{/* soft left-only bottom shadow (20% width gradient) */}
