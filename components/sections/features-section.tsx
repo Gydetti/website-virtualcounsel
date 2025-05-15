@@ -2,11 +2,9 @@
 import { Section } from "@/components/layout/Section";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import LazySection from "@/components/ui/lazy-section";
 import OptimizedImage from "@/components/ui/optimized-image";
+import { XCircle, CheckCircle, ArrowRight } from "lucide-react";
 import type { featuresSectionDataSchema } from "@/lib/schemas/sections.schema";
-import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle, XCircle } from "lucide-react";
 import Link from "next/link";
 import type { z } from "zod";
 
@@ -52,55 +50,31 @@ export default function FeaturesSection({
 					{description && <p className="text-gray-700">{description}</p>}
 				</div>
 
-				<div className="relative grid md:grid-cols-2 gap-8 md:gap-0 mb-0">
-					{comparison?.without?.items &&
-						comparison.without.items.length > 0 && (
-							<LazySection
-								animation="slide-left"
-								delay={0}
-								className="md:w-4/5 md:mx-auto rounded-lg border border-red-200 bg-red-50/50 backdrop-blur p-6 hover:bg-red-100/50 transition-colors text-gray-800"
-							>
-								{withoutTitle && (
-									<h3 className="text-red-400 mb-4">{withoutTitle}</h3>
-								)}
-								<ul className="space-y-3">
-									{withoutItems?.map((item) => (
-										<li key={item} className="flex items-start">
-											<XCircle className="text-red-400 mr-2 h-5 w-5 flex-shrink-0 mt-0.5" />
-											<span className="text-gray-700">{item}</span>
-										</li>
-									))}
-								</ul>
-							</LazySection>
-						)}
-
-					{comparison?.with?.items && comparison.with.items.length > 0 && (
-						<LazySection
-							animation="slide-right"
-							delay={0}
-							className="md:w-4/5 md:mx-auto rounded-lg border border-green-200 bg-green-50/50 backdrop-blur p-6 hover:bg-green-100/50 transition-colors text-gray-800"
+				{/* Comparison panels with CSS-only stagger */}
+				<div
+					className="relative grid md:grid-cols-2 gap-8 md:gap-0 mb-0 stagger-container"
+					style={{ '--stagger-delay': '0.2s' } as React.CSSProperties}
+				>
+					{comparison?.without?.items && comparison.without.items.length > 0 && (
+						<div
+							className="md:w-4/5 md:mx-auto rounded-lg border border-red-200 bg-red-50/50 backdrop-blur p-6 transition-colors text-gray-800"
+							style={{ '--index': 0 } as React.CSSProperties}
 						>
-							{withTitle && (
-								<h3 className="text-green-400 mb-4">{withTitle}</h3>
-							)}
+							{withoutTitle && <h3 className="text-red-400 mb-4">{withoutTitle}</h3>}
 							<ul className="space-y-3">
-								{withItems?.map((item) => (
+								{withoutItems?.map((item) => (
 									<li key={item} className="flex items-start">
-										<CheckCircle className="text-green-400 mr-2 h-5 w-5 flex-shrink-0 mt-0.5" />
+										<XCircle className="text-red-400 mr-2 h-5 w-5 flex-shrink-0 mt-0.5" />
 										<span className="text-gray-700">{item}</span>
 									</li>
 								))}
 							</ul>
-						</LazySection>
+						</div>
 					)}
-
-					{/* Decorative arrow image between cards on desktop */}
-					<motion.div
-						initial={{ opacity: 0 }}
-						whileInView={{ opacity: 1 }}
-						transition={{ duration: 0.5 }}
-						viewport={{ once: true }}
+					{/* Decorative arrow: CSS-only fade-up */}
+					<div
 						className="hidden md:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+						style={{ '--index': 1 } as React.CSSProperties}
 					>
 						<OptimizedImage
 							src="/images/general/1 bend arrow right.svg"
@@ -110,7 +84,23 @@ export default function FeaturesSection({
 							objectFit="contain"
 							className="opacity-90"
 						/>
-					</motion.div>
+					</div>
+					{comparison?.with?.items && comparison.with.items.length > 0 && (
+						<div
+							className="md:w-4/5 md:mx-auto rounded-lg border border-green-200 bg-green-50/50 backdrop-blur p-6 transition-colors text-gray-800"
+							style={{ '--index': 2 } as React.CSSProperties}
+						>
+							{withTitle && <h3 className="text-green-400 mb-4">{withTitle}</h3>}
+							<ul className="space-y-3">
+								{withItems?.map((item) => (
+									<li key={item} className="flex items-start">
+										<CheckCircle className="text-green-400 mr-2 h-5 w-5 flex-shrink-0 mt-0.5" />
+										<span className="text-gray-700">{item}</span>
+									</li>
+								))}
+							</ul>
+						</div>
+					)}
 				</div>
 
 				<div className="text-center">
