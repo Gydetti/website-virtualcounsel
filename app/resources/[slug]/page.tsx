@@ -17,9 +17,10 @@ const resourceDetailPageStructure = siteConfig.pageStructures?.find(
 export async function generateMetadata({
 	params,
 }: {
-	params: { slug: string };
+	params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-	const resource = await getResourceBySlug(params.slug);
+	const { slug } = await params;
+	const resource = await getResourceBySlug(slug);
 	if (!resource) {
 		return defaultMetadata({ title: "Resource Not Found" });
 	}
@@ -50,9 +51,9 @@ export async function generateMetadata({
 export default async function ResourceDetailPage({
 	params,
 }: {
-	params: { slug: string };
+	params: Promise<{ slug: string }>;
 }) {
-	const { slug } = params;
+	const { slug } = await params;
 
 	const resource = await getResourceBySlug(slug);
 	if (!resource) {

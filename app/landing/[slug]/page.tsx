@@ -10,8 +10,8 @@ export async function generateStaticParams() {
 
 export default async function LandingPage({
 	params,
-}: { params: { slug: string } }) {
-	const { slug } = params;
+}: { params: Promise<{ slug: string }> }) {
+	const { slug } = await params;
 	const resource = await getResourceBySlug(slug);
 	if (!resource) notFound();
 
