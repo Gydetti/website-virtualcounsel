@@ -156,6 +156,9 @@ export default function RootLayout({
 					href="https://fonts.gstatic.com"
 					crossOrigin="anonymous"
 				/>
+				{/* Preconnect & DNS-prefetch to site origin for images and data */}
+				<link rel="preconnect" href={siteUrl} />
+				<link rel="dns-prefetch" href={siteUrl} />
 				{/* Preload LCP hero image */}
 				<link
 					rel="preload"
