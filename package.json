@@ -93,6 +93,7 @@
     },
     "devDependencies": {
         "@biomejs/biome": "^1.9.4",
+        "@next/bundle-analyzer": "^15.3.2",
         "@playwright/test": "^1.52.0",
         "@testing-library/jest-dom": "^6.6.3",
         "@testing-library/react": "^16.3.0",
@@ -125,5 +126,10 @@
             "npm run format",
             "npm test"
         ]
-    }
+    },
+    "browserslist": [
+        "defaults and supports es6-module",
+        "not IE 11",
+        "not dead"
+    ]
 }

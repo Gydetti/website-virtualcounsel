@@ -115,7 +115,7 @@ export default function HeroSection({
 						className={`flex flex-col justify-center space-y-6 z-10 ${variant === "imageLeft" ? "md:order-2" : ""}`}
 					>
 						{badgeText && (
-							<Badge className="w-fit bg-[rgba(var(--primary-rgb),0.1)] text-primary hover:bg-[rgba(var(--primary-rgb),0.2)]">
+							<Badge className="w-fit">
 								{badgeText}
 							</Badge>
 						)}

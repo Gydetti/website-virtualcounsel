@@ -1073,3 +1073,18 @@ This setup ensures the site is always styled, always dynamic, and always ready f
    ```
 
 With this in place, any future AI or human can instantly see how to write and extend color-opacity utilities—and you'll never accidentally ship a broken `text-primary/40` again.
+
+### KPI Section & About Section Feature Flags
+
+Two new feature flags allow toggling the display of KPI stats sections:
+
+- `siteConfig.features.enableAboutSection` (boolean, default: true)  
+  Controls display of the About section block on all pages (including the homepage). By default, this is enabled so that the About section appears on the homepage.
+
+- `siteConfig.features.enableKpiSection` (boolean, default: false)  
+  Controls display of the separate KPI stats section on the homepage. By default, this is disabled on the homepage. To enable the homepage KPI stats block, set `enableKpiSection: true` in your `lib/site.config.local.ts`.
+
+- `siteConfig.features.enableAboutKpiSection` (boolean, default: false)  
+  Controls display of the KPI stats block on the About page. By default, this is disabled. To enable it on the About page, set `enableAboutKpiSection: true` in your `lib/site.config.local.ts`.
+
+You can find these flags under the `features` key in your `lib/site.config.local.ts` file.

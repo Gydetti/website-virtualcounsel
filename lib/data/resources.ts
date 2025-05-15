@@ -43,11 +43,11 @@ const sampleResourcesData: z.infer<typeof resourceSchema>[] = [
 	{
 		slug: "example-ebook",
 		resourceType: "ebook",
-		title: "E-Book: The Ultimate Guide to Conversion Optimization",
+		title: "E-book: The ultimate guide to conversion optimization",
 		subtitle: "Learn proven tactics to boost your landing page conversions.",
 		heroImage: {
 			src: "/images/resources/example-ebook-hero.jpg",
-			alt: "Hero image for The Ultimate Guide to Conversion Optimization E-Book", // Provide a meaningful alt
+			alt: "Hero image for the ultimate guide to conversion optimization e-book", // Provide a meaningful alt
 			width: 1200,
 			height: 630,
 		},
@@ -71,7 +71,7 @@ const sampleResourcesData: z.infer<typeof resourceSchema>[] = [
 			},
 			{
 				type: "form",
-				title: "Download Your Free E-Book",
+				title: "Download your free e-book",
 				description: "Enter your details below to get instant access.",
 				config: {
 					provider: "custom",

@@ -1,24 +1,12 @@
 import { Poppins, Raleway } from "next/font/google";
-import { Suspense } from "react";
 import type { ReactNode } from "react";
-import "./globals.css";
-import CookiebotLoaderClient from "@/components/cookie/CookiebotLoaderClient";
-import CookieConsentBanner from "@/components/cookie/cookie-consent-banner";
-import PageTransitionWrapper from "@/components/layout/PageTransitionWrapper";
-import Footer from "@/components/layout/footer";
-// import Script from "next/script" (removed for client-only loading)
-import Header from "@/components/layout/header";
-import StructuredData from "@/components/seo/structured-data";
-import DataLayerProvider from "@/components/tracking/data-layer-provider";
-import PageViewTracker from "@/components/tracking/page-view-tracker";
-import TrackingScripts from "@/components/tracking/tracking-scripts";
-import BackgroundCanvas from "@/components/ui/BackgroundCanvas";
-import ScrollToTop from "@/components/ui/scroll-to-top";
-import { Toaster } from "@/components/ui/toaster";
+import AppShell from "@/components/layout/AppShell";
 import { heroSectionData } from "@/lib/data/homepage";
 import { defaultMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/lib/siteConfig";
 import { Partytown } from "@qwik.dev/partytown/react";
+import StructuredData from "@/components/seo/structured-data";
+import "./globals.css";
 
 // Poppins for headings
 const poppins = Poppins({
@@ -174,8 +162,6 @@ export default function RootLayout({
 				/>
 				{/* Load Partytown worker for third-party script offloading */}
 				<Partytown forward={["dataLayer.push"]} />
-				{/* Cookiebot script will now be loaded on the client only via client-only component */}
-
 				{/* Structured Data for SEO */}
 				<StructuredData
 					type="organization"
@@ -209,29 +195,7 @@ export default function RootLayout({
 			<body
 				className={`${poppins.variable} ${raleway.variable} font-sans antialiased bg-gradient-to-br from-blue-50 to-transparent`}
 			>
-				{/* FIRST_EDIT: Animated background canvas */}
-				{siteConfig.features.enableAdvancedBackgrounds && <BackgroundCanvas />}
-				{/* Custom React-based cookie banner (disabled by default) */}
-				{siteConfig.features.enableCustomCookieBanner && (
-					<CookieConsentBanner />
-				)}
-				{/* Cookiebot loader for production consent flow */}
-				<CookiebotLoaderClient />
-				<DataLayerProvider>
-					{/* Tracking scripts that respect cookie consent */}
-					<TrackingScripts />
-					<Suspense fallback={null}>
-						<PageViewTracker />
-					</Suspense>
-
-					<div className="flex min-h-screen flex-col">
-						<Header />
-						<PageTransitionWrapper>{children}</PageTransitionWrapper>
-						<Footer />
-					</div>
-					<ScrollToTop />
-					<Toaster />
-				</DataLayerProvider>
+				<AppShell>{children}</AppShell>
 			</body>
 		</html>
 	);

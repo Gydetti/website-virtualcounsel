@@ -4,8 +4,8 @@ import { aboutSectionDataSchema } from "../schemas/sections.schema";
 export const aboutPageMainContentData: z.infer<typeof aboutSectionDataSchema> =
 	{
 		// Main content data for the About page (variant handled in page config)
-		badgeText: "Our Story",
-		heading: "Client Story", // Placeholder for client to fill
+		badgeText: "Our story",
+		heading: "Client story", // Placeholder for client to fill
 		paragraphs: [
 			"Paragraph 1: Introduce the company/individual, its mission, and core values. Explain the 'why' behind the business.",
 			"Paragraph 2: Briefly touch upon the history, key milestones, or the journey so far.",
@@ -20,13 +20,13 @@ export const aboutPageMainContentData: z.infer<typeof aboutSectionDataSchema> =
 		stats: [
 			{
 				id: "stat-experience",
-				value: "10+ Years",
-				label: "Industry Experience",
+				value: "10+ years",
+				label: "Industry experience",
 			},
-			{ id: "stat-clients", value: "100+", label: "Satisfied Clients" },
+			{ id: "stat-clients", value: "100+", label: "Satisfied clients" },
 		],
 		cta: {
-			text: "Learn More About Our Services",
+			text: "Learn more about our services",
 			href: "/services",
 		},
 	};
@@ -44,15 +44,15 @@ try {
 
 // Data for About Values & Philosophy section
 export const aboutValuesSectionData = {
-	badgeText: "Our Values",
-	heading: "Our Core Beliefs",
+	badgeText: "Our values",
+	heading: "Our core beliefs",
 	values: ["Integrity", "Innovation", "Empathy"],
 };
 
 // Data for About Social Proof snippet section
 export const aboutSocialProofSectionData = {
-	badgeText: "Experience & Trust",
-	heading: "What Clients Are Saying",
+	badgeText: "Experience & trust",
+	heading: "What clients are saying",
 	socialProof: [
 		{
 			id: "sp1",

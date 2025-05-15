@@ -34,9 +34,7 @@ export default function CtaSection({
 				className="relative z-10 text-center"
 			>
 				{badgeText && (
-					<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
-						{badgeText}
-					</Badge>
+					<Badge variant="light" className="mb-4">{badgeText}</Badge>
 				)}
 				{heading && (
 					<h2

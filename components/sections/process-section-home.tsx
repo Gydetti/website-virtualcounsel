@@ -35,24 +35,28 @@ export default function ProcessSectionHome({
 				)}
 			</div>
 
-			<div className="mt-16 grid gap-8 md:grid-cols-4 md:gap-12">
+			<div className="mt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 md:gap-12 items-stretch">
 				{steps.map((step, i) => (
 					<div key={step.id} className="relative">
 						<LazySection
+							fullHeight
 							animation="fade-up"
 							delay={i * 0.1}
 							className="relative z-10"
 						>
-							<div className="flex h-full flex-col items-center gap-4 rounded-xl border border-slate-200 bg-white p-4 text-center shadow-sm transition-all hover:shadow-md card-equal-height">
+							<div className="flex h-full flex-col items-center rounded-xl border border-slate-200 bg-white p-4 text-center shadow-sm transition-all hover:shadow-md card-equal-height">
 								<div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary text-white text-lg font-semibold">
-									{step.number ?? String(i + 1).padStart(2, "0")}
+									{step.number ?? String(i + 1).padStart(2, "00")}
 								</div>
-								<h3 className="text-xl font-semibold text-slate-900">
-									{step.title}
-								</h3>
-								<p className="text-slate-600 leading-relaxed">
-									{step.description}
-								</p>
+								<div className="card-content flex flex-col items-center gap-4">
+									<h3 className="text-xl font-semibold text-slate-900">
+										{step.title}
+									</h3>
+									<p className="text-slate-600 leading-relaxed">
+										{step.description}
+									</p>
+								</div>
+								<div className="card-footer" />
 							</div>
 						</LazySection>
 						{i < steps.length - 1 && (

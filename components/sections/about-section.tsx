@@ -8,6 +8,8 @@ import LazySection from "@/components/ui/lazy-section";
 import OptimizedImage from "@/components/ui/optimized-image";
 import type { aboutSectionDataSchema } from "@/lib/schemas/sections.schema";
 import { siteConfig } from "@/lib/site.config.local";
+import * as homepageData from "@/lib/data/homepage";
+import KpiSection from "@/components/sections/kpi-section";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle, Star } from "lucide-react";
 import Link from "next/link";
@@ -28,6 +30,7 @@ export type AboutSectionProps = z.infer<typeof aboutSectionDataSchema> & {
 		iconBg: string;
 		iconColor: string;
 	}[];
+	isHomepage?: boolean;
 };
 
 export default function AboutSection({
@@ -40,6 +43,7 @@ export default function AboutSection({
 	cta,
 	philosophy,
 	featureCards,
+	isHomepage = false,
 }: AboutSectionProps) {
 	const containerClasses =
 		variant === "centered"
@@ -47,6 +51,10 @@ export default function AboutSection({
 			: "grid md:grid-cols-2 gap-12 items-center";
 	const imageOrderClass = variant === "imageRight" ? "md:order-2" : "";
 	const contentOrderClass = variant === "imageRight" ? "md:order-1" : "";
+
+	const outerContainerClass = isHomepage
+		? `${containerClasses} lg:max-w-[85vw] mx-auto`
+		: containerClasses;
 
 	// Refactored image rendering logic
 	const renderImage = () => {
@@ -83,7 +91,7 @@ export default function AboutSection({
 				id="about"
 				className="relative overflow-hidden bg-gradient-to-r from-blue-100 via-transparent to-transparent z-10"
 			>
-				<div className={containerClasses}>
+				<div className={outerContainerClass}>
 					<LazySection
 						animation="slide-up"
 						delay={0}
@@ -215,9 +223,9 @@ export default function AboutSection({
 	return (
 		<Section
 			id="about"
-			className="relative overflow-hidden bg-gradient-to-r from-blue-100 via-transparent to-transparent z-10"
+			className={`relative overflow-hidden bg-gradient-to-r from-blue-100 via-transparent to-transparent z-10${isHomepage ? ' min-h-[80vh] sm:min-h-[75vh] flex items-center' : ''}`}
 		>
-			<div className={containerClasses}>
+			<div className={outerContainerClass}>
 				<LazySection
 					animation="slide-up"
 					delay={0}
@@ -308,6 +316,12 @@ export default function AboutSection({
 					)}
 				</LazySection>
 			</div>
+			{/* Full-width KPI row under About two-column grid */}
+			{isHomepage && siteConfig.features.enableAboutKpiSection && (
+				<LazySection animation="fade-up" delay={0.2} className="w-full mt-8">
+					<KpiSection stats={homepageData.kpiSectionData.stats} embedInAbout />
+				</LazySection>
+			)}
 		</Section>
 	);
 }

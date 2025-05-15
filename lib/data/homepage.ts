@@ -31,18 +31,18 @@ export const heroSectionData: z.infer<typeof heroSectionDataSchema> = {
 	showSecondaryCta: true,
 	typingWords: ["Unique value prop", "Key benefit", "Target audience"],
 	stats: [
-		{ value: 7, suffix: "+", label: "Years of Experience" },
-		{ value: 98, suffix: "%", label: "Client Satisfaction Rate" },
-		{ value: 40, suffix: "+", label: "Successful Projects Delivered" },
-		{ value: 300, suffix: "+", label: "Happy Clients" },
+		{ value: 7, suffix: "+", label: "Years of experience" },
+		{ value: 98, suffix: "%", label: "Client satisfaction rate" },
+		{ value: 40, suffix: "+", label: "Successful projects delivered" },
+		{ value: 300, suffix: "+", label: "Happy clients" },
 	],
 	image: {
-		src: "/images/hero/hero-main.png",
+		src: "/images/hero/hero-main.webp",
 		alt: "Professional business hero image for homepage",
 	},
 	showHelpedStats: true,
 	showOverlayStat: true,
-	overlayTitle: "Overlay Stat Title",
+	overlayTitle: "Overlay stat title",
 	overlayValue: "+150%",
 };
 
@@ -194,22 +194,22 @@ export const problemPainSectionData: z.infer<
 	cards: [
 		{
 			id: "pain-card-1",
-			title: "Pain Point One",
+			title: "Pain point one",
 			description: "Describe how this challenge affects the client",
 		},
 		{
 			id: "pain-card-2",
-			title: "Pain Point Two",
+			title: "Pain point two",
 			description: "Explain this second common frustration briefly",
 		},
 		{
 			id: "pain-card-3",
-			title: "Pain Point Three",
+			title: "Pain point three",
 			description: "Outline another key challenge your clients face",
 		},
 		{
 			id: "pain-card-4",
-			title: "Pain Point Four",
+			title: "Pain point four",
 			description: "Highlight an additional obstacle impacting clients",
 		},
 	],
@@ -250,20 +250,20 @@ export const valuePropSectionData: z.infer<typeof valuePropSectionDataSchema> =
 		benefits: [
 			{
 				id: "benefit-1",
-				title: "Achieve Goals Faster",
+				title: "Achieve goals faster",
 				description:
 					"Accelerate outcomes with targeted strategies for your business.",
 				icon: "check-circle",
 			},
 			{
 				id: "benefit-2",
-				title: "Tailored Solutions",
+				title: "Tailored solutions",
 				description: "Receive custom plans crafted to your unique needs.",
 				icon: "check-circle",
 			},
 			{
 				id: "benefit-3",
-				title: "Measurable Impact",
+				title: "Measurable impact",
 				description: "Track real results with clear metrics and KPIs.",
 				icon: "check-circle",
 			},
@@ -271,8 +271,8 @@ export const valuePropSectionData: z.infer<typeof valuePropSectionDataSchema> =
 	};
 
 export const pricingSectionData: z.infer<typeof pricingSectionDataSchema> = {
-	badgeText: "Simple & Transparent",
-	heading: "Our Pricing Plans",
+	badgeText: "Simple & transparent",
+	heading: "Our pricing plans",
 	description: "Choose the plan that fits your needs.",
 	cards: [
 		{
@@ -280,7 +280,7 @@ export const pricingSectionData: z.infer<typeof pricingSectionDataSchema> = {
 			title: "Basic",
 			price: "$99/mo",
 			features: ["Feature A", "Feature B", "Feature C"],
-			cta: { text: "Choose Basic", href: "/#pricing" },
+			cta: { text: "Choose basic", href: "/#pricing" },
 			popular: false,
 		},
 		{
@@ -288,15 +288,15 @@ export const pricingSectionData: z.infer<typeof pricingSectionDataSchema> = {
 			title: "Pro",
 			price: "$199/mo",
 			features: ["Feature A", "Feature B", "Feature C", "Feature D"],
-			cta: { text: "Choose Pro", href: "/#pricing" },
+			cta: { text: "Choose pro", href: "/#pricing" },
 			popular: true,
 		},
 		{
 			id: "price-enterprise",
 			title: "Enterprise",
 			price: "$299/mo",
-			features: ["All Pro features", "Feature E", "Feature F"],
-			cta: { text: "Contact Sales", href: "/contact" },
+			features: ["All pro features", "Feature E", "Feature F"],
+			cta: { text: "Contact sales", href: "/contact" },
 			popular: false,
 		},
 	],
@@ -305,13 +305,13 @@ export const pricingSectionData: z.infer<typeof pricingSectionDataSchema> = {
 export const homepageFaqSectionData: z.infer<
 	typeof homepageFaqSectionDataSchema
 > = {
-	badgeText: "Your Questions Answered",
-	heading: "Frequently Asked Questions",
+	badgeText: "Your questions answered",
+	heading: "Frequently asked questions",
 	description:
 		"Find quick answers to common inquiries about our services and processes. If you don't see your question here, feel free to reach out!",
 	categories: [
 		{
-			category: "General Questions",
+			category: "General questions",
 			questions: [
 				{
 					question: "What services do you offer?",
@@ -351,7 +351,7 @@ export const homepageFaqSectionData: z.infer<
 			],
 		},
 		{
-			category: "Pricing & Billing",
+			category: "Pricing & billing",
 			questions: [
 				{
 					question: "What are your pricing options?",
@@ -371,7 +371,7 @@ export const homepageFaqSectionData: z.infer<
 			],
 		},
 	],
-	cta: { text: "View All FAQs", href: "/faq" },
+	cta: { text: "View all FAQs", href: "/faq" },
 };
 
 // ++ Data for Services Preview Section on Homepage (Corrected) ++
@@ -379,10 +379,10 @@ export const servicesPreviewSectionData: Omit<
 	z.infer<typeof servicesSectionDataSchema>,
 	"services"
 > = {
-	heading: "Services We Offer",
+	heading: "Services we offer",
 	description:
 		"Explore our range of expert services designed to help your business thrive.",
-	viewAllCta: { text: "View All Services", href: "/services" },
+	viewAllCta: { text: "View all services", href: "/services" },
 	displayType: "grid", // Added as per schema, can be overridden if needed by component
 };
 
@@ -391,15 +391,15 @@ export const blogPreviewSectionData: Omit<
 	z.infer<typeof blogSectionDataSchema>,
 	"posts"
 > = {
-	badgeText: "From Our Blog",
-	heading: "Latest Articles & Insights",
+	badgeText: "From our blog",
+	heading: "Latest articles & insights",
 	subtitle: "Stay updated with our latest news, tips, and industry insights.",
-	viewAllCta: { text: "View All Posts", href: "/blog" },
+	viewAllCta: { text: "View all posts", href: "/blog" },
 };
 
 export const aboutSectionData: z.infer<typeof aboutSectionDataSchema> = {
-	badgeText: "About Section",
-	heading: "Tell Your Company Story",
+	badgeText: "About section",
+	heading: "Tell your company story",
 	paragraphs: [
 		"Use this section to introduce your company, its mission, and core values.",
 		"Highlight key milestones, achievements, or what makes your team unique.",
@@ -410,23 +410,23 @@ export const aboutSectionData: z.infer<typeof aboutSectionDataSchema> = {
 		alt: "Placeholder image representing company or team",
 	},
 	stats: [
-		{ id: "stat-experience", value: "10+ Years", label: "Industry Experience" },
-		{ id: "stat-clients", value: "500+ Happy", label: "Clients Served" },
+		{ id: "stat-experience", value: "10+ years", label: "Industry experience" },
+		{ id: "stat-clients", value: "500+ happy", label: "Clients served" },
 		{
 			id: "stat-projects",
-			value: "1000+ Projects",
-			label: "Successfully Delivered",
+			value: "1000+ projects",
+			label: "Successfully delivered",
 		},
 	],
-	cta: { text: "Learn More About Us", href: "/about" },
+	cta: { text: "Learn more about us", href: "/about" },
 	philosophy: {
-		title: "My Philosophy",
+		title: "My philosophy",
 		text: "I believe that the best results come from a collaborative approach where we work together as partners to achieve your goals. My clients aren't just customers – they're collaborators in the journey to success.",
 	},
 	featureCards: [
 		{
 			id: "certified",
-			title: "Certified Professional",
+			title: "Certified professional",
 			description: "Industry-recognized credentials and certifications",
 			icon: "Star",
 			iconBg: "bg-amber-100",
@@ -434,7 +434,7 @@ export const aboutSectionData: z.infer<typeof aboutSectionDataSchema> = {
 		},
 		{
 			id: "proven",
-			title: "Proven Results",
+			title: "Proven results",
 			description: "Track record of success with measurable outcomes",
 			icon: "CheckCircle",
 			iconBg: "bg-emerald-100",
@@ -445,15 +445,15 @@ export const aboutSectionData: z.infer<typeof aboutSectionDataSchema> = {
 
 // ++ Data for Process Section on Homepage ++
 export const processSectionData: z.infer<typeof processSectionDataSchema> = {
-	badgeText: "Our Method",
-	heading: "How We Achieve Results",
+	badgeText: "Our method",
+	heading: "How we achieve results",
 	subtitle:
 		"A clear, step-by-step overview of our proven process, designed for transparency and client success.",
 	steps: [
 		{
 			id: "step-01",
 			number: "01",
-			title: "Discovery & Strategy",
+			title: "Discovery & strategy",
 			description:
 				"Understand your goals, audience, and challenges to create a tailored plan.",
 			details: [
@@ -465,7 +465,7 @@ export const processSectionData: z.infer<typeof processSectionDataSchema> = {
 		{
 			id: "step-02",
 			number: "02",
-			title: "Design & Development",
+			title: "Design & development",
 			description:
 				"Crafting a user-centric design and building a robust, scalable solution.",
 			details: [
@@ -477,7 +477,7 @@ export const processSectionData: z.infer<typeof processSectionDataSchema> = {
 		{
 			id: "step-03",
 			number: "03",
-			title: "Testing & Launch",
+			title: "Testing & launch",
 			description:
 				"Ensuring quality through rigorous testing before a seamless deployment.",
 			details: [
@@ -489,7 +489,7 @@ export const processSectionData: z.infer<typeof processSectionDataSchema> = {
 		{
 			id: "step-04",
 			number: "04",
-			title: "Growth & Optimization",
+			title: "Growth & optimization",
 			description:
 				"Continuously analyzing data to refine strategies and drive ongoing improvement.",
 			details: [
@@ -503,8 +503,8 @@ export const processSectionData: z.infer<typeof processSectionDataSchema> = {
 
 // ++ Data for Contact Section on Homepage ++
 export const contactSectionData: z.infer<typeof contactSectionDataSchema> = {
-	badgeText: "Get In Touch",
-	heading: "Contact Us Today",
+	badgeText: "Get in touch",
+	heading: "Contact us today",
 	subtitle:
 		"Have questions or ready to start your project? Reach out and we'll get back to you shortly. Use the form below or contact us directly via email or phone.",
 	// Note: The actual form fields and contact details (email, phone, address)
@@ -519,21 +519,21 @@ export const kpiSectionData: z.infer<typeof kpiSectionDataSchema> = {
 			id: "kpi-experience",
 			value: 10,
 			suffix: "+",
-			label: "Years of Experience",
+			label: "Years of experience",
 		},
 		{
 			id: "kpi-satisfaction",
 			value: 98,
 			suffix: "%",
-			label: "Client Satisfaction Rate",
+			label: "Client satisfaction rate",
 		},
 		{
 			id: "kpi-projects",
 			value: 40,
 			suffix: "+",
-			label: "Successful Projects Delivered",
+			label: "Successful projects delivered",
 		},
-		{ id: "kpi-clients", value: 300, suffix: "+", label: "Happy Clients" },
+		{ id: "kpi-clients", value: 300, suffix: "+", label: "Happy clients" },
 	],
 };
 

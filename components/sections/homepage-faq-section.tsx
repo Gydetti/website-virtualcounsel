@@ -50,7 +50,7 @@ export default function HomepageFaqSection({
 			<StructuredData type="faq" data={{ items: faqSchema }} />
 			<Section id="faq-homepage">
 				<LazySection animation="slide-up" delay={0} className="text-center">
-					<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
+					<Badge className="mb-4">
 						{badgeText}
 					</Badge>
 					<h2 className="section-title mb-12">{heading}</h2>

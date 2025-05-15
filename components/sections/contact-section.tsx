@@ -116,7 +116,7 @@ export default function ContactSection({
 			<div className="relative z-10">
 				<div className="text-center mb-16">
 					{badgeText && (
-						<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
+						<Badge className="mb-4 ">
 							{badgeText}
 						</Badge>
 					)}

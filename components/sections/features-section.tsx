@@ -37,7 +37,7 @@ export default function FeaturesSection({
 			<div className="relative z-10">
 				<div className="max-w-3xl mx-auto text-center mb-12">
 					{badgeText && (
-						<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
+						<Badge className="mb-4">
 							{badgeText}
 						</Badge>
 					)}

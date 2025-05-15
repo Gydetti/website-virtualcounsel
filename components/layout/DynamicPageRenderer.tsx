@@ -27,6 +27,8 @@ const HomepageFaqSection = dynamic(() => import("@/components/sections/homepage-
 const ContactSection = dynamic(() => import("@/components/sections/contact-section"));
 const ResourceDetailSection = dynamic(() => import("@/components/sections/ResourceDetailSection"));
 const ResourceListSection = dynamic(() => import("@/components/sections/ResourceListSection"));
+import AboutValuesSection from "@/components/sections/about-values-section";
+import AboutSocialProofSection from "@/components/sections/about-social-proof-section";
 
 import { getBlogPosts, getServices } from "@/lib/data-utils"; // Now using these
 import {
@@ -72,6 +74,8 @@ const sectionComponentMap: Record<string, ComponentType<any>> = {
 	ContactSection,
 	ResourceDetailSection,
 	ResourceListSection,
+	AboutValuesSection,
+	AboutSocialProofSection,
 };
 
 // Async data fetching
@@ -187,6 +191,8 @@ const getSectionData = async (
 				return homepageData.testimonialsSectionData;
 			case "CtaSection":
 				return homepageData.ctaSectionData;
+			case "KpiSection":
+				return homepageData.kpiSectionData;
 			default:
 				console.warn(
 					`Data for section type "${sectionConfig.sectionType}" (id: ${sectionConfig.id}) not implemented for /about page.`,
@@ -196,7 +202,7 @@ const getSectionData = async (
 	}
 
 	console.warn(
-		`Data fetching for section type "${sectionConfig.sectionType}" on page "${pagePath}" (id: ${sectionConfig.id}) is not implemented.`,
+		`Data fetching for section type "${sectionConfig.sectionType}" on page "${pagePath}" (id: ${sectionConfig.id}) is not implemented.`
 	);
 	return { id: sectionConfig.id };
 };
@@ -228,11 +234,20 @@ const DynamicPageRenderer: FC<DynamicPageRendererProps> = async ({
 	const elements = [];
 	for (let i = 0; i < sectionsWithData.length; i++) {
 		const section = sectionsWithData[i];
-		// Skip section if its feature flag is explicitly disabled
-		const featureFlagKey =
-			`enable${section.sectionType}` as keyof typeof siteConfig.features;
-		if (siteConfig.features[featureFlagKey] === false) {
-			continue;
+		// Skip section based on KPI page-specific flags or general feature flags
+		if (section.sectionType === "KpiSection") {
+			if (pagePath === "/" && !siteConfig.features.enableKpiSection) {
+				continue;
+			}
+			if (pagePath === "/about" && !siteConfig.features.enableAboutKpiSection) {
+				continue;
+			}
+		} else {
+			const featureFlagKey =
+				`enable${section.sectionType}` as keyof typeof siteConfig.features;
+			if (siteConfig.features[featureFlagKey] === false) {
+				continue;
+			}
 		}
 		// Group ProblemPainSection & SolutionVisionSection if both enabled
 		if (
@@ -267,6 +282,33 @@ const DynamicPageRenderer: FC<DynamicPageRendererProps> = async ({
 		// Compute clamped delay for this section
 		const rawDelay = i * delayStep;
 		const sectionDelay = Math.min(rawDelay, maxDelay);
+		// Special case: KpiSection on homepage
+		if (section.sectionType === "KpiSection" && pagePath === "/") {
+			elements.push(
+				<LazySection key={section.id} animation="fade-up" delay={sectionDelay}>
+					<Component {...section.data} isHomepage={true} />
+				</LazySection>,
+			);
+			continue;
+		}
+		// Special case: KpiSection on About page
+		if (section.sectionType === "KpiSection" && pagePath === "/about") {
+			elements.push(
+				<LazySection key={section.id} animation="fade-up" delay={sectionDelay}>
+					<Component {...section.data} isAboutPage={true} />
+				</LazySection>,
+			);
+			continue;
+		}
+		// Special case: AboutSection on homepage gets isHomepage={true}
+		if (pagePath === "/" && section.sectionType === "AboutSection") {
+			elements.push(
+				<LazySection key={section.id} animation="fade-up" delay={sectionDelay}>
+					<Component variant={section.variant} isHomepage={true} {...section.data} />
+				</LazySection>,
+			);
+			continue;
+		}
 		elements.push(
 			<LazySection key={section.id} animation="fade-up" delay={sectionDelay}>
 				<Component variant={section.variant} {...section.data} />
@@ -277,4 +319,3 @@ const DynamicPageRenderer: FC<DynamicPageRendererProps> = async ({
 };
 
 export default DynamicPageRenderer;
-

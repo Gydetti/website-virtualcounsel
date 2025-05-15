@@ -9,31 +9,61 @@ import type {
 import CountUp from "react-countup";
 import type { z } from "zod";
 
-export type KpiSectionProps = z.infer<typeof kpiSectionDataSchema>;
+export type KpiSectionProps = z.infer<typeof kpiSectionDataSchema> & {
+	/** Skip wrapper & use default styling when embedding inside AboutSection on homepage */
+	embedInAbout?: boolean;
+	/** Render with homepage-specific styles */
+	isHomepage?: boolean;
+	/** Render with About page–specific styles */
+	isAboutPage?: boolean;
+};
 
-export default function KpiSection({ stats }: KpiSectionProps) {
-	return (
-		<Section fullBleed={false} className="mt-16">
-			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-				{stats.map((stat) => (
-					<LazySection key={stat.id} animation="fade-up">
-						<div className="rounded-xl bg-white border border-gray-200 border-t-4 border-t-primary p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col items-center text-center">
-							<div className="text-primary font-bold text-3xl md:text-4xl mb-2">
-								<CountUp
-									end={stat.value}
-									suffix={stat.suffix || ""}
-									duration={2.5}
-									enableScrollSpy
-									scrollSpyDelay={500}
-								/>
-							</div>
-							<p className="text-gray-600 text-sm md:text-base m-0">
-								{stat.label}
-							</p>
+export default function KpiSection({ stats, embedInAbout, isHomepage, isAboutPage }: KpiSectionProps) {
+	// Determine section margin based on page context
+	const sectionMargin = isAboutPage ? "mt-8" : isHomepage ? "mt-0" : "mt-16";
+	// Always use default KPI grid layout for even spreading
+	const containerClasses = "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8";
+	// Card styling: default vs About embed only when not embedInAbout
+	const cardClasses = [
+		"rounded-xl",
+		// Use default KPI styling except when genuinely on About page route and not embedded
+		embedInAbout || (!isAboutPage)
+			? "bg-white border border-gray-200 border-t-4 border-t-primary"
+			: "bg-gray-50 border border-gray-100",
+		"p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col items-center text-center h-full",
+	].join(" ");
+
+	// Grid content for KPI items
+	const content = (
+		<div className={containerClasses}>
+			{stats.map((stat) => (
+				<LazySection key={stat.id} animation="fade-up" className="h-full">
+					<div className={cardClasses}>
+						<div className="text-primary font-bold text-3xl md:text-4xl mb-2">
+							<CountUp
+								end={stat.value}
+								suffix={stat.suffix || ""}
+								duration={2.5}
+								enableScrollSpy
+								scrollSpyDelay={500}
+							/>
 						</div>
-					</LazySection>
-				))}
-			</div>
+						<p className="text-gray-600 text-sm md:text-base m-0">
+							{stat.label}
+						</p>
+					</div>
+				</LazySection>
+			))}
+		</div>
+	);
+	// Skip Section wrapper when embedding inside AboutSection
+	if (embedInAbout || isAboutPage) {
+		return content;
+	}
+	// Default: wrap in Section for standalone use
+	return (
+		<Section fullBleed={false} className={sectionMargin}>
+			{content}
 		</Section>
 	);
 }

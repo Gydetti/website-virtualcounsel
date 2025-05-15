@@ -55,9 +55,7 @@ export default function TestimonialsSection({
 
 			<div className="relative z-10">
 				<div className="text-center mb-16">
-					<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
-						{badgeText}
-					</Badge>
+					{badgeText && <Badge className="mb-4">{badgeText}</Badge>}
 					<h2
 						id="testimonials-section-heading"
 						className="text-[var(--font-subheading-size)]"
@@ -77,26 +75,24 @@ export default function TestimonialsSection({
 							className="flex transition-transform duration-500 ease-in-out"
 							style={{ transform: `translateX(-${activeIndex * 100}%)` }}
 						>
-							{testimonials.map((testimonial, index) => (
+							{testimonials.map((item, index) => (
 								<motion.div
-									key={testimonial.id}
+									key={item.id}
 									initial={{ opacity: 0 }}
-									animate={{
-										opacity: activeIndex === index ? 1 : 0,
-									}}
+									animate={{ opacity: index === activeIndex ? 1 : 0.5 }}
 									transition={{ duration: 0.5 }}
 									className="w-full flex-shrink-0 sm:px-4 pb-12"
 								>
 									<Card className="border border-[#e5e7eb80] shadow-lg hover:shadow-xl transition-all bg-gradient-to-br from-white to-blue-50/10 backdrop-blur-sm h-full">
 										<CardContent className="p-8">
 											<div className="flex items-center mb-6">
-												{testimonial.rating && testimonial.rating > 0
+												{item.rating && item.rating > 0
 													? Array.from({ length: 5 }).map((_, starIndex) => (
 															<Star
-																key={`${testimonial.id}-star-${starIndex}`}
+																key={`${item.id}-star-${starIndex}`}
 																aria-hidden="true"
 																className={`h-5 w-5 ${
-																	starIndex < (testimonial.rating || 0)
+																	starIndex < (item.rating || 0)
 																		? "text-yellow-400 fill-yellow-400"
 																		: "text-gray-300 fill-gray-300"
 																}`}
@@ -104,31 +100,31 @@ export default function TestimonialsSection({
 														))
 													: Array.from({ length: 5 }).map((_, starIndex) => (
 															<Star
-																key={`${testimonial.id}-star-${starIndex}`}
+																key={`${item.id}-star-${starIndex}`}
 																aria-hidden="true"
 																className="h-5 w-5 text-gray-300 fill-gray-300"
 															/>
 														))}
 											</div>
 											<p className="text-body-base text-gray-700 italic mb-8 line-clamp-6">
-												&quot;{testimonial.quote}&quot;
+												&quot;{item.quote}&quot;
 											</p>
 											<div className="flex items-center mt-auto">
 												<div className="mr-4">
 													<Image
-														src={testimonial.image.src}
-														alt={testimonial.image.alt}
-														width={testimonial.image.width || 60}
-														height={testimonial.image.height || 60}
+														src={item.image.src}
+														alt={item.image.alt}
+														width={item.image.width || 60}
+														height={item.image.height || 60}
 														className="rounded-full border-2 border-gray-100"
 													/>
 												</div>
 												<div>
 													<h3 className="text-body-base text-gray-900">
-														{testimonial.name}
+														{item.name}
 													</h3>
 													<p className="text-body-base text-gray-600">
-														{testimonial.title}
+														{item.title}
 													</p>
 												</div>
 											</div>

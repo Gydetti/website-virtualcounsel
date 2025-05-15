@@ -4,8 +4,8 @@ import type { z } from "zod";
 export const servicesOverviewSectionData: z.infer<
 	typeof servicesOverviewSectionDataSchema
 > = {
-	badgeText: "Our Services",
-	heading: "What We Offer",
+	badgeText: "Our services",
+	heading: "What we offer",
 	description:
 		"Explore our full range of services designed to help your business grow, optimize operations, and achieve measurable success.",
 };

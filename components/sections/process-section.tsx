@@ -29,15 +29,9 @@ export default function ProcessSection({
 			<div className="absolute bottom-0 right-0 w-96 h-96 bg-primary-5 rounded-full translate-y-1/2 translate-x-1/2 blur-3xl" /> */}
 
 			<div className="max-w-4xl mx-auto relative z-10">
-				<div className="text-center mb-16">
-					{badgeText && (
-						<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
-							{badgeText}
-						</Badge>
-					)}
-					{heading && (
-						<h2 className="text-[var(--font-subheading-size)]">{heading}</h2>
-					)}
+				<div className="text-center mb-12">
+					{badgeText && <Badge className="mb-4">{badgeText}</Badge>}
+					{heading && <h2 className="section-title">{heading}</h2>}
 					{subtitle && <p className="section-subtitle">{subtitle}</p>}
 				</div>
 

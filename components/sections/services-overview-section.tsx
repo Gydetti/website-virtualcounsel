@@ -25,7 +25,7 @@ export default function ServicesOverviewSection({
 				className="text-center max-w-3xl mx-auto"
 			>
 				{badgeText && (
-					<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
+					<Badge className="mb-4">
 						{badgeText}
 					</Badge>
 				)}

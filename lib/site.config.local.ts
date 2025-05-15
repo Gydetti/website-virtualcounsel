@@ -162,7 +162,9 @@ export const siteConfig: SiteConfigSchema = {
 		enableCustomCookieBanner: false, // <--- Use custom banner instead of Cookiebot (if ID not set)
 		enableFooterServices: true, // <--- Toggle services list in footer
 		// FIRST_EDIT: Toggle the KPI stats section on the homepage
-		enableKpiSection: true,
+		enableKpiSection: false,
+		// FIRST_EDIT: Toggle the KPI stats section display on the About page
+		enableAboutKpiSection: true,
 	},
 	// ENABLED PAGES: Defines which page routes are active and included in sitemap.
 	enabledPages: [
