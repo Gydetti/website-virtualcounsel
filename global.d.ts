@@ -10,3 +10,17 @@ declare module "nodemailer";
 declare module "@sendgrid/mail";
 declare module "postmark";
 declare module "@qwik.dev/partytown/react";
+
+declare module 'web-vitals' {
+  export type Metric = {
+    name: string;
+    value: number;
+    delta: number;
+    id: string;
+  };
+  export function onCLS(onReport: (metric: Metric) => void): void;
+  export function onFCP(onReport: (metric: Metric) => void): void;
+  export function onLCP(onReport: (metric: Metric) => void): void;
+  export function onTTFB(onReport: (metric: Metric) => void): void;
+  export function onINP(onReport: (metric: Metric) => void): void;
+}

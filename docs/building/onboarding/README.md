@@ -416,6 +416,17 @@ The `lib/tracking-utils.ts` file provides utility functions for tracking events 
 - `trackGoogleAdsConversion`: Track conversions in Google Ads
 - `trackEvent`: Generic function that tracks across all platforms
 
+### Web Vitals Real User Monitoring
+
+- **Capture Core Web Vitals:** CLS, FID, LCP, FCP, and TTFB are collected in every real user's browser using the `web-vitals` library.
+- **Client Integration:** The `components/analytics/WebVitalsReporter.tsx` component is injected into `app/layout.tsx` (via `<WebVitalsReporter />`) to send metrics after hydration.
+- **API Route:** Metrics are posted (Beacon API or fetch with `keepalive`) to `app/api/web-vitals/route.ts`. You can extend this route to forward data to Google Analytics, Sentry, Datadog, Supabase, or any other analytics backend.
+- **Benefits:** Enables real-user monitoring of performance distributions (percentiles), detects regressions across releases, and surfaces slow pages or network conditions in production dashboards.
+- **Getting Started:**  
+  1. Clone or deploy this template—metrics fire automatically in production.  
+  2. Secure or extend the `/api/web-vitals` endpoint to persist or proxy metrics.  
+  3. Integrate with your preferred monitoring or analytics tool to visualize Core Web Vitals in real time.
+
 ## Cookie Consent System
 
 The template includes a comprehensive cookie consent system that complies with GDPR and other privacy regulations:

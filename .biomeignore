@@ -34,3 +34,6 @@ app/faq/**
 app/privacy-policy/**
 app/terms-of-service/**
 app/cookie-policy/**
+
+# Ignore old Lighthouse config file
+lighthouserc.json

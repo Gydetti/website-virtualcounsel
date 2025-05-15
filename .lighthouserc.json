@@ -3,8 +3,8 @@
         "collect": {
             "url": ["http://localhost:3015"],
             "numberOfRuns": 3,
-            "startServerCommand": "npm run start:ci",
-            "startServerReadyPattern": "Listening on"
+            "startServerCommand": "npm run build && npm run start:ci",
+            "startServerReadyPattern": "Local:"
         },
         "assert": {
             "preset": "lighthouse:recommended"

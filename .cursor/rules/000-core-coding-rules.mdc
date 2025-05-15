@@ -68,3 +68,5 @@ _Do not skip any step in this workflow—ensuring a fully functional, bug-free c
   ```bash
   npm run lint -- --fix
   ```
+
+And to run a ligthouse check use "npm run lhci" and "npm run lhci:prod" for live url real results

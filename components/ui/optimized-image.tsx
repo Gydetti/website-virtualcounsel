@@ -13,6 +13,8 @@ interface OptimizedImageProps {
 	fill?: boolean;
 	sizes?: string;
 	priority?: boolean;
+	placeholder?: 'blur' | 'empty';
+	blurDataURL?: string;
 	className?: string;
 	objectFit?: "contain" | "cover" | "fill" | "none" | "scale-down";
 	onLoad?: () => void;
@@ -27,6 +29,8 @@ export default function OptimizedImage({
 	fill = false,
 	sizes,
 	priority = false,
+	placeholder = 'empty',
+	blurDataURL,
 	className,
 	objectFit = "cover",
 	onLoad,
@@ -71,6 +75,8 @@ export default function OptimizedImage({
 				fill={fill}
 				sizes={sizes || defaultSizes}
 				priority={priority}
+				placeholder={placeholder}
+				blurDataURL={blurDataURL}
 				onLoad={handleImageLoad}
 				onError={handleImageError}
 				className={cn(

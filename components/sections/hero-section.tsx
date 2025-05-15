@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 
 import { Section } from "@/components/layout/Section";
@@ -16,8 +16,10 @@ import type { heroSectionDataSchema } from "@/lib/schemas/sections.schema";
 import { siteConfig } from "@/lib/siteConfig";
 import type { z } from "zod";
 import LazySection from "@/components/ui/lazy-section";
+import blurDataMap from "@/lib/blurDataURL.json";
 
 const HeroStats = dynamic(() => import("@/components/sections/hero-stats"), { ssr: false });
+const HeroTyping = dynamic(() => import("@/components/sections/hero-typing"), { ssr: false });
 
 export type HeroSectionProps = z.infer<typeof heroSectionDataSchema> & {
 	variant?: "imageLeft" | "imageRight" | "centered";
@@ -39,52 +41,11 @@ export default function HeroSection({
 	overlayTitle,
 	overlayValue,
 }: HeroSectionProps) {
-	// Reference to the typing element
-	const typingRef = useRef<HTMLSpanElement>(null);
-
-	// State for the current text being displayed
-	const [displayText, setDisplayText] = useState("");
-	const [isDeleting, setIsDeleting] = useState(false);
-	const [loopNum, setLoopNum] = useState(0);
-	const [typingSpeed, setTypingSpeed] = useState(150);
-
 	// Hero image source state with fallback
 	const [currentImageSrc, setCurrentImageSrc] = useState(image?.src);
 	useEffect(() => {
 		setCurrentImageSrc(image?.src);
 	}, [image?.src]);
-
-	useEffect(() => {
-		if (!typingWords || typingWords.length === 0) return;
-
-		const handleTyping = () => {
-			const current = loopNum % typingWords.length;
-			const fullText = typingWords[current];
-
-			setDisplayText(
-				isDeleting
-					? fullText.substring(0, displayText.length - 1)
-					: fullText.substring(0, displayText.length + 1),
-			);
-
-			if (isDeleting) {
-				setTypingSpeed(50);
-			} else {
-				setTypingSpeed(100);
-			}
-
-			if (!isDeleting && displayText === fullText) {
-				setTimeout(() => setIsDeleting(true), 1500);
-			} else if (isDeleting && displayText === "") {
-				setIsDeleting(false);
-				setLoopNum(loopNum + 1);
-				setTypingSpeed(500);
-			}
-		};
-
-		const timer = setTimeout(handleTyping, typingSpeed);
-		return () => clearTimeout(timer);
-	}, [displayText, isDeleting, loopNum, typingSpeed, typingWords]);
 
 	const defaultImageSrc = "/images/placeholders/placeholder.svg";
 	const imageToDisplay = currentImageSrc || defaultImageSrc;
@@ -126,14 +87,8 @@ export default function HeroSection({
 							className="text-[var(--font-heading-size)] lg:text-[var(--font-heading-size-lg)] font-bold leading-tight text-balance"
 						>
 							{headline && <span className="block">{headline}</span>}
-							{typingWords && typingWords.length > 0 && (
-								<span className="block mt-2 md:mt-4 lg:mt-6 text-primary">
-									<span className="inline-block min-h-[1.2em]" ref={typingRef}>
-										{displayText}
-										<span className="typing-cursor" />
-									</span>
-								</span>
-							)}
+							{/* Render typing animation via dynamic HeroTyping component */}
+							<HeroTyping typingWords={typingWords} />
 						</h1>
 
 						{subheadline && (
@@ -213,6 +168,8 @@ export default function HeroSection({
 								sizes="(max-width: 600px) 100vw, 600px"
 								className="absolute inset-0 object-cover rounded-xl"
 								priority
+								placeholder="blur"
+								blurDataURL={blurDataMap[imageToDisplay as keyof typeof blurDataMap]}
 								onError={() => setCurrentImageSrc(defaultImageSrc)}
 							/>
 							<div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6 rounded-b-xl">

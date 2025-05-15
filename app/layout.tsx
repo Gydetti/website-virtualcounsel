@@ -7,6 +7,7 @@ import { siteConfig } from "@/lib/siteConfig";
 import { Partytown } from "@qwik.dev/partytown/react";
 import StructuredData from "@/components/seo/structured-data";
 import "./globals.css";
+import WebVitalsReporter from "@/components/analytics/WebVitalsReporter";
 
 // Poppins for headings
 const poppins = Poppins({
@@ -196,6 +197,7 @@ export default function RootLayout({
 			<body
 				className={`${poppins.variable} ${raleway.variable} font-sans antialiased bg-gradient-to-br from-blue-50 to-transparent`}
 			>
+				<WebVitalsReporter />
 				<AppShell>{children}</AppShell>
 			</body>
 		</html>
