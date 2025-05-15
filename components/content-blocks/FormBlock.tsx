@@ -8,6 +8,14 @@ interface FormBlockProps {
 		portalId?: string;
 		formId?: string;
 		embedCode?: string;
+		fields?: {
+			name: string;
+			type: string;
+			label: string;
+			placeholder: string;
+			required: boolean;
+		}[];
+		submitButtonText?: string;
 	};
 	title?: string;
 	description?: string;

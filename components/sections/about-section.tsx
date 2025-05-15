@@ -153,9 +153,9 @@ export default function AboutSection({
 							{philosophy && (
 								<LazySection animation="fade-up" delay={0.6} className="mt-8">
 									<div className="rounded-xl border border-gray-200 bg-gray-50 p-8 shadow-sm hover:shadow-md transition-shadow">
-										<h3 className="text-xl font-semibold text-gray-900">
+										<h2 className="text-xl font-semibold text-gray-900">
 											{philosophy.title}
-										</h3>
+										</h2>
 										<p className="mt-2 text-gray-600 leading-relaxed">
 											{philosophy.text}
 										</p>
@@ -270,9 +270,9 @@ export default function AboutSection({
 					{philosophy && (
 						<LazySection animation="fade-up" delay={0.6}>
 							<div className="rounded-xl border border-gray-200 bg-gray-50 p-8 shadow-sm hover:shadow-md transition-shadow mb-6">
-								<h3 className="text-xl font-semibold text-gray-900">
+								<h2 className="text-xl font-semibold text-gray-900">
 									{philosophy.title}
-								</h3>
+								</h2>
 								<p className="mt-2 text-gray-600 leading-relaxed">
 									{philosophy.text}
 								</p>

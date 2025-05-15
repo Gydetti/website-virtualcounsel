@@ -5,8 +5,10 @@ import { NextResponse } from "next/server";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { vi } from "vitest";
 
-// Stub NextResponse.rewrite to attach the rewrite header
-vi.spyOn(NextResponse, "rewrite").mockImplementation((url) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// biome-disable-next-line lint/suspicious/noExplicitAny
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+vi.spyOn(NextResponse, "rewrite").mockImplementation((url: any) => {
 	const res = NextResponse.next();
 	res.headers.set("x-middleware-rewrite", url.pathname);
 	return res;

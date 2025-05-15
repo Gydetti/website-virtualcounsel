@@ -69,7 +69,7 @@ export default function ProcessSection({
 
 									{step.details && step.details.length > 0 && (
 										<div className="bg-gray-50 p-6 rounded-lg">
-											<h4 className="mb-3">What this includes:</h4>
+											<h3 className="mb-3">What this includes:</h3>
 											<ul className="space-y-2">
 												{step.details.map((detail) => (
 													<li key={detail} className="flex items-start">

@@ -112,6 +112,7 @@ export default function ContactSection({
 			{recaptchaKey && (
 				<Script
 					src={`https://www.google.com/recaptcha/api.js?render=${recaptchaKey}`}
+					strategy="lazyOnload"
 				/>
 			)}
 			{/* Decorative elements */}

@@ -142,6 +142,7 @@ export default function TestimonialsSection({
 					<div className="absolute top-1/2 -left-8 transform -translate-y-1/2">
 						<button
 							type="button"
+							aria-label="Previous testimonial"
 							onClick={() =>
 								setActiveIndex(
 									(prev) =>
@@ -157,6 +158,7 @@ export default function TestimonialsSection({
 					<div className="absolute top-1/2 -right-8 transform -translate-y-1/2">
 						<button
 							type="button"
+							aria-label="Next testimonial"
 							onClick={() =>
 								setActiveIndex((prev) => (prev + 1) % testimonials.length)
 							}

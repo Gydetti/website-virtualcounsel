@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 declare module "vite-tsconfig-paths";
 declare module "@vitejs/plugin-react";
 declare module "vitest/config";

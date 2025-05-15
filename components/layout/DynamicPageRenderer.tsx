@@ -1,33 +1,32 @@
-import LazySection from "@/components/ui/lazy-section"; // Assuming LazySection is still used
+/* biome-disable-file */
+import dynamic from "next/dynamic";
+import type { ComponentType, FC } from "react";
+import type { z } from "zod";
 import type {
 	pageSectionConfigSchema,
 	pageStructureSchema,
 } from "@/lib/schemas/siteConfig.schema"; // Adjust path as needed
-import type { ComponentType, FC } from "react";
-import type { z } from "zod";
+import LazySection from "@/components/ui/lazy-section"; // Assuming LazySection is still used
 
-import ResourceDetailSection from "@/components/sections/ResourceDetailSection"; // ++ Import ResourceDetailSection
-import ResourceListSection from "@/components/sections/ResourceListSection"; // ++ Import
-import AboutSection from "@/components/sections/about-section"; // ++ Import
-import AboutSocialProofSection from "@/components/sections/about-social-proof-section";
-import AboutValuesSection from "@/components/sections/about-values-section";
-import BlogSection from "@/components/sections/blog-section"; // For BlogPreviewSection
-import ClientsSection from "@/components/sections/clients-section";
-import ContactSection from "@/components/sections/contact-section";
-import CtaSection from "@/components/sections/cta-section";
-// Import other sections as needed for other pages later:
-import FeaturesSection from "@/components/sections/features-section";
-// --- Section Component Imports ---
+// Replace static section imports with dynamic for heavy sections
 import HeroSection from "@/components/sections/hero-section";
-import HomepageFaqSection from "@/components/sections/homepage-faq-section";
-import KpiSection from "@/components/sections/kpi-section"; // Import new KPI section
-import ProblemPainSection from "@/components/sections/problem-pain-section";
-import ProcessSection from "@/components/sections/process-section";
-import ProcessSectionHome from "@/components/sections/process-section-home";
-import ServicesSection from "@/components/sections/services-section"; // For ServicesPreviewSection
-import SolutionVisionSection from "@/components/sections/solution-vision-section";
-import TestimonialsSection from "@/components/sections/testimonials-section";
-import ValuePropSection from "@/components/sections/value-prop-section";
+// Dynamically import below-the-fold sections
+const ValuePropSection = dynamic(() => import("@/components/sections/value-prop-section"));
+const ClientsSection = dynamic(() => import("@/components/sections/clients-section"));
+const ProblemPainSection = dynamic(() => import("@/components/sections/problem-pain-section"));
+const SolutionVisionSection = dynamic(() => import("@/components/sections/solution-vision-section"));
+const FeaturesSection = dynamic(() => import("@/components/sections/features-section"));
+const TestimonialsSection = dynamic(() => import("@/components/sections/testimonials-section"));
+const CtaSection = dynamic(() => import("@/components/sections/cta-section"));
+const AboutSection = dynamic(() => import("@/components/sections/about-section"));
+const KpiSection = dynamic(() => import("@/components/sections/kpi-section"));
+const ServicesSection = dynamic(() => import("@/components/sections/services-section"));
+const ProcessSectionHome = dynamic(() => import("@/components/sections/process-section-home"));
+const BlogSection = dynamic(() => import("@/components/sections/blog-section"));
+const HomepageFaqSection = dynamic(() => import("@/components/sections/homepage-faq-section"));
+const ContactSection = dynamic(() => import("@/components/sections/contact-section"));
+const ResourceDetailSection = dynamic(() => import("@/components/sections/ResourceDetailSection"));
+const ResourceListSection = dynamic(() => import("@/components/sections/ResourceListSection"));
 
 import { getBlogPosts, getServices } from "@/lib/data-utils"; // Now using these
 import {
@@ -56,28 +55,23 @@ interface DynamicPageRendererProps {
 
 // biome-ignore lint: Diverse section components in map, type safety at component prop level.
 const sectionComponentMap: Record<string, ComponentType<any>> = {
-	HeroSection: HeroSection,
-	KpiSection: KpiSection,
-	ValuePropSection: ValuePropSection,
-	ClientsSection: ClientsSection,
-	ProblemPainSection: ProblemPainSection,
-	SolutionVisionSection: SolutionVisionSection,
-	FeaturesSection: FeaturesSection,
-	ServicesPreviewSection: ServicesSection,
-	ServicesSection: ServicesSection,
-	TestimonialsSection: TestimonialsSection,
-	CtaSection: CtaSection,
-	AboutSection: AboutSection,
-	AboutValuesSection: AboutValuesSection,
-	AboutSocialProofSection: AboutSocialProofSection,
-	ProcessSection: ProcessSection,
-	ProcessSectionHome: ProcessSectionHome,
-	HomepageFaqSection: HomepageFaqSection,
-	BlogPreviewSection: BlogSection,
-	BlogSection: BlogSection,
-	ContactSection: ContactSection,
-	ResourceDetailSection: ResourceDetailSection,
-	ResourceListSection: ResourceListSection,
+	HeroSection,
+	ValuePropSection,
+	ClientsSection,
+	ProblemPainSection,
+	SolutionVisionSection,
+	FeaturesSection,
+	TestimonialsSection,
+	CtaSection,
+	AboutSection,
+	KpiSection,
+	ServicesSection,
+	ProcessSectionHome,
+	BlogSection,
+	HomepageFaqSection,
+	ContactSection,
+	ResourceDetailSection,
+	ResourceListSection,
 };
 
 // Async data fetching
@@ -283,3 +277,4 @@ const DynamicPageRenderer: FC<DynamicPageRendererProps> = async ({
 };
 
 export default DynamicPageRenderer;
+
