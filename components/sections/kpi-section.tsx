@@ -20,7 +20,7 @@ export type KpiSectionProps = z.infer<typeof kpiSectionDataSchema> & {
 
 export default function KpiSection({ stats, embedInAbout, isHomepage, isAboutPage }: KpiSectionProps) {
 	// Determine section margin based on page context
-	const sectionMargin = isAboutPage ? "mt-8" : isHomepage ? "mt-0" : "mt-16";
+	const sectionMargin = isAboutPage ? "mt-8" : isHomepage ? "mt-6" : "mt-16";
 	// Always use default KPI grid layout for even spreading
 	const containerClasses = "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8";
 	// Card styling: default vs About embed only when not embedInAbout
@@ -35,7 +35,7 @@ export default function KpiSection({ stats, embedInAbout, isHomepage, isAboutPag
 
 	// Grid content for KPI items
 	const content = (
-		<div className={containerClasses}>
+		<div className={containerClasses} >
 			{stats.map((stat) => (
 				<LazySection key={stat.id} animation="fade-up" className="h-full">
 					<div className={cardClasses}>

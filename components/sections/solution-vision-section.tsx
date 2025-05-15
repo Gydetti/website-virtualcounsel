@@ -33,7 +33,7 @@ export default function SolutionVisionSection({
 	return (
 		<Section
 			id="solution-vision-section"
-			className="bg-gradient-to-b from-[rgba(var(--accent-rgb),0.1)] via-transparent to-transparent"
+			className="pattern-overlay pattern-overlay-fade bg-gradient-to-b from-[rgba(var(--accent-rgb),0.1)] via-transparent to-transparent"
 		>
 			{/* Scroll reveal header */}
 			<LazySection

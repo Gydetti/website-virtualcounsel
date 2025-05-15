@@ -54,20 +54,8 @@ export default function LazySection({
 	const useFullHeight =
 		fullHeight !== undefined ? fullHeight : defaultFullHeight;
 
-	// Wrapper controls overflow and optionally full height to align grid items
-	const wrapperClass = [overflowClass, useFullHeight ? "h-full" : ""]
-		.filter(Boolean)
-		.join(" ");
-	// Inner content can also fill wrapper for consistent sizing when fullHeight
-	const innerClass = [className, useFullHeight ? "h-full" : ""]
-		.filter(Boolean)
-		.join(" ");
-	// Combined classes for no-animation mode (overflow + styling + optional full height)
-	const combinedClass = [
-		overflowClass,
-		className,
-		useFullHeight ? "h-full" : "",
-	]
+	// Combined classes for both non-animated and animated containers
+	const combinedClass = [overflowClass, className, useFullHeight ? "h-full" : ""]
 		.filter(Boolean)
 		.join(" ");
 
@@ -127,23 +115,18 @@ export default function LazySection({
 		!siteConfig.features.enableStaggeredAnimations ||
 		animation === "none"
 	) {
-		return (
-			<div ref={ref} className={combinedClass}>
-				{children}
-			</div>
-		);
+		return <div ref={ref} className={combinedClass}>{children}</div>;
 	}
 
 	return (
-		<div ref={ref} className={wrapperClass}>
-			<motion.div
-				className={innerClass}
-				initial="hidden"
-				animate={isVisible ? "visible" : "hidden"}
-				variants={variants}
-			>
-				{children}
-			</motion.div>
-		</div>
+		<motion.div
+			ref={ref}
+			className={combinedClass}
+			initial="hidden"
+			animate={isVisible ? "visible" : "hidden"}
+			variants={variants}
+		>
+			{children}
+		</motion.div>
 	);
 }

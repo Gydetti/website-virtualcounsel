@@ -24,6 +24,21 @@ const nextConfig = withBundleAnalyzer({
             destination: "/images/placeholders/placeholder.svg",
         }, ];
     },
+    // Instruct webpack to assume modern browser environment and skip legacy transpilation
+    webpack(config, { isServer }) {
+        if (!isServer) {
+            config.output.environment = {
+                arrowFunction: true,
+                bigIntLiteral: true,
+                const: true,
+                destructuring: true,
+                forOf: true,
+                dynamicImport: true,
+                module: true,
+            };
+        }
+        return config;
+    },
 });
 
 export default nextConfig;

@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,11 +11,11 @@ import { Section } from "@/components/layout/Section";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import LazySection from "@/components/ui/lazy-section";
 import OptimizedImage from "@/components/ui/optimized-image";
 import type { heroSectionDataSchema } from "@/lib/schemas/sections.schema";
 import { siteConfig } from "@/lib/siteConfig";
 import type { z } from "zod";
+import LazySection from "@/components/ui/lazy-section";
 
 export type HeroSectionProps = z.infer<typeof heroSectionDataSchema> & {
 	variant?: "imageLeft" | "imageRight" | "centered";
@@ -95,7 +94,7 @@ export default function HeroSection({
 		<section
 			id="hero-section"
 			aria-labelledby="hero-section-heading"
-			className="relative overflow-hidden bg-gradient-to-r from-blue-100 to-white min-h-[80vh] sm:min-h-[85vh] flex items-center"
+			className="hero-pattern relative overflow-hidden bg-gradient-to-r from-blue-100 to-white min-h-[80vh] sm:min-h-[85vh] flex items-center"
 		>
 			{/* Background pattern */}
 			<div className="absolute inset-0 bg-grid-pattern opacity-10" />
@@ -252,29 +251,35 @@ export default function HeroSection({
 				</div>
 
 				{siteConfig.features.enableHeroStats && (
-					<div className="mt-20 bg-white rounded-xl shadow-lg p-6 md:p-8 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-						{stats &&
-							stats.length > 0 &&
-							stats.map((stat) => (
-								<div
-									key={stat.label}
-									className="flex flex-col items-center text-center"
-								>
-									<div className="text-primary font-bold text-3xl md:text-4xl mb-2">
-										<CountUp
-											end={stat.value}
-											suffix={stat.suffix}
-											duration={2.5}
-											enableScrollSpy
-											scrollSpyDelay={500}
-										/>
+					<LazySection
+						animation="slide-up"
+						delay={0.4}
+						className="mt-20"
+					>
+						<div className="bg-white rounded-xl shadow-lg p-6 md:p-8 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+							{stats &&
+								stats.length > 0 &&
+								stats.map((stat) => (
+									<div
+										key={stat.label}
+										className="flex flex-col items-center text-center"
+									>
+										<div className="text-primary font-bold text-3xl md:text-4xl mb-2">
+											<CountUp
+												end={stat.value}
+												suffix={stat.suffix}
+												duration={2.5}
+												enableScrollSpy
+												scrollSpyDelay={500}
+											/>
+										</div>
+										<p className="text-gray-600 text-sm md:text-base m-0">
+											{stat.label}
+										</p>
 									</div>
-									<p className="text-gray-600 text-sm md:text-base m-0">
-										{stat.label}
-									</p>
-								</div>
-							))}
-					</div>
+								))}
+						</div>
+					</LazySection>
 				)}
 			</Section>
 

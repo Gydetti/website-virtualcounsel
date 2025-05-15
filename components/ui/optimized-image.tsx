@@ -32,7 +32,8 @@ export default function OptimizedImage({
 	onLoad,
 	onError,
 }: OptimizedImageProps) {
-	const [isLoading, setIsLoading] = useState(true);
+	// Initialize isLoading based on priority to skip skeleton for priority images
+	const [isLoading, setIsLoading] = useState(!priority);
 	const [hasError, setHasError] = useState(false);
 
 	// Handle image load
