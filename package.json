@@ -132,5 +132,9 @@
         "defaults and supports es6-module",
         "not IE 11",
         "not dead"
-    ]
+    ],
+    "overrides": {
+        "rimraf": "^4.4.8",
+        "glob": "^11.0.2"
+    }
 }
