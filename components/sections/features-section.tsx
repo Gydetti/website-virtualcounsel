@@ -7,6 +7,7 @@ import { XCircle, CheckCircle, ArrowRight } from "lucide-react";
 import type { featuresSectionDataSchema } from "@/lib/schemas/sections.schema";
 import Link from "next/link";
 import type { z } from "zod";
+import type { CSSProperties } from "react";
 
 // Updated props type alias using Zod schema
 export type FeaturesSectionProps = z.infer<typeof featuresSectionDataSchema>;
@@ -32,10 +33,13 @@ export default function FeaturesSection({
 			{/* Ensure decorative elements overlap edges */}
 			{/* <div className="absolute top-0 right-0 w-96 h-96 bg-primary-5 rounded-full -translate-y-1/4 translate-x-1/4 blur-3xl z-0" /> */}
 
-			<div className="relative z-10">
+			<div className="relative z-10 stagger-container" style={{ '--stagger-delay': '0.1s' } as CSSProperties}>
 				<div className="max-w-3xl mx-auto text-center mb-12">
 					{badgeText && (
-						<Badge className="mb-4">
+						<Badge
+							className="mb-4"
+							style={{ '--index': 0 } as CSSProperties}
+						>
 							{badgeText}
 						</Badge>
 					)}
@@ -43,11 +47,19 @@ export default function FeaturesSection({
 						<h2
 							id="features-section-heading"
 							className="section-title text-gray-900"
+							style={{ '--index': 1 } as CSSProperties}
 						>
 							{heading}
 						</h2>
 					)}
-					{description && <p className="text-gray-700">{description}</p>}
+					{description && (
+						<p
+							className="text-gray-700"
+							style={{ '--index': 2 } as CSSProperties}
+						>
+							{description}
+						</p>
+					)}
 				</div>
 
 				{/* Comparison panels with CSS-only stagger */}
@@ -102,18 +114,24 @@ export default function FeaturesSection({
 						</div>
 					)}
 				</div>
+			</div>
 
-				<div className="text-center">
-					{cta?.href && cta?.text && (
+			{/* CTA stagger container */}
+			{cta?.href && cta?.text && (
+				<div
+					className="stagger-container text-center"
+					style={{ '--stagger-delay': '0.3s' } as CSSProperties}
+				>
+					<div style={{ '--index': 0 } as CSSProperties}>
 						<Button size="lg" className="group" asChild>
 							<Link href={cta.href}>
 								{cta.text}
 								<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
 							</Link>
 						</Button>
-					)}
+					</div>
 				</div>
-			</div>
+			)}
 		</Section>
 	);
 }

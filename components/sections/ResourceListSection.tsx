@@ -1,3 +1,5 @@
+"use client";
+import { useState } from "react";
 import type { resourceSchema } from "@/lib/schemas/contentBlocks.schema";
 import Image from "next/image";
 import Link from "next/link";
@@ -33,6 +35,13 @@ export default function ResourceListSection({
 				? "grid-cols-1 md:grid-cols-2 lg:grid-cols-2"
 				: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3";
 
+	// Track per-resource image src for error fallbacks
+	const initialSrcMap: Record<string, string> = {};
+	for (const res of resources) {
+		initialSrcMap[res.slug] = res.heroImage?.src || "/images/placeholders/placeholder.svg";
+	}
+	const [srcMap, setSrcMap] = useState<Record<string, string>>(initialSrcMap);
+
 	return (
 		<section
 			id={id}
@@ -54,13 +63,16 @@ export default function ResourceListSection({
 							>
 								<div className="relative h-48 w-full overflow-hidden sm:h-56">
 									<Image
-										src={
-											resource.heroImage?.src ||
-											"/images/placeholders/placeholder.svg"
-										}
+										src={srcMap[resource.slug]}
 										alt={resource.heroImage?.alt || resource.title}
 										fill
 										style={{ objectFit: "cover" }}
+										onError={() => {
+											setSrcMap((prev) => ({
+												...prev,
+												[resource.slug]: "/images/placeholders/placeholder.svg",
+											}));
+										}}
 									/>
 								</div>
 								<div className="p-6">

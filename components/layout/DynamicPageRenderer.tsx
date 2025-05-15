@@ -9,7 +9,10 @@ import type {
 import LazySection from "@/components/ui/lazy-section"; // Assuming LazySection is still used
 
 // Replace static section imports with dynamic for heavy sections
-import HeroSection from "@/components/sections/hero-section";
+// Dynamically import HeroSection to code-split JS-driven animations
+const HeroSection = dynamic(
+	() => import("@/components/sections/hero-section")
+);
 // Static imports for simple, CSS-only sections
 import ValuePropSection from "@/components/sections/value-prop-section";
 import ClientsSection from "@/components/sections/clients-section";
@@ -87,8 +90,6 @@ const cssOnlySections = new Set<string>([
 	'SolutionVisionSection',
 	'FeaturesSection',
 	'CtaSection',
-	'AboutSection',
-	'KpiSection',
 	'ServicesSection',
 	'ProcessSectionHome',
 	'BlogSection',

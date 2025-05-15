@@ -37,3 +37,6 @@ jobs:
 
       - name: Run tests
         run: npm test
+
+      - name: Run Lighthouse CI
+        run: npx lhci autorun

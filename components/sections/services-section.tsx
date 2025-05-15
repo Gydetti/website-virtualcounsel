@@ -19,6 +19,7 @@ import type {
 import { ArrowRight, BarChart2, Globe, Zap } from "lucide-react";
 import Link from "next/link";
 import type { z } from "zod";
+import type { CSSProperties } from "react";
 
 // Map of icon names to components
 const iconMap: Record<string, React.ReactNode> = {
@@ -54,26 +55,38 @@ export default function ServicesSection({
 			<div className="hidden sm:block absolute bottom-0 left-0 w-72 h-72 bg-[rgba(var(--secondary-rgb),0.03)] rounded-full translate-y-1/3 -translate-x-1/3 blur-3xl pointer-events-none" />
 
 			<div className="relative z-10">
-				<div className="text-center mb-16">
-					<Badge className="mb-4">
+				{/* Header CSS-only stagger */}
+				<LazySection
+					animation="none"
+					className="stagger-container text-center mb-16"
+					style={{ '--stagger-delay': '0.1s' } as CSSProperties}
+				>
+					<Badge className="mb-4" style={{ '--index': 0 } as CSSProperties}>
 						{badgeText || "Our Services"}
 					</Badge>
 					<h2
 						id="services-section-heading"
 						className="text-[var(--font-subheading-size)]"
+						style={{ '--index': 1 } as CSSProperties}
 					>
 						{heading}
 					</h2>
-					<p className="section-subtitle">{description}</p>
-				</div>
+					<p className="section-subtitle" style={{ '--index': 2 } as CSSProperties}>
+						{description}
+					</p>
+				</LazySection>
 
-				<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+				{/* Services grid CSS-only stagger */}
+				<LazySection
+					animation="none"
+					className="stagger-container grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+					style={{ '--stagger-delay': '0.2s' } as CSSProperties}
+				>
 					{services.map((service: z.infer<typeof serviceItemSchema>, idx) => (
-						<LazySection
+						<div
 							key={service.id}
-							animation="slide-up"
-							delay={idx * 0.1}
 							className="h-full"
+							style={{ '--index': idx } as CSSProperties}
 						>
 							<Card
 								className={`card-equal-height h-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-gradient-to-b from-white to-blue-50/30 ${
@@ -147,23 +160,30 @@ export default function ServicesSection({
 									</Button>
 								</CardFooter>
 							</Card>
-						</LazySection>
+						</div>
 					))}
-				</div>
+				</LazySection>
 
+				{/* View All CTA stagger */}
 				{viewAllCta?.href && viewAllCta?.text && (
-					<div className="text-center mt-12 flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4">
-						<Button
-							size="lg"
-							className="group w-full sm:w-auto whitespace-normal break-words"
-							asChild
-						>
-							<Link href={viewAllCta.href}>
-								{viewAllCta.text}
-								<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-							</Link>
-						</Button>
-					</div>
+					<LazySection
+						animation="none"
+						className="stagger-container text-center mt-12"
+						style={{ '--stagger-delay': '0.3s' } as CSSProperties}
+					>
+						<div style={{ '--index': 0 } as CSSProperties}>
+							<Button
+								size="lg"
+								className="group w-full sm:w-auto whitespace-normal break-words"
+								asChild
+							>
+								<Link href={viewAllCta.href}>
+									{viewAllCta.text}
+									<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+								</Link>
+							</Button>
+						</div>
+					</LazySection>
 				)}
 			</div>
 		</Section>

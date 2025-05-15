@@ -4,6 +4,28 @@
 
 ---
 
+## 0. Completed Refactors & Implementation
+
+Below is a summary of the work already done in the codebase:
+
+- CSS-only stagger containers applied to all simple sections (ValueProp, Clients, ProblemPain, SolutionVision, Features, Pricing, Blog, ServicesOverview, ServicesSection, ProcessHome, HomepageFaq, Contact).
+- Global CSS utilities (`@keyframes fade-up` and `.stagger-container`) added to `app/globals.css`.
+- Removed all per-item `<LazySection>` wrappers, using a single `LazySection animation="none"` per CSS-only section.
+- Code-split heavy sections (HeroSection, TestimonialsSection, ResourceListSection, ResourceDetailSection) via `next/dynamic`.
+- Refactored `DynamicPageRenderer` to dynamically import heavy sections, statically import CSS-only ones, and wrap CSS-only sections in `.stagger-container` with stagger delays.
+- Extended `LazySection` to accept inline `style` props for `--stagger-delay` and automatically toggle a `visible` class for CSS-only animations.
+- Updated section components (`ContactSection`, `ServicesSection`, `ServicesOverviewSection`, `ResourceListSection`) with proper CSS-only wrappers and image error fallbacks.
+- Installed and configured Lighthouse CI (`@lhci/cli`) with `lighthouserc.json` and CI integration.
+
+### Next Steps
+
+- Configure modern build targets in `next.config.mjs` (enabling ESM externals and modern JS output).
+- Preload the hero LCP image in `<Head>` and optimize blur placeholders.
+- Run dependency audit (`npx depcheck`), remove unused packages, and update `.browserslist`.
+- Final DOM size reduction: collapse extra wrappers and use semantic lists where appropriate.
+- Defer analytics and heavy scripts using Next's `<Script strategy="lazyOnload">`.
+- Run Lighthouse CI locally, document results in `docs/lighthouse-gains.md`.
+
 ## 1. Hybrid Scroll-Triggered Animation Strategy
 
 > Maintain both the "snappy, staggered" entrance effects and genuine lazy-loading performance via a hybrid approach.

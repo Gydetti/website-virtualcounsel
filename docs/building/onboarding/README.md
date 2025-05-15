@@ -1088,3 +1088,33 @@ Two new feature flags allow toggling the display of KPI stats sections:
   Controls display of the KPI stats block on the About page. By default, this is disabled. To enable it on the About page, set `enableAboutKpiSection: true` in your `lib/site.config.local.ts`.
 
 You can find these flags under the `features` key in your `lib/site.config.local.ts` file.
+
+## Pattern Overlay Utilities
+
+We've introduced a CSS-variable–driven library of inline SVG pattern overlays in `app/globals.css`. This gives you eight tiny, high-performance background patterns you can layer under any content by combining the `.pattern-overlay` utility with one of the following pattern classes:
+
+- `.bg-grid-pattern`      – subtle crosshair grid
+- `.bg-dots-pattern`      – polka dots
+- `.bg-stripes-pattern`   – diagonal stripes
+- `.bg-hex-pattern`       – hexagon mesh
+- `.bg-triangle-pattern`  – triangles
+- `.bg-crosshatch-pattern`– crosshatch lines
+- `.bg-noise-pattern`     – subtle noise dots
+- `.bg-waves-pattern`     – wave curves
+
+### Usage Example
+
+```tsx
+<section className="pattern-overlay bg-dots-pattern">
+  {/* your content here */}
+</section>
+```
+
+Under the hood, each `.bg-*-pattern` class sets a `--pattern-url` CSS variable to a small inline SVG data URI, and `.pattern-overlay::before` applies:
+
+```css
+background-image: var(--pattern-url);
+background-repeat: repeat;
+```
+
+This approach keeps your CSS bundle minimal (SVGs are auto-minified and gzipped) and swapping patterns is as simple as toggling a class.

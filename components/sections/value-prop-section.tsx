@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import LazySection from "@/components/ui/lazy-section";
 import type { valuePropSectionDataSchema } from "@/lib/schemas/sections.schema";
 import { CheckCircle } from "lucide-react";
-import type { ComponentType, SVGProps } from "react";
+import type { ComponentType, SVGProps, CSSProperties } from "react";
 import type { z } from "zod";
 
 // Updated props type alias using Zod schema
@@ -32,25 +32,42 @@ export default function ValuePropSection({
 			id="value-prop-section"
 			className="bg-gradient-to-b from-white/70 to-white/0"
 		>
-			<div className="text-center mb-16">
+			{/* Header stagger container */}
+			<LazySection
+				animation="none"
+				className="stagger-container text-center mb-16"
+				style={{ '--stagger-delay': '0.1s' } as CSSProperties}
+			>
 				{badgeText && (
-					<Badge className="mb-4">
+					<Badge className="mb-4" style={{ '--index': 0 } as CSSProperties}>
 						{badgeText}
 					</Badge>
 				)}
-				{heading && <h2 className="section-title">{heading}</h2>}
-				{subheading && <p className="section-subtitle">{subheading}</p>}
-			</div>
-			<div className="grid grid-cols-1 gap-8 mt-16 md:grid-cols-2 lg:grid-cols-3">
+				{heading && (
+					<h2 className="section-title" style={{ '--index': 1 } as CSSProperties}>
+						{heading}
+					</h2>
+				)}
+				{subheading && (
+					<p className="section-subtitle" style={{ '--index': 2 } as CSSProperties}>
+						{subheading}
+					</p>
+				)}
+			</LazySection>
+			{/* Benefits grid stagger container */}
+			<LazySection
+				animation="none"
+				className="stagger-container grid grid-cols-1 gap-8 mt-16 md:grid-cols-2 lg:grid-cols-3"
+				style={{ '--stagger-delay': '0.2s' } as CSSProperties}
+			>
 				{benefits.map((benefit, idx) => {
 					const Icon =
 						iconMap[benefit.icon as keyof typeof iconMap] ?? CheckCircle;
 					return (
-						<LazySection
+						<div
 							key={benefit.id}
-							animation="slide-up"
-							delay={idx * 0.2}
 							className="flex flex-col items-start space-y-3 rounded-lg p-6 shadow-sm hover:shadow-md"
+							style={{ '--index': idx } as CSSProperties}
 						>
 							<div className="flex h-12 w-12 items-center justify-center rounded-full bg-[rgba(var(--primary-rgb),0.1)] text-primary dark:bg-[rgba(var(--primary-rgb),0.2)] dark:text-primary-foreground">
 								<Icon className="h-6 w-6" />
@@ -59,10 +76,10 @@ export default function ValuePropSection({
 							<p className="text-gray-500 dark:text-gray-400">
 								{benefit.description}
 							</p>
-						</LazySection>
+						</div>
 					);
 				})}
-			</div>
+			</LazySection>
 		</Section>
 	);
 }

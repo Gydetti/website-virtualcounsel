@@ -16,6 +16,7 @@ import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import type { z } from "zod";
+import type { CSSProperties } from "react";
 
 // Updated props type alias using Zod schema
 export type BlogSectionProps = z.infer<typeof blogSectionDataSchema>;
@@ -38,25 +39,40 @@ export default function BlogSection({
 			<div className="hidden sm:block absolute bottom-0 right-1/4 w-72 h-72 bg-[rgba(var(--primary-rgb),0.02)] rounded-full translate-y-1/2 blur-3xl pointer-events-none" />
 
 			<div className="relative z-10">
-				<div className="text-center mb-16">
+				{/* Header stagger container */}
+				<LazySection
+					animation="none"
+					className="stagger-container text-center mb-16"
+					style={{ '--stagger-delay': '0.1s' } as CSSProperties}
+				>
 					{badgeText && (
-						<Badge className="mb-4">
+						<Badge className="mb-4" style={{ '--index': 0 } as CSSProperties}>
 							{badgeText}
 						</Badge>
 					)}
 					{heading && (
-						<h2 className="text-[var(--font-subheading-size)]">{heading}</h2>
+						<h2 className="text-[var(--font-subheading-size)]" style={{ '--index': 1 } as CSSProperties}>
+							{heading}
+						</h2>
 					)}
-					{subtitle && <p className="section-subtitle">{subtitle}</p>}
-				</div>
+					{subtitle && (
+						<p className="section-subtitle" style={{ '--index': 2 } as CSSProperties}>
+							{subtitle}
+						</p>
+					)}
+				</LazySection>
 
-				<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 md:gap-12 lg:gap-16 card-equal-height">
+				{/* Posts grid stagger container */}
+				<LazySection
+					animation="none"
+					className="stagger-container grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 md:gap-12 lg:gap-16 card-equal-height"
+					style={{ '--stagger-delay': '0.2s' } as CSSProperties}
+				>
 					{posts.map((post, index) => (
-						<LazySection
+						<div
 							key={post.id}
-							animation="fade"
-							delay={index * 0.1}
 							className="h-full"
+							style={{ '--index': index } as CSSProperties}
 						>
 							<Card className="w-full h-full flex flex-col justify-between overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-gradient-to-b from-white to-blue-50/30 border border-[#e5e7eb80] shadow-lg">
 								<div className="relative h-48 w-full overflow-hidden">
@@ -106,9 +122,9 @@ export default function BlogSection({
 									</Button>
 								</CardFooter>
 							</Card>
-						</LazySection>
+						</div>
 					))}
-				</div>
+				</LazySection>
 
 				{viewAllCta?.href && viewAllCta?.text && (
 					<div className="flex justify-center mt-12">

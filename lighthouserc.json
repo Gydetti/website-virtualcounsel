@@ -1,0 +1,13 @@
+{
+    "ci": {
+        "collect": {
+            "url": ["http://localhost:3015"],
+            "numberOfRuns": 3,
+            "startServerCommand": "npm run start:ci",
+            "startServerReadyPattern": "Listening on"
+        },
+        "assert": {
+            "preset": "lighthouse:recommended"
+        }
+    }
+}

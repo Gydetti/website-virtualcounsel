@@ -6,6 +6,7 @@ import type { ctaSectionDataSchema } from "@/lib/schemas/sections.schema";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import type { z } from "zod";
+import type { CSSProperties } from "react";
 
 // Updated props type alias using Zod schema
 export type CtaSectionProps = z.infer<typeof ctaSectionDataSchema>;
@@ -28,28 +29,47 @@ export default function CtaSection({
 			<div className="hidden sm:block absolute top-0 right-0 w-96 h-96 bg-primary-10 rounded-full blur-3xl" />
 			<div className="hidden sm:block absolute bottom-0 left-0 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl" />
 
+			{/* CSS-only stagger container */}
 			<LazySection
-				animation="slide-up"
-				delay={0}
-				className="relative z-10 text-center"
+				animation="none"
+				className="stagger-container relative z-10 text-center"
+				style={{ '--stagger-delay': '0.1s' } as CSSProperties}
 			>
+				{/* Badge */}
 				{badgeText && (
-					<Badge variant="light" className="mb-4">{badgeText}</Badge>
+					<Badge
+						variant="light"
+						className="mb-4"
+						style={{ '--index': 0 } as CSSProperties}
+					>
+						{badgeText}
+					</Badge>
 				)}
+				{/* Heading */}
 				{heading && (
 					<h2
 						id="cta-section-heading"
 						className="text-[var(--font-subheading-size)] text-white"
+						style={{ '--index': 1 } as CSSProperties}
 					>
 						{heading}
 					</h2>
 				)}
+				{/* Description */}
 				{description && (
-					<p className="text-gray-300 max-w-xl mx-auto mb-8">{description}</p>
+					<p
+						className="text-gray-300 max-w-xl mx-auto mb-8"
+						style={{ '--index': 2 } as CSSProperties}
+					>
+						{description}
+					</p>
 				)}
-
+				{/* CTA buttons */}
 				{(primaryCta?.text || secondaryCta?.text) && (
-					<div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4 sm:gap-8 md:gap-12">
+					<div
+						className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4 sm:gap-8 md:gap-12"
+						style={{ '--index': 3 } as CSSProperties}
+					>
 						{primaryCta?.href && primaryCta?.text && (
 							<Button
 								size="lg"

@@ -8,6 +8,7 @@ import DataLayerProvider from "@/components/tracking/data-layer-provider";
 import ScrollToTop from "@/components/ui/scroll-to-top";
 import PageTransitionWrapper from "@/components/layout/PageTransitionWrapper";
 import { siteConfig } from "@/lib/siteConfig";
+import BfcacheSafety from "@/components/ui/BfcacheSafety";
 
 const DynamicBackgroundCanvas = dynamic(() => import("@/components/ui/BackgroundCanvas"), { ssr: false });
 const DynamicTrackingScripts = dynamic(() => import("@/components/tracking/tracking-scripts"), { ssr: false });
@@ -19,6 +20,7 @@ const DynamicCookieConsentBanner = dynamic(() => import("@/components/cookie/coo
 export default function AppShell({ children }: { children: React.ReactNode }) {
   return (
     <>
+      <BfcacheSafety />
       {/* Animated background canvas */}
       {siteConfig.features.enableAdvancedBackgrounds && <DynamicBackgroundCanvas />}
       {/* Custom React-based cookie banner (disabled by default) */}
