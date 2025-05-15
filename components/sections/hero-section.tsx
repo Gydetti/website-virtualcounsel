@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
+import { motion } from "framer-motion";
 
 import { Section } from "@/components/layout/Section";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
@@ -71,10 +72,12 @@ export default function HeroSection({
 				className="relative z-10 pb-16 sm:py-12 md:py-16 flex flex-col justify-center h-full"
 			>
 				<div className="grid md:grid-cols-2 gap-8 sm:gap-8 md:gap-12 lg:gap-16 items-center">
-					<LazySection
-						animation="slide-up"
-						delay={0}
+					<motion.div
 						className={`flex flex-col justify-center space-y-6 z-10 ${variant === "imageLeft" ? "md:order-2" : ""}`}
+						initial={{ opacity: 0, y: 20 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						viewport={{ once: true }}
+						transition={{ duration: 0.5 }}
 					>
 						{badgeText && (
 							<Badge className="w-fit">
@@ -150,7 +153,7 @@ export default function HeroSection({
 								</div>
 							</div>
 						)}
-					</LazySection>
+					</motion.div>
 
 					<LazySection
 						animation="slide-up"

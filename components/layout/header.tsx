@@ -79,12 +79,16 @@ export default function Header() {
 				>
 					<Link href="/" className="-m-1.5 p-1.5">
 						<span className="sr-only">{siteConfig.site.name}</span>
-						<div className="flex items-center gap-3">
+						<div
+							className="flex items-center gap-3"
+							style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}
+						>
 							<Image
 								src={siteConfig.theme.logo.src}
 								alt={siteConfig.theme.logo.alt}
 								width={150}
 								height={40}
+								priority
 								className="h-14 w-auto"
 							/>
 							<div className="flex flex-col">
@@ -167,6 +171,7 @@ export default function Header() {
 										alt={siteConfig.theme.logo.alt}
 										width={150}
 										height={40}
+										priority
 										className="h-10 w-auto"
 									/>
 									<div className="flex flex-col">
