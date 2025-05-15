@@ -10,21 +10,22 @@ import LazySection from "@/components/ui/lazy-section"; // Assuming LazySection 
 
 // Replace static section imports with dynamic for heavy sections
 import HeroSection from "@/components/sections/hero-section";
-// Dynamically import below-the-fold sections
-const ValuePropSection = dynamic(() => import("@/components/sections/value-prop-section"));
-const ClientsSection = dynamic(() => import("@/components/sections/clients-section"));
-const ProblemPainSection = dynamic(() => import("@/components/sections/problem-pain-section"));
-const SolutionVisionSection = dynamic(() => import("@/components/sections/solution-vision-section"));
-const FeaturesSection = dynamic(() => import("@/components/sections/features-section"));
+// Static imports for simple, CSS-only sections
+import ValuePropSection from "@/components/sections/value-prop-section";
+import ClientsSection from "@/components/sections/clients-section";
+import ProblemPainSection from "@/components/sections/problem-pain-section";
+import SolutionVisionSection from "@/components/sections/solution-vision-section";
+import FeaturesSection from "@/components/sections/features-section";
+import CtaSection from "@/components/sections/cta-section";
+import AboutSection from "@/components/sections/about-section";
+import KpiSection from "@/components/sections/kpi-section";
+import ServicesSection from "@/components/sections/services-section";
+import ProcessSectionHome from "@/components/sections/process-section-home";
+import BlogSection from "@/components/sections/blog-section";
+import HomepageFaqSection from "@/components/sections/homepage-faq-section";
+import ContactSection from "@/components/sections/contact-section";
+// Dynamically import heavy, code-split sections (SSR enabled by default in server components)
 const TestimonialsSection = dynamic(() => import("@/components/sections/testimonials-section"));
-const CtaSection = dynamic(() => import("@/components/sections/cta-section"));
-const AboutSection = dynamic(() => import("@/components/sections/about-section"));
-const KpiSection = dynamic(() => import("@/components/sections/kpi-section"));
-const ServicesSection = dynamic(() => import("@/components/sections/services-section"));
-const ProcessSectionHome = dynamic(() => import("@/components/sections/process-section-home"));
-const BlogSection = dynamic(() => import("@/components/sections/blog-section"));
-const HomepageFaqSection = dynamic(() => import("@/components/sections/homepage-faq-section"));
-const ContactSection = dynamic(() => import("@/components/sections/contact-section"));
 const ResourceDetailSection = dynamic(() => import("@/components/sections/ResourceDetailSection"));
 const ResourceListSection = dynamic(() => import("@/components/sections/ResourceListSection"));
 import AboutValuesSection from "@/components/sections/about-values-section";
@@ -77,6 +78,23 @@ const sectionComponentMap: Record<string, ComponentType<any>> = {
 	AboutValuesSection,
 	AboutSocialProofSection,
 };
+
+// Define simple, CSS-only sections to wrap with a single LazySection animation="none"
+const cssOnlySections = new Set<string>([
+	'ValuePropSection',
+	'ClientsSection',
+	'ProblemPainSection',
+	'SolutionVisionSection',
+	'FeaturesSection',
+	'CtaSection',
+	'AboutSection',
+	'KpiSection',
+	'ServicesSection',
+	'ProcessSectionHome',
+	'BlogSection',
+	'HomepageFaqSection',
+	'ContactSection',
+]);
 
 // Async data fetching
 const getSectionData = async (
@@ -282,6 +300,27 @@ const DynamicPageRenderer: FC<DynamicPageRendererProps> = async ({
 		// Compute clamped delay for this section
 		const rawDelay = i * delayStep;
 		const sectionDelay = Math.min(rawDelay, maxDelay);
+		// HeroSection: render directly (JS-driven animations inside component)
+		if (section.sectionType === 'HeroSection') {
+			elements.push(
+				<Component key={section.id} {...section.data} />
+			);
+			continue;
+		}
+		// CSS-only sections: wrap with LazySection animation="none" for stagger-trigger
+		if (cssOnlySections.has(section.sectionType)) {
+			elements.push(
+				<LazySection
+					key={section.id}
+					animation="none"
+					className="stagger-container"
+					style={{ '--stagger-delay': `${sectionDelay}s` } as React.CSSProperties}
+				>
+					<Component variant={section.variant} {...section.data} />
+				</LazySection>
+			);
+			continue;
+		}
 		// Special case: KpiSection on homepage
 		if (section.sectionType === "KpiSection" && pagePath === "/") {
 			elements.push(

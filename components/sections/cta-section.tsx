@@ -22,7 +22,7 @@ export default function CtaSection({
 			id="cta-section"
 			aria-labelledby="cta-section-heading"
 			fullBleed
-			className="bg-brand-dark text-white relative overflow-hidden py-8"
+			className="pattern-overlay bg-brand-dark text-white relative overflow-hidden py-8"
 		>
 			{/* Decorative elements matching the dark theme */}
 			<div className="hidden sm:block absolute top-0 right-0 w-96 h-96 bg-primary-10 rounded-full blur-3xl" />

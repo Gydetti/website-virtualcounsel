@@ -1,5 +1,5 @@
 "use client";
-import type { ReactNode } from "react";
+import type { ReactNode, CSSProperties } from "react";
 
 import { siteConfig } from "@/lib/siteConfig";
 import { motion, useReducedMotion } from "framer-motion";
@@ -10,6 +10,8 @@ interface LazySectionProps {
 	/** Intersection threshold (fraction in view) to start animation */
 	threshold?: number;
 	className?: string;
+	/** Inline style for CSS variables or other styles */
+	style?: CSSProperties;
 	/** Animation style: fade only, slide with fade, zoom, or none */
 	animation?:
 		| "fade"
@@ -31,6 +33,8 @@ export default function LazySection({
 	// Start as soon as any part of element is in view
 	threshold = 0,
 	className = "",
+	/** Inline style for CSS variables or other styles */
+	style,
 	animation = "slide-up",
 	delay = 0,
 	// Global default duration shortened for snappier feel (reduced from 0.6)
@@ -109,19 +113,32 @@ export default function LazySection({
 		},
 	};
 
-	// If reduced-motion is requested, animations globally disabled, or set to none, render children without motion
-	if (
-		shouldReduceMotion ||
-		!siteConfig.features.enableStaggeredAnimations ||
-		animation === "none"
-	) {
-		return <div ref={ref} className={combinedClass}>{children}</div>;
+	// If reduced-motion is requested or animations globally disabled, render children without motion
+	if (shouldReduceMotion || !siteConfig.features.enableStaggeredAnimations) {
+		return (
+			<div ref={ref} className={combinedClass} style={style}>
+				{children}
+			</div>
+		);
+	}
+	// CSS-only: animation="none" toggles 'visible' class for intersection-triggered CSS animations
+	if (animation === "none") {
+		return (
+			<div
+				ref={ref}
+				className={`${combinedClass}${isVisible ? " visible" : ""}`}
+				style={style}
+			>
+				{children}
+			</div>
+		);
 	}
 
 	return (
 		<motion.div
 			ref={ref}
 			className={combinedClass}
+			style={style}
 			initial="hidden"
 			animate={isVisible ? "visible" : "hidden"}
 			variants={variants}

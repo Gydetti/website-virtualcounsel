@@ -4,7 +4,69 @@
 
 ---
 
-## 1. Remember your rules
+## 1. Hybrid Scroll-Triggered Animation Strategy
+
+> Maintain both the "snappy, staggered" entrance effects and genuine lazy-loading performance via a hybrid approach.
+
+### a) CSS-Only Stagger + Scroll-Trigger
+1. Wrap simple sections (Features, Pricing, About, etc.) in a single `LazySection` with `animation="none"` so it adds a `visible` class on intersection:
+   ```tsx
+   import LazySection from '@/components/ui/lazy-section';
+
+   <LazySection
+     animation="none"
+     className="stagger-container"
+     style={{ '--stagger-delay': '0.1s' }}
+   >
+     <h2 style={{ '--index': 0 } as React.CSSProperties}>Section Title</h2>
+     <p  style={{ '--index': 1 } as React.CSSProperties}>Subtitle</p>
+     <div style={{ '--index': 2 } as React.CSSProperties}>…</div>
+   </LazySection>
+   ```
+2. In `app/globals.css`, ensure CSS utilities:
+   ```css
+   @keyframes fade-up {
+     from { opacity: 0; transform: translateY(20px); }
+     to   { opacity: 1; transform: translateY(0); }
+   }
+   .stagger-container > * {
+     opacity: 0;
+     transform: translateY(20px);
+   }
+   .stagger-container.visible > * {
+     animation: fade-up 0.4s ease both;
+     animation-delay: calc(var(--stagger-delay, 0.1s) * var(--index, 0));
+   }
+   ```
+
+### b) JS-Driven LazySection + Code-Splitting
+1. For heavy/below-the-fold sections (Hero, carousels, complex UIs), dynamic-import both `LazySection` and the section:
+   ```tsx
+   import dynamic from 'next/dynamic';
+   const LazySection = dynamic(() => import('@/components/ui/lazy-section'), { ssr: false });
+
+   export default function TestimonialsSection(props) {
+     return (
+       <LazySection animation="slide-up" delay={0.2}>
+         <TestimonialsContent {...props} />
+       </LazySection>
+     );
+   }
+   ```
+
+### c) Guided Removal of Extra Wrappers
+- Drop all per-item `<LazySection>` wrappers in CSS-only sections—to just one container.  
+- Prefer semantic lists (`<ul>/<li>`) over grid `<div>` clusters to cut DOM nodes.  
+
+### d) Feature-Flag Control
+Everything obeys `siteConfig.features.enableStaggeredAnimations`. Flip off for static fallback.  
+
+### e) Validation
+- Verify scroll-triggered entrance in dev.  
+- Confirm E2E smoke tests.  
+- (Optional) run Lighthouse to confirm JS & DOM savings.  
+
+This hybrid pattern preserves our signature flow on scroll while delivering true lazy-loading gains.
 
 ## 2. Modern JavaScript Delivery
 
