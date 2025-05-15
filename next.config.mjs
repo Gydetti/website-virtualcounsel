@@ -18,6 +18,9 @@ const nextConfig = withBundleAnalyzer({
     images: {
         unoptimized: false,
     },
+    experimental: {
+        esmExternals: true,
+    },
     async rewrites() {
         return [{
             source: "/placeholder.svg",
