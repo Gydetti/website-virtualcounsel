@@ -20,6 +20,7 @@ import FeaturesSection from "@/components/sections/features-section";
 // --- Section Component Imports ---
 import HeroSection from "@/components/sections/hero-section";
 import HomepageFaqSection from "@/components/sections/homepage-faq-section";
+import KpiSection from "@/components/sections/kpi-section"; // Import new KPI section
 import ProblemPainSection from "@/components/sections/problem-pain-section";
 import ProcessSection from "@/components/sections/process-section";
 import ProcessSectionHome from "@/components/sections/process-section-home";
@@ -56,6 +57,7 @@ interface DynamicPageRendererProps {
 // biome-ignore lint: Diverse section components in map, type safety at component prop level.
 const sectionComponentMap: Record<string, ComponentType<any>> = {
 	HeroSection: HeroSection,
+	KpiSection: KpiSection,
 	ValuePropSection: ValuePropSection,
 	ClientsSection: ClientsSection,
 	ProblemPainSection: ProblemPainSection,
@@ -87,6 +89,8 @@ const getSectionData = async (
 		switch (sectionConfig.sectionType) {
 			case "HeroSection":
 				return homepageData.heroSectionData;
+			case "KpiSection":
+				return homepageData.kpiSectionData;
 			case "ValuePropSection":
 				return homepageData.valuePropSectionData;
 			case "ClientsSection":

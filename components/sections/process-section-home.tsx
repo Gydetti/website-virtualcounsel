@@ -2,6 +2,7 @@
 
 import { Section } from "@/components/layout/Section";
 import type { ProcessSectionProps } from "@/components/sections/process-section";
+import { Badge } from "@/components/ui/badge";
 import LazySection from "@/components/ui/lazy-section";
 
 export default function ProcessSectionHome({
@@ -19,11 +20,9 @@ export default function ProcessSectionHome({
 			className="bg-slate-50 px-4 py-20 md:px-6 md:py-28"
 		>
 			<div className="mx-auto max-w-6xl text-center">
-				{badgeText && (
-					<div className="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-slate-800">
-						{badgeText}
-					</div>
-				)}
+				<Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
+					{badgeText}
+				</Badge>
 				{heading && (
 					<h2 className="mt-4 text-[var(--font-heading-size)] font-bold tracking-tight text-slate-900 md:text-[var(--font-heading-size-md)]">
 						{heading}
@@ -44,7 +43,7 @@ export default function ProcessSectionHome({
 							delay={i * 0.1}
 							className="relative z-10"
 						>
-							<div className="flex h-full flex-col items-center gap-4 rounded-xl border border-slate-200 bg-white p-8 text-center shadow-sm transition-all hover:shadow-md card-equal-height">
+							<div className="flex h-full flex-col items-center gap-4 rounded-xl border border-slate-200 bg-white p-4 text-center shadow-sm transition-all hover:shadow-md card-equal-height">
 								<div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary text-white text-lg font-semibold">
 									{step.number ?? String(i + 1).padStart(2, "0")}
 								</div>

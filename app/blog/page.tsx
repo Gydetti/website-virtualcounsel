@@ -10,12 +10,12 @@ import {
 	CardTitle,
 } from "@/components/ui/card";
 import LazySection from "@/components/ui/lazy-section";
+import OptimizedImage from "@/components/ui/optimized-image";
 import { getBlogPosts } from "@/lib/data-utils";
 import { defaultMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/lib/siteConfig";
 import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -61,12 +61,15 @@ export default async function BlogPage() {
 							<div className="mb-16">
 								<Card className="overflow-hidden border-none shadow-xl">
 									<div className="grid md:grid-cols-2 gap-6">
-										<div className="relative h-64 md:h-full">
-											<Image
-												src={featuredPost.coverImage?.src || "/placeholder.svg"}
+										<div className="relative h-64 md:h-full overflow-hidden">
+											<OptimizedImage
+												src={
+													featuredPost.coverImage?.src ||
+													"/images/placeholders/placeholder.svg"
+												}
 												alt={featuredPost.coverImage?.alt || featuredPost.title}
 												fill
-												className="object-cover"
+												className="absolute inset-0 object-cover"
 											/>
 										</div>
 										<div className="p-6 md:p-8 flex flex-col justify-center">
@@ -125,11 +128,14 @@ export default async function BlogPage() {
 							<LazySection key={post.id} delay={index * 0.1} className="h-full">
 								<Card className="h-full flex flex-col overflow-hidden transition-all duration-300 hover:shadow-xl">
 									<div className="relative h-48 w-full overflow-hidden">
-										<Image
-											src={post.coverImage?.src || "/placeholder.svg"}
+										<OptimizedImage
+											src={
+												post.coverImage?.src ||
+												"/images/placeholders/placeholder.svg"
+											}
 											alt={post.coverImage?.alt || post.title}
 											fill
-											className="object-cover transition-transform duration-300 hover:scale-105"
+											className="absolute inset-0 object-cover transition-transform duration-300 hover:scale-105"
 										/>
 									</div>
 									<CardHeader className="pt-6">

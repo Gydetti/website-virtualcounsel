@@ -124,6 +124,7 @@ const featureFlagsSchema = z.object({
 	enableTestimonials: z.boolean().optional().default(true),
 	enablePricing: z.boolean().optional().default(false),
 	enableHeroSection: z.boolean().optional().default(true),
+	enableHeroStats: z.boolean().optional().default(true),
 	enableCustomCookieBanner: z.boolean().optional().default(false),
 	enableClientsSection: z.boolean().optional().default(true),
 	enableFeaturesSection: z.boolean().optional().default(false),
@@ -158,6 +159,8 @@ const featureFlagsSchema = z.object({
 	backgroundImageUrl: z.string().optional(),
 	enableMicroInteractions: z.boolean().optional().default(false),
 	enableFooterServices: z.boolean().optional().default(true),
+	enableAboutHeroCta: z.boolean().optional().default(false),
+	enableKpiSection: z.boolean().optional().default(false),
 });
 
 const contactFormFieldSchema = z.object({
@@ -222,9 +225,11 @@ const sectionsDataKeysSchema = z
 
 // ++ NEW SCHEMAS FOR DYNAMIC PAGE COMPOSITION ++
 export const pageSectionConfigSchema = z.object({
-	id: z.string().min(1, "Section config ID cannot be empty"), // Unique ID for this instance of the section on a page
-	sectionType: z.string().min(1, "Section type cannot be empty"), // Corresponds to a key/name of a section component
-	variant: z.enum(["imageLeft", "imageRight", "centered"]).optional(),
+	id: z.string().min(1, "Section config ID cannot be empty"),
+	sectionType: z.string().min(1, "Section type cannot be empty"),
+	variant: z
+		.enum(["imageLeft", "imageRight", "centered", "classic"])
+		.optional(),
 	// TODO: Add fields for section-specific data overrides or a generic data object/key
 	// e.g., dataKey: z.string().optional(), variant: z.string().optional()
 	// For now, we'll assume data is fetched by the section component or a page-level data aggregator

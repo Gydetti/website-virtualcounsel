@@ -9,13 +9,13 @@ import {
 	CardTitle,
 } from "@/components/ui/card";
 import LazySection from "@/components/ui/lazy-section";
+import OptimizedImage from "@/components/ui/optimized-image";
 import { getResources } from "@/lib/data/resources";
 import type { Resource } from "@/lib/data/resources";
 import { defaultMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site.config.local";
 import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -43,6 +43,14 @@ export default async function ResourcesIndexPage() {
 			</Section>
 		);
 	}
+	// Determine column layout based on resource count
+	const count = resources.length;
+	const gridCols =
+		count === 1
+			? "grid-cols-1 md:grid-cols-1 lg:grid-cols-1"
+			: count === 2
+				? "grid-cols-1 md:grid-cols-2 lg:grid-cols-2"
+				: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3";
 	return (
 		<>
 			{/* Hero section */}
@@ -65,21 +73,24 @@ export default async function ResourcesIndexPage() {
 			<LazySection>
 				<Section className="py-12">
 					<div className="container mx-auto px-4">
-						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+						<div className={`grid ${gridCols} gap-8 justify-items-center`}>
 							{resources.map((resource, index) => (
 								<LazySection
 									key={resource.slug}
 									delay={index * 0.1}
 									className="h-full"
 								>
-									<Card className="h-full flex flex-col overflow-hidden transition-shadow hover:shadow-xl">
-										<div className="relative h-56 w-full overflow-hidden group-hover:scale-105 transition-transform">
-											<Image
-												src={resource.heroImage?.src || "/placeholder.svg"}
+									<Card className="h-full flex flex-col overflow-hidden transition-all duration-300 hover:shadow-xl">
+										<div className="relative h-56 w-full overflow-hidden">
+											<OptimizedImage
+												src={
+													resource.heroImage?.src ||
+													"/images/placeholders/placeholder.svg"
+												}
 												alt={resource.heroImage?.alt || resource.title}
 												fill
-												style={{ objectFit: "cover" }}
 												sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+												className="absolute inset-0 object-cover transition-transform duration-300 hover:scale-105"
 											/>
 										</div>
 										<CardHeader>

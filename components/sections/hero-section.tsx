@@ -95,7 +95,7 @@ export default function HeroSection({
 		<section
 			id="hero-section"
 			aria-labelledby="hero-section-heading"
-			className="relative overflow-hidden bg-gradient-to-r from-blue-100 to-white"
+			className="relative overflow-hidden bg-gradient-to-r from-blue-100 to-white min-h-[80vh] sm:min-h-[85vh] flex items-center"
 		>
 			{/* Background pattern */}
 			<div className="absolute inset-0 bg-grid-pattern opacity-10" />
@@ -106,7 +106,7 @@ export default function HeroSection({
 
 			<Section
 				fullBleed={false}
-				className="relative z-10 pb-16 sm:py-12 md:py-16"
+				className="relative z-10 pb-16 sm:py-12 md:py-16 flex flex-col justify-center h-full"
 			>
 				<div className="grid md:grid-cols-2 gap-8 sm:gap-8 md:gap-12 lg:gap-16 items-center">
 					<LazySection
@@ -251,29 +251,31 @@ export default function HeroSection({
 					</LazySection>
 				</div>
 
-				<div className="mt-16 bg-white rounded-xl shadow-lg p-6 md:p-8 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-					{stats &&
-						stats.length > 0 &&
-						stats.map((stat) => (
-							<div
-								key={stat.label}
-								className="flex flex-col items-center text-center"
-							>
-								<div className="text-primary font-bold text-3xl md:text-4xl mb-2">
-									<CountUp
-										end={stat.value}
-										suffix={stat.suffix}
-										duration={2.5}
-										enableScrollSpy
-										scrollSpyDelay={500}
-									/>
+				{siteConfig.features.enableHeroStats && (
+					<div className="mt-20 bg-white rounded-xl shadow-lg p-6 md:p-8 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+						{stats &&
+							stats.length > 0 &&
+							stats.map((stat) => (
+								<div
+									key={stat.label}
+									className="flex flex-col items-center text-center"
+								>
+									<div className="text-primary font-bold text-3xl md:text-4xl mb-2">
+										<CountUp
+											end={stat.value}
+											suffix={stat.suffix}
+											duration={2.5}
+											enableScrollSpy
+											scrollSpyDelay={500}
+										/>
+									</div>
+									<p className="text-gray-600 text-sm md:text-base m-0">
+										{stat.label}
+									</p>
 								</div>
-								<p className="text-gray-600 text-sm md:text-base m-0">
-									{stat.label}
-								</p>
-							</div>
-						))}
-				</div>
+							))}
+					</div>
+				)}
 			</Section>
 
 			{/* soft left-only bottom shadow (20% width gradient) */}

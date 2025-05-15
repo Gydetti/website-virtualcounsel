@@ -61,9 +61,14 @@ export default function ProblemPainSection({
 									key={card.id}
 									initial={{ opacity: 0, y: 20 }}
 									whileInView={{ opacity: 1, y: 0 }}
+									whileHover={{
+										y: -5,
+										scale: 1.02,
+										transition: { duration: 0.1, ease: "easeOut" },
+									}}
 									transition={{ duration: 0.3, delay: idx * 0.2 }}
 									viewport={{ once: true }}
-									className="rounded-lg bg-gray-800 p-6"
+									className="rounded-lg bg-gray-800 p-6 shadow-sm hover:shadow-xl transition-shadow duration-300"
 								>
 									<h3 className="mb-3 text-xl font-bold text-accent">
 										{card.title}

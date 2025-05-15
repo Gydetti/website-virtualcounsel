@@ -302,5 +302,18 @@ export const servicesOverviewSectionDataSchema = z.object({
 	description: z.string().optional(),
 });
 
+// Add KPI stats schema for new KpiSection
+export const kpiStatItemSchema = z.object({
+	id: z.string().min(1, "KPI stat ID cannot be empty"),
+	value: z.number(),
+	suffix: z.string().optional(),
+	label: z.string().min(1, "KPI stat label cannot be empty"),
+});
+export const kpiSectionDataSchema = z.object({
+	stats: z
+		.array(kpiStatItemSchema)
+		.min(1, "Must provide at least one KPI stat"),
+});
+
 // End of section-specific schemas for now.
 // The old placeholderSectionsSchema can be removed.

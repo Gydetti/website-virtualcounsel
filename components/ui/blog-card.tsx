@@ -67,7 +67,7 @@ export default function BlogCard({
 					className="p-0 h-auto text-primary group"
 					asChild
 				>
-					<Link href={`/blog/${slug}`}>
+					<Link href={`/blog/${slug}`} className="transition-none">
 						Read more
 						<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
 					</Link>

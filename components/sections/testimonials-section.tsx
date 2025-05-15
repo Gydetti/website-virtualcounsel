@@ -139,23 +139,32 @@ export default function TestimonialsSection({
 						</div>
 					</div>
 
-					<button
-						type="button"
-						className="hidden sm:inline-flex items-center justify-center transition-colors absolute top-1/2 -translate-y-1/2 -left-8 bg-white/90 border border-input rounded-full h-12 w-12 shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary-10 hover:text-primary z-10"
-						onClick={prevTestimonial}
-						aria-label="Previous testimonial"
-					>
-						<ChevronLeft aria-hidden="true" className="h-6 w-6" />
-					</button>
+					<div className="absolute top-1/2 -left-8 transform -translate-y-1/2">
+						<button
+							type="button"
+							onClick={() =>
+								setActiveIndex(
+									(prev) =>
+										(prev - 1 + testimonials.length) % testimonials.length,
+								)
+							}
+							className="p-2 bg-white rounded-full shadow-md hover:shadow-lg focus:outline-none"
+						>
+							<ChevronLeft className="h-5 w-5 text-gray-700" />
+						</button>
+					</div>
 
-					<button
-						type="button"
-						className="hidden sm:inline-flex items-center justify-center transition-colors absolute top-1/2 -translate-y-1/2 -right-8 bg-white/90 border border-input rounded-full h-12 w-12 shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary-10 hover:text-primary z-10"
-						onClick={nextTestimonial}
-						aria-label="Next testimonial"
-					>
-						<ChevronRight aria-hidden="true" className="h-6 w-6" />
-					</button>
+					<div className="absolute top-1/2 -right-8 transform -translate-y-1/2">
+						<button
+							type="button"
+							onClick={() =>
+								setActiveIndex((prev) => (prev + 1) % testimonials.length)
+							}
+							className="p-2 bg-white rounded-full shadow-md hover:shadow-lg focus:outline-none"
+						>
+							<ChevronRight className="h-5 w-5 text-gray-700" />
+						</button>
+					</div>
 				</LazySection>
 
 				<div className="flex justify-center mt-4 space-x-2 absolute bottom-0 left-0 right-0">

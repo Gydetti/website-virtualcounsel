@@ -24,6 +24,15 @@ export default function ResourceListSection({
 		);
 	}
 
+	// Determine column layout based on resource count
+	const count = resources.length;
+	const gridCols =
+		count === 1
+			? "grid-cols-1 md:grid-cols-1 lg:grid-cols-1"
+			: count === 2
+				? "grid-cols-1 md:grid-cols-2 lg:grid-cols-2"
+				: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3";
+
 	return (
 		<section
 			id={id}
@@ -33,26 +42,26 @@ export default function ResourceListSection({
 				<h2 className="text-[var(--font-subheading-size)] font-bold text-center mb-10">
 					{title}
 				</h2>
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+				<div className={`grid ${gridCols} gap-8`}>
 					{resources.map((resource) => (
 						<article
 							key={resource.slug}
-							className="group relative flex flex-col overflow-hidden rounded-lg border border-[#e5e7eb80] bg-gradient-to-b from-white to-blue-50/30 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+							className={`group relative flex flex-col overflow-hidden rounded-lg border border-[#e5e7eb80] bg-gradient-to-b from-white to-blue-50/30 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${count === 1 ? "max-w-md mx-auto" : ""}`}
 						>
 							<Link
 								href={`/resources/${resource.slug}`}
 								className="block h-full"
 							>
 								<div className="relative h-48 w-full overflow-hidden sm:h-56">
-									{resource.heroImage && (
-										<Image
-											src={resource.heroImage.src}
-											alt={resource.heroImage.alt}
-											fill
-											style={{ objectFit: "cover" }}
-											sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-										/>
-									)}
+									<Image
+										src={
+											resource.heroImage?.src ||
+											"/images/placeholders/placeholder.svg"
+										}
+										alt={resource.heroImage?.alt || resource.title}
+										fill
+										style={{ objectFit: "cover" }}
+									/>
 								</div>
 								<div className="p-6">
 									<h3 className="text-xl font-semibold mb-2 text-blue-700 group-hover:text-blue-800">

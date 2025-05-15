@@ -1,11 +1,13 @@
 "use client";
 
 import { Section } from "@/components/layout/Section";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import LazySection from "@/components/ui/lazy-section";
 import OptimizedImage from "@/components/ui/optimized-image";
 import type { aboutSectionDataSchema } from "@/lib/schemas/sections.schema";
+import { siteConfig } from "@/lib/site.config.local";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle, Star } from "lucide-react";
 import Link from "next/link";
@@ -46,6 +48,34 @@ export default function AboutSection({
 	const imageOrderClass = variant === "imageRight" ? "md:order-2" : "";
 	const contentOrderClass = variant === "imageRight" ? "md:order-1" : "";
 
+	// Refactored image rendering logic
+	const renderImage = () => {
+		if (!image?.src) {
+			console.warn("Image source is missing. Using placeholder.");
+			return (
+				<OptimizedImage
+					src="/images/placeholders/placeholder.svg"
+					alt="Placeholder image representing company or team"
+					fill
+					className="relative aspect-[3/2] w-full max-w-xl mx-auto rounded-xl shadow-2xl z-10"
+					objectFit="cover"
+					priority
+				/>
+			);
+		}
+
+		return (
+			<OptimizedImage
+				src={image.src}
+				alt={image.alt || "About our company"}
+				fill
+				className="relative aspect-[3/2] w-full max-w-xl mx-auto rounded-xl shadow-2xl z-10"
+				objectFit="cover"
+				priority
+			/>
+		);
+	};
+
 	// Legacy 'classic' two-column layout with image left and original content
 	if (variant === "classic") {
 		return (
@@ -57,18 +87,21 @@ export default function AboutSection({
 					<LazySection
 						animation="slide-up"
 						delay={0}
-						className={`relative ${imageOrderClass}`}
+						className={`relative w-full max-w-[600px] transform md:translate-y-6 ${imageOrderClass}`}
 					>
-						{image?.src && (
+						<AspectRatio
+							ratio={6 / 5}
+							className="overflow-visible rounded-xl shadow-2xl relative"
+						>
 							<OptimizedImage
-								src={image.src}
-								alt={image.alt || "About our company"}
+								src={image?.src || "/images/placeholders/placeholder.svg"}
+								alt={image?.alt || "About our company"}
 								fill
-								className="relative aspect-[3/2] w-full max-w-xl mx-auto rounded-xl shadow-2xl z-10"
-								objectFit="cover"
+								sizes="(max-width: 600px) 100vw, 600px"
+								className="absolute inset-0 object-cover rounded-xl"
 								priority
 							/>
-						)}
+						</AspectRatio>
 					</LazySection>
 					<LazySection
 						animation="slide-up"
@@ -156,20 +189,22 @@ export default function AboutSection({
 									</div>
 								</LazySection>
 							)}
-							{cta?.href && cta?.text && (
-								<LazySection animation="fade-up" delay={0.8}>
-									<Button
-										size="lg"
-										className="bg-primary hover:bg-primary-90 group"
-										asChild
-									>
-										<Link href={cta.href}>
-											{cta.text}
-											<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-										</Link>
-									</Button>
-								</LazySection>
-							)}
+							{siteConfig.features.enableAboutHeroCta &&
+								cta?.href &&
+								cta?.text && (
+									<LazySection animation="fade-up" delay={0.8}>
+										<Button
+											size="lg"
+											className="bg-primary hover:bg-primary-90 group"
+											asChild
+										>
+											<Link href={cta.href}>
+												{cta.text}
+												<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+											</Link>
+										</Button>
+									</LazySection>
+								)}
 						</div>
 					</LazySection>
 				</div>
@@ -183,7 +218,6 @@ export default function AboutSection({
 			className="relative overflow-hidden bg-gradient-to-r from-blue-100 via-transparent to-transparent z-10"
 		>
 			<div className={containerClasses}>
-				{/* Left column: text & CTA */}
 				<LazySection
 					animation="slide-up"
 					delay={0}
@@ -228,7 +262,6 @@ export default function AboutSection({
 						</LazySection>
 					)}
 				</LazySection>
-				{/* Right column: philosophy and feature cards (image hidden by default) */}
 				<LazySection
 					animation="slide-up"
 					delay={0.1}

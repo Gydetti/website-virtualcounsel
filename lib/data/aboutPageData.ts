@@ -3,7 +3,7 @@ import { aboutSectionDataSchema } from "../schemas/sections.schema";
 
 export const aboutPageMainContentData: z.infer<typeof aboutSectionDataSchema> =
 	{
-		// id for the data object itself is not part of the section's props schema
+		// Main content data for the About page (variant handled in page config)
 		badgeText: "Our Story",
 		heading: "Client Story", // Placeholder for client to fill
 		paragraphs: [

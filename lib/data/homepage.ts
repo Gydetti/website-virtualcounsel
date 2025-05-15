@@ -8,6 +8,7 @@ import {
 	featuresSectionDataSchema,
 	heroSectionDataSchema,
 	homepageFaqSectionDataSchema,
+	kpiSectionDataSchema,
 	pricingSectionDataSchema,
 	problemPainSectionDataSchema,
 	processSectionDataSchema,
@@ -511,6 +512,31 @@ export const contactSectionData: z.infer<typeof contactSectionDataSchema> = {
 	// This data object is just for the introductory text specific to the homepage instance.
 };
 
+// ++ Data for KPI Stats Section on Homepage ++
+export const kpiSectionData: z.infer<typeof kpiSectionDataSchema> = {
+	stats: [
+		{
+			id: "kpi-experience",
+			value: 10,
+			suffix: "+",
+			label: "Years of Experience",
+		},
+		{
+			id: "kpi-satisfaction",
+			value: 98,
+			suffix: "%",
+			label: "Client Satisfaction Rate",
+		},
+		{
+			id: "kpi-projects",
+			value: 40,
+			suffix: "+",
+			label: "Successful Projects Delivered",
+		},
+		{ id: "kpi-clients", value: 300, suffix: "+", label: "Happy Clients" },
+	],
+};
+
 // Schema validation for all exported data objects
 try {
 	heroSectionDataSchema.parse(heroSectionData);
@@ -544,6 +570,7 @@ try {
 	aboutSectionDataSchema.parse(aboutSectionData);
 	processSectionDataSchema.parse(processSectionData);
 	contactSectionDataSchema.parse(contactSectionData);
+	kpiSectionDataSchema.parse(kpiSectionData);
 } catch (error) {
 	console.error(
 		"Error validating homepage data:",

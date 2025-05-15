@@ -15,7 +15,7 @@ export const siteConfig: SiteConfigSchema = {
 		title: "Placeholder Title", // <--- Browser tab title, default SEO title
 		description: "Placeholder description for the site.", // <--- Default SEO description
 		url: "https://placeholder.com", // <--- Production URL of the client's site
-		name: "Placeholder Site Name", // <--- Used in OpenGraph, general site identification
+		name: "Site Name", // <--- Used in OpenGraph, general site identification
 		// OPENGRAPH SETTINGS: For social media link previews (Facebook, LinkedIn, etc.)
 		openGraph: {
 			image: {
@@ -41,7 +41,7 @@ export const siteConfig: SiteConfigSchema = {
 		logo: {
 			src: "/images/placeholders/placeholder-logo4.svg", // <--- Path to site logo
 			alt: "Placeholder Logo", // <--- Alt text for logo
-			subtitle: "Consultant", // <--- Optional subtitle text displayed next to the logo
+			subtitle: "Role", // <--- Optional subtitle text displayed next to the logo
 		},
 		favicon: "/favicon.ico", // <--- Path to site favicon
 		// Theme foundation values for dynamic CSS variables
@@ -142,6 +142,7 @@ export const siteConfig: SiteConfigSchema = {
 		// FIRST_EDIT: Toggle micro-interactions and hover animations
 		enableMicroInteractions: true,
 		enableHeroSection: true, // <--- Toggle Hero section display
+		enableHeroStats: true, // <--- Toggle KPI stats count-up block in hero section
 		enableBlog: true, // <--- Toggle Blog feature (includes pages & sections)
 		enableServices: true, // <--- Toggle Services feature
 		enableContactForm: true, // <--- Toggle Contact Form functionality
@@ -156,10 +157,12 @@ export const siteConfig: SiteConfigSchema = {
 		enableProcessSection: false, // <--- Toggle Process/how-it-works section display (disabled on homepage)
 		enableFaqSection: true, // <--- Toggle FAQ section display (e.g., on homepage)
 		enableValuePropSection: true, // <--- Toggle Value Proposition section display
-
+		enableAboutHeroCta: false,
 		enableLandingPages: true, // <--- Toggle dedicated Landing Page functionality
 		enableCustomCookieBanner: false, // <--- Use custom banner instead of Cookiebot (if ID not set)
 		enableFooterServices: true, // <--- Toggle services list in footer
+		// FIRST_EDIT: Toggle the KPI stats section on the homepage
+		enableKpiSection: true,
 	},
 	// ENABLED PAGES: Defines which page routes are active and included in sitemap.
 	enabledPages: [
@@ -249,6 +252,7 @@ export const siteConfig: SiteConfigSchema = {
 				{ id: "home-testimonials", sectionType: "TestimonialsSection" },
 				{ id: "home-cta", sectionType: "CtaSection" },
 				{ id: "home-about", sectionType: "AboutSection" },
+				{ id: "home-kpi", sectionType: "KpiSection" },
 				{ id: "home-services", sectionType: "ServicesSection" }, // <--- Or use ServicesPreviewSection for a summary
 				{ id: "home-process", sectionType: "ProcessSectionHome" },
 				{ id: "home-blog", sectionType: "BlogSection" }, // <--- Or use BlogPreviewSection for a summary
@@ -280,7 +284,11 @@ export const siteConfig: SiteConfigSchema = {
 					"Learn more about our company, our mission, and our values.",
 			},
 			sections: [
-				{ id: "about-main-content", sectionType: "AboutSection" },
+				{
+					id: "about-main-content",
+					sectionType: "AboutSection",
+					variant: "classic",
+				},
 				{ id: "about-values", sectionType: "AboutValuesSection" },
 				{ id: "about-social-proof", sectionType: "AboutSocialProofSection" },
 				{ id: "about-testimonials", sectionType: "TestimonialsSection" },

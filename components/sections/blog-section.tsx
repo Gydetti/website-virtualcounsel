@@ -50,10 +50,15 @@ export default function BlogSection({
 					{subtitle && <p className="section-subtitle">{subtitle}</p>}
 				</div>
 
-				<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 md:gap-12 lg:gap-16">
+				<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 md:gap-12 lg:gap-16 card-equal-height">
 					{posts.map((post, index) => (
-						<LazySection key={post.id} animation="fade" delay={index * 0.1}>
-							<Card className="w-full h-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-gradient-to-b from-white to-blue-50/30 border border-[#e5e7eb80] shadow-lg">
+						<LazySection
+							key={post.id}
+							animation="fade"
+							delay={index * 0.1}
+							className="h-full"
+						>
+							<Card className="w-full h-full flex flex-col justify-between overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-gradient-to-b from-white to-blue-50/30 border border-[#e5e7eb80] shadow-lg">
 								<div className="relative h-48 w-full overflow-hidden">
 									<Image
 										src={post.image?.src || "/placeholder.svg"}
@@ -88,10 +93,13 @@ export default function BlogSection({
 								<CardFooter className="pt-0">
 									<Button
 										variant="link"
-										className="p-0 h-auto text-primary group"
+										className="group w-full whitespace-normal break-words shadow-none hover:shadow-none hover:scale-100"
 										asChild
 									>
-										<Link href={`/blog/${post.slug}`}>
+										<Link
+											href={`/blog/${post.slug}`}
+											className="transition-none"
+										>
 											{`Read more: ${post.title}`}
 											<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
 										</Link>
