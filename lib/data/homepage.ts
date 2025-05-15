@@ -37,8 +37,8 @@ export const heroSectionData: z.infer<typeof heroSectionDataSchema> = {
 		{ value: 300, suffix: "+", label: "Happy Clients" },
 	],
 	image: {
-		src: "/placeholder.svg",
-		alt: "Descriptive alt text for hero image",
+		src: "/images/hero/hero-main.png",
+		alt: "Professional business hero image for homepage",
 	},
 	showHelpedStats: true,
 	showOverlayStat: true,

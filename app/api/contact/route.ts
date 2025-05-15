@@ -15,7 +15,6 @@ export const contactSchema = z.object({
 	subject: z.string().nonempty(),
 	message: z.string().nonempty(),
 	honeypot: z.string().optional(),
-	recaptchaToken: z.string().optional(),
 });
 
 export async function POST(request: NextRequest) {
@@ -23,39 +22,6 @@ export async function POST(request: NextRequest) {
 		// Parse and validate incoming data
 		const body = await request.json();
 		const data = contactSchema.parse(body);
-
-		// Verify reCAPTCHA token if enabled in config
-		if (siteConfig.contactForm?.recaptchaSiteKey) {
-			const secret = process.env.RECAPTCHA_SECRET_KEY;
-			if (!secret) {
-				return NextResponse.json(
-					{ success: false, error: "reCAPTCHA secret key not configured" },
-					{ status: 500 },
-				);
-			}
-			if (!data.recaptchaToken) {
-				return NextResponse.json(
-					{ success: false, error: "reCAPTCHA token missing" },
-					{ status: 400 },
-				);
-			}
-			// Verify token with Google
-			const verifyRes = await fetch(
-				"https://www.google.com/recaptcha/api/siteverify",
-				{
-					method: "POST",
-					headers: { "Content-Type": "application/x-www-form-urlencoded" },
-					body: new URLSearchParams({ secret, response: data.recaptchaToken }),
-				},
-			);
-			const verifyJson = await verifyRes.json();
-			if (!verifyJson.success) {
-				return NextResponse.json(
-					{ success: false, error: "reCAPTCHA verification failed" },
-					{ status: 400 },
-				);
-			}
-		}
 
 		// Drop spam submissions if honeypot field is filled
 		if (data.honeypot) {

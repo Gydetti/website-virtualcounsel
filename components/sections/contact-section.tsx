@@ -63,19 +63,13 @@ export default function ContactSection({
 		e.preventDefault();
 		setIsSubmitting(true);
 
-		// Obtain reCAPTCHA token if configured
-		let recaptchaToken = "";
-		if (recaptchaKey && typeof window !== "undefined" && window.grecaptcha) {
-			recaptchaToken = await window.grecaptcha.execute(recaptchaKey, {
-				action: "contact",
-			});
-		}
+		// Remove reCAPTCHA logic: no token needed
 
 		// Send data to API
 		const payload = {
 			...formData,
 			honeypot: formData[honeypotName],
-			recaptchaToken,
+			// recaptchaToken removed
 		};
 		const res = await fetch("/api/contact", {
 			method: "POST",
@@ -108,13 +102,13 @@ export default function ContactSection({
 			aria-labelledby="contact-section-heading"
 			className="relative overflow-hidden bg-transparent"
 		>
-			{/* Load reCAPTCHA script if key provided */}
-			{recaptchaKey && (
+			{/* Remove reCAPTCHA script loading */}
+			{/* {recaptchaKey && (
 				<Script
 					src={`https://www.google.com/recaptcha/api.js?render=${recaptchaKey}`}
 					strategy="lazyOnload"
 				/>
-			)}
+			)} */}
 			{/* Decorative elements */}
 			{/* <div className="absolute top-0 right-0 w-96 h-96 bg-blue-50/80 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
 			<div className="absolute bottom-0 left-0 w-96 h-96 bg-primary-5 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" /> */}

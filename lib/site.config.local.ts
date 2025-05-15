@@ -210,7 +210,7 @@ export const siteConfig: SiteConfigSchema = {
 				required: true,
 			},
 		],
-		recaptchaSiteKey: "recaptcha-placeholder-sitekey", // <--- Google reCAPTCHA v2 Site Key
+		recaptchaSiteKey: "", // <--- Google reCAPTCHA v2 Site Key DISABLED
 		honeypotFieldName: "honeypot", // <--- Name for anti-spam honeypot field
 	},
 	// CONTACT DETAILS: General contact information for the business.
