@@ -18,7 +18,7 @@ export default function ProcessSectionHome({
 		<Section
 			id="process"
 			fullBleed={false}
-			className=" px-4 py-20 md:px-6 md:py-20"
+			className=" px-4 py-20 md:px-6 md:py-16"
 		>
 			<LazySection
 				animation="none"
@@ -45,7 +45,7 @@ export default function ProcessSectionHome({
 
 			<LazySection
 				animation="none"
-				className="stagger-container mt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 md:gap-12 items-stretch"
+				className="stagger-container mt-16 grid grid-cols-1  sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 md:gap-12 items-stretch"
 				style={{ '--stagger-delay': '0.2s' } as CSSProperties}
 			>
 				{steps.map((step, i) => (

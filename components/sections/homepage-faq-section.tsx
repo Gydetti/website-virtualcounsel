@@ -16,6 +16,7 @@ import type { z } from "zod";
 import LazySection from "@/components/ui/lazy-section";
 import type { CSSProperties } from "react";
 import { siteConfig } from "@/lib/siteConfig";
+import { useRef, useLayoutEffect } from 'react';
 
 export interface FaqItem {
 	question: string;
@@ -47,6 +48,19 @@ export default function HomepageFaqSection({
 		cat.questions.map((q) => ({ question: q.question, answer: q.answer })),
 	);
 
+	// Calculate max collapsed height and apply to all FAQ cards
+	const containerRef = useRef<HTMLDivElement>(null);
+	useLayoutEffect(() => {
+		if (!containerRef.current) return;
+		const items = Array.from(containerRef.current.querySelectorAll<HTMLDivElement>('.faq-item'));
+		if (items.length === 0) return;
+		const heights = items.map(item => item.getBoundingClientRect().height);
+		const max = Math.max(...heights);
+		for (const item of items) {
+			item.style.minHeight = `${max}px`;
+		}
+	}, []);
+
 	return (
 		<>
 			<StructuredData type="faq" data={{ items: faqSchema }} />
@@ -70,7 +84,7 @@ export default function HomepageFaqSection({
 							{description}
 						</p>
 					)}
-					<div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+					<div ref={containerRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
 						{categories.map((cat, idx) => (
 							<div
 								key={cat.category}
@@ -84,19 +98,18 @@ export default function HomepageFaqSection({
 									style={{
 										display: 'grid',
 										gap: '1rem',
-										gridTemplateRows: `repeat(${cat.questions.length}, minmax(0, 1fr))`,
 									} as CSSProperties}
 								>
 									{cat.questions.map((q) => (
 										<AccordionItem
 											key={q.question}
 											value={`faq-${cat.category}-${q.question}`}
-											className="border rounded-lg overflow-hidden flex flex-col"
+											className="border rounded-lg overflow-hidden flex flex-col faq-item"
 										>
-											<AccordionTrigger className="flex items-center justify-between w-full px-6 py-2 text-body-base font-medium text-left">
+											<AccordionTrigger className="flex items-center justify-between w-full px-4 py-1.5 text-body-base font-medium text-left">
 												{q.question}
 											</AccordionTrigger>
-											<AccordionContent className="px-6 py-4 text-foreground">
+											<AccordionContent className="px-4 py-2 text-foreground">
 												{q.answer}
 											</AccordionContent>
 										</AccordionItem>
