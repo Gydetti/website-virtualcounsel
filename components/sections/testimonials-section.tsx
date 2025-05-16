@@ -170,7 +170,7 @@ export default function TestimonialsSection({
 						<button
 							key={testimonial.id}
 							type="button"
-							className={`h-3 w-3 rounded-full transition-all ${
+							className={`h-3 w-3 rounded-full transition-all min-h-0 min-w-0 ${
 								activeIndex === index ? "bg-primary w-6" : "bg-gray-300"
 							}`}
 							onClick={() => setActiveIndex(index)}

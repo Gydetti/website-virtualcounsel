@@ -111,13 +111,13 @@ export default function Header() {
 						<Menu className="h-6 w-6" aria-hidden="true" />
 					</button>
 				</div>
-				<div className="hidden lg:flex lg:gap-x-8">
+				<div className="hidden lg:flex items-center lg:gap-x-8">
 					{filteredNavigation.map((item) => (
 						<Link
 							key={item.href}
 							href={item.href}
 							className={cn(
-								"text-sm font-medium transition-colors relative group",
+								"inline-block text-sm font-medium transition-colors relative group !min-h-0 !min-w-0",
 								pathname === item.href
 									? "text-primary font-semibold"
 									: scrolled
