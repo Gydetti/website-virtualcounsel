@@ -57,6 +57,8 @@ export default function HeroSection({
 	const imageAltText = image?.alt || "Hero image";
 
 	const router = useRouter();
+	// Determine order class for left column content
+	const contentOrderClass = variant === "imageLeft" ? "md:order-2" : "";
 
 	return (
 		<section
@@ -76,18 +78,20 @@ export default function HeroSection({
 				className="relative z-10 pb-16 sm:py-12 md:py-16 flex flex-col justify-center h-full"
 			>
 				<div className="grid md:grid-cols-2 gap-8 sm:gap-8 md:gap-12 lg:gap-16 items-center">
-					<div
-						className={`flex flex-col justify-center space-y-6 z-10 ${variant === "imageLeft" ? "md:order-2" : ""}`}
+					<LazySection
+						animation="slide-up"
+						delay={0}
+						className={`${contentOrderClass} flex flex-col justify-center space-y-6 z-10`}
 					>
 						{badgeText && (
-							<LazySection animation="fade-up" delay={0}>
+							<LazySection animation="fade-up" delay={0.2}>
 								<Badge variant="dark" className="w-fit text-white">
 									{badgeText}
 								</Badge>
 							</LazySection>
 						)}
 						{headline && (
-							<LazySection animation="fade-up" delay={0.1}>
+							<LazySection animation="fade-up" delay={0.3}>
 								<h1
 									id="hero-section-heading"
 									className="text-[var(--font-heading-size)] lg:text-[var(--font-heading-size-lg)] font-bold leading-tight text-balance"
@@ -98,12 +102,12 @@ export default function HeroSection({
 							</LazySection>
 						)}
 						{subheadline && (
-							<LazySection animation="fade-up" delay={0.2}>
+							<LazySection animation="fade-up" delay={0.4}>
 								<p className="text-foreground max-w-lg">{subheadline}</p>
 							</LazySection>
 						)}
 						{(primaryCta?.text || secondaryCta?.text) && (
-							<LazySection animation="fade-up" delay={0.3}>
+							<LazySection animation="fade-up" delay={0.5}>
 								<div className="flex flex-col sm:flex-row gap-4 pt-4">
 									{primaryCta?.text && primaryCta.href && (
 										<Button
@@ -111,7 +115,7 @@ export default function HeroSection({
 											variant="spark"
 											className={`group ${!showSecondaryCta || !secondaryCta?.text ? "w-full sm:w-auto" : ""}`}
 											onClick={() => {
-												if (primaryCta?.href) router.push(primaryCta.href);
+												if (primaryCta.href) router.push(primaryCta.href);
 											}}
 										>
 											{primaryCta.text}
@@ -136,7 +140,7 @@ export default function HeroSection({
 							</LazySection>
 						)}
 						{showHelpedStats && (
-							<LazySection animation="fade-up" delay={0.4}>
+							<LazySection animation="fade-up" delay={0.6}>
 								<div className="flex items-center space-x-4 mt-6 text-sm">
 									<div className="flex -space-x-2">
 										{[1, 2, 3, 4].map((i) => (
@@ -161,7 +165,7 @@ export default function HeroSection({
 								</div>
 							</LazySection>
 						)}
-					</div>
+					</LazySection>
 
 					<LazySection
 						animation="slide-up"
