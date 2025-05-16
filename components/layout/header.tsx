@@ -104,7 +104,7 @@ export default function Header() {
 				<div className="flex lg:hidden">
 					<button
 						type="button"
-						className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+						className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-foreground"
 						onClick={() => setMobileMenuOpen(true)}
 						aria-label="Open main menu"
 					>
@@ -122,7 +122,7 @@ export default function Header() {
 									? "text-primary font-semibold"
 									: scrolled
 										? "text-gray-900 hover:text-primary"
-										: "text-gray-700 hover:text-primary",
+										: "text-foreground hover:text-primary",
 							)}
 						>
 							{item.text}
@@ -185,7 +185,7 @@ export default function Header() {
 							</Link>
 							<button
 								type="button"
-								className="-m-2.5 rounded-md p-2.5 text-gray-700"
+								className="-m-2.5 rounded-md p-2.5 text-foreground"
 								onClick={() => setMobileMenuOpen(false)}
 								aria-label="Close menu"
 							>

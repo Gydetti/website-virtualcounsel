@@ -58,34 +58,38 @@ export default function HeroSection({
 		<section
 			id="hero-section"
 			aria-labelledby="hero-section-heading"
-			className="hero-pattern relative overflow-hidden bg-gradient-to-r from-blue-100 to-white min-h-[80vh] sm:min-h-[85vh] flex items-center"
+			className="hero-pattern relative overflow-hidden bg-gradient-to-r from-brand-primary/10 to-white min-h-[80vh] sm:min-h-[85vh] flex items-center"
 		>
 			{/* Background pattern */}
 			<div className="absolute inset-0 bg-grid-pattern opacity-10" />
 
 			{/* Floating elements for visual interest */}
-			<div className="hidden sm:block absolute top-20 right-10 w-64 h-64 bg-[rgba(var(--primary-rgb),0.05)] rounded-full blur-3xl" />
-			<div className="hidden sm:block absolute bottom-10 left-10 w-72 h-72 bg-blue-100/20 rounded-full blur-3xl" />
+			{/* <div className="hidden sm:block absolute top-20 right-10 w-64 h-64 bg-[rgba(var(--primary-rgb),0.05)] rounded-full blur-3xl" />
+			<div className="hidden sm:block absolute bottom-10 left-10 w-72 h-72 bg-[rgba(var(--brand-primary-rgb),0.2)] rounded-full blur-3xl" /> */}
 
 			<Section
 				fullBleed={false}
 				className="relative z-10 pb-16 sm:py-12 md:py-16 flex flex-col justify-center h-full"
 			>
 				<div className="grid md:grid-cols-2 gap-8 sm:gap-8 md:gap-12 lg:gap-16 items-center">
-					<motion.div
-						initial={{ opacity: 0, y: 40 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.8, ease: "easeOut" }}
-						className={`flex flex-col justify-center space-y-6 z-10 ${variant === "imageLeft" ? "md:order-2" : ""}`}
+					<LazySection
+						animation="none"
+						style={{ '--stagger-delay': '0.05s' } as React.CSSProperties}
+						className={`stagger-container flex flex-col justify-center space-y-6 z-10 ${variant === "imageLeft" ? "md:order-2" : ""}`}
 					>
 						{badgeText && (
-							<Badge className="w-fit">
+							<Badge
+								variant="dark"
+								style={{ '--index': 0 } as React.CSSProperties}
+								className="w-fit text-white"
+							>
 								{badgeText}
 							</Badge>
 						)}
 
 						<h1
 							id="hero-section-heading"
+							style={{ '--index': 1 } as React.CSSProperties}
 							className="text-[var(--font-heading-size)] lg:text-[var(--font-heading-size-lg)] font-bold leading-tight text-balance"
 						>
 							{headline && <span className="block">{headline}</span>}
@@ -94,11 +98,19 @@ export default function HeroSection({
 						</h1>
 
 						{subheadline && (
-							<p className="text-gray-700 max-w-lg">{subheadline}</p>
+							<p
+								style={{ '--index': 2 } as React.CSSProperties}
+								className="text-foreground max-w-lg"
+							>
+								{subheadline}
+							</p>
 						)}
 
 						{(primaryCta?.text || secondaryCta?.text) && (
-							<div className="flex flex-col sm:flex-row gap-4 pt-4">
+							<div
+								style={{ '--index': 3 } as React.CSSProperties}
+								className="flex flex-col sm:flex-row gap-4 pt-4"
+							>
 								{primaryCta?.text && primaryCta.href && (
 									<Button
 										size="lg"
@@ -129,7 +141,10 @@ export default function HeroSection({
 						)}
 
 						{showHelpedStats && (
-							<div className="flex items-center space-x-4 mt-6 text-sm">
+							<div
+								style={{ '--index': 4 } as React.CSSProperties}
+								className="flex items-center space-x-4 mt-6 text-sm"
+							>
 								<div className="flex -space-x-2">
 									{[1, 2, 3, 4].map((i) => (
 										<div
@@ -146,13 +161,13 @@ export default function HeroSection({
 										</div>
 									))}
 								</div>
-								<div className="text-gray-700">
+								<div className="text-foreground">
 									<span className="font-medium">100+</span> statistic that helps
 									build authority
 								</div>
 							</div>
 						)}
-					</motion.div>
+					</LazySection>
 
 					<LazySection
 						animation="slide-up"

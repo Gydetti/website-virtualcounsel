@@ -36,7 +36,7 @@ export default function ServiceCard({
 			className={`card-equal-height h-full overflow-hidden ${microClass} ${
 				popular
 					? "border-primary shadow-lg relative"
-					: "border-gray-200 shadow-sm"
+					: "border shadow-sm"
 			}`}
 		>
 			{popular && (
@@ -49,7 +49,7 @@ export default function ServiceCard({
 					{icon}
 				</div>
 				<CardTitle className="text-xl font-bold">{title}</CardTitle>
-				<CardDescription className="text-body-base text-gray-600">
+				<CardDescription className="text-body-base text-foreground">
 					{description}
 				</CardDescription>
 			</CardHeader>

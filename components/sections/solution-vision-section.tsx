@@ -78,7 +78,7 @@ export default function SolutionVisionSection({
 						{benefits.map((b) => (
 							<div key={b} className="flex items-start space-x-2">
 								<CheckCircle className="h-5 w-5 text-accent mt-1" />
-								<span className="text-gray-700">{b}</span>
+								<span className="text-foreground">{b}</span>
 							</div>
 						))}
 					</div>

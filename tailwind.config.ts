@@ -70,6 +70,8 @@ const config = {
 				sans: ["var(--font-raleway)", "sans-serif"],
 				poppins: ["var(--font-poppins)", "sans-serif"],
 				raleway: ["var(--font-raleway)", "sans-serif"],
+				heading: ["var(--font-heading)", "sans-serif"],
+				body: ["var(--font-body)", "sans-serif"],
 			},
 			keyframes: {
 				"accordion-down": {

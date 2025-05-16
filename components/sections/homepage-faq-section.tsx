@@ -15,6 +15,7 @@ import Link from "next/link";
 import type { z } from "zod";
 import LazySection from "@/components/ui/lazy-section";
 import type { CSSProperties } from "react";
+import { siteConfig } from "@/lib/siteConfig";
 
 export interface FaqItem {
 	question: string;
@@ -63,47 +64,59 @@ export default function HomepageFaqSection({
 					</h2>
 					{description && (
 						<p
-							className="text-gray-700 mb-8 max-w-2xl mx-auto"
+							className="text-foreground mb-8 max-w-2xl mx-auto"
 							style={{ '--index': 2 } as React.CSSProperties}
 						>
 							{description}
 						</p>
 					)}
-					{categories.map((cat, idx) => (
-						<div
-							key={cat.category}
-							className="mb-12 text-left max-w-3xl mx-auto"
-							style={{ '--index': 3 + idx } as React.CSSProperties}
-						>
-							<h3 className="text-body-base mb-6">{cat.category}</h3>
-							<Accordion type="single" collapsible className="space-y-4">
-								{cat.questions.map((q) => (
-									<AccordionItem
-										key={q.question}
-										value={`faq-${cat.category}-${q.question}`}
-										className="border border-gray-200 rounded-lg overflow-hidden"
-									>
-										<AccordionTrigger className="px-6 py-2 text-body-base font-medium">
-											{q.question}
-										</AccordionTrigger>
-										<AccordionContent className="px-6 py-4 text-gray-700">
-											{q.answer}
-										</AccordionContent>
-									</AccordionItem>
-								))}
-							</Accordion>
-						</div>
-					))}
-					<div
-						className="flex justify-center mt-8"
-						style={{ '--index': 3 + categories.length } as React.CSSProperties}
-					>
-						<Button size="lg" asChild>
-							<Link href={cta.href || "/contact"}>
-								{cta.text || "See all FAQs"}
-							</Link>
-						</Button>
+					<div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+						{categories.map((cat, idx) => (
+							<div
+								key={cat.category}
+								className="text-center"
+								style={{ '--index': 3 + idx } as CSSProperties}
+							>
+								<h3 className="text-body-base mb-6">{cat.category}</h3>
+								<Accordion
+									type="single"
+									collapsible
+									style={{
+										display: 'grid',
+										gap: '1rem',
+										gridTemplateRows: `repeat(${cat.questions.length}, minmax(0, 1fr))`,
+									} as CSSProperties}
+								>
+									{cat.questions.map((q) => (
+										<AccordionItem
+											key={q.question}
+											value={`faq-${cat.category}-${q.question}`}
+											className="border rounded-lg overflow-hidden flex flex-col"
+										>
+											<AccordionTrigger className="flex items-center justify-between w-full px-6 py-2 text-body-base font-medium text-left">
+												{q.question}
+											</AccordionTrigger>
+											<AccordionContent className="px-6 py-4 text-foreground">
+												{q.answer}
+											</AccordionContent>
+										</AccordionItem>
+									))}
+								</Accordion>
+							</div>
+						))}
 					</div>
+					{siteConfig.features.enableHomepageFaqCta && (
+						<div
+							className="flex justify-center mt-12"
+							style={{ '--index': 3 + categories.length } as CSSProperties}
+						>
+							<Button size="lg" asChild>
+								<Link href={cta.href || "/contact"}>
+									{cta.text || "See all FAQs"}
+								</Link>
+							</Button>
+						</div>
+					)}
 				</LazySection>
 			</Section>
 		</>

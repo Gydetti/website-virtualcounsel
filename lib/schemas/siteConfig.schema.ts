@@ -162,6 +162,7 @@ const featureFlagsSchema = z.object({
 	enableAboutHeroCta: z.boolean().optional().default(false),
 	enableKpiSection: z.boolean().optional().default(false),
 	enableAboutKpiSection: z.boolean().optional().default(false),
+	enableHomepageFaqCta: z.boolean().optional().default(false),
 });
 
 const contactFormFieldSchema = z.object({

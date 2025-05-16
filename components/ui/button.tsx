@@ -24,7 +24,7 @@ const buttonVariants = cva(
 				ghost: "hover:bg-accent hover:text-accent-foreground",
 				link: "text-primary underline-offset-4 hover:underline",
 				white:
-					"bg-white text-gray-900 shadow-lg hover:bg-gray-100 transition-shadow duration-200",
+					"bg-white text-gray-900 shadow-lg hover:bg-lightGrey transition-shadow duration-200",
 				spark:
 					"bg-primary text-primary-foreground shadow-lg hover:shadow-xl hover:bg-primary hover:brightness-110 transition-shadow duration-200",
 			},

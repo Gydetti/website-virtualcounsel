@@ -995,12 +995,10 @@ This codebase is designed for maximum flexibility, automation, and AI-driven cus
 - When onboarding a new client, update only `site.config.local.ts` and (optionally) the fallbacks in `globals.css`.
 - All theme variables are now injected server-side; no client provider is needed.
 
-### Why Are Colors/Fonts in Both Places?
-- `globals.css` provides SSR/FOUC-safe fallbacks.
-- `site.config.local.ts` is the dynamic, runtime source of truth.
-- The server-side logic in `app/layout.tsx` syncs the two at build/SSR time.
-
----
+### Why Are Colors/Fonts in Multiple Layers?
+- Base defaults in `app/globals.css` set initial HSL/RGB CSS variables to prevent FOUC.
+- Dynamic overrides in `app/layout.tsx` read your `site.config.local.ts` at build/SSR and inline a `<style>` resetting those CSS variables.
+- Tailwind mappings in `tailwind.config.ts` expose those variables as utility classes (`bg-brand-dark`, `text-primary-10`, `border-accent-50`, etc.), including opacity variants via the plugin.
 
 This setup ensures the site is always styled, always dynamic, and always ready for AI or human-driven customization.
 

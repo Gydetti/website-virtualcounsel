@@ -8,7 +8,7 @@ export default function BfcacheSafety() {
   useEffect(() => {
     // Monkey-patch window.fetch to attach an AbortController
     const originalFetch = window.fetch;
-    window.fetch = (input: RequestInfo, init?: RequestInit) => {
+    window.fetch = ((input: RequestInfo | URL, init?: RequestInit) => {
       const controller = new AbortController();
       controllers.add(controller);
       const fetchInit = { ...init, signal: controller.signal };
@@ -17,7 +17,7 @@ export default function BfcacheSafety() {
         controllers.delete(controller);
       });
       return promise;
-    };
+    }) as typeof window.fetch;
 
     // Abort all in-flight fetches when page is hidden (bfcache triggers)
     const onPageHide = () => {

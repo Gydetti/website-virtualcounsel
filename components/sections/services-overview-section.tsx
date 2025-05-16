@@ -18,7 +18,7 @@ export default function ServicesOverviewSection({
 	return (
 		<Section
 			id="services-overview"
-			className="relative overflow-hidden bg-gradient-to-r from-blue-100 via-transparent to-transparent z-10 py-12"
+			className="relative overflow-hidden bg-gradient-to-r from-brand-light via-transparent to-transparent z-10 py-12"
 		>
 			<LazySection
 				animation="none"
@@ -36,7 +36,7 @@ export default function ServicesOverviewSection({
 					</h1>
 				)}
 				{description && (
-					<p className="text-gray-700 mb-8" style={{ '--index': 2 } as CSSProperties}>
+					<p className="text-foreground mb-8" style={{ '--index': 2 } as CSSProperties}>
 						{description}
 					</p>
 				)}

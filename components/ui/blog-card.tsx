@@ -35,7 +35,7 @@ export default function BlogCard({
 		: "";
 	return (
 		<Card
-			className={`h-full overflow-hidden border-gray-200 shadow-sm ${microClass}`}
+			className={`h-full overflow-hidden border shadow-sm ${microClass}`}
 		>
 			<div className="relative h-48 w-full overflow-hidden">
 				<Image
@@ -57,7 +57,7 @@ export default function BlogCard({
 				</CardTitle>
 			</CardHeader>
 			<CardContent>
-				<CardDescription className="text-body-base text-gray-600">
+				<CardDescription className="text-body-base text-foreground">
 					{excerpt}
 				</CardDescription>
 			</CardContent>

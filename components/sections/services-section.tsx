@@ -110,7 +110,7 @@ export default function ServicesSection({
 									<CardTitle className="text-xl font-bold">
 										{service.title}
 									</CardTitle>
-									<CardDescription className="text-gray-600">
+									<CardDescription className="text-foreground">
 										{service.description}
 									</CardDescription>
 								</CardHeader>

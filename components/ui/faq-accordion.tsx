@@ -54,12 +54,12 @@ export default function FaqAccordion({
 							>
 								<AccordionItem
 									value={item.question}
-									className="border border-gray-200 rounded-lg overflow-hidden"
+									className="border border rounded-lg overflow-hidden"
 								>
-									<AccordionTrigger className="px-6 py-4 hover:bg-gray-50 text-left font-medium">
+									<AccordionTrigger className="px-6 py-4 hover:bg-background text-left font-medium">
 										{item.question}
 									</AccordionTrigger>
-									<AccordionContent className="px-6 py-4 bg-gray-50 text-gray-700">
+									<AccordionContent className="px-6 py-4 bg-background text-foreground">
 										{item.answer}
 									</AccordionContent>
 								</AccordionItem>
@@ -74,7 +74,7 @@ export default function FaqAccordion({
 						className="text-center py-12"
 					>
 						<h3 className="mb-2">No results found</h3>
-						<p className="text-gray-600">
+						<p className="text-foreground">
 							We couldn't find any FAQs matching your search. Please try a
 							different search term.
 						</p>

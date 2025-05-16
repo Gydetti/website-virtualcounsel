@@ -32,7 +32,7 @@ export default function ProcessSection({
 			<div className="max-w-4xl mx-auto relative z-10">
 				{/* Header stagger container */}
 				<div
-					className="stagger-container text-center mb-12"
+					className="stagger-container text-center"
 					style={{ '--stagger-delay': '0.1s' } as CSSProperties}
 				>
 					{badgeText && (
@@ -69,17 +69,17 @@ export default function ProcessSection({
 										{step.number || String(index + 1).padStart(2, "0")}
 									</div>
 								</div>
-								<div className="flex-grow w-full bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:shadow-lg transition-shadow">
+								<div className="flex-grow w-full bg-white p-8 rounded-xl shadow-md border hover:shadow-lg transition-shadow">
 									<h3 className="mb-1">{step.title}</h3>
 									{step.subtitle && (
 										<p className="text-primary font-medium mb-3">
 											{step.subtitle}
 										</p>
 									)}
-									<p className="text-gray-600 mb-6">{step.description}</p>
+									<p className="text-foreground mb-6">{step.description}</p>
 
 									{step.details && step.details.length > 0 && (
-										<div className="bg-gray-50 p-6 rounded-lg">
+										<div className="bg-background p-6 rounded-lg">
 											<h3 className="mb-3">What this includes:</h3>
 											<ul className="space-y-2">
 												{step.details.map((detail) => (

@@ -54,7 +54,7 @@ export default function PricingSection({
 				{cards.map((card: z.infer<typeof pricingCardSchema>, idx) => (
 					<Card
 						key={card.id}
-						className="relative flex h-full flex-col justify-between border border-gray-200 bg-white shadow-sm transition-transform duration-300 hover:scale-105 hover:shadow-lg"
+						className="relative flex h-full flex-col justify-between border bg-white shadow-sm transition-transform duration-300 hover:scale-105 hover:shadow-lg"
 						style={{ '--index': idx + 2 } as React.CSSProperties}
 					>
 						{card.popular && (
@@ -62,7 +62,7 @@ export default function PricingSection({
 								Popular
 							</div>
 						)}
-						<CardHeader className="text-center bg-gray-50 px-6 py-8 rounded-t-lg">
+						<CardHeader className="text-center bg-background px-6 py-8 rounded-t-lg">
 							<CardTitle>{card.title}</CardTitle>
 							<div className="mt-2 text-3xl font-bold">{card.price}</div>
 						</CardHeader>

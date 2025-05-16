@@ -27,7 +27,7 @@ const ImageBlock: FC<ImageBlockProps> = ({ image, caption }) => {
 				priority // Consider making this conditional if multiple images are on a page
 			/>
 			{caption && (
-				<figcaption className="mt-3 text-sm text-center text-gray-600 leading-snug">
+				<figcaption className="mt-3 text-sm text-center text-foreground leading-snug">
 					{caption}
 				</figcaption>
 			)}

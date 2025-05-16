@@ -10,7 +10,7 @@ describe("HeroSection", () => {
 		render(<HeroSection {...heroSectionData} />);
 		// Check that the headline is rendered
 		const heading = screen.getByRole("heading", { level: 1 });
-		expect(heading).toHaveTextContent(heroSectionData.headline);
+		expect(heading).toHaveTextContent(heroSectionData.headline ?? "");
 		// Check that the badge text is rendered
 		const badge = screen.getByText(heroSectionData.badgeText);
 		expect(badge).toBeInTheDocument();

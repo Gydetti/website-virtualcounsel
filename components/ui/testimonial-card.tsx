@@ -41,7 +41,7 @@ export default function TestimonialCard({
 						))}
 					</div>
 				)}
-				<p className="text-gray-700 italic mb-8">{quote}</p>
+				<p className="text-foreground italic mb-8">{quote}</p>
 				<div className="flex items-center mt-auto">
 					<div className="mr-4">
 						<Image
@@ -54,7 +54,7 @@ export default function TestimonialCard({
 					</div>
 					<div>
 						<h4 className="text-gray-900">{name}</h4>
-						<p className="text-gray-600">{title}</p>
+						<p className="text-foreground">{title}</p>
 					</div>
 				</div>
 			</CardContent>

@@ -41,7 +41,7 @@ export default function AboutValuesSection({
 					{values.map((value, idx) => (
 						<li
 							key={value}
-							className="text-gray-700 text-lg"
+							className="text-foreground text-lg"
 							style={{ '--index': 3 + idx } as CSSProperties}
 						>
 							• {value}

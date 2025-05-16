@@ -51,7 +51,7 @@ export default function ResourceDetailSection({
 	return (
 		<Section
 			id={`resource-${resource.slug}-detail`}
-			className="relative overflow-hidden bg-gradient-to-r from-blue-100 via-transparent to-transparent py-12 md:py-20 z-10"
+			className="relative overflow-hidden bg-gradient-to-r from-brand-light via-transparent to-transparent py-12 md:py-20 z-10"
 		>
 			<div className="container mx-auto px-4">
 				{/* Enhanced Hero Area for the Resource */}
@@ -65,7 +65,7 @@ export default function ResourceDetailSection({
 						</LazySection>
 						{resource.subtitle && (
 							<LazySection animation="fade-up" delay={0.2}>
-								<p className="text-lg text-gray-700 mb-6 leading-relaxed">
+								<p className="text-lg text-foreground mb-6 leading-relaxed">
 									{resource.subtitle}
 								</p>
 							</LazySection>
@@ -76,7 +76,7 @@ export default function ResourceDetailSection({
 								<h3 className="text-xl font-semibold mb-3 text-gray-800">
 									What you'll gain:
 								</h3>
-								<ul className="list-none space-y-2 text-left text-gray-700">
+								<ul className="list-none space-y-2 text-left text-foreground">
 									<li className="flex items-start">
 										<svg
 											className="w-5 h-5 text-blue-600 mr-2 flex-shrink-0 mt-1"

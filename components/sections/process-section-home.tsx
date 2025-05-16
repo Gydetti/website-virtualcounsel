@@ -18,7 +18,7 @@ export default function ProcessSectionHome({
 		<Section
 			id="process"
 			fullBleed={false}
-			className=" px-4 py-20 md:px-6 md:py-28"
+			className=" px-4 py-20 md:px-6 md:py-20"
 		>
 			<LazySection
 				animation="none"

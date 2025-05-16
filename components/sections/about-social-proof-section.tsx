@@ -17,7 +17,7 @@ export default function AboutSocialProofSection({
 	socialProof,
 }: AboutSocialProofSectionProps) {
 	return (
-		<Section id="about-social-proof" className="py-12 bg-gray-50">
+		<Section id="about-social-proof" className="py-12 bg-background">
 			<LazySection
 				animation="none"
 				className="stagger-container max-w-4xl mx-auto text-center"
@@ -57,7 +57,7 @@ export default function AboutSocialProofSection({
 									/>
 								</div>
 							)}
-							<p className="italic text-gray-600 mb-4">"{item.quote}"</p>
+							<p className="italic text-foreground mb-4">"{item.quote}"</p>
 							<div className="font-semibold text-gray-900">{item.name}</div>
 							{item.title && (
 								<div className="text-gray-500 text-sm">{item.title}</div>

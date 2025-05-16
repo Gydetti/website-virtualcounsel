@@ -26,7 +26,7 @@ export default function ProblemPainSection({
 			<LazySection
 				animation="slide-up"
 				delay={0}
-				className="-mx-3.5 sm:mx-auto pattern-overlay bg-gray-900 text-white rounded-[30px] border border-gray-700/50 shadow-lg p-8 sm:p-12"
+				className="-mx-3.5 sm:mx-auto pattern-overlay bg-brand-dark text-white rounded-[30px] border shadow-lg p-8 sm:p-12"
 			>
 				<div className="grid gap-12 lg:grid-cols-2">
 					<div className="flex flex-col justify-center space-y-8">
@@ -43,13 +43,13 @@ export default function ProblemPainSection({
 								</h2>
 							)}
 							{description && (
-								<p className="max-w-[600px] text-gray-400 md:text-xl">
+								<p className="max-w-[600px] text-muted-foreground md:text-xl">
 									{description}
 								</p>
 							)}
 						</div>
 						{calloutText && (
-							<div className="rounded-lg bg-gray-800 p-6">
+							<div className="rounded-lg bg-[rgba(255,255,255,0.08)] p-6">
 								<p className="text-lg font-medium">{calloutText}</p>
 							</div>
 						)}
@@ -68,12 +68,12 @@ export default function ProblemPainSection({
 									}}
 									transition={{ duration: 0.3, delay: idx * 0.2 }}
 									viewport={{ once: true }}
-									className="rounded-lg bg-gray-800 p-6 shadow-sm hover:shadow-xl transition-shadow duration-300"
+									className="rounded-lg bg-[rgba(255,255,255,0.08)] p-6 shadow-sm hover:shadow-xl transition-shadow duration-300"
 								>
 									<h3 className="mb-3 text-xl font-bold text-accent">
 										{card.title}
 									</h3>
-									<p className="text-gray-300 text-base md:text-lg">
+									<p className="text-muted-foreground text-base md:text-lg">
 										{card.description}
 									</p>
 								</motion.div>

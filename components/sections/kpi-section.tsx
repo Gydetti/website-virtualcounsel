@@ -28,8 +28,8 @@ export default function KpiSection({ stats, embedInAbout, isHomepage, isAboutPag
 		"rounded-xl",
 		// Use default KPI styling except when genuinely on About page route and not embedded
 		embedInAbout || (!isAboutPage)
-			? "bg-white border border-gray-200 border-t-4 border-t-primary"
-			: "bg-gray-50 border border-gray-100",
+			? "bg-white border border border-t-4 border-t-primary"
+			: "bg-background border border-gray-100",
 		"p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col items-center text-center h-full",
 	].join(" ");
 
@@ -48,7 +48,7 @@ export default function KpiSection({ stats, embedInAbout, isHomepage, isAboutPag
 								scrollSpyDelay={500}
 							/>
 						</div>
-						<p className="text-gray-600 text-sm md:text-base m-0">
+						<p className="text-foreground text-sm md:text-base m-0">
 							{stat.label}
 						</p>
 					</div>

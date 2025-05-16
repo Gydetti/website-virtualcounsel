@@ -157,6 +157,7 @@ export const siteConfig: SiteConfigSchema = {
 		enableProcessSection: false, // <--- Toggle Process/how-it-works section display (disabled on homepage)
 		enableFaqSection: true, // <--- Toggle FAQ section display (e.g., on homepage)
 		enableValuePropSection: true, // <--- Toggle Value Proposition section display
+		enableHomepageFaqCta: false,
 		enableAboutHeroCta: false,
 		enableLandingPages: true, // <--- Toggle dedicated Landing Page functionality
 		enableCustomCookieBanner: false, // <--- Use custom banner instead of Cookiebot (if ID not set)

@@ -36,7 +36,7 @@ export default function CookieConsentBanner() {
 				className="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6"
 			>
 				<div className="mx-auto max-w-7xl">
-					<div className="bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden">
+					<div className="bg-white rounded-lg shadow-lg border border overflow-hidden">
 						{!showDetails ? (
 							<div className="p-6">
 								<div className="flex items-start justify-between mb-4">
@@ -50,7 +50,7 @@ export default function CookieConsentBanner() {
 										<X className="h-4 w-4" />
 									</Button>
 								</div>
-								<p className="text-gray-600 mb-6">
+								<p className="text-foreground mb-6">
 									We use cookies to enhance your browsing experience, serve
 									personalized ads or content, and analyze our traffic. By
 									clicking "Accept all", you consent to our use of cookies.

@@ -45,7 +45,7 @@ export default function ResourceListSection({
 	return (
 		<section
 			id={id}
-			className="relative overflow-hidden bg-gradient-to-r from-blue-100 via-transparent to-transparent py-12 z-10"
+			className="relative overflow-hidden bg-gradient-to-r from-brand-light via-transparent to-transparent py-12 z-10"
 		>
 			<div className="container mx-auto px-4">
 				<h2 className="text-[var(--font-subheading-size)] font-bold text-center mb-10">
@@ -80,7 +80,7 @@ export default function ResourceListSection({
 										{resource.title}
 									</h3>
 									{resource.subtitle && (
-										<p className="text-gray-600 text-sm line-clamp-3">
+										<p className="text-foreground text-sm line-clamp-3">
 											{resource.subtitle}
 										</p>
 									)}

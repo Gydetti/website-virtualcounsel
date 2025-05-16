@@ -89,7 +89,7 @@ export default function AboutSection({
 		return (
 			<Section
 				id="about"
-				className="relative overflow-hidden bg-gradient-to-r from-blue-100 via-transparent to-transparent z-10"
+				className="relative overflow-hidden bg-gradient-to-r from-brand-light via-transparent to-transparent z-10"
 			>
 				<div className={outerContainerClass}>
 					<LazySection
@@ -134,7 +134,7 @@ export default function AboutSection({
 									{paragraphs.map((p) => (
 										<p
 											key={p.slice(0, 16)}
-											className="text-gray-700 mb-6 last:mb-8"
+											className="text-foreground mb-6 last:mb-8"
 										>
 											{p}
 										</p>
@@ -152,7 +152,7 @@ export default function AboutSection({
 												<div className="font-bold text-primary text-xl">
 													{stat.value}
 												</div>
-												<div className="text-gray-600">{stat.label}</div>
+												<div className="text-foreground">{stat.label}</div>
 											</div>
 										))}
 									</div>
@@ -160,11 +160,11 @@ export default function AboutSection({
 							)}
 							{philosophy && (
 								<LazySection animation="fade-up" delay={0.6} className="mt-8">
-									<div className="rounded-xl border border-gray-200 bg-gray-50 p-8 shadow-sm hover:shadow-md transition-shadow">
+									<div className="rounded-xl border bg-background p-8 shadow-sm hover:shadow-md transition-shadow">
 										<h2 className="text-xl font-semibold text-gray-900">
 											{philosophy.title}
 										</h2>
-										<p className="mt-2 text-gray-600 leading-relaxed">
+										<p className="mt-2 text-foreground leading-relaxed">
 											{philosophy.text}
 										</p>
 									</div>
@@ -178,7 +178,7 @@ export default function AboutSection({
 											return (
 												<div
 													key={card.id}
-													className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow"
+													className="rounded-xl border bg-white p-6 shadow-sm hover:shadow-md transition-shadow"
 												>
 													<div
 														className={`flex h-12 w-12 items-center justify-center rounded-full ${card.iconBg}`}
@@ -188,7 +188,7 @@ export default function AboutSection({
 													<h3 className="mt-4 text-lg font-semibold text-gray-900">
 														{card.title}
 													</h3>
-													<p className="mt-2 text-sm text-gray-600">
+													<p className="mt-2 text-sm text-foreground">
 														{card.description}
 													</p>
 												</div>
@@ -223,7 +223,7 @@ export default function AboutSection({
 	return (
 		<Section
 			id="about"
-			className={`relative overflow-hidden bg-gradient-to-r from-blue-100 via-transparent to-transparent z-10${isHomepage ? ' min-h-[80vh] sm:min-h-[75vh] flex items-center' : ''}`}
+			className={`relative overflow-hidden bg-gradient-to-r from-brand-light via-transparent to-transparent z-10${isHomepage ? ' min-h-[80vh] sm:min-h-[75vh] flex items-center' : ''}`}
 		>
 			<div className={outerContainerClass}>
 				<LazySection
@@ -248,7 +248,7 @@ export default function AboutSection({
 							{paragraphs.map((p) => (
 								<p
 									key={p.slice(0, 16)}
-									className="text-gray-700 mb-6 last:mb-8"
+									className="text-foreground mb-6 last:mb-8"
 								>
 									{p}
 								</p>
@@ -277,11 +277,11 @@ export default function AboutSection({
 				>
 					{philosophy && (
 						<LazySection animation="fade-up" delay={0.6}>
-							<div className="rounded-xl border border-gray-200 bg-gray-50 p-8 shadow-sm hover:shadow-md transition-shadow mb-6">
+							<div className="rounded-xl border bg-background p-8 shadow-sm hover:shadow-md transition-shadow mb-6">
 								<h2 className="text-xl font-semibold text-gray-900">
 									{philosophy.title}
 								</h2>
-								<p className="mt-2 text-gray-600 leading-relaxed">
+								<p className="mt-2 text-foreground leading-relaxed">
 									{philosophy.text}
 								</p>
 							</div>
@@ -295,7 +295,7 @@ export default function AboutSection({
 									return (
 										<div
 											key={card.id}
-											className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow"
+											className="rounded-xl border bg-white p-6 shadow-sm hover:shadow-md transition-shadow"
 										>
 											<div
 												className={`flex h-12 w-12 items-center justify-center rounded-full ${card.iconBg}`}
@@ -305,7 +305,7 @@ export default function AboutSection({
 											<h3 className="mt-4 text-lg font-semibold text-gray-900">
 												{card.title}
 											</h3>
-											<p className="mt-2 text-sm text-gray-600">
+											<p className="mt-2 text-sm text-foreground">
 												{card.description}
 											</p>
 										</div>

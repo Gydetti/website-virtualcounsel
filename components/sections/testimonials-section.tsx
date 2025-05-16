@@ -106,7 +106,7 @@ export default function TestimonialsSection({
 															/>
 														))}
 											</div>
-											<p className="text-body-base text-gray-700 italic mb-8 line-clamp-6">
+											<p className="text-body-base text-foreground italic mb-8 line-clamp-6">
 												&quot;{item.quote}&quot;
 											</p>
 											<div className="flex items-center mt-auto">
@@ -123,7 +123,7 @@ export default function TestimonialsSection({
 													<h3 className="text-body-base text-gray-900">
 														{item.name}
 													</h3>
-													<p className="text-body-base text-gray-600">
+													<p className="text-body-base text-foreground">
 														{item.title}
 													</p>
 												</div>
@@ -147,7 +147,7 @@ export default function TestimonialsSection({
 							}
 							className="p-2 bg-white rounded-full shadow-md hover:shadow-lg focus:outline-none"
 						>
-							<ChevronLeft className="h-5 w-5 text-gray-700" />
+							<ChevronLeft className="h-5 w-5 text-foreground" />
 						</button>
 					</div>
 
@@ -160,7 +160,7 @@ export default function TestimonialsSection({
 							}
 							className="p-2 bg-white rounded-full shadow-md hover:shadow-lg focus:outline-none"
 						>
-							<ChevronRight className="h-5 w-5 text-gray-700" />
+							<ChevronRight className="h-5 w-5 text-foreground" />
 						</button>
 					</div>
 				</LazySection>
@@ -182,7 +182,7 @@ export default function TestimonialsSection({
 
 			{/* Authority Badge */}
 			<div className="mt-16 flex justify-center">
-				<div className="inline-flex items-center rounded-full border border-secondary bg-white px-6 py-2 text-sm font-medium shadow-lg dark:bg-gray-800 dark:text-primary-foreground">
+				<div className="inline-flex items-center rounded-full border border-secondary bg-white px-6 py-2 text-sm font-medium shadow-lg dark:bg-brand-dark dark:text-primary-foreground">
 					<span className="mr-2 h-2 w-2 rounded-full bg-secondary dark:bg-primary-foreground" />
 					Show that you are certified or an expert in your field
 				</div>

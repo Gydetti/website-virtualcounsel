@@ -54,7 +54,7 @@ export default function FeaturesSection({
 					)}
 					{description && (
 						<p
-							className="text-gray-700"
+							className="text-foreground"
 							style={{ '--index': 2 } as CSSProperties}
 						>
 							{description}
@@ -77,7 +77,7 @@ export default function FeaturesSection({
 								{withoutItems?.map((item) => (
 									<li key={item} className="flex items-start">
 										<XCircle className="text-red-400 mr-2 h-5 w-5 flex-shrink-0 mt-0.5" />
-										<span className="text-gray-700">{item}</span>
+										<span className="text-foreground">{item}</span>
 									</li>
 								))}
 							</ul>
@@ -107,7 +107,7 @@ export default function FeaturesSection({
 								{withItems?.map((item) => (
 									<li key={item} className="flex items-start">
 										<CheckCircle className="text-green-400 mr-2 h-5 w-5 flex-shrink-0 mt-0.5" />
-										<span className="text-gray-700">{item}</span>
+										<span className="text-foreground">{item}</span>
 									</li>
 								))}
 							</ul>

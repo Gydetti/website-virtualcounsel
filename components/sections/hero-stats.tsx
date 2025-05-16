@@ -18,7 +18,7 @@ export default function HeroStats({ stats }: HeroStatsProps) {
                         <div className="text-primary font-bold text-3xl md:text-4xl mb-2">
                             <CountUp end={stat.value} suffix={stat.suffix} duration={3.5} enableScrollSpy scrollSpyDelay={300} />
                         </div>
-                        <p className="text-gray-600 text-sm md:text-base m-0">{stat.label}</p>
+                        <p className="text-foreground text-sm md:text-base m-0">{stat.label}</p>
                     </div>
                 ))}
             </div>

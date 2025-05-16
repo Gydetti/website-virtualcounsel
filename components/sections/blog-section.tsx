@@ -33,7 +33,7 @@ export default function BlogSection({
 		return null;
 	}
 	return (
-		<Section className="relative overflow-hidden pattern-overlay pattern-overlay-fade bg-gradient-to-br from-blue-50 to-transparent">
+		<Section className="relative overflow-hidden pattern-overlay pattern-overlay-fade bg-gradient-to-br from-brand-light to-transparent">
 			{/* Decorative elements - re-enabled and styled with theme colors */}
 			<div className="hidden sm:block absolute top-0 left-1/4 w-72 h-72 bg-[rgba(var(--secondary-rgb),0.02)] rounded-full -translate-y-1/2 blur-3xl pointer-events-none opacity-70" />
 			<div className="hidden sm:block absolute bottom-0 right-1/4 w-72 h-72 bg-[rgba(var(--primary-rgb),0.02)] rounded-full translate-y-1/2 blur-3xl pointer-events-none" />
@@ -102,7 +102,7 @@ export default function BlogSection({
 									</CardTitle>
 								</CardHeader>
 								<CardContent>
-									<CardDescription className="text-gray-600">
+									<CardDescription className="text-foreground">
 										{post.excerpt}
 									</CardDescription>
 								</CardContent>
