@@ -18,8 +18,8 @@ import type {
 } from "@/lib/schemas/sections.schema";
 import { ArrowRight, BarChart2, Globe, Zap } from "lucide-react";
 import Link from "next/link";
-import type { z } from "zod";
 import type { CSSProperties } from "react";
+import type { z } from "zod";
 
 // Map of icon names to components
 const iconMap: Record<string, React.ReactNode> = {
@@ -59,19 +59,22 @@ export default function ServicesSection({
 				<LazySection
 					animation="none"
 					className="stagger-container text-center mb-16"
-					style={{ '--stagger-delay': '0.1s' } as CSSProperties}
+					style={{ "--stagger-delay": "0.1s" } as CSSProperties}
 				>
-					<Badge className="mb-4" style={{ '--index': 0 } as CSSProperties}>
+					<Badge className="mb-4" style={{ "--index": 0 } as CSSProperties}>
 						{badgeText || "Our Services"}
 					</Badge>
 					<h2
 						id="services-section-heading"
 						className="text-[var(--font-subheading-size)]"
-						style={{ '--index': 1 } as CSSProperties}
+						style={{ "--index": 1 } as CSSProperties}
 					>
 						{heading}
 					</h2>
-					<p className="section-subtitle" style={{ '--index': 2 } as CSSProperties}>
+					<p
+						className="section-subtitle"
+						style={{ "--index": 2 } as CSSProperties}
+					>
 						{description}
 					</p>
 				</LazySection>
@@ -80,13 +83,13 @@ export default function ServicesSection({
 				<LazySection
 					animation="none"
 					className="stagger-container grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-					style={{ '--stagger-delay': '0.2s' } as CSSProperties}
+					style={{ "--stagger-delay": "0.2s" } as CSSProperties}
 				>
 					{services.map((service: z.infer<typeof serviceItemSchema>, idx) => (
 						<div
 							key={service.id}
 							className="h-full"
-							style={{ '--index': idx } as CSSProperties}
+							style={{ "--index": idx } as CSSProperties}
 						>
 							<Card
 								className={`card-equal-height h-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-gradient-to-b from-white to-blue-50/30 ${
@@ -169,9 +172,9 @@ export default function ServicesSection({
 					<LazySection
 						animation="none"
 						className="stagger-container text-center mt-12"
-						style={{ '--stagger-delay': '0.3s' } as CSSProperties}
+						style={{ "--stagger-delay": "0.3s" } as CSSProperties}
 					>
-						<div style={{ '--index': 0 } as CSSProperties}>
+						<div style={{ "--index": 0 } as CSSProperties}>
 							<Button
 								size="lg"
 								className="group w-full sm:w-auto whitespace-normal break-words"

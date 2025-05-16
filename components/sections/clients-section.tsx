@@ -1,12 +1,12 @@
 "use client";
 import { Section } from "@/components/layout/Section";
 import { Badge } from "@/components/ui/badge";
+import LazySection from "@/components/ui/lazy-section";
 import type { clientsSectionDataSchema } from "@/lib/schemas/sections.schema";
 import Image from "next/image";
+import type { CSSProperties } from "react";
 import type { z } from "zod";
 import styles from "./clients-section.module.css";
-import type { CSSProperties } from "react";
-import LazySection from "@/components/ui/lazy-section";
 
 // Updated props type alias
 export type ClientsSectionProps = z.infer<typeof clientsSectionDataSchema>;
@@ -35,21 +35,16 @@ export default function ClientsSection({
 			<LazySection
 				animation="none"
 				className="stagger-container relative z-10"
-				style={{ '--stagger-delay': '0.1s' } as CSSProperties}
+				style={{ "--stagger-delay": "0.1s" } as CSSProperties}
 			>
 				<div
 					className="text-center mb-4"
-					style={{ '--index': 0 } as CSSProperties}
+					style={{ "--index": 0 } as CSSProperties}
 				>
-					<Badge className="mb-4">
-						{badgeText}
-					</Badge>
+					<Badge className="mb-4">{badgeText}</Badge>
 				</div>
 
-				<div
-					className="py-4"
-					style={{ '--index': 1 } as CSSProperties}
-				>
+				<div className="py-4" style={{ "--index": 1 } as CSSProperties}>
 					<div className="py-2">
 						<div className={styles.slider_wrapper}>
 							<div className={styles.slider}>

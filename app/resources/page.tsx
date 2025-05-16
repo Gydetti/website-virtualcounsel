@@ -1,3 +1,4 @@
+import DynamicPageRenderer from "@/components/layout/DynamicPageRenderer";
 import { Section } from "@/components/layout/Section";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -18,7 +19,6 @@ import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import DynamicPageRenderer from "@/components/layout/DynamicPageRenderer";
 
 // Metadata
 export async function generateMetadata(): Promise<Metadata> {
@@ -34,7 +34,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function ResourcesIndexPage() {
 	// Use DynamicPageRenderer for ResourceListSection
 	const resourcesListPageStructure = siteConfig.pageStructures?.find(
-		(p) => p.path === "/resources"
+		(p) => p.path === "/resources",
 	);
 	if (!resourcesListPageStructure) {
 		return (

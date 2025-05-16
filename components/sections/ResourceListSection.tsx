@@ -1,8 +1,8 @@
 "use client";
-import { useState } from "react";
 import type { resourceSchema } from "@/lib/schemas/contentBlocks.schema";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import type { z } from "zod";
 
 interface ResourceListSectionProps {
@@ -38,7 +38,8 @@ export default function ResourceListSection({
 	// Track per-resource image src for error fallbacks
 	const initialSrcMap: Record<string, string> = {};
 	for (const res of resources) {
-		initialSrcMap[res.slug] = res.heroImage?.src || "/images/placeholders/placeholder.svg";
+		initialSrcMap[res.slug] =
+			res.heroImage?.src || "/images/placeholders/placeholder.svg";
 	}
 	const [srcMap, setSrcMap] = useState<Record<string, string>>(initialSrcMap);
 

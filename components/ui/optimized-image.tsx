@@ -13,7 +13,7 @@ interface OptimizedImageProps {
 	fill?: boolean;
 	sizes?: string;
 	priority?: boolean;
-	placeholder?: 'blur' | 'empty';
+	placeholder?: "blur" | "empty";
 	blurDataURL?: string;
 	className?: string;
 	objectFit?: "contain" | "cover" | "fill" | "none" | "scale-down";
@@ -29,7 +29,7 @@ export default function OptimizedImage({
 	fill = false,
 	sizes,
 	priority = false,
-	placeholder = 'empty',
+	placeholder = "empty",
 	blurDataURL,
 	className,
 	objectFit = "cover",

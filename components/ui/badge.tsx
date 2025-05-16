@@ -10,8 +10,7 @@ const badgeVariants = cva(
 			variant: {
 				default:
 					"border-transparent bg-[rgba(var(--primary-rgb),0.1)] text-primary hover:bg-[rgba(var(--primary-rgb),0.2)]",
-				dark:
-					"border-transparent bg-[rgba(var(--primary-rgb),0.8)] text-primary hover:bg-[rgba(var(--primary-rgb),0.7)]",
+				dark: "border-transparent bg-[rgba(var(--primary-rgb),0.8)] text-primary hover:bg-[rgba(var(--primary-rgb),0.7)]",
 				secondary:
 					"border-transparent bg-[rgba(var(--secondary-rgb),0.1)] text-secondary hover:bg-[rgba(var(--secondary-rgb),0.2)]",
 				accent:
@@ -19,8 +18,7 @@ const badgeVariants = cva(
 				destructive:
 					"border-transparent bg-destructive text-destructive-foreground hover:bg-destructive-80",
 				outline: "text-foreground",
-				light:
-					"border-transparent bg-blue-100 text-primary hover:bg-blue-200",
+				light: "border-transparent bg-blue-100 text-primary hover:bg-blue-200",
 			},
 		},
 		defaultVariants: {

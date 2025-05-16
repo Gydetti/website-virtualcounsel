@@ -119,19 +119,28 @@ export default function ContactSection({
 				<LazySection
 					animation="none"
 					className="stagger-container"
-					style={{ '--stagger-delay': '0.1s' } as CSSProperties}
+					style={{ "--stagger-delay": "0.1s" } as CSSProperties}
 				>
 					<div
 						className="text-center mb-16"
-						style={{ '--index': 0 } as CSSProperties}
+						style={{ "--index": 0 } as CSSProperties}
 					>
 						{badgeText && <Badge className="mb-4">{badgeText}</Badge>}
-						{heading && <h2 id="contact-section-heading" className="section-title">{heading}</h2>}
+						{heading && (
+							<h2 id="contact-section-heading" className="section-title">
+								{heading}
+							</h2>
+						)}
 						{subtitle && <p className="section-subtitle">{subtitle}</p>}
 					</div>
 					<div className="grid md:grid-cols-2 gap-4 sm:gap-8 md:gap-12 max-w-4xl mx-auto">
-						<div className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow" style={{ '--index': 1 } as CSSProperties}>
-							<h3 className="mb-6">Form title prompting user to send a message</h3>
+						<div
+							className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow"
+							style={{ "--index": 1 } as CSSProperties}
+						>
+							<h3 className="mb-6">
+								Form title prompting user to send a message
+							</h3>
 							<form onSubmit={handleSubmit} className="space-y-6">
 								<div className="grid grid-cols-1 gap-6">
 									{fields.map((field) => (
@@ -167,22 +176,31 @@ export default function ContactSection({
 										className="hidden"
 									/>
 								</div>
-								<Button type="submit" className="w-full group" disabled={isSubmitting}>
-									{isSubmitting ? "Sending..." : submitted ? "Message sent!" : "Send message"}
+								<Button
+									type="submit"
+									className="w-full group"
+									disabled={isSubmitting}
+								>
+									{isSubmitting
+										? "Sending..."
+										: submitted
+											? "Message sent!"
+											: "Send message"}
 									{!isSubmitting && !submitted && (
 										<ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
 									)}
 								</Button>
 								{submitted && (
 									<div className="mt-4 p-4 bg-green-50 text-green-700 rounded-lg">
-										Thank you for your message! We'll get back to you as soon as possible.
+										Thank you for your message! We'll get back to you as soon as
+										possible.
 									</div>
 								)}
 							</form>
 						</div>
 						<div
 							className="bg-primary text-white rounded-xl shadow-lg p-8 flex flex-col justify-between hover:shadow-xl transition-shadow"
-							style={{ '--index': 2 } as CSSProperties}
+							style={{ "--index": 2 } as CSSProperties}
 						>
 							<h3 className="mb-6">Contact information</h3>
 							<ul className="space-y-6">
@@ -190,7 +208,10 @@ export default function ContactSection({
 									<Mail className="h-6 w-6 mr-4 flex-shrink-0 mt-1" />
 									<div>
 										<p className="font-semibold mb-1">Email</p>
-										<a href={`mailto:${siteConfig.contact.email}`} className="text-white/80 hover:text-white transition-colors">
+										<a
+											href={`mailto:${siteConfig.contact.email}`}
+											className="text-white/80 hover:text-white transition-colors"
+										>
 											{siteConfig.contact.email}
 										</a>
 									</div>
@@ -199,7 +220,10 @@ export default function ContactSection({
 									<Phone className="h-6 w-6 mr-4 flex-shrink-0 mt-1" />
 									<div>
 										<p className="font-semibold mb-1">Phone</p>
-										<a href={`tel:${siteConfig.contact.phone}`} className="text-white/80 hover:text-white transition-colors">
+										<a
+											href={`tel:${siteConfig.contact.phone}`}
+											className="text-white/80 hover:text-white transition-colors"
+										>
 											{siteConfig.contact.phone}
 										</a>
 									</div>
@@ -211,10 +235,16 @@ export default function ContactSection({
 										<address className="text-white/80 not-italic">
 											{siteConfig.contact.address?.line1}
 											{siteConfig.contact.address?.line2 && (
-												<><br />{siteConfig.contact.address.line2}</>
+												<>
+													<br />
+													{siteConfig.contact.address.line2}
+												</>
 											)}
-											<br />{siteConfig.contact.address?.zip} {siteConfig.contact.address?.city}
-											<br />{siteConfig.contact.address?.country}
+											<br />
+											{siteConfig.contact.address?.zip}{" "}
+											{siteConfig.contact.address?.city}
+											<br />
+											{siteConfig.contact.address?.country}
 										</address>
 									</div>
 								</li>

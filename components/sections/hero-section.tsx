@@ -1,26 +1,30 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
-import { motion } from "framer-motion";
 
 import { Section } from "@/components/layout/Section";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import LazySection from "@/components/ui/lazy-section";
 import OptimizedImage from "@/components/ui/optimized-image";
+import blurDataMap from "@/lib/blurDataURL.json";
 import type { heroSectionDataSchema } from "@/lib/schemas/sections.schema";
 import { siteConfig } from "@/lib/siteConfig";
 import type { z } from "zod";
-import LazySection from "@/components/ui/lazy-section";
-import blurDataMap from "@/lib/blurDataURL.json";
 
-const HeroStats = dynamic(() => import("@/components/sections/hero-stats"), { ssr: false });
-const HeroTyping = dynamic(() => import("@/components/sections/hero-typing"), { ssr: false });
+const HeroStats = dynamic(() => import("@/components/sections/hero-stats"), {
+	ssr: false,
+});
+const HeroTyping = dynamic(() => import("@/components/sections/hero-typing"), {
+	ssr: false,
+});
 
 export type HeroSectionProps = z.infer<typeof heroSectionDataSchema> & {
 	variant?: "imageLeft" | "imageRight" | "centered";
@@ -74,13 +78,13 @@ export default function HeroSection({
 				<div className="grid md:grid-cols-2 gap-8 sm:gap-8 md:gap-12 lg:gap-16 items-center">
 					<LazySection
 						animation="none"
-						style={{ '--stagger-delay': '0.05s' } as React.CSSProperties}
+						style={{ "--stagger-delay": "0.05s" } as React.CSSProperties}
 						className={`stagger-container flex flex-col justify-center space-y-6 z-10 ${variant === "imageLeft" ? "md:order-2" : ""}`}
 					>
 						{badgeText && (
 							<Badge
 								variant="dark"
-								style={{ '--index': 0 } as React.CSSProperties}
+								style={{ "--index": 0 } as React.CSSProperties}
 								className="w-fit text-white"
 							>
 								{badgeText}
@@ -89,7 +93,7 @@ export default function HeroSection({
 
 						<h1
 							id="hero-section-heading"
-							style={{ '--index': 1 } as React.CSSProperties}
+							style={{ "--index": 1 } as React.CSSProperties}
 							className="text-[var(--font-heading-size)] lg:text-[var(--font-heading-size-lg)] font-bold leading-tight text-balance"
 						>
 							{headline && <span className="block">{headline}</span>}
@@ -99,7 +103,7 @@ export default function HeroSection({
 
 						{subheadline && (
 							<p
-								style={{ '--index': 2 } as React.CSSProperties}
+								style={{ "--index": 2 } as React.CSSProperties}
 								className="text-foreground max-w-lg"
 							>
 								{subheadline}
@@ -108,7 +112,7 @@ export default function HeroSection({
 
 						{(primaryCta?.text || secondaryCta?.text) && (
 							<div
-								style={{ '--index': 3 } as React.CSSProperties}
+								style={{ "--index": 3 } as React.CSSProperties}
 								className="flex flex-col sm:flex-row gap-4 pt-4"
 							>
 								{primaryCta?.text && primaryCta.href && (
@@ -142,7 +146,7 @@ export default function HeroSection({
 
 						{showHelpedStats && (
 							<div
-								style={{ '--index': 4 } as React.CSSProperties}
+								style={{ "--index": 4 } as React.CSSProperties}
 								className="flex items-center space-x-4 mt-6 text-sm"
 							>
 								<div className="flex -space-x-2">
@@ -186,7 +190,9 @@ export default function HeroSection({
 								className="absolute inset-0 object-cover rounded-xl"
 								priority
 								placeholder="blur"
-								blurDataURL={blurDataMap[imageToDisplay as keyof typeof blurDataMap]}
+								blurDataURL={
+									blurDataMap[imageToDisplay as keyof typeof blurDataMap]
+								}
 								onError={() => setCurrentImageSrc(defaultImageSrc)}
 							/>
 							<div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6 rounded-b-xl">

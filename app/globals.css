@@ -296,14 +296,20 @@
 	/* Pattern overlay on top of gradient */
 	background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233d5a98' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 	background-repeat: repeat;
-	opacity: 0.70;
+	opacity: 0.7;
 	z-index: 0;
 }
 
 /* Fade-up animation for staggered entrances */
 @keyframes fade-up {
-	from { opacity: 0; transform: translateY(20px); }
-	to   { opacity: 1; transform: translateY(0); }
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 @layer utilities {
@@ -322,14 +328,30 @@
 	}
 
 	/* Pattern URL utilities: define CSS variable for each pattern */
-	.bg-grid-pattern { --pattern-url: url(data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E); }
-	.bg-dots-pattern { --pattern-url: url(data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='%23000' fill-opacity='0.1'/%3E%3C/svg%3E); }
-	.bg-stripes-pattern { --pattern-url: url(data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0L6 6M6 0L0 6' stroke='%23000' stroke-opacity='0.1' stroke-width='1'/%3E%3C/svg%3E); }
-	.bg-hex-pattern { --pattern-url: url(data:image/svg+xml,%3Csvg width='100' height='86.6' viewBox='0 0 100 86.6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0L100 25L100 61.6L50 86.6L0 61.6L0 25Z' fill='none' stroke='%23000' stroke-opacity='0.1' stroke-width='1'/%3E%3C/svg%3E); }
-	.bg-triangle-pattern { --pattern-url: url(data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 10 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 0L10 10H0Z' fill='%23000' fill-opacity='0.1'/%3E%3C/svg%3E); }
-	.bg-crosshatch-pattern { --pattern-url: url(data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0L30 30M30 0L0 30' stroke='%23000' stroke-opacity='0.1' stroke-width='1'/%3E%3C/svg%3E); }
-	.bg-noise-pattern { --pattern-url: url(data:image/svg+xml,%3Csvg width='2' height='2' viewBox='0 0 2 2' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='0.5' fill='%23000' fill-opacity='0.1'/%3E%3C/svg%3E); }
-	.bg-waves-pattern { --pattern-url: url(data:image/svg+xml,%3Csvg width='120' height='20' viewBox='0 0 120 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 10 Q 30 0 60 10 T 120 10' fill='none' stroke='%23000' stroke-opacity='0.1' stroke-width='2'/%3E%3C/svg%3E); }
+	.bg-grid-pattern {
+		--pattern-url: url(data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E);
+	}
+	.bg-dots-pattern {
+		--pattern-url: url(data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='%23000' fill-opacity='0.1'/%3E%3C/svg%3E);
+	}
+	.bg-stripes-pattern {
+		--pattern-url: url(data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0L6 6M6 0L0 6' stroke='%23000' stroke-opacity='0.1' stroke-width='1'/%3E%3C/svg%3E);
+	}
+	.bg-hex-pattern {
+		--pattern-url: url(data:image/svg+xml,%3Csvg width='100' height='86.6' viewBox='0 0 100 86.6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0L100 25L100 61.6L50 86.6L0 61.6L0 25Z' fill='none' stroke='%23000' stroke-opacity='0.1' stroke-width='1'/%3E%3C/svg%3E);
+	}
+	.bg-triangle-pattern {
+		--pattern-url: url(data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 10 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 0L10 10H0Z' fill='%23000' fill-opacity='0.1'/%3E%3C/svg%3E);
+	}
+	.bg-crosshatch-pattern {
+		--pattern-url: url(data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0L30 30M30 0L0 30' stroke='%23000' stroke-opacity='0.1' stroke-width='1'/%3E%3C/svg%3E);
+	}
+	.bg-noise-pattern {
+		--pattern-url: url(data:image/svg+xml,%3Csvg width='2' height='2' viewBox='0 0 2 2' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='0.5' fill='%23000' fill-opacity='0.1'/%3E%3C/svg%3E);
+	}
+	.bg-waves-pattern {
+		--pattern-url: url(data:image/svg+xml,%3Csvg width='120' height='20' viewBox='0 0 120 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 10 Q 30 0 60 10 T 120 10' fill='none' stroke='%23000' stroke-opacity='0.1' stroke-width='2'/%3E%3C/svg%3E);
+	}
 
 	/* Pattern overlay utility: subtle grid overlay above any background */
 	.pattern-overlay {
@@ -349,8 +371,20 @@
 	/* Fade-out variant: smooth top/bottom fade on pattern overlay */
 	.pattern-overlay-fade::before {
 		/* Mask the SVG overlay to fade edges */
-		-webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
-		mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+		-webkit-mask-image: linear-gradient(
+			to bottom,
+			transparent 0%,
+			black 10%,
+			black 90%,
+			transparent 100%
+		);
+		mask-image: linear-gradient(
+			to bottom,
+			transparent 0%,
+			black 10%,
+			black 90%,
+			transparent 100%
+		);
 	}
 
 	/* Stagger-container: initial state and visible state for CSS-only stagger */
@@ -387,4 +421,14 @@
 	to {
 		transform: rotate(360deg);
 	}
+}
+
+/* Ensure minimum tap target size for interactive elements */
+button,
+a,
+input[type="button"],
+input[type="submit"],
+[role="button"] {
+	min-height: 48px;
+	min-width: 48px;
 }

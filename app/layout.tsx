@@ -1,11 +1,11 @@
-import { Poppins, Raleway } from "next/font/google";
-import type { ReactNode } from "react";
 import AppShell from "@/components/layout/AppShell";
+import StructuredData from "@/components/seo/structured-data";
 import { heroSectionData } from "@/lib/data/homepage";
 import { defaultMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/lib/siteConfig";
 import { Partytown } from "@qwik.dev/partytown/react";
-import StructuredData from "@/components/seo/structured-data";
+import { Poppins, Raleway } from "next/font/google";
+import type { ReactNode } from "react";
 import "./globals.css";
 import WebVitalsReporter from "@/components/analytics/WebVitalsReporter";
 
@@ -34,6 +34,7 @@ export const metadata = defaultMetadata({
 	robots: { index: true, follow: true },
 	generator: "v0.dev",
 	description: siteConfig.site.description ?? "",
+	viewport: "width=device-width, initial-scale=1",
 });
 
 // Helper functions to inline theme CSS variables at SSR
@@ -138,6 +139,7 @@ export default function RootLayout({
 			<head>
 				{/* Inline theme CSS variables to prevent FOUC */}
 				<style>{`:root {${themeCssVars}}`}</style>
+				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				{/* Preconnect to Google Fonts */}
 				<link rel="preconnect" href="https://fonts.googleapis.com" />
 				<link
@@ -193,6 +195,7 @@ export default function RootLayout({
 					}}
 				/>
 				<link rel="icon" href="/favicon.ico" />
+				<link rel="apple-touch-icon" href="/favicon.ico" />
 			</head>
 			<body
 				className={`${poppins.variable} ${raleway.variable} font-sans antialiased bg-gradient-to-br from-blue-50 to-transparent`}

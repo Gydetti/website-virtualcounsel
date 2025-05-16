@@ -34,9 +34,7 @@ export default function ServiceCard({
 	return (
 		<Card
 			className={`card-equal-height h-full overflow-hidden ${microClass} ${
-				popular
-					? "border-primary shadow-lg relative"
-					: "border shadow-sm"
+				popular ? "border-primary shadow-lg relative" : "border shadow-sm"
 			}`}
 		>
 			{popular && (

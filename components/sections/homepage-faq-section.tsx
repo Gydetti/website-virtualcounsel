@@ -10,13 +10,13 @@ import {
 } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import type { ctaSchema } from "@/lib/schemas/common.schema";
-import Link from "next/link";
-import type { z } from "zod";
 import LazySection from "@/components/ui/lazy-section";
-import type { CSSProperties } from "react";
+import type { ctaSchema } from "@/lib/schemas/common.schema";
 import { siteConfig } from "@/lib/siteConfig";
-import { useRef, useLayoutEffect } from 'react';
+import Link from "next/link";
+import type { CSSProperties } from "react";
+import { useLayoutEffect, useRef } from "react";
+import type { z } from "zod";
 
 export interface FaqItem {
 	question: string;
@@ -52,9 +52,11 @@ export default function HomepageFaqSection({
 	const containerRef = useRef<HTMLDivElement>(null);
 	useLayoutEffect(() => {
 		if (!containerRef.current) return;
-		const items = Array.from(containerRef.current.querySelectorAll<HTMLDivElement>('.faq-item'));
+		const items = Array.from(
+			containerRef.current.querySelectorAll<HTMLDivElement>(".faq-item"),
+		);
 		if (items.length === 0) return;
-		const heights = items.map(item => item.getBoundingClientRect().height);
+		const heights = items.map((item) => item.getBoundingClientRect().height);
 		const max = Math.max(...heights);
 		for (const item of items) {
 			item.style.minHeight = `${max}px`;
@@ -68,37 +70,48 @@ export default function HomepageFaqSection({
 				<LazySection
 					animation="none"
 					className="stagger-container text-center"
-					style={{ '--stagger-delay': '0.1s' } as CSSProperties}
+					style={{ "--stagger-delay": "0.1s" } as CSSProperties}
 				>
-					<Badge className="mb-4" style={{ '--index': 0 } as React.CSSProperties}>
+					<Badge
+						className="mb-4"
+						style={{ "--index": 0 } as React.CSSProperties}
+					>
 						{badgeText}
 					</Badge>
-					<h2 className="section-title mb-12" style={{ '--index': 1 } as React.CSSProperties}>
+					<h2
+						className="section-title mb-12"
+						style={{ "--index": 1 } as React.CSSProperties}
+					>
 						{heading}
 					</h2>
 					{description && (
 						<p
 							className="text-foreground mb-8 max-w-2xl mx-auto"
-							style={{ '--index': 2 } as React.CSSProperties}
+							style={{ "--index": 2 } as React.CSSProperties}
 						>
 							{description}
 						</p>
 					)}
-					<div ref={containerRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+					<div
+						ref={containerRef}
+						className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left"
+					>
 						{categories.map((cat, idx) => (
 							<div
 								key={cat.category}
 								className="text-center"
-								style={{ '--index': 3 + idx } as CSSProperties}
+								style={{ "--index": 3 + idx } as CSSProperties}
 							>
 								<h3 className="text-body-base mb-6">{cat.category}</h3>
 								<Accordion
 									type="single"
 									collapsible
-									style={{
-										display: 'grid',
-										gap: '1rem',
-									} as CSSProperties}
+									style={
+										{
+											display: "grid",
+											gap: "1rem",
+										} as CSSProperties
+									}
 								>
 									{cat.questions.map((q) => (
 										<AccordionItem
@@ -121,7 +134,7 @@ export default function HomepageFaqSection({
 					{siteConfig.features.enableHomepageFaqCta && (
 						<div
 							className="flex justify-center mt-12"
-							style={{ '--index': 3 + categories.length } as CSSProperties}
+							style={{ "--index": 3 + categories.length } as CSSProperties}
 						>
 							<Button size="lg" asChild>
 								<Link href={cta.href || "/contact"}>

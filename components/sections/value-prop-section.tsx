@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import LazySection from "@/components/ui/lazy-section";
 import type { valuePropSectionDataSchema } from "@/lib/schemas/sections.schema";
 import { CheckCircle } from "lucide-react";
-import type { ComponentType, SVGProps, CSSProperties } from "react";
+import type { CSSProperties, ComponentType, SVGProps } from "react";
 import type { z } from "zod";
 
 // Updated props type alias using Zod schema
@@ -36,20 +36,26 @@ export default function ValuePropSection({
 			<LazySection
 				animation="none"
 				className="stagger-container text-center mb-16"
-				style={{ '--stagger-delay': '0.1s' } as CSSProperties}
+				style={{ "--stagger-delay": "0.1s" } as CSSProperties}
 			>
 				{badgeText && (
-					<Badge className="mb-4" style={{ '--index': 0 } as CSSProperties}>
+					<Badge className="mb-4" style={{ "--index": 0 } as CSSProperties}>
 						{badgeText}
 					</Badge>
 				)}
 				{heading && (
-					<h2 className="section-title" style={{ '--index': 1 } as CSSProperties}>
+					<h2
+						className="section-title"
+						style={{ "--index": 1 } as CSSProperties}
+					>
 						{heading}
 					</h2>
 				)}
 				{subheading && (
-					<p className="section-subtitle" style={{ '--index': 2 } as CSSProperties}>
+					<p
+						className="section-subtitle"
+						style={{ "--index": 2 } as CSSProperties}
+					>
 						{subheading}
 					</p>
 				)}
@@ -58,7 +64,7 @@ export default function ValuePropSection({
 			<LazySection
 				animation="none"
 				className="stagger-container grid grid-cols-1 gap-8 mt-16 md:grid-cols-2 lg:grid-cols-3"
-				style={{ '--stagger-delay': '0.2s' } as CSSProperties}
+				style={{ "--stagger-delay": "0.2s" } as CSSProperties}
 			>
 				{benefits.map((benefit, idx) => {
 					const Icon =
@@ -67,7 +73,7 @@ export default function ValuePropSection({
 						<div
 							key={benefit.id}
 							className="flex flex-col items-start space-y-3 rounded-lg p-6 shadow-sm hover:shadow-md"
-							style={{ '--index': idx } as CSSProperties}
+							style={{ "--index": idx } as CSSProperties}
 						>
 							<div className="flex h-12 w-12 items-center justify-center rounded-full bg-[rgba(var(--primary-rgb),0.1)] text-primary dark:bg-[rgba(var(--primary-rgb),0.2)] dark:text-primary-foreground">
 								<Icon className="h-6 w-6" />

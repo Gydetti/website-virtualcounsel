@@ -1,15 +1,15 @@
 "use client";
 
 import { Section } from "@/components/layout/Section";
+import KpiSection from "@/components/sections/kpi-section";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import LazySection from "@/components/ui/lazy-section";
 import OptimizedImage from "@/components/ui/optimized-image";
+import * as homepageData from "@/lib/data/homepage";
 import type { aboutSectionDataSchema } from "@/lib/schemas/sections.schema";
 import { siteConfig } from "@/lib/site.config.local";
-import * as homepageData from "@/lib/data/homepage";
-import KpiSection from "@/components/sections/kpi-section";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle, Star } from "lucide-react";
 import Link from "next/link";
@@ -223,7 +223,7 @@ export default function AboutSection({
 	return (
 		<Section
 			id="about"
-			className={`relative overflow-hidden bg-gradient-to-r from-brand-light via-transparent to-transparent z-10${isHomepage ? ' min-h-[80vh] sm:min-h-[75vh] flex items-center' : ''}`}
+			className={`relative overflow-hidden bg-gradient-to-r from-brand-light via-transparent to-transparent z-10${isHomepage ? " min-h-[80vh] sm:min-h-[75vh] flex items-center" : ""}`}
 		>
 			<div className={outerContainerClass}>
 				<LazySection

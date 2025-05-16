@@ -1,5 +1,5 @@
 "use client";
-import type { ReactNode, CSSProperties } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 import { siteConfig } from "@/lib/siteConfig";
 import { motion, useReducedMotion } from "framer-motion";
@@ -59,7 +59,11 @@ export default function LazySection({
 		fullHeight !== undefined ? fullHeight : defaultFullHeight;
 
 	// Combined classes for both non-animated and animated containers
-	const combinedClass = [overflowClass, className, useFullHeight ? "h-full" : ""]
+	const combinedClass = [
+		overflowClass,
+		className,
+		useFullHeight ? "h-full" : "",
+	]
 		.filter(Boolean)
 		.join(" ");
 

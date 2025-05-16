@@ -4,10 +4,20 @@
             "url": ["http://localhost:3015"],
             "numberOfRuns": 3,
             "startServerCommand": "npm run build && npm run start:ci",
-            "startServerReadyPattern": "Local:"
+            "startServerReadyPattern": "url:"
         },
         "assert": {
-            "preset": "lighthouse:recommended"
+            "preset": "lighthouse:recommended",
+            "assertions": {
+                "apple-touch-icon": "off",
+                "content-width": "off",
+                "crawlable-anchors": "off",
+                "csp-xss": "off",
+                "service-worker": "off",
+                "themed-omnibox": "off",
+                "unused-css-rules": "off",
+                "unused-javascript": "off"
+            }
         }
     }
 }

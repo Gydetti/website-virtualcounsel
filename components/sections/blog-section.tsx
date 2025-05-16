@@ -15,8 +15,8 @@ import type { blogSectionDataSchema } from "@/lib/schemas/sections.schema";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import type { z } from "zod";
 import type { CSSProperties } from "react";
+import type { z } from "zod";
 
 // Updated props type alias using Zod schema
 export type BlogSectionProps = z.infer<typeof blogSectionDataSchema>;
@@ -43,20 +43,26 @@ export default function BlogSection({
 				<LazySection
 					animation="none"
 					className="stagger-container text-center mb-16"
-					style={{ '--stagger-delay': '0.1s' } as CSSProperties}
+					style={{ "--stagger-delay": "0.1s" } as CSSProperties}
 				>
 					{badgeText && (
-						<Badge className="mb-4" style={{ '--index': 0 } as CSSProperties}>
+						<Badge className="mb-4" style={{ "--index": 0 } as CSSProperties}>
 							{badgeText}
 						</Badge>
 					)}
 					{heading && (
-						<h2 className="text-[var(--font-subheading-size)]" style={{ '--index': 1 } as CSSProperties}>
+						<h2
+							className="text-[var(--font-subheading-size)]"
+							style={{ "--index": 1 } as CSSProperties}
+						>
 							{heading}
 						</h2>
 					)}
 					{subtitle && (
-						<p className="section-subtitle" style={{ '--index': 2 } as CSSProperties}>
+						<p
+							className="section-subtitle"
+							style={{ "--index": 2 } as CSSProperties}
+						>
 							{subtitle}
 						</p>
 					)}
@@ -66,13 +72,13 @@ export default function BlogSection({
 				<LazySection
 					animation="none"
 					className="stagger-container grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 md:gap-12 lg:gap-16 card-equal-height"
-					style={{ '--stagger-delay': '0.2s' } as CSSProperties}
+					style={{ "--stagger-delay": "0.2s" } as CSSProperties}
 				>
 					{posts.map((post, index) => (
 						<div
 							key={post.id}
 							className="h-full"
-							style={{ '--index': index } as CSSProperties}
+							style={{ "--index": index } as CSSProperties}
 						>
 							<Card className="w-full h-full flex flex-col justify-between overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-gradient-to-b from-white to-blue-50/30 border border-[#e5e7eb80] shadow-lg">
 								<div className="relative h-48 w-full overflow-hidden">

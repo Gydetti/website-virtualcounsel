@@ -34,9 +34,7 @@ export default function BlogCard({
 		? "transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
 		: "";
 	return (
-		<Card
-			className={`h-full overflow-hidden border shadow-sm ${microClass}`}
-		>
+		<Card className={`h-full overflow-hidden border shadow-sm ${microClass}`}>
 			<div className="relative h-48 w-full overflow-hidden">
 				<Image
 					src={image || "/placeholder.svg"}

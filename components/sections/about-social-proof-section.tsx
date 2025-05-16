@@ -4,8 +4,8 @@ import LazySection from "@/components/ui/lazy-section";
 import OptimizedImage from "@/components/ui/optimized-image";
 import type { aboutSocialProofSectionDataSchema } from "@/lib/schemas/sections.schema";
 import { Star } from "lucide-react";
-import type { z } from "zod";
 import type { CSSProperties } from "react";
+import type { z } from "zod";
 
 export type AboutSocialProofSectionProps = z.infer<
 	typeof aboutSocialProofSectionDataSchema
@@ -21,30 +21,33 @@ export default function AboutSocialProofSection({
 			<LazySection
 				animation="none"
 				className="stagger-container max-w-4xl mx-auto text-center"
-				style={{ '--stagger-delay': '0.1s' } as CSSProperties}
+				style={{ "--stagger-delay": "0.1s" } as CSSProperties}
 			>
 				{badgeText && (
 					<Badge
 						className="mb-4 bg-primary text-primary-foreground"
-						style={{ '--index': 0 } as CSSProperties}
+						style={{ "--index": 0 } as CSSProperties}
 					>
 						{badgeText}
 					</Badge>
 				)}
 				{heading && (
-					<h3 className="section-title mb-6" style={{ '--index': 1 } as CSSProperties}>
+					<h3
+						className="section-title mb-6"
+						style={{ "--index": 1 } as CSSProperties}
+					>
 						{heading}
 					</h3>
 				)}
 				<div
 					className="grid grid-cols-1 sm:grid-cols-2 gap-8"
-					style={{ '--index': 2 } as CSSProperties}
+					style={{ "--index": 2 } as CSSProperties}
 				>
 					{socialProof.map((item, idx) => (
 						<div
 							key={item.id}
 							className="p-6 bg-white rounded-lg shadow hover:shadow-md transition-shadow"
-							style={{ '--index': 3 + idx } as CSSProperties}
+							style={{ "--index": 3 + idx } as CSSProperties}
 						>
 							{item.image?.src && (
 								<div className="mb-4 flex justify-center">
