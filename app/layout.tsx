@@ -34,8 +34,13 @@ export const metadata = defaultMetadata({
 	robots: { index: true, follow: true },
 	generator: "v0.dev",
 	description: siteConfig.site.description ?? "",
-	viewport: "width=device-width, initial-scale=1",
 });
+
+// Next.js 15 App Router: use viewport export instead of metadata.viewport
+export const viewport = {
+	width: "device-width",
+	initialScale: 1,
+};
 
 // Helper functions to inline theme CSS variables at SSR
 function hexToRgbServer(hex: string): string {
@@ -139,7 +144,7 @@ export default function RootLayout({
 			<head>
 				{/* Inline theme CSS variables to prevent FOUC */}
 				<style>{`:root {${themeCssVars}}`}</style>
-				<meta name="viewport" content="width=device-width, initial-scale=1" />
+				{/* `viewport` meta will be injected by Next.js and the metadata API */}
 				{/* Preconnect to Google Fonts */}
 				<link rel="preconnect" href="https://fonts.googleapis.com" />
 				<link
@@ -150,13 +155,6 @@ export default function RootLayout({
 				{/* Preconnect & DNS-prefetch to site origin for images and data */}
 				<link rel="preconnect" href={siteUrl} />
 				<link rel="dns-prefetch" href={siteUrl} />
-				{/* Preload LCP hero image */}
-				<link
-					rel="preload"
-					href={heroSectionData.image?.src ?? ""}
-					as="image"
-					fetchPriority="high"
-				/>
 				{/* GA4 script for analytics (Partytown) */}
 				<script
 					type="text/partytown"
