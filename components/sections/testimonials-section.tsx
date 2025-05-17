@@ -71,9 +71,17 @@ export default function TestimonialsSection({
 					className="max-w-3xl mx-auto relative"
 				>
 					<div className="overflow-hidden overflow-x-hidden">
-						<div
-							className="flex transition-transform duration-500 ease-in-out"
-							style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+						<motion.div
+							className="flex"
+							drag="x"
+							dragConstraints={{ left: 0, right: 0 }}
+							dragElastic={0.2}
+							onDragEnd={(_, info) => {
+								if (info.offset.x < -50) nextTestimonial();
+								else if (info.offset.x > 50) prevTestimonial();
+							}}
+							animate={{ x: `-${activeIndex * 100}%` }}
+							style={{ touchAction: "pan-y" }}
 						>
 							{testimonials.map((item, index) => (
 								<motion.div
@@ -132,10 +140,10 @@ export default function TestimonialsSection({
 									</Card>
 								</motion.div>
 							))}
-						</div>
+						</motion.div>
 					</div>
 
-					<div className="absolute top-1/2 -left-8 transform -translate-y-1/2">
+					<div className="hidden sm:block absolute top-1/2 -left-8 transform -translate-y-1/2">
 						<button
 							type="button"
 							aria-label="Previous testimonial"
@@ -151,7 +159,7 @@ export default function TestimonialsSection({
 						</button>
 					</div>
 
-					<div className="absolute top-1/2 -right-8 transform -translate-y-1/2">
+					<div className="hidden sm:block absolute top-1/2 -right-8 transform -translate-y-1/2">
 						<button
 							type="button"
 							aria-label="Next testimonial"
