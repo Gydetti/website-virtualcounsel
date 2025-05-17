@@ -64,7 +64,7 @@ export default function HeroSection({
     <section
       id="hero-section"
       aria-labelledby="hero-section-heading"
-      className="hero-pattern relative overflow-hidden bg-gradient-to-r from-brand-primary/10 to-white md:min-h-[880px] flex items-center"
+      className="hero-pattern relative overflow-hidden bg-gradient-to-r from-brand-primary/10 to-white md:min-h-[880px] flex"
     >
       {/* Background pattern */}
       <div className="absolute inset-0 bg-grid-pattern opacity-10" />
