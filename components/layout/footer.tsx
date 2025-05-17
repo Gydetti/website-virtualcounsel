@@ -13,7 +13,6 @@ import {
   Phone,
   Twitter,
 } from 'lucide-react';
-import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Footer() {
@@ -64,11 +63,9 @@ export default function Footer() {
             <div>
               <Link href="/" className="inline-block mb-4">
                 {siteConfig.theme.logo.src ? (
-                  <Image
+                  <img
                     src={siteConfig.theme.logo.src}
                     alt={siteConfig.theme.logo.alt}
-                    width={150}
-                    height={40}
                     className="h-10 w-auto brightness-0 invert"
                   />
                 ) : (

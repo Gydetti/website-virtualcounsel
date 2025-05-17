@@ -64,7 +64,7 @@ export default function HeroSection({
     <section
       id="hero-section"
       aria-labelledby="hero-section-heading"
-      className="hero-pattern relative overflow-hidden bg-gradient-to-r from-brand-primary/10 to-white min-h-[80vh] sm:min-h-[85vh] flex items-center"
+      className="hero-pattern relative overflow-hidden bg-gradient-to-r from-brand-primary/10 to-white min-h-[80vh] sm:min-h-[80vh] flex items-center"
     >
       {/* Background pattern */}
       <div className="absolute inset-0 bg-grid-pattern opacity-10" />
@@ -75,7 +75,7 @@ export default function HeroSection({
 
       <Section
         fullBleed={false}
-        className="relative z-10 pb-16 pt-14 sm:py-12 md:py-16 flex flex-col justify-center h-full"
+        className="relative z-10 pb-16 pt-14 sm:py-12 md:py-14 flex flex-col justify-center h-full"
       >
         <div className="grid md:grid-cols-2 gap-8 sm:gap-8 md:gap-12 lg:gap-16 items-center">
           <LazySection
