@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowRight, Menu, X } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -68,12 +69,13 @@ export default function Header() {
           <Link href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">{siteConfig.site.name}</span>
             <div className="flex items-center gap-3">
-              <img
+              <Image
                 src={siteConfig.theme.logo.src}
                 alt={siteConfig.theme.logo.alt}
+                width={56}
+                height={56}
                 className="h-14 w-auto"
-                width="56"
-                height="56"
+                priority
               />
               <div className="flex flex-col">
                 <span className="text-lg font-semibold leading-tight text-gray-900">
@@ -146,12 +148,13 @@ export default function Header() {
               <Link href="/" className="-m-1.5 p-1.5" onClick={() => setMobileMenuOpen(false)}>
                 <span className="sr-only">{siteConfig.site.name}</span>
                 <div className="flex items-center gap-3">
-                  <img
+                  <Image
                     src={siteConfig.theme.logo.src}
                     alt={siteConfig.theme.logo.alt}
+                    width={40}
+                    height={40}
                     className="h-10 w-auto"
-                    width="40"
-                    height="40"
+                    priority
                   />
                   <div className="flex flex-col">
                     <span className="text-lg font-semibold leading-tight text-gray-900">
