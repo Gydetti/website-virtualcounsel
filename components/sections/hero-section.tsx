@@ -7,6 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import type { CSSProperties } from 'react';
 
 import { Section } from '@/components/layout/Section';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
@@ -78,87 +79,79 @@ export default function HeroSection({
         className="relative z-10 pb-16 pt-14 sm:py-12 md:py-14 flex flex-col justify-center h-full"
       >
         <div className="grid md:grid-cols-2 gap-8 sm:gap-8 md:gap-12 lg:gap-16 items-center">
+          {/* Left column: CSS-only staggered animation */}
           <LazySection
-            animation="slide-up"
-            delay={0.1}
-            className={`${contentOrderClass} flex flex-col justify-center space-y-6 z-10`}
+            animation="none"
+            className={`${contentOrderClass} stagger-container flex flex-col justify-center space-y-6 z-10`}
+            style={{ '--stagger-delay': '0.1s' } as CSSProperties}
           >
             {badgeText && (
-              <LazySection animation="fade-up" delay={0.2}>
-                <Badge variant="dark" className="w-fit text-white">
-                  {badgeText}
-                </Badge>
-              </LazySection>
+              <Badge variant="dark" className="w-fit text-white" style={{ '--index': 0 } as CSSProperties}>
+                {badgeText}
+              </Badge>
             )}
             {headline && (
-              <LazySection animation="fade-up" delay={0.3}>
-                <h1
-                  id="hero-section-heading"
-                  className="text-[var(--font-heading-size)] lg:text-[var(--font-heading-size-lg)] font-bold leading-tight text-balance"
-                >
-                  <span className="block">{headline}</span>
-                  <HeroTyping typingWords={typingWords} />
-                </h1>
-              </LazySection>
+              <h1
+                id="hero-section-heading"
+                className="text-[var(--font-heading-size)] lg:text-[var(--font-heading-size-lg)] font-bold leading-tight text-balance"
+                style={{ '--index': 1 } as CSSProperties}
+              >
+                <span className="block">{headline}</span>
+                <HeroTyping typingWords={typingWords} />
+              </h1>
             )}
             {subheadline && (
-              <LazySection animation="fade-up" delay={0.4}>
-                <p className="text-foreground max-w-lg">{subheadline}</p>
-              </LazySection>
+              <p className="text-foreground max-w-lg" style={{ '--index': 2 } as CSSProperties}>
+                {subheadline}
+              </p>
             )}
             {(primaryCta?.text || secondaryCta?.text) && (
-              <LazySection animation="fade-up" delay={0.5}>
-                <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                  {primaryCta?.text && primaryCta.href && (
-                    <Button
-                      size="lg"
-                      variant="spark"
-                      className={`group ${!showSecondaryCta || !secondaryCta?.text ? 'w-full sm:w-auto' : ''}`}
-                      onClick={() => {
-                        if (primaryCta.href) router.push(primaryCta.href);
-                      }}
-                    >
-                      {primaryCta.text}
-                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </Button>
-                  )}
-                  {showSecondaryCta && secondaryCta?.text && secondaryCta.href && (
-                    <Button
-                      size="lg"
-                      variant="ghost"
-                      className="bg-transparent text-primary hover:text-primary-80 hover:bg-transparent"
-                      asChild
-                    >
-                      <Link href={secondaryCta.href}>{secondaryCta.text}</Link>
-                    </Button>
-                  )}
-                </div>
-              </LazySection>
+              <div className="flex flex-col sm:flex-row gap-4 pt-4" style={{ '--index': 3 } as CSSProperties}>
+                {primaryCta?.text && primaryCta.href && (
+                  <Button
+                    size="lg"
+                    variant="spark"
+                    className={`group ${!showSecondaryCta || !secondaryCta?.text ? 'w-full sm:w-auto' : ''}`}
+                    onClick={() => void (primaryCta.href && router.push(primaryCta.href))}
+                  >
+                    {primaryCta.text}
+                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Button>
+                )}
+                {showSecondaryCta && secondaryCta?.text && secondaryCta.href && (
+                  <Button
+                    size="lg"
+                    variant="ghost"
+                    className="bg-transparent text-primary hover:text-primary-80 hover:bg-transparent"
+                    asChild
+                  >
+                    <Link href={secondaryCta.href}>{secondaryCta.text}</Link>
+                  </Button>
+                )}
+              </div>
             )}
             {showHelpedStats && (
-              <LazySection animation="fade-up" delay={0.6}>
-                <div className="flex items-center space-x-4 mt-6 text-sm">
-                  <div className="flex -space-x-2">
-                    {[1, 2, 3, 4].map(i => (
-                      <div
-                        key={i}
-                        className="inline-block h-8 w-8 rounded-full ring-2 ring-white overflow-hidden bg-gray-200"
-                      >
-                        <Image
-                          src="/placeholder.svg?height=32&width=32"
-                          alt="User avatar"
-                          width={32}
-                          height={32}
-                          className="h-full w-full object-cover"
-                        />
-                      </div>
-                    ))}
-                  </div>
-                  <div className="text-foreground">
-                    <span className="font-medium">100+</span> statistic that helps build authority
-                  </div>
+              <div className="flex items-center space-x-4 mt-6 text-sm" style={{ '--index': 4 } as CSSProperties}>
+                <div className="flex -space-x-2">
+                  {[1, 2, 3, 4].map(i => (
+                    <div
+                      key={i}
+                      className="inline-block h-8 w-8 rounded-full ring-2 ring-white overflow-hidden bg-gray-200"
+                    >
+                      <Image
+                        src="/placeholder.svg?height=32&width=32"
+                        alt="User avatar"
+                        width={32}
+                        height={32}
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
+                  ))}
                 </div>
-              </LazySection>
+                <div className="text-foreground">
+                  <span className="font-medium">100+</span> statistic that helps build authority
+                </div>
+              </div>
             )}
           </LazySection>
 
