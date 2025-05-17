@@ -39,7 +39,7 @@ export const siteConfig: SiteConfigSchema = {
       lightGrey: '#EFEFF0', // <--- Light grey for backgrounds, cards, etc.
     },
     logo: {
-      src: '/images/placeholders/png-Logo.png', // <--- Path to site logo
+      src: '/images/placeholders/png-Logo.webp', // <--- Path to site logo
       alt: 'Placeholder Logo', // <--- Alt text for logo
       subtitle: 'Role', // <--- Optional subtitle text displayed next to the logo
     },

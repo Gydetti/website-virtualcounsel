@@ -72,6 +72,8 @@ export default function Header() {
                 src={siteConfig.theme.logo.src}
                 alt={siteConfig.theme.logo.alt}
                 className="h-14 w-auto"
+                width="56"
+                height="56"
               />
               <div className="flex flex-col">
                 <span className="text-lg font-semibold leading-tight text-gray-900">
@@ -148,6 +150,8 @@ export default function Header() {
                     src={siteConfig.theme.logo.src}
                     alt={siteConfig.theme.logo.alt}
                     className="h-10 w-auto"
+                    width="40"
+                    height="40"
                   />
                   <div className="flex flex-col">
                     <span className="text-lg font-semibold leading-tight text-gray-900">
