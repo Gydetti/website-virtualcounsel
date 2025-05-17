@@ -77,7 +77,7 @@ export default function HeroSection({
         fullBleed={false}
         className="relative z-10 pb-16 pt-14 sm:py-12 md:py-14 flex flex-col justify-center h-full"
       >
-        <div className="grid md:grid-cols-2 gap-8 sm:gap-8 md:gap-12 lg:gap-16 items-center">
+        <div className="grid md:grid-cols-2 gap-8 sm:gap-8 md:gap-12 lg:gap-16">
           <LazySection
             animation="slide-up"
             delay={0.1}
@@ -137,7 +137,7 @@ export default function HeroSection({
             )}
             {showHelpedStats && (
               <LazySection animation="fade-up" delay={0.6}>
-                <div className="flex items-center space-x-4 mt-6 text-sm">
+                <div className="flex space-x-4 mt-6 text-sm">
                   <div className="flex -space-x-2">
                     {[1, 2, 3, 4].map(i => (
                       <div
