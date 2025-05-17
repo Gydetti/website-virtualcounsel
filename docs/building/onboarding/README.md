@@ -145,10 +145,10 @@ Contact form and information page.
 
 - **Index Page (`app/resources/page.tsx`)**: Lists all available resources (e-books, whitepapers, case studies, etc.).
 - **Detail Page (`app/resources/[slug]/page.tsx`)**:
-    - Provides full content for each resource, using a shared `ResourceContent` component.
-    - Includes the standard site header and footer for full navigation.
-    - Designed for organic discovery, SEO, and inclusion in the sitemap.
-    - Shares its underlying data with the corresponding `/landing/[slug]` page.
+  - Provides full content for each resource, using a shared `ResourceContent` component.
+  - Includes the standard site header and footer for full navigation.
+  - Designed for organic discovery, SEO, and inclusion in the sitemap.
+  - Shares its underlying data with the corresponding `/landing/[slug]` page.
 
 ### FAQ Page (`app/faq/page.tsx`)
 
@@ -373,7 +373,7 @@ The template includes integrations with popular analytics and tracking platforms
 - Implementation in `components/tracking/tracking-scripts.tsx`
 - Placeholder: `GTM-XXXXXXX`
 - Loads only when analytics consent is given
-- **Optimization:** *Tracking scripts are only injected if both consent is given and the corresponding tracking ID in `siteConfig.tracking` is set (non-empty). This prevents empty or broken script loads, improves performance, and keeps onboarding/automation simple—just add the ID to enable a platform.*
+- **Optimization:** _Tracking scripts are only injected if both consent is given and the corresponding tracking ID in `siteConfig.tracking` is set (non-empty). This prevents empty or broken script loads, improves performance, and keeps onboarding/automation simple—just add the ID to enable a platform._
 
 ### Google Analytics 4
 
@@ -422,16 +422,16 @@ The `lib/tracking-utils.ts` file provides utility functions for tracking events 
 - **Client Integration:** The `components/analytics/WebVitalsReporter.tsx` component is injected into `app/layout.tsx` (via `<WebVitalsReporter />`) to send metrics after hydration.
 - **API Route:** Metrics are posted (Beacon API or fetch with `keepalive`) to `app/api/web-vitals/route.ts`. You can extend this route to forward data to Google Analytics, Sentry, Datadog, Supabase, or any other analytics backend.
 - **Benefits:** Enables real-user monitoring of performance distributions (percentiles), detects regressions across releases, and surfaces slow pages or network conditions in production dashboards.
-- **Getting Started:**  
-  1. Clone or deploy this template—metrics fire automatically in production.  
-  2. Secure or extend the `/api/web-vitals` endpoint to persist or proxy metrics.  
+- **Getting Started:**
+  1. Clone or deploy this template—metrics fire automatically in production.
+  2. Secure or extend the `/api/web-vitals` endpoint to persist or proxy metrics.
   3. Integrate with your preferred monitoring or analytics tool to visualize Core Web Vitals in real time.
 
 ## Cookie Consent System
 
 The template includes a comprehensive cookie consent system that complies with GDPR and other privacy regulations:
 
-- **Tracking script optimization:** *Tracking scripts are only injected if both consent is given and the corresponding tracking ID in `siteConfig.tracking` is set (non-empty). This prevents empty or broken script loads, improves performance, and keeps onboarding/automation simple—just add the ID to enable a platform.*
+- **Tracking script optimization:** _Tracking scripts are only injected if both consent is given and the corresponding tracking ID in `siteConfig.tracking` is set (non-empty). This prevents empty or broken script loads, improves performance, and keeps onboarding/automation simple—just add the ID to enable a platform._
 
 ### Cookie Consent Hook (`hooks/use-cookie-consent.tsx`)
 
@@ -934,22 +934,22 @@ If you ever need to revert to the previous setup, simply remove the `ci:verify` 
 The template features a dual-route system for content like e-books, whitepapers, or case studies, allowing them to be served both as focused landing pages and as fully integrated site resources:
 
 - **Shared Data Layer (`lib/data/resources.ts`)**:
-    - Defines a `Resource` type.
-    - Exports functions like `getResources()` and `getResourceBySlug(slug)` to fetch resource data. This data source is the single source of truth for content displayed on both landing and resource pages.
+  - Defines a `Resource` type.
+  - Exports functions like `getResources()` and `getResourceBySlug(slug)` to fetch resource data. This data source is the single source of truth for content displayed on both landing and resource pages.
 - **Shared Content Component (`components/resources/ResourceContent.tsx`)**:
-    - Renders the actual content of a resource (hero, text sections, images, forms).
-    - Used by both `/landing/[slug]/page.tsx` and `/resources/[slug]/page.tsx`.
+  - Renders the actual content of a resource (hero, text sections, images, forms).
+  - Used by both `/landing/[slug]/page.tsx` and `/resources/[slug]/page.tsx`.
 - **Landing Pages (`app/landing/[slug]/page.tsx`)**:
-    - Wrapped in `app/landing/layout.tsx` which provides a minimal header (`LandingHeader.tsx`) and footer (`LandingFooter.tsx`).
-    - Designed for targeted campaigns (e.g., paid ads).
-    - Hidden from main navigation and sitemap to ensure focused user journeys.
-    - Feature flag: `siteConfig.features.enableLandingPages` controls their availability (guarded by `middleware.ts`).
+  - Wrapped in `app/landing/layout.tsx` which provides a minimal header (`LandingHeader.tsx`) and footer (`LandingFooter.tsx`).
+  - Designed for targeted campaigns (e.g., paid ads).
+  - Hidden from main navigation and sitemap to ensure focused user journeys.
+  - Feature flag: `siteConfig.features.enableLandingPages` controls their availability (guarded by `middleware.ts`).
 - **Resource Pages (`app/resources/[slug]/page.tsx`)**:
-    - Use the standard site layout (full header and footer).
-    - `app/resources/page.tsx` serves as an index, listing all available resources.
-    - Designed for organic discovery and included in the sitemap.
+  - Use the standard site layout (full header and footer).
+  - `app/resources/page.tsx` serves as an index, listing all available resources.
+  - Designed for organic discovery and included in the sitemap.
 - **Form Integration**:
-    - `components/resources/FormSection.tsx` typically handles form embeds (e.g., HubSpot, Typeform) for lead capture, especially on landing pages.
+  - `components/resources/FormSection.tsx` typically handles form embeds (e.g., HubSpot, Typeform) for lead capture, especially on landing pages.
 
 This architecture ensures content is managed in one place (`lib/data/resources.ts`) but can be presented in two distinct contexts optimized for different acquisition channels.
 
@@ -958,26 +958,31 @@ This architecture ensures content is managed in one place (`lib/data/resources.t
 This codebase is designed for maximum flexibility, automation, and AI-driven customization. Here's how dynamic theming and configuration work:
 
 ### Centralized Theme Config
+
 - **All theme values** (colors, fonts, spacing, borders, etc.) are set in `lib/site.config.local.ts`.
 - This config is the single source of truth for branding and design tokens.
 
 ### globals.css: Fallbacks & SSR Safety
+
 - `app/globals.css` defines default CSS variables for all theme tokens (e.g., `--primary`, `--font-heading`).
 - These ensure the site renders with sensible defaults during SSR or before JS loads, preventing a "flash of unstyled content" (FOUC).
 - **At build/SSR time,** the theme config is read and all CSS variables are injected into the <head> via a <style> tag in `app/layout.tsx`, making the site fully dynamic without any client-side provider.
 
 ### Dual CSS Variable Pattern for Colors
+
 - For each theme color (primary, secondary, accent, etc.), both a hex and an RGB variable are set:
   - `--primary: #2563EB;`
   - `--primary-rgb: 37,99,235;`
 - This allows for both solid and alpha/opacity color utilities in Tailwind and CSS.
 
 ### Keeping Config and CSS in Sync
+
 - The values in `site.config.local.ts` **should always match** the defaults in `globals.css`.
 - If you change a color, font, or spacing in the config, update the fallback in `globals.css` as well.
 - This prevents mismatches and visual glitches during SSR/initial load.
 
 ### Adding New Theme Tokens
+
 - To add a new color (e.g., info, warning):
   1. Add both `--info` and `--info-rgb` to `globals.css` with sensible defaults.
   2. Add the color to `site.config.local.ts`.
@@ -985,17 +990,20 @@ This codebase is designed for maximum flexibility, automation, and AI-driven cus
   4. Add new Button/component variants as needed.
 
 ### Legacy CSS Classes
+
 - Old classes like `.btn-primary`, `.btn-secondary`, `.btn-outline` are deprecated.
 - Use the Button component and its variants for all buttons.
 - Remove legacy classes to avoid confusion.
 
 ### Best Practices for AI Agents & Developers
+
 - Always use theme variables—never hardcode colors or fonts in components.
 - Use the Button component for all buttons, not custom classes.
 - When onboarding a new client, update only `site.config.local.ts` and (optionally) the fallbacks in `globals.css`.
 - All theme variables are now injected server-side; no client provider is needed.
 
 ### Why Are Colors/Fonts in Multiple Layers?
+
 - Base defaults in `app/globals.css` set initial HSL/RGB CSS variables to prevent FOUC.
 - Dynamic overrides in `app/layout.tsx` read your `site.config.local.ts` at build/SSR and inline a `<style>` resetting those CSS variables.
 - Tailwind mappings in `tailwind.config.ts` expose those variables as utility classes (`bg-brand-dark`, `text-primary-10`, `border-accent-50`, etc.), including opacity variants via the plugin.
@@ -1009,16 +1017,17 @@ This setup ensures the site is always styled, always dynamic, and always ready f
 > If you do **not** need runtime theme switching (e.g., dark mode, live preview, A/B tests, or user-driven theme changes), you can safely keep all CSS variable generation logic in your server layout (`app/layout.tsx`) and do not need a client-side provider.
 >
 > **Benefits:**
+>
 > - Less client-side JavaScript and a smaller bundle
 > - Faster hydration and first paint (all theme tokens are present immediately)
 > - No risk of mismatch or flash between SSR and client
 >
 > **Tradeoff:**
+>
 > - You lose the ability to change theme tokens at runtime without a full page reload (but for static/admin-driven theming, this is not needed).
 >
 > **Conclusion:**
 > For static, admin-driven theming (the current use case), this is a net win for performance and simplicity. If you ever want runtime theme switching, you can reintroduce a client-side provider.
-
 
 ### Custom Color‐Opacity Utilities
 
@@ -1036,20 +1045,37 @@ This setup ensures the site is always styled, always dynamic, and always ready f
 2. **Tailwind Plugin** (in `tailwind.config.ts`):
 
    ```ts
-   import plugin from 'tailwindcss/plugin';
+   import plugin from "tailwindcss/plugin";
 
    export default {
      // …
      plugins: [
        // …other plugins…
        plugin(({ matchUtilities, theme }) => {
-         const colors = ['primary','secondary','destructive','muted','accent','popover','card'];
+         const colors = [
+           "primary",
+           "secondary",
+           "destructive",
+           "muted",
+           "accent",
+           "popover",
+           "card",
+         ];
          for (const color of colors) {
-           matchUtilities({
-             [`bg-${color}`]:   v => ({ backgroundColor: `rgba(var(--${color}-rgb), ${v})` }),
-             [`text-${color}`]: v => ({ color:          `rgba(var(--${color}-rgb), ${v})` }),
-             [`border-${color}`]: v => ({ borderColor:  `rgba(var(--${color}-rgb), ${v})` }),
-           }, { values: theme('opacity.0') });
+           matchUtilities(
+             {
+               [`bg-${color}`]: (v) => ({
+                 backgroundColor: `rgba(var(--${color}-rgb), ${v})`,
+               }),
+               [`text-${color}`]: (v) => ({
+                 color: `rgba(var(--${color}-rgb), ${v})`,
+               }),
+               [`border-${color}`]: (v) => ({
+                 borderColor: `rgba(var(--${color}-rgb), ${v})`,
+               }),
+             },
+             { values: theme("opacity.0") },
+           );
          }
        }),
      ],
@@ -1060,25 +1086,21 @@ This setup ensures the site is always styled, always dynamic, and always ready f
 
    ```html
    <!-- 10% primary fill, 80% secondary text, 50% muted border -->
-   <div class="bg-primary-10 text-secondary-80 border-muted-50">
-     …
-   </div>
+   <div class="bg-primary-10 text-secondary-80 border-muted-50">…</div>
    ```
 
    Compiles to:
 
    ```css
    background-color: rgba(var(--primary-rgb), 0.1);
-   color:            rgba(var(--secondary-rgb), 0.8);
-   border-color:     rgba(var(--muted-rgb), 0.5);
+   color: rgba(var(--secondary-rgb), 0.8);
+   border-color: rgba(var(--muted-rgb), 0.5);
    ```
 
 4. **Explicit Fallback** (if you need an arbitrary opacity):
 
    ```html
-   <div class="bg-[rgba(var(--primary-rgb),0.4)]">
-     …
-   </div>
+   <div class="bg-[rgba(var(--primary-rgb),0.4)]">…</div>
    ```
 
 With this in place, any future AI or human can instantly see how to write and extend color-opacity utilities—and you'll never accidentally ship a broken `text-primary/40` again.
@@ -1102,14 +1124,14 @@ You can find these flags under the `features` key in your `lib/site.config.local
 
 We've introduced a CSS-variable–driven library of inline SVG pattern overlays in `app/globals.css`. This gives you eight tiny, high-performance background patterns you can layer under any content by combining the `.pattern-overlay` utility with one of the following pattern classes:
 
-- `.bg-grid-pattern`      – subtle crosshair grid
-- `.bg-dots-pattern`      – polka dots
-- `.bg-stripes-pattern`   – diagonal stripes
-- `.bg-hex-pattern`       – hexagon mesh
-- `.bg-triangle-pattern`  – triangles
+- `.bg-grid-pattern` – subtle crosshair grid
+- `.bg-dots-pattern` – polka dots
+- `.bg-stripes-pattern` – diagonal stripes
+- `.bg-hex-pattern` – hexagon mesh
+- `.bg-triangle-pattern` – triangles
 - `.bg-crosshatch-pattern`– crosshatch lines
-- `.bg-noise-pattern`     – subtle noise dots
-- `.bg-waves-pattern`     – wave curves
+- `.bg-noise-pattern` – subtle noise dots
+- `.bg-waves-pattern` – wave curves
 
 ### Usage Example
 

@@ -8,80 +8,80 @@ import type { z } from "zod";
 
 // Updated props type alias using Zod schema
 export type ProblemPainSectionProps = z.infer<
-	typeof problemPainSectionDataSchema
+  typeof problemPainSectionDataSchema
 >;
 
 export default function ProblemPainSection({
-	badgeText,
-	heading,
-	description,
-	calloutText,
-	cards,
+  badgeText,
+  heading,
+  description,
+  calloutText,
+  cards,
 }: ProblemPainSectionProps) {
-	return (
-		<Section
-			id="pain"
-			className="bg-gradient-to-b from-transparent to-[rgba(var(--accent-rgb),0.1)]"
-		>
-			<LazySection
-				animation="slide-up"
-				delay={0}
-				className="-mx-3.5 sm:mx-auto pattern-overlay bg-brand-dark text-white rounded-[30px] border shadow-lg p-8 sm:p-12"
-			>
-				<div className="grid gap-12 lg:grid-cols-2">
-					<div className="flex flex-col justify-center space-y-8">
-						<div className="space-y-4">
-							{badgeText && (
-								<div className="inline-flex items-center space-x-2 text-accent">
-									<AlertTriangle className="h-5 w-5" />
-									<span className="font-medium">{badgeText}</span>
-								</div>
-							)}
-							{heading && (
-								<h2 className="text-[var(--font-subheading-size)] text-white">
-									{heading}
-								</h2>
-							)}
-							{description && (
-								<p className="max-w-[600px] text-muted-foreground md:text-xl">
-									{description}
-								</p>
-							)}
-						</div>
-						{calloutText && (
-							<div className="rounded-lg bg-[rgba(255,255,255,0.08)] p-6">
-								<p className="text-lg font-medium">{calloutText}</p>
-							</div>
-						)}
-					</div>
-					{cards && cards.length > 0 && (
-						<div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-							{cards.map((card, idx) => (
-								<motion.div
-									key={card.id}
-									initial={{ opacity: 0, y: 20 }}
-									whileInView={{ opacity: 1, y: 0 }}
-									whileHover={{
-										y: -5,
-										scale: 1.02,
-										transition: { duration: 0.1, ease: "easeOut" },
-									}}
-									transition={{ duration: 0.3, delay: idx * 0.2 }}
-									viewport={{ once: true }}
-									className="rounded-lg bg-[rgba(255,255,255,0.08)] p-6 shadow-sm hover:shadow-xl transition-shadow duration-300"
-								>
-									<h3 className="mb-3 text-xl font-bold text-accent">
-										{card.title}
-									</h3>
-									<p className="text-muted-foreground text-base md:text-lg">
-										{card.description}
-									</p>
-								</motion.div>
-							))}
-						</div>
-					)}
-				</div>
-			</LazySection>
-		</Section>
-	);
+  return (
+    <Section
+      id="pain"
+      className="bg-gradient-to-b from-transparent to-[rgba(var(--accent-rgb),0.1)]"
+    >
+      <LazySection
+        animation="slide-up"
+        delay={0}
+        className="-mx-3.5 sm:mx-auto pattern-overlay bg-brand-dark text-white rounded-[30px] border shadow-lg p-8 sm:p-12"
+      >
+        <div className="grid gap-12 lg:grid-cols-2">
+          <div className="flex flex-col justify-center space-y-8">
+            <div className="space-y-4">
+              {badgeText && (
+                <div className="inline-flex items-center space-x-2 text-accent">
+                  <AlertTriangle className="h-5 w-5" />
+                  <span className="font-medium">{badgeText}</span>
+                </div>
+              )}
+              {heading && (
+                <h2 className="text-[var(--font-subheading-size)] text-white">
+                  {heading}
+                </h2>
+              )}
+              {description && (
+                <p className="max-w-[600px] text-muted-foreground md:text-xl">
+                  {description}
+                </p>
+              )}
+            </div>
+            {calloutText && (
+              <div className="rounded-lg bg-[rgba(255,255,255,0.08)] p-6">
+                <p className="text-lg font-medium">{calloutText}</p>
+              </div>
+            )}
+          </div>
+          {cards && cards.length > 0 && (
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+              {cards.map((card, idx) => (
+                <motion.div
+                  key={card.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  whileHover={{
+                    y: -5,
+                    scale: 1.02,
+                    transition: { duration: 0.1, ease: "easeOut" },
+                  }}
+                  transition={{ duration: 0.3, delay: idx * 0.2 }}
+                  viewport={{ once: true }}
+                  className="rounded-lg bg-[rgba(255,255,255,0.08)] p-6 shadow-sm hover:shadow-xl transition-shadow duration-300"
+                >
+                  <h3 className="mb-3 text-xl font-bold text-accent">
+                    {card.title}
+                  </h3>
+                  <p className="text-muted-foreground text-base md:text-lg">
+                    {card.description}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          )}
+        </div>
+      </LazySection>
+    </Section>
+  );
 }

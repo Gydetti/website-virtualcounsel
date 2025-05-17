@@ -10,5 +10,6 @@ This document tracks the Lighthouse scores before and after applying our optimiz
 | SEO            | TBD      | TBD                 |
 
 ## Notes
+
 - Run `npx lhci autorun` locally or in CI to populate these values.
-- Compare resource and bundle metrics across runs. 
+- Compare resource and bundle metrics across runs.

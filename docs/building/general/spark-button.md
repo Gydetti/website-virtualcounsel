@@ -4,7 +4,7 @@
 
 - **Why:**  
   The spark effect requires extra DOM elements (`.spark__container`, `.spark`, `.backdrop`, `.text`) inside the button, which is different from your current button's simple structure.
-- **How:**  
+- **How:**
   - When `variant="spark"`, render a custom internal structure **using a dedicated render branch**.
   - For all other variants, keep the current rendering.
 
@@ -16,7 +16,7 @@
 
 - **Why:**  
   The spark effect uses custom CSS (not Tailwind) for the animation, but you want to keep the button's color, font, border-radius, and sizing consistent with your theme.
-- **How:**  
+- **How:**
   - **Replace all hardcoded colors, border-radius, and font in the spark CSS with theme CSS variables** (e.g., `var(--primary)`, `var(--radius)`, `var(--font-heading)`).
   - Import the spark effect CSS as a module or in global styles.
   - Use Tailwind for sizing, font, and spacing, but use raw CSS for the spark animation layers.
@@ -43,7 +43,7 @@
       className={cn(
         buttonVariants({ variant: "default", size, className }), // Use "default" for base styling
         "spark-button", // Add the spark effect class
-        className
+        className,
       )}
       {...props}
     >
@@ -108,17 +108,17 @@
 
 ## **Summary Table**
 
-| Step                | Action                                                                 |
-|---------------------|------------------------------------------------------------------------|
-| 1. Spark CSS        | Move effect CSS to a module, use theme variables                       |
-| 2. Button Update    | Add `"spark"` variant, render special structure for it                 |
-| 3. Theme Consistency| Use theme variables for color, radius, font                            |
-| 4. Accessibility    | Ensure all props, keyboard, and ARIA support                           |
-| 5. Sizing           | Use correct size classes for `sm`, `default`, `lg`                     |
-| 6. Usage            | `<Button variant="spark">...</Button>`                                 |
-| 7. Test             | All sizes, modes, accessibility, edge cases                            |
-| 8. Document         | Add to docs and design guidelines                                      |
-| 9. AsChild Support  | Only if needed, and with caution                                       |
+| Step                 | Action                                                 |
+| -------------------- | ------------------------------------------------------ |
+| 1. Spark CSS         | Move effect CSS to a module, use theme variables       |
+| 2. Button Update     | Add `"spark"` variant, render special structure for it |
+| 3. Theme Consistency | Use theme variables for color, radius, font            |
+| 4. Accessibility     | Ensure all props, keyboard, and ARIA support           |
+| 5. Sizing            | Use correct size classes for `sm`, `default`, `lg`     |
+| 6. Usage             | `<Button variant="spark">...</Button>`                 |
+| 7. Test              | All sizes, modes, accessibility, edge cases            |
+| 8. Document          | Add to docs and design guidelines                      |
+| 9. AsChild Support   | Only if needed, and with caution                       |
 
 ---
 
@@ -146,4 +146,3 @@
 ---
 
 **Note:** The static HTML demo is a proof of concept. For production, always use theme variables and React integration.
-

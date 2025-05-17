@@ -17,7 +17,7 @@ tests/
 
 **Example existing E2E test:**
 
-  • `tests/e2e/resource-pages.spec.ts`  (copy of `tests/resource-pages.spec.ts`)
+• `tests/e2e/resource-pages.spec.ts` (copy of `tests/resource-pages.spec.ts`)
 
 ---
 
@@ -26,6 +26,7 @@ tests/
 ### Configuration
 
 - **Config file:** `playwright.config.ts` (sample):
+
   ```ts
   testDir: "tests/e2e",
   webServer: { command: "npm run dev", port: 3000, reuseExistingServer: true },
@@ -67,6 +68,7 @@ test.describe('Resource & Landing Pages', () => {
 ### Configuration
 
 - **Config file:** `vitest.config.ts` (sample):
+
   ```ts
   test: { environment: 'jsdom', globals: true, setupFiles: ['./vitest.setup.ts'], include: ['tests/unit/**/*.test.{ts,tsx}'] }
   ```
@@ -85,14 +87,17 @@ test.describe('Resource & Landing Pages', () => {
 ### What to cover
 
 1. **UI Components** (Hero, Features, Footer, ContactSection):
+
    - Render with example `lib/data` fixtures
    - Assert text, images (`getByAltText`), button clicks, CSS classes
 
 2. **Feature-flag gating**:
+
    - Mount layout or page with `siteConfig.features.enableX = false`
    - Assert the section is not rendered
 
 3. **Utility functions** in `lib/`:
+
    - Metadata builder: ensure default metadata shape
    - Tracking helpers: stub `window.dataLayer`
 
@@ -115,6 +120,7 @@ Use Vitest + MSW (Mock Service Worker) to stub network calls.
 ### Examples
 
 - **Contact form endpoint** (`app/api/contact/route.ts`):
+
   - Mock `fetch('https://www.google.com/recaptcha/api/siteverify')`
   - Mock SMTP/sendgrid/postmark calls via MSW or spy on `nodemailer.createTransport`
   - Assert JSON responses for success, validation errors, spam (honeypot)
@@ -127,8 +133,9 @@ Use Vitest + MSW (Mock Service Worker) to stub network calls.
 ## 5. Accessibility & Performance Checks
 
 1. **Automated a11y**: use `jest-axe` in Vitest to scan components:
+
    ```ts
-   import { axe } from 'jest-axe';
+   import { axe } from "jest-axe";
    expect(await axe(container)).toHaveNoViolations();
    ```
 
@@ -141,6 +148,7 @@ Use Vitest + MSW (Mock Service Worker) to stub network calls.
 ## 6. Running All Tests in CI
 
 Add or update `package.json` scripts:
+
 ```json
 "scripts": {
   "test:unit": "vitest run",
@@ -156,8 +164,8 @@ Add or update `package.json` scripts:
 
 ## 7. Summary
 
-1. **tests/unit/** → isolated component and function tests (Vitest)  
-2. **tests/integration/** → end-to-end of subsystems (API, form flows)  
-3. **tests/e2e/** → full UI journeys in real browsers (Playwright)  
+1. **tests/unit/** → isolated component and function tests (Vitest)
+2. **tests/integration/** → end-to-end of subsystems (API, form flows)
+3. **tests/e2e/** → full UI journeys in real browsers (Playwright)
 
 Use the existing `tests/e2e/resource-pages.spec.ts` as a template for all new E2E scripts. Keep naming and placement consistent so both humans and AI assistants can find and update tests quickly.

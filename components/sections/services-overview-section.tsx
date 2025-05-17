@@ -7,46 +7,46 @@ import type { CSSProperties } from "react";
 import type { z } from "zod";
 
 export type ServicesOverviewSectionProps = z.infer<
-	typeof servicesOverviewSectionDataSchema
+  typeof servicesOverviewSectionDataSchema
 >;
 
 export default function ServicesOverviewSection({
-	badgeText,
-	heading,
-	description,
+  badgeText,
+  heading,
+  description,
 }: ServicesOverviewSectionProps) {
-	return (
-		<Section
-			id="services-overview"
-			className="relative overflow-hidden bg-gradient-to-r from-brand-light via-transparent to-transparent z-10 py-12"
-		>
-			<LazySection
-				animation="none"
-				className="stagger-container text-center max-w-3xl mx-auto"
-				style={{ "--stagger-delay": "0.1s" } as CSSProperties}
-			>
-				{badgeText && (
-					<Badge className="mb-4" style={{ "--index": 0 } as CSSProperties}>
-						{badgeText}
-					</Badge>
-				)}
-				{heading && (
-					<h1
-						className="text-[var(--font-heading-size)] mb-4"
-						style={{ "--index": 1 } as CSSProperties}
-					>
-						{heading}
-					</h1>
-				)}
-				{description && (
-					<p
-						className="text-foreground mb-8"
-						style={{ "--index": 2 } as CSSProperties}
-					>
-						{description}
-					</p>
-				)}
-			</LazySection>
-		</Section>
-	);
+  return (
+    <Section
+      id="services-overview"
+      className="relative overflow-hidden bg-gradient-to-r from-brand-light via-transparent to-transparent z-10 py-12"
+    >
+      <LazySection
+        animation="none"
+        className="stagger-container text-center max-w-3xl mx-auto"
+        style={{ "--stagger-delay": "0.1s" } as CSSProperties}
+      >
+        {badgeText && (
+          <Badge className="mb-4" style={{ "--index": 0 } as CSSProperties}>
+            {badgeText}
+          </Badge>
+        )}
+        {heading && (
+          <h1
+            className="text-[var(--font-heading-size)] mb-4"
+            style={{ "--index": 1 } as CSSProperties}
+          >
+            {heading}
+          </h1>
+        )}
+        {description && (
+          <p
+            className="text-foreground mb-8"
+            style={{ "--index": 2 } as CSSProperties}
+          >
+            {description}
+          </p>
+        )}
+      </LazySection>
+    </Section>
+  );
 }

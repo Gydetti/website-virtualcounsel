@@ -5,6 +5,7 @@
 The GMG Template Website 2025 aims to be a fully AI-customizable, client-friendly codebase. One of the most important aspects of this is **theme color management**—allowing anyone (or any agent) to set brand colors in a single place and have those changes propagate everywhere, including gradients, backgrounds, borders, and alpha/opacity utilities.
 
 ### Why Not Just Use Tailwind's Color Tokens?
+
 - **User/AI Friendliness:** Most users and AI agents expect to set colors as hex codes (e.g., `#FF9D48`), not Tailwind's HSL or RGB lists.
 - **Centralization:** All theme values (colors, spacing, fonts) should live in `site.config.local.ts` for maintainability and clarity.
 - **Tailwind Limitation:** Tailwind's `/10`, `/20`, etc. alpha utilities only work if the underlying CSS variable is a space-separated RGB or HSL value—not a hex. Using hex breaks these utilities, causing gradients and backgrounds to fail or look wrong.
@@ -12,6 +13,7 @@ The GMG Template Website 2025 aims to be a fully AI-customizable, client-friendl
 ## The Solution: Dual CSS Variables for Each Theme Color
 
 For every theme color (primary, secondary, accent, etc.), expose **both**:
+
 - The hex value (for solid fills, borders, etc.):
   - `--primary: #2563EB;`
   - `--secondary: #FF9D48;`
@@ -54,6 +56,7 @@ This is handled automatically in `app/layout.tsx` by converting the hex to RGB a
 ## Example: How It Looks in Practice
 
 **site.config.local.ts**
+
 ```ts
 colors: {
   primary: "#2563EB", // blue
@@ -63,22 +66,26 @@ colors: {
 ```
 
 **app/layout.tsx**
+
 ```ts
-root.style.setProperty('--secondary', theme.colors.secondary);
-root.style.setProperty('--secondary-rgb', '255,157,72');
+root.style.setProperty("--secondary", theme.colors.secondary);
+root.style.setProperty("--secondary-rgb", "255,157,72");
 ```
 
 **Component Usage**
+
 ```tsx
 // Solid background
-className="bg-[var(--secondary)]"
+className = "bg-[var(--secondary)]";
 // Gradient with opacity
-className="bg-gradient-to-b from-[rgba(var(--secondary-rgb),0.1)] to-transparent"
+className =
+  "bg-gradient-to-b from-[rgba(var(--secondary-rgb),0.1)] to-transparent";
 ```
 
 ## Conclusion
 
 This approach ensures the template is:
+
 - **Fully dynamic and AI-configurable**
 - **Robust to future design changes**
 - **Easy for non-devs and AI agents to update**

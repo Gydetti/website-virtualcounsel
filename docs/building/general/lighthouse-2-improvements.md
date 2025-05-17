@@ -31,25 +31,34 @@ Below is a summary of the work already done in the codebase:
 > Maintain both the "snappy, staggered" entrance effects and genuine lazy-loading performance via a hybrid approach.
 
 ### a) CSS-Only Stagger + Scroll-Trigger
+
 1. Wrap simple sections (Features, Pricing, About, etc.) in a single `LazySection` with `animation="none"` so it adds a `visible` class on intersection:
+
    ```tsx
-   import LazySection from '@/components/ui/lazy-section';
+   import LazySection from "@/components/ui/lazy-section";
 
    <LazySection
      animation="none"
      className="stagger-container"
-     style={{ '--stagger-delay': '0.1s' }}
+     style={{ "--stagger-delay": "0.1s" }}
    >
-     <h2 style={{ '--index': 0 } as React.CSSProperties}>Section Title</h2>
-     <p  style={{ '--index': 1 } as React.CSSProperties}>Subtitle</p>
-     <div style={{ '--index': 2 } as React.CSSProperties}>…</div>
-   </LazySection>
+     <h2 style={{ "--index": 0 } as React.CSSProperties}>Section Title</h2>
+     <p style={{ "--index": 1 } as React.CSSProperties}>Subtitle</p>
+     <div style={{ "--index": 2 } as React.CSSProperties}>…</div>
+   </LazySection>;
    ```
+
 2. In `app/globals.css`, ensure CSS utilities:
    ```css
    @keyframes fade-up {
-     from { opacity: 0; transform: translateY(20px); }
-     to   { opacity: 1; transform: translateY(0); }
+     from {
+       opacity: 0;
+       transform: translateY(20px);
+     }
+     to {
+       opacity: 1;
+       transform: translateY(0);
+     }
    }
    .stagger-container > * {
      opacity: 0;
@@ -62,10 +71,14 @@ Below is a summary of the work already done in the codebase:
    ```
 
 ### b) JS-Driven LazySection + Code-Splitting
+
 1. For heavy/below-the-fold sections (Hero, carousels, complex UIs), dynamic-import both `LazySection` and the section:
+
    ```tsx
-   import dynamic from 'next/dynamic';
-   const LazySection = dynamic(() => import('@/components/ui/lazy-section'), { ssr: false });
+   import dynamic from "next/dynamic";
+   const LazySection = dynamic(() => import("@/components/ui/lazy-section"), {
+     ssr: false,
+   });
 
    export default function TestimonialsSection(props) {
      return (
@@ -77,16 +90,19 @@ Below is a summary of the work already done in the codebase:
    ```
 
 ### c) Guided Removal of Extra Wrappers
-- Drop all per-item `<LazySection>` wrappers in CSS-only sections—to just one container.  
-- Prefer semantic lists (`<ul>/<li>`) over grid `<div>` clusters to cut DOM nodes.  
+
+- Drop all per-item `<LazySection>` wrappers in CSS-only sections—to just one container.
+- Prefer semantic lists (`<ul>/<li>`) over grid `<div>` clusters to cut DOM nodes.
 
 ### d) Feature-Flag Control
-Everything obeys `siteConfig.features.enableStaggeredAnimations`. Flip off for static fallback.  
+
+Everything obeys `siteConfig.features.enableStaggeredAnimations`. Flip off for static fallback.
 
 ### e) Validation
-- Verify scroll-triggered entrance in dev.  
-- Confirm E2E smoke tests.  
-- (Optional) run Lighthouse to confirm JS & DOM savings.  
+
+- Verify scroll-triggered entrance in dev.
+- Confirm E2E smoke tests.
+- (Optional) run Lighthouse to confirm JS & DOM savings.
 
 This hybrid pattern preserves our signature flow on scroll while delivering true lazy-loading gains.
 
@@ -109,7 +125,9 @@ This hybrid pattern preserves our signature flow on scroll while delivering true
    ```
 2. Enable ESM externals to avoid CJS shims:
    ```js
-   experimental: { esmExternals: true }
+   experimental: {
+     esmExternals: true;
+   }
    ```
 3. Audit dependencies:
    - Replace CJS packages with ESM-only imports
@@ -122,7 +140,7 @@ This hybrid pattern preserves our signature flow on scroll while delivering true
 3. Replace generic `<div>` lists with semantic lists where possible:
    ```tsx
    <ul className="grid grid-cols-3 gap-4">
-     {items.map(item => (
+     {items.map((item) => (
        <li key={item.id}>{item.label}</li>
      ))}
    </ul>
@@ -133,13 +151,16 @@ This hybrid pattern preserves our signature flow on scroll while delivering true
 
 1. Convert non-critical sections to dynamic imports:
    ```tsx
-   import dynamic from 'next/dynamic';
-   const Testimonials = dynamic(() => import('@/components/sections/testimonials-section'), { ssr: false });
+   import dynamic from "next/dynamic";
+   const Testimonials = dynamic(
+     () => import("@/components/sections/testimonials-section"),
+     { ssr: false },
+   );
    ```
 2. Defer analytics and heavy scripts:
    ```tsx
-   import Script from 'next/script';
-   <Script src="https://analytics.js" strategy="lazyOnload" />
+   import Script from "next/script";
+   <Script src="https://analytics.js" strategy="lazyOnload" />;
    ```
 3. Group animation logic behind `dynamic()` to avoid pulling Framer Motion into base bundle.
 
@@ -147,7 +168,9 @@ This hybrid pattern preserves our signature flow on scroll while delivering true
 
 1. Replace multiple `IntersectionObserver` wrappers with CSS keyframe/stagger:
    ```css
-   .stagger-container { --stagger-delay: 0.1s; }
+   .stagger-container {
+     --stagger-delay: 0.1s;
+   }
    .stagger-container > * {
      opacity: 0;
      animation: fade-up 0.4s ease both;
@@ -157,8 +180,10 @@ This hybrid pattern preserves our signature flow on scroll while delivering true
 2. For JavaScript-based animations (e.g., your HeroSection):
    - Dynamically import `LazySection` and `framer-motion` only within that component:
      ```tsx
-     import dynamic from 'next/dynamic';
-     const LazySection = dynamic(() => import('@/components/ui/lazy-section'), { ssr: false });
+     import dynamic from "next/dynamic";
+     const LazySection = dynamic(() => import("@/components/ui/lazy-section"), {
+       ssr: false,
+     });
      ```
    - Wrap **only** essential containers (text, image, stats) with `LazySection` to preserve lively, staggered entrance while minimizing extra DOM nodes.
 3. Remove `LazySection` and IntersectionObservers from simpler sections—leverage the CSS-only approach above for subtle fade/slide sequences.
@@ -179,7 +204,7 @@ This hybrid pattern preserves our signature flow on scroll while delivering true
    npx depcheck
    ```
 2. Remove unused packages.
-3. Configure `.browserslist` to target modern:  
+3. Configure `.browserslist` to target modern:
    ```json
    ["defaults and supports es6-module", "not IE 11", "not dead"]
    ```
@@ -193,7 +218,10 @@ This hybrid pattern preserves our signature flow on scroll while delivering true
 2. Create `lighthouserc.json` in repo root:
    ```json
    {
-     "ci": { "collect": { "url": ["http://localhost:3000"], "kpi": true }, "assert": { "preset": "lighthouse:recommended" } }
+     "ci": {
+       "collect": { "url": ["http://localhost:3000"], "kpi": true },
+       "assert": { "preset": "lighthouse:recommended" }
+     }
    }
    ```
 3. Add to CI workflow (`.github/workflows/ci.yml`):

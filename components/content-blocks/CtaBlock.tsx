@@ -8,13 +8,13 @@ import type { z } from "zod";
 type CtaBlockProps = z.infer<typeof ctaBlockSchema>;
 
 const CtaBlock: FC<CtaBlockProps> = ({ text, href, external, variant }) => {
-	return (
-		<Button asChild variant={variant === "primary" ? "default" : variant}>
-			<Link href={href} {...(external ? { target: "_blank" } : {})}>
-				{text}
-			</Link>
-		</Button>
-	);
+  return (
+    <Button asChild variant={variant === "primary" ? "default" : variant}>
+      <Link href={href} {...(external ? { target: "_blank" } : {})}>
+        {text}
+      </Link>
+    </Button>
+  );
 };
 
 export default CtaBlock;

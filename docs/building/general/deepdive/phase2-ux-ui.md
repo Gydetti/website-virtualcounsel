@@ -1,14 +1,14 @@
 4. Next Steps & Recommendations
-Implement Page-Specific Enhancements
-Tackle each page brief in turn (Homepage → About → Services → Testimonials → Contact → Blog → FAQ).
-Accessibility Refinements
-Add reduced-motion toggles, ARIA roles, focus traps/modals where needed.
-Performance & SEO Tuning
-Address high-impact Lighthouse recommendations from lighthouse-report.html.
-Document Scroll-Reveal Strategy
-Formalize guidelines on when to use inline <motion.div> vs <LazySection>.
-Finalize & Merge
-Clear .next, rebuild, lint+fix, tests, deploy to staging for manual QA, then push to main.
+   Implement Page-Specific Enhancements
+   Tackle each page brief in turn (Homepage → About → Services → Testimonials → Contact → Blog → FAQ).
+   Accessibility Refinements
+   Add reduced-motion toggles, ARIA roles, focus traps/modals where needed.
+   Performance & SEO Tuning
+   Address high-impact Lighthouse recommendations from lighthouse-report.html.
+   Document Scroll-Reveal Strategy
+   Formalize guidelines on when to use inline <motion.div> vs <LazySection>.
+   Finalize & Merge
+   Clear .next, rebuild, lint+fix, tests, deploy to staging for manual QA, then push to main.
 
 # Phase 2: High-Impact UX/UI Enhancement Blueprint
 
@@ -18,6 +18,7 @@ Clear .next, rebuild, lint+fix, tests, deploy to staging for manual QA, then pus
 > **ANIMATION SYSTEM FOUNDATION & EVALUATION (2025-05-12):**
 >
 > The codebase already uses Framer Motion for scroll-reveal, staggered list, and micro-interaction animations across all major sections and UI components:
+>
 > - **Section-level entrance animations:** Most major sections (Hero, Services, Testimonials, Blog, About, Contact, etc.) use `motion.div` for fade/slide-in effects, typically on their main content blocks, triggered on scroll into view.
 > - **Staggered list animations:** Services and testimonials use index-based delays for a staggered effect.
 > - **Reusable `LazySection` component:** Provides a generic scroll-reveal wrapper with configurable animation type (`fade`, `slide-up`, `zoom`, etc.), but is not used everywhere.
@@ -25,17 +26,20 @@ Clear .next, rebuild, lint+fix, tests, deploy to staging for manual QA, then pus
 > - **No global feature flag:** Animations are always on; there's no way to disable all animations for performance, accessibility, or client preference.
 >
 > **Strengths:**
+>
 > - Modern, visually appealing, and above industry standard for most service-based/knowledge worker sites.
 > - Performance is good—animations are lightweight and only run on visible content.
 > - User experience is strong—animations are subtle, not overwhelming, and add polish.
 >
 > **Weaknesses / Risks:**
+>
 > - Inconsistency: Both `LazySection` and inline `motion.div` are used, making global changes or toggling animations harder.
 > - No global toggle: Can't easily turn off all animations for accessibility or client preference.
 > - Potential for breakage: Previous attempts to refactor animations have broken layouts or caused double animations, especially when wrapping existing `motion.div` in `LazySection`.
 > - Redundant code: Many sections repeat the same animation logic, which is harder to maintain.
 >
 > **Best Practice Evaluation:**
+>
 > - The current system is robust, performant, and visually strong. For most client sites, it is more than sufficient.
 > - If you want maximum flexibility, accessibility, and maintainability, consider consolidating to `LazySection` for all scroll-reveal effects and adding a global toggle (`enableStaggeredAnimations`).
 > - Only refactor if you are prepared to test thoroughly and ensure no regressions in layout or performance. Do NOT refactor just for the sake of it.
@@ -76,7 +80,7 @@ After any code changes—even a single UI tweak—always run the following in or
    ```
 6. Deploy to staging and manually verify high-impact pages (home, landing, resources).
 7. Commit final changes and push to `main`.  
-_Vercel will auto-deploy only after all checks pass._
+   _Vercel will auto-deploy only after all checks pass._
 
 ---
 
@@ -85,42 +89,47 @@ _Vercel will auto-deploy only after all checks pass._
 Below are the curated, toggleable UX/UI enhancements. Each maps to a feature flag in `siteConfig.features` and has minimal technical overhead.
 
 ### 2.1 Staggered & Scroll-Driven Animations
-- **Flag:** `enableStaggeredAnimations`  
+
+- **Flag:** `enableStaggeredAnimations`
 - **What:** Animate sequential entrance (fade/slide/zoom) for lists of cards (features, blog posts, testimonials).
 - **Files to update:**
-  - Wrap lists in `components/ui/lazy-section.tsx` or `<motion.div>` (Framer Motion).  
+  - Wrap lists in `components/ui/lazy-section.tsx` or `<motion.div>` (Framer Motion).
   - Toggle via `siteConfig.features.enableStaggeredAnimations` in `app/layout.tsx` or individual sections.
 - **Performance notes:** Use small `staggerChildren` (e.g. 0.1s) and `once: true` in Intersection Observer to prevent over-animating.
 
 ### 2.2 Page-Level Transitions
-- **Flag:** `enablePageTransitions`  
-- **What:** Smooth route change animations (fade, slide, cover).  
+
+- **Flag:** `enablePageTransitions`
+- **What:** Smooth route change animations (fade, slide, cover).
 - **Files to update:**
   - `app/layout.tsx`: Wrap `<main>` in `<AnimatePresence><motion.main>…</motion.main></AnimatePresence>`.
   - Add a new config `siteConfig.features.pageTransitionVariant` (`fade`, `slide`, `cover`).
 - **SEO/Accessibility:** Ensure transitions don't block content or delay focus. Use reduced-motion for accessibility.
 
 ### 2.3 Interactive & Animated Backgrounds
-- **Flag:** `enableAdvancedBackgrounds`  
+
+- **Flag:** `enableAdvancedBackgrounds`
 - **What:** Lightweight Canvas or R3F effects (particles, animated gradients, parallax shapes).
 - **Files to create/update:**
-  - New component `components/ui/BackgroundCanvas.tsx`.  
-  - Load conditionally in `app/layout.tsx` behind feature flag.  
+  - New component `components/ui/BackgroundCanvas.tsx`.
+  - Load conditionally in `app/layout.tsx` behind feature flag.
 - **Performance notes:** Keep canvas resolution low, throttle animations, and only initialize on large screens.
 
 ### 2.4 Section Layout Variants
-- **Flag:** N/A (each section has its own `variant` property)  
+
+- **Flag:** N/A (each section has its own `variant` property)
 - **What:** Offer 2–3 layout variants per core section (Hero, Services, About). E.g. `imageLeft`, `imageRight`, `centered`.
 - **Files to update:**
-  - Section components in `components/sections/`: add `variant` prop and conditional Tailwind classes.  
+  - Section components in `components/sections/`: add `variant` prop and conditional Tailwind classes.
   - `DynamicPageRenderer` (once implemented) must read `sections[].variant` from `site.config.local.ts`.
 - **Benefits:** Instantly switch layout by editing config—no code changes.
 
 ### 2.5 Micro-Interactions & Gamification
-- **Flag:** `enableMicroInteractions`  
+
+- **Flag:** `enableMicroInteractions`
 - **What:** Subtle hover effects, button scale, progress indicators on forms, interactive counters.
 - **Files to update:**
-  - Common UI components in `components/ui/` (buttons, cards, forms).  
+  - Common UI components in `components/ui/` (buttons, cards, forms).
   - Leverage Tailwind's transition classes: `transition-transform`, `hover:scale-105`.
 - **Performance notes:** CSS-only where possible; avoid heavyweight JS listeners.
 
@@ -129,12 +138,14 @@ Below are the curated, toggleable UX/UI enhancements. Each maps to a feature fla
 ## 3. Page-Specific UX/UI Guidance & Research Integration
 
 > **Instruction to Future AI Agents:**
+>
 > - For each page type, consult the referenced research brief for best practices, content structure, and conversion principles.
 > - Always optimize for solo entrepreneurs and service-based knowledge workers as the primary audience.
 > - If you need more inspiration (visual, technical, or UX), search the web for modern React/Next.js UI patterns, animation libraries, or design frameworks. Cite sources if you use external ideas.
 > - Toggle or adapt sections as needed for each client, but ensure the foundational structure is present and ready to go.
 
 ### 3.1 Homepage
+
 - **Status:** Already highly optimized and structured.
 - **Reference:** `docs/building/webdesign-content-best-practices/01-Homepage-Brief.md`
 - **Key Learnings:**
@@ -143,6 +154,7 @@ Below are the curated, toggleable UX/UI enhancements. Each maps to a feature fla
 - **Action:** Use as the model for other pages. If further inspiration is needed, see the research brief above.
 
 ### 3.2 About Page
+
 - **Reference:** `docs/building/webdesign-content-best-practices/02-AboutPage-Brief.md`
 - **Key Learnings:**
   - Build trust and rapport through authentic storytelling, credentials, and values.
@@ -151,6 +163,7 @@ Below are the curated, toggleable UX/UI enhancements. Each maps to a feature fla
 - **Action:** Ensure About page is not bland—add narrative, credentials, and values sections. For more, see the research brief.
 
 ### 3.3 Services Page
+
 - **Reference:** `docs/building/webdesign-content-best-practices/03-ServicesPage-Brief.md`
 - **Key Learnings:**
   - Clear overview, structured service details, benefit-focused copy, and a simple process outline.
@@ -159,6 +172,7 @@ Below are the curated, toggleable UX/UI enhancements. Each maps to a feature fla
 - **Action:** Make each service section distinct and persuasive. Use cards, icons, and testimonials. See the research brief for structure.
 
 ### 3.4 Testimonials Page
+
 - **Reference:** `docs/building/webdesign-content-best-practices/04-TestimonialsPage-Brief.md`
 - **Key Learnings:**
   - Use authentic, specific testimonials with names/photos.
@@ -167,6 +181,7 @@ Below are the curated, toggleable UX/UI enhancements. Each maps to a feature fla
 - **Action:** Avoid generic testimonial lists. Use real stories, photos, and highlight key results. See the research brief for formatting.
 
 ### 3.5 Contact Page
+
 - **Reference:** `docs/building/webdesign-content-best-practices/05-ContactPage-Brief.md`
 - **Key Learnings:**
   - Prominent, short contact form; alternate contact methods; set expectations for response.
@@ -174,6 +189,7 @@ Below are the curated, toggleable UX/UI enhancements. Each maps to a feature fla
 - **Action:** Keep the form simple, add alternate contact info, and a thank-you/confirmation step. See the research brief for details.
 
 ### 3.6 Blog Page
+
 - **Reference:** `docs/building/webdesign-content-best-practices/06-BlogPage-Brief.md`
 - **Key Learnings:**
   - Organized index, compelling post previews, categories/tags, and search.
@@ -181,6 +197,7 @@ Below are the curated, toggleable UX/UI enhancements. Each maps to a feature fla
 - **Action:** Ensure blog is easy to browse, posts are well-structured, and CTAs are present. See the research brief for layout and content tips.
 
 ### 3.7 FAQ Page
+
 - **Reference:** `docs/building/webdesign-content-best-practices/07-FAQPage-Brief.md`
 - **Key Learnings:**
   - Use real, client-centric questions and clear Q&A format (accordion recommended).
@@ -188,6 +205,7 @@ Below are the curated, toggleable UX/UI enhancements. Each maps to a feature fla
 - **Action:** Build FAQ from real client input, use clear formatting, and link to Contact for unanswered questions. See the research brief for more.
 
 ### 3.8 Site-Wide Best Practices
+
 - **Reference:** `docs/building/webdesign-content-best-practices/08-SiteWideBestPractices-Brief.md`
 - **Key Learnings:**
   - Mobile responsiveness, fast load times, consistent branding, user-friendly navigation, persuasive copywriting, analytics, and accessibility.
@@ -198,7 +216,7 @@ Below are the curated, toggleable UX/UI enhancements. Each maps to a feature fla
 ## 4. Performance & SEO Guardrails
 
 - **Bundle size:** Analyze `npm run build --stats` before/after; target < 5 KB per new component.
-- **Web Vitals:** No new layout shifts (CLS), small script overhead (FCP/LCP).  
+- **Web Vitals:** No new layout shifts (CLS), small script overhead (FCP/LCP).
 - **Accessibility:** Respect `prefers-reduced-motion`, maintain semantic HTML and focus management.
 - **SEO:** Don't hide content behind JavaScript; ensure critical metadata remains fast to load.
 
@@ -207,12 +225,12 @@ Below are the curated, toggleable UX/UI enhancements. Each maps to a feature fla
 ## 5. Relevant Documents & Code Files
 
 - **Onboarding & Configuration:**
-  - `docs/building/onboarding/01-onboarding-doc.md`  
+  - `docs/building/onboarding/01-onboarding-doc.md`
   - `docs/building/onboarding/README.md`
 - **Foundation & Sanity Checks:**
-  - `docs/building/general/deepdive/sanitycheck10-05.md`  
-  - `docs/building/general/deepdive/phase1.md`  
-  - `docs/building/general/deepdive/phase1.5-color-unity.md`  
+  - `docs/building/general/deepdive/sanitycheck10-05.md`
+  - `docs/building/general/deepdive/phase1.md`
+  - `docs/building/general/deepdive/phase1.5-color-unity.md`
   - `docs/building/general/deepdive/phase1.6-cleanupunneededfluff.md`
 - **This Blueprint:**
   - `docs/building/general/deepdive/phase2-ux-ui.md`
@@ -227,11 +245,11 @@ Below are the curated, toggleable UX/UI enhancements. Each maps to a feature fla
   - `docs/building/webdesign-content-best-practices/07-FAQPage-Brief.md`
   - `docs/building/webdesign-content-best-practices/08-SiteWideBestPractices-Brief.md`
 - **Core Code References:**
-  - `app/layout.tsx`  
-  - `tailwind.config.ts`  
-  - `components/ui/lazy-section.tsx`  
+  - `app/layout.tsx`
+  - `tailwind.config.ts`
+  - `components/ui/lazy-section.tsx`
   - `components/sections/` (Hero, Services, About, etc.)
-  - `components/ui/BackgroundCanvas.tsx` (new)  
+  - `components/ui/BackgroundCanvas.tsx` (new)
 
 ---
 

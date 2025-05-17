@@ -1,89 +1,93 @@
 /* Spark Button Effect - Theme Variable Version */
 :root {
-	--transition: 0.25s;
-	--spark: 2.5s; /* Controls the overall speed of one full beam cycle */
-	/* --speed: 1.2s; -- This variable is not currently used by the beam animations */
+  --transition: 0.25s;
+  --spark: 2.5s; /* Controls the overall speed of one full beam cycle */
+  /* --speed: 1.2s; -- This variable is not currently used by the beam animations */
 }
 
 .spark-button {
-	/* Inherit all background, font, padding, shadow, etc. from buttonVariants */
-	position: relative;
-	overflow: hidden;
+  /* Inherit all background, font, padding, shadow, etc. from buttonVariants */
+  position: relative;
+  overflow: hidden;
 }
 
 .spark__container {
-	position: absolute;
-	inset: 0;
-	pointer-events: none;
-	border-radius: inherit;
-	z-index: 1;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: 1;
 }
 
 .spark {
-	position: absolute;
-	inset: 0;
-	border-radius: inherit;
-	overflow: hidden;
-	mask: linear-gradient(white, transparent 50%);
-	/* The flip should be half the duration of the full spark cycle */
-	animation: flip calc(var(--spark) * 2) steps(2, end) infinite;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  mask: linear-gradient(white, transparent 50%);
+  /* The flip should be half the duration of the full spark cycle */
+  animation: flip calc(var(--spark) * 2) steps(2, end) infinite;
 }
 
 @keyframes flip {
-	to {
-		rotate: 360deg;
-	}
+  to {
+    rotate: 360deg;
+  }
 }
 
 .spark:before {
-	content: "";
-	position: absolute;
-	width: 220%; /* slightly larger */
-	aspect-ratio: 1;
-	inset: 0 auto auto 50%;
-	z-index: -1;
-	translate: -50% -15%;
-	transform: rotate(-90deg);
-	opacity: 1;
-	background: conic-gradient(from 0deg, transparent 0 270deg, #fff 360deg); /* even thicker beam */
-	transition: opacity 0.25s;
-	/* The rotation of the conic gradient itself */
-	animation: rotate var(--spark) linear infinite both;
+  content: "";
+  position: absolute;
+  width: 220%; /* slightly larger */
+  aspect-ratio: 1;
+  inset: 0 auto auto 50%;
+  z-index: -1;
+  translate: -50% -15%;
+  transform: rotate(-90deg);
+  opacity: 1;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0 270deg,
+    #fff 360deg
+  ); /* even thicker beam */
+  transition: opacity 0.25s;
+  /* The rotation of the conic gradient itself */
+  animation: rotate var(--spark) linear infinite both;
 }
 
 @keyframes rotate {
-	to {
-		transform: rotate(90deg);
-	}
+  to {
+    transform: rotate(90deg);
+  }
 }
 
 .spark:after {
-	content: "";
-	position: absolute;
-	inset: 0.1em;
-	border-radius: inherit;
+  content: "";
+  position: absolute;
+  inset: 0.1em;
+  border-radius: inherit;
 }
 
 .backdrop {
-	position: absolute;
-	inset: 0.1em;
-	border-radius: inherit;
-	background: inherit;
-	opacity: 0.92;
-	pointer-events: none;
-	z-index: 2;
+  position: absolute;
+  inset: 0.1em;
+  border-radius: inherit;
+  background: inherit;
+  opacity: 0.92;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .text {
-	position: relative;
-	z-index: 3;
-	display: inline-flex;
-	align-items: center;
-	gap: 0.5em;
-	/* Inherit all font, color, etc. from buttonVariants */
+  position: relative;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  /* Inherit all font, color, etc. from buttonVariants */
 }
 
 .spark-button:hover,
 .spark-button:focus-visible {
-	--active: 1;
+  --active: 1;
 }

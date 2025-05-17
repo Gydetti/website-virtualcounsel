@@ -352,7 +352,7 @@ If you add a new section:
 - **Cookiebot:** configured via `NEXT_PUBLIC_COOKIEBOT_ID`, loaded in `app/layout.tsx` → `CookiebotLoaderClient`.
 - **Custom Banner:** enable via `siteConfig.features.enableCustomCookieBanner` and component `CookieConsentBanner`.
 - **Tracking scripts:** `components/tracking/tracking-scripts.tsx` respects cookie categories (`statistics`, `marketing`).
-- **Tracking script optimization:** *Tracking scripts are only injected if both consent is given and the corresponding tracking ID in `siteConfig.tracking` is set (non-empty). This prevents empty or broken script loads, improves performance, and keeps onboarding/automation simple—just add the ID to enable a platform.*
+- **Tracking script optimization:** _Tracking scripts are only injected if both consent is given and the corresponding tracking ID in `siteConfig.tracking` is set (non-empty). This prevents empty or broken script loads, improves performance, and keeps onboarding/automation simple—just add the ID to enable a platform._
 - **Data layer:** `DataLayerProvider` + `PageViewTracker` inject into pages.
 
 ---

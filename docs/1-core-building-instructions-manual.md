@@ -7,6 +7,7 @@
 ## 1. Project Structure & File Mapping
 
 - **Monorepo Root:** All code and docs live under a single repo. Key folders:
+
   - `app/` — Next.js App Router pages (home, about, blog, services, contact, landing, resources, legal, etc.)
   - `components/` — Reusable UI, layout, section, SEO, tracking, and cookie components
   - `lib/` — Data files, config, schemas, and utility functions
@@ -28,11 +29,13 @@
 ## 2. Data-Driven Architecture & Zod Schema Enforcement
 
 - **All content and config is data-driven.**
+
   - Section/component props are strictly typed and validated via Zod schemas in `lib/schemas/`.
   - Data for each section/page lives in `lib/data/<section>.ts` and is imported into pages/components.
   - `site.config.local.ts` is validated at build time by the Zod schema in `site.config.ts`.
 
 - **Pattern:**
+
   1. Define schema in `lib/schemas/sections.schema.ts` (or similar)
   2. Export data in `lib/data/<section>.ts` with type `z.infer<typeof schema>`
   3. Parse data with schema for runtime safety

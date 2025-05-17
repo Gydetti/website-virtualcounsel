@@ -7,23 +7,24 @@ We're laying the structural foundation so any future client can spin up GDPR-com
 > - `/landing/[slug]` → slim header/footer, hidden from main nav, ideal for paid-ads funnels
 > - `/resources/[slug]` → full header/footer, included in nav/sitemap, ideal for organic discovery
 
-
 ## 🚀 Phase 3 Scaffolding Summary
 
 Before you dive in, here’s a quick recap of what’s been implemented:
 
 - **Shared Data Layer**  
-  • Created `lib/data/resources.ts` exporting a `Resource` type and two async helpers:  
-    - `getResources()` returns all resources (stubbed).  
-    - `getResourceBySlug(slug)` looks up a single resource by slug.
+  • Created `lib/data/resources.ts` exporting a `Resource` type and two async helpers:
+
+  - `getResources()` returns all resources (stubbed).
+  - `getResourceBySlug(slug)` looks up a single resource by slug.
 
 - **Resource Content Component**  
-  • Added `components/resources/ResourceContent.tsx` to render:  
-    - A top “Hero” section (title, subtitle, hero image).  
-    - Dynamic sub‐sections based on `resource.sections`:  
-      – `TextSection` (`components/resources/TextSection.tsx`)  
-      – `FormSection` (`components/resources/FormSection.tsx`)  
-      – `ImageSection` (`components/resources/ImageSection.tsx`)
+  • Added `components/resources/ResourceContent.tsx` to render:
+
+  - A top “Hero” section (title, subtitle, hero image).
+  - Dynamic sub‐sections based on `resource.sections`:  
+    – `TextSection` (`components/resources/TextSection.tsx`)  
+    – `FormSection` (`components/resources/FormSection.tsx`)  
+    – `ImageSection` (`components/resources/ImageSection.tsx`)
 
 - **Landing Pages (Paid‐Ads Funnels)**  
   • `app/landing/layout.tsx` for a slim header/footer wrapper.  
