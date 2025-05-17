@@ -69,8 +69,8 @@ export default function Footer() {
                     alt={siteConfig.theme.logo.alt}
                     width={40}
                     height={40}
+                    loading="lazy"
                     className="h-10 w-auto brightness-0 invert"
-                    priority
                   />
                 ) : (
                   <span className="text-xl font-bold text-white">{siteConfig.site.name}</span>

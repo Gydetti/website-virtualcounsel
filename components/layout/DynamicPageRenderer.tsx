@@ -4,10 +4,11 @@ import type { pageSectionConfigSchema, pageStructureSchema } from '@/lib/schemas
 import dynamic from 'next/dynamic';
 import type { ComponentType, FC } from 'react';
 import type { z } from 'zod';
+import HeroSection from '@/components/sections/hero-section';
 
 // Replace static section imports with dynamic for heavy sections
 // Dynamically import HeroSection to code-split JS-driven animations
-const HeroSection = dynamic(() => import('@/components/sections/hero-section'));
+// const HeroSection = dynamic(() => import('@/components/sections/hero-section'));
 import AboutSection from '@/components/sections/about-section';
 import BlogSection from '@/components/sections/blog-section';
 import ClientsSection from '@/components/sections/clients-section';
