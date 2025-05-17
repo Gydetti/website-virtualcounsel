@@ -39,17 +39,5 @@ export default async function Home() {
 
   // The DynamicPageRenderer will internally handle fetching/passing data to sections
   // based on the 'homepageStructure' and its 'pagePath' prop.
-  return (
-    <>
-      <DynamicPageRenderer pagePath="/" pageStructure={{ ...homepageStructure }} />
-      <section id="logo-debug" className="container py-16 text-center">
-        <h2 className="text-xl font-bold mb-4">Logo Debug Render</h2>
-        <img
-          src={siteConfig.theme.logo.src}
-          alt="Debug Logo"
-          className="h-14 w-auto mx-auto"
-        />
-      </section>
-    </>
-  );
+  return <DynamicPageRenderer pagePath="/" pageStructure={{ ...homepageStructure }} />;
 }
