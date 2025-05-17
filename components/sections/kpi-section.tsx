@@ -48,6 +48,8 @@ export default function KpiSection({
                 duration={2.5}
                 enableScrollSpy
                 scrollSpyDelay={500}
+                scrollSpyOnce
+                preserveValue
               />
             </div>
             <p className="text-foreground text-sm md:text-base m-0">{stat.label}</p>

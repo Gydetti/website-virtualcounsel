@@ -11,7 +11,7 @@ export type HeroStatsProps = {
 export default function HeroStats({ stats }: HeroStatsProps) {
   if (!stats || stats.length === 0) return null;
   return (
-    <LazySection animation="slide-up" delay={0.3} className="mt-10">
+    <LazySection animation="slide-up" delay={0.6} className="mt-10">
       <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
         {stats.map(stat => (
           <div key={stat.label} className="flex flex-col items-center text-center">
@@ -22,6 +22,8 @@ export default function HeroStats({ stats }: HeroStatsProps) {
                 duration={3.5}
                 enableScrollSpy
                 scrollSpyDelay={300}
+                scrollSpyOnce
+                preserveValue
               />
             </div>
             <p className="text-foreground text-sm md:text-base m-0">{stat.label}</p>

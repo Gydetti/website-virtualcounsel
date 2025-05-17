@@ -38,7 +38,7 @@ export default function HeroTyping({ typingWords }: HeroTypingProps) {
   }, [displayText, isDeleting, loopNum, typingSpeed, typingWords]);
 
   return (
-    <span className="block mt-2 md:mt-4 lg:mt-6 text-primary">
+    <span className="block mt-3 md:mt-3 lg:mt-4 text-primary">
       <span className="inline-block min-h-[1.2em]" ref={typingRef}>
         {displayText}
         <span className="typing-cursor" />

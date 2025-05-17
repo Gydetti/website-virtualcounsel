@@ -80,18 +80,18 @@ export default function HeroSection({
         <div className="grid md:grid-cols-2 gap-8 sm:gap-8 md:gap-12 lg:gap-16">
           <LazySection
             
-            delay={0.1}
+            delay={0}
             className={`${contentOrderClass} flex flex-col justify-center space-y-6 z-10`}
           >
             {badgeText && (
-              <LazySection  delay={0.2}>
+              <LazySection  delay={0}>
                 <Badge variant="dark" className="w-fit text-white">
                   {badgeText}
                 </Badge>
               </LazySection>
             )}
             {headline && (
-              <LazySection  delay={0.3}>
+              <LazySection  delay={0.1}>
                 <h1
                   id="hero-section-heading"
                   className="text-[var(--font-heading-size)] lg:text-[var(--font-heading-size-lg)] font-bold leading-tight text-balance"
@@ -102,12 +102,12 @@ export default function HeroSection({
               </LazySection>
             )}
             {subheadline && (
-              <LazySection  delay={0.4}>
+              <LazySection  delay={0.2}>
                 <p className="text-foreground max-w-lg">{subheadline}</p>
               </LazySection>
             )}
             {(primaryCta?.text || secondaryCta?.text) && (
-              <LazySection  delay={0.5}>
+              <LazySection  delay={0.3}>
                 <div className="flex flex-col sm:flex-row gap-4 pt-4">
                   {primaryCta?.text && primaryCta.href && (
                     <Button
@@ -136,7 +136,7 @@ export default function HeroSection({
               </LazySection>
             )}
             {showHelpedStats && (
-              <LazySection  delay={0.6}>
+              <LazySection  delay={0.4}>
                 <div className="flex space-x-4 mt-6 text-sm">
                   <div className="flex -space-x-2">
                     {[1, 2, 3, 4].map(i => (

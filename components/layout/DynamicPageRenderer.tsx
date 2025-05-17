@@ -294,7 +294,7 @@ const DynamicPageRenderer: FC<DynamicPageRendererProps> = async ({
     // HeroSection: render directly (JS-driven animations inside component)
     if (section.sectionType === 'HeroSection') {
       elements.push(
-        <LazySection key={section.id} animation="fade-up" delay={sectionDelay} fullHeight>
+        <LazySection key={section.id} animation="none">
           <Component {...section.data} />
         </LazySection>
       );
