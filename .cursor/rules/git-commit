@@ -1,0 +1,1 @@
+git add . && git commit -m "chore: check and full codebase commit" && git push
