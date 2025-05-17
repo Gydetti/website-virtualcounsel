@@ -317,7 +317,7 @@ const DynamicPageRenderer: FC<DynamicPageRendererProps> = async ({
     // Special case: KpiSection on homepage
     if (section.sectionType === 'KpiSection' && pagePath === '/') {
       elements.push(
-        <LazySection key={section.id} animation="fade-up" delay={sectionDelay}>
+        <LazySection key={section.id} animation="none">
           <Component {...section.data} isHomepage={true} />
         </LazySection>
       );

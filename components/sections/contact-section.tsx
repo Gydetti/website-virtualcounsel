@@ -106,24 +106,20 @@ export default function ContactSection({ badgeText, heading, subtitle }: Contact
 			<div className="absolute bottom-0 left-0 w-96 h-96 bg-primary-5 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" /> */}
 
       <div className="relative z-10">
-        {/* CSS-only stagger container */}
-        <LazySection
-          animation="none"
-          className="stagger-container"
-          style={{ '--stagger-delay': '0.1s' } as CSSProperties}
-        >
-          <div className="text-center mb-16" style={{ '--index': 0 } as CSSProperties}>
+        {/* Header only: CSS-only stagger for title */}
+        <LazySection animation="none" className="stagger-container text-center" style={{ '--stagger-delay': '0.1s' } as CSSProperties}>
+          <div>
             {badgeText && <Badge className="mb-4">{badgeText}</Badge>}
-            {heading && (
-              <h2 id="contact-section-heading" className="section-title">
-                {heading}
-              </h2>
-            )}
+            {heading && <h2 id="contact-section-heading" className="section-title">{heading}</h2>}
             {subtitle && <p className="section-subtitle">{subtitle}</p>}
           </div>
-          <div className="grid md:grid-cols-2 gap-4 sm:gap-8 md:gap-12 max-w-4xl mx-auto">
+        </LazySection>
+        {/* Cards: animate individually on scroll */}
+        <div className="grid md:grid-cols-2 gap-4 sm:gap-8 md:gap-12 max-w-4xl mx-auto">
+          <LazySection animation="slide-up" delay={0.1}>
+            {/* Form card */}
             <div
-              className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow"
+              className="h-full flex flex-col bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow"
               style={{ '--index': 1 } as CSSProperties}
             >
               <h3 className="mb-6">Form title prompting user to send a message</h3>
@@ -175,8 +171,11 @@ export default function ContactSection({ badgeText, heading, subtitle }: Contact
                 )}
               </form>
             </div>
+          </LazySection>
+          <LazySection animation="slide-up" delay={0.2}>
+            {/* Contact info card */}
             <div
-              className="bg-primary text-white rounded-xl shadow-lg p-8 flex flex-col justify-between hover:shadow-xl transition-shadow"
+              className="h-full bg-primary text-white rounded-xl shadow-lg p-8 flex flex-col justify-between hover:shadow-xl transition-shadow"
               style={{ '--index': 2 } as CSSProperties}
             >
               <h3 className="mb-6">Contact information</h3>
@@ -226,9 +225,8 @@ export default function ContactSection({ badgeText, heading, subtitle }: Contact
                 </li>
               </ul>
             </div>
-          </div>
-        </LazySection>
-        {/* end stagger container */}
+          </LazySection>
+        </div>
       </div>
     </Section>
   );

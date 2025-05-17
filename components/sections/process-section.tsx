@@ -30,11 +30,8 @@ export default function ProcessSection({
 			<div className="absolute bottom-0 right-0 w-96 h-96 bg-primary-5 rounded-full translate-y-1/2 translate-x-1/2 blur-3xl" /> */}
 
       <div className="max-w-4xl mx-auto relative z-10">
-        {/* Header stagger container */}
-        <div
-          className="stagger-container text-center"
-          style={{ '--stagger-delay': '0.1s' } as CSSProperties}
-        >
+        {/* Header stagger container (CSS-only) */}
+        <LazySection animation="none" className="stagger-container text-center" style={{ '--stagger-delay': '0.1s' } as CSSProperties}>
           {badgeText && (
             <Badge className="mb-4" style={{ '--index': 0 } as CSSProperties}>
               {badgeText}
@@ -50,22 +47,19 @@ export default function ProcessSection({
               {subtitle}
             </p>
           )}
-        </div>
+        </LazySection>
 
-        {/* Steps stagger container */}
-        <div
-          className="relative stagger-container"
-          style={{ '--stagger-delay': '0.2s' } as CSSProperties}
-        >
+        {/* Steps: animate each step sequentially on initial load */}
+        <div className="relative">
           {/* Timeline line */}
           <div className="absolute left-[40px] top-0 bottom-0 w-0.5 bg-gray-200 hidden md:block" />
-
           <div className="space-y-16">
             {steps.map((step, index) => (
-              <div
+              <LazySection
                 key={step.id}
+                animation="slide-up"
+                delay={0.1 + index * 0.1}
                 className="flex flex-col md:flex-row gap-8"
-                style={{ '--index': index } as CSSProperties}
               >
                 <div className="flex-shrink-0 flex items-start justify-center relative z-10">
                   <div className="w-20 h-20 rounded-full flex items-center justify-center text-2xl font-bold shadow-md bg-primary text-white">
@@ -74,11 +68,8 @@ export default function ProcessSection({
                 </div>
                 <div className="flex-grow w-full bg-white p-8 rounded-xl shadow-md border hover:shadow-lg transition-shadow">
                   <h3 className="mb-1">{step.title}</h3>
-                  {step.subtitle && (
-                    <p className="text-primary font-medium mb-3">{step.subtitle}</p>
-                  )}
+                  {step.subtitle && <p className="text-primary font-medium mb-3">{step.subtitle}</p>}
                   <p className="text-foreground mb-6">{step.description}</p>
-
                   {step.details && step.details.length > 0 && (
                     <div className="bg-background p-6 rounded-lg">
                       <h3 className="mb-3">What this includes:</h3>
@@ -93,7 +84,7 @@ export default function ProcessSection({
                     </div>
                   )}
                 </div>
-              </div>
+              </LazySection>
             ))}
           </div>
         </div>

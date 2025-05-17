@@ -267,7 +267,7 @@ export default function AboutSection({
       </div>
       {/* Full-width KPI row under About two-column grid */}
       {isHomepage && siteConfig.features.enableAboutKpiSection && (
-        <LazySection animation="fade-up" delay={0.2} className="w-full mt-20">
+        <LazySection animation="fade-up" delay={0.3} className="w-full mt-20">
           <KpiSection stats={homepageData.kpiSectionData.stats} embedInAbout />
         </LazySection>
       )}

@@ -1,4 +1,5 @@
 /* biome-disable lint/correctness/useExhaustiveDependencies */
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 
 import { Button } from '@/components/ui/button';
@@ -10,10 +11,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import useScrollDirection from '@/hooks/useScrollDirection';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const { atTop, direction } = useScrollDirection({ topThreshold: 88 });
+  const scrolled = !atTop;
+  const isHidden = direction === 'down' && !atTop;
   const pathname = usePathname();
 
   // Get optional enabledPages list from config
@@ -32,108 +36,99 @@ export default function Header() {
     return true;
   });
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Close mobile menu when route changes
-  // biome-disable-next-line lint/correctness/useExhaustiveDependencies
-  useEffect(() => {
-    setMobileMenuOpen(false);
-  }, []);
-
   return (
     <header
       className={cn(
-        'sticky top-0 z-50 w-full transition-all duration-300',
-        scrolled ? 'bg-white shadow-sm lg:bg-white/80 lg:backdrop-blur-md' : 'bg-white'
+        'sticky top-0 z-50 w-full transition-transform duration-300 will-change-transform',
+        isHidden ? '-translate-y-full' : 'translate-y-0'
       )}
     >
-      <nav
+      <div
         className={cn(
-          'container-wide px-2 sm:px-3 md:px-4 xl:px-10 flex items-center justify-between transition-all duration-300',
-          scrolled ? 'py-2.5' : 'py-5'
+          'overflow-hidden transition-all duration-300',
+          scrolled
+            ? 'bg-white shadow-sm lg:bg-white/80 lg:backdrop-blur-md py-2'
+            : 'bg-white shadow-sm lg:bg-white/80 lg:backdrop-blur-md py-4'
         )}
-        aria-label="Global"
       >
-        <div
-          className={cn(
-            'flex lg:flex-1 transition-transform duration-300 origin-left',
-            scrolled ? 'scale-90' : 'scale-100'
-          )}
+        <nav
+          className="container-wide px-2 sm:px-3 md:px-4 xl:px-10 flex items-center justify-between"
+          aria-label="Global"
         >
-          <Link href="/" className="-m-1.5 p-1.5">
-            <span className="sr-only">{siteConfig.site.name}</span>
-            <div className="flex items-center gap-3">
-              <Image
-                src={siteConfig.theme.logo.src}
-                alt={siteConfig.theme.logo.alt}
-                width={56}
-                height={56}
-                className="h-14 w-auto"
-                priority
-              />
-              <div className="flex flex-col">
-                <span className="text-lg font-semibold leading-tight text-gray-900">
-                  {siteConfig.site.name}
-                </span>
-                {siteConfig.theme.logo.subtitle && (
-                  <span className="text-sm text-gray-500 leading-snug">
-                    {siteConfig.theme.logo.subtitle}
-                  </span>
-                )}
-              </div>
-            </div>
-          </Link>
-        </div>
-        <div className="flex lg:hidden">
-          <button
-            type="button"
-            className=" inline-flex items-center justify-center rounded-md p-2.5 text-foreground"
-            onClick={() => setMobileMenuOpen(true)}
-            aria-label="Open main menu"
+          <div
+            className={cn(
+              'flex lg:flex-1 transition-transform duration-300 origin-left',
+              scrolled ? 'scale-90' : 'scale-100'
+            )}
           >
-            <Menu className="h-6 w-6" aria-hidden="true" />
-          </button>
-        </div>
-        <div className="hidden lg:flex items-center lg:gap-x-8">
-          {filteredNavigation.map(item => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                'inline-block text-sm font-medium transition-colors relative group !min-h-0 !min-w-0',
-                pathname === item.href
-                  ? 'text-primary font-semibold'
-                  : scrolled
-                    ? 'text-gray-900 hover:text-primary'
-                    : 'text-foreground hover:text-primary'
-              )}
+            <Link href="/" className="-m-1.5 p-1.5">
+              <span className="sr-only">{siteConfig.site.name}</span>
+              <div className="flex items-center gap-3">
+                <Image
+                  src={siteConfig.theme.logo.src}
+                  alt={siteConfig.theme.logo.alt}
+                  width={56}
+                  height={56}
+                  className="h-14 w-auto"
+                  priority
+                />
+                <div className="flex flex-col">
+                  <span className="text-lg font-semibold leading-tight text-gray-900">
+                    {siteConfig.site.name}
+                  </span>
+                  {siteConfig.theme.logo.subtitle && (
+                    <span className="text-sm text-gray-500 leading-snug">
+                      {siteConfig.theme.logo.subtitle}
+                    </span>
+                  )}
+                </div>
+              </div>
+            </Link>
+          </div>
+          <div className="flex lg:hidden">
+            <button
+              type="button"
+              className=" inline-flex items-center justify-center rounded-md p-2.5 text-foreground"
+              onClick={() => setMobileMenuOpen(true)}
+              aria-label="Open main menu"
             >
-              {item.text}
-              <span
+              <Menu className="h-6 w-6" aria-hidden="true" />
+            </button>
+          </div>
+          <div className="hidden lg:flex items-center lg:gap-x-8">
+            {filteredNavigation.map(item => (
+              <Link
+                key={item.href}
+                href={item.href}
                 className={cn(
-                  'absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300',
-                  pathname === item.href ? 'w-full' : 'w-0 group-hover:w-full'
+                  'inline-block text-sm font-medium transition-colors relative group !min-h-0 !min-w-0',
+                  pathname === item.href
+                    ? 'text-primary font-semibold'
+                    : scrolled
+                      ? 'text-gray-900 hover:text-primary'
+                      : 'text-foreground hover:text-primary'
                 )}
-              />
-            </Link>
-          ))}
-        </div>
-        <div className="hidden lg:flex lg:items-center lg:ml-8">
-          <Button asChild className="bg-primary hover:bg-primary-90 group">
-            <Link href="/contact">
-              Main CTA button
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Link>
-          </Button>
-        </div>
-      </nav>
-
+              >
+                {item.text}
+                <span
+                  className={cn(
+                    'absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300',
+                    pathname === item.href ? 'w-full' : 'w-0 group-hover:w-full'
+                  )}
+                />
+              </Link>
+            ))}
+          </div>
+          <div className="hidden lg:flex lg:items-center lg:ml-8">
+            <Button asChild className="bg-primary hover:bg-primary-90 group">
+              <Link href="/contact">
+                Main CTA button
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </Button>
+          </div>
+        </nav>
+      </div>
       {/* Mobile menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
