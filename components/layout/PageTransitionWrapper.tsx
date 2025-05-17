@@ -1,14 +1,10 @@
-"use client";
-import { siteConfig } from "@/lib/siteConfig";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { usePathname } from "next/navigation";
-import type { ReactNode } from "react";
+'use client';
+import { siteConfig } from '@/lib/siteConfig';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { usePathname } from 'next/navigation';
+import type { ReactNode } from 'react';
 
-export default function PageTransitionWrapper({
-  children,
-}: {
-  children: ReactNode;
-}) {
+export default function PageTransitionWrapper({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const { enablePageTransitions, pageTransitionVariant } = siteConfig.features;
   const shouldReduceMotion = useReducedMotion();

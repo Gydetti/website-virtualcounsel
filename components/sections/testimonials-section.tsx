@@ -1,24 +1,22 @@
-"use client";
+'use client';
 /* biome-disable lint/suspicious/noArrayIndexKey */
 
-import { Section } from "@/components/layout/Section";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
-import LazySection from "@/components/ui/lazy-section";
+import { Section } from '@/components/layout/Section';
+import { Badge } from '@/components/ui/badge';
+import { Card, CardContent } from '@/components/ui/card';
+import LazySection from '@/components/ui/lazy-section';
 import type {
   testimonialItemSchema,
   testimonialsSectionDataSchema,
-} from "@/lib/schemas/sections.schema";
-import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, Star } from "lucide-react";
-import Image from "next/image";
-import { useState } from "react";
-import type { z } from "zod";
+} from '@/lib/schemas/sections.schema';
+import { motion } from 'framer-motion';
+import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
+import Image from 'next/image';
+import { useState } from 'react';
+import type { z } from 'zod';
 
 // Updated props type alias using Zod schema
-export type TestimonialsSectionProps = z.infer<
-  typeof testimonialsSectionDataSchema
->;
+export type TestimonialsSectionProps = z.infer<typeof testimonialsSectionDataSchema>;
 
 export default function TestimonialsSection({
   badgeText,
@@ -33,14 +31,11 @@ export default function TestimonialsSection({
   }
 
   const nextTestimonial = () => {
-    setActiveIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+    setActiveIndex(prevIndex => (prevIndex + 1) % testimonials.length);
   };
 
   const prevTestimonial = () => {
-    setActiveIndex(
-      (prevIndex) =>
-        (prevIndex - 1 + testimonials.length) % testimonials.length,
-    );
+    setActiveIndex(prevIndex => (prevIndex - 1 + testimonials.length) % testimonials.length);
   };
 
   return (
@@ -56,20 +51,13 @@ export default function TestimonialsSection({
       <div className="relative z-10">
         <div className="text-center mb-16">
           {badgeText && <Badge className="mb-4">{badgeText}</Badge>}
-          <h2
-            id="testimonials-section-heading"
-            className="text-[var(--font-subheading-size)]"
-          >
+          <h2 id="testimonials-section-heading" className="text-[var(--font-subheading-size)]">
             {heading}
           </h2>
           <p className="section-subtitle">{subtitle}</p>
         </div>
 
-        <LazySection
-          animation="slide-up"
-          delay={0}
-          className="max-w-3xl mx-auto relative"
-        >
+        <LazySection animation="slide-up" delay={0} className="max-w-3xl mx-auto relative">
           <div className="overflow-hidden overflow-x-hidden">
             <motion.div
               className="flex"
@@ -81,7 +69,7 @@ export default function TestimonialsSection({
                 else if (info.offset.x > 50) prevTestimonial();
               }}
               animate={{ x: `-${activeIndex * 100}%` }}
-              style={{ touchAction: "pan-y" }}
+              style={{ touchAction: 'pan-y' }}
             >
               {testimonials.map((item, index) => (
                 <motion.div
@@ -101,8 +89,8 @@ export default function TestimonialsSection({
                                 aria-hidden="true"
                                 className={`h-5 w-5 ${
                                   starIndex < (item.rating || 0)
-                                    ? "text-yellow-400 fill-yellow-400"
-                                    : "text-gray-300 fill-gray-300"
+                                    ? 'text-yellow-400 fill-yellow-400'
+                                    : 'text-gray-300 fill-gray-300'
                                 }`}
                               />
                             ))
@@ -128,12 +116,8 @@ export default function TestimonialsSection({
                           />
                         </div>
                         <div>
-                          <h3 className="text-body-base text-gray-900">
-                            {item.name}
-                          </h3>
-                          <p className="text-body-base text-foreground">
-                            {item.title}
-                          </p>
+                          <h3 className="text-body-base text-gray-900">{item.name}</h3>
+                          <p className="text-body-base text-foreground">{item.title}</p>
                         </div>
                       </div>
                     </CardContent>
@@ -148,10 +132,7 @@ export default function TestimonialsSection({
               type="button"
               aria-label="Previous testimonial"
               onClick={() =>
-                setActiveIndex(
-                  (prev) =>
-                    (prev - 1 + testimonials.length) % testimonials.length,
-                )
+                setActiveIndex(prev => (prev - 1 + testimonials.length) % testimonials.length)
               }
               className="p-2 bg-white rounded-full shadow-md hover:shadow-lg focus:outline-none"
             >
@@ -163,9 +144,7 @@ export default function TestimonialsSection({
             <button
               type="button"
               aria-label="Next testimonial"
-              onClick={() =>
-                setActiveIndex((prev) => (prev + 1) % testimonials.length)
-              }
+              onClick={() => setActiveIndex(prev => (prev + 1) % testimonials.length)}
               className="p-2 bg-white rounded-full shadow-md hover:shadow-lg focus:outline-none"
             >
               <ChevronRight className="h-5 w-5 text-foreground" />
@@ -179,7 +158,7 @@ export default function TestimonialsSection({
               key={testimonial.id}
               type="button"
               className={`h-3 w-3 rounded-full transition-all min-h-0 min-w-0 ${
-                activeIndex === index ? "bg-primary w-6" : "bg-gray-300"
+                activeIndex === index ? 'bg-primary w-6' : 'bg-gray-300'
               }`}
               onClick={() => setActiveIndex(index)}
               aria-label={`Go to testimonial ${index + 1}`}

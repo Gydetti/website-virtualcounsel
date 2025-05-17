@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { Section } from "@/components/layout/Section";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Section } from '@/components/layout/Section';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
@@ -10,16 +10,13 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import LazySection from "@/components/ui/lazy-section";
-import type {
-  serviceItemSchema,
-  servicesSectionDataSchema,
-} from "@/lib/schemas/sections.schema";
-import { ArrowRight, BarChart2, Globe, Zap } from "lucide-react";
-import Link from "next/link";
-import type { CSSProperties } from "react";
-import type { z } from "zod";
+} from '@/components/ui/card';
+import LazySection from '@/components/ui/lazy-section';
+import type { serviceItemSchema, servicesSectionDataSchema } from '@/lib/schemas/sections.schema';
+import { ArrowRight, BarChart2, Globe, Zap } from 'lucide-react';
+import Link from 'next/link';
+import type { CSSProperties } from 'react';
+import type { z } from 'zod';
 
 // Map of icon names to components
 const iconMap: Record<string, React.ReactNode> = {
@@ -59,22 +56,19 @@ export default function ServicesSection({
         <LazySection
           animation="none"
           className="stagger-container text-center mb-16"
-          style={{ "--stagger-delay": "0.1s" } as CSSProperties}
+          style={{ '--stagger-delay': '0.1s' } as CSSProperties}
         >
-          <Badge className="mb-4" style={{ "--index": 0 } as CSSProperties}>
-            {badgeText || "Our Services"}
+          <Badge className="mb-4" style={{ '--index': 0 } as CSSProperties}>
+            {badgeText || 'Our Services'}
           </Badge>
           <h2
             id="services-section-heading"
             className="text-[var(--font-subheading-size)]"
-            style={{ "--index": 1 } as CSSProperties}
+            style={{ '--index': 1 } as CSSProperties}
           >
             {heading}
           </h2>
-          <p
-            className="section-subtitle"
-            style={{ "--index": 2 } as CSSProperties}
-          >
+          <p className="section-subtitle" style={{ '--index': 2 } as CSSProperties}>
             {description}
           </p>
         </LazySection>
@@ -83,19 +77,15 @@ export default function ServicesSection({
         <LazySection
           animation="none"
           className="stagger-container grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-          style={{ "--stagger-delay": "0.2s" } as CSSProperties}
+          style={{ '--stagger-delay': '0.2s' } as CSSProperties}
         >
           {services.map((service: z.infer<typeof serviceItemSchema>, idx) => (
-            <div
-              key={service.id}
-              className="h-full"
-              style={{ "--index": idx } as CSSProperties}
-            >
+            <div key={service.id} className="h-full" style={{ '--index': idx } as CSSProperties}>
               <Card
                 className={`card-equal-height h-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-gradient-to-b from-white to-blue-50/30 ${
                   service.popular
-                    ? "border-primary shadow-lg relative"
-                    : "border-[#e5e7eb80] shadow-lg"
+                    ? 'border-primary shadow-lg relative'
+                    : 'border-[#e5e7eb80] shadow-lg'
                 }`}
               >
                 {service.popular && (
@@ -106,13 +96,11 @@ export default function ServicesSection({
 
                 <CardHeader className="pt-12">
                   <div className="mb-6 bg-[rgba(var(--primary-rgb),0.1)] w-16 h-16 rounded-lg flex items-center justify-center">
-                    {iconMap[service.icon ?? "Globe"] || (
+                    {iconMap[service.icon ?? 'Globe'] || (
                       <Globe className="h-10 w-10 text-primary" />
                     )}
                   </div>
-                  <CardTitle className="text-xl font-bold">
-                    {service.title}
-                  </CardTitle>
+                  <CardTitle className="text-xl font-bold">{service.title}</CardTitle>
                   <CardDescription className="text-foreground">
                     {service.description}
                   </CardDescription>
@@ -120,7 +108,7 @@ export default function ServicesSection({
 
                 <CardContent className="card-content">
                   <ul className="space-y-3">
-                    {service.features?.map((feature) => (
+                    {service.features?.map(feature => (
                       <li key={feature} className="flex items-start">
                         <span className="text-green-500 mr-3 flex-shrink-0 mt-0.5">
                           <svg
@@ -148,11 +136,11 @@ export default function ServicesSection({
 
                 <CardFooter className="card-footer pt-6">
                   <Button
-                    variant={service.popular ? "default" : "outline"}
+                    variant={service.popular ? 'default' : 'outline'}
                     className={`group w-full whitespace-normal break-words shadow-none hover:shadow-none hover:scale-100 ${
                       service.popular
-                        ? "" // Rely on default variant's hover brightness
-                        : "bg-white border border-primary text-primary hover:bg-primary hover:text-white"
+                        ? '' // Rely on default variant's hover brightness
+                        : 'bg-white border border-primary text-primary hover:bg-primary hover:text-white'
                     }`}
                     asChild
                   >
@@ -172,9 +160,9 @@ export default function ServicesSection({
           <LazySection
             animation="none"
             className="stagger-container text-center mt-12"
-            style={{ "--stagger-delay": "0.3s" } as CSSProperties}
+            style={{ '--stagger-delay': '0.3s' } as CSSProperties}
           >
-            <div style={{ "--index": 0 } as CSSProperties}>
+            <div style={{ '--index': 0 } as CSSProperties}>
               <Button
                 size="lg"
                 className="group w-full sm:w-auto whitespace-normal break-words"

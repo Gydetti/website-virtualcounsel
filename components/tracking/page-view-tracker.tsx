@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { trackEvent } from "@/lib/tracking-utils";
-import { usePathname, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { trackEvent } from '@/lib/tracking-utils';
+import { usePathname, useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
 
 export default function PageViewTracker() {
   const pathname = usePathname();
@@ -10,14 +10,12 @@ export default function PageViewTracker() {
 
   useEffect(() => {
     // Track page view when route changes
-    const url =
-      pathname +
-      (searchParams?.toString() ? `?${searchParams.toString()}` : "");
+    const url = pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : '');
 
     // Push to dataLayer for GTM
-    if (typeof window !== "undefined" && window.dataLayer) {
+    if (typeof window !== 'undefined' && window.dataLayer) {
       window.dataLayer.push({
-        event: "pageview",
+        event: 'pageview',
         page: {
           path: url,
           title: document.title,
@@ -26,7 +24,7 @@ export default function PageViewTracker() {
     }
 
     // Track using our utility
-    trackEvent("page_view", "navigation", url, undefined, {
+    trackEvent('page_view', 'navigation', url, undefined, {
       page_title: document.title,
     });
   }, [pathname, searchParams]);

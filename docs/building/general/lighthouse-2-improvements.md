@@ -35,16 +35,16 @@ Below is a summary of the work already done in the codebase:
 1. Wrap simple sections (Features, Pricing, About, etc.) in a single `LazySection` with `animation="none"` so it adds a `visible` class on intersection:
 
    ```tsx
-   import LazySection from "@/components/ui/lazy-section";
+   import LazySection from '@/components/ui/lazy-section';
 
    <LazySection
      animation="none"
      className="stagger-container"
-     style={{ "--stagger-delay": "0.1s" }}
+     style={{ '--stagger-delay': '0.1s' }}
    >
-     <h2 style={{ "--index": 0 } as React.CSSProperties}>Section Title</h2>
-     <p style={{ "--index": 1 } as React.CSSProperties}>Subtitle</p>
-     <div style={{ "--index": 2 } as React.CSSProperties}>…</div>
+     <h2 style={{ '--index': 0 } as React.CSSProperties}>Section Title</h2>
+     <p style={{ '--index': 1 } as React.CSSProperties}>Subtitle</p>
+     <div style={{ '--index': 2 } as React.CSSProperties}>…</div>
    </LazySection>;
    ```
 
@@ -75,8 +75,8 @@ Below is a summary of the work already done in the codebase:
 1. For heavy/below-the-fold sections (Hero, carousels, complex UIs), dynamic-import both `LazySection` and the section:
 
    ```tsx
-   import dynamic from "next/dynamic";
-   const LazySection = dynamic(() => import("@/components/ui/lazy-section"), {
+   import dynamic from 'next/dynamic';
+   const LazySection = dynamic(() => import('@/components/ui/lazy-section'), {
      ssr: false,
    });
 
@@ -140,7 +140,7 @@ This hybrid pattern preserves our signature flow on scroll while delivering true
 3. Replace generic `<div>` lists with semantic lists where possible:
    ```tsx
    <ul className="grid grid-cols-3 gap-4">
-     {items.map((item) => (
+     {items.map(item => (
        <li key={item.id}>{item.label}</li>
      ))}
    </ul>
@@ -151,15 +151,14 @@ This hybrid pattern preserves our signature flow on scroll while delivering true
 
 1. Convert non-critical sections to dynamic imports:
    ```tsx
-   import dynamic from "next/dynamic";
-   const Testimonials = dynamic(
-     () => import("@/components/sections/testimonials-section"),
-     { ssr: false },
-   );
+   import dynamic from 'next/dynamic';
+   const Testimonials = dynamic(() => import('@/components/sections/testimonials-section'), {
+     ssr: false,
+   });
    ```
 2. Defer analytics and heavy scripts:
    ```tsx
-   import Script from "next/script";
+   import Script from 'next/script';
    <Script src="https://analytics.js" strategy="lazyOnload" />;
    ```
 3. Group animation logic behind `dynamic()` to avoid pulling Framer Motion into base bundle.
@@ -180,8 +179,8 @@ This hybrid pattern preserves our signature flow on scroll while delivering true
 2. For JavaScript-based animations (e.g., your HeroSection):
    - Dynamically import `LazySection` and `framer-motion` only within that component:
      ```tsx
-     import dynamic from "next/dynamic";
-     const LazySection = dynamic(() => import("@/components/ui/lazy-section"), {
+     import dynamic from 'next/dynamic';
+     const LazySection = dynamic(() => import('@/components/ui/lazy-section'), {
        ssr: false,
      });
      ```

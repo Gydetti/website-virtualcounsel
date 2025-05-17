@@ -1,6 +1,6 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
-import { siteConfig } from "./lib/siteConfig";
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+import { siteConfig } from './lib/siteConfig';
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -22,7 +22,7 @@ export function middleware(request: NextRequest) {
   for (const { pattern, enabled } of checks) {
     if (pattern.test(pathname) && !enabled) {
       const url = request.nextUrl.clone();
-      url.pathname = "/404";
+      url.pathname = '/404';
       return NextResponse.rewrite(url);
     }
   }
@@ -31,10 +31,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    "/blog/:path*",
-    "/services/:path*",
-    "/contact/:path*",
-    "/landing/:path*",
-  ],
+  matcher: ['/blog/:path*', '/services/:path*', '/contact/:path*', '/landing/:path*'],
 };

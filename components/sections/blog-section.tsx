@@ -1,7 +1,7 @@
-"use client";
-import { Section } from "@/components/layout/Section";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+'use client';
+import { Section } from '@/components/layout/Section';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
@@ -9,14 +9,14 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import LazySection from "@/components/ui/lazy-section";
-import type { blogSectionDataSchema } from "@/lib/schemas/sections.schema";
-import { ArrowRight } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import type { CSSProperties } from "react";
-import type { z } from "zod";
+} from '@/components/ui/card';
+import LazySection from '@/components/ui/lazy-section';
+import type { blogSectionDataSchema } from '@/lib/schemas/sections.schema';
+import { ArrowRight } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import type { CSSProperties } from 'react';
+import type { z } from 'zod';
 
 // Updated props type alias using Zod schema
 export type BlogSectionProps = z.infer<typeof blogSectionDataSchema>;
@@ -43,26 +43,23 @@ export default function BlogSection({
         <LazySection
           animation="none"
           className="stagger-container text-center mb-16"
-          style={{ "--stagger-delay": "0.1s" } as CSSProperties}
+          style={{ '--stagger-delay': '0.1s' } as CSSProperties}
         >
           {badgeText && (
-            <Badge className="mb-4" style={{ "--index": 0 } as CSSProperties}>
+            <Badge className="mb-4" style={{ '--index': 0 } as CSSProperties}>
               {badgeText}
             </Badge>
           )}
           {heading && (
             <h2
               className="text-[var(--font-subheading-size)]"
-              style={{ "--index": 1 } as CSSProperties}
+              style={{ '--index': 1 } as CSSProperties}
             >
               {heading}
             </h2>
           )}
           {subtitle && (
-            <p
-              className="section-subtitle"
-              style={{ "--index": 2 } as CSSProperties}
-            >
+            <p className="section-subtitle" style={{ '--index': 2 } as CSSProperties}>
               {subtitle}
             </p>
           )}
@@ -72,18 +69,14 @@ export default function BlogSection({
         <LazySection
           animation="none"
           className="stagger-container grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 md:gap-12 lg:gap-16 card-equal-height"
-          style={{ "--stagger-delay": "0.2s" } as CSSProperties}
+          style={{ '--stagger-delay': '0.2s' } as CSSProperties}
         >
           {posts.map((post, index) => (
-            <div
-              key={post.id}
-              className="h-full"
-              style={{ "--index": index } as CSSProperties}
-            >
+            <div key={post.id} className="h-full" style={{ '--index': index } as CSSProperties}>
               <Card className="w-full h-full flex flex-col justify-between overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-gradient-to-b from-white to-blue-50/30 border border-[#e5e7eb80] shadow-lg">
                 <div className="relative h-48 w-full overflow-hidden">
                   <Image
-                    src={post.image?.src || "/placeholder.svg"}
+                    src={post.image?.src || '/placeholder.svg'}
                     alt={post.image?.alt || post.title}
                     width={post.image?.width || 600}
                     height={post.image?.height || 400}
@@ -96,10 +89,10 @@ export default function BlogSection({
                       {post.category}
                     </Badge>
                     <span className="text-xs text-gray-500">
-                      {new Date(post.date).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
+                      {new Date(post.date).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
                       })}
                     </span>
                   </div>
@@ -108,9 +101,7 @@ export default function BlogSection({
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-foreground">
-                    {post.excerpt}
-                  </CardDescription>
+                  <CardDescription className="text-foreground">{post.excerpt}</CardDescription>
                 </CardContent>
                 <CardFooter className="pt-0">
                   <Button
@@ -118,10 +109,7 @@ export default function BlogSection({
                     className="group w-full whitespace-normal break-words shadow-none hover:shadow-none hover:scale-100"
                     asChild
                   >
-                    <Link
-                      href={`/blog/${post.slug}`}
-                      className="transition-none"
-                    >
+                    <Link href={`/blog/${post.slug}`} className="transition-none">
                       {`Read more: ${post.title}`}
                       <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </Link>

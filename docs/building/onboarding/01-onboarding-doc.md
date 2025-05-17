@@ -145,67 +145,67 @@ This is your single source of truth for all client-specific data:
 ```ts
 export const siteConfig = {
   site: {
-    title: "ACME Corp",
+    title: 'ACME Corp',
     description: "ACME's professional services",
-    url: "https://client-site.com",
-    name: "ACME Corp",
+    url: 'https://client-site.com',
+    name: 'ACME Corp',
     openGraph: {
-      image: { url: "/images/og.png", width: 1200, height: 630, alt: "ACME" },
+      image: { url: '/images/og.png', width: 1200, height: 630, alt: 'ACME' },
     },
-    twitterImage: "/images/twitter.png",
+    twitterImage: '/images/twitter.png',
   },
   theme: {
-    colors: { primary: "#FF0000", secondary: "#00FF00", accent: "#0000FF" },
-    logo: { src: "/logo.svg", alt: "ACME Logo" },
-    favicon: "/favicon.ico",
+    colors: { primary: '#FF0000', secondary: '#00FF00', accent: '#0000FF' },
+    logo: { src: '/logo.svg', alt: 'ACME Logo' },
+    favicon: '/favicon.ico',
   },
   navLinks: [
-    { text: "Home", href: "/" },
-    { text: "About", href: "/about" },
+    { text: 'Home', href: '/' },
+    { text: 'About', href: '/about' },
   ],
   footerLinks: [
     /* similar shape */
   ],
   social: {
-    facebook: "https://fb.com/acme",
-    twitter: "https://twitter.com/acme",
-    instagram: "https://insta.com/acme",
-    linkedin: "https://linkedin.com/acme",
+    facebook: 'https://fb.com/acme',
+    twitter: 'https://twitter.com/acme',
+    instagram: 'https://insta.com/acme',
+    linkedin: 'https://linkedin.com/acme',
   },
-  cookieConsent: { cookiebotId: "XXXX-XXXX" },
+  cookieConsent: { cookiebotId: 'XXXX-XXXX' },
   tracking: {
-    gtmId: "GTM-XXXX",
-    ga4Id: "G-XXXX",
-    fbPixelId: "XXXX",
-    linkedinId: "XXXX",
-    hubspotId: "XXXX",
-    googleAdsId: "AW-XXXX",
+    gtmId: 'GTM-XXXX',
+    ga4Id: 'G-XXXX',
+    fbPixelId: 'XXXX',
+    linkedinId: 'XXXX',
+    hubspotId: 'XXXX',
+    googleAdsId: 'AW-XXXX',
   },
   newsletter: {
-    provider: "hubspot",
-    hubspot: { portalId: "123", formId: "456" } /*..*/,
+    provider: 'hubspot',
+    hubspot: { portalId: '123', formId: '456' } /*..*/,
   },
   features: {
     enableBlog: true,
     enableServices: true,
     enableFooterServices: true /*..*/,
   },
-  enabledPages: ["/", "/services", "/about", "/contact"],
+  enabledPages: ['/', '/services', '/about', '/contact'],
   contactForm: {
-    provider: "smtp",
+    provider: 'smtp',
     fields: [
       /*..*/
     ],
-    recaptchaSiteKey: "",
-    honeypotFieldName: "honeypot",
+    recaptchaSiteKey: '',
+    honeypotFieldName: 'honeypot',
   },
   contact: {
-    email: "info@client.com",
-    phone: "123-456-7890",
+    email: 'info@client.com',
+    phone: '123-456-7890',
     address: {
       /*..*/
     },
-    hours: { monFri: "9-5", sat: "Closed", sun: "Closed" },
+    hours: { monFri: '9-5', sat: 'Closed', sun: 'Closed' },
   },
   sections: {
     hero: {
@@ -294,8 +294,8 @@ export const siteConfig = {
 3. **Integration:** In a page (e.g., `app/page.tsx`), import data + component:
 
    ```tsx
-   import { featuresData } from "@/lib/data/features";
-   import FeaturesSection from "@/components/sections/features-section";
+   import { featuresData } from '@/lib/data/features';
+   import FeaturesSection from '@/components/sections/features-section';
 
    <LazySection>
      <FeaturesSection {...featuresData} />
@@ -326,7 +326,7 @@ If you add a new section:
      src="/images/services/service1.jpg"
      alt="Service 1"
      placeholder="blur"
-     blurDataURL={blurMap["/images/services/service1.jpg"]}
+     blurDataURL={blurMap['/images/services/service1.jpg']}
    />
    ```
 5. Commit both `assets/images/raw` and generated `public/images` + `blurDataURL.json` to preserve CI consistency.
@@ -340,8 +340,8 @@ If you add a new section:
 - **Page-level overrides:** supply a `metadata.ts` file alongside `page.tsx`:
   ```ts
   export const metadata = defaultMetadata({
-    title: "Custom Page",
-    description: "...",
+    title: 'Custom Page',
+    description: '...',
   });
   ```
 
@@ -379,9 +379,9 @@ If you add a new section:
 - **Seed tests:** add at least one smoke test (e.g., home page loads).
   ```ts
   // tests/home.spec.ts
-  import { test, expect } from "@playwright/test";
-  test("homepage loads", async ({ page }) => {
-    await page.goto("/");
+  import { test, expect } from '@playwright/test';
+  test('homepage loads', async ({ page }) => {
+    await page.goto('/');
     await expect(page).toHaveTitle(/ACME Corp/);
   });
   ```

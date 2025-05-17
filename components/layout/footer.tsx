@@ -1,7 +1,7 @@
-import { SubscribeForm } from "@/components/ui/SubscribeForm";
-import { Button } from "@/components/ui/button";
-import { siteConfig } from "@/lib/siteConfig";
-import { cn } from "@/lib/utils";
+import { SubscribeForm } from '@/components/ui/SubscribeForm';
+import { Button } from '@/components/ui/button';
+import { siteConfig } from '@/lib/siteConfig';
+import { cn } from '@/lib/utils';
 import {
   ArrowRight,
   ExternalLink,
@@ -12,20 +12,20 @@ import {
   MapPin,
   Phone,
   Twitter,
-} from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+} from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const { enabledPages, features } = siteConfig;
   const filteredQuickLinks = (siteConfig.navLinks || []).filter(
-    (link) => !enabledPages || enabledPages.includes(link.href),
+    link => !enabledPages || enabledPages.includes(link.href)
   );
   const showFooterServices =
     features.enableServices &&
     features.enableFooterServices &&
-    (!enabledPages || enabledPages.includes("/services"));
+    (!enabledPages || enabledPages.includes('/services'));
 
   return (
     <>
@@ -55,10 +55,10 @@ export default function Footer() {
         <div className="container-wide py-12 md:py-16 relative z-10">
           <div
             className={cn(
-              "grid gap-8",
-              "grid-cols-1",
-              "md:grid-cols-2",
-              showFooterServices ? "lg:grid-cols-4" : "lg:grid-cols-2",
+              'grid gap-8',
+              'grid-cols-1',
+              'md:grid-cols-2',
+              showFooterServices ? 'lg:grid-cols-4' : 'lg:grid-cols-2'
             )}
           >
             <div>
@@ -72,9 +72,7 @@ export default function Footer() {
                     className="h-10 w-auto brightness-0 invert"
                   />
                 ) : (
-                  <span className="text-xl font-bold text-white">
-                    {siteConfig.site.name}
-                  </span>
+                  <span className="text-xl font-bold text-white">{siteConfig.site.name}</span>
                 )}
               </Link>
               <p className="text-body-base text-white mb-6 max-w-xs">
@@ -82,7 +80,7 @@ export default function Footer() {
               </p>
               <div className="flex space-x-4">
                 <Link
-                  href={siteConfig.social.facebook ?? ""}
+                  href={siteConfig.social.facebook ?? ''}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white hover:text-brand-light transition-colors bg-white/10 p-2 rounded-full"
@@ -91,7 +89,7 @@ export default function Footer() {
                   <Facebook className="h-5 w-5" />
                 </Link>
                 <Link
-                  href={siteConfig.social.instagram ?? ""}
+                  href={siteConfig.social.instagram ?? ''}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white hover:text-brand-light transition-colors bg-white/10 p-2 rounded-full"
@@ -100,7 +98,7 @@ export default function Footer() {
                   <Instagram className="h-5 w-5" />
                 </Link>
                 <Link
-                  href={siteConfig.social.twitter ?? ""}
+                  href={siteConfig.social.twitter ?? ''}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white hover:text-brand-light transition-colors bg-white/10 p-2 rounded-full"
@@ -109,7 +107,7 @@ export default function Footer() {
                   <Twitter className="h-5 w-5" />
                 </Link>
                 <Link
-                  href={siteConfig.social.linkedin ?? ""}
+                  href={siteConfig.social.linkedin ?? ''}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white hover:text-brand-light transition-colors bg-white/10 p-2 rounded-full"
@@ -123,12 +121,12 @@ export default function Footer() {
             <div>
               <h3 className="mb-4">Quick links</h3>
               <ul className="space-y-2">
-                {filteredQuickLinks.map((link) => (
+                {filteredQuickLinks.map(link => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      target={link.external ? "_blank" : undefined}
-                      rel={link.external ? "noopener noreferrer" : undefined}
+                      target={link.external ? '_blank' : undefined}
+                      rel={link.external ? 'noopener noreferrer' : undefined}
                       className="text-white hover:text-brand-light transition-colors inline-flex items-center group"
                     >
                       <span className="w-0 h-0.5 bg-white transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
@@ -200,7 +198,7 @@ export default function Footer() {
                   <Mail className="h-4 w-4 mr-2" />
                   <span>Email: </span>
                   <a
-                    href={`mailto:${siteConfig.contact.email ?? ""}`}
+                    href={`mailto:${siteConfig.contact.email ?? ''}`}
                     className="ml-1 hover:text-brand-light"
                   >
                     {siteConfig.contact.email}
@@ -210,7 +208,7 @@ export default function Footer() {
                   <Phone className="h-4 w-4 mr-2" />
                   <span>Phone: </span>
                   <a
-                    href={`tel:${siteConfig.contact.phone ?? ""}`}
+                    href={`tel:${siteConfig.contact.phone ?? ''}`}
                     className="ml-1 hover:text-brand-light"
                   >
                     {siteConfig.contact.phone}
@@ -220,7 +218,7 @@ export default function Footer() {
                   <MapPin className="h-4 w-4 mr-2 mt-1" />
                   <span>Address: </span>
                   <address className="ml-1 not-italic">
-                    {siteConfig.contact.address?.line1 ?? ""}
+                    {siteConfig.contact.address?.line1 ?? ''}
                     {siteConfig.contact.address?.line2 && (
                       <>
                         <br />
@@ -228,17 +226,13 @@ export default function Footer() {
                       </>
                     )}
                     <br />
-                    {siteConfig.contact.address?.zip ?? ""}{" "}
-                    {siteConfig.contact.address?.city ?? ""}
+                    {siteConfig.contact.address?.zip ?? ''} {siteConfig.contact.address?.city ?? ''}
                     <br />
-                    {siteConfig.contact.address?.country ?? ""}
+                    {siteConfig.contact.address?.country ?? ''}
                   </address>
                 </li>
               </ul>
-              <Button
-                asChild
-                className="mt-4 bg-white text-brand-dark hover:bg-gray-200 group"
-              >
+              <Button asChild className="mt-4 bg-white text-brand-dark hover:bg-gray-200 group">
                 <Link href="/contact">
                   Contact us
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -262,16 +256,10 @@ export default function Footer() {
                 <ExternalLink className="ml-1 h-4 w-4" />
               </Link>
 
-              <Link
-                href="/privacy-policy"
-                className="text-gray-200 hover:text-white text-sm"
-              >
+              <Link href="/privacy-policy" className="text-gray-200 hover:text-white text-sm">
                 Privacy policy
               </Link>
-              <Link
-                href="/terms-of-service"
-                className="text-gray-200 hover:text-white text-sm"
-              >
+              <Link href="/terms-of-service" className="text-gray-200 hover:text-white text-sm">
                 Terms of service
               </Link>
             </div>

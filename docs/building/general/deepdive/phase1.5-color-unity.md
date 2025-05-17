@@ -68,18 +68,17 @@ colors: {
 **app/layout.tsx**
 
 ```ts
-root.style.setProperty("--secondary", theme.colors.secondary);
-root.style.setProperty("--secondary-rgb", "255,157,72");
+root.style.setProperty('--secondary', theme.colors.secondary);
+root.style.setProperty('--secondary-rgb', '255,157,72');
 ```
 
 **Component Usage**
 
 ```tsx
 // Solid background
-className = "bg-[var(--secondary)]";
+className = 'bg-[var(--secondary)]';
 // Gradient with opacity
-className =
-  "bg-gradient-to-b from-[rgba(var(--secondary-rgb),0.1)] to-transparent";
+className = 'bg-gradient-to-b from-[rgba(var(--secondary-rgb),0.1)] to-transparent';
 ```
 
 ## Conclusion

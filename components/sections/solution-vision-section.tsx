@@ -1,16 +1,14 @@
-"use client";
-import { Section } from "@/components/layout/Section";
-import { Badge } from "@/components/ui/badge";
-import LazySection from "@/components/ui/lazy-section";
-import type { solutionVisionSectionDataSchema } from "@/lib/schemas/sections.schema";
-import { motion } from "framer-motion";
-import { CheckCircle } from "lucide-react";
-import type { z } from "zod";
+'use client';
+import { Section } from '@/components/layout/Section';
+import { Badge } from '@/components/ui/badge';
+import LazySection from '@/components/ui/lazy-section';
+import type { solutionVisionSectionDataSchema } from '@/lib/schemas/sections.schema';
+import { motion } from 'framer-motion';
+import { CheckCircle } from 'lucide-react';
+import type { z } from 'zod';
 
 // Updated props type alias using Zod schema
-export type SolutionVisionSectionProps = z.infer<
-  typeof solutionVisionSectionDataSchema
->;
+export type SolutionVisionSectionProps = z.infer<typeof solutionVisionSectionDataSchema>;
 
 // Micro-animation variants for text elements
 const textVariants = {
@@ -18,7 +16,7 @@ const textVariants = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.4, delay: i * 0.2, ease: "easeIn" },
+    transition: { duration: 0.4, delay: i * 0.2, ease: 'easeIn' },
   }),
 };
 
@@ -36,11 +34,7 @@ export default function SolutionVisionSection({
       className="pattern-overlay pattern-overlay-fade bg-gradient-to-b from-[rgba(var(--accent-rgb),0.1)] via-transparent to-transparent"
     >
       {/* Scroll reveal header */}
-      <LazySection
-        animation="slide-up"
-        delay={0}
-        className="text-center mb-16 max-w-4xl mx-auto"
-      >
+      <LazySection animation="slide-up" delay={0} className="text-center mb-16 max-w-4xl mx-auto">
         <motion.div custom={0} variants={textVariants} className="mb-4">
           <Badge variant="secondary" className="px-3 py-1 rounded-full text-sm">
             {badgeText}
@@ -53,11 +47,7 @@ export default function SolutionVisionSection({
         >
           {heading}
         </motion.h2>
-        <motion.p
-          custom={2}
-          variants={textVariants}
-          className="section-subtitle"
-        >
+        <motion.p custom={2} variants={textVariants} className="section-subtitle">
           {description}
         </motion.p>
       </LazySection>
@@ -67,15 +57,13 @@ export default function SolutionVisionSection({
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
         className="mx-auto max-w-4xl bg-white/20 backdrop-blur-lg rounded-xl shadow-2xl p-6 md:p-12 space-y-8"
       >
-        <h3 className="font-semibold text-lg text-center mt-0 mb-0">
-          Imagine having:
-        </h3>
+        <h3 className="font-semibold text-lg text-center mt-0 mb-0">Imagine having:</h3>
         {benefits && benefits.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {benefits.map((b) => (
+            {benefits.map(b => (
               <div key={b} className="flex items-start space-x-2">
                 <CheckCircle className="h-5 w-5 text-accent mt-1" />
                 <span className="text-foreground">{b}</span>

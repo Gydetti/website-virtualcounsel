@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useEffect } from "react";
-import { onCLS, onFCP, onINP, onLCP, onTTFB } from "web-vitals";
-import type { Metric } from "web-vitals";
+import { useEffect } from 'react';
+import { onCLS, onFCP, onINP, onLCP, onTTFB } from 'web-vitals';
+import type { Metric } from 'web-vitals';
 
 function sendToAnalytics(metric: Metric) {
   const body = {
@@ -13,12 +13,12 @@ function sendToAnalytics(metric: Metric) {
   };
   // Use Beacon API if available
   if (navigator.sendBeacon) {
-    const blob = new Blob([JSON.stringify(body)], { type: "application/json" });
-    navigator.sendBeacon("/api/web-vitals", blob);
+    const blob = new Blob([JSON.stringify(body)], { type: 'application/json' });
+    navigator.sendBeacon('/api/web-vitals', blob);
   } else {
-    fetch("/api/web-vitals", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+    fetch('/api/web-vitals', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
       keepalive: true,
     });

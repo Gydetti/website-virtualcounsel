@@ -1,17 +1,17 @@
-import DynamicPageRenderer from "@/components/layout/DynamicPageRenderer";
-import { getResourceBySlug, getResources } from "@/lib/data/resources";
-import { defaultMetadata } from "@/lib/metadata";
-import { siteConfig } from "@/lib/site.config.local";
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import DynamicPageRenderer from '@/components/layout/DynamicPageRenderer';
+import { getResourceBySlug, getResources } from '@/lib/data/resources';
+import { defaultMetadata } from '@/lib/metadata';
+import { siteConfig } from '@/lib/site.config.local';
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
   const resources = await getResources();
-  return resources.map((r) => ({ slug: r.slug }));
+  return resources.map(r => ({ slug: r.slug }));
 }
 
 const resourceDetailPageStructure = siteConfig.pageStructures?.find(
-  (p) => p.path === "/resources/:slug",
+  p => p.path === '/resources/:slug'
 );
 
 export async function generateMetadata({
@@ -22,13 +22,12 @@ export async function generateMetadata({
   const { slug } = await params;
   const resource = await getResourceBySlug(slug);
   if (!resource) {
-    return defaultMetadata({ title: "Resource Not Found" });
+    return defaultMetadata({ title: 'Resource Not Found' });
   }
 
   const pageSeo = resource.seo;
-  const title = pageSeo?.title || resource.title || "Resource";
-  const description =
-    pageSeo?.description || resource.subtitle || siteConfig.site.description;
+  const title = pageSeo?.title || resource.title || 'Resource';
+  const description = pageSeo?.description || resource.subtitle || siteConfig.site.description;
 
   return defaultMetadata({
     title: `${title} | ${siteConfig.site.name}`,
@@ -73,9 +72,6 @@ export default async function ResourceDetailPage({
   const currentPagePath = `/resources/${slug}`;
 
   return (
-    <DynamicPageRenderer
-      pagePath={currentPagePath}
-      pageStructure={resourceDetailPageStructure}
-    />
+    <DynamicPageRenderer pagePath={currentPagePath} pageStructure={resourceDetailPageStructure} />
   );
 }

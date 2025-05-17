@@ -135,7 +135,7 @@ Use Vitest + MSW (Mock Service Worker) to stub network calls.
 1. **Automated a11y**: use `jest-axe` in Vitest to scan components:
 
    ```ts
-   import { axe } from "jest-axe";
+   import { axe } from 'jest-axe';
    expect(await axe(container)).toHaveNoViolations();
    ```
 

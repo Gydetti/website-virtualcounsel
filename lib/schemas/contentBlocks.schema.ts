@@ -1,5 +1,5 @@
-import { z } from "zod";
-import { ctaSchema, imageSchema, linkSchema } from "./common.schema";
+import { z } from 'zod';
+import { ctaSchema, imageSchema, linkSchema } from './common.schema';
 
 // Base block type for discrimination
 const baseBlockSchema = z.object({
@@ -8,31 +8,31 @@ const baseBlockSchema = z.object({
 
 // Specific Block Schemas
 export const headingBlockSchema = baseBlockSchema.extend({
-  type: z.literal("heading"),
-  level: z.enum(["h1", "h2", "h3", "h4", "h5", "h6"]),
+  type: z.literal('heading'),
+  level: z.enum(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']),
   text: z.string().nonempty(),
 });
 
 export const textBlockSchema = baseBlockSchema.extend({
-  type: z.literal("text"),
+  type: z.literal('text'),
   // Allowing string for simple cases, could be extended for Markdown/HTML later
   content: z.string().nonempty(),
 });
 
 export const imageBlockSchema = baseBlockSchema.extend({
-  type: z.literal("image"),
+  type: z.literal('image'),
   image: imageSchema, // Use the common image schema
   caption: z.string().optional(),
 });
 
 export const videoBlockSchema = baseBlockSchema.extend({
-  type: z.literal("video"),
+  type: z.literal('video'),
   src: z.string().url(), // Expecting a URL for the video source
   caption: z.string().optional(),
 });
 
 export const quoteBlockSchema = baseBlockSchema.extend({
-  type: z.literal("quote"),
+  type: z.literal('quote'),
   text: z.string().nonempty(),
   author: z.string().optional(),
   source: linkSchema.optional(), // Optional link for the source
@@ -40,12 +40,12 @@ export const quoteBlockSchema = baseBlockSchema.extend({
 
 // Use the shape of ctaSchema directly for simplicity
 export const ctaBlockSchema = baseBlockSchema.extend({
-  type: z.literal("cta"),
+  type: z.literal('cta'),
   ...ctaSchema.shape, // Includes text, href, external?, variant?
 });
 
 export const listBlockSchema = baseBlockSchema.extend({
-  type: z.literal("list"),
+  type: z.literal('list'),
   ordered: z.boolean().default(false),
   items: z.array(z.string().nonempty()).nonempty(), // Ensure items are non-empty strings and the array has at least one item
 });
@@ -54,21 +54,21 @@ export const listBlockSchema = baseBlockSchema.extend({
 
 // Form block schemas for contact or embed forms
 export const formBlockConfigSchema = z.object({
-  provider: z.enum(["hubspot", "mailchimp", "custom"]).optional(),
+  provider: z.enum(['hubspot', 'mailchimp', 'custom']).optional(),
   portalId: z.string().optional(),
   formId: z.string().optional(),
   embedCode: z.string().optional(),
 });
 
 export const formBlockSchema = baseBlockSchema.extend({
-  type: z.literal("form"),
+  type: z.literal('form'),
   config: formBlockConfigSchema,
   title: z.string().optional(),
   description: z.string().optional(),
 });
 
 // Resource content blocks include all block types including forms
-export const resourceContentBlockSchema = z.discriminatedUnion("type", [
+export const resourceContentBlockSchema = z.discriminatedUnion('type', [
   headingBlockSchema,
   textBlockSchema,
   imageBlockSchema,
@@ -83,13 +83,13 @@ export const resourceContentBlockSchema = z.discriminatedUnion("type", [
 export const resourceSchema = z.object({
   slug: z.string().nonempty(),
   resourceType: z.enum([
-    "ebook",
-    "whitepaper",
-    "case-study",
-    "guide",
-    "report",
-    "template",
-    "other",
+    'ebook',
+    'whitepaper',
+    'case-study',
+    'guide',
+    'report',
+    'template',
+    'other',
   ]),
   title: z.string().nonempty(),
   subtitle: z.string().optional(),
@@ -99,7 +99,7 @@ export const resourceSchema = z.object({
   publishedDate: z.string().optional(),
 });
 
-export const contentBlockSchema = z.discriminatedUnion("type", [
+export const contentBlockSchema = z.discriminatedUnion('type', [
   headingBlockSchema,
   textBlockSchema,
   imageBlockSchema,

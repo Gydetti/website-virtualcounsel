@@ -1,37 +1,37 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
-import dynamic from "next/dynamic";
-import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
+import dynamic from 'next/dynamic';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
-import { Section } from "@/components/layout/Section";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import LazySection from "@/components/ui/lazy-section";
-import OptimizedImage from "@/components/ui/optimized-image";
-import blurDataMap from "@/lib/blurDataURL.json";
-import type { heroSectionDataSchema } from "@/lib/schemas/sections.schema";
-import { siteConfig } from "@/lib/siteConfig";
-import type { z } from "zod";
+import { Section } from '@/components/layout/Section';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import LazySection from '@/components/ui/lazy-section';
+import OptimizedImage from '@/components/ui/optimized-image';
+import blurDataMap from '@/lib/blurDataURL.json';
+import type { heroSectionDataSchema } from '@/lib/schemas/sections.schema';
+import { siteConfig } from '@/lib/siteConfig';
+import type { z } from 'zod';
 
-const HeroStats = dynamic(() => import("@/components/sections/hero-stats"), {
+const HeroStats = dynamic(() => import('@/components/sections/hero-stats'), {
   ssr: false,
 });
-const HeroTyping = dynamic(() => import("@/components/sections/hero-typing"), {
+const HeroTyping = dynamic(() => import('@/components/sections/hero-typing'), {
   ssr: false,
 });
 
 export type HeroSectionProps = z.infer<typeof heroSectionDataSchema> & {
-  variant?: "imageLeft" | "imageRight" | "centered";
+  variant?: 'imageLeft' | 'imageRight' | 'centered';
 };
 
 export default function HeroSection({
-  variant = "imageRight",
+  variant = 'imageRight',
   badgeText,
   headline,
   subheadline,
@@ -52,13 +52,13 @@ export default function HeroSection({
     setCurrentImageSrc(image?.src);
   }, [image?.src]);
 
-  const defaultImageSrc = "/images/placeholders/placeholder.svg";
+  const defaultImageSrc = '/images/placeholders/placeholder.svg';
   const imageToDisplay = currentImageSrc || defaultImageSrc;
-  const imageAltText = image?.alt || "Hero image";
+  const imageAltText = image?.alt || 'Hero image';
 
   const router = useRouter();
   // Determine order class for left column content
-  const contentOrderClass = variant === "imageLeft" ? "md:order-2" : "";
+  const contentOrderClass = variant === 'imageLeft' ? 'md:order-2' : '';
 
   return (
     <section
@@ -113,7 +113,7 @@ export default function HeroSection({
                     <Button
                       size="lg"
                       variant="spark"
-                      className={`group ${!showSecondaryCta || !secondaryCta?.text ? "w-full sm:w-auto" : ""}`}
+                      className={`group ${!showSecondaryCta || !secondaryCta?.text ? 'w-full sm:w-auto' : ''}`}
                       onClick={() => {
                         if (primaryCta.href) router.push(primaryCta.href);
                       }}
@@ -122,20 +122,16 @@ export default function HeroSection({
                       <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </Button>
                   )}
-                  {showSecondaryCta &&
-                    secondaryCta?.text &&
-                    secondaryCta.href && (
-                      <Button
-                        size="lg"
-                        variant="ghost"
-                        className="bg-transparent text-primary hover:text-primary-80 hover:bg-transparent"
-                        asChild
-                      >
-                        <Link href={secondaryCta.href}>
-                          {secondaryCta.text}
-                        </Link>
-                      </Button>
-                    )}
+                  {showSecondaryCta && secondaryCta?.text && secondaryCta.href && (
+                    <Button
+                      size="lg"
+                      variant="ghost"
+                      className="bg-transparent text-primary hover:text-primary-80 hover:bg-transparent"
+                      asChild
+                    >
+                      <Link href={secondaryCta.href}>{secondaryCta.text}</Link>
+                    </Button>
+                  )}
                 </div>
               </LazySection>
             )}
@@ -143,7 +139,7 @@ export default function HeroSection({
               <LazySection animation="fade-up" delay={0.6}>
                 <div className="flex items-center space-x-4 mt-6 text-sm">
                   <div className="flex -space-x-2">
-                    {[1, 2, 3, 4].map((i) => (
+                    {[1, 2, 3, 4].map(i => (
                       <div
                         key={i}
                         className="inline-block h-8 w-8 rounded-full ring-2 ring-white overflow-hidden bg-gray-200"
@@ -159,8 +155,7 @@ export default function HeroSection({
                     ))}
                   </div>
                   <div className="text-foreground">
-                    <span className="font-medium">100+</span> statistic that
-                    helps build authority
+                    <span className="font-medium">100+</span> statistic that helps build authority
                   </div>
                 </div>
               </LazySection>
@@ -170,12 +165,9 @@ export default function HeroSection({
           <LazySection
             animation="slide-up"
             delay={0.2}
-            className={`relative w-full max-w-[600px] transform md:translate-y-6 ${variant === "imageLeft" ? "md:order-1" : "ml-auto"}`}
+            className={`relative w-full max-w-[600px] transform md:translate-y-6 ${variant === 'imageLeft' ? 'md:order-1' : 'ml-auto'}`}
           >
-            <AspectRatio
-              ratio={6 / 5}
-              className="overflow-visible rounded-xl shadow-2xl relative"
-            >
+            <AspectRatio ratio={6 / 5} className="overflow-visible rounded-xl shadow-2xl relative">
               <OptimizedImage
                 src={imageToDisplay}
                 alt={imageAltText}
@@ -184,9 +176,7 @@ export default function HeroSection({
                 className="absolute inset-0 object-cover rounded-xl"
                 priority
                 placeholder="blur"
-                blurDataURL={
-                  blurDataMap[imageToDisplay as keyof typeof blurDataMap]
-                }
+                blurDataURL={blurDataMap[imageToDisplay as keyof typeof blurDataMap]}
                 onError={() => setCurrentImageSrc(defaultImageSrc)}
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6 rounded-b-xl">

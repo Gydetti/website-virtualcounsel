@@ -1,50 +1,47 @@
 import type {
   resourceContentBlockSchema,
   resourceSchema,
-} from "@/lib/schemas/contentBlocks.schema";
-import type { z } from "zod";
+} from '@/lib/schemas/contentBlocks.schema';
+import type { z } from 'zod';
 
-import ContentBlockRenderer from "@/components/content-blocks/ContentBlockRenderer";
-import FormBlock from "@/components/content-blocks/FormBlock"; // Assuming FormBlock can be used
-import { Section } from "@/components/layout/Section";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import LazySection from "@/components/ui/lazy-section";
-import Image from "next/image";
+import ContentBlockRenderer from '@/components/content-blocks/ContentBlockRenderer';
+import FormBlock from '@/components/content-blocks/FormBlock'; // Assuming FormBlock can be used
+import { Section } from '@/components/layout/Section';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import LazySection from '@/components/ui/lazy-section';
+import Image from 'next/image';
 
 interface ResourceDetailSectionProps {
   resource: z.infer<typeof resourceSchema>;
   // We might need to pass form configuration if not part of resource schema directly
 }
 
-export default function ResourceDetailSection({
-  resource,
-}: ResourceDetailSectionProps) {
+export default function ResourceDetailSection({ resource }: ResourceDetailSectionProps) {
   // Placeholder form configuration - this would ideally come from resource data or a central config
   const downloadFormConfig = {
     fields: [
       {
-        name: "name",
-        type: "text",
-        label: "Full Name",
-        placeholder: "Your full name",
+        name: 'name',
+        type: 'text',
+        label: 'Full Name',
+        placeholder: 'Your full name',
         required: true,
       },
       {
-        name: "email",
-        type: "email",
-        label: "Email Address",
-        placeholder: "your@email.com",
+        name: 'email',
+        type: 'email',
+        label: 'Email Address',
+        placeholder: 'your@email.com',
         required: true,
       },
     ],
-    submitButtonText: "Download Your Free E-Book",
+    submitButtonText: 'Download Your Free E-Book',
     // action: "/api/submit-resource-form" // Placeholder for form submission endpoint
   };
   // Hero image variables with fallback to placeholder
-  const imgSrc =
-    resource.heroImage?.src || "/images/placeholders/placeholder.svg";
-  const imgAlt = resource.heroImage?.alt || "Placeholder hero image";
+  const imgSrc = resource.heroImage?.src || '/images/placeholders/placeholder.svg';
+  const imgAlt = resource.heroImage?.alt || 'Placeholder hero image';
   const imgWidth = resource.heroImage?.width || 700;
   const imgHeight = resource.heroImage?.height || 1000;
 
@@ -65,17 +62,13 @@ export default function ResourceDetailSection({
             </LazySection>
             {resource.subtitle && (
               <LazySection animation="fade-up" delay={0.2}>
-                <p className="text-lg text-foreground mb-6 leading-relaxed">
-                  {resource.subtitle}
-                </p>
+                <p className="text-lg text-foreground mb-6 leading-relaxed">{resource.subtitle}</p>
               </LazySection>
             )}
             {/* Key benefits/learnings section */}
             <LazySection animation="fade-up" delay={0.3}>
               <div className="mb-8">
-                <h3 className="text-xl font-semibold mb-3 text-gray-800">
-                  What you'll gain:
-                </h3>
+                <h3 className="text-xl font-semibold mb-3 text-gray-800">What you'll gain:</h3>
                 <ul className="list-none space-y-2 text-left text-foreground">
                   <li className="flex items-start">
                     <svg
@@ -91,9 +84,7 @@ export default function ResourceDetailSection({
                         clipRule="evenodd"
                       />
                     </svg>
-                    <span>
-                      Placeholder benefit 1: Unlock exclusive insights.
-                    </span>
+                    <span>Placeholder benefit 1: Unlock exclusive insights.</span>
                   </li>
                   <li className="flex items-start">
                     <svg
@@ -109,9 +100,7 @@ export default function ResourceDetailSection({
                         clipRule="evenodd"
                       />
                     </svg>
-                    <span>
-                      Placeholder benefit 2: Master advanced techniques.
-                    </span>
+                    <span>Placeholder benefit 2: Master advanced techniques.</span>
                   </li>
                   <li className="flex items-start">
                     <svg
@@ -164,13 +153,9 @@ export default function ResourceDetailSection({
         {/* Dynamic Content Blocks for further details, benefits, sneak peeks etc. */}
         <div className="prose prose-lg max-w-none mx-auto">
           {resource.sections
-            .filter((block) => block.type !== "image")
+            .filter(block => block.type !== 'image')
             .map((block, i) => (
-              <LazySection
-                key={`${block.type}-${i}`}
-                animation="fade-up"
-                delay={(i + 3) * 0.2}
-              >
+              <LazySection key={`${block.type}-${i}`} animation="fade-up" delay={(i + 3) * 0.2}>
                 <ContentBlockRenderer block={block} />
               </LazySection>
             ))}

@@ -1,11 +1,11 @@
-import mailchimp from "@mailchimp/mailchimp_transactional";
-import sgMail from "@sendgrid/mail";
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
-import nodemailer from "nodemailer";
-import { Client as PostmarkClient } from "postmark";
-import { z } from "zod";
-import { siteConfig } from "../../../lib/siteConfig";
+import mailchimp from '@mailchimp/mailchimp_transactional';
+import sgMail from '@sendgrid/mail';
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+import nodemailer from 'nodemailer';
+import { Client as PostmarkClient } from 'postmark';
+import { z } from 'zod';
+import { siteConfig } from '../../../lib/siteConfig';
 
 // Define schema for contact form payload
 export const contactSchema = z.object({
@@ -29,25 +29,25 @@ export async function POST(request: NextRequest) {
     }
 
     // Determine email provider from config
-    const provider = siteConfig.contactForm?.provider ?? "smtp";
+    const provider = siteConfig.contactForm?.provider ?? 'smtp';
     // Prepare email contents
     const ownerSubject = `Contact Form: ${data.subject}`;
     const ownerHtml = [
       `<p><strong>Name:</strong> ${data.name}</p>`,
       `<p><strong>Email:</strong> ${data.email}</p>`,
-      data.phone ? `<p><strong>Phone:</strong> ${data.phone}</p>` : "",
-      `<p><strong>Message:</strong><br/>${data.message.replace(/\n/g, "<br/>")}</p>`,
-    ].join("");
+      data.phone ? `<p><strong>Phone:</strong> ${data.phone}</p>` : '',
+      `<p><strong>Message:</strong><br/>${data.message.replace(/\n/g, '<br/>')}</p>`,
+    ].join('');
     const confirmationSubject = `Thanks for contacting ${siteConfig.site.name}`;
     const confirmationHtml = `<p>Hi ${data.name},</p><p>Thanks for your message. We'll get back to you soon.</p><hr/>${ownerHtml}`;
 
     // Send via configured provider
     switch (provider) {
-      case "smtp": {
+      case 'smtp': {
         const transporter = nodemailer.createTransport({
           host: process.env.SMTP_HOST,
           port: Number(process.env.SMTP_PORT),
-          secure: process.env.SMTP_SECURE === "true",
+          secure: process.env.SMTP_SECURE === 'true',
           auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
         });
         await transporter.sendMail({
@@ -64,16 +64,16 @@ export async function POST(request: NextRequest) {
         });
         break;
       }
-      case "sendgrid": {
+      case 'sendgrid': {
         const apiKey = process.env.SENDGRID_API_KEY;
         const fromEmail = process.env.SENDGRID_FROM_EMAIL;
         if (!apiKey || !fromEmail) {
           return NextResponse.json(
             {
               success: false,
-              error: "SendGrid environment variables not defined",
+              error: 'SendGrid environment variables not defined',
             },
-            { status: 500 },
+            { status: 500 }
           );
         }
         sgMail.setApiKey(apiKey);
@@ -91,16 +91,16 @@ export async function POST(request: NextRequest) {
         });
         break;
       }
-      case "postmark": {
+      case 'postmark': {
         const apiToken = process.env.POSTMARK_API_TOKEN;
         const fromEmail = process.env.POSTMARK_FROM_EMAIL;
         if (!apiToken || !fromEmail) {
           return NextResponse.json(
             {
               success: false,
-              error: "Postmark environment variables not defined",
+              error: 'Postmark environment variables not defined',
             },
-            { status: 500 },
+            { status: 500 }
           );
         }
         const pmClient = new PostmarkClient(apiToken);
@@ -118,17 +118,16 @@ export async function POST(request: NextRequest) {
         });
         break;
       }
-      case "mailchimp": {
+      case 'mailchimp': {
         const apiKey = process.env.MAILCHIMP_TRANSACTIONAL_API_KEY;
         const fromEmail = process.env.MAILCHIMP_TRANSACTIONAL_FROM_EMAIL;
         if (!apiKey || !fromEmail) {
           return NextResponse.json(
             {
               success: false,
-              error:
-                "Mailchimp Transactional environment variables not defined",
+              error: 'Mailchimp Transactional environment variables not defined',
             },
-            { status: 500 },
+            { status: 500 }
           );
         }
         const mcClient = mailchimp(apiKey);
@@ -137,7 +136,7 @@ export async function POST(request: NextRequest) {
           message: {
             from_email: fromEmail,
             from_name: siteConfig.site.name,
-            to: [{ email: siteConfig.contact.email, type: "to" }],
+            to: [{ email: siteConfig.contact.email, type: 'to' }],
             subject: ownerSubject,
             html: ownerHtml,
           },
@@ -147,29 +146,29 @@ export async function POST(request: NextRequest) {
           message: {
             from_email: fromEmail,
             from_name: siteConfig.site.name,
-            to: [{ email: data.email, type: "to" }],
+            to: [{ email: data.email, type: 'to' }],
             subject: confirmationSubject,
             html: confirmationHtml,
           },
         });
         break;
       }
-      case "activeCampaign": {
+      case 'activeCampaign': {
         const apiUrl = process.env.ACTIVECAMPAIGN_API_URL;
         const apiKey = process.env.ACTIVECAMPAIGN_API_KEY;
         const fromEmail = process.env.ACTIVECAMPAIGN_FROM_EMAIL;
         if (!apiUrl || !apiKey || !fromEmail) {
           return NextResponse.json(
-            { success: false, error: "ActiveCampaign env vars not defined" },
-            { status: 500 },
+            { success: false, error: 'ActiveCampaign env vars not defined' },
+            { status: 500 }
           );
         }
         // Send to site owner
         await fetch(`${apiUrl}/api/3/message/send`, {
-          method: "POST",
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
-            "Api-Token": apiKey,
+            'Content-Type': 'application/json',
+            'Api-Token': apiKey,
           },
           body: JSON.stringify({
             message: {
@@ -182,10 +181,10 @@ export async function POST(request: NextRequest) {
         });
         // Send confirmation to submitter
         await fetch(`${apiUrl}/api/3/message/send`, {
-          method: "POST",
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
-            "Api-Token": apiKey,
+            'Content-Type': 'application/json',
+            'Api-Token': apiKey,
           },
           body: JSON.stringify({
             message: {
@@ -198,53 +197,47 @@ export async function POST(request: NextRequest) {
         });
         break;
       }
-      case "hubspot": {
+      case 'hubspot': {
         const apiKey = process.env.HUBSPOT_API_KEY;
         const fromEmailHub = process.env.HUBSPOT_FROM_EMAIL;
         if (!apiKey || !fromEmailHub) {
           return NextResponse.json(
-            { success: false, error: "HubSpot env vars not defined" },
-            { status: 500 },
+            { success: false, error: 'HubSpot env vars not defined' },
+            { status: 500 }
           );
         }
         // Note: HubSpot transactional email endpoint
-        await fetch(
-          `https://api.hubapi.com/email/public/v1/singleEmail/send?hapikey=${apiKey}`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              emailId: fromEmailHub,
-              message: {
-                to: [data.email],
-                subject: ownerSubject,
-                html: ownerHtml,
-              },
-            }),
-          },
-        );
+        await fetch(`https://api.hubapi.com/email/public/v1/singleEmail/send?hapikey=${apiKey}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            emailId: fromEmailHub,
+            message: {
+              to: [data.email],
+              subject: ownerSubject,
+              html: ownerHtml,
+            },
+          }),
+        });
         // Send confirmation to submitter
-        await fetch(
-          `https://api.hubapi.com/email/public/v1/singleEmail/send?hapikey=${apiKey}`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              emailId: fromEmailHub,
-              message: {
-                to: [siteConfig.contact.email],
-                subject: confirmationSubject,
-                html: confirmationHtml,
-              },
-            }),
-          },
-        );
+        await fetch(`https://api.hubapi.com/email/public/v1/singleEmail/send?hapikey=${apiKey}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            emailId: fromEmailHub,
+            message: {
+              to: [siteConfig.contact.email],
+              subject: confirmationSubject,
+              html: confirmationHtml,
+            },
+          }),
+        });
         break;
       }
       default:
         return NextResponse.json(
           { success: false, error: `Provider '${provider}' not supported.` },
-          { status: 400 },
+          { status: 400 }
         );
     }
 
@@ -252,18 +245,15 @@ export async function POST(request: NextRequest) {
   } catch (error: unknown) {
     // Handle validation errors
     if (error instanceof z.ZodError) {
-      return NextResponse.json(
-        { success: false, errors: error.errors },
-        { status: 400 },
-      );
+      return NextResponse.json({ success: false, errors: error.errors }, { status: 400 });
     }
-    console.error("Contact API error:", error);
+    console.error('Contact API error:', error);
     return NextResponse.json(
       {
         success: false,
-        error: error instanceof Error ? error.message : "Internal server error",
+        error: error instanceof Error ? error.message : 'Internal server error',
       },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }

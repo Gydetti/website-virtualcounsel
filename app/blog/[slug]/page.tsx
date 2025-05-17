@@ -1,37 +1,28 @@
-import { Section } from "@/components/layout/Section";
-import BlogSchema from "@/components/seo/blog-schema";
-import StructuredData from "@/components/seo/structured-data";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { getBlogPostBySlug, getBlogPosts } from "@/lib/data-utils";
-import { defaultMetadata } from "@/lib/metadata";
-import { siteConfig } from "@/lib/siteConfig";
-import {
-  ArrowLeft,
-  ArrowRight,
-  Calendar,
-  Clock,
-  Share2,
-  User,
-} from "lucide-react";
-import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
-import { notFound } from "next/navigation";
-import type { ReactNode } from "react";
+import { Section } from '@/components/layout/Section';
+import BlogSchema from '@/components/seo/blog-schema';
+import StructuredData from '@/components/seo/structured-data';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { getBlogPostBySlug, getBlogPosts } from '@/lib/data-utils';
+import { defaultMetadata } from '@/lib/metadata';
+import { siteConfig } from '@/lib/siteConfig';
+import { ArrowLeft, ArrowRight, Calendar, Clock, Share2, User } from 'lucide-react';
+import type { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import type { ReactNode } from 'react';
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
 }
 
-export async function generateMetadata(
-  props: BlogPostPageProps,
-): Promise<Metadata> {
+export async function generateMetadata(props: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await props.params;
   const post = await getBlogPostBySlug(slug);
   if (!post) {
-    return defaultMetadata({ title: "Post Not Found" });
+    return defaultMetadata({ title: 'Post Not Found' });
   }
   return defaultMetadata({
     title: `${post.title} | ${siteConfig.site.name}`,
@@ -39,7 +30,7 @@ export async function generateMetadata(
     openGraph: {
       title: `${post.title} | ${siteConfig.site.name}`,
       description: post.excerpt,
-      type: "article",
+      type: 'article',
       publishedTime: post.date,
     },
   });
@@ -48,7 +39,7 @@ export async function generateMetadata(
 export async function generateStaticParams() {
   const posts = await getBlogPosts();
 
-  return posts.map((post) => ({
+  return posts.map(post => ({
     slug: post.slug,
   }));
 }
@@ -68,7 +59,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
 
   // Get related posts (excluding current post)
   const allPosts = await getBlogPosts();
-  const relatedPosts = allPosts.filter((p) => p.id !== post.id).slice(0, 3);
+  const relatedPosts = allPosts.filter(p => p.id !== post.id).slice(0, 3);
 
   // Sample content for the blog post
   const content = `
@@ -102,10 +93,10 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
   `;
 
   const author = {
-    name: "Sarah Johnson",
-    title: "Digital Marketing Specialist",
-    bio: "Sarah has over 8 years of experience helping businesses grow their online presence. She specializes in content strategy, SEO, and social media marketing.",
-    image: "/placeholder.svg?height=100&width=100",
+    name: 'Sarah Johnson',
+    title: 'Digital Marketing Specialist',
+    bio: 'Sarah has over 8 years of experience helping businesses grow their online presence. She specializes in content strategy, SEO, and social media marketing.',
+    image: '/placeholder.svg?height=100&width=100',
   };
 
   const blogSchemaData = {
@@ -113,7 +104,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
     description: post.excerpt,
     datePublished: post.date,
     authorName: author.name,
-    imageUrl: post.coverImage?.src || "/placeholder.svg",
+    imageUrl: post.coverImage?.src || '/placeholder.svg',
     url: `${siteConfig.site.url}/blog/${post.slug}`,
   };
 
@@ -125,10 +116,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
         <div className="max-w-4xl mx-auto">
           {/* Back link and category badge grouped to prevent overlap on small screens */}
           <div className="flex flex-wrap items-center gap-3 mb-6">
-            <Link
-              href="/blog"
-              className="inline-flex items-center text-primary hover:underline"
-            >
+            <Link href="/blog" className="inline-flex items-center text-primary hover:underline">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back link text (e.g. 'Back to blog overview')
             </Link>
@@ -144,18 +132,16 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
             <div className="flex items-center">
               <Calendar className="h-4 w-4 mr-2" />
               <span className="text-sm text-gray-500">
-                {new Date(post.date).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
+                {new Date(post.date).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
                 })}
               </span>
             </div>
             <div className="flex items-center">
               <Clock className="h-4 w-4 mr-2" />
-              <span className="text-sm text-gray-500">
-                Reading time (e.g. '5 min read')
-              </span>
+              <span className="text-sm text-gray-500">Reading time (e.g. '5 min read')</span>
             </div>
           </div>
         </div>
@@ -166,7 +152,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
           <div className="lg:col-span-3">
             <div className="relative h-[400px] w-full mb-8 rounded-xl overflow-hidden">
               <Image
-                src={post.coverImage?.src || "/placeholder.svg"}
+                src={post.coverImage?.src || '/placeholder.svg'}
                 alt={post.coverImage?.alt || post.title}
                 fill
                 className="object-cover"
@@ -180,15 +166,9 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
 
             <div className="flex items-center justify-between mt-12 pt-8 border-t">
               <div className="flex items-center">
-                <span className="mr-4">
-                  Section heading for social share options
-                </span>
+                <span className="mr-4">Section heading for social share options</span>
                 <div className="flex space-x-2">
-                  <Button
-                    size="icon"
-                    variant="ghost"
-                    aria-label="Share on Twitter"
-                  >
+                  <Button size="icon" variant="ghost" aria-label="Share on Twitter">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       aria-hidden="true"
@@ -206,11 +186,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
                       <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
                     </svg>
                   </Button>
-                  <Button
-                    size="icon"
-                    variant="ghost"
-                    aria-label="Share on Facebook"
-                  >
+                  <Button size="icon" variant="ghost" aria-label="Share on Facebook">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       aria-hidden="true"
@@ -228,11 +204,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
                       <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
                     </svg>
                   </Button>
-                  <Button
-                    size="icon"
-                    variant="ghost"
-                    aria-label="Share on LinkedIn"
-                  >
+                  <Button size="icon" variant="ghost" aria-label="Share on LinkedIn">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       aria-hidden="true"
@@ -267,7 +239,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
                 <div className="flex items-center mb-4">
                   <div className="relative h-16 w-16 rounded-full overflow-hidden mr-4">
                     <Image
-                      src={author.image || "/placeholder.svg"}
+                      src={author.image || '/placeholder.svg'}
                       alt={author.name}
                       fill
                       className="object-cover"
@@ -324,14 +296,14 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
       <Section className="bg-gray-50">
         <h2 className="text-3xl font-bold mb-12">Related Articles</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {relatedPosts.map((relatedPost) => (
+          {relatedPosts.map(relatedPost => (
             <Card
               key={relatedPost.id}
               className="overflow-hidden transition-all duration-300 hover:shadow-xl"
             >
               <div className="relative h-48 w-full overflow-hidden">
                 <Image
-                  src={relatedPost.coverImage?.src || "/placeholder.svg"}
+                  src={relatedPost.coverImage?.src || '/placeholder.svg'}
                   alt={relatedPost.coverImage?.alt || relatedPost.title}
                   fill
                   className="object-cover transition-transform duration-300 hover:scale-105"
@@ -339,16 +311,10 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
               </div>
               <CardContent className="p-6">
                 <h3 className="mb-2 hover:text-primary transition-colors">
-                  <Link href={`/blog/${relatedPost.slug}`}>
-                    {relatedPost.title}
-                  </Link>
+                  <Link href={`/blog/${relatedPost.slug}`}>{relatedPost.title}</Link>
                 </h3>
                 <p className="text-gray-600 mb-4">{relatedPost.excerpt}</p>
-                <Button
-                  variant="link"
-                  className="p-0 h-auto text-primary"
-                  asChild
-                >
+                <Button variant="link" className="p-0 h-auto text-primary" asChild>
                   <Link href={`/blog/${relatedPost.slug}`}>
                     Read More
                     <ArrowRight className="ml-2 h-4 w-4" />

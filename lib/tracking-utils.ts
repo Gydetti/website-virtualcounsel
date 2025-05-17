@@ -9,10 +9,10 @@ export const trackGAEvent = (
   eventName: string,
   category: string,
   label: string,
-  value?: number,
+  value?: number
 ) => {
-  if (typeof window !== "undefined" && window.gtag) {
-    window.gtag("event", eventName, {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', eventName, {
       event_category: category,
       event_label: label,
       value: value,
@@ -21,32 +21,23 @@ export const trackGAEvent = (
 };
 
 // Facebook Pixel event tracking
-export const trackFBEvent = (
-  eventName: string,
-  params?: Record<string, unknown>,
-) => {
-  if (typeof window !== "undefined" && window.fbq) {
-    window.fbq("track", eventName, params);
+export const trackFBEvent = (eventName: string, params?: Record<string, unknown>) => {
+  if (typeof window !== 'undefined' && window.fbq) {
+    window.fbq('track', eventName, params);
   }
 };
 
 // LinkedIn Insight event tracking
-export const trackLinkedInEvent = (
-  conversionId: string,
-  params?: Record<string, unknown>,
-) => {
-  if (typeof window !== "undefined" && window.lintrk) {
-    window.lintrk("track", { conversion_id: conversionId, ...params });
+export const trackLinkedInEvent = (conversionId: string, params?: Record<string, unknown>) => {
+  if (typeof window !== 'undefined' && window.lintrk) {
+    window.lintrk('track', { conversion_id: conversionId, ...params });
   }
 };
 
 // HubSpot event tracking
-export const trackHubSpotEvent = (
-  eventName: string,
-  params?: Record<string, unknown>,
-) => {
-  if (typeof window !== "undefined" && window._hsq) {
-    window._hsq.push(["trackEvent", { id: eventName, ...params }]);
+export const trackHubSpotEvent = (eventName: string, params?: Record<string, unknown>) => {
+  if (typeof window !== 'undefined' && window._hsq) {
+    window._hsq.push(['trackEvent', { id: eventName, ...params }]);
   }
 };
 
@@ -54,13 +45,13 @@ export const trackHubSpotEvent = (
 export const trackGoogleAdsConversion = (
   conversionId: string,
   conversionLabel: string,
-  value?: number,
+  value?: number
 ) => {
-  if (typeof window !== "undefined" && window.gtag) {
-    window.gtag("event", "conversion", {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', 'conversion', {
       send_to: `AW-${conversionId}/${conversionLabel}`,
       value: value,
-      currency: "EUR",
+      currency: 'EUR',
     });
   }
 };
@@ -71,7 +62,7 @@ export const trackEvent = (
   category: string,
   label: string,
   value?: number,
-  additionalParams?: Record<string, unknown>,
+  additionalParams?: Record<string, unknown>
 ) => {
   // Track in Google Analytics
   trackGAEvent(eventName, category, label, value);
@@ -80,12 +71,12 @@ export const trackEvent = (
   trackFBEvent(eventName, {
     content_name: label,
     value,
-    currency: "EUR",
+    currency: 'EUR',
     ...additionalParams,
   });
 
   // Track in LinkedIn (if it's a conversion)
-  if (eventName.includes("conversion")) {
+  if (eventName.includes('conversion')) {
     trackLinkedInEvent(eventName, { ...additionalParams });
   }
 

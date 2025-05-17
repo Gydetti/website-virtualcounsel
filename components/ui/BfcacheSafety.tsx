@@ -1,5 +1,5 @@
-"use client";
-import { useEffect } from "react";
+'use client';
+import { useEffect } from 'react';
 
 // Set to track all controllers for active fetches
 const controllers = new Set<AbortController>();
@@ -26,10 +26,10 @@ export default function BfcacheSafety() {
       }
       controllers.clear();
     };
-    window.addEventListener("pagehide", onPageHide);
+    window.addEventListener('pagehide', onPageHide);
 
     return () => {
-      window.removeEventListener("pagehide", onPageHide);
+      window.removeEventListener('pagehide', onPageHide);
       // Restore original fetch
       window.fetch = originalFetch;
     };

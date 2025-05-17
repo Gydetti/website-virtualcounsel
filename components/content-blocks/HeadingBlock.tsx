@@ -1,7 +1,7 @@
-import type { FC } from "react";
+import type { FC } from 'react';
 
 interface HeadingBlockProps {
-  level: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+  level: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   text: string;
 }
 

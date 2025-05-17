@@ -1,19 +1,10 @@
-"use client";
+'use client';
 
-import { Section } from "@/components/layout/Section";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import type {
-  pricingCardSchema,
-  pricingSectionDataSchema,
-} from "@/lib/schemas/sections.schema";
-import type { z } from "zod";
+import { Section } from '@/components/layout/Section';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import type { pricingCardSchema, pricingSectionDataSchema } from '@/lib/schemas/sections.schema';
+import type { z } from 'zod';
 
 // Updated props type alias using Zod schema
 export type PricingSectionProps = z.infer<typeof pricingSectionDataSchema>;
@@ -35,16 +26,13 @@ export default function PricingSection({
         {heading && (
           <h2
             className="text-[var(--font-subheading-size)]"
-            style={{ "--index": 0 } as React.CSSProperties}
+            style={{ '--index': 0 } as React.CSSProperties}
           >
             {heading}
           </h2>
         )}
         {description && (
-          <p
-            className="section-subtitle"
-            style={{ "--index": 1 } as React.CSSProperties}
-          >
+          <p className="section-subtitle" style={{ '--index': 1 } as React.CSSProperties}>
             {description}
           </p>
         )}
@@ -55,7 +43,7 @@ export default function PricingSection({
           <Card
             key={card.id}
             className="relative flex h-full flex-col justify-between border bg-white shadow-sm transition-transform duration-300 hover:scale-105 hover:shadow-lg"
-            style={{ "--index": idx + 2 } as React.CSSProperties}
+            style={{ '--index': idx + 2 } as React.CSSProperties}
           >
             {card.popular && (
               <div className="absolute top-0 right-0 mt-4 mr-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-semibold uppercase">
@@ -68,7 +56,7 @@ export default function PricingSection({
             </CardHeader>
             <CardContent className="flex-grow px-6 py-4">
               <ul className="space-y-3">
-                {card.features.map((feature) => (
+                {card.features.map(feature => (
                   <li key={feature} className="flex items-start">
                     <span className="text-green-500 mr-3 mt-1">
                       <svg

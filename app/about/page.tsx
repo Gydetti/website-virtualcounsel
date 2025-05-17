@@ -1,23 +1,20 @@
-import DynamicPageRenderer from "@/components/layout/DynamicPageRenderer";
-import { defaultMetadata } from "@/lib/metadata";
-import { siteConfig } from "@/lib/site.config.local";
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import DynamicPageRenderer from '@/components/layout/DynamicPageRenderer';
+import { defaultMetadata } from '@/lib/metadata';
+import { siteConfig } from '@/lib/site.config.local';
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 
 // Find the page structure for the about page
-const aboutPageStructure = siteConfig.pageStructures?.find(
-  (p) => p.path === "/about",
-);
+const aboutPageStructure = siteConfig.pageStructures?.find(p => p.path === '/about');
 
 export async function generateMetadata(): Promise<Metadata> {
-  if (siteConfig.enabledPages && !siteConfig.enabledPages.includes("/about")) {
-    return defaultMetadata({ title: "Page Not Found" });
+  if (siteConfig.enabledPages && !siteConfig.enabledPages.includes('/about')) {
+    return defaultMetadata({ title: 'Page Not Found' });
   }
 
   const pageSeo = aboutPageStructure?.seo;
-  const title = pageSeo?.title || "About Us";
-  const description =
-    pageSeo?.description || `Learn more about ${siteConfig.site.name}.`;
+  const title = pageSeo?.title || 'About Us';
+  const description = pageSeo?.description || `Learn more about ${siteConfig.site.name}.`;
 
   return defaultMetadata({
     title: `${title} | ${siteConfig.site.name}`,
@@ -26,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function AboutPage() {
-  if (siteConfig.enabledPages && !siteConfig.enabledPages.includes("/about")) {
+  if (siteConfig.enabledPages && !siteConfig.enabledPages.includes('/about')) {
     notFound();
   }
 
@@ -40,7 +37,5 @@ export default async function AboutPage() {
     );
   }
 
-  return (
-    <DynamicPageRenderer pagePath="/about" pageStructure={aboutPageStructure} />
-  );
+  return <DynamicPageRenderer pagePath="/about" pageStructure={aboutPageStructure} />;
 }

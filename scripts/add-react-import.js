@@ -10,13 +10,11 @@ module.exports = function transformer(fileInfo, api) {
   const hasReactValueImport =
     root
       .find(j.ImportDeclaration, {
-        source: { value: "react" },
+        source: { value: 'react' },
       })
-      .filter((path) => {
+      .filter(path => {
         // Check for default import specifier
-        return path.node.specifiers.some(
-          (spec) => spec.type === "ImportDefaultSpecifier",
-        );
+        return path.node.specifiers.some(spec => spec.type === 'ImportDefaultSpecifier');
       })
       .size() > 0;
   if (hasReactValueImport) return null;
@@ -28,9 +26,9 @@ module.exports = function transformer(fileInfo, api) {
 
   // Prepend import React
   const importDecl = j.importDeclaration(
-    [j.importDefaultSpecifier(j.identifier("React"))],
-    j.literal("react"),
+    [j.importDefaultSpecifier(j.identifier('React'))],
+    j.literal('react')
   );
   root.get().node.program.body.unshift(importDecl);
-  return root.toSource({ quote: "double" });
+  return root.toSource({ quote: 'double' });
 };

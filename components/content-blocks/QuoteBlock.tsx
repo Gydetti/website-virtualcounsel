@@ -1,7 +1,7 @@
-import type { quoteBlockSchema } from "@/lib/schemas/contentBlocks.schema";
-import Link from "next/link";
-import type { FC } from "react";
-import type { z } from "zod";
+import type { quoteBlockSchema } from '@/lib/schemas/contentBlocks.schema';
+import Link from 'next/link';
+import type { FC } from 'react';
+import type { z } from 'zod';
 
 // Props inferred from Zod schema
 type QuoteBlockProps = z.infer<typeof quoteBlockSchema>;
@@ -15,13 +15,10 @@ const QuoteBlock: FC<QuoteBlockProps> = ({ text, author, source }) => {
       {(author || source) && (
         <figcaption>
           {author}
-          {author && source && ", "}
+          {author && source && ', '}
           {source && (
             <cite>
-              <Link
-                href={source.href}
-                target={source.external ? "_blank" : undefined}
-              >
+              <Link href={source.href} target={source.external ? '_blank' : undefined}>
                 {source.text}
               </Link>
             </cite>

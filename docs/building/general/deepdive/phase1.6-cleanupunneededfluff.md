@@ -75,7 +75,7 @@
 ### **D. Optional: Future-Proofing**
 
 - [ ] Leave a clear comment in the code and docs:  
-      “If you ever need runtime theme switching, you can reintroduce a client-side provider.”
+       “If you ever need runtime theme switching, you can reintroduce a client-side provider.”
 
 ---
 

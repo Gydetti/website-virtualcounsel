@@ -26,20 +26,20 @@ A structured, step-by-step plan to resolve the `ReferenceError: React is not def
 
 - Replace `React.forwardRef` with:
   ```ts
-  import { forwardRef } from "react";
+  import { forwardRef } from 'react';
   ```
   then call `forwardRef(...)`.
 - For hooks:
   ```ts
-  import { useState, useEffect } from "react";
+  import { useState, useEffect } from 'react';
   ```
 - For context or other APIs:
   ```ts
-  import { createContext } from "react";
+  import { createContext } from 'react';
   ```
 - Use type-only imports for TypeScript helpers:
   ```ts
-  import type { ReactNode, HTMLAttributes } from "react";
+  import type { ReactNode, HTMLAttributes } from 'react';
   ```
 
 ### 3. Ensure Correct Placement of `"use client"`

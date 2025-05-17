@@ -1,50 +1,50 @@
-import AppShell from "@/components/layout/AppShell";
-import StructuredData from "@/components/seo/structured-data";
-import { heroSectionData } from "@/lib/data/homepage";
-import { defaultMetadata } from "@/lib/metadata";
-import { siteConfig } from "@/lib/siteConfig";
-import { Partytown } from "@qwik.dev/partytown/react";
-import { Poppins, Raleway } from "next/font/google";
-import type { ReactNode } from "react";
-import "./globals.css";
-import WebVitalsReporter from "@/components/analytics/WebVitalsReporter";
+import AppShell from '@/components/layout/AppShell';
+import StructuredData from '@/components/seo/structured-data';
+import { heroSectionData } from '@/lib/data/homepage';
+import { defaultMetadata } from '@/lib/metadata';
+import { siteConfig } from '@/lib/siteConfig';
+import { Partytown } from '@qwik.dev/partytown/react';
+import { Poppins, Raleway } from 'next/font/google';
+import type { ReactNode } from 'react';
+import './globals.css';
+import WebVitalsReporter from '@/components/analytics/WebVitalsReporter';
 
 // Poppins for headings
 const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
   preload: true,
-  variable: "--font-poppins",
-  display: "swap",
+  variable: '--font-poppins',
+  display: 'swap',
 });
 
 // Raleway for body text
 const raleway = Raleway({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
   preload: true,
-  variable: "--font-raleway",
-  display: "swap",
+  variable: '--font-raleway',
+  display: 'swap',
 });
 
-const siteUrl = siteConfig.site.url || "http://localhost:3000";
+const siteUrl = siteConfig.site.url || 'http://localhost:3000';
 
 export const metadata = defaultMetadata({
   metadataBase: new URL(siteUrl),
   robots: { index: true, follow: true },
-  generator: "v0.dev",
-  description: siteConfig.site.description ?? "",
+  generator: 'v0.dev',
+  description: siteConfig.site.description ?? '',
 });
 
 // Next.js 15 App Router: use viewport export instead of metadata.viewport
 export const viewport = {
-  width: "device-width",
+  width: 'device-width',
   initialScale: 1,
 };
 
 // Helper functions to inline theme CSS variables at SSR
 function hexToRgbServer(hex: string): string {
-  const cleanHex = hex.replace("#", "");
+  const cleanHex = hex.replace('#', '');
   const r = Number.parseInt(cleanHex.substring(0, 2), 16);
   const g = Number.parseInt(cleanHex.substring(2, 4), 16);
   const b = Number.parseInt(cleanHex.substring(4, 6), 16);
@@ -53,7 +53,7 @@ function hexToRgbServer(hex: string): string {
 
 // Helper to convert hex to HSL (for light/dark variants)
 function hexToHslServer(hex: string): [number, number, number] {
-  const cleanHex = hex.replace("#", "");
+  const cleanHex = hex.replace('#', '');
   const r = Number.parseInt(cleanHex.substring(0, 2), 16) / 255;
   const g = Number.parseInt(cleanHex.substring(2, 4), 16) / 255;
   const b = Number.parseInt(cleanHex.substring(4, 6), 16) / 255;
@@ -90,7 +90,7 @@ function hslToHexServer(h: number, s: number, l: number): string {
     const color = l1 - a * Math.max(Math.min(k(n) - 3, 9 - k(n), 1), -1);
     return Math.round(255 * color)
       .toString(16)
-      .padStart(2, "0");
+      .padStart(2, '0');
   };
   return `#${f(0)}${f(8)}${f(4)}`;
 }
@@ -108,10 +108,10 @@ function getThemeCssVars(theme: typeof siteConfig.theme): string {
 		--secondary-rgb: ${hexToRgbServer(theme.colors.secondary)};
 		--accent: ${theme.colors.accent};
 		--accent-rgb: ${hexToRgbServer(theme.colors.accent)};
-		${theme.colors.background ? `--background: ${theme.colors.background};` : ""}
-		${theme.colors.header ? `--header: ${theme.colors.header};` : ""}
-		${theme.colors.body ? `--body: ${theme.colors.body};` : ""}
-		${theme.colors.lightGrey ? `--light-grey: ${theme.colors.lightGrey};` : ""}
+		${theme.colors.background ? `--background: ${theme.colors.background};` : ''}
+		${theme.colors.header ? `--header: ${theme.colors.header};` : ''}
+		${theme.colors.body ? `--body: ${theme.colors.body};` : ''}
+		${theme.colors.lightGrey ? `--light-grey: ${theme.colors.lightGrey};` : ''}
 		--white: #fff;
 		--black: #000;
 		--font-heading: ${theme.typography.headingFont};
@@ -133,11 +133,7 @@ function getThemeCssVars(theme: typeof siteConfig.theme): string {
 	`.trim();
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   const themeCssVars = getThemeCssVars(siteConfig.theme);
   return (
     <html lang="en" suppressHydrationWarning>
@@ -147,11 +143,7 @@ export default function RootLayout({
         {/* `viewport` meta will be injected by Next.js and the metadata API */}
         {/* Preconnect to Google Fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         {/* Preconnect & DNS-prefetch to site origin for images and data */}
         <link rel="preconnect" href={siteUrl} />
         <link rel="dns-prefetch" href={siteUrl} />
@@ -163,33 +155,33 @@ export default function RootLayout({
           src={`https://www.googletagmanager.com/gtag/js?id=${siteConfig.tracking.ga4Id}`}
         />
         {/* Load Partytown worker for third-party script offloading */}
-        <Partytown forward={["dataLayer.push"]} />
+        <Partytown forward={['dataLayer.push']} />
         {/* Structured Data for SEO */}
         <StructuredData
           type="organization"
           data={{
-            name: siteConfig.site.name ?? "",
-            url: siteConfig.site.url ?? "",
-            logo: siteConfig.theme.logo.src ?? "",
+            name: siteConfig.site.name ?? '',
+            url: siteConfig.site.url ?? '',
+            logo: siteConfig.theme.logo.src ?? '',
             socialLinks: [
-              siteConfig.social?.facebook ?? "",
-              siteConfig.social?.twitter ?? "",
-              siteConfig.social?.linkedin ?? "",
-              siteConfig.social?.instagram ?? "",
+              siteConfig.social?.facebook ?? '',
+              siteConfig.social?.twitter ?? '',
+              siteConfig.social?.linkedin ?? '',
+              siteConfig.social?.instagram ?? '',
             ],
-            phone: siteConfig.contact.phone ?? "",
-            email: siteConfig.contact.email ?? "",
-            streetAddress: siteConfig.contact.address?.line1 ?? "",
-            city: siteConfig.contact.address?.city ?? "",
-            postalCode: siteConfig.contact.address?.zip ?? "",
-            country: siteConfig.contact.address?.country ?? "",
+            phone: siteConfig.contact.phone ?? '',
+            email: siteConfig.contact.email ?? '',
+            streetAddress: siteConfig.contact.address?.line1 ?? '',
+            city: siteConfig.contact.address?.city ?? '',
+            postalCode: siteConfig.contact.address?.zip ?? '',
+            country: siteConfig.contact.address?.country ?? '',
           }}
         />
         <StructuredData
           type="website"
           data={{
-            name: siteConfig.site.name ?? "",
-            url: siteConfig.site.url ?? "",
+            name: siteConfig.site.name ?? '',
+            url: siteConfig.site.url ?? '',
           }}
         />
         <link rel="icon" href="/favicon.ico" />

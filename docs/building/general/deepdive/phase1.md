@@ -124,14 +124,14 @@ Quick note: when forming this doc, I think we didn't include "Resources" section
       // Example for site.config.local.ts
       pageStructures: [
         {
-          path: "/",
+          path: '/',
           sections: [
-            { sectionType: "HeroSection" },
-            { sectionType: "ClientsSection" },
-            { sectionType: "ServicesSectionPreview" }, // A variant or specific data for homepage
-            { sectionType: "TestimonialsSection" },
-            { sectionType: "BlogSectionPreview" },
-            { sectionType: "CtaSection" },
+            { sectionType: 'HeroSection' },
+            { sectionType: 'ClientsSection' },
+            { sectionType: 'ServicesSectionPreview' }, // A variant or specific data for homepage
+            { sectionType: 'TestimonialsSection' },
+            { sectionType: 'BlogSectionPreview' },
+            { sectionType: 'CtaSection' },
           ],
         },
         // ... other pages

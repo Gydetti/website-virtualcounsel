@@ -1,6 +1,6 @@
 // Placeholder for page-specific Zod schemas (e.g., blog posts, service pages)
-import { z } from "zod";
-import { imageSchema, seoSchema } from "./common.schema";
+import { z } from 'zod';
+import { imageSchema, seoSchema } from './common.schema';
 
 export const authorSchema = z.object({
   name: z.string(),
@@ -27,9 +27,7 @@ export const servicePageSchema = z.object({
   title: z.string().min(1),
   description: z.string().min(1),
   icon: z.string().min(1), // Icon name, maps to a component
-  features: z
-    .array(z.string().min(1))
-    .min(1, "Service page must have at least one feature listed"),
+  features: z.array(z.string().min(1)).min(1, 'Service page must have at least one feature listed'),
   // popular: z.boolean().optional(), // This might be more of a display flag than core page data
   heroImage: imageSchema.optional(), // For a potential hero image specific to the service page
   // Further content for the service page can be defined using content blocks (Part 4)

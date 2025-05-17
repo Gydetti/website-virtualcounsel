@@ -64,14 +64,10 @@ app/
 ### 2.1 app/landing/layout.tsx
 
 ```tsx
-import LandingHeader from "@/components/layout/LandingHeader";
-import LandingFooter from "@/components/layout/LandingFooter";
+import LandingHeader from '@/components/layout/LandingHeader';
+import LandingFooter from '@/components/layout/LandingFooter';
 
-export default function LandingLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function LandingLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <LandingHeader />
@@ -85,11 +81,11 @@ export default function LandingLayout({
 ### 2.2 app/landing/[slug]/page.tsx
 
 ```tsx
-import { notFound } from "next/navigation";
-import { getLandingPageBySlug, getLandingPages } from "@/lib/data-utils";
+import { notFound } from 'next/navigation';
+import { getLandingPageBySlug, getLandingPages } from '@/lib/data-utils';
 
 export async function generateStaticParams() {
-  return (await getLandingPages()).map((page) => ({ slug: page.slug }));
+  return (await getLandingPages()).map(page => ({ slug: page.slug }));
 }
 
 export default async function LandingPage({ params: { slug } }) {
@@ -159,9 +155,7 @@ Clients may use a variety of form tools (HubSpot, Typeform, Gravity Forms, Klavi
 
 ```tsx
 // In LandingPage:
-<div id="landing-form-placeholder">
-  {/* e.g. <HubSpotForm portalId="..." formId="..." /> */}
-</div>
+<div id="landing-form-placeholder">{/* e.g. <HubSpotForm portalId="..." formId="..." /> */}</div>
 ```
 
 Future AI coders or devs can search for `landing-form-placeholder` and drop in any embed snippet.
@@ -175,8 +169,8 @@ We already load our global tracking scripts (`<TrackingScripts />`) in `app/layo
 1. **Client-side**: wrap the submit button or hook into the embedded form's callback to call:
 
    ```ts
-   import { trackEvent } from "@/components/tracking/trackEvent";
-   trackEvent("landing_form_submit", { slug, utm_source, utm_campaign });
+   import { trackEvent } from '@/components/tracking/trackEvent';
+   trackEvent('landing_form_submit', { slug, utm_source, utm_campaign });
    ```
 
 2. **Server-side**: if you capture leads via `/api/lead/route.ts`, send a server-side event to GA4 or Meta Conversions API there.
@@ -246,12 +240,12 @@ _This document is your blueprint for phase 3. Once the scaffolding is in place, 
 ```ts
 export type Resource = {
   slug: string;
-  type: "ebook" | "whitepaper" | "case-study" | string;
+  type: 'ebook' | 'whitepaper' | 'case-study' | string;
   title: string;
   subtitle?: string;
   heroImage: string;
   sections: Array<{
-    type: "text" | "form" | "image" | string;
+    type: 'text' | 'form' | 'image' | string;
     props: any;
   }>;
 };
@@ -259,21 +253,19 @@ export type Resource = {
 export async function getResources(): Promise<Resource[]> {
   // e.g. fetch from CMS or return hard-coded array
 }
-export async function getResourceBySlug(
-  slug: string,
-): Promise<Resource | undefined> {
-  return (await getResources()).find((r) => r.slug === slug);
+export async function getResourceBySlug(slug: string): Promise<Resource | undefined> {
+  return (await getResources()).find(r => r.slug === slug);
 }
 ```
 
 ### 7.2 Shared Content Component (`components/resources/ResourceContent.tsx`)
 
 ```tsx
-import Image from "next/image";
-import FormSection from "@/components/resources/FormSection";
-import TextSection from "@/components/resources/TextSection";
-import ImageSection from "@/components/resources/ImageSection";
-import type { Resource } from "@/lib/data/resources";
+import Image from 'next/image';
+import FormSection from '@/components/resources/FormSection';
+import TextSection from '@/components/resources/TextSection';
+import ImageSection from '@/components/resources/ImageSection';
+import type { Resource } from '@/lib/data/resources';
 
 export default function ResourceContent({ resource }: { resource: Resource }) {
   return (
@@ -282,22 +274,17 @@ export default function ResourceContent({ resource }: { resource: Resource }) {
       <section className="resource-hero">
         <h1>{resource.title}</h1>
         {resource.subtitle && <p>{resource.subtitle}</p>}
-        <Image
-          src={resource.heroImage}
-          alt={resource.title}
-          width={1200}
-          height={600}
-        />
+        <Image src={resource.heroImage} alt={resource.title} width={1200} height={600} />
       </section>
 
       {/* Dynamic Sections */}
       {resource.sections.map((section, i) => {
         switch (section.type) {
-          case "text":
+          case 'text':
             return <TextSection key={i} {...section.props} />;
-          case "form":
+          case 'form':
             return <FormSection key={i} {...section.props} />;
-          case "image":
+          case 'image':
             return <ImageSection key={i} {...section.props} />;
           default:
             return null;
@@ -311,13 +298,13 @@ export default function ResourceContent({ resource }: { resource: Resource }) {
 ### 7.3 Landing Route (`app/landing/[slug]/page.tsx`)
 
 ```tsx
-import LandingLayout from "@/app/landing/layout";
-import ResourceContent from "@/components/resources/ResourceContent";
-import { getResourceBySlug } from "@/lib/data/resources";
-import { notFound } from "next/navigation";
+import LandingLayout from '@/app/landing/layout';
+import ResourceContent from '@/components/resources/ResourceContent';
+import { getResourceBySlug } from '@/lib/data/resources';
+import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
-  return (await getResources()).map((r) => ({ slug: r.slug }));
+  return (await getResources()).map(r => ({ slug: r.slug }));
 }
 
 export default async function LandingPage({ params: { slug } }) {
@@ -335,12 +322,12 @@ export default async function LandingPage({ params: { slug } }) {
 ### 7.4 Resource Route (`app/resources/[slug]/page.tsx`)
 
 ```tsx
-import ResourceContent from "@/components/resources/ResourceContent";
-import { getResourceBySlug } from "@/lib/data/resources";
-import { notFound } from "next/navigation";
+import ResourceContent from '@/components/resources/ResourceContent';
+import { getResourceBySlug } from '@/lib/data/resources';
+import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
-  return (await getResources()).map((r) => ({ slug: r.slug }));
+  return (await getResources()).map(r => ({ slug: r.slug }));
 }
 
 export default async function ResourceDetail({ params: { slug } }) {

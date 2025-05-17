@@ -1,16 +1,14 @@
 /* biome-disable-file */
-"use client";
-import { siteConfig } from "@/lib/siteConfig";
-import Script from "next/script";
+'use client';
+import { siteConfig } from '@/lib/siteConfig';
+import Script from 'next/script';
 
 export default function TrackingScripts() {
   // Gate on Cookiebot consent categories
   const canLoadAnalytics =
-    typeof window !== "undefined" &&
-    window.Cookiebot?.consent?.statistics === true;
+    typeof window !== 'undefined' && window.Cookiebot?.consent?.statistics === true;
   const canLoadMarketing =
-    typeof window !== "undefined" &&
-    window.Cookiebot?.consent?.marketing === true;
+    typeof window !== 'undefined' && window.Cookiebot?.consent?.marketing === true;
 
   return (
     <>
@@ -35,7 +33,7 @@ export default function TrackingScripts() {
               src={`https://www.googletagmanager.com/ns.html?id=${siteConfig.tracking.gtmId}`}
               height="0"
               width="0"
-              style={{ display: "none", visibility: "hidden" }}
+              style={{ display: 'none', visibility: 'hidden' }}
             />
           </noscript>
         </>

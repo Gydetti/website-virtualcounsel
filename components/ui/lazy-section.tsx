@@ -1,9 +1,9 @@
-"use client";
-import type { CSSProperties, ReactNode } from "react";
+'use client';
+import type { CSSProperties, ReactNode } from 'react';
 
-import { siteConfig } from "@/lib/siteConfig";
-import { motion, useReducedMotion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { siteConfig } from '@/lib/siteConfig';
+import { motion, useReducedMotion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
 
 interface LazySectionProps {
   children: ReactNode;
@@ -14,14 +14,14 @@ interface LazySectionProps {
   style?: CSSProperties;
   /** Animation style: fade only, slide with fade, zoom, or none */
   animation?:
-    | "fade"
-    | "fade-up"
-    | "slide-up"
-    | "slide-down"
-    | "slide-left"
-    | "slide-right"
-    | "zoom"
-    | "none";
+    | 'fade'
+    | 'fade-up'
+    | 'slide-up'
+    | 'slide-down'
+    | 'slide-left'
+    | 'slide-right'
+    | 'zoom'
+    | 'none';
   delay?: number;
   /** Animation duration in seconds */
   duration?: number;
@@ -32,10 +32,10 @@ export default function LazySection({
   children,
   // Start as soon as any part of element is in view
   threshold = 0,
-  className = "",
+  className = '',
   /** Inline style for CSS variables or other styles */
   style,
-  animation = "slide-up",
+  animation = 'slide-up',
   delay = 0,
   // Global default duration shortened for snappier feel (reduced from 0.6)
   duration = 0.4,
@@ -48,24 +48,16 @@ export default function LazySection({
 
   // Compute overflow class for slide animations
   const overflowClass =
-    animation === "slide-left" || animation === "slide-right"
-      ? "overflow-x-hidden"
-      : "";
+    animation === 'slide-left' || animation === 'slide-right' ? 'overflow-x-hidden' : '';
 
   // Determine whether to fill height: slide-up/down by default, override if prop provided
-  const defaultFullHeight =
-    animation === "slide-up" || animation === "slide-down";
-  const useFullHeight =
-    fullHeight !== undefined ? fullHeight : defaultFullHeight;
+  const defaultFullHeight = animation === 'slide-up' || animation === 'slide-down';
+  const useFullHeight = fullHeight !== undefined ? fullHeight : defaultFullHeight;
 
   // Combined classes for both non-animated and animated containers
-  const combinedClass = [
-    overflowClass,
-    className,
-    useFullHeight ? "h-full" : "",
-  ]
+  const combinedClass = [overflowClass, className, useFullHeight ? 'h-full' : '']
     .filter(Boolean)
-    .join(" ");
+    .join(' ');
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -75,7 +67,7 @@ export default function LazySection({
           observer.disconnect();
         }
       },
-      { threshold },
+      { threshold }
     );
 
     if (ref.current) {
@@ -93,16 +85,15 @@ export default function LazySection({
       opacity: 0,
       // For slide-up and fade-up, move up from below with different offsets
       y:
-        animation === "slide-up"
+        animation === 'slide-up'
           ? 50
-          : animation === "fade-up"
+          : animation === 'fade-up'
             ? 20
-            : animation === "slide-down"
+            : animation === 'slide-down'
               ? -50
               : 0,
-      x:
-        animation === "slide-left" ? 50 : animation === "slide-right" ? -50 : 0,
-      scale: animation === "zoom" ? 0.95 : 1,
+      x: animation === 'slide-left' ? 50 : animation === 'slide-right' ? -50 : 0,
+      scale: animation === 'zoom' ? 0.95 : 1,
     },
     visible: {
       opacity: 1,
@@ -112,7 +103,7 @@ export default function LazySection({
       transition: {
         duration: duration,
         delay: delay,
-        ease: "easeOut",
+        ease: 'easeOut',
       },
     },
   };
@@ -126,13 +117,9 @@ export default function LazySection({
     );
   }
   // CSS-only: animation="none" toggles 'visible' class for intersection-triggered CSS animations
-  if (animation === "none") {
+  if (animation === 'none') {
     return (
-      <div
-        ref={ref}
-        className={`${combinedClass}${isVisible ? " visible" : ""}`}
-        style={style}
-      >
+      <div ref={ref} className={`${combinedClass}${isVisible ? ' visible' : ''}`} style={style}>
         {children}
       </div>
     );
@@ -144,7 +131,7 @@ export default function LazySection({
       className={combinedClass}
       style={style}
       initial="hidden"
-      animate={isVisible ? "visible" : "hidden"}
+      animate={isVisible ? 'visible' : 'hidden'}
       variants={variants}
     >
       {children}

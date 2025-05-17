@@ -1,4 +1,4 @@
-import type { HTMLAttributes, ReactNode } from "react";
+import type { HTMLAttributes, ReactNode } from 'react';
 
 export interface SectionProps extends HTMLAttributes<HTMLElement> {
   /** The content of the section */
@@ -7,15 +7,9 @@ export interface SectionProps extends HTMLAttributes<HTMLElement> {
   fullBleed?: boolean;
 }
 
-export function Section({
-  children,
-  className = "",
-  fullBleed = true,
-  ...rest
-}: SectionProps) {
+export function Section({ children, className = '', fullBleed = true, ...rest }: SectionProps) {
   // Horizontal padding: 1rem base, 1.5rem sm, 2rem md, 5rem xl & above
-  const containerClasses =
-    "container mx-auto px-4 sm:px-6 md:px-8 xl:px-20 py-8 sm:py-12 md:py-16";
+  const containerClasses = 'container mx-auto px-4 sm:px-6 md:px-8 xl:px-20 py-8 sm:py-12 md:py-16';
   if (fullBleed) {
     return (
       <section className={`overflow-hidden ${className}`} {...rest}>
@@ -24,10 +18,7 @@ export function Section({
     );
   }
   return (
-    <section
-      className={`overflow-hidden ${containerClasses} ${className}`}
-      {...rest}
-    >
+    <section className={`overflow-hidden ${containerClasses} ${className}`} {...rest}>
       {children}
     </section>
   );

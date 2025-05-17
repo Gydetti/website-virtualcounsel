@@ -1,9 +1,9 @@
-"use client";
-import type { resourceSchema } from "@/lib/schemas/contentBlocks.schema";
-import Image from "next/image";
-import Link from "next/link";
-import { useState } from "react";
-import type { z } from "zod";
+'use client';
+import type { resourceSchema } from '@/lib/schemas/contentBlocks.schema';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useState } from 'react';
+import type { z } from 'zod';
 
 interface ResourceListSectionProps {
   id: string;
@@ -13,7 +13,7 @@ interface ResourceListSectionProps {
 
 export default function ResourceListSection({
   id,
-  title = "Our Resources",
+  title = 'Our Resources',
   resources,
 }: ResourceListSectionProps) {
   if (!resources || resources.length === 0) {
@@ -30,16 +30,15 @@ export default function ResourceListSection({
   const count = resources.length;
   const gridCols =
     count === 1
-      ? "grid-cols-1 md:grid-cols-1 lg:grid-cols-1"
+      ? 'grid-cols-1 md:grid-cols-1 lg:grid-cols-1'
       : count === 2
-        ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-2"
-        : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3";
+        ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-2'
+        : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3';
 
   // Track per-resource image src for error fallbacks
   const initialSrcMap: Record<string, string> = {};
   for (const res of resources) {
-    initialSrcMap[res.slug] =
-      res.heroImage?.src || "/images/placeholders/placeholder.svg";
+    initialSrcMap[res.slug] = res.heroImage?.src || '/images/placeholders/placeholder.svg';
   }
   const [srcMap, setSrcMap] = useState<Record<string, string>>(initialSrcMap);
 
@@ -49,29 +48,24 @@ export default function ResourceListSection({
       className="relative overflow-hidden bg-gradient-to-r from-brand-light via-transparent to-transparent py-12 z-10"
     >
       <div className="container mx-auto px-4">
-        <h2 className="text-[var(--font-subheading-size)] font-bold text-center mb-10">
-          {title}
-        </h2>
+        <h2 className="text-[var(--font-subheading-size)] font-bold text-center mb-10">{title}</h2>
         <div className={`grid ${gridCols} gap-8`}>
-          {resources.map((resource) => (
+          {resources.map(resource => (
             <article
               key={resource.slug}
-              className={`group relative flex flex-col overflow-hidden rounded-lg border border-[#e5e7eb80] bg-gradient-to-b from-white to-blue-50/30 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${count === 1 ? "max-w-md mx-auto" : ""}`}
+              className={`group relative flex flex-col overflow-hidden rounded-lg border border-[#e5e7eb80] bg-gradient-to-b from-white to-blue-50/30 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${count === 1 ? 'max-w-md mx-auto' : ''}`}
             >
-              <Link
-                href={`/resources/${resource.slug}`}
-                className="block h-full"
-              >
+              <Link href={`/resources/${resource.slug}`} className="block h-full">
                 <div className="relative h-48 w-full overflow-hidden sm:h-56">
                   <Image
                     src={srcMap[resource.slug]}
                     alt={resource.heroImage?.alt || resource.title}
                     fill
-                    style={{ objectFit: "cover" }}
+                    style={{ objectFit: 'cover' }}
                     onError={() => {
-                      setSrcMap((prev) => ({
+                      setSrcMap(prev => ({
                         ...prev,
-                        [resource.slug]: "/images/placeholders/placeholder.svg",
+                        [resource.slug]: '/images/placeholders/placeholder.svg',
                       }));
                     }}
                   />
@@ -81,9 +75,7 @@ export default function ResourceListSection({
                     {resource.title}
                   </h3>
                   {resource.subtitle && (
-                    <p className="text-foreground text-sm line-clamp-3">
-                      {resource.subtitle}
-                    </p>
+                    <p className="text-foreground text-sm line-clamp-3">{resource.subtitle}</p>
                   )}
                   <span className="mt-4 inline-block text-blue-600 group-hover:underline">
                     Read more &rarr;

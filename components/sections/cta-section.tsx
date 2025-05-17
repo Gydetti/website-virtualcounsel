@@ -1,12 +1,12 @@
-import { Section } from "@/components/layout/Section";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import LazySection from "@/components/ui/lazy-section";
-import type { ctaSectionDataSchema } from "@/lib/schemas/sections.schema";
-import { ArrowRight } from "lucide-react";
-import Link from "next/link";
-import type { CSSProperties } from "react";
-import type { z } from "zod";
+import { Section } from '@/components/layout/Section';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import LazySection from '@/components/ui/lazy-section';
+import type { ctaSectionDataSchema } from '@/lib/schemas/sections.schema';
+import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
+import type { CSSProperties } from 'react';
+import type { z } from 'zod';
 
 // Updated props type alias using Zod schema
 export type CtaSectionProps = z.infer<typeof ctaSectionDataSchema>;
@@ -33,15 +33,11 @@ export default function CtaSection({
       <LazySection
         animation="none"
         className="stagger-container relative z-10 text-center"
-        style={{ "--stagger-delay": "0.1s" } as CSSProperties}
+        style={{ '--stagger-delay': '0.1s' } as CSSProperties}
       >
         {/* Badge */}
         {badgeText && (
-          <Badge
-            variant="light"
-            className="mb-4"
-            style={{ "--index": 0 } as CSSProperties}
-          >
+          <Badge variant="light" className="mb-4" style={{ '--index': 0 } as CSSProperties}>
             {badgeText}
           </Badge>
         )}
@@ -50,7 +46,7 @@ export default function CtaSection({
           <h2
             id="cta-section-heading"
             className="text-[var(--font-subheading-size)] text-white"
-            style={{ "--index": 1 } as CSSProperties}
+            style={{ '--index': 1 } as CSSProperties}
           >
             {heading}
           </h2>
@@ -59,7 +55,7 @@ export default function CtaSection({
         {description && (
           <p
             className="text-gray-300 max-w-xl mx-auto mb-8"
-            style={{ "--index": 2 } as CSSProperties}
+            style={{ '--index': 2 } as CSSProperties}
           >
             {description}
           </p>
@@ -68,7 +64,7 @@ export default function CtaSection({
         {(primaryCta?.text || secondaryCta?.text) && (
           <div
             className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4 sm:gap-8 md:gap-12"
-            style={{ "--index": 3 } as CSSProperties}
+            style={{ '--index': 3 } as CSSProperties}
           >
             {primaryCta?.href && primaryCta?.text && (
               <Button

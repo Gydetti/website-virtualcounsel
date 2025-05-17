@@ -1,14 +1,14 @@
-import type { ContentBlock } from "@/lib/schemas/contentBlocks.schema";
-import type { FC } from "react";
+import type { ContentBlock } from '@/lib/schemas/contentBlocks.schema';
+import type { FC } from 'react';
 
-import CtaBlock from "./CtaBlock";
-import FormBlock from "./FormBlock";
-import HeadingBlock from "./HeadingBlock";
-import ImageBlock from "./ImageBlock";
-import ListBlock from "./ListBlock";
-import QuoteBlock from "./QuoteBlock";
-import TextBlock from "./TextBlock";
-import VideoBlock from "./VideoBlock";
+import CtaBlock from './CtaBlock';
+import FormBlock from './FormBlock';
+import HeadingBlock from './HeadingBlock';
+import ImageBlock from './ImageBlock';
+import ListBlock from './ListBlock';
+import QuoteBlock from './QuoteBlock';
+import TextBlock from './TextBlock';
+import VideoBlock from './VideoBlock';
 
 interface ContentBlockRendererProps {
   block: ContentBlock;
@@ -16,17 +16,15 @@ interface ContentBlockRendererProps {
 
 const ContentBlockRenderer: FC<ContentBlockRendererProps> = ({ block }) => {
   switch (block.type) {
-    case "heading":
+    case 'heading':
       return <HeadingBlock level={block.level} text={block.text} />;
-    case "text":
+    case 'text':
       return <TextBlock content={block.content} />;
-    case "image":
+    case 'image':
       return <ImageBlock image={block.image} caption={block.caption} />;
-    case "video":
-      return (
-        <VideoBlock type={block.type} src={block.src} caption={block.caption} />
-      );
-    case "quote":
+    case 'video':
+      return <VideoBlock type={block.type} src={block.src} caption={block.caption} />;
+    case 'quote':
       return (
         <QuoteBlock
           type={block.type}
@@ -35,7 +33,7 @@ const ContentBlockRenderer: FC<ContentBlockRendererProps> = ({ block }) => {
           source={block.source}
         />
       );
-    case "cta":
+    case 'cta':
       return (
         <CtaBlock
           type={block.type}
@@ -45,15 +43,11 @@ const ContentBlockRenderer: FC<ContentBlockRendererProps> = ({ block }) => {
           variant={block.variant}
         />
       );
-    case "list":
+    case 'list':
       return <ListBlock ordered={block.ordered} items={block.items} />;
-    case "form":
+    case 'form':
       return (
-        <FormBlock
-          config={block.config}
-          title={block.title}
-          description={block.description}
-        />
+        <FormBlock config={block.config} title={block.title} description={block.description} />
       );
     default:
       return null; // Unknown block type

@@ -8,11 +8,7 @@ interface Window {
   gtag: (command: string, ...args: unknown[]) => void;
 
   // Facebook Pixel
-  fbq: (
-    command: string,
-    event: string,
-    params?: Record<string, unknown>,
-  ) => void;
+  fbq: (command: string, event: string, params?: Record<string, unknown>) => void;
   _fbq: unknown;
 
   // LinkedIn Insight

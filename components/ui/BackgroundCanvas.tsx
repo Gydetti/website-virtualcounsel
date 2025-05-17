@@ -1,6 +1,6 @@
-"use client";
-import { siteConfig } from "@/lib/siteConfig";
-import { useEffect, useRef } from "react";
+'use client';
+import { siteConfig } from '@/lib/siteConfig';
+import { useEffect, useRef } from 'react';
 
 export default function BackgroundCanvas() {
   // Supported types: "none" | "gradient" | "particles" | "parallax" | "noise" | "wave" | "image"
@@ -8,11 +8,11 @@ export default function BackgroundCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    if (animatedBackgroundType === "none") return;
+    if (animatedBackgroundType === 'none') return;
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     const width = canvas.width;
@@ -22,7 +22,7 @@ export default function BackgroundCanvas() {
 
     // Preload background image for 'image' type
     let bgImage: HTMLImageElement | null = null;
-    if (animatedBackgroundType === "image" && backgroundImageUrl) {
+    if (animatedBackgroundType === 'image' && backgroundImageUrl) {
       bgImage = new Image();
       bgImage.src = backgroundImageUrl;
     }
@@ -37,7 +37,7 @@ export default function BackgroundCanvas() {
       color: string;
     };
     const particles: Particle[] = [];
-    if (animatedBackgroundType === "particles") {
+    if (animatedBackgroundType === 'particles') {
       const count = 80;
       for (let i = 0; i < count; i++) {
         const r = 1 + Math.random() * 3;
@@ -67,8 +67,8 @@ export default function BackgroundCanvas() {
     const onScroll = () => {
       scrollOffset = window.scrollY;
     };
-    if (animatedBackgroundType === "parallax") {
-      window.addEventListener("scroll", onScroll);
+    if (animatedBackgroundType === 'parallax') {
+      window.addEventListener('scroll', onScroll);
       const count = 10;
       for (let i = 0; i < count; i++) {
         const r = 20 + Math.random() * 60;
@@ -88,13 +88,13 @@ export default function BackgroundCanvas() {
     function draw() {
       if (!ctx) return;
       // Image background draws over everything
-      if (animatedBackgroundType === "image" && bgImage) {
+      if (animatedBackgroundType === 'image' && bgImage) {
         if (bgImage.complete) ctx.drawImage(bgImage, 0, 0, width, height);
         animationId = requestAnimationFrame(draw);
         return;
       }
       // Noise effect (random grain overlay)
-      if (animatedBackgroundType === "noise") {
+      if (animatedBackgroundType === 'noise') {
         const imgData = ctx.createImageData(width, height);
         const d = imgData.data;
         for (let i = 0; i < d.length; i += 4) {
@@ -107,7 +107,7 @@ export default function BackgroundCanvas() {
         return;
       }
       // Wave effect (sinusoidal band)
-      if (animatedBackgroundType === "wave") {
+      if (animatedBackgroundType === 'wave') {
         const t = Date.now() * 0.002;
         const amp = height * 0.1;
         ctx.fillStyle = `hsla(${(Date.now() / 20) % 360}, 50%, 50%, 0.3)`;
@@ -127,25 +127,22 @@ export default function BackgroundCanvas() {
       ctx.clearRect(0, 0, width, height);
 
       // Gradient background
-      if (animatedBackgroundType === "gradient") {
+      if (animatedBackgroundType === 'gradient') {
         const grad = ctx.createRadialGradient(
           width / 2,
           height / 2,
           0,
           width / 2,
           height / 2,
-          width,
+          width
         );
         grad.addColorStop(0, `hsla(${(Date.now() / 20) % 360}, 50%, 50%, 0.3)`);
-        grad.addColorStop(
-          1,
-          `hsla(${(((Date.now() / 20) % 360) + 60) % 360}, 50%, 50%, 0)`,
-        );
+        grad.addColorStop(1, `hsla(${(((Date.now() / 20) % 360) + 60) % 360}, 50%, 50%, 0)`);
         ctx.fillStyle = grad;
         ctx.fillRect(0, 0, width, height);
       }
       // Particle animation
-      if (animatedBackgroundType === "particles") {
+      if (animatedBackgroundType === 'particles') {
         for (const p of particles) {
           p.x += p.vx;
           p.y += p.vy;
@@ -160,7 +157,7 @@ export default function BackgroundCanvas() {
         }
       }
       // Parallax shapes
-      if (animatedBackgroundType === "parallax") {
+      if (animatedBackgroundType === 'parallax') {
         for (const s of shapes) {
           const y = ((s.y0 + scrollOffset * s.factor) % (height + s.r)) - s.r;
           ctx.beginPath();
@@ -177,12 +174,9 @@ export default function BackgroundCanvas() {
     draw();
     return () => {
       cancelAnimationFrame(animationId);
-      if (animatedBackgroundType === "parallax")
-        window.removeEventListener("scroll", onScroll);
+      if (animatedBackgroundType === 'parallax') window.removeEventListener('scroll', onScroll);
     };
   }, [animatedBackgroundType, backgroundImageUrl]);
 
-  return (
-    <canvas ref={canvasRef} className="fixed inset-0 -z-10 w-full h-full" />
-  );
+  return <canvas ref={canvasRef} className="fixed inset-0 -z-10 w-full h-full" />;
 }

@@ -1,14 +1,14 @@
 /** @type {import('next').NextConfig} */
 
-import createBundleAnalyzer from "@next/bundle-analyzer";
+import createBundleAnalyzer from '@next/bundle-analyzer';
 
 const withBundleAnalyzer = createBundleAnalyzer({
-  enabled: process.env.ANALYZE === "true",
+  enabled: process.env.ANALYZE === 'true',
 });
 
 const nextConfig = withBundleAnalyzer({
   // Transpile framer-motion so its ESM export * is transformed for client components
-  transpilePackages: ["framer-motion"],
+  transpilePackages: ['framer-motion'],
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -24,8 +24,8 @@ const nextConfig = withBundleAnalyzer({
   async rewrites() {
     return [
       {
-        source: "/placeholder.svg",
-        destination: "/images/placeholders/placeholder.svg",
+        source: '/placeholder.svg',
+        destination: '/images/placeholders/placeholder.svg',
       },
     ];
   },

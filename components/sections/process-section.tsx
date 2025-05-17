@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { Section } from "@/components/layout/Section";
-import { Badge } from "@/components/ui/badge";
-import LazySection from "@/components/ui/lazy-section";
-import type { processSectionDataSchema } from "@/lib/schemas/sections.schema";
-import type { CSSProperties } from "react";
-import type { z } from "zod";
+import { Section } from '@/components/layout/Section';
+import { Badge } from '@/components/ui/badge';
+import LazySection from '@/components/ui/lazy-section';
+import type { processSectionDataSchema } from '@/lib/schemas/sections.schema';
+import type { CSSProperties } from 'react';
+import type { z } from 'zod';
 
 // Updated props type alias using Zod schema
 export type ProcessSectionProps = z.infer<typeof processSectionDataSchema>;
@@ -33,26 +33,20 @@ export default function ProcessSection({
         {/* Header stagger container */}
         <div
           className="stagger-container text-center"
-          style={{ "--stagger-delay": "0.1s" } as CSSProperties}
+          style={{ '--stagger-delay': '0.1s' } as CSSProperties}
         >
           {badgeText && (
-            <Badge className="mb-4" style={{ "--index": 0 } as CSSProperties}>
+            <Badge className="mb-4" style={{ '--index': 0 } as CSSProperties}>
               {badgeText}
             </Badge>
           )}
           {heading && (
-            <h2
-              className="section-title"
-              style={{ "--index": 1 } as CSSProperties}
-            >
+            <h2 className="section-title" style={{ '--index': 1 } as CSSProperties}>
               {heading}
             </h2>
           )}
           {subtitle && (
-            <p
-              className="section-subtitle"
-              style={{ "--index": 2 } as CSSProperties}
-            >
+            <p className="section-subtitle" style={{ '--index': 2 } as CSSProperties}>
               {subtitle}
             </p>
           )}
@@ -61,7 +55,7 @@ export default function ProcessSection({
         {/* Steps stagger container */}
         <div
           className="relative stagger-container"
-          style={{ "--stagger-delay": "0.2s" } as CSSProperties}
+          style={{ '--stagger-delay': '0.2s' } as CSSProperties}
         >
           {/* Timeline line */}
           <div className="absolute left-[40px] top-0 bottom-0 w-0.5 bg-gray-200 hidden md:block" />
@@ -71,19 +65,17 @@ export default function ProcessSection({
               <div
                 key={step.id}
                 className="flex flex-col md:flex-row gap-8"
-                style={{ "--index": index } as CSSProperties}
+                style={{ '--index': index } as CSSProperties}
               >
                 <div className="flex-shrink-0 flex items-start justify-center relative z-10">
                   <div className="w-20 h-20 rounded-full flex items-center justify-center text-2xl font-bold shadow-md bg-primary text-white">
-                    {step.number || String(index + 1).padStart(2, "0")}
+                    {step.number || String(index + 1).padStart(2, '0')}
                   </div>
                 </div>
                 <div className="flex-grow w-full bg-white p-8 rounded-xl shadow-md border hover:shadow-lg transition-shadow">
                   <h3 className="mb-1">{step.title}</h3>
                   {step.subtitle && (
-                    <p className="text-primary font-medium mb-3">
-                      {step.subtitle}
-                    </p>
+                    <p className="text-primary font-medium mb-3">{step.subtitle}</p>
                   )}
                   <p className="text-foreground mb-6">{step.description}</p>
 
@@ -91,7 +83,7 @@ export default function ProcessSection({
                     <div className="bg-background p-6 rounded-lg">
                       <h3 className="mb-3">What this includes:</h3>
                       <ul className="space-y-2">
-                        {step.details.map((detail) => (
+                        {step.details.map(detail => (
                           <li key={detail} className="flex items-start">
                             <span className="text-primary mr-2">•</span>
                             <span>{detail}</span>

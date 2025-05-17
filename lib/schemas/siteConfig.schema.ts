@@ -1,6 +1,6 @@
-import { z } from "zod";
-import { ctaSchema, imageSchema, linkSchema, seoSchema } from "./common.schema";
-import { themeSchema } from "./theme.schema";
+import { z } from 'zod';
+import { ctaSchema, imageSchema, linkSchema, seoSchema } from './common.schema';
+import { themeSchema } from './theme.schema';
 /* eslint-disable @typescript-eslint/no-require-imports, @typescript-eslint/no-explicit-any */
 // We will import specific schemas from common.schema.ts later
 // import { imageSchema, linkSchema } from "./common.schema";
@@ -10,10 +10,10 @@ import { themeSchema } from "./theme.schema";
 
 // --- Sub-schemas for better organization ---
 const siteMetaSchema = z.object({
-  title: z.string().min(1, "Site title cannot be empty"),
-  description: z.string().min(1, "Site description cannot be empty"),
-  url: z.string().url({ message: "Invalid site URL" }),
-  name: z.string().min(1, "Site name cannot be empty"),
+  title: z.string().min(1, 'Site title cannot be empty'),
+  description: z.string().min(1, 'Site description cannot be empty'),
+  url: z.string().url({ message: 'Invalid site URL' }),
+  name: z.string().min(1, 'Site name cannot be empty'),
   openGraph: z.object({
     image: imageSchema
       .extend({
@@ -40,30 +40,14 @@ const themeSchemaDefinition = z.object({
   colors: themeColorsSchema,
   // Support optional subtitle for the logo
   logo: imageSchema.extend({ subtitle: z.string().optional() }),
-  favicon: z.string().min(1, "Favicon path cannot be empty"),
+  favicon: z.string().min(1, 'Favicon path cannot be empty'),
 });
 
 const socialLinksSchema = z.object({
-  facebook: z
-    .string()
-    .url({ message: "Invalid Facebook URL" })
-    .or(z.literal(""))
-    .optional(),
-  twitter: z
-    .string()
-    .url({ message: "Invalid Twitter URL" })
-    .or(z.literal(""))
-    .optional(),
-  instagram: z
-    .string()
-    .url({ message: "Invalid Instagram URL" })
-    .or(z.literal(""))
-    .optional(),
-  linkedin: z
-    .string()
-    .url({ message: "Invalid LinkedIn URL" })
-    .or(z.literal(""))
-    .optional(),
+  facebook: z.string().url({ message: 'Invalid Facebook URL' }).or(z.literal('')).optional(),
+  twitter: z.string().url({ message: 'Invalid Twitter URL' }).or(z.literal('')).optional(),
+  instagram: z.string().url({ message: 'Invalid Instagram URL' }).or(z.literal('')).optional(),
+  linkedin: z.string().url({ message: 'Invalid LinkedIn URL' }).or(z.literal('')).optional(),
 });
 
 const cookieConsentSchema = z.object({
@@ -81,38 +65,31 @@ const trackingSchema = z.object({
 
 const newsletterSchemaDefinition = z
   .object({
-    provider: z.enum(["mailchimp", "hubspot", "activecampaign", ""]).optional(),
-    hubspot: z
-      .object({ portalId: z.string().min(1), formId: z.string().min(1) })
-      .optional(),
-    mailchimp: z
-      .object({ apiKey: z.string().min(1), listId: z.string().min(1) })
-      .optional(),
-    activeCampaign: z
-      .object({ apiUrl: z.string().url(), token: z.string().min(1) })
-      .optional(),
+    provider: z.enum(['mailchimp', 'hubspot', 'activecampaign', '']).optional(),
+    hubspot: z.object({ portalId: z.string().min(1), formId: z.string().min(1) }).optional(),
+    mailchimp: z.object({ apiKey: z.string().min(1), listId: z.string().min(1) }).optional(),
+    activeCampaign: z.object({ apiUrl: z.string().url(), token: z.string().min(1) }).optional(),
   })
   .superRefine((data, ctx) => {
-    if (data.provider === "hubspot" && !data.hubspot) {
+    if (data.provider === 'hubspot' && !data.hubspot) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
-        message: "HubSpot details are required when provider is HubSpot.",
-        path: ["hubspot"],
+        message: 'HubSpot details are required when provider is HubSpot.',
+        path: ['hubspot'],
       });
     }
-    if (data.provider === "mailchimp" && !data.mailchimp) {
+    if (data.provider === 'mailchimp' && !data.mailchimp) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
-        message: "Mailchimp details are required when provider is Mailchimp.",
-        path: ["mailchimp"],
+        message: 'Mailchimp details are required when provider is Mailchimp.',
+        path: ['mailchimp'],
       });
     }
-    if (data.provider === "activecampaign" && !data.activeCampaign) {
+    if (data.provider === 'activecampaign' && !data.activeCampaign) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
-        message:
-          "ActiveCampaign details are required when provider is ActiveCampaign.",
-        path: ["activeCampaign"],
+        message: 'ActiveCampaign details are required when provider is ActiveCampaign.',
+        path: ['activeCampaign'],
       });
     }
   });
@@ -138,23 +115,12 @@ const featureFlagsSchema = z.object({
   enableValuePropSection: z.boolean().optional().default(true),
   enableStaggeredAnimations: z.boolean().optional().default(true),
   enablePageTransitions: z.boolean().optional().default(false),
-  pageTransitionVariant: z
-    .enum(["fade", "slide", "cover"])
-    .optional()
-    .default("fade"),
+  pageTransitionVariant: z.enum(['fade', 'slide', 'cover']).optional().default('fade'),
   enableAdvancedBackgrounds: z.boolean().optional().default(false),
   animatedBackgroundType: z
-    .enum([
-      "none",
-      "gradient",
-      "particles",
-      "parallax",
-      "noise",
-      "wave",
-      "image",
-    ])
+    .enum(['none', 'gradient', 'particles', 'parallax', 'noise', 'wave', 'image'])
     .optional()
-    .default("gradient"),
+    .default('gradient'),
   // Optional image URL for the 'image' background type
   backgroundImageUrl: z.string().optional(),
   enableMicroInteractions: z.boolean().optional().default(false),
@@ -167,7 +133,7 @@ const featureFlagsSchema = z.object({
 
 const contactFormFieldSchema = z.object({
   name: z.string().min(1),
-  type: z.enum(["text", "email", "tel", "textarea"]),
+  type: z.enum(['text', 'email', 'tel', 'textarea']),
   label: z.string().min(1),
   placeholder: z.string(), // Placeholder can be empty
   required: z.boolean(),
@@ -177,27 +143,23 @@ const contactFormSchemaDefinition = z
   .object({
     provider: z
       .enum([
-        "smtp",
-        "sendgrid",
-        "postmark",
-        "mailchimp",
-        "activeCampaign",
-        "hubspot",
-        "", // Empty string for no provider / disabled
+        'smtp',
+        'sendgrid',
+        'postmark',
+        'mailchimp',
+        'activeCampaign',
+        'hubspot',
+        '', // Empty string for no provider / disabled
       ])
       .optional(),
     fields: z.array(contactFormFieldSchema).optional().default([]),
     recaptchaSiteKey: z.string().optional(),
-    honeypotFieldName: z.string().default("honeypot"),
+    honeypotFieldName: z.string().default('honeypot'),
   })
   .optional(); // Entire contactForm can be optional
 
 const contactDetailsSchema = z.object({
-  email: z
-    .string()
-    .email({ message: "Invalid contact email" })
-    .or(z.literal(""))
-    .optional(),
+  email: z.string().email({ message: 'Invalid contact email' }).or(z.literal('')).optional(),
   phone: z.string().optional(), // Phone can be optional and empty
   address: z
     .object({
@@ -227,22 +189,18 @@ const sectionsDataKeysSchema = z
 
 // ++ NEW SCHEMAS FOR DYNAMIC PAGE COMPOSITION ++
 export const pageSectionConfigSchema = z.object({
-  id: z.string().min(1, "Section config ID cannot be empty"),
-  sectionType: z.string().min(1, "Section type cannot be empty"),
-  variant: z
-    .enum(["imageLeft", "imageRight", "centered", "classic"])
-    .optional(),
+  id: z.string().min(1, 'Section config ID cannot be empty'),
+  sectionType: z.string().min(1, 'Section type cannot be empty'),
+  variant: z.enum(['imageLeft', 'imageRight', 'centered', 'classic']).optional(),
   // TODO: Add fields for section-specific data overrides or a generic data object/key
   // e.g., dataKey: z.string().optional(), variant: z.string().optional()
   // For now, we'll assume data is fetched by the section component or a page-level data aggregator
 });
 
 export const pageStructureSchema = z.object({
-  path: z.string().min(1, "Page path cannot be empty"), // e.g., "/", "/about"
+  path: z.string().min(1, 'Page path cannot be empty'), // e.g., "/", "/about"
   seo: seoSchema.optional(),
-  sections: z
-    .array(pageSectionConfigSchema)
-    .min(1, "Page must have at least one section"),
+  sections: z.array(pageSectionConfigSchema).min(1, 'Page must have at least one section'),
 });
 // ++ END OF NEW SCHEMAS ++
 
@@ -250,10 +208,7 @@ export const pageStructureSchema = z.object({
 export const siteConfigSchema = z.object({
   site: siteMetaSchema,
   theme: themeSchema,
-  navLinks: z
-    .array(linkSchema)
-    .min(1, "Navigation links cannot be empty if defined")
-    .optional(),
+  navLinks: z.array(linkSchema).min(1, 'Navigation links cannot be empty if defined').optional(),
   footerLinks: z.array(linkSchema).optional(),
   social: socialLinksSchema,
   cookieConsent: cookieConsentSchema,

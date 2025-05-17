@@ -1,8 +1,8 @@
 // Client-only wrapper to dynamically load CookiebotLoader
-"use client";
-import dynamic from "next/dynamic";
+'use client';
+import dynamic from 'next/dynamic';
 
-const CookiebotLoader = dynamic(() => import("./CookiebotLoader"), {
+const CookiebotLoader = dynamic(() => import('./CookiebotLoader'), {
   ssr: false,
 });
 

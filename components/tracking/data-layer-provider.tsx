@@ -1,15 +1,13 @@
-"use client";
+'use client';
 
-import { useEffect } from "react";
-import type { ReactNode } from "react";
+import { useEffect } from 'react';
+import type { ReactNode } from 'react';
 
 interface DataLayerProviderProps {
   children: ReactNode;
 }
 
-export default function DataLayerProvider({
-  children,
-}: DataLayerProviderProps) {
+export default function DataLayerProvider({ children }: DataLayerProviderProps) {
   useEffect(() => {
     // Initialize dataLayer
     window.dataLayer = window.dataLayer || [];
@@ -23,7 +21,7 @@ export default function DataLayerProvider({
       },
       user: {
         // Add any user data here if available
-        type: "visitor",
+        type: 'visitor',
       },
       site: {
         language: navigator.language,

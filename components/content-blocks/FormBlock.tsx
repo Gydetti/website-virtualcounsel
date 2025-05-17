@@ -1,10 +1,10 @@
 // biome-disable
 
-import type { FC } from "react";
+import type { FC } from 'react';
 
 interface FormBlockProps {
   config: {
-    provider?: "hubspot" | "mailchimp" | "custom";
+    provider?: 'hubspot' | 'mailchimp' | 'custom';
     portalId?: string;
     formId?: string;
     embedCode?: string;
@@ -26,9 +26,7 @@ const FormBlock: FC<FormBlockProps> = ({ config, title, description }) => {
     <section className="form-block py-8">
       <div className="container mx-auto">
         {title && (
-          <h2 className="text-[var(--font-subheading-size)] font-semibold mb-4">
-            {title}
-          </h2>
+          <h2 className="text-[var(--font-subheading-size)] font-semibold mb-4">{title}</h2>
         )}
         {description && <p className="mb-6">{description}</p>}
         {config.embedCode ? (

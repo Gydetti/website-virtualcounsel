@@ -1,15 +1,13 @@
-"use client";
-import { Section } from "@/components/layout/Section";
-import LazySection from "@/components/ui/lazy-section";
-import type { problemPainSectionDataSchema } from "@/lib/schemas/sections.schema";
-import { motion } from "framer-motion";
-import { AlertTriangle } from "lucide-react";
-import type { z } from "zod";
+'use client';
+import { Section } from '@/components/layout/Section';
+import LazySection from '@/components/ui/lazy-section';
+import type { problemPainSectionDataSchema } from '@/lib/schemas/sections.schema';
+import { motion } from 'framer-motion';
+import { AlertTriangle } from 'lucide-react';
+import type { z } from 'zod';
 
 // Updated props type alias using Zod schema
-export type ProblemPainSectionProps = z.infer<
-  typeof problemPainSectionDataSchema
->;
+export type ProblemPainSectionProps = z.infer<typeof problemPainSectionDataSchema>;
 
 export default function ProblemPainSection({
   badgeText,
@@ -38,14 +36,10 @@ export default function ProblemPainSection({
                 </div>
               )}
               {heading && (
-                <h2 className="text-[var(--font-subheading-size)] text-white">
-                  {heading}
-                </h2>
+                <h2 className="text-[var(--font-subheading-size)] text-white">{heading}</h2>
               )}
               {description && (
-                <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                  {description}
-                </p>
+                <p className="max-w-[600px] text-muted-foreground md:text-xl">{description}</p>
               )}
             </div>
             {calloutText && (
@@ -64,18 +58,14 @@ export default function ProblemPainSection({
                   whileHover={{
                     y: -5,
                     scale: 1.02,
-                    transition: { duration: 0.1, ease: "easeOut" },
+                    transition: { duration: 0.1, ease: 'easeOut' },
                   }}
                   transition={{ duration: 0.3, delay: idx * 0.2 }}
                   viewport={{ once: true }}
                   className="rounded-lg bg-[rgba(255,255,255,0.08)] p-6 shadow-sm hover:shadow-xl transition-shadow duration-300"
                 >
-                  <h3 className="mb-3 text-xl font-bold text-accent">
-                    {card.title}
-                  </h3>
-                  <p className="text-muted-foreground text-base md:text-lg">
-                    {card.description}
-                  </p>
+                  <h3 className="mb-3 text-xl font-bold text-accent">{card.title}</h3>
+                  <p className="text-muted-foreground text-base md:text-lg">{card.description}</p>
                 </motion.div>
               ))}
             </div>

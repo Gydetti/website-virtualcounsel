@@ -1,19 +1,19 @@
-import { Section } from "@/components/layout/Section";
-import { Badge } from "@/components/ui/badge";
-import LazySection from "@/components/ui/lazy-section";
-import TestimonialCard from "@/components/ui/testimonial-card";
-import * as homepageData from "@/lib/data/homepage";
-import { defaultMetadata } from "@/lib/metadata";
-import { siteConfig } from "@/lib/site.config.local";
-import type { Metadata } from "next";
-import Link from "next/link";
-import { notFound } from "next/navigation";
+import { Section } from '@/components/layout/Section';
+import { Badge } from '@/components/ui/badge';
+import LazySection from '@/components/ui/lazy-section';
+import TestimonialCard from '@/components/ui/testimonial-card';
+import * as homepageData from '@/lib/data/homepage';
+import { defaultMetadata } from '@/lib/metadata';
+import { siteConfig } from '@/lib/site.config.local';
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
 
 // Generate page metadata
 export async function generateMetadata(): Promise<Metadata> {
   return defaultMetadata({
     title: `Testimonials | ${siteConfig.site.name}`,
-    description: "Read real success stories and testimonials from our clients",
+    description: 'Read real success stories and testimonials from our clients',
   });
 }
 
@@ -21,14 +21,12 @@ export default function TestimonialsPage() {
   // Guard route by feature flag and enabledPages setting
   if (
     !siteConfig.features.enableTestimonials ||
-    (siteConfig.enabledPages &&
-      !siteConfig.enabledPages.includes("/testimonials"))
+    (siteConfig.enabledPages && !siteConfig.enabledPages.includes('/testimonials'))
   ) {
     notFound();
   }
 
-  const { badgeText, heading, subtitle, testimonials } =
-    homepageData.testimonialsSectionData;
+  const { badgeText, heading, subtitle, testimonials } = homepageData.testimonialsSectionData;
 
   return (
     <>
@@ -37,19 +35,11 @@ export default function TestimonialsPage() {
         className="relative overflow-hidden bg-gradient-to-r from-blue-100 via-transparent to-transparent z-10 py-12"
         id="testimonials-intro"
       >
-        <LazySection
-          animation="slide-up"
-          delay={0}
-          className="text-center mb-16"
-        >
+        <LazySection animation="slide-up" delay={0} className="text-center mb-16">
           {badgeText && (
-            <Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
-              {badgeText}
-            </Badge>
+            <Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">{badgeText}</Badge>
           )}
-          {heading && (
-            <h1 className="text-[var(--font-heading-size)]">{heading}</h1>
-          )}
+          {heading && <h1 className="text-[var(--font-heading-size)]">{heading}</h1>}
           {subtitle && <p className="section-subtitle">{subtitle}</p>}
         </LazySection>
       </Section>
@@ -80,12 +70,9 @@ export default function TestimonialsPage() {
       {/* CTA Section */}
       <Section className="py-12 bg-white" id="testimonials-cta">
         <div className="text-center max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold mb-4">
-            Ready to write your own success story?
-          </h2>
+          <h2 className="text-3xl font-bold mb-4">Ready to write your own success story?</h2>
           <p className="text-gray-600 mb-6">
-            Contact us today to get started and see how we can help you achieve
-            similar results.
+            Contact us today to get started and see how we can help you achieve similar results.
           </p>
           <Link
             href="/contact"

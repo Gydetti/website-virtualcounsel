@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
 export type ConsentOptions = {
   necessary: boolean;
@@ -21,7 +21,7 @@ type CookieConsentStore = {
 
 export const useCookieConsentStore = create<CookieConsentStore>()(
   persist(
-    (set) => ({
+    set => ({
       consents: {
         necessary: true, // Always required
         analytics: false,
@@ -29,8 +29,8 @@ export const useCookieConsentStore = create<CookieConsentStore>()(
         preferences: false,
       },
       isConsentGiven: false,
-      updateConsent: (consent) =>
-        set((state) => ({
+      updateConsent: consent =>
+        set(state => ({
           consents: { ...state.consents, ...consent },
           isConsentGiven: true,
         })),
@@ -66,9 +66,9 @@ export const useCookieConsentStore = create<CookieConsentStore>()(
         }),
     }),
     {
-      name: "cookie-consent",
-    },
-  ),
+      name: 'cookie-consent',
+    }
+  )
 );
 
 export const useCookieConsent = useCookieConsentStore;

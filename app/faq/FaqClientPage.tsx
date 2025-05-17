@@ -1,89 +1,88 @@
-"use client";
+'use client';
 
-import { useState } from "react";
+import { useState } from 'react';
 
-import { ArrowRight } from "lucide-react";
-import Link from "next/link";
+import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
-import StructuredData from "@/components/seo/structured-data";
+import StructuredData from '@/components/seo/structured-data';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import LazySection from "@/components/ui/lazy-section";
+} from '@/components/ui/accordion';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import LazySection from '@/components/ui/lazy-section';
 
 export default function FaqClientPage() {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
 
   // This would typically come from a CMS or API
   const faqCategories = [
     {
-      category: "General Questions",
+      category: 'General Questions',
       questions: [
         {
           question:
             "Sample question placeholder: common user question (e.g. 'How do I get started?')",
-          answer: "Brief answer placeholder: concise response to the question",
+          answer: 'Brief answer placeholder: concise response to the question',
         },
         {
           question:
             "Sample question placeholder: common user question (e.g. 'What services do you offer?')",
-          answer: "Brief answer placeholder: concise response to the question",
+          answer: 'Brief answer placeholder: concise response to the question',
         },
         {
           question:
             "Sample question placeholder: common user question (e.g. 'How can I contact support?')",
-          answer: "Brief answer placeholder: concise response to the question",
+          answer: 'Brief answer placeholder: concise response to the question',
         },
       ],
     },
     {
-      category: "Services",
+      category: 'Services',
       questions: [
         {
           question:
             "Sample question placeholder: service-related question (e.g. 'What is your pricing model?')",
-          answer: "Brief answer placeholder: concise response to the question",
+          answer: 'Brief answer placeholder: concise response to the question',
         },
         {
           question:
             "Sample question placeholder: service-related question (e.g. 'How long does implementation take?')",
-          answer: "Brief answer placeholder: concise response to the question",
+          answer: 'Brief answer placeholder: concise response to the question',
         },
         {
           question:
             "Sample question placeholder: service-related question (e.g. 'Do you offer custom solutions?')",
-          answer: "Brief answer placeholder: concise response to the question",
+          answer: 'Brief answer placeholder: concise response to the question',
         },
         {
           question:
             "Sample question placeholder: service-related question (e.g. 'How do I request a quote?')",
-          answer: "Brief answer placeholder: concise response to the question",
+          answer: 'Brief answer placeholder: concise response to the question',
         },
       ],
     },
     {
-      category: "Pricing & Billing",
+      category: 'Pricing & Billing',
       questions: [
         {
           question:
             "Sample question placeholder: billing question (e.g. 'What payment methods do you accept?')",
-          answer: "Brief answer placeholder: concise response to the question",
+          answer: 'Brief answer placeholder: concise response to the question',
         },
         {
-          question:
-            "Sample question placeholder: billing question (e.g. 'Do you offer refunds?')",
-          answer: "Brief answer placeholder: concise response to the question",
+          question: "Sample question placeholder: billing question (e.g. 'Do you offer refunds?')",
+          answer: 'Brief answer placeholder: concise response to the question',
         },
         {
           question:
             "Sample question placeholder: billing question (e.g. 'Can I change my plan later?')",
-          answer: "Brief answer placeholder: concise response to the question",
+          answer: 'Brief answer placeholder: concise response to the question',
         },
       ],
     },
@@ -91,21 +90,21 @@ export default function FaqClientPage() {
 
   // Prepare FAQ structured-data for SEO
   const faqSchemaData = faqCategories
-    .flatMap((category) => category.questions)
+    .flatMap(category => category.questions)
     .map(({ question, answer }) => ({ question, answer }));
 
   // Filter questions based on search query
   const filteredFaqs = searchQuery
     ? faqCategories
-        .map((category) => ({
+        .map(category => ({
           ...category,
           questions: category.questions.filter(
-            (q) =>
+            q =>
               q.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
-              q.answer.toLowerCase().includes(searchQuery.toLowerCase()),
+              q.answer.toLowerCase().includes(searchQuery.toLowerCase())
           ),
         }))
-        .filter((category) => category.questions.length > 0)
+        .filter(category => category.questions.length > 0)
     : faqCategories;
 
   return (
@@ -131,7 +130,7 @@ export default function FaqClientPage() {
                   type="text"
                   placeholder="Search for answers..."
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onChange={e => setSearchQuery(e.target.value)}
                   className="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-primary focus:border-transparent pl-10"
                 />
                 <svg
@@ -166,10 +165,10 @@ export default function FaqClientPage() {
                       {category.category}
                     </h2>
                     <Accordion type="single" collapsible className="space-y-4">
-                      {category.questions.map((faq) => (
+                      {category.questions.map(faq => (
                         <AccordionItem
                           key={faq.question}
-                          value={`${/* replaced index-based value */ ""}`}
+                          value={`${/* replaced index-based value */ ''}`}
                           className="border border-gray-200 rounded-lg overflow-hidden"
                         >
                           <AccordionTrigger className="px-6 py-4 text-body-base font-medium hover:bg-gray-50 text-left">
@@ -188,13 +187,13 @@ export default function FaqClientPage() {
               <div className="text-center py-12">
                 <h2 className="text-2xl font-bold mb-4">No results found</h2>
                 <p className="text-gray-600 mb-8">
-                  We couldn't find any FAQs matching your search. Please try a
-                  different search term or browse our categories.
+                  We couldn't find any FAQs matching your search. Please try a different search term
+                  or browse our categories.
                 </p>
                 <Button
                   variant="outline"
                   className="border-primary text-primary hover:bg-primary hover:text-white"
-                  onClick={() => setSearchQuery("")}
+                  onClick={() => setSearchQuery('')}
                 >
                   Clear Search
                 </Button>
@@ -207,17 +206,11 @@ export default function FaqClientPage() {
       <LazySection>
         <section className="py-16 bg-gray-50">
           <div className="container-wide text-center">
-            <h2 className="text-3xl font-bold mb-6">
-              Section heading for further assistance
-            </h2>
+            <h2 className="text-3xl font-bold mb-6">Section heading for further assistance</h2>
             <p className="text-xl mb-8 max-w-2xl mx-auto">
               Brief prompt directing visitors to contact if they need more help
             </p>
-            <Button
-              size="lg"
-              className="bg-primary hover:bg-primary-90"
-              asChild
-            >
+            <Button size="lg" className="bg-primary hover:bg-primary-90" asChild>
               <Link href="/contact">
                 Contact Us
                 <ArrowRight className="ml-2 h-4 w-4" />

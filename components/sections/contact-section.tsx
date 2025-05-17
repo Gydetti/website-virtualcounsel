@@ -1,63 +1,54 @@
-"use client";
+'use client';
 
-import type { ChangeEvent, FormEvent } from "react";
+import type { ChangeEvent, FormEvent } from 'react';
 
-import { Section } from "@/components/layout/Section";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import LazySection from "@/components/ui/lazy-section";
-import { Textarea } from "@/components/ui/textarea";
-import { siteConfig } from "@/lib/siteConfig";
-import { motion } from "framer-motion";
-import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
-import Script from "next/script";
-import { useEffect, useState } from "react";
-import type { CSSProperties } from "react";
+import { Section } from '@/components/layout/Section';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import LazySection from '@/components/ui/lazy-section';
+import { Textarea } from '@/components/ui/textarea';
+import { siteConfig } from '@/lib/siteConfig';
+import { motion } from 'framer-motion';
+import { ArrowRight, Mail, MapPin, Phone } from 'lucide-react';
+import Script from 'next/script';
+import { useEffect, useState } from 'react';
+import type { CSSProperties } from 'react';
 
 // Provide typing for the Recaptcha API on the window object
 declare global {
   interface Window {
     grecaptcha?: {
-      execute: (
-        siteKey: string,
-        options: { action: string },
-      ) => Promise<string>;
+      execute: (siteKey: string, options: { action: string }) => Promise<string>;
     };
   }
 }
 
-import type { contactSectionDataSchema } from "@/lib/schemas/sections.schema";
+import type { contactSectionDataSchema } from '@/lib/schemas/sections.schema';
 // Updated props type alias using Zod schema
-import type { z } from "zod";
+import type { z } from 'zod';
 export type ContactSectionProps = z.infer<typeof contactSectionDataSchema>;
 
-export default function ContactSection({
-  badgeText,
-  heading,
-  subtitle,
-}: ContactSectionProps) {
+export default function ContactSection({ badgeText, heading, subtitle }: ContactSectionProps) {
   const fields = siteConfig.contactForm?.fields || [];
-  const honeypotName = siteConfig.contactForm?.honeypotFieldName || "honeypot";
+  const honeypotName = siteConfig.contactForm?.honeypotFieldName || 'honeypot';
   const recaptchaKey = siteConfig.contactForm?.recaptchaSiteKey;
   // Initialize formData with all field keys (always controlled)
   const [formData, setFormData] = useState<Record<string, string>>(() => {
     const initial: Record<string, string> = {};
     for (const f of fields) {
-      initial[f.name] = "";
+      initial[f.name] = '';
     }
-    initial[honeypotName] = "";
+    initial[honeypotName] = '';
     return initial;
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e: FormEvent) => {
@@ -72,14 +63,14 @@ export default function ContactSection({
       honeypot: formData[honeypotName],
       // recaptchaToken removed
     };
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     });
     const result = await res.json();
     if (!result.success) {
-      console.error("Contact API error:", result.error || result.errors);
+      console.error('Contact API error:', result.error || result.errors);
       setIsSubmitting(false);
       return;
     }
@@ -89,7 +80,7 @@ export default function ContactSection({
     // Reset form
     const reset: Record<string, string> = {};
     for (const key of Object.keys(formData)) {
-      reset[key] = "";
+      reset[key] = '';
     }
     setFormData(reset);
 
@@ -119,12 +110,9 @@ export default function ContactSection({
         <LazySection
           animation="none"
           className="stagger-container"
-          style={{ "--stagger-delay": "0.1s" } as CSSProperties}
+          style={{ '--stagger-delay': '0.1s' } as CSSProperties}
         >
-          <div
-            className="text-center mb-16"
-            style={{ "--index": 0 } as CSSProperties}
-          >
+          <div className="text-center mb-16" style={{ '--index': 0 } as CSSProperties}>
             {badgeText && <Badge className="mb-4">{badgeText}</Badge>}
             {heading && (
               <h2 id="contact-section-heading" className="section-title">
@@ -136,16 +124,14 @@ export default function ContactSection({
           <div className="grid md:grid-cols-2 gap-4 sm:gap-8 md:gap-12 max-w-4xl mx-auto">
             <div
               className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow"
-              style={{ "--index": 1 } as CSSProperties}
+              style={{ '--index': 1 } as CSSProperties}
             >
-              <h3 className="mb-6">
-                Form title prompting user to send a message
-              </h3>
+              <h3 className="mb-6">Form title prompting user to send a message</h3>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 gap-6">
-                  {fields.map((field) => (
+                  {fields.map(field => (
                     <div key={field.name}>
-                      {field.type === "textarea" ? (
+                      {field.type === 'textarea' ? (
                         <Textarea
                           name={field.name}
                           placeholder={field.placeholder}
@@ -176,31 +162,22 @@ export default function ContactSection({
                     className="hidden"
                   />
                 </div>
-                <Button
-                  type="submit"
-                  className="w-full group"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting
-                    ? "Sending..."
-                    : submitted
-                      ? "Message sent!"
-                      : "Send message"}
+                <Button type="submit" className="w-full group" disabled={isSubmitting}>
+                  {isSubmitting ? 'Sending...' : submitted ? 'Message sent!' : 'Send message'}
                   {!isSubmitting && !submitted && (
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   )}
                 </Button>
                 {submitted && (
                   <div className="mt-4 p-4 bg-green-50 text-green-700 rounded-lg">
-                    Thank you for your message! We'll get back to you as soon as
-                    possible.
+                    Thank you for your message! We'll get back to you as soon as possible.
                   </div>
                 )}
               </form>
             </div>
             <div
               className="bg-primary text-white rounded-xl shadow-lg p-8 flex flex-col justify-between hover:shadow-xl transition-shadow"
-              style={{ "--index": 2 } as CSSProperties}
+              style={{ '--index': 2 } as CSSProperties}
             >
               <h3 className="mb-6">Contact information</h3>
               <ul className="space-y-6">
@@ -241,8 +218,7 @@ export default function ContactSection({
                         </>
                       )}
                       <br />
-                      {siteConfig.contact.address?.zip}{" "}
-                      {siteConfig.contact.address?.city}
+                      {siteConfig.contact.address?.zip} {siteConfig.contact.address?.city}
                       <br />
                       {siteConfig.contact.address?.country}
                     </address>

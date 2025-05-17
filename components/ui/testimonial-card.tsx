@@ -1,7 +1,7 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { siteConfig } from "@/lib/siteConfig";
-import { Star } from "lucide-react";
-import Image from "next/image";
+import { Card, CardContent } from '@/components/ui/card';
+import { siteConfig } from '@/lib/siteConfig';
+import { Star } from 'lucide-react';
+import Image from 'next/image';
 
 export interface TestimonialProps {
   quote: string;
@@ -19,23 +19,19 @@ export default function TestimonialCard({
   rating = 5,
 }: TestimonialProps) {
   const microClass = siteConfig.features.enableMicroInteractions
-    ? "transition-all hover:shadow-xl"
-    : "";
+    ? 'transition-all hover:shadow-xl'
+    : '';
   return (
-    <Card
-      className={`border-none bg-white flex flex-col h-full shadow-lg ${microClass}`}
-    >
+    <Card className={`border-none bg-white flex flex-col h-full shadow-lg ${microClass}`}>
       <CardContent className="p-8 flex flex-col flex-1">
         {rating > 0 && (
           <div className="flex items-center mb-6">
-            {[1, 2, 3, 4, 5].map((star) => (
+            {[1, 2, 3, 4, 5].map(star => (
               <Star
                 key={star}
                 aria-hidden="true"
                 className={`h-5 w-5 ${
-                  star <= rating
-                    ? "text-yellow-400 fill-yellow-400"
-                    : "text-gray-300"
+                  star <= rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'
                 }`}
               />
             ))}
@@ -45,7 +41,7 @@ export default function TestimonialCard({
         <div className="flex items-center mt-auto">
           <div className="mr-4">
             <Image
-              src={image || "/placeholder.svg"}
+              src={image || '/placeholder.svg'}
               alt={name}
               width={60}
               height={60}

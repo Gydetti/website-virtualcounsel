@@ -1,8 +1,8 @@
-import { getResourceBySlug } from "@/lib/data/resources";
-import { defaultMetadata } from "@/lib/metadata";
-import { siteConfig } from "@/lib/siteConfig";
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { getResourceBySlug } from '@/lib/data/resources';
+import { defaultMetadata } from '@/lib/metadata';
+import { siteConfig } from '@/lib/siteConfig';
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 
 interface Params {
   params: { slug: string };
@@ -11,7 +11,7 @@ interface Params {
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const resource = await getResourceBySlug(params.slug);
   if (!resource) {
-    return defaultMetadata({ title: "Resource Not Found" });
+    return defaultMetadata({ title: 'Resource Not Found' });
   }
   return defaultMetadata({
     title: `${resource.title} | ${siteConfig.site.name}`,
@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
           height: resource.heroImage.height,
         },
       ],
-      type: "website",
+      type: 'website',
     },
   });
 }

@@ -1,16 +1,15 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import { Switch } from "@/components/ui/switch";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useCookieConsent } from "@/hooks/use-cookie-consent";
-import { AnimatePresence, motion } from "framer-motion";
-import { X } from "lucide-react";
-import { useState } from "react";
+import { Button } from '@/components/ui/button';
+import { Switch } from '@/components/ui/switch';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { useCookieConsent } from '@/hooks/use-cookie-consent';
+import { AnimatePresence, motion } from 'framer-motion';
+import { X } from 'lucide-react';
+import { useState } from 'react';
 
 export default function CookieConsentBanner() {
-  const { consents, isConsentGiven, updateConsent, acceptAll, rejectAll } =
-    useCookieConsent();
+  const { consents, isConsentGiven, updateConsent, acceptAll, rejectAll } = useCookieConsent();
   const [showDetails, setShowDetails] = useState(false);
   const [localConsents, setLocalConsents] = useState(consents);
 
@@ -19,8 +18,8 @@ export default function CookieConsentBanner() {
   }
 
   const handleToggle = (key: keyof typeof localConsents) => {
-    if (key === "necessary") return; // Can't toggle necessary cookies
-    setLocalConsents((prev) => ({ ...prev, [key]: !prev[key] }));
+    if (key === 'necessary') return; // Can't toggle necessary cookies
+    setLocalConsents(prev => ({ ...prev, [key]: !prev[key] }));
   };
 
   const handleSave = () => {
@@ -51,18 +50,15 @@ export default function CookieConsentBanner() {
                   </Button>
                 </div>
                 <p className="text-foreground mb-6">
-                  We use cookies to enhance your browsing experience, serve
-                  personalized ads or content, and analyze our traffic. By
-                  clicking "Accept all", you consent to our use of cookies.
+                  We use cookies to enhance your browsing experience, serve personalized ads or
+                  content, and analyze our traffic. By clicking "Accept all", you consent to our use
+                  of cookies.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Button variant="outline" onClick={() => rejectAll()}>
                     Reject all
                   </Button>
-                  <Button
-                    variant="outline"
-                    onClick={() => setShowDetails(true)}
-                  >
+                  <Button variant="outline" onClick={() => setShowDetails(true)}>
                     Customize
                   </Button>
                   <Button onClick={() => acceptAll()}>Accept all</Button>
@@ -94,8 +90,8 @@ export default function CookieConsentBanner() {
                       <div>
                         <h4 className="mb-1">Essential cookies</h4>
                         <p className="text-caption text-gray-500">
-                          These cookies are necessary for the website to
-                          function and cannot be switched off.
+                          These cookies are necessary for the website to function and cannot be
+                          switched off.
                         </p>
                       </div>
                       <Switch checked={true} disabled />
@@ -106,14 +102,13 @@ export default function CookieConsentBanner() {
                       <div>
                         <h4 className="mb-1">Analytics cookies</h4>
                         <p className="text-caption text-gray-500">
-                          These cookies allow us to count visits and traffic
-                          sources so we can measure and improve the performance
-                          of our site.
+                          These cookies allow us to count visits and traffic sources so we can
+                          measure and improve the performance of our site.
                         </p>
                       </div>
                       <Switch
                         checked={localConsents.analytics}
-                        onCheckedChange={() => handleToggle("analytics")}
+                        onCheckedChange={() => handleToggle('analytics')}
                       />
                     </div>
                   </TabsContent>
@@ -122,14 +117,13 @@ export default function CookieConsentBanner() {
                       <div>
                         <h4 className="mb-1">Marketing cookies</h4>
                         <p className="text-caption text-gray-500">
-                          These cookies may be set through our site by our
-                          advertising partners to build a profile of your
-                          interests.
+                          These cookies may be set through our site by our advertising partners to
+                          build a profile of your interests.
                         </p>
                       </div>
                       <Switch
                         checked={localConsents.marketing}
-                        onCheckedChange={() => handleToggle("marketing")}
+                        onCheckedChange={() => handleToggle('marketing')}
                       />
                     </div>
                   </TabsContent>
@@ -138,13 +132,13 @@ export default function CookieConsentBanner() {
                       <div>
                         <h4 className="mb-1">Preference cookies</h4>
                         <p className="text-caption text-gray-500">
-                          These cookies enable personalized features and
-                          functionality on our website.
+                          These cookies enable personalized features and functionality on our
+                          website.
                         </p>
                       </div>
                       <Switch
                         checked={localConsents.preferences}
-                        onCheckedChange={() => handleToggle("preferences")}
+                        onCheckedChange={() => handleToggle('preferences')}
                       />
                     </div>
                   </TabsContent>
@@ -154,10 +148,7 @@ export default function CookieConsentBanner() {
                   <Button variant="outline" onClick={() => rejectAll()}>
                     Reject all
                   </Button>
-                  <Button
-                    variant="outline"
-                    onClick={() => setShowDetails(false)}
-                  >
+                  <Button variant="outline" onClick={() => setShowDetails(false)}>
                     Back
                   </Button>
                   <Button onClick={handleSave}>Save preferences</Button>

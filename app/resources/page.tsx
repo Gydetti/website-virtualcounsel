@@ -1,24 +1,18 @@
-import DynamicPageRenderer from "@/components/layout/DynamicPageRenderer";
-import { Section } from "@/components/layout/Section";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import LazySection from "@/components/ui/lazy-section";
-import OptimizedImage from "@/components/ui/optimized-image";
-import { getResources } from "@/lib/data/resources";
-import type { Resource } from "@/lib/data/resources";
-import { defaultMetadata } from "@/lib/metadata";
-import { siteConfig } from "@/lib/site.config.local";
-import { ArrowRight } from "lucide-react";
-import type { Metadata } from "next";
-import Link from "next/link";
-import { notFound } from "next/navigation";
+import DynamicPageRenderer from '@/components/layout/DynamicPageRenderer';
+import { Section } from '@/components/layout/Section';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import LazySection from '@/components/ui/lazy-section';
+import OptimizedImage from '@/components/ui/optimized-image';
+import { getResources } from '@/lib/data/resources';
+import type { Resource } from '@/lib/data/resources';
+import { defaultMetadata } from '@/lib/metadata';
+import { siteConfig } from '@/lib/site.config.local';
+import { ArrowRight } from 'lucide-react';
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
 
 // Metadata
 export async function generateMetadata(): Promise<Metadata> {
@@ -33,9 +27,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function ResourcesIndexPage() {
   // Use DynamicPageRenderer for ResourceListSection
-  const resourcesListPageStructure = siteConfig.pageStructures?.find(
-    (p) => p.path === "/resources",
-  );
+  const resourcesListPageStructure = siteConfig.pageStructures?.find(p => p.path === '/resources');
   if (!resourcesListPageStructure) {
     return (
       <Section className="py-12">
@@ -47,12 +39,9 @@ export default async function ResourcesIndexPage() {
       </Section>
     );
   }
-  const currentPagePath = "/resources";
+  const currentPagePath = '/resources';
   return (
-    <DynamicPageRenderer
-      pagePath={currentPagePath}
-      pageStructure={resourcesListPageStructure}
-    />
+    <DynamicPageRenderer pagePath={currentPagePath} pageStructure={resourcesListPageStructure} />
   );
 }
 

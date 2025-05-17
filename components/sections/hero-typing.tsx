@@ -1,15 +1,15 @@
-"use client";
-import type { heroSectionDataSchema } from "@/lib/schemas/sections.schema";
-import { useEffect, useRef, useState } from "react";
-import type { z } from "zod";
+'use client';
+import type { heroSectionDataSchema } from '@/lib/schemas/sections.schema';
+import { useEffect, useRef, useState } from 'react';
+import type { z } from 'zod';
 
 export type HeroTypingProps = {
-  typingWords?: z.infer<typeof heroSectionDataSchema>["typingWords"];
+  typingWords?: z.infer<typeof heroSectionDataSchema>['typingWords'];
 };
 
 export default function HeroTyping({ typingWords }: HeroTypingProps) {
   const typingRef = useRef<HTMLSpanElement>(null);
-  const [displayText, setDisplayText] = useState("");
+  const [displayText, setDisplayText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
   const [typingSpeed, setTypingSpeed] = useState(150);
@@ -22,12 +22,12 @@ export default function HeroTyping({ typingWords }: HeroTypingProps) {
       setDisplayText(
         isDeleting
           ? fullText.substring(0, displayText.length - 1)
-          : fullText.substring(0, displayText.length + 1),
+          : fullText.substring(0, displayText.length + 1)
       );
       setTypingSpeed(isDeleting ? 50 : 100);
       if (!isDeleting && displayText === fullText) {
         setTimeout(() => setIsDeleting(true), 1500);
-      } else if (isDeleting && displayText === "") {
+      } else if (isDeleting && displayText === '') {
         setIsDeleting(false);
         setLoopNum(loopNum + 1);
         setTypingSpeed(500);

@@ -1,12 +1,10 @@
-import DynamicPageRenderer from "@/components/layout/DynamicPageRenderer";
-import { defaultMetadata } from "@/lib/metadata";
-import { siteConfig } from "@/lib/site.config.local"; // Use the local config for data
-import type { Metadata } from "next";
+import DynamicPageRenderer from '@/components/layout/DynamicPageRenderer';
+import { defaultMetadata } from '@/lib/metadata';
+import { siteConfig } from '@/lib/site.config.local'; // Use the local config for data
+import type { Metadata } from 'next';
 
 // Find the page structure for the homepage
-const homepageStructure = siteConfig.pageStructures?.find(
-  (p) => p.path === "/",
-);
+const homepageStructure = siteConfig.pageStructures?.find(p => p.path === '/');
 
 // Generate metadata: prioritize page-specific SEO from structure, then site defaults
 export async function generateMetadata(): Promise<Metadata> {
@@ -32,7 +30,7 @@ export default async function Home() {
           Homepage structure is not defined in site configuration.
         </p>
         <p>
-          Please check <code>lib/site.config.local.ts</code> and ensure a{" "}
+          Please check <code>lib/site.config.local.ts</code> and ensure a{' '}
           <code>pageStructures</code> entry with <code>path: "/"</code> exists.
         </p>
       </div>
@@ -41,10 +39,5 @@ export default async function Home() {
 
   // The DynamicPageRenderer will internally handle fetching/passing data to sections
   // based on the 'homepageStructure' and its 'pagePath' prop.
-  return (
-    <DynamicPageRenderer
-      pagePath="/"
-      pageStructure={{ ...homepageStructure }}
-    />
-  );
+  return <DynamicPageRenderer pagePath="/" pageStructure={{ ...homepageStructure }} />;
 }

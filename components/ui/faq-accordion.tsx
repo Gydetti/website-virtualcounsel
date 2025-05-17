@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
-import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+} from '@/components/ui/accordion';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useState } from 'react';
 
 export interface FaqItem {
   question: string;
@@ -19,18 +19,15 @@ interface FaqAccordionProps {
   defaultOpen?: string;
 }
 
-export default function FaqAccordion({
-  items,
-  defaultOpen,
-}: FaqAccordionProps) {
-  const [searchQuery, setSearchQuery] = useState("");
+export default function FaqAccordion({ items, defaultOpen }: FaqAccordionProps) {
+  const [searchQuery, setSearchQuery] = useState('');
 
   // Filter questions based on search query
   const filteredItems = searchQuery
     ? items.filter(
-        (item) =>
+        item =>
           item.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          item.answer.toLowerCase().includes(searchQuery.toLowerCase()),
+          item.answer.toLowerCase().includes(searchQuery.toLowerCase())
       )
     : items;
 
@@ -38,12 +35,7 @@ export default function FaqAccordion({
     <div className="w-full">
       <AnimatePresence>
         {filteredItems.length > 0 ? (
-          <Accordion
-            type="single"
-            collapsible
-            defaultValue={defaultOpen}
-            className="space-y-4"
-          >
+          <Accordion type="single" collapsible defaultValue={defaultOpen} className="space-y-4">
             {filteredItems.map((item, index) => (
               <motion.div
                 key={item.question}
@@ -75,8 +67,7 @@ export default function FaqAccordion({
           >
             <h3 className="mb-2">No results found</h3>
             <p className="text-foreground">
-              We couldn't find any FAQs matching your search. Please try a
-              different search term.
+              We couldn't find any FAQs matching your search. Please try a different search term.
             </p>
           </motion.div>
         )}

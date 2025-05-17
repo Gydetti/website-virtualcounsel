@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import type { FC } from 'react';
 
 interface ListBlockProps {
   ordered?: boolean;
@@ -9,7 +9,7 @@ const ListBlock: FC<ListBlockProps> = ({ ordered = false, items }) => {
   if (ordered) {
     return (
       <ol className="list-decimal list-inside space-y-1">
-        {items.map((item) => (
+        {items.map(item => (
           <li key={item}>{item}</li>
         ))}
       </ol>
@@ -17,7 +17,7 @@ const ListBlock: FC<ListBlockProps> = ({ ordered = false, items }) => {
   }
   return (
     <ul className="list-disc list-inside space-y-1">
-      {items.map((item) => (
+      {items.map(item => (
         <li key={item}>{item}</li>
       ))}
     </ul>

@@ -41,9 +41,9 @@
     <button
       ref={ref}
       className={cn(
-        buttonVariants({ variant: "default", size, className }), // Use "default" for base styling
-        "spark-button", // Add the spark effect class
-        className,
+        buttonVariants({ variant: 'default', size, className }), // Use "default" for base styling
+        'spark-button', // Add the spark effect class
+        className
       )}
       {...props}
     >

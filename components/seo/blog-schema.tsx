@@ -1,5 +1,5 @@
 // No default React import needed
-import type { BlogPosting, WithContext } from "schema-dts";
+import type { BlogPosting, WithContext } from 'schema-dts';
 
 interface BlogSchemaProps {
   title: string;
@@ -23,33 +23,33 @@ export default function BlogSchema({
   authorUrl,
   imageUrl,
   url,
-  publisherName = "Your Business Name",
-  publisherLogo = "https://your-domain.com/logo.png",
+  publisherName = 'Your Business Name',
+  publisherLogo = 'https://your-domain.com/logo.png',
 }: BlogSchemaProps) {
   const blogSchema: WithContext<BlogPosting> = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
     headline: title,
     description: description,
     image: imageUrl,
     datePublished: datePublished,
     dateModified: dateModified || datePublished,
     author: {
-      "@type": "Person",
+      '@type': 'Person',
       name: authorName,
       url: authorUrl,
     },
     publisher: {
-      "@type": "Organization",
+      '@type': 'Organization',
       name: publisherName,
       logo: {
-        "@type": "ImageObject",
+        '@type': 'ImageObject',
         url: publisherLogo,
       },
     },
     mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": url,
+      '@type': 'WebPage',
+      '@id': url,
     },
   };
 

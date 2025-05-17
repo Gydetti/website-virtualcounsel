@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-module.exports.parser = "tsx";
+module.exports.parser = 'tsx';
 
 /**
  * jscodeshift transform to migrate React code to SWC automatic JSX runtime:
@@ -13,12 +13,10 @@ module.exports = function transformer(fileInfo, api) {
   const root = j(fileInfo.source);
 
   // Remove default and namespace React imports
-  const reactImportPaths = root
-    .find(j.ImportDeclaration, { source: { value: "react" } })
-    .paths();
+  const reactImportPaths = root.find(j.ImportDeclaration, { source: { value: 'react' } }).paths();
   for (const path of reactImportPaths) {
     const specs = path.node.specifiers;
-    const namedSpecs = specs.filter((s) => s.type === "ImportSpecifier");
+    const namedSpecs = specs.filter(s => s.type === 'ImportSpecifier');
     if (namedSpecs.length > 0) {
       path.node.specifiers = namedSpecs;
     } else {
@@ -30,8 +28,8 @@ module.exports = function transformer(fileInfo, api) {
   const used = new Set();
   const memberPaths = root
     .find(j.MemberExpression, {
-      object: { name: "React" },
-      property: (p) => p.type === "Identifier",
+      object: { name: 'React' },
+      property: p => p.type === 'Identifier',
     })
     .paths();
   for (const path of memberPaths) {
@@ -43,17 +41,17 @@ module.exports = function transformer(fileInfo, api) {
 
   if (used.size > 0) {
     const importDecls = root.find(j.ImportDeclaration, {
-      source: { value: "react" },
+      source: { value: 'react' },
     });
     const specifiersToAdd = Array.from(used)
       .sort()
-      .map((name) => j.importSpecifier(j.identifier(name)));
+      .map(name => j.importSpecifier(j.identifier(name)));
     if (importDecls.size() > 0) {
       const importPaths = importDecls.paths();
       for (const path of importPaths) {
         const existing = path.node.specifiers
-          .filter((s) => s.type === "ImportSpecifier")
-          .map((s) => s.imported.name);
+          .filter(s => s.type === 'ImportSpecifier')
+          .map(s => s.imported.name);
         for (const spec of specifiersToAdd) {
           if (!existing.includes(spec.imported.name)) {
             path.node.specifiers.push(spec);
@@ -62,13 +60,10 @@ module.exports = function transformer(fileInfo, api) {
       }
     } else {
       // Insert new named import
-      const newImport = j.importDeclaration(
-        specifiersToAdd,
-        j.literal("react"),
-      );
+      const newImport = j.importDeclaration(specifiersToAdd, j.literal('react'));
       root.get().node.program.body.unshift(newImport);
     }
   }
 
-  return root.toSource({ quote: "single" });
+  return root.toSource({ quote: 'single' });
 };

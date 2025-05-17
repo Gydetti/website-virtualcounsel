@@ -271,8 +271,8 @@ When you add or update a section component, follow this structure for consistenc
 3. **Page Integration** – Import both the data and component into your page (e.g., `app/page.tsx`), then render the section with `<LazySection>` for deferred loading:
 
    ```tsx
-   import { homepageFaqCategories } from "@/lib/data/homepage";
-   import HomepageFaqSection from "@/components/sections/homepage-faq-section";
+   import { homepageFaqCategories } from '@/lib/data/homepage';
+   import HomepageFaqSection from '@/components/sections/homepage-faq-section';
 
    <LazySection>
      <HomepageFaqSection categories={homepageFaqCategories} />
@@ -642,7 +642,7 @@ Since all the HTML snippets are static and controlled by you (not end-user input
 - In React components, use Next.js `<Image>` or our `OptimizedImage` wrapper:
 
   ```tsx
-  import blurMap from "/public/images/blurDataURL.json";
+  import blurMap from '/public/images/blurDataURL.json';
 
   <OptimizedImage
     src={member.photo}
@@ -719,17 +719,13 @@ The template includes a reusable `Section` component (`components/layout/Section
 - Default (boxed) mode:
 
   ```tsx
-  <Section className="bg-gray-50">
-    {/* content stays within container gutters */}
-  </Section>
+  <Section className="bg-gray-50">{/* content stays within container gutters */}</Section>
   ```
 
   The `Section` component will render:
 
   ```html
-  <section class="container mx-auto px-4 py-12 md:py-16 bg-gray-50">
-    ...
-  </section>
+  <section class="container mx-auto px-4 py-12 md:py-16 bg-gray-50">...</section>
   ```
 
 - Full-bleed mode:
@@ -1045,7 +1041,7 @@ This setup ensures the site is always styled, always dynamic, and always ready f
 2. **Tailwind Plugin** (in `tailwind.config.ts`):
 
    ```ts
-   import plugin from "tailwindcss/plugin";
+   import plugin from 'tailwindcss/plugin';
 
    export default {
      // …
@@ -1053,28 +1049,28 @@ This setup ensures the site is always styled, always dynamic, and always ready f
        // …other plugins…
        plugin(({ matchUtilities, theme }) => {
          const colors = [
-           "primary",
-           "secondary",
-           "destructive",
-           "muted",
-           "accent",
-           "popover",
-           "card",
+           'primary',
+           'secondary',
+           'destructive',
+           'muted',
+           'accent',
+           'popover',
+           'card',
          ];
          for (const color of colors) {
            matchUtilities(
              {
-               [`bg-${color}`]: (v) => ({
+               [`bg-${color}`]: v => ({
                  backgroundColor: `rgba(var(--${color}-rgb), ${v})`,
                }),
-               [`text-${color}`]: (v) => ({
+               [`text-${color}`]: v => ({
                  color: `rgba(var(--${color}-rgb), ${v})`,
                }),
-               [`border-${color}`]: (v) => ({
+               [`border-${color}`]: v => ({
                  borderColor: `rgba(var(--${color}-rgb), ${v})`,
                }),
              },
-             { values: theme("opacity.0") },
+             { values: theme('opacity.0') }
            );
          }
        }),
@@ -1136,9 +1132,7 @@ We've introduced a CSS-variable–driven library of inline SVG pattern overlays 
 ### Usage Example
 
 ```tsx
-<section className="pattern-overlay bg-dots-pattern">
-  {/* your content here */}
-</section>
+<section className="pattern-overlay bg-dots-pattern">{/* your content here */}</section>
 ```
 
 Under the hood, each `.bg-*-pattern` class sets a `--pattern-url` CSS variable to a small inline SVG data URI, and `.pattern-overlay::before` applies:
