@@ -75,7 +75,7 @@ export default function HeroSection({
 
 			<Section
 				fullBleed={false}
-				className="relative z-10 pb-16 sm:py-12 md:py-16 flex flex-col justify-center h-full"
+				className="relative z-10 pb-16 pt-14 sm:py-12 md:py-16 flex flex-col justify-center h-full"
 			>
 				<div className="grid md:grid-cols-2 gap-8 sm:gap-8 md:gap-12 lg:gap-16 items-center">
 					<LazySection
