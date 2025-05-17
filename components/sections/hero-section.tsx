@@ -80,7 +80,7 @@ export default function HeroSection({
         <div className="grid md:grid-cols-2 gap-8 sm:gap-8 md:gap-12 lg:gap-16 items-center">
           <LazySection
             animation="slide-up"
-            delay={0}
+            delay={0.1}
             className={`${contentOrderClass} flex flex-col justify-center space-y-6 z-10`}
           >
             {badgeText && (
