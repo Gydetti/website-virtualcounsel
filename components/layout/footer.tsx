@@ -14,6 +14,7 @@ import {
   Twitter,
 } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -63,10 +64,13 @@ export default function Footer() {
             <div>
               <Link href="/" className="inline-block mb-4">
                 {siteConfig.theme.logo.src ? (
-                  <img
+                  <Image
                     src={siteConfig.theme.logo.src}
                     alt={siteConfig.theme.logo.alt}
+                    width={40}
+                    height={40}
                     className="h-10 w-auto brightness-0 invert"
+                    priority
                   />
                 ) : (
                   <span className="text-xl font-bold text-white">{siteConfig.site.name}</span>
