@@ -2,3 +2,5 @@ node_modules
 .next
 dist
 public 
++test-results/.last-run.json
+test-results/.last-run.json

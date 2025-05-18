@@ -141,7 +141,7 @@ export const siteConfig: SiteConfigSchema = {
     // FIRST_EDIT: Choose which animated background style to use (none, gradient, particles, parallax, noise, wave, image)
     animatedBackgroundType: 'none',
     // FIRST_EDIT: Optional background image URL to use when animatedBackgroundType is "image"
-    backgroundImageUrl: '/images/placeholders/placeholder.svg',
+    backgroundImageUrl: '',
     // FIRST_EDIT: Toggle micro-interactions and hover animations
     enableMicroInteractions: true,
     enableHeroSection: true, // <--- Toggle Hero section display

@@ -198,7 +198,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="apple-touch-icon" href="/favicon.ico" />
       </head>
       <body
-        className={`${poppins.variable} ${raleway.variable} font-sans antialiased bg-gradient-to-br from-brand-light to-transparent`}
+        className={`${poppins.variable} ${raleway.variable} font-sans antialiased bg-body-gradient`}
       >
         <WebVitalsReporter />
         <SpeedInsights />

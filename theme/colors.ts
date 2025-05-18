@@ -45,4 +45,7 @@ export const semanticGradients = {
   'hero-gradient': 'linear-gradient(90deg, hsl(var(--brand-light)) 0%, hsl(var(--card)) 100%)',
   'footer-gradient':
     'linear-gradient(135deg, hsl(var(--brand-dark)) 0%, hsl(var(--brand-dark)) 100%)',
+  // Global body gradient from primary color into transparent
+  'body-gradient':
+    'linear-gradient(to bottom right, rgba(var(--primary-rgb), 0.2) 0%, transparent 100%)',
 };

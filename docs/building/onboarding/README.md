@@ -1149,3 +1149,13 @@ background-repeat: repeat;
 ```
 
 This approach keeps your CSS bundle minimal (SVGs are auto-minified and gzipped) and swapping patterns is as simple as toggling a class.
+
+### Post-Mortem: Mobile Menu Overlay Transparency
+
+**Issue:** On mobile, the slide-in menu overlay appeared transparent and underlying page content was visible even when the menu was open.
+
+**Root Cause:** The menu overlay was rendered inside the `<header>` element, which uses CSS transforms and backdrop-blur. This created a new stacking context, preventing the fixed overlay from covering the viewport as expected.
+
+**Solution:** We extracted the mobile menu into a React portal (`createPortal`) that renders directly under `document.body`. This allows the fixed-position overlay to escape the header's stacking context and fully cover the viewport with an opaque background. We also adjusted link spacing with a smaller Tailwind `space-y-2` utility for tighter grouping.
+
+**Takeaway:** When using fixed or full-viewport overlays inside transformed elements, always consider portal-based rendering to avoid stacking context conflicts. Keep UI components modular and test in multiple contexts (mobile/desktop) early in development.

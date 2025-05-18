@@ -12,7 +12,7 @@ import type {
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { z } from 'zod';
 
 // Updated props type alias using Zod schema
@@ -25,6 +25,11 @@ export default function TestimonialsSection({
   testimonials,
 }: TestimonialsSectionProps) {
   const [activeIndex, setActiveIndex] = useState(0);
+  // Enable drag only after component mounts (avoids undefined ref errors)
+  const [dragEnabled, setDragEnabled] = useState(false);
+  useEffect(() => {
+    setDragEnabled(true);
+  }, []);
 
   if (!testimonials || testimonials.length === 0) {
     return null; // Or some placeholder if the section must render
@@ -61,7 +66,7 @@ export default function TestimonialsSection({
           <div className="overflow-hidden overflow-x-hidden">
             <motion.div
               className="flex"
-              drag="x"
+              drag={dragEnabled ? 'x' : false}
               dragConstraints={{ left: 0, right: 0 }}
               dragElastic={0.2}
               onDragEnd={(_, info) => {
