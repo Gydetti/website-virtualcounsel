@@ -114,13 +114,11 @@ export default function FaqClientPage() {
         <LazySection>
           <div className="container-wide">
             <div className="text-center max-w-3xl mx-auto">
-              <Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
+              <Badge className="mb-4 bg-brand-light text-primary hover:bg-brand-light/90">
                 Short label introducing FAQ section
               </Badge>
-              <h1 className="text-[var(--font-heading-size)]">
-                Section title inviting users to find answers
-              </h1>
-              <p className="text-gray-700 mb-8">
+              <h1 className="">Section title inviting users to find answers</h1>
+              <p className="text-neutral-text mb-8">
                 Brief subtitle explaining purpose of this FAQ page
               </p>
 
@@ -136,7 +134,7 @@ export default function FaqClientPage() {
                 <svg
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                  className="h-5 w-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-text/400"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -169,12 +167,12 @@ export default function FaqClientPage() {
                         <AccordionItem
                           key={faq.question}
                           value={`${/* replaced index-based value */ ''}`}
-                          className="border border-gray-200 rounded-lg overflow-hidden"
+                          className="border border-divider rounded-lg overflow-hidden"
                         >
-                          <AccordionTrigger className="px-6 py-4 text-body-base font-medium hover:bg-gray-50 text-left">
+                          <AccordionTrigger className="px-6 py-4 text-body-base font-medium hover:bg-neutral-background text-left">
                             {faq.question}
                           </AccordionTrigger>
-                          <AccordionContent className="px-6 py-4 text-body-base bg-gray-50 text-gray-700">
+                          <AccordionContent className="px-6 py-4 text-body-base bg-neutral-background text-neutral-text">
                             {faq.answer}
                           </AccordionContent>
                         </AccordionItem>
@@ -186,7 +184,7 @@ export default function FaqClientPage() {
             ) : (
               <div className="text-center py-12">
                 <h2 className="text-2xl font-bold mb-4">No results found</h2>
-                <p className="text-gray-600 mb-8">
+                <p className="text-neutral-text/600 mb-8">
                   We couldn't find any FAQs matching your search. Please try a different search term
                   or browse our categories.
                 </p>
@@ -204,13 +202,13 @@ export default function FaqClientPage() {
       </LazySection>
 
       <LazySection>
-        <section className="py-16 bg-gray-50">
+        <section className="py-16 bg-neutral-background">
           <div className="container-wide text-center">
             <h2 className="text-3xl font-bold mb-6">Section heading for further assistance</h2>
             <p className="text-xl mb-8 max-w-2xl mx-auto">
               Brief prompt directing visitors to contact if they need more help
             </p>
-            <Button size="lg" className="bg-primary hover:bg-primary-90" asChild>
+            <Button size="lg" className="bg-primary hover:bg-primary/90" asChild>
               <Link href="/contact">
                 Contact Us
                 <ArrowRight className="ml-2 h-4 w-4" />

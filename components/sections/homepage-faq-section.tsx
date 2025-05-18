@@ -121,7 +121,11 @@ export default function HomepageFaqSection({
         </div>
         {/* CTA button */}
         {siteConfig.features.enableHomepageFaqCta && (
-          <LazySection animation="none" className="stagger-container text-center" style={{ '--stagger-delay': '0.2s' } as CSSProperties}>
+          <LazySection
+            animation="none"
+            className="stagger-container text-center"
+            style={{ '--stagger-delay': '0.2s' } as CSSProperties}
+          >
             <div className="flex justify-center mt-12" style={{ '--index': 0 } as CSSProperties}>
               <Button size="lg" asChild>
                 <Link href={cta.href || '/contact'}>{cta.text || 'See all FAQs'}</Link>

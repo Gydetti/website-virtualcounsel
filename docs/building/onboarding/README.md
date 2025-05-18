@@ -1,3 +1,9 @@
+# Important: Color Tokenization Completed
+
+> This onboarding README reflects the final integration of semantic color tokens across the entire codebase.
+>
+> For the detailed audit methodology, mapping tables, and migration strategy, see `docs/building/general/unified-color-coding-plan.md`.
+
 # Entrepreneur Website Template
 
 A modern, responsive website template for entrepreneurs and small businesses looking to establish a strong online presence. Built with Next.js, TypeScript, Tailwind CSS, and shadcn/ui components.

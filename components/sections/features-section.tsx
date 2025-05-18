@@ -28,10 +28,10 @@ export default function FeaturesSection({
     <Section
       id="features-section"
       aria-labelledby="features-section-heading"
-      className="text-gray-800 relative overflow-hidden"
+      className="text-neutral-text/800 relative overflow-hidden"
     >
       {/* Ensure decorative elements overlap edges */}
-      {/* <div className="absolute top-0 right-0 w-96 h-96 bg-primary-5 rounded-full -translate-y-1/4 translate-x-1/4 blur-3xl z-0" /> */}
+      {/* <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full -translate-y-1/4 translate-x-1/4 blur-3xl z-0" /> */}
 
       <div
         className="relative z-10 stagger-container"
@@ -46,7 +46,7 @@ export default function FeaturesSection({
           {heading && (
             <h2
               id="features-section-heading"
-              className="section-title text-gray-900"
+              className="section-title text-neutral-text"
               style={{ '--index': 1 } as CSSProperties}
             >
               {heading}
@@ -66,14 +66,14 @@ export default function FeaturesSection({
         >
           {comparison?.without?.items && comparison.without.items.length > 0 && (
             <div
-              className="md:w-4/5 md:mx-auto rounded-lg border border-red-200 bg-red-50/50 backdrop-blur p-6 transition-colors text-gray-800"
+              className="md:w-4/5 md:mx-auto rounded-lg border border-red-200 bg-feedback-error-bg/50 backdrop-blur p-6 transition-colors text-neutral-text/800"
               style={{ '--index': 0 } as React.CSSProperties}
             >
-              {withoutTitle && <h3 className="text-red-400 mb-4">{withoutTitle}</h3>}
+              {withoutTitle && <h3 className="text-feedback-error mb-4">{withoutTitle}</h3>}
               <ul className="space-y-3">
                 {withoutItems?.map(item => (
                   <li key={item} className="flex items-start">
-                    <XCircle className="text-red-400 mr-2 h-5 w-5 flex-shrink-0 mt-0.5" />
+                    <XCircle className="text-feedback-error mr-2 h-5 w-5 flex-shrink-0 mt-0.5" />
                     <span className="text-foreground">{item}</span>
                   </li>
                 ))}
@@ -96,14 +96,14 @@ export default function FeaturesSection({
           </div>
           {comparison?.with?.items && comparison.with.items.length > 0 && (
             <div
-              className="md:w-4/5 md:mx-auto rounded-lg border border-green-200 bg-green-50/50 backdrop-blur p-6 transition-colors text-gray-800"
+              className="md:w-4/5 md:mx-auto rounded-lg border border-green-200 bg-feedback-success-bg/50 backdrop-blur p-6 transition-colors text-neutral-text/800"
               style={{ '--index': 2 } as React.CSSProperties}
             >
-              {withTitle && <h3 className="text-green-400 mb-4">{withTitle}</h3>}
+              {withTitle && <h3 className="text-feedback-success mb-4">{withTitle}</h3>}
               <ul className="space-y-3">
                 {withItems?.map(item => (
                   <li key={item} className="flex items-start">
-                    <CheckCircle className="text-green-400 mr-2 h-5 w-5 flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="text-feedback-success mr-2 h-5 w-5 flex-shrink-0 mt-0.5" />
                     <span className="text-foreground">{item}</span>
                   </li>
                 ))}

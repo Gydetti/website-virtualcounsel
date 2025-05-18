@@ -112,20 +112,20 @@ export default function AboutSection({
             <div className={contentOrderClass}>
               {badgeText && (
                 <LazySection animation="fade-up" delay={0.2}>
-                  <Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
+                  <Badge variant="light" className="mb-4">
                     {badgeText}
                   </Badge>
                 </LazySection>
               )}
               {heading && (
                 <LazySection animation="fade-up" delay={0.3}>
-                  <h1 className="text-[var(--font-heading-size)]">{heading}</h1>
+                  <h1 className="text-heading">{heading}</h1>
                 </LazySection>
               )}
               {paragraphs && paragraphs.length > 0 && (
                 <LazySection animation="fade-up" delay={0.4}>
                   {paragraphs.map(p => (
-                    <p key={p.slice(0, 16)} className="text-foreground mb-6 last:mb-8">
+                    <p key={p.slice(0, 16)} className="text-neutral-text mb-6 last:mb-8">
                       {p}
                     </p>
                   ))}
@@ -137,10 +137,10 @@ export default function AboutSection({
                     {stats.map(stat => (
                       <div
                         key={stat.id}
-                        className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+                        className="bg-neutral-surface p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow"
                       >
                         <div className="font-bold text-primary text-xl">{stat.value}</div>
-                        <div className="text-foreground">{stat.label}</div>
+                        <div className="text-neutral-text">{stat.label}</div>
                       </div>
                     ))}
                   </div>
@@ -148,9 +148,9 @@ export default function AboutSection({
               )}
               {philosophy && (
                 <LazySection animation="fade-up" delay={0.4} className="mt-8">
-                  <div className="rounded-xl border bg-background p-8 shadow-sm hover:shadow-md transition-shadow">
-                    <h2 className="text-xl font-semibold text-gray-900">{philosophy.title}</h2>
-                    <p className="mt-2 text-foreground leading-relaxed">{philosophy.text}</p>
+                  <div className="rounded-xl border bg-neutral-background p-8 shadow-sm hover:shadow-md transition-shadow">
+                    <h2 className="text-xl font-semibold text-neutral-text">{philosophy.title}</h2>
+                    <p className="mt-2 text-neutral-text leading-relaxed">{philosophy.text}</p>
                   </div>
                 </LazySection>
               )}
@@ -162,15 +162,17 @@ export default function AboutSection({
                       return (
                         <div
                           key={card.id}
-                          className="rounded-xl border bg-white p-6 shadow-sm hover:shadow-md transition-shadow"
+                          className="rounded-xl border bg-neutral-surface p-6 shadow-sm hover:shadow-md transition-shadow"
                         >
                           <div
                             className={`flex h-12 w-12 items-center justify-center rounded-full ${card.iconBg}`}
                           >
                             <Icon className={`${card.iconColor} h-6 w-6`} />
                           </div>
-                          <h3 className="mt-4 text-lg font-semibold text-gray-900">{card.title}</h3>
-                          <p className="mt-2 text-sm text-foreground">{card.description}</p>
+                          <h3 className="mt-4 text-lg font-semibold text-neutral-text">
+                            {card.title}
+                          </h3>
+                          <p className="mt-2 text-sm text-neutral-text">{card.description}</p>
                         </div>
                       );
                     })}
@@ -179,7 +181,7 @@ export default function AboutSection({
               )}
               {siteConfig.features.enableAboutHeroCta && cta?.href && cta?.text && (
                 <LazySection animation="fade-up" delay={0.6}>
-                  <Button size="lg" className="bg-primary hover:bg-primary-90 group" asChild>
+                  <Button size="lg" className="bg-primary hover:bg-primary/90 group" asChild>
                     <Link href={cta.href}>
                       {cta.text}
                       <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -203,18 +205,20 @@ export default function AboutSection({
         <LazySection animation="slide-up" delay={0} className={contentOrderClass}>
           {badgeText && (
             <LazySection animation="fade-up" delay={0.2}>
-              <Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">{badgeText}</Badge>
+              <Badge variant="light" className="mb-4">
+                {badgeText}
+              </Badge>
             </LazySection>
           )}
           {heading && (
             <LazySection animation="fade-up" delay={0.3}>
-              <h1 className="text-[var(--font-heading-size)]">{heading}</h1>
+              <h1 className="text-heading">{heading}</h1>
             </LazySection>
           )}
           {paragraphs && paragraphs.length > 0 && (
             <LazySection animation="fade-up" delay={0.4}>
               {paragraphs.map(p => (
-                <p key={p.slice(0, 16)} className="text-foreground mb-6 last:mb-8">
+                <p key={p.slice(0, 16)} className="text-neutral-text mb-6 last:mb-8">
                   {p}
                 </p>
               ))}
@@ -222,7 +226,7 @@ export default function AboutSection({
           )}
           {cta?.href && cta?.text && (
             <LazySection animation="fade-up" delay={0.5}>
-              <Button size="lg" className="bg-primary hover:bg-primary-90 group" asChild>
+              <Button size="lg" className="bg-primary hover:bg-primary/90 group" asChild>
                 <Link href={cta.href}>
                   {cta.text}
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -234,9 +238,9 @@ export default function AboutSection({
         <LazySection animation="slide-up" delay={0.1} className={imageOrderClass}>
           {philosophy && (
             <LazySection animation="fade-up" delay={0.6}>
-              <div className="rounded-xl border bg-background p-8 shadow-sm hover:shadow-md transition-shadow mb-6">
-                <h2 className="text-xl font-semibold text-gray-900">{philosophy.title}</h2>
-                <p className="mt-2 text-foreground leading-relaxed">{philosophy.text}</p>
+              <div className="rounded-xl border bg-neutral-background p-8 shadow-sm hover:shadow-md transition-shadow mb-6">
+                <h2 className="text-xl font-semibold text-neutral-text">{philosophy.title}</h2>
+                <p className="mt-2 text-neutral-text leading-relaxed">{philosophy.text}</p>
               </div>
             </LazySection>
           )}
@@ -248,15 +252,15 @@ export default function AboutSection({
                   return (
                     <div
                       key={card.id}
-                      className="rounded-xl border bg-white p-6 shadow-sm hover:shadow-md transition-shadow"
+                      className="rounded-xl border bg-neutral-surface p-6 shadow-sm hover:shadow-md transition-shadow"
                     >
                       <div
                         className={`flex h-12 w-12 items-center justify-center rounded-full ${card.iconBg}`}
                       >
                         <Icon className={`${card.iconColor} h-6 w-6`} />
                       </div>
-                      <h3 className="mt-4 text-lg font-semibold text-gray-900">{card.title}</h3>
-                      <p className="mt-2 text-sm text-foreground">{card.description}</p>
+                      <h3 className="mt-4 text-lg font-semibold text-neutral-text">{card.title}</h3>
+                      <p className="mt-2 text-sm text-neutral-text">{card.description}</p>
                     </div>
                   );
                 })}

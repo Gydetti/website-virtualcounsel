@@ -29,15 +29,12 @@ export default function ServicesOverviewSection({
           </Badge>
         )}
         {heading && (
-          <h1
-            className="text-[var(--font-heading-size)] mb-4"
-            style={{ '--index': 1 } as CSSProperties}
-          >
+          <h1 className="mb-4" style={{ '--index': 1 } as CSSProperties}>
             {heading}
           </h1>
         )}
         {description && (
-          <p className="text-foreground mb-8" style={{ '--index': 2 } as CSSProperties}>
+          <p className="text-neutral-text mb-8" style={{ '--index': 2 } as CSSProperties}>
             {description}
           </p>
         )}

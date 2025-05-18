@@ -21,15 +21,12 @@ export default function ProcessSectionHome({
         className="stagger-container mx-auto max-w-6xl text-center"
         style={{ '--stagger-delay': '0.1s' } as CSSProperties}
       >
-        <Badge
-          className="mb-4 bg-blue-100 text-primary hover:bg-blue-200"
-          style={{ '--index': 0 } as CSSProperties}
-        >
+        <Badge variant="light" className="mb-4" style={{ '--index': 0 } as CSSProperties}>
           {badgeText}
         </Badge>
         {heading && (
           <h2
-            className="mt-4 text-[var(--font-heading-size)] font-bold tracking-tight text-slate-900 md:text-[var(--font-heading-size-md)]"
+            className="mt-4 font-bold tracking-tight text-neutral-text"
             style={{ '--index': 1 } as CSSProperties}
           >
             {heading}
@@ -37,7 +34,7 @@ export default function ProcessSectionHome({
         )}
         {subtitle && (
           <p
-            className="mt-6 text-lg leading-relaxed text-slate-600"
+            className="mt-6 text-lg leading-relaxed text-neutral-text"
             style={{ '--index': 2 } as CSSProperties}
           >
             {subtitle}
@@ -52,17 +49,17 @@ export default function ProcessSectionHome({
       >
         {steps.map((step, i) => (
           <div key={step.id} className="relative" style={{ '--index': i } as CSSProperties}>
-            <div className="relative z-10 h-full flex flex-col items-center rounded-xl border border-slate-200 bg-white p-4 text-center shadow-sm transition-all hover:shadow-md card-equal-height">
+            <div className="relative z-10 h-full flex flex-col items-center rounded-xl border border-divider bg-neutral-surface p-4 text-center shadow-sm transition-all hover:shadow-md card-equal-height">
               <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary text-white text-lg font-semibold mb-4">
                 {step.number ?? String(i + 1).padStart(2, '00')}
               </div>
               <div className="card-content flex flex-col items-center gap-4">
-                <h3 className="text-xl font-semibold text-slate-900">{step.title}</h3>
-                <p className="text-slate-600 leading-relaxed">{step.description}</p>
+                <h3 className="text-xl font-semibold text-neutral-text">{step.title}</h3>
+                <p className="text-neutral-text leading-relaxed">{step.description}</p>
               </div>
             </div>
             {i < steps.length - 1 && (
-              <div className="absolute left-1/2 top-1/2 hidden h-1 w-full -translate-y-1/2 bg-slate-200 md:block" />
+              <div className="absolute left-1/2 top-1/2 hidden h-1 w-full -translate-y-1/2 bg-neutral-divider z-0 md:block" />
             )}
           </div>
         ))}

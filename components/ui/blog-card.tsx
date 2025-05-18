@@ -41,7 +41,7 @@ export default function BlogCard({ title, excerpt, date, category, image, slug }
           <Badge variant="outline" className="text-xs font-normal">
             {category}
           </Badge>
-          <span className="text-xs text-gray-500">{date}</span>
+          <span className="text-xs text-neutral-text/500">{date}</span>
         </div>
         <CardTitle className="text-xl font-bold hover:text-primary transition-colors">
           <Link href={`/blog/${slug}`}>{title}</Link>

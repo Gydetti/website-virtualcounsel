@@ -31,8 +31,8 @@ export default function KpiSection({
     'rounded-xl',
     // Use default KPI styling except when genuinely on About page route and not embedded
     embedInAbout || !isAboutPage
-      ? 'bg-white border border border-t-4 border-t-primary'
-      : 'bg-background border border-gray-100',
+      ? 'bg-neutral-surface border border border-t-4 border-t-primary'
+      : 'bg-neutral-background border border-divider',
     'p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col items-center text-center h-full',
   ].join(' ');
 
@@ -56,7 +56,7 @@ export default function KpiSection({
               preserveValue
             />
           </div>
-          <p className="text-foreground text-sm md:text-base m-0">{stat.label}</p>
+          <p className="text-neutral-text text-sm md:text-base m-0">{stat.label}</p>
         </div>
       ))}
     </LazySection>

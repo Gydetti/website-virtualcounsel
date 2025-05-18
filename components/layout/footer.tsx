@@ -84,7 +84,7 @@ export default function Footer() {
                   href={siteConfig.social.facebook ?? ''}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white hover:text-brand-light transition-colors bg-white/10 p-2 rounded-full"
+                  className="text-white hover:text-brand-light transition-colors bg-neutral-surface/10 p-2 rounded-full"
                   aria-label="Facebook"
                 >
                   <Facebook className="h-5 w-5" />
@@ -93,7 +93,7 @@ export default function Footer() {
                   href={siteConfig.social.instagram ?? ''}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white hover:text-brand-light transition-colors bg-white/10 p-2 rounded-full"
+                  className="text-white hover:text-brand-light transition-colors bg-neutral-surface/10 p-2 rounded-full"
                   aria-label="Instagram"
                 >
                   <Instagram className="h-5 w-5" />
@@ -102,7 +102,7 @@ export default function Footer() {
                   href={siteConfig.social.twitter ?? ''}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white hover:text-brand-light transition-colors bg-white/10 p-2 rounded-full"
+                  className="text-white hover:text-brand-light transition-colors bg-neutral-surface/10 p-2 rounded-full"
                   aria-label="Twitter"
                 >
                   <Twitter className="h-5 w-5" />
@@ -111,7 +111,7 @@ export default function Footer() {
                   href={siteConfig.social.linkedin ?? ''}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white hover:text-brand-light transition-colors bg-white/10 p-2 rounded-full"
+                  className="text-white hover:text-brand-light transition-colors bg-neutral-surface/10 p-2 rounded-full"
                   aria-label="LinkedIn"
                 >
                   <Linkedin className="h-5 w-5" />
@@ -130,7 +130,7 @@ export default function Footer() {
                       rel={link.external ? 'noopener noreferrer' : undefined}
                       className="text-white hover:text-brand-light transition-colors inline-flex items-center group"
                     >
-                      <span className="w-0 h-0.5 bg-white transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
+                      <span className="w-0 h-0.5 bg-neutral-surface transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
                       {link.text}
                     </Link>
                   </li>
@@ -148,7 +148,7 @@ export default function Footer() {
                       href="/services/web-design-development"
                       className="text-white hover:text-brand-light transition-colors inline-flex items-center group"
                     >
-                      <span className="w-0 h-0.5 bg-white transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
+                      <span className="w-0 h-0.5 bg-neutral-surface transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
                       Web design & development
                     </Link>
                   </li>
@@ -157,7 +157,7 @@ export default function Footer() {
                       href="/services/digital-marketing-strategy"
                       className="text-white hover:text-brand-light transition-colors inline-flex items-center group"
                     >
-                      <span className="w-0 h-0.5 bg-white transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
+                      <span className="w-0 h-0.5 bg-neutral-surface transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
                       Digital marketing strategy
                     </Link>
                   </li>
@@ -166,7 +166,7 @@ export default function Footer() {
                       href="/services/business-automation"
                       className="text-white hover:text-brand-light transition-colors inline-flex items-center group"
                     >
-                      <span className="w-0 h-0.5 bg-white transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
+                      <span className="w-0 h-0.5 bg-neutral-surface transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
                       Business automation
                     </Link>
                   </li>
@@ -175,7 +175,7 @@ export default function Footer() {
                       href="/services/content-creation"
                       className="text-white hover:text-brand-light transition-colors inline-flex items-center group"
                     >
-                      <span className="w-0 h-0.5 bg-white transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
+                      <span className="w-0 h-0.5 bg-neutral-surface transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
                       Content creation
                     </Link>
                   </li>
@@ -184,7 +184,7 @@ export default function Footer() {
                       href="/services/seo-optimization"
                       className="text-white hover:text-brand-light transition-colors inline-flex items-center group"
                     >
-                      <span className="w-0 h-0.5 bg-white transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
+                      <span className="w-0 h-0.5 bg-neutral-surface transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
                       SEO optimization
                     </Link>
                   </li>
@@ -233,7 +233,10 @@ export default function Footer() {
                   </address>
                 </li>
               </ul>
-              <Button asChild className="mt-4 bg-white text-brand-dark hover:bg-gray-200 group">
+              <Button
+                asChild
+                className="mt-4 bg-neutral-surface text-brand-dark hover:bg-neutral-background/200 group"
+              >
                 <Link href="/contact">
                   Contact us
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -242,8 +245,8 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-200 text-sm">
+          <div className="border-t border-divider/700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+            <p className="text-neutral-text/200 text-sm">
               © {currentYear} {siteConfig.site.name}. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
@@ -251,16 +254,22 @@ export default function Footer() {
                 href="https://groeienmetgydo.nl"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center text-gray-100 hover:text-white text-sm"
+                className="inline-flex items-center text-neutral-text/100 hover:text-white text-sm"
               >
                 <span>Website gemaakt met 🍌 door Groeien met Gydo</span>
                 <ExternalLink className="ml-1 h-4 w-4" />
               </Link>
 
-              <Link href="/privacy-policy" className="text-gray-200 hover:text-white text-sm">
+              <Link
+                href="/privacy-policy"
+                className="text-neutral-text/200 hover:text-white text-sm"
+              >
                 Privacy policy
               </Link>
-              <Link href="/terms-of-service" className="text-gray-200 hover:text-white text-sm">
+              <Link
+                href="/terms-of-service"
+                className="text-neutral-text/200 hover:text-white text-sm"
+              >
                 Terms of service
               </Link>
             </div>

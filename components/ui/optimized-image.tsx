@@ -62,7 +62,7 @@ export default function OptimizedImage({
     <div className={cn('relative overflow-hidden', className)}>
       {isLoading && (
         <div
-          className="absolute inset-0 bg-gray-200 animate-pulse"
+          className="absolute inset-0 bg-neutral-background/200 animate-pulse"
           style={{ zIndex: 1 }}
           aria-hidden="true"
         />

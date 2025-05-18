@@ -22,7 +22,7 @@ export default function TestimonialCard({
     ? 'transition-all hover:shadow-xl'
     : '';
   return (
-    <Card className={`border-none bg-white flex flex-col h-full shadow-lg ${microClass}`}>
+    <Card className={`border-none bg-neutral-surface flex flex-col h-full shadow-lg ${microClass}`}>
       <CardContent className="p-8 flex flex-col flex-1">
         {rating > 0 && (
           <div className="flex items-center mb-6">
@@ -31,7 +31,7 @@ export default function TestimonialCard({
                 key={star}
                 aria-hidden="true"
                 className={`h-5 w-5 ${
-                  star <= rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'
+                  star <= rating ? 'text-yellow-400 fill-yellow-400' : 'text-neutral-text/300'
                 }`}
               />
             ))}
@@ -45,11 +45,11 @@ export default function TestimonialCard({
               alt={name}
               width={60}
               height={60}
-              className="rounded-full border-2 border-gray-100"
+              className="rounded-full border-2 border-divider"
             />
           </div>
           <div>
-            <h4 className="text-gray-900">{name}</h4>
+            <h4 className="text-neutral-text">{name}</h4>
             <p className="text-foreground">{title}</p>
           </div>
         </div>

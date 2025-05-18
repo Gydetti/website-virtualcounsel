@@ -58,7 +58,7 @@ export default function SolutionVisionSection({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
-        className="mx-auto max-w-4xl bg-white/20 backdrop-blur-lg rounded-xl shadow-2xl p-6 md:p-12 space-y-8"
+        className="mx-auto max-w-4xl bg-neutral-surface/20 backdrop-blur-lg rounded-xl shadow-2xl p-6 md:p-12 space-y-8"
       >
         <h3 className="font-semibold text-lg text-center mt-0 mb-0">Imagine having:</h3>
         {benefits && benefits.length > 0 && (
@@ -83,7 +83,7 @@ export default function SolutionVisionSection({
           variants={textVariants}
           className="mt-16 max-w-4xl mx-auto bg-[rgba(var(--accent-rgb),0.1)] p-6 rounded-lg"
         >
-          <p className="text-gray-900 font-medium mb-2">{calloutText}</p>
+          <p className="text-neutral-text font-medium mb-2">{calloutText}</p>
           {calloutCta?.href && calloutCta?.text && (
             <a href={calloutCta.href} className="text-secondary font-semibold">
               {calloutCta.text} →

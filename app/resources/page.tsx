@@ -23,7 +23,7 @@ export default async function ResourcesIndexPage() {
     return (
       <section className="py-12">
         <div className="container mx-auto px-4 text-center">
-          <p className="text-xl text-red-600">No resources available at the moment.</p>
+          <p className="text-xl text-feedback-error">No resources available at the moment.</p>
         </div>
       </section>
     );

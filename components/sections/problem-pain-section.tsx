@@ -35,9 +35,7 @@ export default function ProblemPainSection({
                   <span className="font-medium">{badgeText}</span>
                 </div>
               )}
-              {heading && (
-                <h2 className="text-[var(--font-subheading-size)] text-white">{heading}</h2>
-              )}
+              {heading && <h2 className=" text-white">{heading}</h2>}
               {description && (
                 <p className="max-w-[600px] text-muted-foreground md:text-xl">{description}</p>
               )}

@@ -44,11 +44,11 @@ export default async function BlogPage() {
       <Section className="relative overflow-hidden bg-gradient-to-r from-blue-100 via-transparent to-transparent z-10">
         <LazySection>
           <div className="text-center mb-16">
-            <Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
+            <Badge className="mb-4 bg-brand-light text-primary hover:bg-brand-light/90">
               Short label introducing blog section
             </Badge>
-            <h1 className="text-[var(--font-heading-size)]">Blog page heading</h1>
-            <p className="text-gray-700 max-w-3xl mx-auto">
+            <h1 className="">Blog page heading</h1>
+            <p className="text-neutral-text max-w-3xl mx-auto">
               Brief description explaining content focus and reader benefits.
             </p>
           </div>
@@ -76,11 +76,11 @@ export default async function BlogPage() {
                           {featuredPost.title}
                         </Link>
                       </CardTitle>
-                      <CardDescription className="text-gray-600 mb-6 text-lg break-words">
+                      <CardDescription className="text-neutral-text/600 mb-6 text-lg break-words">
                         {featuredPost.excerpt}
                       </CardDescription>
                       <div className="flex items-center justify-between mt-auto">
-                        <span className="text-sm text-gray-500">
+                        <span className="text-sm text-neutral-text/500">
                           {new Date(featuredPost.date).toLocaleDateString('en-US', {
                             year: 'numeric',
                             month: 'long',
@@ -104,7 +104,7 @@ export default async function BlogPage() {
       </Section>
 
       <LazySection>
-        <Section className="bg-gray-50">
+        <Section className="bg-neutral-background">
           <h2 className="text-3xl font-bold mb-12">Section heading for regular posts</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {regularPosts.map((post, index) => (
@@ -123,7 +123,7 @@ export default async function BlogPage() {
                       <Badge variant="outline" className="text-xs font-normal">
                         {post.category}
                       </Badge>
-                      <span className="text-xs text-gray-500">
+                      <span className="text-xs text-neutral-text/500">
                         {new Date(post.date).toLocaleDateString('en-US', {
                           year: 'numeric',
                           month: 'long',
@@ -136,7 +136,7 @@ export default async function BlogPage() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <CardDescription className="text-gray-600 break-words">
+                    <CardDescription className="text-neutral-text/600 break-words">
                       {post.excerpt}
                     </CardDescription>
                   </CardContent>

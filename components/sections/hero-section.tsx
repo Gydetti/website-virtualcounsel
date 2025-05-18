@@ -64,7 +64,7 @@ export default function HeroSection({
     <section
       id="hero-section"
       aria-labelledby="hero-section-heading"
-      className="hero-pattern relative overflow-hidden bg-gradient-to-r from-brand-primary/10 to-white md:min-h-[880px] flex"
+      className="hero-pattern relative overflow-hidden bg-gradient-to-r from-brand-primary/10 to-brand-hero-background md:min-h-[880px] flex"
     >
       {/* Background pattern */}
       <div className="absolute inset-0 bg-grid-pattern opacity-10" />
@@ -91,10 +91,7 @@ export default function HeroSection({
             )}
             {headline && (
               <LazySection delay={0.1}>
-                <h1
-                  id="hero-section-heading"
-                  className="text-[var(--font-heading-size)] lg:text-[var(--font-heading-size-lg)] font-bold leading-tight text-balance"
-                >
+                <h1 id="hero-section-heading" className="font-bold leading-tight text-balance">
                   <span className="block">{headline}</span>
                   <HeroTyping typingWords={typingWords} />
                 </h1>
@@ -102,7 +99,7 @@ export default function HeroSection({
             )}
             {subheadline && (
               <LazySection delay={0.2}>
-                <p className="text-foreground max-w-lg">{subheadline}</p>
+                <p className="text-neutral-text max-w-lg">{subheadline}</p>
               </LazySection>
             )}
             {(primaryCta?.text || secondaryCta?.text) && (
@@ -141,7 +138,7 @@ export default function HeroSection({
                     {[1, 2, 3, 4].map(i => (
                       <div
                         key={i}
-                        className="inline-block h-8 w-8 rounded-full ring-2 ring-white overflow-hidden bg-gray-200"
+                        className="inline-block h-8 w-8 rounded-full ring-2 ring-white overflow-hidden bg-neutral-background/200"
                       >
                         <Image
                           src="/placeholder.svg?height=32&width=32"
@@ -153,7 +150,7 @@ export default function HeroSection({
                       </div>
                     ))}
                   </div>
-                  <div className="text-foreground">
+                  <div className="text-neutral-text">
                     <span className="font-medium">100+</span> statistic that helps build authority
                   </div>
                 </div>
@@ -181,12 +178,9 @@ export default function HeroSection({
                 <p className="text-white font-medium"> </p>
               </div>
               {showOverlayStat && overlayTitle && overlayValue && (
-                <div
-                  className="hidden md:block absolute -bottom-6 -left-6 h-24 w-2/3 rounded-xl p-4 shadow-lg z-10"
-                  style={{ backgroundColor: siteConfig.theme.colors.secondary }}
-                >
+                <div className="hidden md:block absolute -bottom-6 -left-6 h-24 w-2/3 rounded-xl p-4 shadow-lg z-10 bg-asset-band">
                   <div className="flex items-center space-x-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-neutral-surface">
                       <svg
                         aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg"
@@ -198,7 +192,6 @@ export default function HeroSection({
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        style={{ color: siteConfig.theme.colors.secondary }}
                       >
                         <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
                       </svg>

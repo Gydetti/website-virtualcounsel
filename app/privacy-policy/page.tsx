@@ -19,10 +19,10 @@ export default function PrivacyPolicyPage() {
     <section className="py-16 md:py-24">
       <div className="container-wide">
         <div className="max-w-4xl mx-auto">
-          <Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
+          <Badge className="mb-4 bg-brand-light text-primary hover:bg-brand-light/90">
             Section label for legal page
           </Badge>
-          <h1 className="text-[var(--font-heading-size)]">Section title for privacy policy page</h1>
+          <h1 className="">Section title for privacy policy page</h1>
 
           <div className="prose prose-lg max-w-none">
             <p>Last updated date placeholder (e.g. 'January 1, 2025')</p>

@@ -69,7 +69,9 @@ export default function ValuePropSection({
                 <Icon className="h-6 w-6" />
               </div>
               <h3 className="text-xl font-bold">{benefit.title}</h3>
-              <p className="text-gray-500 dark:text-gray-400">{benefit.description}</p>
+              <p className="text-neutral-text/500 dark:text-neutral-text/400">
+                {benefit.description}
+              </p>
             </div>
           );
         })}

@@ -1,5 +1,6 @@
 import type { Config } from 'tailwindcss';
 import plugin from 'tailwindcss/plugin';
+import { semanticColors, semanticGradients } from './theme/colors';
 
 const config = {
   darkMode: ['class'],
@@ -21,11 +22,10 @@ const config = {
     },
     extend: {
       colors: {
+        ...semanticColors,
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
         primary: {
           DEFAULT: 'var(--primary)',
           foreground: 'var(--primary-foreground)',
@@ -53,12 +53,6 @@ const config = {
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
-        },
-        brand: {
-          primary: 'hsl(var(--brand-primary))',
-          secondary: 'hsl(var(--brand-secondary))',
-          dark: 'hsl(var(--brand-dark))',
-          light: 'hsl(var(--brand-light))',
         },
       },
       borderRadius: {
@@ -99,6 +93,7 @@ const config = {
       },
       backgroundImage: {
         'concrete-texture': "url('/images/textures/concrete_texture_overlay_cleaned.png')",
+        ...semanticGradients,
       },
     },
   },

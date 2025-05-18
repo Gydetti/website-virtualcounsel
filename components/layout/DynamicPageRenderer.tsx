@@ -282,7 +282,7 @@ const DynamicPageRenderer: FC<DynamicPageRendererProps> = async ({
         `Error: Unknown section type "${section.sectionType}" for id "${section.id}" on page "${pagePath}". Check component map.`
       );
       elements.push(
-        <div key={section.id} className="py-8 text-center text-red-500">
+        <div key={section.id} className="py-8 text-center text-feedback-error">
           Unknown section type: {section.sectionType} (ID: {section.id})
         </div>
       );
@@ -293,16 +293,12 @@ const DynamicPageRenderer: FC<DynamicPageRendererProps> = async ({
     const sectionDelay = Math.min(rawDelay, maxDelay);
     // HeroSection: render directly without wrapping in LazySection to keep background static
     if (section.sectionType === 'HeroSection') {
-      elements.push(
-        <Component key={section.id} {...section.data} />
-      );
+      elements.push(<Component key={section.id} {...section.data} />);
       continue;
     }
     // AboutSection on About page: render directly so background is static and internal animations handle content
     if (pagePath === '/about' && section.sectionType === 'AboutSection') {
-      elements.push(
-        <Component key={section.id} variant={section.variant} {...section.data} />
-      );
+      elements.push(<Component key={section.id} variant={section.variant} {...section.data} />);
       continue;
     }
     // CSS-only sections: wrap with LazySection animation="none" for stagger-trigger

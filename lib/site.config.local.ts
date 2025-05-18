@@ -37,6 +37,7 @@ export const siteConfig: SiteConfigSchema = {
       header: '#1F1F1F', // <--- Header/title color (dark black)
       body: '#2B2A33', // <--- Body text color (black-dark gray)
       lightGrey: '#EFEFF0', // <--- Light grey for backgrounds, cards, etc.
+      heroBackground: '#F5F9FF', // <--- Default hero background (corresponds to brand-hero-background)
     },
     logo: {
       src: '/images/placeholders/png-Logo.webp', // <--- Path to site logo

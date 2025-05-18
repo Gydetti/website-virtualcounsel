@@ -47,8 +47,8 @@ export default function Header() {
         className={cn(
           'overflow-hidden transition-all duration-300',
           scrolled
-            ? 'bg-white shadow-sm lg:bg-white/80 lg:backdrop-blur-md py-2'
-            : 'bg-white shadow-sm lg:bg-white/80 lg:backdrop-blur-md py-4'
+            ? 'bg-neutral-surface shadow-sm lg:bg-neutral-surface/80 lg:backdrop-blur-md py-2'
+            : 'bg-neutral-surface shadow-sm lg:bg-neutral-surface/80 lg:backdrop-blur-md py-4'
         )}
       >
         <nav
@@ -73,11 +73,11 @@ export default function Header() {
                   priority
                 />
                 <div className="flex flex-col">
-                  <span className="text-lg font-semibold leading-tight text-gray-900">
+                  <span className="text-lg font-semibold leading-tight text-neutral-text">
                     {siteConfig.site.name}
                   </span>
                   {siteConfig.theme.logo.subtitle && (
-                    <span className="text-sm text-gray-500 leading-snug">
+                    <span className="text-sm text-neutral-text/500 leading-snug">
                       {siteConfig.theme.logo.subtitle}
                     </span>
                   )}
@@ -105,7 +105,7 @@ export default function Header() {
                   pathname === item.href
                     ? 'text-primary font-semibold'
                     : scrolled
-                      ? 'text-gray-900 hover:text-primary'
+                      ? 'text-neutral-text hover:text-primary'
                       : 'text-foreground hover:text-primary'
                 )}
               >
@@ -122,7 +122,7 @@ export default function Header() {
           <div className="hidden lg:flex lg:items-center lg:ml-8">
             <Button
               asChild
-              className="bg-primary hover:bg-primary-90 group text-sm h-10 px-3 min-h-0 min-w-0"
+              className="bg-primary hover:bg-primary/90 group text-sm h-10 px-3 min-h-0 min-w-0"
             >
               <Link href="/contact">
                 Main CTA button
@@ -140,7 +140,7 @@ export default function Header() {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="fixed inset-0 z-50 bg-white lg:hidden"
+            className="fixed inset-0 z-50 bg-neutral-surface lg:hidden"
           >
             <div className="flex items-center justify-between px-6 py-4 border-b">
               <Link href="/" className="-m-1.5 p-1.5" onClick={() => setMobileMenuOpen(false)}>
@@ -155,11 +155,11 @@ export default function Header() {
                     priority
                   />
                   <div className="flex flex-col">
-                    <span className="text-lg font-semibold leading-tight text-gray-900">
+                    <span className="text-lg font-semibold leading-tight text-neutral-text">
                       {siteConfig.site.name}
                     </span>
                     {siteConfig.theme.logo.subtitle && (
-                      <span className="text-sm text-gray-500 leading-snug">
+                      <span className="text-sm text-neutral-text/500 leading-snug">
                         {siteConfig.theme.logo.subtitle}
                       </span>
                     )}
@@ -183,7 +183,7 @@ export default function Header() {
                     href={item.href}
                     className={cn(
                       'block text-base font-medium hover:text-primary',
-                      pathname === item.href ? 'text-primary font-semibold' : 'text-gray-900'
+                      pathname === item.href ? 'text-primary font-semibold' : 'text-neutral-text'
                     )}
                     onClick={() => setMobileMenuOpen(false)}
                   >
@@ -192,7 +192,7 @@ export default function Header() {
                 ))}
               </div>
               <div className="mt-4">
-                <Button asChild className="w-full bg-primary hover:bg-primary-90 group">
+                <Button asChild className="w-full bg-primary hover:bg-primary/90 group">
                   <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
                     Get in touch
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />

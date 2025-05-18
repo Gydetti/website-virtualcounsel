@@ -51,7 +51,7 @@ export default function TestimonialsSection({
       <div className="relative z-10">
         <div className="text-center mb-16">
           {badgeText && <Badge className="mb-4">{badgeText}</Badge>}
-          <h2 id="testimonials-section-heading" className="text-[var(--font-subheading-size)]">
+          <h2 id="testimonials-section-heading" className="">
             {heading}
           </h2>
           <p className="section-subtitle">{subtitle}</p>
@@ -90,7 +90,7 @@ export default function TestimonialsSection({
                                 className={`h-5 w-5 ${
                                   starIndex < (item.rating || 0)
                                     ? 'text-yellow-400 fill-yellow-400'
-                                    : 'text-gray-300 fill-gray-300'
+                                    : 'text-neutral-text/300 fill-gray-300'
                                 }`}
                               />
                             ))
@@ -98,7 +98,7 @@ export default function TestimonialsSection({
                               <Star
                                 key={`${item.id}-star-${starIndex}`}
                                 aria-hidden="true"
-                                className="h-5 w-5 text-gray-300 fill-gray-300"
+                                className="h-5 w-5 text-neutral-text/300 fill-gray-300"
                               />
                             ))}
                       </div>
@@ -112,11 +112,11 @@ export default function TestimonialsSection({
                             alt={item.image.alt}
                             width={item.image.width || 60}
                             height={item.image.height || 60}
-                            className="rounded-full border-2 border-gray-100"
+                            className="rounded-full border-2 border-divider"
                           />
                         </div>
                         <div>
-                          <h3 className="text-body-base text-gray-900">{item.name}</h3>
+                          <h3 className="text-body-base text-neutral-text">{item.name}</h3>
                           <p className="text-body-base text-foreground">{item.title}</p>
                         </div>
                       </div>
@@ -134,7 +134,7 @@ export default function TestimonialsSection({
               onClick={() =>
                 setActiveIndex(prev => (prev - 1 + testimonials.length) % testimonials.length)
               }
-              className="p-2 bg-white rounded-full shadow-md hover:shadow-lg focus:outline-none"
+              className="p-2 bg-neutral-surface rounded-full shadow-md hover:shadow-lg focus:outline-none"
             >
               <ChevronLeft className="h-5 w-5 text-foreground" />
             </button>
@@ -145,7 +145,7 @@ export default function TestimonialsSection({
               type="button"
               aria-label="Next testimonial"
               onClick={() => setActiveIndex(prev => (prev + 1) % testimonials.length)}
-              className="p-2 bg-white rounded-full shadow-md hover:shadow-lg focus:outline-none"
+              className="p-2 bg-neutral-surface rounded-full shadow-md hover:shadow-lg focus:outline-none"
             >
               <ChevronRight className="h-5 w-5 text-foreground" />
             </button>
@@ -158,7 +158,7 @@ export default function TestimonialsSection({
               key={testimonial.id}
               type="button"
               className={`h-3 w-3 rounded-full transition-all min-h-0 min-w-0 ${
-                activeIndex === index ? 'bg-primary w-6' : 'bg-gray-300'
+                activeIndex === index ? 'bg-primary w-6' : 'bg-neutral-background/300'
               }`}
               onClick={() => setActiveIndex(index)}
               aria-label={`Go to testimonial ${index + 1}`}
@@ -169,7 +169,7 @@ export default function TestimonialsSection({
 
       {/* Authority Badge */}
       <div className="mt-16 flex justify-center">
-        <div className="inline-flex items-center rounded-full border border-secondary bg-white px-6 py-2 text-sm font-medium shadow-lg dark:bg-brand-dark dark:text-primary-foreground">
+        <div className="inline-flex items-center rounded-full border border-secondary bg-neutral-surface px-6 py-2 text-sm font-medium shadow-lg dark:bg-brand-dark dark:text-primary-foreground">
           <span className="mr-2 h-2 w-2 rounded-full bg-secondary dark:bg-primary-foreground" />
           Show that you are certified or an expert in your field
         </div>

@@ -51,10 +51,7 @@ export default function BlogSection({
             </Badge>
           )}
           {heading && (
-            <h2
-              className="text-[var(--font-subheading-size)]"
-              style={{ '--index': 1 } as CSSProperties}
-            >
+            <h2 className="" style={{ '--stagger-index': 1 } as CSSProperties}>
               {heading}
             </h2>
           )}
@@ -88,7 +85,7 @@ export default function BlogSection({
                     <Badge variant="outline" className="text-xs font-normal">
                       {post.category}
                     </Badge>
-                    <span className="text-xs text-gray-500">
+                    <span className="text-xs text-neutral-divider">
                       {new Date(post.date).toLocaleDateString('en-US', {
                         year: 'numeric',
                         month: 'long',
@@ -101,7 +98,7 @@ export default function BlogSection({
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-foreground">{post.excerpt}</CardDescription>
+                  <CardDescription className="text-neutral-text">{post.excerpt}</CardDescription>
                 </CardContent>
                 <CardFooter className="pt-0">
                   <Button

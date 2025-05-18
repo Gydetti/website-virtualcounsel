@@ -103,7 +103,7 @@ export default function ContactSection({ badgeText, heading, subtitle }: Contact
 			)} */}
       {/* Decorative elements */}
       {/* <div className="absolute top-0 right-0 w-96 h-96 bg-blue-50/80 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
-			<div className="absolute bottom-0 left-0 w-96 h-96 bg-primary-5 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" /> */}
+			<div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" /> */}
 
       <div className="relative z-10">
         {/* Header only: CSS-only stagger for title */}
@@ -127,7 +127,7 @@ export default function ContactSection({ badgeText, heading, subtitle }: Contact
           <LazySection animation="slide-up" delay={0.1}>
             {/* Form card */}
             <div
-              className="h-full flex flex-col bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow"
+              className="h-full flex flex-col bg-neutral-surface rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow"
               style={{ '--index': 1 } as CSSProperties}
             >
               <h3 className="mb-6">Form title prompting user to send a message</h3>
@@ -173,7 +173,7 @@ export default function ContactSection({ badgeText, heading, subtitle }: Contact
                   )}
                 </Button>
                 {submitted && (
-                  <div className="mt-4 p-4 bg-green-50 text-green-700 rounded-lg">
+                  <div className="mt-4 p-4 bg-feedback-success-bg text-feedback-success rounded-lg">
                     Thank you for your message! We'll get back to you as soon as possible.
                   </div>
                 )}

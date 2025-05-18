@@ -20,14 +20,11 @@ export default function PricingSection({
     return null;
   }
   return (
-    <Section id="pricing" className="bg-white relative overflow-hidden">
+    <Section id="pricing" className="bg-neutral-surface relative overflow-hidden">
       {/* Heading & description with CSS-only stagger */}
       <div className="stagger-container text-center mb-16">
         {heading && (
-          <h2
-            className="text-[var(--font-subheading-size)]"
-            style={{ '--index': 0 } as React.CSSProperties}
-          >
+          <h2 className="" style={{ '--index': 0 } as React.CSSProperties}>
             {heading}
           </h2>
         )}
@@ -42,7 +39,7 @@ export default function PricingSection({
         {cards.map((card: z.infer<typeof pricingCardSchema>, idx) => (
           <Card
             key={card.id}
-            className="relative flex h-full flex-col justify-between border bg-white shadow-sm transition-transform duration-300 hover:scale-105 hover:shadow-lg"
+            className="relative flex h-full flex-col justify-between border bg-neutral-surface shadow-sm transition-transform duration-300 hover:scale-105 hover:shadow-lg"
             style={{ '--index': idx + 2 } as React.CSSProperties}
           >
             {card.popular && (
@@ -58,7 +55,7 @@ export default function PricingSection({
               <ul className="space-y-3">
                 {card.features.map(feature => (
                   <li key={feature} className="flex items-start">
-                    <span className="text-green-500 mr-3 mt-1">
+                    <span className="text-feedback-success mr-3 mt-1">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"

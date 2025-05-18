@@ -51,7 +51,7 @@ export default async function ServicesPage() {
               <LazySection key={service.id} delay={index * 0.1}>
                 <Card className="overflow-hidden transition-all duration-300 hover:shadow-xl h-full flex flex-col">
                   <div className="relative h-48 w-full overflow-hidden">
-                    <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+                    <div className="absolute inset-0 flex items-center justify-center bg-neutral-background/100">
                       <IconComponent className="h-16 w-16 text-primary-40" />
                     </div>
                   </div>
@@ -60,14 +60,14 @@ export default async function ServicesPage() {
                       <IconComponent className="h-10 w-10 text-primary" />
                     </div>
                     <CardTitle className="text-xl font-bold break-words">{service.title}</CardTitle>
-                    <CardDescription className="text-gray-600 break-words">
+                    <CardDescription className="text-neutral-text/600 break-words">
                       {service.description}
                     </CardDescription>
                   </CardHeader>
                   <CardFooter className="mt-auto">
                     <Button
                       size="lg"
-                      className="w-full whitespace-normal break-words bg-primary hover:bg-primary-90"
+                      className="w-full whitespace-normal break-words bg-primary hover:bg-primary/90"
                       asChild
                     >
                       <Link href={`/services/${service.slug}`}>
@@ -83,38 +83,38 @@ export default async function ServicesPage() {
         </div>
       </Section>
 
-      <Section className="bg-gray-50">
+      <Section className="bg-neutral-background">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <LazySection animation="slide-right">
             <h2 className="text-3xl font-bold mb-6">
               Heading introducing key reasons to choose these services
             </h2>
-            <p className="text-gray-700 mb-6">
+            <p className="text-neutral-text mb-6">
               Brief description explaining the purpose of this section and how it builds trust.
             </p>
 
             <div className="space-y-4">
               <div className="flex items-start">
-                <div className="flex-shrink-0 h-6 w-6 rounded-full bg-green-100 flex items-center justify-center mr-3">
-                  <Check className="h-4 w-4 text-green-600" />
+                <div className="flex-shrink-0 h-6 w-6 rounded-full bg-feedback-success-bg flex items-center justify-center mr-3">
+                  <Check className="h-4 w-4 text-feedback-success" />
                 </div>
                 <span>Tailored solutions for your specific business needs</span>
               </div>
               <div className="flex items-start">
-                <div className="flex-shrink-0 h-6 w-6 rounded-full bg-green-100 flex items-center justify-center mr-3">
-                  <Check className="h-4 w-4 text-green-600" />
+                <div className="flex-shrink-0 h-6 w-6 rounded-full bg-feedback-success-bg flex items-center justify-center mr-3">
+                  <Check className="h-4 w-4 text-feedback-success" />
                 </div>
                 <span>Data-driven strategies that deliver measurable results</span>
               </div>
               <div className="flex items-start">
-                <div className="flex-shrink-0 h-6 w-6 rounded-full bg-green-100 flex items-center justify-center mr-3">
-                  <Check className="h-4 w-4 text-green-600" />
+                <div className="flex-shrink-0 h-6 w-6 rounded-full bg-feedback-success-bg flex items-center justify-center mr-3">
+                  <Check className="h-4 w-4 text-feedback-success" />
                 </div>
                 <span>Transparent communication throughout the process</span>
               </div>
               <div className="flex items-start">
-                <div className="flex-shrink-0 h-6 w-6 rounded-full bg-green-100 flex items-center justify-center mr-3">
-                  <Check className="h-4 w-4 text-green-600" />
+                <div className="flex-shrink-0 h-6 w-6 rounded-full bg-feedback-success-bg flex items-center justify-center mr-3">
+                  <Check className="h-4 w-4 text-feedback-success" />
                 </div>
                 <span>Ongoing support and optimization</span>
               </div>

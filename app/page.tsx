@@ -26,7 +26,7 @@ export default async function Home() {
     // This should ideally not happen if config is correct.
     return (
       <div className="container py-12 text-center">
-        <p className="text-xl text-red-600">
+        <p className="text-xl text-feedback-error">
           Homepage structure is not defined in site configuration.
         </p>
         <p>

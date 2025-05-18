@@ -62,7 +62,7 @@ export default async function ResourceDetailPage({
   if (!resourceDetailPageStructure) {
     return (
       <div className="container py-12 text-center">
-        <p className="text-xl text-red-600">
+        <p className="text-xl text-feedback-error">
           Resource detail page structure is not defined in site configuration.
         </p>
       </div>

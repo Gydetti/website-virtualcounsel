@@ -48,7 +48,7 @@ export default function ResourceListSection({
       className="relative overflow-hidden bg-gradient-to-r from-brand-light via-transparent to-transparent py-12 z-10"
     >
       <div className="container mx-auto px-4">
-        <h2 className="text-[var(--font-subheading-size)] font-bold text-center mb-10">{title}</h2>
+        <h1 className="text-center mb-10">{title}</h1>
         <div className={`grid ${gridCols} gap-8`}>
           {resources.map(resource => (
             <article

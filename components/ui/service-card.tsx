@@ -53,7 +53,7 @@ export default function ServiceCard({
         <ul className="space-y-3">
           {features.map(feature => (
             <li key={feature} className="flex items-start">
-              <span className="text-green-500 mr-3 flex-shrink-0 mt-0.5">
+              <span className="text-feedback-success mr-3 flex-shrink-0 mt-0.5">
                 <svg
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"

@@ -83,13 +83,11 @@ export default function ContactPageClient() {
         <LazySection>
           <div className="container-wide">
             <div className="text-center max-w-3xl mx-auto">
-              <Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
+              <Badge className="mb-4 bg-brand-light text-primary hover:bg-brand-light/90">
                 Contact section
               </Badge>
-              <h1 className="text-[var(--font-heading-size)]">
-                Section heading inviting users to reach out
-              </h1>
-              <p className="text-gray-700 mb-8 whitespace-normal break-words">
+              <h1 className="">Section heading inviting users to reach out</h1>
+              <p className="text-neutral-text mb-8 whitespace-normal break-words">
                 Brief subtitle explaining how visitors can reach out and what to expect
               </p>
             </div>
@@ -102,7 +100,7 @@ export default function ContactPageClient() {
           <div className="container-wide">
             <div className="grid lg:grid-cols-3 gap-12 items-stretch">
               <div className="lg:col-span-2">
-                <div className="bg-white rounded-xl shadow-lg p-8">
+                <div className="bg-neutral-surface rounded-xl shadow-lg p-8">
                   <h2 className="text-2xl font-bold mb-6">
                     Form heading prompting message submission
                   </h2>
@@ -113,9 +111,10 @@ export default function ContactPageClient() {
                       <div key={field.name}>
                         <label
                           htmlFor={field.name}
-                          className="block text-sm font-medium text-gray-700 mb-1"
+                          className="block text-sm font-medium text-neutral-text mb-1"
                         >
-                          {field.label} {field.required && <span className="text-red-500">*</span>}
+                          {field.label}{' '}
+                          {field.required && <span className="text-feedback-error">*</span>}
                         </label>
                         {field.type === 'textarea' ? (
                           <Textarea
@@ -165,17 +164,19 @@ export default function ContactPageClient() {
 
                     <Button
                       type="submit"
-                      className="w-full bg-primary hover:bg-primary-90 text-white py-3 rounded-lg"
+                      className="w-full bg-primary hover:bg-primary/90 text-white py-3 rounded-lg"
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? 'Sending...' : submitted ? 'Message Sent!' : 'Send Message'}
                     </Button>
 
                     {error && (
-                      <div className="mt-4 p-4 bg-red-50 text-red-700 rounded-lg">{error}</div>
+                      <div className="mt-4 p-4 bg-feedback-error-bg text-feedback-error rounded-lg">
+                        {error}
+                      </div>
                     )}
                     {submitted && (
-                      <div className="mt-4 p-4 bg-green-50 text-green-700 rounded-lg">
+                      <div className="mt-4 p-4 bg-feedback-success-bg text-feedback-success rounded-lg">
                         Thank you for your message! We'll get back to you as soon as possible.
                       </div>
                     )}
@@ -219,28 +220,28 @@ export default function ContactPageClient() {
                     <div className="mt-auto flex space-x-4">
                       <a
                         href="/"
-                        className="h-10 w-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors"
+                        className="h-10 w-10 rounded-full bg-neutral-surface/20 flex items-center justify-center hover:bg-neutral-surface/30 transition-colors"
                         aria-label="Facebook"
                       >
                         <Facebook className="h-5 w-5 text-white" />
                       </a>
                       <a
                         href="/"
-                        className="h-10 w-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors"
+                        className="h-10 w-10 rounded-full bg-neutral-surface/20 flex items-center justify-center hover:bg-neutral-surface/30 transition-colors"
                         aria-label="Twitter"
                       >
                         <Twitter className="h-5 w-5 text-white" />
                       </a>
                       <a
                         href="/"
-                        className="h-10 w-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors"
+                        className="h-10 w-10 rounded-full bg-neutral-surface/20 flex items-center justify-center hover:bg-neutral-surface/30 transition-colors"
                         aria-label="Instagram"
                       >
                         <Instagram className="h-5 w-5 text-white" />
                       </a>
                       <a
                         href="/"
-                        className="h-10 w-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors"
+                        className="h-10 w-10 rounded-full bg-neutral-surface/20 flex items-center justify-center hover:bg-neutral-surface/30 transition-colors"
                         aria-label="LinkedIn"
                       >
                         <Linkedin className="h-5 w-5 text-white" />

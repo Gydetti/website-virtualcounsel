@@ -25,9 +25,7 @@ const FormBlock: FC<FormBlockProps> = ({ config, title, description }) => {
   return (
     <section className="form-block py-8">
       <div className="container mx-auto">
-        {title && (
-          <h2 className="text-[var(--font-subheading-size)] font-semibold mb-4">{title}</h2>
-        )}
+        {title && <h2 className=" font-semibold mb-4">{title}</h2>}
         {description && <p className="mb-6">{description}</p>}
         {config.embedCode ? (
           <div

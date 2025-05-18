@@ -61,11 +61,7 @@ export default function ServicesSection({
           <Badge className="mb-4" style={{ '--index': 0 } as CSSProperties}>
             {badgeText || 'Our Services'}
           </Badge>
-          <h2
-            id="services-section-heading"
-            className="text-[var(--font-subheading-size)]"
-            style={{ '--index': 1 } as CSSProperties}
-          >
+          <h2 id="services-section-heading" className="" style={{ '--index': 1 } as CSSProperties}>
             {heading}
           </h2>
           <p className="section-subtitle" style={{ '--index': 2 } as CSSProperties}>
@@ -110,7 +106,7 @@ export default function ServicesSection({
                   <ul className="space-y-3">
                     {service.features?.map(feature => (
                       <li key={feature} className="flex items-start">
-                        <span className="text-green-500 mr-3 flex-shrink-0 mt-0.5">
+                        <span className="text-feedback-success mr-3 flex-shrink-0 mt-0.5">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
@@ -140,7 +136,7 @@ export default function ServicesSection({
                     className={`group w-full whitespace-normal break-words shadow-none hover:shadow-none hover:scale-100 ${
                       service.popular
                         ? '' // Rely on default variant's hover brightness
-                        : 'bg-white border border-primary text-primary hover:bg-primary hover:text-white'
+                        : 'bg-neutral-surface border border-primary text-primary hover:bg-primary hover:text-white'
                     }`}
                     asChild
                   >

@@ -18,12 +18,13 @@ const buttonVariants = cva(
         destructive:
           'bg-destructive text-destructive-foreground shadow-lg hover:shadow-xl transition-shadow duration-200 hover:bg-destructive-90',
         outline:
-          'border border-input bg-background shadow-lg hover:shadow-xl transition-shadow duration-200 hover:bg-accent hover:text-accent-foreground',
+          'border border-input bg-neutral-background shadow-lg hover:shadow-xl transition-shadow duration-200 hover:bg-accent hover:text-accent-foreground',
         secondary:
           'bg-[var(--secondary)] text-secondary-foreground shadow-lg hover:shadow-xl transition-shadow duration-200 hover:bg-[rgba(var(--secondary-rgb),0.8)]',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
-        white: 'bg-white text-gray-900 shadow-lg hover:bg-lightGrey transition-shadow duration-200',
+        white:
+          'bg-neutral-surface text-neutral-text shadow-lg hover:bg-neutral-surface/90 transition-shadow duration-200',
         spark:
           'bg-primary text-primary-foreground shadow-lg hover:shadow-xl hover:bg-primary hover:brightness-110 transition-shadow duration-200',
       },

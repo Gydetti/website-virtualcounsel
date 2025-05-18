@@ -56,9 +56,7 @@ export default function ResourceDetailSection({ resource }: ResourceDetailSectio
           {/* Hero Items: sequential fade-up animations */}
           <div className="text-center md:text-left">
             <LazySection animation="fade-up" delay={0.1}>
-              <h1 className="text-[var(--font-heading-size)] lg:text-[var(--font-heading-size-lg)] mb-4 text-balance">
-                {resource.title}
-              </h1>
+              <h1 className=" mb-4 text-balance">{resource.title}</h1>
             </LazySection>
             {resource.subtitle && (
               <LazySection animation="fade-up" delay={0.2}>
@@ -68,7 +66,9 @@ export default function ResourceDetailSection({ resource }: ResourceDetailSectio
             {/* Key benefits/learnings section */}
             <LazySection animation="fade-up" delay={0.3}>
               <div className="mb-8">
-                <h3 className="text-xl font-semibold mb-3 text-gray-800">What you'll gain:</h3>
+                <h3 className="text-xl font-semibold mb-3 text-neutral-text/800">
+                  What you'll gain:
+                </h3>
                 <ul className="list-none space-y-2 text-left text-foreground">
                   <li className="flex items-start">
                     <svg
@@ -136,7 +136,7 @@ export default function ResourceDetailSection({ resource }: ResourceDetailSectio
               </div>
             </LazySection>
             <LazySection animation="fade-up" delay={0.5}>
-              <Card className="relative z-10 w-full max-w-md bg-white shadow-xl p-0 rounded-xl">
+              <Card className="relative z-10 w-full max-w-md bg-neutral-surface shadow-xl p-0 rounded-xl">
                 <CardHeader className="text-center pb-4">
                   <CardTitle className="text-2xl font-semibold">
                     Download Your Free E-Book

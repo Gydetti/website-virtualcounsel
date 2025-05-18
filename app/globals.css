@@ -139,10 +139,10 @@
     @apply border-border;
   }
   html {
-    @apply bg-background;
+    @apply bg-neutral-background;
   }
   body {
-    @apply bg-transparent text-foreground overflow-x-hidden leading-relaxed;
+    @apply bg-transparent text-neutral-text overflow-x-hidden leading-relaxed;
     font-feature-settings:
       'rlig' 1,
       'calt' 1;

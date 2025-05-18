@@ -92,10 +92,7 @@ export default function HeroSection({
             )}
             {headline && (
               <LazySection animation="fade-up" delay={0.3}>
-                <h1
-                  id="hero-section-heading"
-                  className="text-[var(--font-heading-size)] lg:text-[var(--font-heading-size-lg)] font-bold leading-tight text-balance"
-                >
+                <h1 id="hero-section-heading" className="font-bold leading-tight text-balance">
                   <span className="block">{headline}</span>
                   <HeroTyping typingWords={typingWords} />
                 </h1>
@@ -142,7 +139,7 @@ export default function HeroSection({
                     {[1, 2, 3, 4].map(i => (
                       <div
                         key={i}
-                        className="inline-block h-8 w-8 rounded-full ring-2 ring-white overflow-hidden bg-gray-200"
+                        className="inline-block h-8 w-8 rounded-full ring-2 ring-white overflow-hidden bg-neutral-background/200"
                       >
                         <Image
                           src="/placeholder.svg?height=32&width=32"
@@ -188,7 +185,7 @@ export default function HeroSection({
                   style={{ backgroundColor: siteConfig.theme.colors.secondary }}
                 >
                   <div className="flex items-center space-x-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-neutral-surface">
                       <svg
                         aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg"

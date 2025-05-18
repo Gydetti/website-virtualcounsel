@@ -41,7 +41,7 @@ export default function AboutSocialProofSection({
           {socialProof.map((item, idx) => (
             <div
               key={item.id}
-              className="p-6 bg-white rounded-lg shadow hover:shadow-md transition-shadow"
+              className="p-6 bg-neutral-surface rounded-lg shadow hover:shadow-md transition-shadow"
               style={{ '--index': 3 + idx } as CSSProperties}
             >
               {item.image?.src && (
@@ -56,8 +56,8 @@ export default function AboutSocialProofSection({
                 </div>
               )}
               <p className="italic text-foreground mb-4">"{item.quote}"</p>
-              <div className="font-semibold text-gray-900">{item.name}</div>
-              {item.title && <div className="text-gray-500 text-sm">{item.title}</div>}
+              <div className="font-semibold text-neutral-text">{item.name}</div>
+              {item.title && <div className="text-neutral-text/500 text-sm">{item.title}</div>}
             </div>
           ))}
         </div>

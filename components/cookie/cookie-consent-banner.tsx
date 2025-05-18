@@ -35,7 +35,7 @@ export default function CookieConsentBanner() {
         className="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6"
       >
         <div className="mx-auto max-w-7xl">
-          <div className="bg-white rounded-lg shadow-lg border border overflow-hidden">
+          <div className="bg-neutral-surface rounded-lg shadow-lg border border overflow-hidden">
             {!showDetails ? (
               <div className="p-6">
                 <div className="flex items-start justify-between mb-4">
@@ -89,7 +89,7 @@ export default function CookieConsentBanner() {
                     <div className="flex items-center justify-between">
                       <div>
                         <h4 className="mb-1">Essential cookies</h4>
-                        <p className="text-caption text-gray-500">
+                        <p className="text-caption text-neutral-text/500">
                           These cookies are necessary for the website to function and cannot be
                           switched off.
                         </p>
@@ -101,7 +101,7 @@ export default function CookieConsentBanner() {
                     <div className="flex items-center justify-between">
                       <div>
                         <h4 className="mb-1">Analytics cookies</h4>
-                        <p className="text-caption text-gray-500">
+                        <p className="text-caption text-neutral-text/500">
                           These cookies allow us to count visits and traffic sources so we can
                           measure and improve the performance of our site.
                         </p>
@@ -116,7 +116,7 @@ export default function CookieConsentBanner() {
                     <div className="flex items-center justify-between">
                       <div>
                         <h4 className="mb-1">Marketing cookies</h4>
-                        <p className="text-caption text-gray-500">
+                        <p className="text-caption text-neutral-text/500">
                           These cookies may be set through our site by our advertising partners to
                           build a profile of your interests.
                         </p>
@@ -131,7 +131,7 @@ export default function CookieConsentBanner() {
                     <div className="flex items-center justify-between">
                       <div>
                         <h4 className="mb-1">Preference cookies</h4>
-                        <p className="text-caption text-gray-500">
+                        <p className="text-caption text-neutral-text/500">
                           These cookies enable personalized features and functionality on our
                           website.
                         </p>

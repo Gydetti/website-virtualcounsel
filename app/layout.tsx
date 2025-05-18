@@ -112,6 +112,8 @@ function getThemeCssVars(theme: typeof siteConfig.theme): string {
 		${theme.colors.header ? `--header: ${theme.colors.header};` : ''}
 		${theme.colors.body ? `--body: ${theme.colors.body};` : ''}
 		${theme.colors.lightGrey ? `--light-grey: ${theme.colors.lightGrey};` : ''}
+		${theme.colors.heroBackground ? `--brand-hero-background: ${theme.colors.heroBackground};` : ''}
+		${theme.colors.heroBackground ? `--brand-hero-background-rgb: ${hexToRgbServer(theme.colors.heroBackground)};` : ''}
 		--white: #fff;
 		--black: #000;
 		--font-heading: ${theme.typography.headingFont};

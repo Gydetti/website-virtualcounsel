@@ -61,7 +61,7 @@ export default function Breadcrumb({
       <nav aria-label="Breadcrumb" className={containerClasses}>
         <ol className={listClasses}>
           <li className="flex items-center">
-            <Link href="/" className="text-gray-500 hover:text-primary transition-colors">
+            <Link href="/" className="text-neutral-text/500 hover:text-primary transition-colors">
               {homeElement}
             </Link>
           </li>
@@ -81,7 +81,7 @@ export default function Breadcrumb({
                   <>
                     <Link
                       href={href}
-                      className="text-gray-500 hover:text-primary transition-colors"
+                      className="text-neutral-text/500 hover:text-primary transition-colors"
                     >
                       {displayName}
                     </Link>

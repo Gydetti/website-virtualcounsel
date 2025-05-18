@@ -1,6 +1,9 @@
 # Ensure optimized images are built and staged
 npm run image-optimize
 
+# Run ESLint to enforce no hard-coded hex or Tailwind color classes
+npm run lint -- --max-warnings=0
+
 # Stage the entire public/images folder (includes blurDataURL.json)
 git add public/images
 

@@ -27,7 +27,7 @@ export default function ProcessSection({
 
       {/* Decorative elements */}
       {/* <div className="absolute top-0 left-0 w-96 h-96 bg-blue-50/80 rounded-full -translate-y-1/2 -translate-x-1/2 blur-3xl" />
-			<div className="absolute bottom-0 right-0 w-96 h-96 bg-primary-5 rounded-full translate-y-1/2 translate-x-1/2 blur-3xl" /> */}
+			<div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 rounded-full translate-y-1/2 translate-x-1/2 blur-3xl" /> */}
 
       <div className="max-w-4xl mx-auto relative z-10">
         {/* Header stagger container (CSS-only) */}
@@ -56,7 +56,7 @@ export default function ProcessSection({
         {/* Steps: animate each step sequentially on initial load */}
         <div className="relative">
           {/* Timeline line */}
-          <div className="absolute left-[40px] top-0 bottom-0 w-0.5 bg-gray-200 hidden md:block" />
+          <div className="absolute left-[40px] top-0 bottom-0 w-0.5 bg-neutral-background/200 hidden md:block" />
           <div className="space-y-16">
             {steps.map((step, index) => (
               <LazySection
@@ -70,7 +70,7 @@ export default function ProcessSection({
                     {step.number || String(index + 1).padStart(2, '0')}
                   </div>
                 </div>
-                <div className="flex-grow w-full bg-white p-8 rounded-xl shadow-md border hover:shadow-lg transition-shadow">
+                <div className="flex-grow w-full bg-neutral-surface p-8 rounded-xl shadow-md border hover:shadow-lg transition-shadow">
                   <h3 className="mb-1">{step.title}</h3>
                   {step.subtitle && (
                     <p className="text-primary font-medium mb-3">{step.subtitle}</p>

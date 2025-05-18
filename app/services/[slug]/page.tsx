@@ -145,29 +145,31 @@ export default async function ServicePage(props: ServicePageProps) {
     <>
       <Section className="bg-gradient-to-r from-blue-50 to-white">
         <div className="max-w-4xl mx-auto text-center">
-          <Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">{service.title}</Badge>
+          <Badge className="mb-4 bg-brand-light text-primary hover:bg-brand-light/90">
+            {service.title}
+          </Badge>
         </div>
       </Section>
 
-      <Section className="bg-white">
+      <Section className="bg-neutral-surface">
         <div className="grid md:grid-cols-2 gap-8 items-start">
           <div>
             <IconComponent className="h-20 w-20 text-primary mb-6" />
-            <h1 className="text-[var(--font-heading-size)] mb-4 break-words">{service.title}</h1>
-            <p className="text-gray-700 mb-8">{service.description}</p>
+            <h1 className="mb-4 break-words">{service.title}</h1>
+            <p className="text-neutral-text mb-8">{service.description}</p>
 
             <div className="space-y-4 mb-8">
               {service.features?.map(feature => (
                 <div key={feature} className="flex items-start">
-                  <div className="flex-shrink-0 h-6 w-6 rounded-full bg-green-100 flex items-center justify-center mr-3">
-                    <Check className="h-4 w-4 text-green-600" />
+                  <div className="flex-shrink-0 h-6 w-6 rounded-full bg-feedback-success-bg flex items-center justify-center mr-3">
+                    <Check className="h-4 w-4 text-feedback-success" />
                   </div>
                   <span>{feature}</span>
                 </div>
               ))}
             </div>
 
-            <Button size="lg" className="bg-primary hover:bg-primary-90" asChild>
+            <Button size="lg" className="bg-primary hover:bg-primary/90" asChild>
               <Link href="/contact">
                 Schedule a Consultation
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -176,14 +178,14 @@ export default async function ServicePage(props: ServicePageProps) {
           </div>
 
           <div className="relative h-[400px] rounded-xl overflow-hidden shadow-xl">
-            <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+            <div className="absolute inset-0 flex items-center justify-center bg-neutral-background/100">
               <IconComponent className="h-32 w-32 text-primary-30" />
             </div>
           </div>
         </div>
       </Section>
 
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-neutral-surface">
         <div className="container-wide">
           <h2 className="text-3xl font-bold mb-12 text-center">
             Key benefits section heading summarizing main outcomes
@@ -194,11 +196,11 @@ export default async function ServicePage(props: ServicePageProps) {
                 key={benefit.title}
                 className="text-center p-6 hover:shadow-lg transition-shadow"
               >
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary-10 text-primary mb-4">
+                <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
                   <span className="text-2xl">{benefit.icon}</span>
                 </div>
                 <h3 className="text-xl font-bold mb-2">{benefit.title}</h3>
-                <p className="text-gray-600">{benefit.description}</p>
+                <p className="text-neutral-text/600">{benefit.description}</p>
               </Card>
             ))}
           </div>
@@ -207,7 +209,7 @@ export default async function ServicePage(props: ServicePageProps) {
 
       <ProcessSection steps={process} />
 
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-neutral-surface">
         <div className="container-wide">
           <h2 className="text-3xl font-bold mb-12 text-center">
             Section heading for service-specific questions
@@ -218,7 +220,7 @@ export default async function ServicePage(props: ServicePageProps) {
                 <Card key={item.question} className="overflow-hidden">
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold mb-2">{item.question}</h3>
-                    <p className="text-gray-600">{item.answer}</p>
+                    <p className="text-neutral-text/600">{item.answer}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -227,7 +229,7 @@ export default async function ServicePage(props: ServicePageProps) {
         </div>
       </section>
 
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-neutral-background">
         <div className="container-wide">
           <h2 className="text-3xl font-bold mb-12 text-center">Section heading for testimonials</h2>
           <div className="grid md:grid-cols-2 gap-8">
@@ -243,10 +245,10 @@ export default async function ServicePage(props: ServicePageProps) {
                     />
                   </div>
                   <div>
-                    <p className="italic text-gray-600 mb-4">"{testimonial.quote}"</p>
+                    <p className="italic text-neutral-text/600 mb-4">"{testimonial.quote}"</p>
                     <div>
                       <p className="font-bold">{testimonial.author}</p>
-                      <p className="text-sm text-gray-500">{testimonial.company}</p>
+                      <p className="text-sm text-neutral-text/500">{testimonial.company}</p>
                     </div>
                   </div>
                 </div>
@@ -262,7 +264,11 @@ export default async function ServicePage(props: ServicePageProps) {
           <p className="text-xl mb-8 max-w-2xl mx-auto">
             Brief persuasive copy reinforcing the next step
           </p>
-          <Button size="lg" className="bg-white text-primary hover:bg-gray-100" asChild>
+          <Button
+            size="lg"
+            className="bg-neutral-surface text-primary hover:bg-neutral-background/100"
+            asChild
+          >
             <Link href="/contact">
               Primary CTA text guiding next action
               <ArrowRight className="ml-2 h-4 w-4" />

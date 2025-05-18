@@ -122,16 +122,16 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
             </Link>
             <Badge>{post.category}</Badge>
           </div>
-          <h1 className="text-[var(--font-heading-size)]">{post.title}</h1>
+          <h1 className="">{post.title}</h1>
 
-          <div className="flex flex-wrap items-center gap-4 text-gray-600 mb-8">
+          <div className="flex flex-wrap items-center gap-4 text-neutral-text/600 mb-8">
             <div className="flex items-center">
               <User className="h-4 w-4 mr-2" />
               <span>{author.name}</span>
             </div>
             <div className="flex items-center">
               <Calendar className="h-4 w-4 mr-2" />
-              <span className="text-sm text-gray-500">
+              <span className="text-sm text-neutral-text/500">
                 {new Date(post.date).toLocaleDateString('en-US', {
                   year: 'numeric',
                   month: 'long',
@@ -141,7 +141,9 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
             </div>
             <div className="flex items-center">
               <Clock className="h-4 w-4 mr-2" />
-              <span className="text-sm text-gray-500">Reading time (e.g. '5 min read')</span>
+              <span className="text-sm text-neutral-text/500">
+                Reading time (e.g. '5 min read')
+              </span>
             </div>
           </div>
         </div>
@@ -247,10 +249,10 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
                   </div>
                   <div>
                     <h4>{author.name}</h4>
-                    <p className="text-sm text-gray-600">{author.title}</p>
+                    <p className="text-sm text-neutral-text/600">{author.title}</p>
                   </div>
                 </div>
-                <p className="text-gray-600 text-sm">{author.bio}</p>
+                <p className="text-neutral-text/600 text-sm">{author.bio}</p>
               </CardContent>
             </Card>
 
@@ -293,7 +295,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
         </div>
       </Section>
 
-      <Section className="bg-gray-50">
+      <Section className="bg-neutral-background">
         <h2 className="text-3xl font-bold mb-12">Related Articles</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {relatedPosts.map(relatedPost => (
@@ -313,7 +315,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
                 <h3 className="mb-2 hover:text-primary transition-colors">
                   <Link href={`/blog/${relatedPost.slug}`}>{relatedPost.title}</Link>
                 </h3>
-                <p className="text-gray-600 mb-4">{relatedPost.excerpt}</p>
+                <p className="text-neutral-text/600 mb-4">{relatedPost.excerpt}</p>
                 <Button variant="link" className="p-0 h-auto text-primary" asChild>
                   <Link href={`/blog/${relatedPost.slug}`}>
                     Read More

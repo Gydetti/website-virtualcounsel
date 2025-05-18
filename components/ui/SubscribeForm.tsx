@@ -78,17 +78,17 @@ export function SubscribeForm() {
         placeholder="Your email address"
         value={email}
         onChange={e => setEmail(e.currentTarget.value)}
-        className="bg-white/30 border-white/60 text-white placeholder:text-white focus:border-white"
+        className="bg-neutral-surface/30 border-white/60 text-white placeholder:text-white focus:border-white"
       />
       <Button
         type="submit"
         disabled={status === 'loading' || status === 'success'}
-        className="bg-white text-primary hover:bg-gray-200"
+        className="bg-neutral-surface text-primary hover:bg-neutral-background/200"
       >
         {status === 'loading' ? '…sending' : status === 'success' ? '✅ Subscribed' : 'Subscribe'}
       </Button>
       {status === 'error' && (
-        <p className="mt-2 text-red-400 text-sm">Oops—something went wrong.</p>
+        <p className="mt-2 text-feedback-error text-sm">Oops—something went wrong.</p>
       )}
     </form>
   );

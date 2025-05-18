@@ -37,15 +37,17 @@ export default function TestimonialsPage() {
       >
         <LazySection animation="slide-up" delay={0} className="text-center mb-16">
           {badgeText && (
-            <Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">{badgeText}</Badge>
+            <Badge className="mb-4 bg-brand-light text-primary hover:bg-brand-light/90">
+              {badgeText}
+            </Badge>
           )}
-          {heading && <h1 className="text-[var(--font-heading-size)]">{heading}</h1>}
+          {heading && <h1 className="">{heading}</h1>}
           {subtitle && <p className="section-subtitle">{subtitle}</p>}
         </LazySection>
       </Section>
 
       {/* Testimonials Grid Section */}
-      <Section className="py-12 bg-gray-50" id="testimonials-list">
+      <Section className="py-12 bg-neutral-background" id="testimonials-list">
         <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {testimonials.map((t, idx) => (
             <LazySection
@@ -68,15 +70,15 @@ export default function TestimonialsPage() {
       </Section>
 
       {/* CTA Section */}
-      <Section className="py-12 bg-white" id="testimonials-cta">
+      <Section className="py-12 bg-neutral-surface" id="testimonials-cta">
         <div className="text-center max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold mb-4">Ready to write your own success story?</h2>
-          <p className="text-gray-600 mb-6">
+          <p className="text-neutral-text/600 mb-6">
             Contact us today to get started and see how we can help you achieve similar results.
           </p>
           <Link
             href="/contact"
-            className="inline-block px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary-90 transition"
+            className="inline-block px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition"
           >
             Contact Us
           </Link>

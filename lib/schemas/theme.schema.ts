@@ -62,6 +62,10 @@ export const themeSchema = z.object({
       .string()
       .regex(/^#[0-9A-Fa-f]{6}$/, { message: 'Invalid light grey color hex' })
       .optional(),
+    heroBackground: z
+      .string()
+      .regex(/^#[0-9A-Fa-f]{6}$/, { message: 'Invalid hero background color hex' })
+      .optional(),
   }),
   logo: imageSchema.extend({ subtitle: z.string().optional() }),
   favicon: z.string().min(1, 'Favicon path cannot be empty'),

@@ -26,8 +26,8 @@ export default function CtaSection({
       className="pattern-overlay bg-brand-dark text-white relative overflow-hidden py-8"
     >
       {/* Decorative elements matching the dark theme */}
-      <div className="hidden sm:block absolute top-0 right-0 w-96 h-96 bg-primary-10 rounded-full blur-3xl" />
-      <div className="hidden sm:block absolute bottom-0 left-0 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl" />
+      <div className="hidden sm:block absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+      <div className="hidden sm:block absolute bottom-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
 
       {/* CSS-only stagger container */}
       <LazySection
@@ -45,7 +45,7 @@ export default function CtaSection({
         {heading && (
           <h2
             id="cta-section-heading"
-            className="text-[var(--font-subheading-size)] text-white"
+            className=" text-white"
             style={{ '--index': 1 } as CSSProperties}
           >
             {heading}
@@ -54,7 +54,7 @@ export default function CtaSection({
         {/* Description */}
         {description && (
           <p
-            className="text-gray-300 max-w-xl mx-auto mb-8"
+            className="text-neutral-text/70 max-w-xl mx-auto mb-8"
             style={{ '--index': 2 } as CSSProperties}
           >
             {description}
@@ -83,7 +83,7 @@ export default function CtaSection({
               <Button
                 size="lg"
                 variant="outline"
-                className="bg-transparent border-gray-400 text-gray-200 hover:bg-white/10 hover:text-white group w-full sm:w-auto whitespace-normal"
+                className="bg-transparent border-white text-white hover:bg-neutral-surface/10 hover:text-white group w-full sm:w-auto whitespace-normal"
                 asChild
               >
                 <Link href={secondaryCta.href}>
