@@ -52,7 +52,7 @@ export default async function ServicesPage() {
                 <Card className="overflow-hidden transition-all duration-300 hover:shadow-xl h-full flex flex-col">
                   <div className="relative h-48 w-full overflow-hidden">
                     <div className="absolute inset-0 flex items-center justify-center bg-neutral-background/100">
-                      <IconComponent className="h-16 w-16 text-primary-40" />
+                      <IconComponent className="h-16 w-16 text-primary/40" />
                     </div>
                   </div>
                   <CardHeader>

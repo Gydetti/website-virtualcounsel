@@ -72,7 +72,7 @@ export default function ResourceDetailSection({ resource }: ResourceDetailSectio
                 <ul className="list-none space-y-2 text-left text-foreground">
                   <li className="flex items-start">
                     <svg
-                      className="w-5 h-5 text-blue-600 mr-2 flex-shrink-0 mt-1"
+                      className="w-5 h-5 text-primary mr-2 flex-shrink-0 mt-1"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                       aria-hidden="true"
@@ -88,7 +88,7 @@ export default function ResourceDetailSection({ resource }: ResourceDetailSectio
                   </li>
                   <li className="flex items-start">
                     <svg
-                      className="w-5 h-5 text-blue-600 mr-2 flex-shrink-0 mt-1"
+                      className="w-5 h-5 text-primary mr-2 flex-shrink-0 mt-1"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                       aria-hidden="true"
@@ -104,7 +104,7 @@ export default function ResourceDetailSection({ resource }: ResourceDetailSectio
                   </li>
                   <li className="flex items-start">
                     <svg
-                      className="w-5 h-5 text-blue-600 mr-2 flex-shrink-0 mt-1"
+                      className="w-5 h-5 text-primary mr-2 flex-shrink-0 mt-1"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                       aria-hidden="true"

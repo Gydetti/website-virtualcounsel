@@ -114,10 +114,16 @@ This template is designed for single-brand use per project. For each new client,
 
 ### 4.7 Multi-Brand & Dynamic Theming Support
 
-- **Single Brand Per Project (Recommended):**
+- **Single Brand Per Project (Recommended):** Update = I actually want to go for theme variants
   - The intended workflow is to use one theme file per project. For each client, copy the template and update the theme file(s) with the new brand's colors. No runtime brand switching is needed.
 - **Extensibility:**
   - If your use case ever changes (e.g., you build a multi-tenant SaaS or need runtime brand switching), the system can be extended to support multiple brands by adding separate theme files and a theme provider/context. This is not required for the current workflow.
+- **Theme Variants for Client Previews (Optional):**
+  - Define multiple variant token sets in `theme/colors.ts` (e.g., `variants.default`, `variants.highContrast`, `variants.warmTone`).
+  - Toggle variants via a root class or attribute (e.g., `<html class="theme-highContrast">`).
+  - Leverage Tailwind's purge to tree-shake unused variant CSS, ensuring minimal bundle overhead.
+  - Use variant toggles to showcase different looks to clients without the complexity of full multi-branding.
+  - ⚠️ **Performance Note:** Only support theme variants if Purge CSS and code-splitting safeguard bundle size and page speed; otherwise, maintain a single-theme approach.
 
 ### 4.8 Documentation & Onboarding
 

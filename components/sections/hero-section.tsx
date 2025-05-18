@@ -79,18 +79,18 @@ export default function HeroSection({
       >
         <div className="grid md:grid-cols-2 gap-8 sm:gap-8 md:gap-12 lg:gap-16">
           <LazySection
-            delay={0}
+            delay={0.1}
             className={`${contentOrderClass} flex flex-col justify-center space-y-6 z-10`}
           >
             {badgeText && (
-              <LazySection delay={0}>
+              <LazySection delay={0.2}>
                 <Badge variant="dark" className="w-fit text-white">
                   {badgeText}
                 </Badge>
               </LazySection>
             )}
             {headline && (
-              <LazySection delay={0.1}>
+              <LazySection delay={0.3}>
                 <h1 id="hero-section-heading" className="font-bold leading-tight text-balance">
                   <span className="block">{headline}</span>
                   <HeroTyping typingWords={typingWords} />
@@ -98,12 +98,12 @@ export default function HeroSection({
               </LazySection>
             )}
             {subheadline && (
-              <LazySection delay={0.2}>
+              <LazySection delay={0.4}>
                 <p className="text-neutral-text max-w-lg">{subheadline}</p>
               </LazySection>
             )}
             {(primaryCta?.text || secondaryCta?.text) && (
-              <LazySection delay={0.3}>
+              <LazySection delay={0.4}>
                 <div className="flex flex-col sm:flex-row gap-4 pt-4">
                   {primaryCta?.text && primaryCta.href && (
                     <Button
@@ -122,7 +122,7 @@ export default function HeroSection({
                     <Button
                       size="lg"
                       variant="ghost"
-                      className="bg-transparent text-primary hover:text-primary-80 hover:bg-transparent"
+                      className="bg-transparent text-primary hover:text-primary/80 hover:bg-transparent"
                       asChild
                     >
                       <Link href={secondaryCta.href}>{secondaryCta.text}</Link>

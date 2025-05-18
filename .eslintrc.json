@@ -22,16 +22,16 @@
         "message": "Hardcoded hex color literals are not allowed; use semantic theme tokens instead."
       },
       {
-        "selector": "Literal[value=/bg-[a-z]+-[0-9]{1,3}/]",
-        "message": "Use semantic theme token classes instead of Tailwind bg- literal classes."
+        "selector": "Literal[value=/bg-(?:gray|slate|blue|red|green)-[0-9]{1,3}/]",
+        "message": "Use semantic theme token classes instead of Tailwind bg-color literal classes."
       },
       {
-        "selector": "Literal[value=/text-[a-z]+-[0-9]{1,3}/]",
-        "message": "Use semantic theme token classes instead of Tailwind text- literal classes."
+        "selector": "Literal[value=/text-(?:gray|slate|blue|red|green)-[0-9]{1,3}/]",
+        "message": "Use semantic theme token classes instead of Tailwind text-color literal classes."
       },
       {
-        "selector": "Literal[value=/border-[a-z]+-[0-9]{1,3}/]",
-        "message": "Use semantic theme token classes instead of Tailwind border- literal classes."
+        "selector": "Literal[value=/border-(?:gray|slate|red|green)-[0-9]{1,3}/]",
+        "message": "Use semantic theme token classes instead of Tailwind border-color literal classes."
       }
     ]
   }

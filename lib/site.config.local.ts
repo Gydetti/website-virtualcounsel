@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 import type { SiteConfigSchema } from './schemas/siteConfig.schema';
 
 /**
@@ -28,6 +29,7 @@ export const siteConfig: SiteConfigSchema = {
     twitterImage: '/images/twitter-placeholder.png', // <--- Path to Twitter card image (e.g., 800x418px)
   },
   // THEME & BRANDING: Colors, logo, favicon.
+  // eslint-disable-next-line no-restricted-syntax
   theme: {
     colors: {
       primary: '#2563EB', // <--- Restored primary blue (Tailwind blue-600)

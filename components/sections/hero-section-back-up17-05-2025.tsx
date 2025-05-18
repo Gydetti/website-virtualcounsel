@@ -123,7 +123,7 @@ export default function HeroSection({
                     <Button
                       size="lg"
                       variant="ghost"
-                      className="bg-transparent text-primary hover:text-primary-80 hover:bg-transparent"
+                      className="bg-transparent text-primary hover:text-primary/80 hover:bg-transparent"
                       asChild
                     >
                       <Link href={secondaryCta.href}>{secondaryCta.text}</Link>

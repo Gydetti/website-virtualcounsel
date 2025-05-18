@@ -179,7 +179,7 @@ export default async function ServicePage(props: ServicePageProps) {
 
           <div className="relative h-[400px] rounded-xl overflow-hidden shadow-xl">
             <div className="absolute inset-0 flex items-center justify-center bg-neutral-background/100">
-              <IconComponent className="h-32 w-32 text-primary-30" />
+              <IconComponent className="h-32 w-32 text-primary/30" />
             </div>
           </div>
         </div>

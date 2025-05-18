@@ -66,7 +66,7 @@ export default function FeaturesSection({
         >
           {comparison?.without?.items && comparison.without.items.length > 0 && (
             <div
-              className="md:w-4/5 md:mx-auto rounded-lg border border-red-200 bg-feedback-error-bg/50 backdrop-blur p-6 transition-colors text-neutral-text/800"
+              className="md:w-4/5 md:mx-auto rounded-lg border border-feedback-error bg-feedback-error-bg/50 backdrop-blur p-6 transition-colors text-neutral-text/800"
               style={{ '--index': 0 } as React.CSSProperties}
             >
               {withoutTitle && <h3 className="text-feedback-error mb-4">{withoutTitle}</h3>}
@@ -96,7 +96,7 @@ export default function FeaturesSection({
           </div>
           {comparison?.with?.items && comparison.with.items.length > 0 && (
             <div
-              className="md:w-4/5 md:mx-auto rounded-lg border border-green-200 bg-feedback-success-bg/50 backdrop-blur p-6 transition-colors text-neutral-text/800"
+              className="md:w-4/5 md:mx-auto rounded-lg border border-feedback-success bg-feedback-success-bg/50 backdrop-blur p-6 transition-colors text-neutral-text/800"
               style={{ '--index': 2 } as React.CSSProperties}
             >
               {withTitle && <h3 className="text-feedback-success mb-4">{withTitle}</h3>}

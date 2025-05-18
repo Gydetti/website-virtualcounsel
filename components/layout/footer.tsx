@@ -30,10 +30,10 @@ export default function Footer() {
   return (
     <>
       {/* Newsletter subscription */}
-      <div className="relative overflow-hidden py-10 text-white bg-gradient-to-br from-[hsl(222,47%,22%)] via-[hsl(222,47%,18%)] to-[hsl(222,47%,14%)]">
+      <div className="relative overflow-hidden py-10 text-white bg-hero-gradient">
         {/* Decorative blur spots */}
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[rgba(var(--primary-rgb),0.1)] rounded-full -translate-y-1/2 blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-400/10 rounded-full translate-y-1/2 blur-3xl" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full -translate-y-1/2 blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/10 rounded-full translate-y-1/2 blur-3xl" />
         <div className="container-wide relative z-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
@@ -49,8 +49,8 @@ export default function Footer() {
 
       <footer className="bg-brand-dark text-white relative overflow-hidden">
         {/* Decorative elements */}
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[rgba(var(--primary-rgb),0.1)] rounded-full -translate-y-1/2 blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-400/10 rounded-full translate-y-1/2 blur-3xl" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full -translate-y-1/2 blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/10 rounded-full translate-y-1/2 blur-3xl" />
 
         <div className="container-wide py-12 md:py-16 relative z-10">
           <div

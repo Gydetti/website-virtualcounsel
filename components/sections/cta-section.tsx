@@ -53,10 +53,7 @@ export default function CtaSection({
         )}
         {/* Description */}
         {description && (
-          <p
-            className="text-neutral-text/70 max-w-xl mx-auto mb-8"
-            style={{ '--index': 2 } as CSSProperties}
-          >
+          <p className="text-white max-w-xl mx-auto mb-8" style={{ '--index': 2 } as CSSProperties}>
             {description}
           </p>
         )}

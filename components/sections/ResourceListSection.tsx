@@ -71,13 +71,13 @@ export default function ResourceListSection({
                   />
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2 text-blue-700 group-hover:text-blue-800">
+                  <h3 className="text-xl font-semibold mb-2 text-primary group-hover:text-primary">
                     {resource.title}
                   </h3>
                   {resource.subtitle && (
                     <p className="text-foreground text-sm line-clamp-3">{resource.subtitle}</p>
                   )}
-                  <span className="mt-4 inline-block text-blue-600 group-hover:underline">
+                  <span className="mt-4 inline-block text-primary group-hover:underline">
                     Read more &rarr;
                   </span>
                 </div>

@@ -102,7 +102,7 @@ export default function ContactSection({ badgeText, heading, subtitle }: Contact
 				/>
 			)} */}
       {/* Decorative elements */}
-      {/* <div className="absolute top-0 right-0 w-96 h-96 bg-blue-50/80 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
+      {/* <div className="absolute top-0 right-0 w-96 h-96 bg-primary rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
 			<div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" /> */}
 
       <div className="relative z-10">
