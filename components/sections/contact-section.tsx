@@ -107,10 +107,18 @@ export default function ContactSection({ badgeText, heading, subtitle }: Contact
 
       <div className="relative z-10">
         {/* Header only: CSS-only stagger for title */}
-        <LazySection animation="none" className="stagger-container text-center" style={{ '--stagger-delay': '0.1s' } as CSSProperties}>
+        <LazySection
+          animation="none"
+          className="stagger-container text-center"
+          style={{ '--stagger-delay': '0.1s' } as CSSProperties}
+        >
           <div>
             {badgeText && <Badge className="mb-4">{badgeText}</Badge>}
-            {heading && <h2 id="contact-section-heading" className="section-title">{heading}</h2>}
+            {heading && (
+              <h2 id="contact-section-heading" className="section-title">
+                {heading}
+              </h2>
+            )}
             {subtitle && <p className="section-subtitle">{subtitle}</p>}
           </div>
         </LazySection>

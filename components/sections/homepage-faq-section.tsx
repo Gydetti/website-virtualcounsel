@@ -65,6 +65,7 @@ export default function HomepageFaqSection({
     <>
       <StructuredData type="faq" data={{ items: faqSchema }} />
       <Section id="faq-homepage">
+        {/* Header: badge, title, description */}
         <LazySection
           animation="none"
           className="stagger-container text-center"
@@ -84,53 +85,50 @@ export default function HomepageFaqSection({
               {description}
             </p>
           )}
-          <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-            {categories.map((cat, idx) => (
-              <div
-                key={cat.category}
-                className="text-center"
-                style={{ '--index': 3 + idx } as CSSProperties}
-              >
-                <h3 className="text-body-base mb-6">{cat.category}</h3>
-                <Accordion
-                  type="single"
-                  collapsible
-                  style={
-                    {
-                      display: 'grid',
-                      gap: '1rem',
-                    } as CSSProperties
-                  }
-                >
-                  {cat.questions.map(q => (
-                    <AccordionItem
-                      key={q.question}
-                      value={`faq-${cat.category}-${q.question}`}
-                      className="border rounded-lg overflow-hidden flex flex-col faq-item"
-                    >
-                      <AccordionTrigger className="flex items-center justify-between w-full px-4 py-1.5 text-body-base font-medium text-left">
-                        {q.question}
-                      </AccordionTrigger>
-                      <AccordionContent className="px-4 py-2 text-foreground">
-                        {q.answer}
-                      </AccordionContent>
-                    </AccordionItem>
-                  ))}
-                </Accordion>
-              </div>
-            ))}
-          </div>
-          {siteConfig.features.enableHomepageFaqCta && (
-            <div
-              className="flex justify-center mt-12"
-              style={{ '--index': 3 + categories.length } as CSSProperties}
+        </LazySection>
+        {/* FAQ items: animate each category column sequentially */}
+        <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+          {categories.map((cat, idx) => (
+            <LazySection
+              key={cat.category}
+              animation="fade-up"
+              delay={0.1 * idx}
+              className="text-center"
             >
+              <h3 className="text-body-base mb-6">{cat.category}</h3>
+              <Accordion
+                type="single"
+                collapsible
+                style={{ display: 'grid', gap: '1rem' } as CSSProperties}
+              >
+                {cat.questions.map((q, qIdx) => (
+                  <AccordionItem
+                    key={q.question}
+                    value={`faq-${cat.category}-${q.question}`}
+                    className="border rounded-lg overflow-hidden flex flex-col faq-item"
+                  >
+                    <AccordionTrigger className="flex items-center justify-between w-full px-4 py-1.5 text-body-base font-medium text-left">
+                      {q.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="px-4 py-2 text-foreground">
+                      {q.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </LazySection>
+          ))}
+        </div>
+        {/* CTA button */}
+        {siteConfig.features.enableHomepageFaqCta && (
+          <LazySection animation="none" className="stagger-container text-center" style={{ '--stagger-delay': '0.2s' } as CSSProperties}>
+            <div className="flex justify-center mt-12" style={{ '--index': 0 } as CSSProperties}>
               <Button size="lg" asChild>
                 <Link href={cta.href || '/contact'}>{cta.text || 'See all FAQs'}</Link>
               </Button>
             </div>
-          )}
-        </LazySection>
+          </LazySection>
+        )}
       </Section>
     </>
   );

@@ -160,7 +160,7 @@ export default function ServicesSection({
           <LazySection
             animation="none"
             className="stagger-container text-center mt-12"
-            style={{ '--stagger-delay': '0.3s' } as CSSProperties}
+            style={{ '--stagger-delay': '0.1s' } as CSSProperties}
           >
             <div style={{ '--index': 0 } as CSSProperties}>
               <Button

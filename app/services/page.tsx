@@ -144,8 +144,8 @@ export default async function ServicesPage() {
         </LazySection>
       </Section>
 
-      <LazySection>
-        <Section className="bg-primary text-white">
+      <Section className="bg-primary text-white">
+        <LazySection>
           <div className="text-center">
             <h2 className="text-3xl font-bold mb-6">
               Final CTA section heading encouraging action
@@ -160,8 +160,8 @@ export default async function ServicesPage() {
               </Link>
             </Button>
           </div>
-        </Section>
-      </LazySection>
+        </LazySection>
+      </Section>
     </>
   );
 }

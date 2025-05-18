@@ -73,7 +73,7 @@ export default function BlogSection({
         >
           {posts.map((post, index) => (
             <div key={post.id} className="h-full" style={{ '--index': index } as CSSProperties}>
-              <Card className="w-full h-full flex flex-col justify-between overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-gradient-to-b from-white to-blue-50/30 border border-[#e5e7eb80] shadow-lg">
+              <Card className="w-full h-full flex flex-col justify-between overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-gradient-to-b from-card to-transparent border border-border shadow-lg">
                 <div className="relative h-48 w-full overflow-hidden">
                   <Image
                     src={post.image?.src || '/placeholder.svg'}

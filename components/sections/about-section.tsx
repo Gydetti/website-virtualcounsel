@@ -147,7 +147,7 @@ export default function AboutSection({
                 </LazySection>
               )}
               {philosophy && (
-                <LazySection animation="fade-up" delay={0.6} className="mt-8">
+                <LazySection animation="fade-up" delay={0.4} className="mt-8">
                   <div className="rounded-xl border bg-background p-8 shadow-sm hover:shadow-md transition-shadow">
                     <h2 className="text-xl font-semibold text-gray-900">{philosophy.title}</h2>
                     <p className="mt-2 text-foreground leading-relaxed">{philosophy.text}</p>
@@ -155,7 +155,7 @@ export default function AboutSection({
                 </LazySection>
               )}
               {featureCards && featureCards.length > 0 && (
-                <LazySection animation="fade-up" delay={0.7} className="mt-8">
+                <LazySection animation="fade-up" delay={0.5} className="mt-8">
                   <div className="grid gap-4 sm:grid-cols-2">
                     {featureCards.map(card => {
                       const Icon = card.icon === 'Star' ? Star : CheckCircle;
@@ -178,7 +178,7 @@ export default function AboutSection({
                 </LazySection>
               )}
               {siteConfig.features.enableAboutHeroCta && cta?.href && cta?.text && (
-                <LazySection animation="fade-up" delay={0.8}>
+                <LazySection animation="fade-up" delay={0.6}>
                   <Button size="lg" className="bg-primary hover:bg-primary-90 group" asChild>
                     <Link href={cta.href}>
                       {cta.text}

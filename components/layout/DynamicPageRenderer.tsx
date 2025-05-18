@@ -291,12 +291,17 @@ const DynamicPageRenderer: FC<DynamicPageRendererProps> = async ({
     // Compute clamped delay for this section
     const rawDelay = i * delayStep;
     const sectionDelay = Math.min(rawDelay, maxDelay);
-    // HeroSection: render directly (JS-driven animations inside component)
+    // HeroSection: render directly without wrapping in LazySection to keep background static
     if (section.sectionType === 'HeroSection') {
       elements.push(
-        <LazySection key={section.id} animation="none">
-          <Component {...section.data} />
-        </LazySection>
+        <Component key={section.id} {...section.data} />
+      );
+      continue;
+    }
+    // AboutSection on About page: render directly so background is static and internal animations handle content
+    if (pagePath === '/about' && section.sectionType === 'AboutSection') {
+      elements.push(
+        <Component key={section.id} variant={section.variant} {...section.data} />
       );
       continue;
     }

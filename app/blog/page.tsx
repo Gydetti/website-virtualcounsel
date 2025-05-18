@@ -41,8 +41,8 @@ export default async function BlogPage() {
 
   return (
     <>
-      <LazySection>
-        <Section className="relative overflow-hidden bg-gradient-to-r from-blue-100 via-transparent to-transparent z-10">
+      <Section className="relative overflow-hidden bg-gradient-to-r from-blue-100 via-transparent to-transparent z-10">
+        <LazySection>
           <div className="text-center mb-16">
             <Badge className="mb-4 bg-blue-100 text-primary hover:bg-blue-200">
               Short label introducing blog section
@@ -100,8 +100,8 @@ export default async function BlogPage() {
               </div>
             </LazySection>
           )}
-        </Section>
-      </LazySection>
+        </LazySection>
+      </Section>
 
       <LazySection>
         <Section className="bg-gray-50">

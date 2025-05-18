@@ -112,7 +112,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
     <>
       <BlogSchema {...blogSchemaData} />
       <StructuredData type="article" data={blogSchemaData} />
-      <Section className="bg-gradient-to-r from-blue-50 to-white">
+      <Section className="bg-gradient-to-r from-brand-light to-transparent">
         <div className="max-w-4xl mx-auto">
           {/* Back link and category badge grouped to prevent overlap on small screens */}
           <div className="flex flex-wrap items-center gap-3 mb-6">

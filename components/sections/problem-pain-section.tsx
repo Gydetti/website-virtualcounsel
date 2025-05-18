@@ -60,7 +60,7 @@ export default function ProblemPainSection({
                     scale: 1.02,
                     transition: { duration: 0.1, ease: 'easeOut' },
                   }}
-                  transition={{ duration: 0.3, delay: idx * 0.2 }}
+                  transition={{ duration: 0.1, delay: idx * 0.2 }}
                   viewport={{ once: true }}
                   className="rounded-lg bg-[rgba(255,255,255,0.08)] p-6 shadow-sm hover:shadow-xl transition-shadow duration-300"
                 >

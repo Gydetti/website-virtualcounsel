@@ -41,4 +41,4 @@ export default function useScrollDirection({
   }, [downThreshold, upThreshold, topThreshold]);
 
   return { atTop, direction };
-} 
+}
