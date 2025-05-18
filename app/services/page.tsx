@@ -49,10 +49,10 @@ export default async function ServicesPage() {
 
             return (
               <LazySection key={service.id} delay={index * 0.1}>
-                <Card className="overflow-hidden transition-all duration-300 hover:shadow-xl h-full flex flex-col">
-                  <div className="relative h-48 w-full overflow-hidden">
-                    <div className="absolute inset-0 flex items-center justify-center bg-neutral-background/100">
-                      <IconComponent className="h-16 w-16 text-primary/40" />
+                <Card className="transition-all duration-300 hover:shadow-xl h-full flex flex-col">
+                  <div className="relative h-48 w-full">
+                    <div className="absolute inset-0 flex items-center justify-center bg-primary-10">
+                      <IconComponent className="h-16 w-16 text-primary-40" />
                     </div>
                   </div>
                   <CardHeader>
@@ -85,7 +85,7 @@ export default async function ServicesPage() {
 
       <Section className="bg-neutral-background">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <LazySection animation="slide-right">
+          <LazySection animation="slide-right" className="!overflow-x-visible">
             <h2 className="text-3xl font-bold mb-6">
               Heading introducing key reasons to choose these services
             </h2>
@@ -128,8 +128,8 @@ export default async function ServicesPage() {
             </Button>
           </LazySection>
 
-          <LazySection animation="slide-left" delay={0.15}>
-            <div className="relative h-[400px] rounded-xl overflow-hidden shadow-xl">
+          <LazySection animation="slide-left" delay={0.15} className="!overflow-x-visible">
+            <div className="relative h-[400px] rounded-xl shadow-xl">
               <Image
                 src="/placeholder.svg?height=600&width=800"
                 alt="Why Choose Us"

@@ -1,6 +1,12 @@
 import type { Config } from 'tailwindcss';
 import plugin from 'tailwindcss/plugin';
 import { semanticColors, semanticGradients } from './theme/colors';
+import { siteConfig } from './lib/siteConfig';
+
+// Convert camelCase to kebab-case for utility names
+function toKebabCase(str: string): string {
+  return str.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+}
 
 const config = {
   darkMode: ['class'],
@@ -100,18 +106,19 @@ const config = {
   plugins: [
     require('tailwindcss-animate'),
     plugin(({ matchUtilities, theme }) => {
-      const colors = ['primary', 'secondary', 'destructive', 'muted', 'accent', 'popover', 'card'];
+      const colors = Object.keys(siteConfig.theme.colors);
       for (const color of colors) {
+        const name = toKebabCase(color);
         matchUtilities(
           {
-            [`bg-${color}`]: value => ({
-              'background-color': `rgba(var(--${color}-rgb), ${value})`,
+            [`bg-${name}`]: value => ({
+              'background-color': `rgba(var(--${name}-rgb), ${value})`,
             }),
-            [`text-${color}`]: value => ({
-              color: `rgba(var(--${color}-rgb), ${value})`,
+            [`text-${name}`]: value => ({
+              color: `rgba(var(--${name}-rgb), ${value})`,
             }),
-            [`border-${color}`]: value => ({
-              'border-color': `rgba(var(--${color}-rgb), ${value})`,
+            [`border-${name}`]: value => ({
+              'border-color': `rgba(var(--${name}-rgb), ${value})`,
             }),
           },
           { values: theme('opacity') }

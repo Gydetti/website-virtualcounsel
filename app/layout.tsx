@@ -8,6 +8,8 @@ import { Poppins, Raleway } from 'next/font/google';
 import type { ReactNode } from 'react';
 import './globals.css';
 import WebVitalsReporter from '@/components/analytics/WebVitalsReporter';
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/next';
 
 // Poppins for headings
 const poppins = Poppins({
@@ -95,44 +97,50 @@ function hslToHexServer(h: number, s: number, l: number): string {
   return `#${f(0)}${f(8)}${f(4)}`;
 }
 
+// Convert camelCase to kebab-case for CSS variable names
+function toKebabCase(str: string): string {
+  return str.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+}
+
 function getThemeCssVars(theme: typeof siteConfig.theme): string {
+  // Derived primary shades
   const [h, s, l] = hexToHslServer(theme.colors.primary);
   const primaryLight = hslToHexServer(h, s, Math.min(l + 20, 100));
   const primaryDark = hslToHexServer(h, s, Math.max(l - 20, 0));
+
+  // Dynamic CSS variables for each theme color
+  const colorVars = Object.entries(theme.colors)
+    .map(([key, value]) => {
+      const name = toKebabCase(key);
+      return `--${name}: ${value}; --${name}-rgb: ${hexToRgbServer(value)};`;
+    })
+    .join('\n');
+
   return `
-		--primary: ${theme.colors.primary};
-		--primary-rgb: ${hexToRgbServer(theme.colors.primary)};
-		--primary-light: ${primaryLight};
-		--primary-dark: ${primaryDark};
-		--secondary: ${theme.colors.secondary};
-		--secondary-rgb: ${hexToRgbServer(theme.colors.secondary)};
-		--accent: ${theme.colors.accent};
-		--accent-rgb: ${hexToRgbServer(theme.colors.accent)};
-		${theme.colors.background ? `--background: ${theme.colors.background};` : ''}
-		${theme.colors.header ? `--header: ${theme.colors.header};` : ''}
-		${theme.colors.body ? `--body: ${theme.colors.body};` : ''}
-		${theme.colors.lightGrey ? `--light-grey: ${theme.colors.lightGrey};` : ''}
-		${theme.colors.heroBackground ? `--brand-hero-background: ${theme.colors.heroBackground};` : ''}
-		${theme.colors.heroBackground ? `--brand-hero-background-rgb: ${hexToRgbServer(theme.colors.heroBackground)};` : ''}
-		--white: #fff;
-		--black: #000;
-		--font-heading: ${theme.typography.headingFont};
-		--font-body: ${theme.typography.bodyFont};
-		--font-base-size: ${theme.typography.baseSize};
-		--space-xs: ${theme.spacing.xs};
-		--space-sm: ${theme.spacing.sm};
-		--space-md: ${theme.spacing.md};
-		--space-lg: ${theme.spacing.lg};
-		--space-xl: ${theme.spacing.xl};
-		--radius-base: ${theme.borders.radiusBase};
-		--border-width-base: ${theme.borders.widthBase};
-		--border-color-base: ${theme.borders.colorBase};
-		--shadow-sm: ${theme.shadows.sm};
-		--shadow-md: ${theme.shadows.md};
-		--shadow-lg: ${theme.shadows.lg};
-		--container-max-width: ${theme.layout.containerMaxWidth};
-		--container-padding: ${theme.layout.containerPadding};
-	`.trim();
+    ${colorVars}
+    --primary-light: ${primaryLight};
+    --primary-dark: ${primaryDark};
+    ${theme.colors.heroBackground ? `--brand-hero-background: ${theme.colors.heroBackground};` : ''}
+    ${theme.colors.heroBackground ? `--brand-hero-background-rgb: ${hexToRgbServer(theme.colors.heroBackground)};` : ''}
+    --white: #fff;
+    --black: #000;
+    --font-heading: ${theme.typography.headingFont};
+    --font-body: ${theme.typography.bodyFont};
+    --font-base-size: ${theme.typography.baseSize};
+    --space-xs: ${theme.spacing.xs};
+    --space-sm: ${theme.spacing.sm};
+    --space-md: ${theme.spacing.md};
+    --space-lg: ${theme.spacing.lg};
+    --space-xl: ${theme.spacing.xl};
+    --radius-base: ${theme.borders.radiusBase};
+    --border-width-base: ${theme.borders.widthBase};
+    --border-color-base: ${theme.borders.colorBase};
+    --shadow-sm: ${theme.shadows.sm};
+    --shadow-md: ${theme.shadows.md};
+    --shadow-lg: ${theme.shadows.lg};
+    --container-max-width: ${theme.layout.containerMaxWidth};
+    --container-padding: ${theme.layout.containerPadding};
+  `.trim();
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -193,6 +201,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         className={`${poppins.variable} ${raleway.variable} font-sans antialiased bg-gradient-to-br from-brand-light to-transparent`}
       >
         <WebVitalsReporter />
+        <SpeedInsights />
+        <Analytics />
         <AppShell>{children}</AppShell>
       </body>
     </html>

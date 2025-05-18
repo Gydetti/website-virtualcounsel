@@ -1,15 +1,17 @@
 /* eslint-disable no-restricted-syntax */
 import type { MetadataRoute } from 'next';
+import { siteConfig } from '@/lib/siteConfig';
 
 export default function manifest(): MetadataRoute.Manifest {
+  const { background, primary } = siteConfig.theme.colors;
   return {
-    name: 'Your Business Name',
-    short_name: 'YourBusiness',
-    description: 'Professional services for entrepreneurs and small businesses',
+    name: siteConfig.site.name,
+    short_name: siteConfig.site.name.replace(/\s+/g, ''),
+    description: siteConfig.site.description ?? '',
     start_url: '/',
     display: 'standalone',
-    background_color: '#ffffff',
-    theme_color: '#3b5bdb',
+    background_color: background ?? '#ffffff',
+    theme_color: primary,
     icons: [
       {
         src: '/favicon.ico',

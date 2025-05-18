@@ -36,7 +36,7 @@ export default function SolutionVisionSection({
       {/* Scroll reveal header */}
       <LazySection animation="slide-up" delay={0} className="text-center mb-16 max-w-4xl mx-auto">
         <motion.div custom={0} variants={textVariants} className="mb-4">
-          <Badge variant="secondary" className="px-3 py-1 rounded-full text-sm">
+          <Badge variant="secondary" className="px-3 py-1 rounded-full">
             {badgeText}
           </Badge>
         </motion.div>

@@ -42,7 +42,7 @@ export default function TestimonialsSection({
     <Section
       id="testimonials-section"
       aria-labelledby="testimonials-section-heading"
-      className="relative overflow-hidden "
+      className="relative !overflow-visible"
     >
       {/* Decorative elements - re-enabled and styled with theme colors */}
       <div className="hidden sm:block absolute top-0 right-1/4 w-72 h-72 bg-[rgba(var(--accent-rgb),0.03)] rounded-full -translate-y-1/2 blur-3xl pointer-events-none" />
@@ -57,7 +57,7 @@ export default function TestimonialsSection({
           <p className="section-subtitle">{subtitle}</p>
         </div>
 
-        <LazySection animation="slide-up" delay={0} className="max-w-3xl mx-auto relative">
+        <LazySection animation="slide-up" delay={0} className="relative max-w-3xl mx-auto">
           <div className="overflow-hidden overflow-x-hidden">
             <motion.div
               className="flex"
@@ -126,26 +126,25 @@ export default function TestimonialsSection({
               ))}
             </motion.div>
           </div>
-
-          <div className="hidden sm:block absolute top-1/2 -left-8 transform -translate-y-1/2">
+          {/* Arrow controls positioned relative to LazySection container */}
+          <div className="hidden sm:block absolute top-1/2 -left-12 transform -translate-y-1/2">
             <button
               type="button"
               aria-label="Previous testimonial"
               onClick={() =>
                 setActiveIndex(prev => (prev - 1 + testimonials.length) % testimonials.length)
               }
-              className="p-2 bg-neutral-surface rounded-full shadow-md hover:shadow-lg focus:outline-none"
+              className="inline-flex items-center justify-center p-2 bg-neutral-surface rounded-full shadow-md hover:shadow-lg focus:outline-none"
             >
               <ChevronLeft className="h-5 w-5 text-foreground" />
             </button>
           </div>
-
-          <div className="hidden sm:block absolute top-1/2 -right-8 transform -translate-y-1/2">
+          <div className="hidden sm:block absolute top-1/2 -right-12 transform -translate-y-1/2">
             <button
               type="button"
               aria-label="Next testimonial"
               onClick={() => setActiveIndex(prev => (prev + 1) % testimonials.length)}
-              className="p-2 bg-neutral-surface rounded-full shadow-md hover:shadow-lg focus:outline-none"
+              className="inline-flex items-center justify-center p-2 bg-neutral-surface rounded-full shadow-md hover:shadow-lg focus:outline-none"
             >
               <ChevronRight className="h-5 w-5 text-foreground" />
             </button>

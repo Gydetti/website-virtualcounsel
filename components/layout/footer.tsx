@@ -84,7 +84,7 @@ export default function Footer() {
                   href={siteConfig.social.facebook ?? ''}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white hover:text-brand-light transition-colors bg-neutral-surface/10 p-2 rounded-full"
+                  className="inline-flex items-center justify-center text-white hover:text-brand-light transition-colors bg-neutral-surface/10 p-2 rounded-full"
                   aria-label="Facebook"
                 >
                   <Facebook className="h-5 w-5" />
@@ -93,7 +93,7 @@ export default function Footer() {
                   href={siteConfig.social.instagram ?? ''}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white hover:text-brand-light transition-colors bg-neutral-surface/10 p-2 rounded-full"
+                  className="inline-flex items-center justify-center text-white hover:text-brand-light transition-colors bg-neutral-surface/10 p-2 rounded-full"
                   aria-label="Instagram"
                 >
                   <Instagram className="h-5 w-5" />
@@ -102,7 +102,7 @@ export default function Footer() {
                   href={siteConfig.social.twitter ?? ''}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white hover:text-brand-light transition-colors bg-neutral-surface/10 p-2 rounded-full"
+                  className="inline-flex items-center justify-center text-white hover:text-brand-light transition-colors bg-neutral-surface/10 p-2 rounded-full"
                   aria-label="Twitter"
                 >
                   <Twitter className="h-5 w-5" />
@@ -111,7 +111,7 @@ export default function Footer() {
                   href={siteConfig.social.linkedin ?? ''}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white hover:text-brand-light transition-colors bg-neutral-surface/10 p-2 rounded-full"
+                  className="inline-flex items-center justify-center text-white hover:text-brand-light transition-colors bg-neutral-surface/10 p-2 rounded-full"
                   aria-label="LinkedIn"
                 >
                   <Linkedin className="h-5 w-5" />
@@ -194,10 +194,10 @@ export default function Footer() {
 
             <div>
               <h3 className="mb-4">Contact</h3>
-              <ul className="space-y-2 text-white">
-                <li className="flex items-center">
-                  <Mail className="h-4 w-4 mr-2" />
-                  <span>Email: </span>
+              <ul className="space-y-4 text-white">
+                <li className="flex items-start">
+                  <Mail className="h-4 w-4 mr-2 mt-1" />
+                  <span>Email:</span>
                   <a
                     href={`mailto:${siteConfig.contact.email ?? ''}`}
                     className="ml-1 hover:text-brand-light"
@@ -205,9 +205,9 @@ export default function Footer() {
                     {siteConfig.contact.email}
                   </a>
                 </li>
-                <li className="flex items-center">
-                  <Phone className="h-4 w-4 mr-2" />
-                  <span>Phone: </span>
+                <li className="flex items-start">
+                  <Phone className="h-4 w-4 mr-2 mt-1" />
+                  <span>Phone:</span>
                   <a
                     href={`tel:${siteConfig.contact.phone ?? ''}`}
                     className="ml-1 hover:text-brand-light"
@@ -217,7 +217,7 @@ export default function Footer() {
                 </li>
                 <li className="flex items-start">
                   <MapPin className="h-4 w-4 mr-2 mt-1" />
-                  <span>Address: </span>
+                  <span>Address:</span>
                   <address className="ml-1 not-italic">
                     {siteConfig.contact.address?.line1 ?? ''}
                     {siteConfig.contact.address?.line2 && (

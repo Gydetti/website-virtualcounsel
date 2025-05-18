@@ -119,7 +119,11 @@ export default function AboutSection({
               )}
               {heading && (
                 <LazySection animation="fade-up" delay={0.3}>
-                  <h1 className="text-heading">{heading}</h1>
+                  {isHomepage ? (
+                    <h2 className="text-heading">{heading}</h2>
+                  ) : (
+                    <h1 className="text-heading">{heading}</h1>
+                  )}
                 </LazySection>
               )}
               {paragraphs && paragraphs.length > 0 && (
@@ -212,7 +216,11 @@ export default function AboutSection({
           )}
           {heading && (
             <LazySection animation="fade-up" delay={0.3}>
-              <h1 className="text-heading">{heading}</h1>
+              {isHomepage ? (
+                <h2 className="text-heading">{heading}</h2>
+              ) : (
+                <h1 className="text-heading">{heading}</h1>
+              )}
             </LazySection>
           )}
           {paragraphs && paragraphs.length > 0 && (
