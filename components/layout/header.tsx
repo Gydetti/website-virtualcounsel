@@ -71,7 +71,7 @@ export default function Header() {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="fixed inset-0 z-50 bg-white lg:hidden"
+            className="fixed inset-0 z-50 bg-neutral-surface lg:hidden"
           >
             <div className="flex items-center justify-between px-6 py-4 border-b">
               <Link href="/" className="-m-1.5 p-1.5" onClick={() => setMobileMenuOpen(false)}>
@@ -116,7 +116,7 @@ export default function Header() {
                       <div key={item.href} className="border-b-0">
                         <button
                           type="button"
-                          className="flex items-center gap-2 w-full px-4 py-2 text-base font-normal transition-colors hover:bg-primary-10 hover:text-primary"
+                          className="flex items-center gap-2 w-full px-4 py-2 text-base font-normal transition-colors hover:bg-primary/10 hover:text-primary"
                           onClick={() =>
                             setExpandedMenu(expandedMenu === item.href ? null : item.href)
                           }
@@ -133,7 +133,7 @@ export default function Header() {
                           <div className="pl-4 bg-neutral-background">
                             <Link
                               href={item.href}
-                              className="block px-4 py-2 text-base font-normal hover:bg-primary-10"
+                              className="block px-4 py-2 text-base font-normal hover:bg-primary/10"
                               onClick={() => {
                                 setMobileMenuOpen(false);
                                 setExpandedMenu(null);
@@ -146,7 +146,7 @@ export default function Header() {
                               <Link
                                 key={entry.slug}
                                 href={`${item.href}/${entry.slug}`}
-                                className="block px-4 py-2 hover:bg-primary-10"
+                                className="block px-4 py-2 hover:bg-primary/10"
                                 onClick={() => setMobileMenuOpen(false)}
                               >
                                 {entry.title}
@@ -288,7 +288,7 @@ export default function Header() {
                         </button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent sideOffset={4} align="start" className="mt-2">
-                        <DropdownMenuItem asChild className="hover:!bg-primary-10">
+                        <DropdownMenuItem asChild className="hover:!bg-primary/10">
                           <Link href={item.href} className="block w-full px-4 py-2">
                             View All {item.text}
                           </Link>
@@ -298,7 +298,7 @@ export default function Header() {
                           <DropdownMenuItem
                             key={entry.slug}
                             asChild
-                            className="hover:!bg-primary-10"
+                            className="hover:!bg-primary/10"
                           >
                             <Link
                               href={`${item.href}/${entry.slug}`}

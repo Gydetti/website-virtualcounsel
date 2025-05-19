@@ -51,8 +51,8 @@ export default async function ServicesPage() {
               <LazySection key={service.id} delay={index * 0.1}>
                 <Card className="transition-all duration-300 hover:shadow-xl h-full flex flex-col">
                   <div className="relative h-48 w-full">
-                    <div className="absolute inset-0 flex items-center justify-center bg-primary-10">
-                      <IconComponent className="h-16 w-16 text-primary-40" />
+                    <div className="absolute inset-0 flex items-center justify-center bg-primary/10">
+                      <IconComponent className="h-16 w-16 text-primary/40" />
                     </div>
                   </div>
                   <CardHeader>
