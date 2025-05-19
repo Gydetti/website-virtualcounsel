@@ -99,6 +99,21 @@ export const siteConfig: SiteConfigSchema = {
     instagram: '', // <--- Instagram profile URL
     linkedin: '', // <--- LinkedIn profile URL
   },
+  // LEGAL & COMPANY DETAILS: used for Privacy Policy page
+  legal: {
+    businessName: 'Placeholder BV', // e.g. 'ACME Corp'
+    kvkNumber: '12345678', // e.g. '12345678'
+    address: {
+      line1: 'Straat 1',
+      line2: 'Unit 2',
+      city: 'Amsterdam',
+      zip: '1234 AB',
+      country: 'Nederland',
+    },
+    privacyContactName: 'John Doe', // e.g. 'John Doe'
+    privacyContactEmail: 'privacy@example.com', // e.g. 'privacy@client.com'
+    privacyContactPhone: '+31 6 12345678', // e.g. '+31 6 12345678'
+  },
   // COOKIE CONSENT: Configuration for cookie consent banner.
   cookieConsent: {
     cookiebotId: '', // <--- Cookiebot ID, if using Cookiebot service
@@ -179,6 +194,7 @@ export const siteConfig: SiteConfigSchema = {
     '/faq',
     '/resources',
     '/contact',
+    '/privacy-policy', // <--- Enable Privacy Policy page
     '/terms-of-service', // <--- Example legal page
     '/testimonials',
   ],

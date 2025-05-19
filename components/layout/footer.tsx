@@ -15,6 +15,8 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
+import LazySection from '@/components/ui/lazy-section';
+import type { CSSProperties } from 'react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -35,15 +37,23 @@ export default function Footer() {
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full -translate-y-1/2 blur-3xl" />
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/10 rounded-full translate-y-1/2 blur-3xl" />
         <div className="container-wide relative z-10">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div>
+          <LazySection
+            animation="none"
+            className="stagger-container flex flex-col md:flex-row items-center justify-between gap-6"
+            style={{ '--stagger-delay': '0.1s' } as CSSProperties}
+          >
+            <div style={{ '--index': 0 } as CSSProperties}>
               <h3 className="text-white mb-2">Subscribe to our newsletter</h3>
+            </div>
+            <div style={{ '--index': 1 } as CSSProperties}>
               <p className="text-body-base text-white">
                 Stay updated with the latest insights and news
               </p>
             </div>
-            <SubscribeForm />
-          </div>
+            <div style={{ '--index': 2 } as CSSProperties}>
+              <SubscribeForm />
+            </div>
+          </LazySection>
         </div>
       </div>
 
@@ -53,15 +63,16 @@ export default function Footer() {
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/10 rounded-full translate-y-1/2 blur-3xl" />
 
         <div className="container-wide py-12 md:py-16 relative z-10">
-          <div
+          <LazySection
+            animation="none"
             className={cn(
-              'grid gap-8',
-              'grid-cols-1',
-              'md:grid-cols-2',
+              'stagger-container mb-12',
+              'grid gap-8 grid-cols-1 md:grid-cols-2',
               showFooterServices ? 'lg:grid-cols-4' : 'lg:grid-cols-2'
             )}
+            style={{ '--stagger-delay': '0.1s' } as CSSProperties}
           >
-            <div>
+            <div style={{ '--index': 0 } as CSSProperties}>
               <Link href="/" className="inline-block mb-4">
                 {siteConfig.theme.logo.src ? (
                   <Image
@@ -119,7 +130,7 @@ export default function Footer() {
               </div>
             </div>
 
-            <div>
+            <div style={{ '--index': 1 } as CSSProperties}>
               <h3 className="mb-4">Quick links</h3>
               <ul className="space-y-2">
                 {filteredQuickLinks.map(link => (
@@ -138,9 +149,8 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Services section */}
             {showFooterServices && (
-              <div>
+              <div style={{ '--index': 2 } as CSSProperties}>
                 <h3 className="mb-4">Services</h3>
                 <ul className="space-y-2">
                   <li>
@@ -192,7 +202,7 @@ export default function Footer() {
               </div>
             )}
 
-            <div>
+            <div style={{ '--index': showFooterServices ? 3 : 2 } as CSSProperties}>
               <h3 className="mb-4">Contact</h3>
               <ul className="space-y-4 text-white">
                 <li className="flex items-start">
@@ -243,13 +253,17 @@ export default function Footer() {
                 </Link>
               </Button>
             </div>
-          </div>
+          </LazySection>
 
-          <div className="border-t border-divider/700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-neutral-text/200 text-sm">
+          <LazySection
+            animation="none"
+            className="stagger-container border-t border-divider/700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center"
+            style={{ '--stagger-delay': '0.1s' } as CSSProperties}
+          >
+            <p style={{ '--index': 0 } as CSSProperties} className="text-neutral-text/200 text-sm">
               © {currentYear} {siteConfig.site.name}. All rights reserved.
             </p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
+            <div style={{ '--index': 1 } as CSSProperties} className="flex space-x-6 mt-4 md:mt-0">
               <Link
                 href="https://groeienmetgydo.nl"
                 target="_blank"
@@ -259,21 +273,22 @@ export default function Footer() {
                 <span>Website gemaakt met 🍌 door Groeien met Gydo</span>
                 <ExternalLink className="ml-1 h-4 w-4" />
               </Link>
-
               <Link
+                style={{ '--index': 2 } as CSSProperties}
                 href="/privacy-policy"
                 className="text-neutral-text/200 hover:text-white text-sm"
               >
                 Privacy policy
               </Link>
               <Link
+                style={{ '--index': 3 } as CSSProperties}
                 href="/terms-of-service"
                 className="text-neutral-text/200 hover:text-white text-sm"
               >
                 Terms of service
               </Link>
             </div>
-          </div>
+          </LazySection>
         </div>
       </footer>
     </>

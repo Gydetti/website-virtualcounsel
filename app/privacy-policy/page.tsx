@@ -30,7 +30,27 @@ export default function PrivacyPolicyPage() {
             <p>Last updated: {staticContent.privacyPolicy.lastUpdated}</p>
 
             <h2>1. Introduction</h2>
-            <p>{staticContent.privacyPolicy.introduction}</p>
+            {/* Dynamic Introduction using client-provided legal info */}
+            <p>
+              {siteConfig.legal?.businessName} ("wij","ons","onze"), gevestigd te{' '}
+              {siteConfig.legal?.address?.line1}
+              {siteConfig.legal?.address?.line2 ? `, ${siteConfig.legal.address.line2}` : ''},{' '}
+              {siteConfig.legal?.address?.zip} {siteConfig.legal?.address?.city}, ingeschreven bij
+              de Kamer van Koophandel onder nummer {siteConfig.legal?.kvkNumber}, is
+              verantwoordelijk voor de verwerking van persoonsgegevens zoals weergegeven in deze
+              privacyverklaring.
+            </p>
+            <p>
+              Voor vragen kunt u contact opnemen met {siteConfig.legal?.privacyContactName} via{' '}
+              <a href={`mailto:${siteConfig.legal?.privacyContactEmail}`}>
+                {' '}
+                {siteConfig.legal?.privacyContactEmail}
+              </a>
+              {siteConfig.legal?.privacyContactPhone
+                ? ` of telefonisch via ${siteConfig.legal.privacyContactPhone}`
+                : ''}
+              .
+            </p>
 
             <h2>2. Information we collect</h2>
             <p>{staticContent.privacyPolicy.informationCollected}</p>
@@ -45,12 +65,12 @@ export default function PrivacyPolicyPage() {
             <p>{staticContent.privacyPolicy.howWeUse}</p>
             <ul>
               {[
-                staticContent.privacyPolicy.usageListItem1,
-                staticContent.privacyPolicy.usageListItem2,
-                staticContent.privacyPolicy.usageListItem3,
-                staticContent.privacyPolicy.usageListItem4,
-              ].map(item => (
-                <li key={item}>{item}</li>
+                ['usageListItem1', staticContent.privacyPolicy.usageListItem1],
+                ['usageListItem2', staticContent.privacyPolicy.usageListItem2],
+                ['usageListItem3', staticContent.privacyPolicy.usageListItem3],
+                ['usageListItem4', staticContent.privacyPolicy.usageListItem4],
+              ].map(([key, item]) => (
+                <li key={key}>{item}</li>
               ))}
             </ul>
 

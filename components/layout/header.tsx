@@ -133,7 +133,7 @@ export default function Header() {
                           <div className="pl-4 bg-neutral-background">
                             <Link
                               href={item.href}
-                              className="block px-4 py-2 text-base font-normal hover:bg-primary/10"
+                              className="block px-4 py-2 text-base font-medium hover:bg-primary/10"
                               onClick={() => {
                                 setMobileMenuOpen(false);
                                 setExpandedMenu(null);
@@ -277,7 +277,7 @@ export default function Header() {
                       </DropdownMenuTrigger>
                       <DropdownMenuContent sideOffset={4} align="start" className="mt-2">
                         <DropdownMenuItem asChild className="hover:!bg-primary/10">
-                          <Link href={item.href} className="block w-full px-4 py-2">
+                          <Link href={item.href} className="block w-full font-medium px-4 py-2">
                             View All {item.text}
                           </Link>
                         </DropdownMenuItem>

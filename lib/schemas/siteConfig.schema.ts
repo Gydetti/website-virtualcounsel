@@ -206,6 +206,25 @@ export const pageStructureSchema = z.object({
 
 // --- Main siteConfigSchema composition ---
 export const siteConfigSchema = z.object({
+  // LEGAL & COMPANY DETAILS: used for Privacy Policy rendering
+  legal: z
+    .object({
+      businessName: z.string().min(1),
+      kvkNumber: z.string().min(1),
+      address: z
+        .object({
+          line1: z.string().min(1),
+          line2: z.string().optional(),
+          city: z.string().min(1),
+          zip: z.string().min(1),
+          country: z.string().min(1),
+        })
+        .optional(),
+      privacyContactName: z.string().min(1),
+      privacyContactEmail: z.string().email(),
+      privacyContactPhone: z.string().optional(),
+    })
+    .optional(),
   site: siteMetaSchema,
   theme: themeSchema,
   navLinks: z.array(linkSchema).min(1, 'Navigation links cannot be empty if defined').optional(),

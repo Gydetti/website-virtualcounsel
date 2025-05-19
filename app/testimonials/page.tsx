@@ -8,6 +8,7 @@ import { siteConfig } from '@/lib/site.config.local';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import type { CSSProperties } from 'react';
 
 // Generate page metadata
 export async function generateMetadata(): Promise<Metadata> {
@@ -30,19 +31,30 @@ export default function TestimonialsPage() {
 
   return (
     <>
-      {/* Introduction Section */}
+      {/* Introduction Section with CSS-only staggered reveal */}
       <Section
         className="relative overflow-hidden bg-gradient-to-r from-brand-primary/10 to-brand-hero-background z-10 py-12"
         id="testimonials-intro"
       >
-        <LazySection animation="slide-up" delay={0} className="text-center mb-16">
+        <LazySection
+          animation="none"
+          className="stagger-container text-center mb-16 max-w-3xl mx-auto"
+          style={{ '--stagger-delay': '0.1s' } as CSSProperties}
+        >
           {badgeText && (
-            <Badge className="mb-4 bg-brand-light text-primary hover:bg-brand-light/90">
+            <Badge
+              className="mb-4 bg-brand-light text-primary hover:bg-brand-light/90"
+              style={{ '--index': 0 } as CSSProperties}
+            >
               {badgeText}
             </Badge>
           )}
-          {heading && <h1 className="">{heading}</h1>}
-          {subtitle && <p className="section-subtitle">{subtitle}</p>}
+          {heading && <h1 style={{ '--index': 1 } as CSSProperties}>{heading}</h1>}
+          {subtitle && (
+            <p className="section-subtitle" style={{ '--index': 2 } as CSSProperties}>
+              {subtitle}
+            </p>
+          )}
         </LazySection>
       </Section>
 

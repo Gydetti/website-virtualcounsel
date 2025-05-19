@@ -16,7 +16,7 @@ const textVariants = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.4, delay: i * 0.2, ease: 'easeIn' },
+    transition: { duration: 0.3, delay: i * 0.2, ease: 'easeIn' },
   }),
 };
 

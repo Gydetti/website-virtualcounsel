@@ -87,22 +87,32 @@ export const staticContent = {
     contactInfo: 'Provide contact details for cookie policy inquiries',
   }),
   privacyPolicy: privacyPolicySchema.parse({
-    lastUpdated: 'January 1, 2025',
-    introduction: 'Introduction explaining who you are and purpose of this privacy policy',
-    informationCollected: 'Detail types of personal information collected from users',
-    personalInformation: 'Specify personal information collected (e.g. names, email addresses)',
-    usageData: 'Explain usage data collected (e.g. IP address, browser type)',
-    howWeUse: 'Explain how collected information is used',
-    usageListItem1: 'Specific purpose for using collected data',
-    usageListItem2: 'Specific purpose for using collected data',
-    usageListItem3: 'Specific purpose for using collected data',
-    usageListItem4: 'Specific purpose for using collected data',
-    dataSharing: 'Explain who you share the data with and under what circumstances.',
-    dataSecurity: 'Describe the measures you take to protect user data.',
-    userRights: 'Explain what rights users have regarding their data.',
-    cookiesPolicy: 'Explain your use of cookies and similar technologies.',
-    policyChanges: 'Explain how you will notify users of changes to this policy.',
-    contactInfo: 'Provide contact information for privacy-related inquiries.',
+    lastUpdated: '{{Datum laatste bijwerking}}',
+    introduction: `{{Naam van jouw onderneming/praktijk}} ("wij," "ons," of "onze"), gevestigd te {{Straat en huisnummer}}, {{Postcode en Plaats}}, ingeschreven bij de Kamer van Koophandel onder nummer {{KvK-nummer}}, is verantwoordelijk voor de verwerking van persoonsgegevens zoals weergegeven in deze privacyverklaring. Contact: {{Jouw volledige naam of naam contactpersoon privacy}}, Website: {{URL van jouw website}}, E-mail: {{E-mailadres voor privacygerelateerde vragen}}, Telefoonnummer: {{Telefoonnummer (optioneel)}}`,
+    informationCollected:
+      'Wij verwerken uw persoonsgegevens doordat u gebruik maakt van onze diensten en/of omdat u deze zelf aan ons verstrekt. Hieronder vindt u een overzicht van de persoonsgegevens die wij (mogelijk) verwerken, afhankelijk van de dienst die u afneemt of de interactie die u met ons heeft:',
+    personalInformation:
+      '- Voor- en achternaam\n- E-mailadres\n- Telefoonnummer\n- Adresgegevens (indien nodig voor dienstverlening of facturatie)\n- {{Eventuele andere gegevens die direct worden verzameld, bijv. bedrijfsnaam, functie, gegevens die u verstrekt tijdens intakegesprekken, coachingsessies, inhoud van e-mails of contactformulieren}}\n- Gegevens over uw activiteiten op onze website (bijv. via cookies, zie punt 5)\n- IP-adres (geanonimiseerd indien mogelijk)\n- Internetbrowser en apparaat type (via cookies)\n- Bankrekeningnummer (indien u betalingen aan ons doet)',
+    usageData: '',
+    howWeUse: 'Wij verwerken uw persoonsgegevens voor de volgende doelen:',
+    usageListItem1: 'Uitvoeren van onze diensten (grondslag: uitvoering van een overeenkomst)',
+    usageListItem2:
+      'Contact met u opnemen (grondslag: uitvoering van een overeenkomst/gerechtvaardigd belang)',
+    usageListItem3: 'Verzenden van nieuwsbrieven en/of marketingmateriaal (grondslag: toestemming)',
+    usageListItem4:
+      'Afhandelen van uw betaling en voldoen aan wettelijke verplichtingen (grondslag: uitvoering van een overeenkomst/wettelijke verplichting)',
+    dataSharing:
+      'Wij verkopen uw gegevens niet aan derden en verstrekken deze uitsluitend indien dit nodig is voor de uitvoering van onze overeenkomst met u, om te voldoen aan een wettelijke verplichting, of met uw expliciete toestemming. Met bedrijven die uw gegevens verwerken in onze opdracht (verwerkers), sluiten wij een verwerkersovereenkomst om te zorgen voor eenzelfde niveau van beveiliging en vertrouwelijkheid van uw gegevens. Voorbeelden van derden waarmee wij (mogelijk) gegevens delen: {{Hostingprovider, E-mailmarketing software, Boekhoudsoftware, Betalingsverwerker, Online agendatool, Andere tools}}. Doorgifte buiten de EER: Indien persoonsgegevens worden doorgegeven aan partijen buiten de EER, zorgen wij ervoor dat dit gebeurt in overeenstemming met de geldende privacywetgeving.',
+    dataSecurity:
+      'Wij nemen de bescherming van uw gegevens serieus en nemen passende technische en organisatorische maatregelen om misbruik, verlies, onbevoegde toegang, ongewenste openbaarmaking en ongeoorloofde wijziging tegen te gaan. Maatregelen die wij (onder andere) hebben genomen zijn: {{Voorbeeld: Beveiligde internetverbinding (TLS/SSL), Toegangsbeveiliging, Regelmatige updates, Fysieke beveiliging, Verwerkersovereenkomsten}}.',
+    userRights:
+      'U heeft het recht om uw persoonsgegevens in te zien, te corrigeren of te verwijderen. Daarnaast heeft u het recht om uw eventuele toestemming voor de gegevensverwerking in te trekken of bezwaar te maken tegen de verwerking van uw persoonsgegevens door ons en heeft u het recht op gegevensoverdraagbaarheid (dataportabiliteit). U kunt een verzoek tot inzage, correctie, verwijdering, gegevensoverdraging van uw persoonsgegevens of verzoek tot intrekking van uw toestemming of bezwaar op de verwerking van uw persoonsgegevens sturen naar {{E-mailadres voor privacygerelateerde vragen}}.',
+    cookiesPolicy:
+      'Wij gebruiken {{Functionele, Analytische, Tracking – wees specifiek}} cookies. Functionele cookies zijn nodig voor de goede werking van de website. Analytische cookies (bijv. Google Analytics, geanonimiseerd) helpen ons te begrijpen hoe bezoekers de website gebruiken. Tracking cookies/Marketing cookies worden gebruikt om bezoekers over verschillende websites heen te volgen. Voor het plaatsen van deze cookies vragen wij uw expliciete toestemming. U kunt zich afmelden voor cookies door uw internetbrowser zo in te stellen dat deze geen cookies meer opslaat. Zie voor een toelichting: {{Link naar uitleg over cookiebeheer}}. Indien u een cookiebanner of consent management tool gebruikt, verwijs hiernaar.',
+    policyChanges:
+      'Wij kunnen deze privacyverklaring van tijd tot tijd wijzigen. Wijzigingen zullen op onze website worden gepubliceerd. Het is raadzaam om deze privacyverklaring regelmatig te raadplegen, zodat u van eventuele wijzigingen op de hoogte bent.',
+    contactInfo:
+      'Voor privacygerelateerde vragen: {{E-mailadres voor privacygerelateerde vragen}}. Indien u een klacht heeft over de verwerking van uw persoonsgegevens, vragen wij u hierover direct contact met ons op te nemen. U heeft altijd het recht een klacht in te dienen bij de Autoriteit Persoonsgegevens: https://autoriteitpersoonsgegevens.nl/nl/contact-met-de-autoriteit-persoonsgegevens/tip-ons',
   }),
   termsOfService: termsOfServiceSchema.parse({
     lastUpdated: 'January 1, 2025',

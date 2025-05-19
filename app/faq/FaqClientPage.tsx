@@ -19,6 +19,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import LazySection from '@/components/ui/lazy-section';
 import { staticContent } from '@/lib/data/staticContent';
+import type { CSSProperties } from 'react';
 
 export default function FaqClientPage() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -48,42 +49,47 @@ export default function FaqClientPage() {
   return (
     <>
       <StructuredData type="faq" data={{ items: faqSchemaData }} />
+      {/* FAQ Hero section with CSS-only staggered reveal */}
       <section className="relative overflow-hidden bg-gradient-to-r from-brand-primary/10 to-brand-hero-background py-16 md:py-24 z-10">
-        <LazySection>
-          <div className="container-wide">
-            <div className="text-center max-w-3xl mx-auto">
-              <Badge className="mb-4 bg-brand-light text-primary hover:bg-brand-light/90">
-                {staticContent.faqSection.badge}
-              </Badge>
-              <h1 className="">{staticContent.faqSection.title}</h1>
-              <p className="text-neutral-text mb-8">{staticContent.faqSection.subtitle}</p>
-
-              <div className="relative max-w-xl mx-auto">
-                <Input
-                  autoComplete="off"
-                  type="text"
-                  placeholder={staticContent.faqSection.searchPlaceholder}
-                  value={searchQuery}
-                  onChange={e => setSearchQuery(e.target.value)}
-                  className="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-primary focus:border-transparent pl-10"
-                />
-                <svg
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-text/400"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
-                </svg>
-              </div>
-            </div>
+        <LazySection
+          animation="none"
+          className="stagger-container text-center max-w-3xl mx-auto"
+          style={{ '--stagger-delay': '0.1s' } as CSSProperties}
+        >
+          <Badge
+            className="mb-4 bg-brand-light text-primary hover:bg-brand-light/90"
+            style={{ '--index': 0 } as CSSProperties}
+          >
+            {staticContent.faqSection.badge}
+          </Badge>
+          <h1 style={{ '--index': 1 } as CSSProperties}>{staticContent.faqSection.title}</h1>
+          <p className="text-neutral-text mb-8" style={{ '--index': 2 } as CSSProperties}>
+            {staticContent.faqSection.subtitle}
+          </p>
+          <div className="relative max-w-xl mx-auto" style={{ '--index': 3 } as CSSProperties}>
+            <Input
+              autoComplete="off"
+              type="text"
+              placeholder={staticContent.faqSection.searchPlaceholder}
+              value={searchQuery}
+              onChange={e => setSearchQuery(e.target.value)}
+              className="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-primary focus:border-transparent pl-10"
+            />
+            <svg
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-text/400"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
           </div>
         </LazySection>
       </section>

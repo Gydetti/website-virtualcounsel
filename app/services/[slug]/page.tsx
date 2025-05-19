@@ -10,8 +10,10 @@ import { siteConfig } from '@/lib/siteConfig';
 import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import type { CSSProperties } from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import LazySection from '@/components/ui/lazy-section';
 
 interface ServicePageProps {
   params: Promise<{ slug: string }>;
@@ -145,55 +147,56 @@ export default async function ServicePage(props: ServicePageProps) {
     <>
       <Section className="bg-gradient-to-r from-brand-primary/10 to-brand-hero-background">
         <div className="grid md:grid-cols-2 gap-8 items-center">
-          <div>
-            <IconComponent className="h-20 w-20 text-primary mb-6" />
-            <h1 className="mb-4 break-words">{service.title}</h1>
-            <p className="text-neutral-text mb-8">{service.description}</p>
-
-            <div className="space-y-4 mb-8">
-              {service.features?.map(feature => (
-                <div key={feature} className="flex items-start">
-                  <div className="flex-shrink-0 h-6 w-6 rounded-full bg-feedback-success-bg flex items-center justify-center mr-3">
-                    <Check className="h-4 w-4 text-feedback-success" />
-                  </div>
-                  <span>{feature}</span>
-                </div>
-              ))}
-            </div>
-
-            <Button size="lg" className="bg-primary hover:bg-primary/90" asChild>
-              <Link href="/contact">
-                Schedule a Consultation
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
+          <div className="space-y-6">
+            <LazySection animation="slide-up" delay={0}>
+              <IconComponent className="h-20 w-20 text-primary mb-6" />
+            </LazySection>
+            <LazySection animation="fade-up" delay={0.1}>
+              <h1 className="mb-4 break-words">{service.title}</h1>
+            </LazySection>
+            <LazySection animation="fade-up" delay={0.2}>
+              <p className="text-neutral-text mb-8">{service.description}</p>
+            </LazySection>
+            <LazySection animation="fade-up" delay={0.3}>
+              <Button size="lg" className="bg-primary hover:bg-primary/90" asChild>
+                <Link href="/contact">
+                  Schedule a Consultation
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </LazySection>
           </div>
 
-          <div className="relative h-[400px] rounded-xl overflow-hidden shadow-xl">
+          <LazySection
+            animation="slide-up"
+            delay={0.4}
+            className="relative h-[400px] rounded-xl overflow-hidden shadow-xl"
+          >
             <div className="absolute inset-0 flex items-center justify-center bg-neutral-background/100">
               <IconComponent className="h-32 w-32 text-brand-primary/30" />
             </div>
-          </div>
+          </LazySection>
         </div>
       </Section>
 
       <section className="py-16">
         <div className="container-wide">
-          <h2 className="text-3xl font-bold mb-12 text-center">
-            Key benefits section heading summarizing main outcomes
-          </h2>
+          <LazySection animation="fade-up" delay={0} className="text-center mb-12">
+            <h2 className="text-3xl font-bold">
+              Key benefits section heading summarizing main outcomes
+            </h2>
+          </LazySection>
           <div className="grid md:grid-cols-3 gap-8">
-            {benefits.map(benefit => (
-              <Card
-                key={benefit.title}
-                className="text-center p-6 hover:shadow-lg transition-shadow"
-              >
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
-                  <span className="text-2xl">{benefit.icon}</span>
-                </div>
-                <h3 className="text-xl font-bold mb-2">{benefit.title}</h3>
-                <p className="text-neutral-text/600">{benefit.description}</p>
-              </Card>
+            {benefits.map((benefit, idx) => (
+              <LazySection key={benefit.title} animation="slide-up" delay={0.1 + idx * 0.1}>
+                <Card className="flex flex-col h-full text-center p-6 hover:shadow-lg transition-shadow">
+                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
+                    <span className="text-2xl">{benefit.icon}</span>
+                  </div>
+                  <h3 className="text-xl font-bold mb-2">{benefit.title}</h3>
+                  <p className="text-neutral-text/600">{benefit.description}</p>
+                </Card>
+              </LazySection>
             ))}
           </div>
         </div>
@@ -203,50 +206,30 @@ export default async function ServicePage(props: ServicePageProps) {
 
       <section className="py-16 bg-neutral-surface">
         <div className="container-wide">
-          <h2 className="text-3xl font-bold mb-12 text-center">
-            Section heading for service-specific questions
-          </h2>
-          <div className="max-w-3xl mx-auto">
-            <div className="space-y-6">
-              {faq.map(item => (
-                <Card key={item.question} className="overflow-hidden">
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-bold mb-2">{item.question}</h3>
-                    <p className="text-neutral-text/600">{item.answer}</p>
-                  </CardContent>
-                </Card>
+          <LazySection
+            animation="none"
+            className="stagger-container"
+            style={{ '--stagger-delay': '0.1s' } as CSSProperties}
+          >
+            <h2
+              className="text-3xl font-bold mb-12 text-center"
+              style={{ '--index': 0 } as CSSProperties}
+            >
+              Section heading for service-specific questions
+            </h2>
+            <div className="max-w-3xl mx-auto space-y-6">
+              {faq.map((item, idx) => (
+                <div key={item.question} style={{ '--index': idx + 1 } as CSSProperties}>
+                  <Card className="overflow-hidden">
+                    <CardContent className="p-6">
+                      <h3 className="text-xl font-bold mb-2">{item.question}</h3>
+                      <p className="text-neutral-text/600">{item.answer}</p>
+                    </CardContent>
+                  </Card>
+                </div>
               ))}
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 bg-neutral-background">
-        <div className="container-wide">
-          <h2 className="text-3xl font-bold mb-12 text-center">Section heading for testimonials</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            {testimonials.map(testimonial => (
-              <Card key={testimonial.author} className="p-6">
-                <div className="flex items-start">
-                  <div className="relative h-16 w-16 rounded-full overflow-hidden mr-4 flex-shrink-0">
-                    <Image
-                      src={testimonial.image || '/placeholder.svg'}
-                      alt={testimonial.author}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div>
-                    <p className="italic text-neutral-text/600 mb-4">"{testimonial.quote}"</p>
-                    <div>
-                      <p className="font-bold">{testimonial.author}</p>
-                      <p className="text-sm text-neutral-text/500">{testimonial.company}</p>
-                    </div>
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </div>
+          </LazySection>
         </div>
       </section>
 
@@ -266,6 +249,48 @@ export default async function ServicePage(props: ServicePageProps) {
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
+        </div>
+      </section>
+
+      <section className="py-16 bg-neutral-background">
+        <div className="container-wide">
+          <LazySection
+            animation="none"
+            className="stagger-container"
+            style={{ '--stagger-delay': '0.1s' } as CSSProperties}
+          >
+            <h2
+              className="text-3xl font-bold mb-12 text-center"
+              style={{ '--index': 0 } as CSSProperties}
+            >
+              Section heading for testimonials
+            </h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              {testimonials.map((testimonial, idx) => (
+                <div key={testimonial.author} style={{ '--index': idx + 1 } as CSSProperties}>
+                  <Card className="p-6">
+                    <div className="flex items-start">
+                      <div className="relative h-16 w-16 rounded-full overflow-hidden mr-4 flex-shrink-0">
+                        <Image
+                          src={testimonial.image || '/placeholder.svg'}
+                          alt={testimonial.author}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                      <div>
+                        <p className="italic text-neutral-text/600 mb-4">"{testimonial.quote}"</p>
+                        <div>
+                          <p className="font-bold">{testimonial.author}</p>
+                          <p className="text-sm text-neutral-text/500">{testimonial.company}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </Card>
+                </div>
+              ))}
+            </div>
+          </LazySection>
         </div>
       </section>
     </>

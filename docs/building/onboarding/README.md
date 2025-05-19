@@ -1,3 +1,6 @@
+Color Theming System – How It Works (Summary)
+All colors in the codebase are managed through a centralized theme system. Instead of using hardcoded color values (like hex codes or Tailwind color classes) directly in components, every color is defined as a semantic token in a single theme file (usually theme/colors.ts or via CSS variables in app/globals.css and tailwind.config.ts). These tokens have names that describe their purpose (e.g., bg-brand-light, text-neutral-text, border-divider) rather than their color value. Components and pages use these tokens for all backgrounds, text, borders, gradients, and feedback states. This approach ensures that updating a color or rebranding the site only requires changing the value in one place, instantly updating the entire site. Lint rules and codemods help enforce this, blocking any new hardcoded color usage. The result is a maintainable, scalable, and easily customizable design system where all color changes are safe, global, and future-proof.
+
 # Important: Color Tokenization Completed
 
 > This onboarding README reflects the final integration of semantic color tokens across the entire codebase.

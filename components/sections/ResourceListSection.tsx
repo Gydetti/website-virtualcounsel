@@ -50,46 +50,46 @@ export default function ResourceListSection({
     >
       <div className="container mx-auto px-4">
         <LazySection>
-        <h1 className="text-center mb-10">{title}</h1>
+          <h1 className="text-center mb-10">{title}</h1>
         </LazySection>
         <LazySection delay={0.1}>
-        <div className={`grid ${gridCols} gap-8`}>
+          <div className={`grid ${gridCols} gap-8`}>
             {resources.map((resource, index) => (
               <LazySection key={resource.slug} delay={(index + 1) * 0.1}>
-            <article
-              className={`group relative flex flex-col overflow-hidden rounded-lg border border-[#e5e7eb80] bg-gradient-to-b from-white to-blue-50/30 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${count === 1 ? 'max-w-md mx-auto' : ''}`}
-            >
-              <Link href={`/resources/${resource.slug}`} className="block h-full">
-                <div className="relative h-48 w-full overflow-hidden sm:h-56">
-                  <Image
-                    src={srcMap[resource.slug]}
-                    alt={resource.heroImage?.alt || resource.title}
-                    fill
-                    style={{ objectFit: 'cover' }}
-                    onError={() => {
-                      setSrcMap(prev => ({
-                        ...prev,
-                        [resource.slug]: '/images/placeholders/placeholder.svg',
-                      }));
-                    }}
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2 text-primary group-hover:text-primary">
-                    {resource.title}
-                  </h3>
-                  {resource.subtitle && (
-                    <p className="text-foreground text-sm line-clamp-3">{resource.subtitle}</p>
-                  )}
-                  <span className="mt-4 inline-block text-primary group-hover:underline">
-                    Read more &rarr;
-                  </span>
-                </div>
-              </Link>
-            </article>
+                <article
+                  className={`group relative flex flex-col overflow-hidden rounded-lg border border-[#e5e7eb80] bg-gradient-to-b from-white to-blue-50/30 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${count === 1 ? 'max-w-md mx-auto' : ''}`}
+                >
+                  <Link href={`/resources/${resource.slug}`} className="block h-full">
+                    <div className="relative h-48 w-full overflow-hidden sm:h-56">
+                      <Image
+                        src={srcMap[resource.slug]}
+                        alt={resource.heroImage?.alt || resource.title}
+                        fill
+                        style={{ objectFit: 'cover' }}
+                        onError={() => {
+                          setSrcMap(prev => ({
+                            ...prev,
+                            [resource.slug]: '/images/placeholders/placeholder.svg',
+                          }));
+                        }}
+                      />
+                    </div>
+                    <div className="p-6">
+                      <h3 className="text-xl font-semibold mb-2 text-primary group-hover:text-primary">
+                        {resource.title}
+                      </h3>
+                      {resource.subtitle && (
+                        <p className="text-foreground text-sm line-clamp-3">{resource.subtitle}</p>
+                      )}
+                      <span className="mt-4 inline-block text-primary group-hover:underline">
+                        Read more &rarr;
+                      </span>
+                    </div>
+                  </Link>
+                </article>
               </LazySection>
-          ))}
-        </div>
+            ))}
+          </div>
         </LazySection>
       </div>
     </section>

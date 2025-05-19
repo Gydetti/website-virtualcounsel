@@ -1,5 +1,5 @@
 'use client';
-import type { ChangeEvent, FormEvent } from 'react';
+import type { ChangeEvent, FormEvent, CSSProperties } from 'react';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -79,19 +79,28 @@ export default function ContactPageClient() {
 
   return (
     <>
+      {/* Contact Hero section with CSS-only staggered reveal */}
       <section className="relative overflow-hidden bg-gradient-to-r from-brand-primary/10 to-brand-hero-background py-16 md:py-24 z-10">
-        <LazySection>
-          <div className="container-wide">
-            <div className="text-center max-w-3xl mx-auto">
-              <Badge className="mb-4 bg-brand-light text-primary hover:bg-brand-light/90">
-                Contact section
-              </Badge>
-              <h1 className="">Section heading inviting users to reach out</h1>
-              <p className="text-neutral-text mb-8 whitespace-normal break-words">
-                Brief subtitle explaining how visitors can reach out and what to expect
-              </p>
-            </div>
-          </div>
+        <LazySection
+          animation="none"
+          className="stagger-container text-center max-w-3xl mx-auto"
+          style={{ '--stagger-delay': '0.1s' } as CSSProperties}
+        >
+          <Badge
+            className="mb-4 bg-brand-light text-primary hover:bg-brand-light/90"
+            style={{ '--index': 0 } as CSSProperties}
+          >
+            Contact section
+          </Badge>
+          <h1 style={{ '--index': 1 } as CSSProperties}>
+            Section heading inviting users to reach out
+          </h1>
+          <p
+            className="text-neutral-text mb-8 whitespace-normal break-words"
+            style={{ '--index': 2 } as CSSProperties}
+          >
+            Brief subtitle explaining how visitors can reach out and what to expect
+          </p>
         </LazySection>
       </section>
 
