@@ -51,18 +51,16 @@ export default function FaqClientPage() {
           <div className="container-wide">
             <div className="text-center max-w-3xl mx-auto">
               <Badge className="mb-4 bg-brand-light text-primary hover:bg-brand-light/90">
-                Short label introducing FAQ section
+                {staticContent.faqSection.badge}
               </Badge>
-              <h1 className="">Section title inviting users to find answers</h1>
-              <p className="text-neutral-text mb-8">
-                Brief subtitle explaining purpose of this FAQ page
-              </p>
+              <h1 className="">{staticContent.faqSection.title}</h1>
+              <p className="text-neutral-text mb-8">{staticContent.faqSection.subtitle}</p>
 
               <div className="relative max-w-xl mx-auto">
                 <Input
                   autoComplete="off"
                   type="text"
-                  placeholder="Search for answers..."
+                  placeholder={staticContent.faqSection.searchPlaceholder}
                   value={searchQuery}
                   onChange={e => setSearchQuery(e.target.value)}
                   className="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-primary focus:border-transparent pl-10"
@@ -140,13 +138,15 @@ export default function FaqClientPage() {
       <LazySection>
         <section className="py-16 bg-neutral-background">
           <div className="container-wide text-center">
-            <h2 className="text-3xl font-bold mb-6">Section heading for further assistance</h2>
+            <h2 className="text-3xl font-bold mb-6">
+              {staticContent.faqSection.assistance.heading}
+            </h2>
             <p className="text-xl mb-8 max-w-2xl mx-auto">
-              Brief prompt directing visitors to contact if they need more help
+              {staticContent.faqSection.assistance.prompt}
             </p>
             <Button size="lg" className="bg-primary hover:bg-primary/90" asChild>
               <Link href="/contact">
-                Contact Us
+                {staticContent.faqSection.assistance.buttonLabel}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
