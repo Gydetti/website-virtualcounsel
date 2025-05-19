@@ -6,16 +6,29 @@ import { Button } from '@/components/ui/button';
 import { siteConfig } from '@/lib/siteConfig';
 import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowRight, Menu, X } from 'lucide-react';
+import { ArrowRight, Menu, X, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import useScrollDirection from '@/hooks/useScrollDirection';
 import { createPortal } from 'react-dom';
+import { getResources } from '@/lib/data/resources';
+import type { z } from 'zod';
+import type { resourceSchema } from '@/lib/schemas/contentBlocks.schema';
+import { getServices } from '@/lib/data-utils';
+import type { ServiceType } from '@/lib/data-utils';
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+} from '@/components/ui/dropdown-menu';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [expandedMenu, setExpandedMenu] = useState<string | null>(null);
   const { atTop, direction } = useScrollDirection({ topThreshold: 88 });
   const scrolled = !atTop;
   const isHidden = direction === 'down' && !atTop;
@@ -36,6 +49,15 @@ export default function Header() {
     if (item.href.startsWith('/contact') && !siteConfig.features.enableContactForm) return false;
     return true;
   });
+
+  // Fetch resources and services for nav submenu
+  type ResourcesType = z.infer<typeof resourceSchema>[];
+  const [resourcesList, setResourcesList] = useState<ResourcesType>([]);
+  const [servicesList, setServicesList] = useState<ServiceType[]>([]);
+  useEffect(() => {
+    getResources().then(data => setResourcesList(data));
+    getServices().then(data => setServicesList(data));
+  }, []);
 
   // Portal-based mobile menu overlay to escape header stacking context
   const mobileMenuOverlay = mobileMenuOpen
@@ -81,30 +103,80 @@ export default function Header() {
                 <X className="h-6 w-6" aria-hidden="true" />
               </button>
             </div>
-            <div className="mt-6 flow-root px-6">
-              <div className="space-y-2 py-6">
-                {filteredNavigation.map(item => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={cn(
-                      'block text-base font-medium hover:text-primary',
-                      pathname === item.href ? 'text-primary font-semibold' : 'text-neutral-text'
-                    )}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {item.text}
-                  </Link>
-                ))}
+            <div className="mt-4 flow-root px-6">
+              <div className="space-y-2 py-2">
+                {filteredNavigation.map(item => {
+                  const isSubmenu = item.href === '/resources' || item.href === '/services';
+                  const list = item.href === '/resources' ? resourcesList : servicesList;
+                  if (isSubmenu) {
+                    return (
+                      <div key={item.href} className="border-b-0">
+                        <button
+                          type="button"
+                          className="flex items-center gap-2 w-full px-4 py-2 text-base font-normal transition-colors hover:bg-primary-10 hover:text-primary"
+                          onClick={() =>
+                            setExpandedMenu(expandedMenu === item.href ? null : item.href)
+                          }
+                        >
+                          {item.text}
+                          <ChevronDown
+                            className={cn(
+                              'h-4 w-4 shrink-0 transition-transform duration-200',
+                              expandedMenu === item.href ? 'rotate-180' : ''
+                            )}
+                          />
+                        </button>
+                        {expandedMenu === item.href && (
+                          <div className="pl-4 bg-neutral-background">
+                            <Link
+                              href={item.href}
+                              className="block px-4 py-2 text-base font-normal hover:bg-primary-10"
+                              onClick={() => {
+                                setMobileMenuOpen(false);
+                                setExpandedMenu(null);
+                              }}
+                            >
+                              View All {item.text}
+                            </Link>
+                            <hr className="border-t border-neutral-divider my-2" />
+                            {list.map(entry => (
+                              <Link
+                                key={entry.slug}
+                                href={`${item.href}/${entry.slug}`}
+                                className="block px-4 py-2 hover:bg-primary-10"
+                                onClick={() => setMobileMenuOpen(false)}
+                              >
+                                {entry.title}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  }
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="flex items-center w-full px-4 py-2 text-base font-normal transition-colors hover:bg-primary-10 hover:text-primary"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {item.text}
+                    </Link>
+                  );
+                })}
               </div>
-              <div className="mt-4">
-                <Button asChild className="w-full bg-primary hover:bg-primary/90 group">
-                  <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
-                    Get in touch
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Link>
-                </Button>
-              </div>
+            </div>
+            <div className="mt-4 flex justify-center">
+              <Button
+                asChild
+                className="bg-primary hover:bg-primary/90 group text-sm h-10 px-3 min-h-0 min-w-0"
+              >
+                <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
+                  Get in touch
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </Button>
             </div>
           </motion.div>
         </AnimatePresence>,
@@ -173,28 +245,75 @@ export default function Header() {
               </button>
             </div>
             <div className="hidden lg:flex items-center lg:gap-x-8">
-              {filteredNavigation.map(item => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={cn(
-                    'inline-block text-sm font-medium transition-colors relative group !min-h-0 !min-w-0',
-                    pathname === item.href
-                      ? 'text-primary font-semibold'
-                      : scrolled
-                        ? 'text-neutral-text hover:text-primary'
-                        : 'text-foreground hover:text-primary'
-                  )}
-                >
-                  {item.text}
-                  <span
+              {filteredNavigation.map(item => {
+                if (item.href === '/resources' || item.href === '/services') {
+                  const list = item.href === '/resources' ? resourcesList : servicesList;
+                  return (
+                    <DropdownMenu key={item.href}>
+                      <DropdownMenuTrigger asChild>
+                        <button
+                          type="button"
+                          className={cn(
+                            'inline-block text-base font-medium transition-colors relative group !min-h-0 !min-w-0',
+                            pathname === item.href
+                              ? 'text-primary font-semibold'
+                              : scrolled
+                                ? 'text-neutral-text hover:text-primary'
+                                : 'text-foreground hover:text-primary'
+                          )}
+                        >
+                          {item.text}
+                          <ChevronDown className="ml-1 inline-block h-4 w-4" />
+                        </button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent sideOffset={4} align="start" className="mt-2">
+                        <DropdownMenuItem asChild className="hover:!bg-primary-10">
+                          <Link href={item.href} className="block w-full px-4 py-2">
+                            View All {item.text}
+                          </Link>
+                        </DropdownMenuItem>
+                        <DropdownMenuSeparator />
+                        {list.map(entry => (
+                          <DropdownMenuItem
+                            key={entry.slug}
+                            asChild
+                            className="hover:!bg-primary-10"
+                          >
+                            <Link
+                              href={`${item.href}/${entry.slug}`}
+                              className="block w-full px-4 py-2"
+                            >
+                              {entry.title}
+                            </Link>
+                          </DropdownMenuItem>
+                        ))}
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  );
+                }
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
                     className={cn(
-                      'absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300',
-                      pathname === item.href ? 'w-full' : 'w-0 group-hover:w-full'
+                      'inline-block text-sm font-medium transition-colors relative group !min-h-0 !min-w-0',
+                      pathname === item.href
+                        ? 'text-primary font-semibold'
+                        : scrolled
+                          ? 'text-neutral-text hover:text-primary'
+                          : 'text-foreground hover:text-primary'
                     )}
-                  />
-                </Link>
-              ))}
+                  >
+                    {item.text}
+                    <span
+                      className={cn(
+                        'absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300',
+                        pathname === item.href ? 'w-full' : 'w-0 group-hover:w-full'
+                      )}
+                    />
+                  </Link>
+                );
+              })}
             </div>
             <div className="hidden lg:flex lg:items-center lg:ml-8">
               <Button

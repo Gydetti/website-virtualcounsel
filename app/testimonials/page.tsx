@@ -32,7 +32,7 @@ export default function TestimonialsPage() {
     <>
       {/* Introduction Section */}
       <Section
-        className="relative overflow-hidden bg-gradient-to-r from-blue-100 via-transparent to-transparent z-10 py-12"
+        className="relative overflow-hidden bg-gradient-to-r from-brand-primary/10 to-brand-hero-background z-10 py-12"
         id="testimonials-intro"
       >
         <LazySection animation="slide-up" delay={0} className="text-center mb-16">

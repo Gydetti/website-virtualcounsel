@@ -100,7 +100,7 @@ Sections are the primary building blocks for pages.
   - Often wrapped with `LazySection` (from `components/ui/lazy-section`) for scroll-triggered animations (e.g., `animation="slide-up"`).
 - **`HeroSection` (`components/sections/hero-section.tsx`):**
   - This section, primarily used on the homepage, exhibits the most sophisticated styling.
-  - Features a prominent gradient background (`bg-gradient-to-r from-blue-100 to-white`).
+  - Features a prominent gradient background (`bg-gradient-to-r brand-primary/10 to-white`).
   - Includes an overlaid `.bg-grid-pattern` with low opacity.
   - Employs "floating" decorative elements: absolutely positioned, blurred, rounded `divs` using low-opacity theme colors (e.g., `bg-[rgba(var(--primary-rgb),0.05)]`) or Tailwind palette colors (`bg-blue-100/20`).
   - Image treatment includes `shadow-2xl` and an overlay gradient (`bg-gradient-to-t from-black/70 to-transparent`).

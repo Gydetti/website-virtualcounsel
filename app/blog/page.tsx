@@ -41,7 +41,7 @@ export default async function BlogPage() {
 
   return (
     <>
-      <Section className="relative overflow-hidden bg-gradient-to-r from-blue-100 via-transparent to-transparent z-10">
+      <Section className="relative overflow-hidden bg-gradient-to-r from-brand-primary/10 to-brand-hero-background z-10">
         <LazySection>
           <div className="text-center mb-16">
             <Badge className="mb-4 bg-brand-light text-primary hover:bg-brand-light/90">
@@ -109,50 +109,46 @@ export default async function BlogPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {regularPosts.map((post, index) => (
               <LazySection key={post.id} delay={index * 0.1} className="h-full">
-                <Card className="h-full flex flex-col overflow-hidden transition-all duration-300 hover:shadow-xl">
-                  <div className="relative h-48 w-full overflow-hidden">
-                    <OptimizedImage
-                      src={post.coverImage?.src || '/images/placeholders/placeholder.svg'}
-                      alt={post.coverImage?.alt || post.title}
-                      fill
-                      className="absolute inset-0 object-cover transition-transform duration-300 hover:scale-105"
-                    />
-                  </div>
-                  <CardHeader className="pt-6">
-                    <div className="flex items-center justify-between mb-2">
-                      <Badge variant="outline" className="text-xs font-normal">
-                        {post.category}
-                      </Badge>
-                      <span className="text-xs text-neutral-text/500">
-                        {new Date(post.date).toLocaleDateString('en-US', {
-                          year: 'numeric',
-                          month: 'long',
-                          day: 'numeric',
-                        })}
-                      </span>
+                <Link href={`/blog/${post.slug}`} className="block h-full group">
+                  <Card className="h-full flex flex-col overflow-hidden transition-all duration-300 hover:shadow-xl">
+                    <div className="relative h-48 w-full overflow-hidden">
+                      <OptimizedImage
+                        src={post.coverImage?.src || '/images/placeholders/placeholder.svg'}
+                        alt={post.coverImage?.alt || post.title}
+                        fill
+                        className="absolute inset-0 object-cover transition-transform duration-300 hover:scale-105"
+                      />
                     </div>
-                    <CardTitle className="text-xl font-bold break-words hover:text-primary transition-colors">
-                      <Link href={`/blog/${post.slug}`}>{post.title}</Link>
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <CardDescription className="text-neutral-text/600 break-words">
-                      {post.excerpt}
-                    </CardDescription>
-                  </CardContent>
-                  <CardFooter className="mt-auto pt-0">
-                    <Button
-                      variant="link"
-                      className="p-0 h-auto whitespace-normal break-words text-primary"
-                      asChild
-                    >
-                      <Link href={`/blog/${post.slug}`}>
-                        {`Read more: ${post.title}`}
+                    <CardHeader className="pt-6">
+                      <div className="flex items-center justify-between mb-2">
+                        <Badge variant="outline" className="text-xs font-normal">
+                          {post.category}
+                        </Badge>
+                        <span className="text-xs text-neutral-text/500">
+                          {new Date(post.date).toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric',
+                          })}
+                        </span>
+                      </div>
+                      <CardTitle className="text-xl font-bold break-words hover:text-primary transition-colors">
+                        {post.title}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <CardDescription className="text-neutral-text/600 break-words">
+                        {post.excerpt}
+                      </CardDescription>
+                    </CardContent>
+                    <CardFooter className="mt-auto pt-0">
+                      <div className="mt-auto pt-0 whitespace-normal break-words text-primary flex items-center space-x-2">
+                        <span>{`Read more: ${post.title}`}</span>
                         <ArrowRight className="ml-2 h-4 w-4" />
-                      </Link>
-                    </Button>
-                  </CardFooter>
-                </Card>
+                      </div>
+                    </CardFooter>
+                  </Card>
+                </Link>
               </LazySection>
             ))}
           </div>

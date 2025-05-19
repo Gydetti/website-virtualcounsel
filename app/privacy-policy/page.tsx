@@ -2,6 +2,7 @@ import { Badge } from '@/components/ui/badge';
 import { defaultMetadata } from '@/lib/metadata';
 import { siteConfig } from '@/lib/siteConfig';
 import { notFound } from 'next/navigation';
+import { staticContent } from '@/lib/data/staticContent';
 
 export const metadata = defaultMetadata({
   title: `${siteConfig.site.name} | Privacy Policy`,
@@ -25,54 +26,50 @@ export default function PrivacyPolicyPage() {
           <h1 className="">Section title for privacy policy page</h1>
 
           <div className="prose prose-lg max-w-none">
-            <p>Last updated date placeholder (e.g. 'January 1, 2025')</p>
+            <p>Last updated: {staticContent.privacyPolicy.lastUpdated}</p>
 
             <h2>1. Introduction</h2>
-            <p>
-              Paragraph placeholder: introduction explaining who you are and purpose of this privacy
-              policy
-            </p>
+            <p>{staticContent.privacyPolicy.introduction}</p>
 
             <h2>2. Information we collect</h2>
-            <p>Paragraph placeholder: detail types of personal information collected from users</p>
+            <p>{staticContent.privacyPolicy.informationCollected}</p>
 
             <h3>2.1 Personal information</h3>
-            <p>
-              Paragraph placeholder: specify personal information collected (e.g. names, email
-              addresses)
-            </p>
+            <p>{staticContent.privacyPolicy.personalInformation}</p>
 
             <h3>2.2 Usage data</h3>
-            <p>
-              Paragraph placeholder: explain usage data collected (e.g. IP address, browser type)
-            </p>
+            <p>{staticContent.privacyPolicy.usageData}</p>
 
             <h2>3. How we use your information</h2>
-            <p>Paragraph placeholder: explain how collected information is used</p>
+            <p>{staticContent.privacyPolicy.howWeUse}</p>
             <ul>
-              <li>List item placeholder: specific purpose for using collected data</li>
-              <li>List item placeholder: specific purpose for using collected data</li>
-              <li>List item placeholder: specific purpose for using collected data</li>
-              <li>List item placeholder: specific purpose for using collected data</li>
+              {[
+                staticContent.privacyPolicy.usageListItem1,
+                staticContent.privacyPolicy.usageListItem2,
+                staticContent.privacyPolicy.usageListItem3,
+                staticContent.privacyPolicy.usageListItem4,
+              ].map(item => (
+                <li key={item}>{item}</li>
+              ))}
             </ul>
 
             <h2>4. Data Sharing and Disclosure</h2>
-            <p>[DATA_SHARING: Explain who you share the data with and under what circumstances.]</p>
+            <p>{staticContent.privacyPolicy.dataSharing}</p>
 
             <h2>5. Data Security</h2>
-            <p>[DATA_SECURITY: Describe the measures you take to protect user data.]</p>
+            <p>{staticContent.privacyPolicy.dataSecurity}</p>
 
             <h2>6. Your Rights</h2>
-            <p>[USER_RIGHTS: Explain what rights users have regarding their data.]</p>
+            <p>{staticContent.privacyPolicy.userRights}</p>
 
             <h2>7. Cookies Policy</h2>
-            <p>[COOKIES_POLICY: Explain your use of cookies and similar technologies.]</p>
+            <p>{staticContent.privacyPolicy.cookiesPolicy}</p>
 
             <h2>8. Changes to This Privacy Policy</h2>
-            <p>[POLICY_CHANGES: Explain how you will notify users of changes to this policy.]</p>
+            <p>{staticContent.privacyPolicy.policyChanges}</p>
 
             <h2>9. Contact Us</h2>
-            <p>[CONTACT_INFORMATION: Provide contact information for privacy-related inquiries.]</p>
+            <p>{staticContent.privacyPolicy.contactInfo}</p>
           </div>
         </div>
       </div>

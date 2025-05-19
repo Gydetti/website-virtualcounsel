@@ -31,7 +31,3 @@ export default async function ResourcesIndexPage() {
   // Render resource list with static background; inner content animates
   return <ResourceListSection id="resources-list-main" resources={resources} />;
 }
-
-function someFunction(resource: Resource, index: number) {
-  // ... existing code ...
-}

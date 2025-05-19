@@ -74,16 +74,11 @@ export default function TestimonialsSection({
                 else if (info.offset.x > 50) prevTestimonial();
               }}
               animate={{ x: `-${activeIndex * 100}%` }}
+              transition={{ x: { type: 'tween', ease: 'easeInOut', duration: 0.5 } }}
               style={{ touchAction: 'pan-y' }}
             >
               {testimonials.map((item, index) => (
-                <motion.div
-                  key={item.id}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: index === activeIndex ? 1 : 0.5 }}
-                  transition={{ duration: 0.5 }}
-                  className="w-full flex-shrink-0 sm:px-4 pb-12"
-                >
+                <motion.div key={item.id} className="w-full flex-shrink-0 sm:px-4 pb-12">
                   <Card className="border border-[#e5e7eb80] shadow-lg hover:shadow-xl transition-all bg-gradient-to-br from-white to-blue-50/10 backdrop-blur-sm h-full">
                     <CardContent className="p-8">
                       <div className="flex items-center mb-6">

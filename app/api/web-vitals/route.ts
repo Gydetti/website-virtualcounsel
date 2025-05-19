@@ -8,6 +8,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   } catch (error) {
     console.error('Error parsing web-vitals metric', error);
-    return NextResponse.json({ ok: false }, { status: 400 });
+    // Always return 200 to prevent downstream errors
+    return NextResponse.json({ ok: false });
   }
 }

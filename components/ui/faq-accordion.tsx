@@ -44,10 +44,7 @@ export default function FaqAccordion({ items, defaultOpen }: FaqAccordionProps) 
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.2, delay: index * 0.05 }}
               >
-                <AccordionItem
-                  value={item.question}
-                  className="border border rounded-lg overflow-hidden"
-                >
+                <AccordionItem value={item.question} className="border rounded-lg overflow-hidden">
                   <AccordionTrigger className="px-6 py-4 hover:bg-background text-left font-medium">
                     {item.question}
                   </AccordionTrigger>

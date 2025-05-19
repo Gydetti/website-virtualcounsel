@@ -42,10 +42,12 @@ export const semanticColors = {
  * Use CSS gradients referencing CSS variables for stops.
  */
 export const semanticGradients = {
-  'hero-gradient': 'linear-gradient(90deg, hsl(var(--brand-light)) 0%, hsl(var(--card)) 100%)',
+  // Original newsletter subscription gradient from the archived template
+  'hero-gradient':
+    'linear-gradient(to bottom right, hsl(222,47%,22%) 0%, hsl(222,47%,18%) 50%, hsl(222,47%,14%) 100%)',
   'footer-gradient':
     'linear-gradient(135deg, hsl(var(--brand-dark)) 0%, hsl(var(--brand-dark)) 100%)',
   // Global body gradient from primary color into transparent
   'body-gradient':
-    'linear-gradient(to bottom right, rgba(var(--primary-rgb), 0.2) 0%, transparent 100%)',
+    'linear-gradient(to bottom right, rgba(var(--primary-rgb), 0.1) 0%, transparent 100%)',
 };

@@ -1,6 +1,7 @@
 import { Badge } from '@/components/ui/badge';
 import { siteConfig } from '@/lib/siteConfig';
 import { notFound } from 'next/navigation';
+import { staticContent } from '@/lib/data/staticContent';
 
 export const metadata = {
   title: 'Cookie Policy | Entrepreneur Template',
@@ -24,40 +25,40 @@ export default function CookiePolicyPage() {
           <h1 className="">Section title for cookie policy page</h1>
 
           <div className="prose prose-lg max-w-none">
-            <p>Last updated date placeholder (e.g. 'January 1, 2025')</p>
+            <p>Last updated: {staticContent.cookiePolicy.lastUpdated}</p>
 
             <h2>1. Introduction</h2>
-            <p>Paragraph placeholder: explain purpose of cookie policy</p>
+            <p>{staticContent.cookiePolicy.introduction}</p>
 
             <h2>2. What are cookies</h2>
-            <p>Paragraph placeholder: explain what cookies are and how they work</p>
+            <p>{staticContent.cookiePolicy.whatAreCookies}</p>
 
             <h2>3. Types of cookies we use</h2>
-            <p>Paragraph placeholder: explain different types of cookies used</p>
+            <p>{staticContent.cookiePolicy.cookieTypes}</p>
 
             <h3>3.1 Essential cookies</h3>
-            <p>Paragraph placeholder: explain essential cookies required for functionality</p>
+            <p>{staticContent.cookiePolicy.essentialCookies}</p>
 
             <h3>3.2 Performance cookies</h3>
-            <p>Paragraph placeholder: explain cookies used to analyze performance</p>
+            <p>{staticContent.cookiePolicy.performanceCookies}</p>
 
             <h3>3.3 Functionality cookies</h3>
-            <p>Paragraph placeholder: explain cookies that remember preferences</p>
+            <p>{staticContent.cookiePolicy.functionalityCookies}</p>
 
             <h3>3.4 Targeting cookies</h3>
-            <p>Paragraph placeholder: explain cookies used for advertising</p>
+            <p>{staticContent.cookiePolicy.targetingCookies}</p>
 
             <h2>4. Third-party cookies</h2>
-            <p>Paragraph placeholder: explain third-party cookies used on site</p>
+            <p>{staticContent.cookiePolicy.thirdPartyCookies}</p>
 
             <h2>5. Cookie management</h2>
-            <p>Paragraph placeholder: explain how users can manage or disable cookies</p>
+            <p>{staticContent.cookiePolicy.management}</p>
 
             <h2>6. Changes to this cookie policy</h2>
-            <p>Paragraph placeholder: explain how updates to policy will be communicated</p>
+            <p>{staticContent.cookiePolicy.changes}</p>
 
             <h2>7. Contact information</h2>
-            <p>Paragraph placeholder: provide contact details for cookie policy inquiries</p>
+            <p>{staticContent.cookiePolicy.contactInfo}</p>
           </div>
         </div>
       </div>

@@ -79,7 +79,7 @@ export default function ContactPageClient() {
 
   return (
     <>
-      <section className="relative overflow-hidden bg-gradient-to-r from-blue-100 via-transparent to-transparent py-16 md:py-24 z-10">
+      <section className="relative overflow-hidden bg-gradient-to-r from-brand-primary/10 to-brand-hero-background py-16 md:py-24 z-10">
         <LazySection>
           <div className="container-wide">
             <div className="text-center max-w-3xl mx-auto">

@@ -26,7 +26,7 @@ The styling system is well-architected with:
 
 **Evidence:**
 
-- Hero section uses `bg-gradient-to-r from-blue-100 to-white` with floating accent elements
+- Hero section uses `bg-gradient-to-r brand-primary/10 to-white` with floating accent elements
 - Other sections use simpler backgrounds like `bg-blue-100`
 - Decorative elements are often commented out in non-homepage sections
 
@@ -115,7 +115,7 @@ The styling system is well-architected with:
 3. **Section Backgrounds**
 
    ```tsx
-   <Section className="relative overflow-hidden bg-gradient-to-r from-blue-100 via-transparent to-transparent">
+   <Section className="relative overflow-hidden bg-gradient-to-r brand-primary/10 via-transparent to-transparent">
      {/* Decorative elements */}
      <div className="absolute top-0 right-0 w-64 h-64 bg-[rgba(var(--primary-rgb),0.05)] rounded-full -translate-y-1/2 translate-x-1/2" />
      <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-100/20 rounded-full translate-y-1/2 -translate-x-1/2" />

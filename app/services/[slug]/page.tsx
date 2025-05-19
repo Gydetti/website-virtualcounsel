@@ -143,16 +143,8 @@ export default async function ServicePage(props: ServicePageProps) {
 
   return (
     <>
-      <Section className="bg-gradient-to-r from-blue-50 to-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <Badge className="mb-4 bg-brand-light text-primary hover:bg-brand-light/90">
-            {service.title}
-          </Badge>
-        </div>
-      </Section>
-
-      <Section className="bg-neutral-surface">
-        <div className="grid md:grid-cols-2 gap-8 items-start">
+      <Section className="bg-gradient-to-r from-brand-primary/10 to-brand-hero-background">
+        <div className="grid md:grid-cols-2 gap-8 items-center">
           <div>
             <IconComponent className="h-20 w-20 text-primary mb-6" />
             <h1 className="mb-4 break-words">{service.title}</h1>
@@ -179,13 +171,13 @@ export default async function ServicePage(props: ServicePageProps) {
 
           <div className="relative h-[400px] rounded-xl overflow-hidden shadow-xl">
             <div className="absolute inset-0 flex items-center justify-center bg-neutral-background/100">
-              <IconComponent className="h-32 w-32 text-primary/30" />
+              <IconComponent className="h-32 w-32 text-brand-primary/30" />
             </div>
           </div>
         </div>
       </Section>
 
-      <section className="py-16 bg-neutral-surface">
+      <section className="py-16">
         <div className="container-wide">
           <h2 className="text-3xl font-bold mb-12 text-center">
             Key benefits section heading summarizing main outcomes

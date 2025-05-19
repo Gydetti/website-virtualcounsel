@@ -1,5 +1,6 @@
 import { Badge } from '@/components/ui/badge';
 import { siteConfig } from '@/lib/siteConfig';
+import { staticContent } from '@/lib/data/staticContent';
 import { notFound } from 'next/navigation';
 
 // Disable this page if not enabled
@@ -24,46 +25,46 @@ export default function TermsOfServicePage() {
           <h1 className="">Section title for terms of service page</h1>
 
           <div className="prose prose-lg max-w-none">
-            <p>Last updated date placeholder (e.g. 'January 1, 2025')</p>
+            <p>Last updated: {staticContent.termsOfService.lastUpdated}</p>
 
             <h2>1. Introduction</h2>
-            <p>Paragraph placeholder: explain purpose of terms and applicable audience</p>
+            <p>{staticContent.termsOfService.introduction}</p>
 
             <h2>2. Acceptance of terms</h2>
-            <p>Paragraph placeholder: explain that using the website implies acceptance</p>
+            <p>{staticContent.termsOfService.acceptance}</p>
 
             <h2>3. Description of services</h2>
-            <p>Paragraph placeholder: general description of services offered</p>
+            <p>{staticContent.termsOfService.services}</p>
 
             <h2>4. User accounts</h2>
-            <p>Paragraph placeholder: rules and responsibilities for user accounts</p>
+            <p>{staticContent.termsOfService.userAccounts}</p>
 
             <h2>5. Intellectual property rights</h2>
-            <p>Paragraph placeholder: explain content ownership and IP rights</p>
+            <p>{staticContent.termsOfService.intellectualProperty}</p>
 
             <h2>6. User content</h2>
-            <p>Paragraph placeholder: rules for user-submitted content</p>
+            <p>{staticContent.termsOfService.userContent}</p>
 
             <h2>7. Prohibited activities</h2>
-            <p>Paragraph placeholder: list activities not allowed on the site</p>
+            <p>{staticContent.termsOfService.prohibitedActivities}</p>
 
             <h2>8. Limitation of liability</h2>
-            <p>Paragraph placeholder: explain limits of liability for damages or losses</p>
+            <p>{staticContent.termsOfService.limitationOfLiability}</p>
 
             <h2>9. Indemnification</h2>
-            <p>Paragraph placeholder: explain user indemnification obligations</p>
+            <p>{staticContent.termsOfService.indemnification}</p>
 
             <h2>10. Termination</h2>
-            <p>Paragraph placeholder: explain terms for terminating user access</p>
+            <p>{staticContent.termsOfService.termination}</p>
 
             <h2>11. Governing law</h2>
-            <p>Paragraph placeholder: specify the governing law jurisdiction</p>
+            <p>{staticContent.termsOfService.governingLaw}</p>
 
             <h2>12. Changes to terms</h2>
-            <p>Paragraph placeholder: explain how users will be notified of changes</p>
+            <p>{staticContent.termsOfService.changes}</p>
 
             <h2>13. Contact information</h2>
-            <p>Paragraph placeholder: provide contact details for terms inquiries</p>
+            <p>{staticContent.termsOfService.contactInfo}</p>
           </div>
         </div>
       </div>

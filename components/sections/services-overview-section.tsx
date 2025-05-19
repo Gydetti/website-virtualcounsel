@@ -16,7 +16,7 @@ export default function ServicesOverviewSection({
   return (
     <Section
       id="services-overview"
-      className="relative overflow-hidden bg-gradient-to-r from-brand-light via-transparent to-transparent z-10 py-12"
+      className="relative overflow-hidden bg-gradient-to-r from-brand-primary/10 to-brand-hero-background z-10 py-12"
     >
       <LazySection
         animation="none"

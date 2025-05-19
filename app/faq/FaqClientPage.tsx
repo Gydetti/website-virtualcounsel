@@ -16,77 +16,13 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import LazySection from '@/components/ui/lazy-section';
+import { staticContent } from '@/lib/data/staticContent';
 
 export default function FaqClientPage() {
   const [searchQuery, setSearchQuery] = useState('');
 
-  // This would typically come from a CMS or API
-  const faqCategories = [
-    {
-      category: 'General Questions',
-      questions: [
-        {
-          question:
-            "Sample question placeholder: common user question (e.g. 'How do I get started?')",
-          answer: 'Brief answer placeholder: concise response to the question',
-        },
-        {
-          question:
-            "Sample question placeholder: common user question (e.g. 'What services do you offer?')",
-          answer: 'Brief answer placeholder: concise response to the question',
-        },
-        {
-          question:
-            "Sample question placeholder: common user question (e.g. 'How can I contact support?')",
-          answer: 'Brief answer placeholder: concise response to the question',
-        },
-      ],
-    },
-    {
-      category: 'Services',
-      questions: [
-        {
-          question:
-            "Sample question placeholder: service-related question (e.g. 'What is your pricing model?')",
-          answer: 'Brief answer placeholder: concise response to the question',
-        },
-        {
-          question:
-            "Sample question placeholder: service-related question (e.g. 'How long does implementation take?')",
-          answer: 'Brief answer placeholder: concise response to the question',
-        },
-        {
-          question:
-            "Sample question placeholder: service-related question (e.g. 'Do you offer custom solutions?')",
-          answer: 'Brief answer placeholder: concise response to the question',
-        },
-        {
-          question:
-            "Sample question placeholder: service-related question (e.g. 'How do I request a quote?')",
-          answer: 'Brief answer placeholder: concise response to the question',
-        },
-      ],
-    },
-    {
-      category: 'Pricing & Billing',
-      questions: [
-        {
-          question:
-            "Sample question placeholder: billing question (e.g. 'What payment methods do you accept?')",
-          answer: 'Brief answer placeholder: concise response to the question',
-        },
-        {
-          question: "Sample question placeholder: billing question (e.g. 'Do you offer refunds?')",
-          answer: 'Brief answer placeholder: concise response to the question',
-        },
-        {
-          question:
-            "Sample question placeholder: billing question (e.g. 'Can I change my plan later?')",
-          answer: 'Brief answer placeholder: concise response to the question',
-        },
-      ],
-    },
-  ];
+  // Load FAQ categories from staticContent
+  const faqCategories = staticContent.faqCategories;
 
   // Prepare FAQ structured-data for SEO
   const faqSchemaData = faqCategories
@@ -110,7 +46,7 @@ export default function FaqClientPage() {
   return (
     <>
       <StructuredData type="faq" data={{ items: faqSchemaData }} />
-      <section className="relative overflow-hidden bg-gradient-to-r from-blue-100 via-transparent to-transparent py-16 md:py-24 z-10">
+      <section className="relative overflow-hidden bg-gradient-to-r from-brand-primary/10 to-brand-hero-background md:py-24 z-10">
         <LazySection>
           <div className="container-wide">
             <div className="text-center max-w-3xl mx-auto">

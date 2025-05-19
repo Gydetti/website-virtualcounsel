@@ -89,7 +89,7 @@ export default function AboutSection({
     return (
       <Section
         id="about"
-        className="relative overflow-hidden bg-gradient-to-r from-brand-light via-transparent to-transparent z-10"
+        className="relative overflow-hidden bg-gradient-to-r from-brand-primary/10 to-brand-hero-background z-10"
       >
         <div className={outerContainerClass}>
           <LazySection
@@ -203,7 +203,7 @@ export default function AboutSection({
   return (
     <Section
       id="about"
-      className={`relative overflow-hidden bg-gradient-to-r from-brand-light via-transparent to-transparent z-10${isHomepage ? ' md:min-h-[880px] flex items-center' : ''}`}
+      className={`relative overflow-hidden bg-gradient-to-r from-brand-primary/10 to-brand-hero-background z-10${isHomepage ? ' md:min-h-[880px] flex items-center' : ''}`}
     >
       <div className={outerContainerClass}>
         <LazySection animation="slide-up" delay={0} className={contentOrderClass}>
