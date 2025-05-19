@@ -65,13 +65,11 @@ export default function ValuePropSection({
               className="flex flex-col items-start space-y-3 rounded-lg p-6 shadow-sm hover:shadow-md"
               style={{ '--index': idx } as CSSProperties}
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[rgba(var(--primary-rgb),0.1)] text-primary dark:bg-[rgba(var(--primary-rgb),0.2)] dark:text-primary-foreground">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[rgba(var(--primary-rgb),0.1)] text-primary">
                 <Icon className="h-6 w-6" />
               </div>
               <h3 className="text-xl font-bold">{benefit.title}</h3>
-              <p className="text-neutral-text/500 dark:text-neutral-text/400">
-                {benefit.description}
-              </p>
+              <p className="text-neutral-text/500">{benefit.description}</p>
             </div>
           );
         })}

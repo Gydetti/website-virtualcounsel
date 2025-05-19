@@ -6,7 +6,7 @@ import type { ComponentType, ReactNode } from 'react';
 import * as RechartsPrimitive from 'recharts';
 
 // Format: { THEME_NAME: CSS_SELECTOR }
-const THEMES = { light: '', dark: '.dark' } as const;
+const THEMES = { light: '' } as const;
 
 export type ChartConfig = {
   [k in string]: {

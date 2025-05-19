@@ -161,22 +161,10 @@ export default function Header() {
                     <Link
                       key={item.href}
                       href={item.href}
-                      className={cn(
-                        'inline-block text-sm font-medium transition-colors relative group !min-h-0 !min-w-0',
-                        isActiveTab(item.href)
-                          ? 'text-primary font-semibold'
-                          : scrolled
-                            ? 'text-neutral-text hover:text-primary'
-                            : 'text-foreground hover:text-primary'
-                      )}
+                      className="block px-4 py-2 text-base font-normal transition-colors hover:bg-primary/10 hover:text-primary"
+                      onClick={() => setMobileMenuOpen(false)}
                     >
                       {item.text}
-                      <span
-                        className={cn(
-                          'absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300',
-                          isActiveTab(item.href) ? 'w-full' : 'w-0 group-hover:w-full'
-                        )}
-                      />
                     </Link>
                   );
                 })}
