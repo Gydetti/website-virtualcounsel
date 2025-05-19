@@ -21,12 +21,30 @@ const config = {
   theme: {
     container: {
       center: true,
-      padding: '2rem',
+      padding: 'var(--container-padding)',
       screens: {
-        '2xl': '1536px',
+        '2xl': 'var(--container-max-width)',
       },
     },
     extend: {
+      spacing: {
+        xs: 'var(--space-xs)',
+        sm: 'var(--space-sm)',
+        md: 'var(--space-md)',
+        lg: 'var(--space-lg)',
+        xl: 'var(--space-xl)',
+      },
+      borderWidth: {
+        DEFAULT: 'var(--border-width-base)',
+      },
+      borderColor: {
+        DEFAULT: 'var(--border-color-base)',
+      },
+      boxShadow: {
+        sm: 'var(--shadow-sm)',
+        md: 'var(--shadow-md)',
+        lg: 'var(--shadow-lg)',
+      },
       colors: {
         ...semanticColors,
         border: 'hsl(var(--border))',
