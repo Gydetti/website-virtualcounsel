@@ -22,9 +22,6 @@ const config = {
     container: {
       center: true,
       padding: 'var(--container-padding)',
-      screens: {
-        '2xl': 'var(--container-max-width)',
-      },
     },
     extend: {
       spacing: {

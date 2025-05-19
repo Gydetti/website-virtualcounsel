@@ -1,6 +1,7 @@
 # Unified Client-Custom Build Blueprint
 
 > **Audience:** AI coding agents in zero-context sessions. A self-contained guide for custom client build preparation and automation.
+> **Note:** This build process and codebase are managed only by the human developer (Gydo) alongside the AI coding agent. The end client will never see or interact with the underlying code—they only receive the deployed site.
 
 ---
 
