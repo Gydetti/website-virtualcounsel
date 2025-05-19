@@ -12,6 +12,7 @@ import { siteConfig } from '@/lib/siteConfig';
 import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { DEFAULT_PLACEHOLDER_IMAGE } from '@/lib/constants';
 
 interface BlogCardProps {
   title: string;
@@ -30,7 +31,7 @@ export default function BlogCard({ title, excerpt, date, category, image, slug }
     <Card className={`h-full overflow-hidden border shadow-sm ${microClass}`}>
       <div className="relative h-48 w-full overflow-hidden">
         <Image
-          src={image || '/placeholder.svg'}
+          src={image || DEFAULT_PLACEHOLDER_IMAGE}
           alt={title}
           fill
           className="object-cover transition-transform duration-300 hover:scale-105"

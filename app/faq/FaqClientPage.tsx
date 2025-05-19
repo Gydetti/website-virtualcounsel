@@ -1,5 +1,7 @@
 'use client';
 
+import { DEFAULT_PLACEHOLDER_IMAGE } from '@/lib/constants';
+
 import { useState } from 'react';
 
 import { ArrowRight } from 'lucide-react';

@@ -177,4 +177,18 @@ export const staticContent = {
       ],
     },
   ]),
+  cookieSection: { badge: 'Cookie Policy', title: 'Cookie Policy' },
+  privacySection: { badge: 'Privacy Policy', title: 'Privacy Policy' },
+  termsSection: { badge: 'Terms of Service', title: 'Terms of Service' },
+  faqSection: {
+    badge: 'Frequently Asked Questions',
+    title: 'Frequently Asked Questions',
+    subtitle: 'Find answers to frequently asked questions about our services and how we work.',
+    searchPlaceholder: 'Search for answers...',
+    assistance: {
+      heading: 'Need more help?',
+      prompt: "If you don't find what you're looking for, please contact us.",
+      buttonLabel: 'Contact Us',
+    },
+  },
 } as const;

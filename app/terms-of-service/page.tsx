@@ -1,3 +1,4 @@
+import { DEFAULT_PLACEHOLDER_IMAGE } from '@/lib/constants';
 import { Badge } from '@/components/ui/badge';
 import { siteConfig } from '@/lib/siteConfig';
 import { staticContent } from '@/lib/data/staticContent';
@@ -20,9 +21,9 @@ export default function TermsOfServicePage() {
       <div className="container-wide">
         <div className="max-w-4xl mx-auto">
           <Badge className="mb-4 bg-brand-light text-primary hover:bg-brand-light/90">
-            Section label for legal page
+            {staticContent.termsSection.badge}
           </Badge>
-          <h1 className="">Section title for terms of service page</h1>
+          <h1 className="">{staticContent.termsSection.title}</h1>
 
           <div className="prose prose-lg max-w-none">
             <p>Last updated: {staticContent.termsOfService.lastUpdated}</p>

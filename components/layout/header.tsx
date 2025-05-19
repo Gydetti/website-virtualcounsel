@@ -34,6 +34,9 @@ export default function Header() {
   const isHidden = direction === 'down' && !atTop;
   const pathname = usePathname();
 
+  // highlight top-level nav for deeper routes as active
+  const isActiveTab = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
+
   // Get optional enabledPages list from config
   const enabledPages = siteConfig.enabledPages;
 
@@ -158,10 +161,22 @@ export default function Header() {
                     <Link
                       key={item.href}
                       href={item.href}
-                      className="flex items-center w-full px-4 py-2 text-base font-normal transition-colors hover:bg-primary-10 hover:text-primary"
-                      onClick={() => setMobileMenuOpen(false)}
+                      className={cn(
+                        'inline-block text-sm font-medium transition-colors relative group !min-h-0 !min-w-0',
+                        isActiveTab(item.href)
+                          ? 'text-primary font-semibold'
+                          : scrolled
+                            ? 'text-neutral-text hover:text-primary'
+                            : 'text-foreground hover:text-primary'
+                      )}
                     >
                       {item.text}
+                      <span
+                        className={cn(
+                          'absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300',
+                          isActiveTab(item.href) ? 'w-full' : 'w-0 group-hover:w-full'
+                        )}
+                      />
                     </Link>
                   );
                 })}
@@ -254,8 +269,8 @@ export default function Header() {
                         <button
                           type="button"
                           className={cn(
-                            'inline-block text-base font-medium transition-colors relative group !min-h-0 !min-w-0',
-                            pathname === item.href
+                            'inline-block text-sm font-medium transition-colors relative group focus:outline-none focus:ring-0 !min-h-0 !min-w-0',
+                            isActiveTab(item.href)
                               ? 'text-primary font-semibold'
                               : scrolled
                                 ? 'text-neutral-text hover:text-primary'
@@ -263,6 +278,12 @@ export default function Header() {
                           )}
                         >
                           {item.text}
+                          <span
+                            className={cn(
+                              'absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300',
+                              isActiveTab(item.href) ? 'w-full' : 'w-0 group-hover:w-full'
+                            )}
+                          />
                           <ChevronDown className="ml-1 inline-block h-4 w-4" />
                         </button>
                       </DropdownMenuTrigger>
@@ -297,7 +318,7 @@ export default function Header() {
                     href={item.href}
                     className={cn(
                       'inline-block text-sm font-medium transition-colors relative group !min-h-0 !min-w-0',
-                      pathname === item.href
+                      isActiveTab(item.href)
                         ? 'text-primary font-semibold'
                         : scrolled
                           ? 'text-neutral-text hover:text-primary'
@@ -308,7 +329,7 @@ export default function Header() {
                     <span
                       className={cn(
                         'absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300',
-                        pathname === item.href ? 'w-full' : 'w-0 group-hover:w-full'
+                        isActiveTab(item.href) ? 'w-full' : 'w-0 group-hover:w-full'
                       )}
                     />
                   </Link>

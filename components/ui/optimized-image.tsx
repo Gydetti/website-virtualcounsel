@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import { useState } from 'react';
 import type { ReactEventHandler } from 'react';
+import { DEFAULT_PLACEHOLDER_IMAGE } from '@/lib/constants';
 
 interface OptimizedImageProps {
   src: string;
@@ -68,7 +69,7 @@ export default function OptimizedImage({
         />
       )}
       <Image
-        src={hasError ? '/placeholder.svg' : src || '/placeholder.svg'}
+        src={hasError ? DEFAULT_PLACEHOLDER_IMAGE : src || DEFAULT_PLACEHOLDER_IMAGE}
         alt={alt}
         width={fill ? undefined : width}
         height={fill ? undefined : height}

@@ -1,3 +1,4 @@
+import { DEFAULT_PLACEHOLDER_IMAGE } from '@/lib/constants';
 import { defaultMetadata } from '@/lib/metadata';
 import { siteConfig } from '@/lib/siteConfig';
 import { notFound } from 'next/navigation';

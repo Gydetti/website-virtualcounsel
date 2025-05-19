@@ -2,6 +2,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { siteConfig } from '@/lib/siteConfig';
 import { Star } from 'lucide-react';
 import Image from 'next/image';
+import { DEFAULT_PLACEHOLDER_IMAGE } from '@/lib/constants';
 
 export interface TestimonialProps {
   quote: string;
@@ -41,7 +42,7 @@ export default function TestimonialCard({
         <div className="flex items-center mt-auto">
           <div className="mr-4">
             <Image
-              src={image || '/placeholder.svg'}
+              src={image || DEFAULT_PLACEHOLDER_IMAGE}
               alt={name}
               width={60}
               height={60}
