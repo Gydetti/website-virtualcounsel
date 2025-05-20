@@ -1,8 +1,10 @@
-import type { formBlockSchema } from '@/lib/schemas/contentBlocks.schema';
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import type { z } from 'zod';
+
+import type { formBlockSchema } from '@/lib/schemas/contentBlocks.schema';
+
 import FormBlock from './FormBlock';
 
 type FormBlockProps = z.infer<typeof formBlockSchema>;

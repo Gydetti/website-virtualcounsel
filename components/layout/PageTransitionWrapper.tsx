@@ -1,8 +1,9 @@
 'use client';
-import { siteConfig } from '@/lib/siteConfig';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import type { ReactNode } from 'react';
+
+import { siteConfig } from '@/lib/siteConfig';
 
 export default function PageTransitionWrapper({ children }: { children: ReactNode }) {
   const pathname = usePathname();
@@ -29,7 +30,8 @@ export default function PageTransitionWrapper({ children }: { children: ReactNod
 
   // If page transitions are disabled or user prefers reduced motion, render children directly
   if (!enablePageTransitions || shouldReduceMotion) {
-    return <>{children}</>;
+    // Wrap children in <main> for consistent markup
+    return <main className="flex-1">{children}</main>;
   }
 
   return (

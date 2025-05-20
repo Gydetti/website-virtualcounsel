@@ -1,12 +1,6 @@
 import { z } from 'zod';
-import {
-  formBlockConfigSchema,
-  formBlockSchema,
-  imageBlockSchema,
-  resourceContentBlockSchema,
-  resourceSchema,
-  textBlockSchema,
-} from '../schemas/contentBlocks.schema';
+
+import { resourceSchema } from '../schemas/contentBlocks.schema';
 
 // Define specific section prop types
 export interface TextSectionProps {

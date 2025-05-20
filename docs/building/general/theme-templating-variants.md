@@ -5,6 +5,7 @@
 ---
 
 > **Quick Implementation Summary (Updated May 2025):**
+>
 > - The active theme variant is now chosen by a hardcoded constant in `app/layout.tsx`:
 >   ```ts
 >   const themeKey = 'v3'; // or 'v1', 'v2', 'v3', etc.
@@ -13,6 +14,41 @@
 > - At SSR time, CSS variables for the chosen variant are inlined via a `<style>` tag in `<head>`, avoiding runtime bloat or FOUC.
 > - All components and Tailwind utilities reference these CSS variables for styling.
 > - To switch variants, simply update the `themeKey` value to the desired variant name and rebuild/redeploy.
+
+## Best Practice: Legacy & Core CSS Variable Unification
+
+**Objective:** Without touching every component or adding runtime JS, ensure _all_ Tailwind color utilities—both modern (`bg-primary`, `text-accent`) and legacy (`bg-brand-*`, `text-brand-*`)—respond to your active theme variant.
+
+**Implementation Steps:**
+
+1. In `app/layout.tsx`'s `getThemeCssVars`, after building `colorVars`, append:
+
+```ts
+const brandVars = Object.entries(theme.colors)
+  .map(([key, value]) => {
+    const name = toKebabCase(key);
+    return `--brand-${name}: ${value}; --brand-${name}-rgb: ${hexToRgbServer(value)};`;
+  })
+  .join('\n');
+```
+
+2. Inject both sets in the same inline `<style>`:
+
+```tsx
+<style
+  dangerouslySetInnerHTML={{
+    __html: `:root {${colorVars}\n${brandVars}}`,
+  }}
+/>
+```
+
+3. Rebuild and redeploy; no component changes required.
+
+**Benefits:**
+
+- Zero-impact refactor: no component changes required.
+- Zero runtime overhead: SSR-only style injection.
+- Centralized control: all tokens in one function.
 
 ---
 
@@ -297,6 +333,39 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 - **Runtime Theme Switching:** Introduce a client provider if live switching is ever needed.
 - **Dynamic A/B Testing:** Tie variants to analytics experiments.
 - **Automatic Diff Generation:** Use visual regression tools to capture before/after screenshots per variant.
+
+---
+
+## 12. Unifying Opacity Syntax (Single & Robust Opacity API)
+
+### Objective
+
+Provide a single, uniform opacity syntax for all colors—variant-driven and semantic—using Tailwind's built-in slash-syntax and eliminating duplication and confusion.
+
+### Decision: Slash-only Implementation
+
+1. Consolidate the dynamic theme-variant palette into Tailwind's static color map:
+   - In `tailwind.config.ts` under `theme.extend.colors`, map each `siteConfig.theme.colors` key (`primary`, `secondary`, `accent`, `background`, `heroBackground`, etc.) to its corresponding CSS variable (e.g., `primary: 'var(--primary)'`).
+   - Add semantic tokens (`neutral-surface`, `neutral-background`, `feedback-error-bg`, etc.) similarly, referencing their CSS variables.
+2. Remove the custom dash-syntax plugin block that generates `bg-primary-10`, `text-accent-80`, etc.
+3. Replace any existing dash-syntax class usages (e.g., `bg-primary-10`) with slash-syntax equivalents (`bg-primary/10`).
+
+### Implementation Steps
+
+- Create a feature branch `feature/opacity-unification`.
+- Update `theme.extend.colors` in `tailwind.config.ts` to include all theme tokens, mapping to CSS variables.
+- Remove the plugin import and plugin block that implements dash-syntax in `tailwind.config.ts`.
+- Run a project-wide codemod or sed script to convert dash-based classes to slash-syntax:
+  ```bash
+  grep -Rl 'bg-[a-z-]*-[0-9]\\+' . | xargs sed -i '' 's/bg-\\([a-z-]*\\)-\\([0-9]\\+\\)/bg-\\1\\/\\2/g'
+  ```
+- Verify local with `npm run verify:local` and fix any broken references.
+
+### Performance & Validation
+
+- Tailwind JIT and PurgeCSS will generate only the classes you actually use; no bundle size impact.
+- SSR CSS variable injection remains unchanged in `app/layout.tsx`.
+- Add Vitest and Playwright tests to assert that a sample opacity class (`bg-primary/10`, `bg-neutral-surface/10`) correctly applies the expected color.
 
 ---
 

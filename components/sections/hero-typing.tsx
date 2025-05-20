@@ -1,7 +1,8 @@
 'use client';
-import type { heroSectionDataSchema } from '@/lib/schemas/sections.schema';
 import { useEffect, useRef, useState } from 'react';
 import type { z } from 'zod';
+
+import type { heroSectionDataSchema } from '@/lib/schemas/sections.schema';
 
 export type HeroTypingProps = {
   typingWords?: z.infer<typeof heroSectionDataSchema>['typingWords'];

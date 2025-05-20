@@ -1,11 +1,12 @@
 'use client';
+import { motion } from 'framer-motion';
+import { CheckCircle } from 'lucide-react';
+import type { z } from 'zod';
+
 import { Section } from '@/components/layout/Section';
 import { Badge } from '@/components/ui/badge';
 import LazySection from '@/components/ui/lazy-section';
 import type { solutionVisionSectionDataSchema } from '@/lib/schemas/sections.schema';
-import { motion } from 'framer-motion';
-import { CheckCircle } from 'lucide-react';
-import type { z } from 'zod';
 
 // Updated props type alias using Zod schema
 export type SolutionVisionSectionProps = z.infer<typeof solutionVisionSectionDataSchema>;
@@ -36,7 +37,7 @@ export default function SolutionVisionSection({
       {/* Scroll reveal header */}
       <LazySection animation="slide-up" delay={0} className="text-center mb-16 max-w-4xl mx-auto">
         <motion.div custom={0} variants={textVariants} className="mb-4">
-          <Badge variant="secondary" className="px-3 py-1 rounded-full">
+          <Badge variant="accent" className="px-3 py-1 rounded-full">
             {badgeText}
           </Badge>
         </motion.div>
@@ -60,12 +61,12 @@ export default function SolutionVisionSection({
         transition={{ duration: 0.8, ease: 'easeOut' }}
         className="mx-auto max-w-4xl bg-neutral-surface/20 backdrop-blur-lg rounded-xl shadow-2xl p-6 md:p-12 space-y-8"
       >
-        <h3 className="font-semibold text-lg text-center mt-0 mb-0">Imagine having:</h3>
+        <h3 className="font-semibold text-lg text-center my-0">Imagine having:</h3>
         {benefits && benefits.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {benefits.map(b => (
               <div key={b} className="flex items-start space-x-2">
-                <CheckCircle className="h-5 w-5 text-accent mt-1" />
+                <CheckCircle className="size-5 text-accent mt-1" />
                 <span className="text-foreground">{b}</span>
               </div>
             ))}
@@ -81,7 +82,7 @@ export default function SolutionVisionSection({
           whileInView="visible"
           viewport={{ once: true }}
           variants={textVariants}
-          className="mt-16 max-w-4xl mx-auto bg-[rgba(var(--accent-rgb),0.1)] p-6 rounded-lg"
+          className="mt-16 max-w-4xl mx-auto bg-accent/10 p-6 rounded-lg"
         >
           <p className="text-neutral-text font-medium mb-2">{calloutText}</p>
           {calloutCta?.href && calloutCta?.text && (

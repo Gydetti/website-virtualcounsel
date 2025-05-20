@@ -1,13 +1,14 @@
 'use client';
 
-import StructuredData from '@/components/seo/structured-data';
-import { cn } from '@/lib/utils';
 import { Slot } from '@radix-ui/react-slot';
 import { ChevronRight, Home, MoreHorizontal } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 import { forwardRef } from 'react';
-import type { ComponentPropsWithoutRef, ElementRef, ReactNode } from 'react';
+
+import StructuredData from '@/components/seo/structured-data';
+import { cn } from '@/lib/utils';
 
 interface BreadcrumbProps {
   homeElement?: ReactNode;
@@ -29,11 +30,11 @@ BreadcrumbRoot.displayName = 'Breadcrumb';
 export default function Breadcrumb({
   homeElement = (
     <>
-      <Home aria-hidden="true" className="h-4 w-4" />
+      <Home aria-hidden="true" className="size-4" />
       <span className="sr-only">Home</span>
     </>
   ),
-  separator = <ChevronRight aria-hidden="true" className="h-4 w-4 mx-2" />,
+  separator = <ChevronRight aria-hidden="true" className="size-4 mx-2" />,
   containerClasses = 'flex py-4 text-sm',
   listClasses = 'flex items-center',
   activeItemClasses = 'text-primary font-medium',
@@ -167,7 +168,7 @@ const BreadcrumbEllipsis = ({ className, ...props }: ComponentPropsWithoutRef<'s
     className={cn('flex h-9 w-9 items-center justify-center', className)}
     {...props}
   >
-    <MoreHorizontal className="h-4 w-4" />
+    <MoreHorizontal className="size-4" />
     <span className="sr-only">More</span>
   </span>
 );
@@ -175,10 +176,10 @@ BreadcrumbEllipsis.displayName = 'BreadcrumbElipssis';
 
 export {
   BreadcrumbRoot as Breadcrumb,
-  BreadcrumbList,
+  BreadcrumbEllipsis,
   BreadcrumbItem,
   BreadcrumbLink,
+  BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-  BreadcrumbEllipsis,
 };

@@ -1,5 +1,10 @@
 'use client';
 
+import { Slot } from '@radix-ui/react-slot';
+import type { VariantProps } from 'class-variance-authority';
+import { cva } from 'class-variance-authority';
+import { PanelLeft } from 'lucide-react';
+import type { ComponentProps, ElementRef } from 'react';
 import {
   createContext,
   forwardRef,
@@ -9,12 +14,6 @@ import {
   useMemo,
   useState,
 } from 'react';
-import type { ComponentProps, ComponentPropsWithoutRef, ElementRef } from 'react';
-
-import { Slot } from '@radix-ui/react-slot';
-import { cva } from 'class-variance-authority';
-import type { VariantProps } from 'class-variance-authority';
-import { PanelLeft } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -206,7 +205,7 @@ const Sidebar = forwardRef<
               } as import('react').CSSProperties
             }
           >
-            <div className="flex h-full w-full flex-col">{children}</div>
+            <div className="flex size-full flex-col">{children}</div>
           </SheetContent>
         </Sheet>
       );
@@ -248,7 +247,7 @@ const Sidebar = forwardRef<
         >
           <div
             data-sidebar="sidebar"
-            className="flex h-full w-full flex-col bg-sidebar group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow"
+            className="flex size-full flex-col bg-sidebar group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow"
           >
             {children}
           </div>

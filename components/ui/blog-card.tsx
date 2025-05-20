@@ -1,3 +1,7 @@
+import { ArrowRight } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -8,11 +12,8 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { siteConfig } from '@/lib/siteConfig';
-import { ArrowRight } from 'lucide-react';
-import Image from 'next/image';
-import Link from 'next/link';
 import { DEFAULT_PLACEHOLDER_IMAGE } from '@/lib/constants';
+import { siteConfig } from '@/lib/siteConfig';
 
 interface BlogCardProps {
   title: string;
@@ -55,7 +56,7 @@ export default function BlogCard({ title, excerpt, date, category, image, slug }
         <Button variant="link" className="p-0 h-auto text-primary group" asChild>
           <Link href={`/blog/${slug}`} className="transition-none">
             Read more
-            <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+            <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
           </Link>
         </Button>
       </CardFooter>

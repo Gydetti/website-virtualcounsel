@@ -1,7 +1,8 @@
 /* biome-disable-file */
 'use client';
-import { siteConfig } from '@/lib/siteConfig';
 import Script from 'next/script';
+
+import { siteConfig } from '@/lib/siteConfig';
 
 export default function TrackingScripts() {
   // Gate on Cookiebot consent categories

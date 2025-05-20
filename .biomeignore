@@ -12,6 +12,8 @@ docs/Z-EXAMPLE-WEBSITE/**
 docs/building/inspiration/**
 inspiration/**
 docs/archived/**
+docs/building/general/**
+doc/**
 
 # Ignore test results
 test-results/**
@@ -35,6 +37,8 @@ app/faq/**
 app/privacy-policy/**
 app/terms-of-service/**
 app/cookie-policy/**
+
+docs/
 
 # Ignore old Lighthouse config file
 lighthouserc.json

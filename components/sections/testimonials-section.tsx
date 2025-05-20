@@ -1,19 +1,17 @@
 'use client';
 /* biome-disable lint/suspicious/noArrayIndexKey */
 
+import { motion } from 'framer-motion';
+import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import type { z } from 'zod';
+
 import { Section } from '@/components/layout/Section';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import LazySection from '@/components/ui/lazy-section';
-import type {
-  testimonialItemSchema,
-  testimonialsSectionDataSchema,
-} from '@/lib/schemas/sections.schema';
-import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
-import Image from 'next/image';
-import { useState, useEffect } from 'react';
-import type { z } from 'zod';
+import type { testimonialsSectionDataSchema } from '@/lib/schemas/sections.schema';
 
 // Updated props type alias using Zod schema
 export type TestimonialsSectionProps = z.infer<typeof testimonialsSectionDataSchema>;
@@ -50,8 +48,8 @@ export default function TestimonialsSection({
       className="relative !overflow-visible"
     >
       {/* Decorative elements - re-enabled and styled with theme colors */}
-      <div className="hidden sm:block absolute top-0 right-1/4 w-72 h-72 bg-[rgba(var(--accent-rgb),0.03)] rounded-full -translate-y-1/2 blur-3xl pointer-events-none" />
-      <div className="hidden sm:block absolute bottom-0 left-1/4 w-72 h-72 bg-[rgba(var(--primary-rgb),0.03)] rounded-full translate-y-1/2 blur-3xl pointer-events-none" />
+      <div className="hidden sm:block absolute top-0 right-1/4 size-72 bg-accent/3 rounded-full -translate-y-1/2 blur-3xl pointer-events-none" />
+      <div className="hidden sm:block absolute bottom-0 left-1/4 size-72 bg-primary/3 rounded-full translate-y-1/2 blur-3xl pointer-events-none" />
 
       <div className="relative z-10">
         <div className="text-center mb-16">
@@ -63,7 +61,7 @@ export default function TestimonialsSection({
         </div>
 
         <LazySection animation="slide-up" delay={0} className="relative max-w-3xl mx-auto">
-          <div className="overflow-hidden overflow-x-hidden">
+          <div className="overflow-hidden">
             <motion.div
               className="flex"
               drag={dragEnabled ? 'x' : false}
@@ -78,7 +76,7 @@ export default function TestimonialsSection({
               style={{ touchAction: 'pan-y' }}
             >
               {testimonials.map((item, index) => (
-                <motion.div key={item.id} className="w-full flex-shrink-0 sm:px-4 pb-12">
+                <motion.div key={item.id} className="w-full shrink-0 sm:px-4 pb-12">
                   <Card className="border border-[#e5e7eb80] shadow-lg hover:shadow-xl transition-all bg-gradient-to-br from-white to-blue-50/10 backdrop-blur-sm h-full">
                     <CardContent className="p-8">
                       <div className="flex items-center mb-6">
@@ -87,7 +85,7 @@ export default function TestimonialsSection({
                               <Star
                                 key={`${item.id}-star-${starIndex}`}
                                 aria-hidden="true"
-                                className={`h-5 w-5 ${
+                                className={`size-5 ${
                                   starIndex < (item.rating || 0)
                                     ? 'text-yellow-400 fill-yellow-400'
                                     : 'text-neutral-text/300 fill-gray-300'
@@ -98,7 +96,7 @@ export default function TestimonialsSection({
                               <Star
                                 key={`${item.id}-star-${starIndex}`}
                                 aria-hidden="true"
-                                className="h-5 w-5 text-neutral-text/300 fill-gray-300"
+                                className="size-5 text-neutral-text/300 fill-gray-300"
                               />
                             ))}
                       </div>
@@ -127,7 +125,7 @@ export default function TestimonialsSection({
             </motion.div>
           </div>
           {/* Arrow controls positioned relative to LazySection container */}
-          <div className="hidden sm:block absolute top-1/2 -left-12 transform -translate-y-1/2">
+          <div className="hidden sm:block absolute top-1/2 -left-12 -translate-y-1/2">
             <button
               type="button"
               aria-label="Previous testimonial"
@@ -136,27 +134,27 @@ export default function TestimonialsSection({
               }
               className="inline-flex items-center justify-center p-2 bg-neutral-surface rounded-full shadow-md hover:shadow-lg focus:outline-none"
             >
-              <ChevronLeft className="h-5 w-5 text-foreground" />
+              <ChevronLeft className="size-5 text-foreground" />
             </button>
           </div>
-          <div className="hidden sm:block absolute top-1/2 -right-12 transform -translate-y-1/2">
+          <div className="hidden sm:block absolute top-1/2 -right-12 -translate-y-1/2">
             <button
               type="button"
               aria-label="Next testimonial"
               onClick={() => setActiveIndex(prev => (prev + 1) % testimonials.length)}
               className="inline-flex items-center justify-center p-2 bg-neutral-surface rounded-full shadow-md hover:shadow-lg focus:outline-none"
             >
-              <ChevronRight className="h-5 w-5 text-foreground" />
+              <ChevronRight className="size-5 text-foreground" />
             </button>
           </div>
         </LazySection>
 
-        <div className="flex justify-center mt-4 space-x-2 absolute bottom-0 left-0 right-0">
+        <div className="flex justify-center mt-4 space-x-2 absolute bottom-0 inset-x-0">
           {testimonials.map((testimonial, index) => (
             <button
               key={testimonial.id}
               type="button"
-              className={`h-3 w-3 rounded-full transition-all min-h-0 min-w-0 ${
+              className={`size-3 rounded-full transition-all min-h-0 min-w-0 ${
                 activeIndex === index ? 'bg-primary w-6' : 'bg-neutral-background/300'
               }`}
               onClick={() => setActiveIndex(index)}
@@ -169,7 +167,7 @@ export default function TestimonialsSection({
       {/* Authority Badge */}
       <div className="mt-16 flex justify-center">
         <div className="inline-flex items-center rounded-full border border-secondary bg-neutral-surface px-6 py-2 text-sm font-medium shadow-lg">
-          <span className="mr-2 h-2 w-2 rounded-full bg-secondary" />
+          <span className="mr-2 size-2 rounded-full bg-secondary" />
           Show that you are certified or an expert in your field
         </div>
       </div>

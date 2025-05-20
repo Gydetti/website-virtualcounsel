@@ -1,6 +1,9 @@
 'use client';
 
-import type { ChangeEvent, FormEvent } from 'react';
+import { ArrowRight, Mail, MapPin, Phone } from 'lucide-react';
+import type { ChangeEvent, CSSProperties, FormEvent } from 'react';
+import { useState } from 'react';
+import type { z } from 'zod';
 
 import { Section } from '@/components/layout/Section';
 import { Badge } from '@/components/ui/badge';
@@ -9,11 +12,6 @@ import { Input } from '@/components/ui/input';
 import LazySection from '@/components/ui/lazy-section';
 import { Textarea } from '@/components/ui/textarea';
 import { siteConfig } from '@/lib/siteConfig';
-import { motion } from 'framer-motion';
-import { ArrowRight, Mail, MapPin, Phone } from 'lucide-react';
-import Script from 'next/script';
-import { useEffect, useState } from 'react';
-import type { CSSProperties } from 'react';
 
 // Provide typing for the Recaptcha API on the window object
 declare global {
@@ -24,9 +22,9 @@ declare global {
   }
 }
 
-import type { contactSectionDataSchema } from '@/lib/schemas/sections.schema';
 // Updated props type alias using Zod schema
-import type { z } from 'zod';
+
+import type { contactSectionDataSchema } from '@/lib/schemas/sections.schema';
 export type ContactSectionProps = z.infer<typeof contactSectionDataSchema>;
 
 export default function ContactSection({ badgeText, heading, subtitle }: ContactSectionProps) {
@@ -169,7 +167,7 @@ export default function ContactSection({ badgeText, heading, subtitle }: Contact
                 <Button type="submit" className="w-full group" disabled={isSubmitting}>
                   {isSubmitting ? 'Sending...' : submitted ? 'Message sent!' : 'Send message'}
                   {!isSubmitting && !submitted && (
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
                   )}
                 </Button>
                 {submitted && (
@@ -189,7 +187,7 @@ export default function ContactSection({ badgeText, heading, subtitle }: Contact
               <h3 className="mb-6">Contact information</h3>
               <ul className="space-y-6">
                 <li className="flex items-start">
-                  <Mail className="h-6 w-6 mr-4 flex-shrink-0 mt-1" />
+                  <Mail className="size-6 mr-4 shrink-0 mt-1" />
                   <div>
                     <p className="font-semibold mb-1">Email</p>
                     <a
@@ -201,7 +199,7 @@ export default function ContactSection({ badgeText, heading, subtitle }: Contact
                   </div>
                 </li>
                 <li className="flex items-start">
-                  <Phone className="h-6 w-6 mr-4 flex-shrink-0 mt-1" />
+                  <Phone className="size-6 mr-4 shrink-0 mt-1" />
                   <div>
                     <p className="font-semibold mb-1">Phone</p>
                     <a
@@ -213,7 +211,7 @@ export default function ContactSection({ badgeText, heading, subtitle }: Contact
                   </div>
                 </li>
                 <li className="flex items-start">
-                  <MapPin className="h-6 w-6 mr-4 flex-shrink-0 mt-1" />
+                  <MapPin className="size-6 mr-4 shrink-0 mt-1" />
                   <div>
                     <p className="font-semibold mb-1">Address</p>
                     <address className="text-white/80 not-italic">

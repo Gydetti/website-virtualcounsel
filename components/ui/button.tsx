@@ -1,9 +1,10 @@
 'use client';
-import { Slot } from '@radix-ui/react-slot';
-import { type VariantProps, cva } from 'class-variance-authority';
-import { forwardRef } from 'react';
-import type { ButtonHTMLAttributes } from 'react';
 import './spark-button.css';
+
+import { Slot } from '@radix-ui/react-slot';
+import { cva, type VariantProps } from 'class-variance-authority';
+import type { ButtonHTMLAttributes } from 'react';
+import { forwardRef } from 'react';
 
 import { siteConfig } from '@/lib/siteConfig';
 import { cn } from '@/lib/utils';
@@ -14,13 +15,13 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          'bg-primary text-primary-foreground shadow-lg hover:shadow-xl hover:bg-primary hover:brightness-110 transition-shadow duration-200',
+          'bg-primary text-white shadow-lg hover:shadow-xl hover:bg-primary hover:brightness-110 transition-shadow duration-200',
         destructive:
           'bg-destructive text-destructive-foreground shadow-lg hover:shadow-xl transition-shadow duration-200 hover:bg-destructive-90',
         outline:
           'border border-input bg-neutral-background shadow-lg hover:shadow-xl transition-shadow duration-200 hover:bg-accent hover:text-accent-foreground',
         secondary:
-          'bg-[var(--secondary)] text-secondary-foreground shadow-lg hover:shadow-xl transition-shadow duration-200 hover:bg-[rgba(var(--secondary-rgb),0.8)]',
+          'bg-[var(--secondary)] text-secondary-foreground shadow-lg hover:shadow-xl transition-shadow duration-200 hover:bg-secondary/80',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
         white:
@@ -32,7 +33,7 @@ const buttonVariants = cva(
         default: 'px-4 py-2.5',
         sm: 'px-3 py-2.5 rounded-md',
         lg: 'px-8 py-2.5 rounded-md',
-        icon: 'h-10 w-10',
+        icon: 'size-10',
       },
     },
     defaultVariants: {

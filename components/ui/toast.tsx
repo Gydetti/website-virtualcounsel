@@ -1,10 +1,10 @@
 'use client';
-import type { ComponentPropsWithoutRef, ElementRef } from 'react';
-import { forwardRef, useCallback, useEffect, useRef, useState } from 'react';
 
 import * as ToastPrimitives from '@radix-ui/react-toast';
-import { type VariantProps, cva } from 'class-variance-authority';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { X } from 'lucide-react';
+import type { ComponentPropsWithoutRef, ElementRef } from 'react';
+import { forwardRef } from 'react';
 
 import { cn } from '@/lib/utils';
 
@@ -83,7 +83,7 @@ const ToastClose = forwardRef<
     toast-close=""
     {...props}
   >
-    <X className="h-4 w-4" />
+    <X className="size-4" />
   </ToastPrimitives.Close>
 ));
 ToastClose.displayName = ToastPrimitives.Close.displayName;
@@ -113,13 +113,13 @@ type ToastProps = React.ComponentPropsWithoutRef<typeof Toast>;
 type ToastActionElement = React.ReactElement<typeof ToastAction>;
 
 export {
-  type ToastProps,
-  type ToastActionElement,
-  ToastProvider,
-  ToastViewport,
   Toast,
-  ToastTitle,
-  ToastDescription,
-  ToastClose,
   ToastAction,
+  type ToastActionElement,
+  ToastClose,
+  ToastDescription,
+  type ToastProps,
+  ToastProvider,
+  ToastTitle,
+  ToastViewport,
 };

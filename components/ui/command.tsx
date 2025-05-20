@@ -1,13 +1,13 @@
 'use client';
 
-import { forwardRef, useContext, useId, useMemo } from 'react';
-import type { ComponentPropsWithoutRef, ElementRef, HTMLAttributes } from 'react';
-
-import { Dialog, DialogContent } from '@/components/ui/dialog';
-import { cn } from '@/lib/utils';
 import type { DialogProps } from '@radix-ui/react-dialog';
 import { Command as CommandPrimitive } from 'cmdk';
 import { Search } from 'lucide-react';
+import type { ComponentPropsWithoutRef, ElementRef, HTMLAttributes } from 'react';
+import { forwardRef } from 'react';
+
+import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { cn } from '@/lib/utils';
 
 const Command = forwardRef<
   ElementRef<typeof CommandPrimitive>,
@@ -28,7 +28,7 @@ const CommandDialog = ({ children, ...props }: DialogProps) => {
   return (
     <Dialog {...props}>
       <DialogContent className="overflow-hidden p-0 shadow-lg">
-        <Command className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5">
+        <Command className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:size-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:size-5">
           {children}
         </Command>
       </DialogContent>
@@ -41,7 +41,7 @@ const CommandInput = forwardRef<
   ComponentPropsWithoutRef<typeof CommandPrimitive.Input>
 >(({ className, ...props }, ref) => (
   <div className="flex items-center border-b px-3" cmdk-input-wrapper="">
-    <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
+    <Search className="mr-2 size-4 shrink-0 opacity-50" />
     <CommandPrimitive.Input
       ref={ref}
       className={cn(
@@ -129,11 +129,11 @@ CommandShortcut.displayName = 'CommandShortcut';
 export {
   Command,
   CommandDialog,
-  CommandInput,
-  CommandList,
   CommandEmpty,
   CommandGroup,
+  CommandInput,
   CommandItem,
-  CommandShortcut,
+  CommandList,
   CommandSeparator,
+  CommandShortcut,
 };

@@ -152,7 +152,7 @@ export default function FaqClientPage() {
             <p className="text-xl mb-8 max-w-2xl mx-auto">
               {staticContent.faqSection.assistance.prompt}
             </p>
-            <Button size="lg" className="bg-primary hover:bg-primary/90" asChild>
+            <Button size="lg" className="bg-primary hover:bg-primary90" asChild>
               <Link href="/contact">
                 {staticContent.faqSection.assistance.buttonLabel}
                 <ArrowRight className="ml-2 h-4 w-4" />

@@ -1,10 +1,5 @@
-# Ensure optimized images are built and staged
-npm run image-optimize
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
 
 # Run ESLint to enforce no hard-coded hex or Tailwind color classes
-npm run lint -- --max-warnings=0
-
-# Stage the entire public/images folder (includes blurDataURL.json)
-git add public/images
-
-# git add public/images public/blurDataURL.json 
+npm run lint -- --max-warnings=0 

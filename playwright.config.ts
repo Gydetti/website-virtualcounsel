@@ -3,7 +3,7 @@ import { defineConfig } from '@playwright/test';
 export default defineConfig({
   testDir: 'tests/e2e',
   webServer: {
-    command: 'npm run dev -- --port 3010',
+    command: 'rm -rf .next && npm run dev -- --port 3010',
     port: 3010,
     reuseExistingServer: true,
   },

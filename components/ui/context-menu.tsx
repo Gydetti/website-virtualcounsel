@@ -1,10 +1,9 @@
 'use client';
 
-import { forwardRef, useContext } from 'react';
-import type { ComponentPropsWithoutRef, ElementRef, HTMLAttributes } from 'react';
-
 import * as ContextMenuPrimitive from '@radix-ui/react-context-menu';
 import { Check, ChevronRight, Circle } from 'lucide-react';
+import type { ComponentPropsWithoutRef, ElementRef, HTMLAttributes } from 'react';
+import { forwardRef } from 'react';
 
 import { cn } from '@/lib/utils';
 
@@ -36,7 +35,7 @@ const ContextMenuSubTrigger = forwardRef<
     {...props}
   >
     {children}
-    <ChevronRight className="ml-auto h-4 w-4" />
+    <ChevronRight className="ml-auto size-4" />
   </ContextMenuPrimitive.SubTrigger>
 ));
 ContextMenuSubTrigger.displayName = ContextMenuPrimitive.SubTrigger.displayName;
@@ -104,9 +103,9 @@ const ContextMenuCheckboxItem = forwardRef<
     checked={checked}
     {...props}
   >
-    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+    <span className="absolute left-2 flex size-3.5 items-center justify-center">
       <ContextMenuPrimitive.ItemIndicator>
-        <Check className="h-4 w-4" />
+        <Check className="size-4" />
       </ContextMenuPrimitive.ItemIndicator>
     </span>
     {children}
@@ -126,9 +125,9 @@ const ContextMenuRadioItem = forwardRef<
     )}
     {...props}
   >
-    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+    <span className="absolute left-2 flex size-3.5 items-center justify-center">
       <ContextMenuPrimitive.ItemIndicator>
-        <Circle className="h-2 w-2 fill-current" />
+        <Circle className="size-2 fill-current" />
       </ContextMenuPrimitive.ItemIndicator>
     </span>
     {children}
@@ -174,18 +173,18 @@ ContextMenuShortcut.displayName = 'ContextMenuShortcut';
 
 export {
   ContextMenu,
-  ContextMenuTrigger,
-  ContextMenuContent,
-  ContextMenuItem,
   ContextMenuCheckboxItem,
-  ContextMenuRadioItem,
+  ContextMenuContent,
+  ContextMenuGroup,
+  ContextMenuItem,
   ContextMenuLabel,
+  ContextMenuPortal,
+  ContextMenuRadioGroup,
+  ContextMenuRadioItem,
   ContextMenuSeparator,
   ContextMenuShortcut,
-  ContextMenuGroup,
-  ContextMenuPortal,
   ContextMenuSub,
   ContextMenuSubContent,
   ContextMenuSubTrigger,
-  ContextMenuRadioGroup,
+  ContextMenuTrigger,
 };

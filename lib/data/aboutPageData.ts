@@ -1,4 +1,5 @@
 import { z } from 'zod';
+
 import { aboutSectionDataSchema } from '../schemas/sections.schema';
 
 export const aboutPageMainContentData: z.infer<typeof aboutSectionDataSchema> = {

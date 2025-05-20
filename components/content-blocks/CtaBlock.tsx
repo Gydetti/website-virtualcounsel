@@ -1,8 +1,9 @@
-import { Button } from '@/components/ui/button';
-import type { ctaBlockSchema } from '@/lib/schemas/contentBlocks.schema';
 import Link from 'next/link';
 import type { FC } from 'react';
 import type { z } from 'zod';
+
+import { Button } from '@/components/ui/button';
+import type { ctaBlockSchema } from '@/lib/schemas/contentBlocks.schema';
 
 // Infer props type from the Zod schema
 type CtaBlockProps = z.infer<typeof ctaBlockSchema>;

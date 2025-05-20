@@ -1,9 +1,8 @@
 'use client';
-import { forwardRef } from 'react';
-import type { ComponentPropsWithoutRef, ElementRef } from 'react';
-
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
 import { ChevronDown } from 'lucide-react';
+import type { ComponentPropsWithoutRef, ElementRef } from 'react';
+import { forwardRef } from 'react';
 
 import { cn } from '@/lib/utils';
 
@@ -31,7 +30,7 @@ const AccordionTrigger = forwardRef<
       {...props}
     >
       {children}
-      <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200" />
+      <ChevronDown className="size-4 shrink-0 transition-transform duration-200" />
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
 ));
@@ -52,4 +51,4 @@ const AccordionContent = forwardRef<
 
 AccordionContent.displayName = AccordionPrimitive.Content.displayName;
 
-export { Accordion, AccordionItem, AccordionTrigger, AccordionContent };
+export { Accordion, AccordionContent, AccordionItem, AccordionTrigger };

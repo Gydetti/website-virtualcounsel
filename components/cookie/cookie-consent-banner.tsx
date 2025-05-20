@@ -1,12 +1,13 @@
 'use client';
 
+import { AnimatePresence, motion } from 'framer-motion';
+import { X } from 'lucide-react';
+import { useState } from 'react';
+
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useCookieConsent } from '@/hooks/use-cookie-consent';
-import { AnimatePresence, motion } from 'framer-motion';
-import { X } from 'lucide-react';
-import { useState } from 'react';
 
 export default function CookieConsentBanner() {
   const { consents, isConsentGiven, updateConsent, acceptAll, rejectAll } = useCookieConsent();
@@ -32,10 +33,10 @@ export default function CookieConsentBanner() {
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 50 }}
-        className="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6"
+        className="fixed bottom-0 inset-x-0 z-50 p-4 md:p-6"
       >
         <div className="mx-auto max-w-7xl">
-          <div className="bg-neutral-surface rounded-lg shadow-lg border border overflow-hidden">
+          <div className="bg-neutral-surface rounded-lg shadow-lg border overflow-hidden">
             {!showDetails ? (
               <div className="p-6">
                 <div className="flex items-start justify-between mb-4">
@@ -43,10 +44,10 @@ export default function CookieConsentBanner() {
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="h-8 w-8"
+                    className="size-8"
                     onClick={() => setShowDetails(true)}
                   >
-                    <X className="h-4 w-4" />
+                    <X className="size-4" />
                   </Button>
                 </div>
                 <p className="text-foreground mb-6">
@@ -71,10 +72,10 @@ export default function CookieConsentBanner() {
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="h-8 w-8"
+                    className="size-8"
                     onClick={() => setShowDetails(false)}
                   >
-                    <X className="h-4 w-4" />
+                    <X className="size-4" />
                   </Button>
                 </div>
 

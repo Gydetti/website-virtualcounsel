@@ -1,9 +1,10 @@
+import type { CSSProperties } from 'react';
+import type { z } from 'zod';
+
 import { Section } from '@/components/layout/Section';
 import { Badge } from '@/components/ui/badge';
 import LazySection from '@/components/ui/lazy-section';
 import type { aboutValuesSectionDataSchema } from '@/lib/schemas/sections.schema';
-import type { CSSProperties } from 'react';
-import type { z } from 'zod';
 
 export type AboutValuesSectionProps = z.infer<typeof aboutValuesSectionDataSchema>;
 
@@ -20,10 +21,7 @@ export default function AboutValuesSection({
         style={{ '--stagger-delay': '0.1s' } as CSSProperties}
       >
         {badgeText && (
-          <Badge
-            className="mb-4 bg-primary text-primary-foreground"
-            style={{ '--index': 0 } as CSSProperties}
-          >
+          <Badge className="mb-4" style={{ '--index': 0 } as CSSProperties}>
             {badgeText}
           </Badge>
         )}

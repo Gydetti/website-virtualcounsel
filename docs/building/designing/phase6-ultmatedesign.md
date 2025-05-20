@@ -68,7 +68,7 @@ Tailwind CSS is deeply integrated and configured to work seamlessly with the CSS
   - `fontFamily.sans: ["var(--font-raleway)", "sans-serif"]`
   - `fontFamily.poppins: ["var(--font-poppins)", "sans-serif"]`
   - `borderRadius.lg: "var(--radius)"`
-- **RGB Color Opacity Plugin:** A custom Tailwind plugin dynamically generates utilities for applying opacity to theme colors. This plugin iterates through a list of colors (primary, secondary, accent, etc.) and creates utilities like `bg-primary/value`, `text-primary/value`, `border-primary/value` that resolve to `rgba(var(--${color}-rgb), value)`. This leverages the `--color-rgb` variables.
+- **RGB Color Opacity Plugin:** A custom Tailwind plugin dynamically generates utilities for applying opacity to theme colors. This plugin iterates through a list of colors (primary, secondary, accent, etc.) and creates utilities like `bg-primaryvalue`, `text-primaryvalue`, `border-primaryvalue` that resolve to `rgba(var(--${color}-rgb), value)`. This leverages the `--color-rgb` variables.
 - **Animations & Keyframes:** Includes the `tailwindcss-animate` plugin and defines keyframes and animation utilities for elements like accordions, typing effects, and blinking cursors.
 - **Background Image Utilities:** Defines utilities like `backgroundImage: { "concrete-texture": "url(...)" }`.
 
@@ -100,7 +100,7 @@ Sections are the primary building blocks for pages.
   - Often wrapped with `LazySection` (from `components/ui/lazy-section`) for scroll-triggered animations (e.g., `animation="slide-up"`).
 - **`HeroSection` (`components/sections/hero-section.tsx`):**
   - This section, primarily used on the homepage, exhibits the most sophisticated styling.
-  - Features a prominent gradient background (`bg-gradient-to-r brand-primary/10 to-white`).
+  - Features a prominent gradient background (`bg-gradient-to-r brand-primary-10 to-white`).
   - Includes an overlaid `.bg-grid-pattern` with low opacity.
   - Employs "floating" decorative elements: absolutely positioned, blurred, rounded `divs` using low-opacity theme colors (e.g., `bg-[rgba(var(--primary-rgb),0.05)]`) or Tailwind palette colors (`bg-blue-100/20`).
   - Image treatment includes `shadow-2xl` and an overlay gradient (`bg-gradient-to-t from-black/70 to-transparent`).

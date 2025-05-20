@@ -1,15 +1,15 @@
+import './globals.css';
+
+import { Partytown } from '@qwik.dev/partytown/react';
+import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Poppins, Raleway } from 'next/font/google';
+
+import WebVitalsReporter from '@/components/analytics/WebVitalsReporter';
 import AppShell from '@/components/layout/AppShell';
 import StructuredData from '@/components/seo/structured-data';
-import { heroSectionData } from '@/lib/data/homepage';
 import { defaultMetadata } from '@/lib/metadata';
 import { siteConfig } from '@/lib/siteConfig';
-import { Partytown } from '@qwik.dev/partytown/react';
-import { Poppins, Raleway } from 'next/font/google';
-import type { ReactNode } from 'react';
-import './globals.css';
-import WebVitalsReporter from '@/components/analytics/WebVitalsReporter';
-import { SpeedInsights } from '@vercel/speed-insights/next';
-import { Analytics } from '@vercel/analytics/next';
 import { themeVariants } from '@/lib/theme.variants';
 
 // Poppins for headings
@@ -33,7 +33,7 @@ const raleway = Raleway({
 const siteUrl = siteConfig.site.url || 'http://localhost:3000';
 
 // Hardcoded default theme variant (no env var needed)
-const themeKey = 'v3';
+const themeKey = 'v1';
 // Simplify fallback to direct property access
 const variant = themeVariants[themeKey] ?? themeVariants.v1;
 
@@ -56,7 +56,7 @@ function hexToRgbServer(hex: string): string {
   const r = Number.parseInt(cleanHex.substring(0, 2), 16);
   const g = Number.parseInt(cleanHex.substring(2, 4), 16);
   const b = Number.parseInt(cleanHex.substring(4, 6), 16);
-  return `${r}, ${g}, ${b}`;
+  return `${r} ${g} ${b}`;
 }
 
 // Helper to convert hex to HSL (for light/dark variants)
@@ -108,44 +108,37 @@ function toKebabCase(str: string): string {
   return str.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
 }
 
-function getThemeCssVars(theme: typeof siteConfig.theme): string {
-  // Derived primary shades
+// Unified CSS-variable injector: handles all theme colors plus computed light/dark variants
+function getThemeCssVars(theme: typeof siteConfig.theme, variantKey: string): string {
+  // Base HSL values for primary color
   const [h, s, l] = hexToHslServer(theme.colors.primary);
+  // Compute four color variants:
   const primaryLight = hslToHexServer(h, s, Math.min(l + 20, 100));
+  const primaryLight2 = hslToHexServer(h, s, Math.min(l + 30, 100));
   const primaryDark = hslToHexServer(h, s, Math.max(l - 20, 0));
+  const primaryDark2 = hslToHexServer(h, s, Math.max(l - 30, 0));
 
-  // Dynamic CSS variables for each theme color
-  const colorVars = Object.entries(theme.colors)
+  // Inject CSS variables for each original theme color
+  const cssVars = Object.entries(theme.colors)
     .map(([key, value]) => {
       const name = toKebabCase(key);
-      return `--${name}: ${value}; --${name}-rgb: ${hexToRgbServer(value)};`;
+      const rgb = hexToRgbServer(value);
+      const [hVal, sVal, lVal] = hexToHslServer(value);
+      return `--${name}: ${value}; --${name}-rgb: ${rgb}; --brand-${name}: ${hVal} ${sVal}% ${lVal}%; --brand-${name}-rgb: ${rgb};`;
     })
     .join('\n');
 
+  // Append computed variants
   return `
-    ${colorVars}
-    --primary-light: ${primaryLight};
-    --primary-dark: ${primaryDark};
-    ${theme.colors.heroBackground ? `--brand-hero-background: ${theme.colors.heroBackground};` : ''}
-    ${theme.colors.heroBackground ? `--brand-hero-background-rgb: ${hexToRgbServer(theme.colors.heroBackground)};` : ''}
-    --white: #fff;
-    --black: #000;
-    --font-heading: ${theme.typography.headingFont};
-    --font-body: ${theme.typography.bodyFont};
-    --font-base-size: ${theme.typography.baseSize};
-    --space-xs: ${theme.spacing.xs};
-    --space-sm: ${theme.spacing.sm};
-    --space-md: ${theme.spacing.md};
-    --space-lg: ${theme.spacing.lg};
-    --space-xl: ${theme.spacing.xl};
-    --radius-base: ${theme.borders.radiusBase};
-    --border-width-base: ${theme.borders.widthBase};
-    --border-color-base: ${theme.borders.colorBase};
-    --shadow-sm: ${theme.shadows.sm};
-    --shadow-md: ${theme.shadows.md};
-    --shadow-lg: ${theme.shadows.lg};
-    --container-max-width: ${theme.layout.containerMaxWidth};
-    --container-padding: ${theme.layout.containerPadding};
+    ${cssVars}
+    --brand-light: ${primaryLight};
+    --brand-light-rgb: ${hexToRgbServer(primaryLight)};
+    --brand-dark: ${primaryDark};
+    --brand-dark-rgb: ${hexToRgbServer(primaryDark)};
+    --brand-light-2: ${primaryLight2};
+    --brand-light-2-rgb: ${hexToRgbServer(primaryLight2)};
+    --brand-dark-2: ${primaryDark2};
+    --brand-dark-2-rgb: ${hexToRgbServer(primaryDark2)};
   `.trim();
 }
 
@@ -168,8 +161,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       bodyFont: variant.typography.bodyFont,
     },
   };
-  // Cast to satisfy theme schema for CSS variable generation
-  const themeCssVars = getThemeCssVars(mergedTheme as typeof siteConfig.theme);
+  // Compute secondary light/dark variants for primary color
+  const [h, s, l] = hexToHslServer(mergedTheme.colors.primary);
+  const primaryLight = hslToHexServer(h, s, Math.min(l + 20, 100));
+  const primaryDark = hslToHexServer(h, s, Math.max(l - 20, 0));
+  // Augment colors with computed variants
+  const augmentedTheme = {
+    ...mergedTheme,
+    colors: {
+      ...mergedTheme.colors,
+      'light-2': primaryLight,
+      'dark-2': primaryDark,
+    },
+  };
+  // Generate CSS variables based on active variant
+  const themeCssVars = getThemeCssVars(augmentedTheme as typeof siteConfig.theme, themeKey);
 
   return (
     <html lang="en" suppressHydrationWarning>

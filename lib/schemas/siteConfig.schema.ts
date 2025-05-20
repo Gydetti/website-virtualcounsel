@@ -1,5 +1,6 @@
 import { z } from 'zod';
-import { ctaSchema, imageSchema, linkSchema, seoSchema } from './common.schema';
+
+import { imageSchema, linkSchema, seoSchema } from './common.schema';
 import { themeSchema } from './theme.schema';
 /* eslint-disable @typescript-eslint/no-require-imports, @typescript-eslint/no-explicit-any */
 // We will import specific schemas from common.schema.ts later
@@ -26,15 +27,17 @@ const siteMetaSchema = z.object({
   twitterImage: imageSchema.shape.src, // Allow just a URL string for twitter image
 });
 
-const themeColorsSchema = z.object({
-  primary: z.string(),
-  secondary: z.string(),
-  accent: z.string(),
-  background: z.string().optional(),
-  header: z.string().optional(),
-  body: z.string().optional(),
-  lightGrey: z.string().optional(),
-});
+const themeColorsSchema = z
+  .object({
+    primary: z.string(),
+    secondary: z.string(),
+    accent: z.string(),
+    background: z.string().optional(),
+    header: z.string().optional(),
+    body: z.string().optional(),
+    lightGrey: z.string().optional(),
+  })
+  .catchall(z.string());
 
 const themeSchemaDefinition = z.object({
   colors: themeColorsSchema,

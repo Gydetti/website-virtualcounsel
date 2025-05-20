@@ -1,12 +1,13 @@
 import mailchimp from '@mailchimp/mailchimp_transactional';
 import sgMail from '@sendgrid/mail';
-import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import { Client as PostmarkClient } from 'postmark';
+import { ZodError } from 'zod';
+
 import { contactSchema } from '../../../lib/schemas/contact.schema';
 import { siteConfig } from '../../../lib/siteConfig';
-import { ZodError } from 'zod';
 
 export async function POST(request: NextRequest) {
   try {

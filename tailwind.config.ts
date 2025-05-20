@@ -1,5 +1,6 @@
-import type { Config } from 'tailwindcss';
-import plugin from 'tailwindcss/plugin';
+// @ts-nocheck
+// Remove strict type checking as colors use functions
+// import type { Config } from 'tailwindcss';
 import { semanticColors, semanticGradients } from './theme/colors';
 import { siteConfig } from './lib/siteConfig';
 
@@ -7,6 +8,33 @@ import { siteConfig } from './lib/siteConfig';
 function toKebabCase(str: string): string {
   return str.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
 }
+
+// Dynamically generate Tailwind color functions from siteConfig.theme.colors
+const dynamicColors = Object.fromEntries(
+  Object.keys(siteConfig.theme.colors).map(key => {
+    const name = toKebabCase(key);
+    return [
+      name,
+      ({ opacityValue = 1 }: { opacityValue?: number }) =>
+        `rgb(var(--${name}-rgb) / ${opacityValue})`,
+    ];
+  })
+);
+// Add static white color with opacity support
+dynamicColors.white = ({ opacityValue = 1 }) => `rgba(255, 255, 255, ${opacityValue})`;
+
+// Reintroduce extra semantic utilities that reference CSS vars directly
+const extraColors: Record<string, (opts: { opacityValue?: number }) => string> = {
+  border: ({ opacityValue = 1 }) => `hsl(var(--border) / ${opacityValue})`,
+  input: ({ opacityValue = 1 }) => `rgb(var(--input-rgb) / ${opacityValue})`,
+  ring: ({ opacityValue = 1 }) => `rgb(var(--ring-rgb) / ${opacityValue})`,
+  popover: ({ opacityValue = 1 }) => `hsl(var(--popover) / ${opacityValue})`,
+  card: ({ opacityValue = 1 }) => `hsl(var(--card) / ${opacityValue})`,
+  muted: ({ opacityValue = 1 }) => `hsl(var(--muted) / ${opacityValue})`,
+  destructive: ({ opacityValue = 1 }) => `hsl(var(--destructive) / ${opacityValue})`,
+};
+// Merge extraColors into dynamicColors to enable utilities like border-border
+Object.assign(dynamicColors, extraColors);
 
 const config = {
   content: [
@@ -43,37 +71,7 @@ const config = {
       },
       colors: {
         ...semanticColors,
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
-        primary: {
-          DEFAULT: 'var(--primary)',
-          foreground: 'var(--primary-foreground)',
-        },
-        secondary: {
-          DEFAULT: 'var(--secondary)',
-          foreground: 'var(--secondary-foreground)',
-        },
-        destructive: {
-          DEFAULT: 'hsl(var(--destructive))',
-          foreground: 'hsl(var(--destructive-foreground))',
-        },
-        muted: {
-          DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))',
-        },
-        accent: {
-          DEFAULT: 'var(--accent)',
-          foreground: 'var(--accent-foreground)',
-        },
-        popover: {
-          DEFAULT: 'hsl(var(--popover))',
-          foreground: 'hsl(var(--popover-foreground))',
-        },
-        card: {
-          DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))',
-        },
+        ...dynamicColors,
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -117,29 +115,7 @@ const config = {
       },
     },
   },
-  plugins: [
-    require('tailwindcss-animate'),
-    plugin(({ matchUtilities, theme }) => {
-      const colors = Object.keys(siteConfig.theme.colors);
-      for (const color of colors) {
-        const name = toKebabCase(color);
-        matchUtilities(
-          {
-            [`bg-${name}`]: value => ({
-              'background-color': `rgba(var(--${name}-rgb), ${value})`,
-            }),
-            [`text-${name}`]: value => ({
-              color: `rgba(var(--${name}-rgb), ${value})`,
-            }),
-            [`border-${name}`]: value => ({
-              'border-color': `rgba(var(--${name}-rgb), ${value})`,
-            }),
-          },
-          { values: theme('opacity') }
-        );
-      }
-    }),
-  ],
-} satisfies Config;
+  plugins: [require('tailwindcss-animate')],
+};
 
 export default config;

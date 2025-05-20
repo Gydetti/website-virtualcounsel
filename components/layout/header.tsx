@@ -2,29 +2,30 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 
-import { Button } from '@/components/ui/button';
-import { siteConfig } from '@/lib/siteConfig';
-import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowRight, Menu, X, ChevronDown } from 'lucide-react';
-import Link from 'next/link';
+import { ArrowRight, ChevronDown, Menu, X } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import useScrollDirection from '@/hooks/useScrollDirection';
 import { createPortal } from 'react-dom';
-import { getResources } from '@/lib/data/resources';
 import type { z } from 'zod';
-import type { resourceSchema } from '@/lib/schemas/contentBlocks.schema';
-import { getServices } from '@/lib/data-utils';
-import type { ServiceType } from '@/lib/data-utils';
+
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
-  DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
+  DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import useScrollDirection from '@/hooks/useScrollDirection';
+import { getResources } from '@/lib/data/resources';
+import type { ServiceType } from '@/lib/data-utils';
+import { getServices } from '@/lib/data-utils';
+import type { resourceSchema } from '@/lib/schemas/contentBlocks.schema';
+import { siteConfig } from '@/lib/siteConfig';
+import { cn } from '@/lib/utils';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -103,7 +104,7 @@ export default function Header() {
                 onClick={() => setMobileMenuOpen(false)}
                 aria-label="Close menu"
               >
-                <X className="h-6 w-6" aria-hidden="true" />
+                <X className="size-6" aria-hidden="true" />
               </button>
             </div>
             <div className="mt-4 flow-root px-6">
@@ -177,7 +178,7 @@ export default function Header() {
               >
                 <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
                   Get in touch
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </Button>
             </div>
@@ -244,7 +245,7 @@ export default function Header() {
                 onClick={() => setMobileMenuOpen(true)}
                 aria-label="Open main menu"
               >
-                <Menu className="h-6 w-6" aria-hidden="true" />
+                <Menu className="size-6" aria-hidden="true" />
               </button>
             </div>
             <div className="hidden lg:flex items-center lg:gap-x-8">
@@ -272,7 +273,7 @@ export default function Header() {
                               isActiveTab(item.href) ? 'w-full' : 'w-0 group-hover:w-full'
                             )}
                           />
-                          <ChevronDown className="ml-1 inline-block h-4 w-4" />
+                          <ChevronDown className="ml-1 inline-block size-4" />
                         </button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent sideOffset={4} align="start" className="mt-2">
@@ -331,7 +332,7 @@ export default function Header() {
               >
                 <Link href="/contact">
                   Main CTA button
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </Button>
             </div>

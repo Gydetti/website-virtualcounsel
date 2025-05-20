@@ -1,11 +1,11 @@
 'use client';
 
-import { Section } from '@/components/layout/Section';
-import LazySection from '@/components/ui/lazy-section';
-import type { kpiSectionDataSchema, kpiStatItemSchema } from '@/lib/schemas/sections.schema';
+import type { CSSProperties } from 'react';
 import CountUp from 'react-countup';
 import type { z } from 'zod';
-import type { CSSProperties } from 'react';
+
+import LazySection from '@/components/ui/lazy-section';
+import type { kpiSectionDataSchema } from '@/lib/schemas/sections.schema';
 
 export type KpiSectionProps = z.infer<typeof kpiSectionDataSchema> & {
   /** Skip wrapper & use default styling when embedding inside AboutSection on homepage */

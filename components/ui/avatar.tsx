@@ -1,9 +1,10 @@
 'use client';
 
-import { cn } from '@/lib/utils';
 import * as AvatarPrimitive from '@radix-ui/react-avatar';
-import { forwardRef, useId } from 'react';
 import type { ComponentPropsWithoutRef, ElementRef } from 'react';
+import { forwardRef } from 'react';
+
+import { cn } from '@/lib/utils';
 
 const Avatar = forwardRef<
   ElementRef<typeof AvatarPrimitive.Root>,
@@ -44,4 +45,4 @@ const AvatarFallback = forwardRef<
 ));
 AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName;
 
-export { Avatar, AvatarImage, AvatarFallback };
+export { Avatar, AvatarFallback, AvatarImage };

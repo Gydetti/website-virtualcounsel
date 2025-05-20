@@ -1,10 +1,11 @@
 'use client';
 
-import { cn } from '@/lib/utils';
 import Image from 'next/image';
-import { useState } from 'react';
 import type { ReactEventHandler } from 'react';
+import { useState } from 'react';
+
 import { DEFAULT_PLACEHOLDER_IMAGE } from '@/lib/constants';
+import { cn } from '@/lib/utils';
 
 interface OptimizedImageProps {
   src: string;

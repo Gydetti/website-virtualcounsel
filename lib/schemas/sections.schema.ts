@@ -1,6 +1,7 @@
 // Placeholder for section-specific Zod schemas
 import { z } from 'zod';
-import { ctaSchema, imageSchema, linkSchema } from './common.schema';
+
+import { ctaSchema, imageSchema } from './common.schema';
 
 const heroStatSchema = z.object({
   value: z.number(),

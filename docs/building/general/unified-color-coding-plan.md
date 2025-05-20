@@ -23,7 +23,7 @@ This template is designed for single-brand use per project. For each new client,
 - **178** occurrences of literal color classes or hard-coded hexes across `app/`, `components/`, and other directories.
 - **Categories of misuse:**
   - Badges (`bg-blue-100 text-primary hover:bg-blue-200`)
-  - Section gradients (e.g. `bg-gradient-to-r brand-primary/10 via-transparent to-transparent`)
+  - Section gradients (e.g. `bg-gradient-to-r brand-primary-10 via-transparent to-transparent`)
   - Overlay backgrounds (`bg-gray-50`, `bg-white`)
   - Feedback states (`bg-red-50`, `text-red-700`, `bg-green-50`, `text-green-700`)
   - Footer specific HSL gradients and blur spots
@@ -83,7 +83,7 @@ This template is designed for single-brand use per project. For each new client,
     - `border-card`, `border-divider`, `border-accent`
     - States: `-hover`, `-active`, `-disabled`
 - **Guidelines:**
-  - Use `brand.*` for primary/secondary/hero/accent colors.
+  - Use `brand.*` for primarysecondary/hero/accent colors.
   - Use `neutral.*` for backgrounds, surfaces, and text.
   - Use `feedback.*` for error, warning, success, info.
   - Use `gradient-*` for multi-stop backgrounds.

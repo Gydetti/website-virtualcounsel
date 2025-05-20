@@ -1,7 +1,8 @@
-import type { quoteBlockSchema } from '@/lib/schemas/contentBlocks.schema';
 import Link from 'next/link';
 import type { FC } from 'react';
 import type { z } from 'zod';
+
+import type { quoteBlockSchema } from '@/lib/schemas/contentBlocks.schema';
 
 // Props inferred from Zod schema
 type QuoteBlockProps = z.infer<typeof quoteBlockSchema>;

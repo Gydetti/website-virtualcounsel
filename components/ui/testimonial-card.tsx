@@ -1,8 +1,9 @@
-import { Card, CardContent } from '@/components/ui/card';
-import { siteConfig } from '@/lib/siteConfig';
 import { Star } from 'lucide-react';
 import Image from 'next/image';
+
+import { Card, CardContent } from '@/components/ui/card';
 import { DEFAULT_PLACEHOLDER_IMAGE } from '@/lib/constants';
+import { siteConfig } from '@/lib/siteConfig';
 
 export interface TestimonialProps {
   quote: string;
@@ -31,7 +32,7 @@ export default function TestimonialCard({
               <Star
                 key={star}
                 aria-hidden="true"
-                className={`h-5 w-5 ${
+                className={`size-5 ${
                   star <= rating ? 'text-yellow-400 fill-yellow-400' : 'text-neutral-text/300'
                 }`}
               />

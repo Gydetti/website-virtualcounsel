@@ -1,10 +1,11 @@
 'use client';
-import type { resourceSchema } from '@/lib/schemas/contentBlocks.schema';
 import Image from 'next/image';
 import Link from 'next/link';
-import LazySection from '@/components/ui/lazy-section';
 import { useState } from 'react';
 import type { z } from 'zod';
+
+import LazySection from '@/components/ui/lazy-section';
+import type { resourceSchema } from '@/lib/schemas/contentBlocks.schema';
 
 interface ResourceListSectionProps {
   id: string;
@@ -46,7 +47,7 @@ export default function ResourceListSection({
   return (
     <section
       id={id}
-      className="relative overflow-hidden bg-gradient-to-r from-brand-light via-transparent to-transparent py-12 z-10"
+      className="relative overflow-hidden  bg-gradient-to-r from-brand-primary/10 to-brand-hero-background py-12 z-10"
     >
       <div className="container mx-auto px-4">
         <LazySection>

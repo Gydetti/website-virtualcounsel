@@ -1,10 +1,10 @@
+import type { CSSProperties } from 'react';
+import type { z } from 'zod';
+
 import { Section } from '@/components/layout/Section';
 import { Badge } from '@/components/ui/badge';
 import LazySection from '@/components/ui/lazy-section';
-import OptimizedImage from '@/components/ui/optimized-image';
 import type { servicesOverviewSectionDataSchema } from '@/lib/schemas/sections.schema';
-import type { CSSProperties } from 'react';
-import type { z } from 'zod';
 
 export type ServicesOverviewSectionProps = z.infer<typeof servicesOverviewSectionDataSchema>;
 

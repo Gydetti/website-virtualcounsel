@@ -1,10 +1,11 @@
 'use client';
 
-import { cn } from '@/lib/utils';
 import * as LabelPrimitive from '@radix-ui/react-label';
 import { Slot } from '@radix-ui/react-slot';
+import type { ComponentPropsWithoutRef, ElementRef } from 'react';
 import { createContext, forwardRef, useContext, useId } from 'react';
-import type { ComponentPropsWithoutRef, ElementRef, FormHTMLAttributes } from 'react';
+
+import { cn } from '@/lib/utils';
 
 const FormContext = createContext<{
   id: string;

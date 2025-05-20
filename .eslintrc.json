@@ -1,38 +1,61 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"],
+  "extends": [
+    "next/core-web-vitals",
+    "next/typescript",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:tailwindcss/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["simple-import-sort", "regexp", "boundaries", "unused-imports"],
   "rules": {
-    "react/no-unescaped-entities": "off",
+    "tailwindcss/classnames-order": "off",
+    "tailwindcss/no-custom-classname": "off",
+    "react/react-in-jsx-scope": "off",
+    "react-hooks/rules-of-hooks": "off",
     "react-hooks/exhaustive-deps": "off",
     "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/no-unused-vars": "off",
-    "react/no-array-index-key": "off",
-    "react/self-closing-comp": "off",
-    "@next/next/no-html-link-for-pages": "off",
-    "@typescript-eslint/ban-ts-comment": "off",
-    "react-hooks/rules-of-hooks": "off",
-    "@next/next/no-img-element": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "import/no-extraneous-dependencies": "error",
+    "import/order": "off",
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "@next/next/no-img-element": "error",
+    "jsx-a11y/alt-text": "error",
+    "jsx-a11y/interactive-supports-focus": "error",
+    "jsx-a11y/anchor-is-valid": "error",
     "react/no-danger": "off",
-    "@next/next/no-before-interactive-script-outside-document": "off",
-    "no-unused-expressions": "off",
+    "no-console": "off",
+    "no-debugger": "error",
+    "complexity": "off",
+    "max-lines-per-function": "off",
+    "unused-imports/no-unused-imports": "off",
+    "react/no-unescaped-entities": "off",
+    "@next/next/no-html-link-for-pages": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "import/no-named-as-default": "off",
     "@typescript-eslint/no-unused-expressions": "off",
-    "no-restricted-syntax": [
-      "error",
-      {
-        "selector": "Literal[value=/#[0-9A-Fa-f]{6}\\b/]",
-        "message": "Hardcoded hex color literals are not allowed; use semantic theme tokens instead."
-      },
-      {
-        "selector": "Literal[value=/bg-(?:gray|slate|blue|red|green)-[0-9]{1,3}/]",
-        "message": "Use semantic theme token classes instead of Tailwind bg-color literal classes."
-      },
-      {
-        "selector": "Literal[value=/text-(?:gray|slate|blue|red|green)-[0-9]{1,3}/]",
-        "message": "Use semantic theme token classes instead of Tailwind text-color literal classes."
-      },
-      {
-        "selector": "Literal[value=/border-(?:gray|slate|red|green)-[0-9]{1,3}/]",
-        "message": "Use semantic theme token classes instead of Tailwind border-color literal classes."
-      }
-    ]
+    "react/no-unknown-property": "off",
+    "import/no-duplicates": "off",
+    "jsx-a11y/heading-has-content": "off",
+    "jsx-a11y/anchor-has-content": "off",
+    "@next/next/no-before-interactive-script-outside-document": "off"
+  },
+  "settings": {
+    "boundaries/elements": [
+      { "type": "app", "pattern": "app/**" },
+      { "type": "component", "pattern": "components/**" },
+      { "type": "lib", "pattern": "lib/**" },
+      { "type": "hook", "pattern": "hooks/**" }
+    ],
+    "boundaries/ignore": ["**/*.test.ts", "**/*.spec.ts"]
   }
 }

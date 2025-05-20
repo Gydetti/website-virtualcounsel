@@ -1,5 +1,6 @@
-import type { ContentBlock } from '@/lib/schemas/contentBlocks.schema';
 import type { FC } from 'react';
+
+import type { ContentBlock } from '@/lib/schemas/contentBlocks.schema';
 
 import CtaBlock from './CtaBlock';
 import FormBlock from './FormBlock';

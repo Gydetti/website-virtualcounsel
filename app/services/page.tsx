@@ -1,21 +1,20 @@
-import { Section } from '@/components/layout/Section';
-import ProcessSection from '@/components/sections/process-section';
-import ServicesOverviewSection from '@/components/sections/services-overview-section';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import LazySection from '@/components/ui/lazy-section';
-import { getServices } from '@/lib/data-utils';
-import { processSectionData } from '@/lib/data/homepage';
-import { servicesOverviewSectionData } from '@/lib/data/servicesPageData';
-import { iconComponents } from '@/lib/icon-utils';
-import { defaultMetadata } from '@/lib/metadata';
-import { siteConfig } from '@/lib/siteConfig';
 import { ArrowRight, Check } from 'lucide-react';
-import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+
+import { Section } from '@/components/layout/Section';
+import ProcessSection from '@/components/sections/process-section';
+import ServicesOverviewSection from '@/components/sections/services-overview-section';
+import { Button } from '@/components/ui/button';
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import LazySection from '@/components/ui/lazy-section';
+import { processSectionData } from '@/lib/data/homepage';
+import { servicesOverviewSectionData } from '@/lib/data/servicesPageData';
+import { getServices } from '@/lib/data-utils';
+import { iconComponents } from '@/lib/icon-utils';
+import { defaultMetadata } from '@/lib/metadata';
+import { siteConfig } from '@/lib/siteConfig';
 
 // Disable this page if services feature is off or page not enabled
 if (
@@ -52,12 +51,12 @@ export default async function ServicesPage() {
                 <Card className="transition-all duration-300 hover:shadow-xl h-full flex flex-col">
                   <div className="relative h-48 w-full">
                     <div className="absolute inset-0 flex items-center justify-center bg-primary/10">
-                      <IconComponent className="h-16 w-16 text-primary/40" />
+                      <IconComponent className="size-16 text-primary40" />
                     </div>
                   </div>
                   <CardHeader>
                     <div className="mb-4">
-                      <IconComponent className="h-10 w-10 text-primary" />
+                      <IconComponent className="size-10 text-primary" />
                     </div>
                     <CardTitle className="text-xl font-bold break-words">{service.title}</CardTitle>
                     <CardDescription className="text-neutral-text/600 break-words">
@@ -67,12 +66,12 @@ export default async function ServicesPage() {
                   <CardFooter className="mt-auto">
                     <Button
                       size="lg"
-                      className="w-full whitespace-normal break-words bg-primary hover:bg-primary/90"
+                      className="w-full whitespace-normal break-words bg-primary hover:bg-primary90"
                       asChild
                     >
                       <Link href={`/services/${service.slug}`}>
                         {`Learn more about ${service.title}`}
-                        <ArrowRight className="ml-2 h-4 w-4" />
+                        <ArrowRight className="ml-2 size-4" />
                       </Link>
                     </Button>
                   </CardFooter>
@@ -95,26 +94,26 @@ export default async function ServicesPage() {
 
             <div className="space-y-4">
               <div className="flex items-start">
-                <div className="flex-shrink-0 h-6 w-6 rounded-full bg-feedback-success-bg flex items-center justify-center mr-3">
-                  <Check className="h-4 w-4 text-feedback-success" />
+                <div className="shrink-0 size-6 rounded-full bg-feedback-success-bg flex items-center justify-center mr-3">
+                  <Check className="size-4 text-feedback-success" />
                 </div>
                 <span>Tailored solutions for your specific business needs</span>
               </div>
               <div className="flex items-start">
-                <div className="flex-shrink-0 h-6 w-6 rounded-full bg-feedback-success-bg flex items-center justify-center mr-3">
-                  <Check className="h-4 w-4 text-feedback-success" />
+                <div className="shrink-0 size-6 rounded-full bg-feedback-success-bg flex items-center justify-center mr-3">
+                  <Check className="size-4 text-feedback-success" />
                 </div>
                 <span>Data-driven strategies that deliver measurable results</span>
               </div>
               <div className="flex items-start">
-                <div className="flex-shrink-0 h-6 w-6 rounded-full bg-feedback-success-bg flex items-center justify-center mr-3">
-                  <Check className="h-4 w-4 text-feedback-success" />
+                <div className="shrink-0 size-6 rounded-full bg-feedback-success-bg flex items-center justify-center mr-3">
+                  <Check className="size-4 text-feedback-success" />
                 </div>
                 <span>Transparent communication throughout the process</span>
               </div>
               <div className="flex items-start">
-                <div className="flex-shrink-0 h-6 w-6 rounded-full bg-feedback-success-bg flex items-center justify-center mr-3">
-                  <Check className="h-4 w-4 text-feedback-success" />
+                <div className="shrink-0 size-6 rounded-full bg-feedback-success-bg flex items-center justify-center mr-3">
+                  <Check className="size-4 text-feedback-success" />
                 </div>
                 <span>Ongoing support and optimization</span>
               </div>
@@ -123,7 +122,7 @@ export default async function ServicesPage() {
             <Button size="lg" className="mt-8 whitespace-normal break-words group" asChild>
               <Link href="/contact">
                 Primary CTA button text (e.g., 'Schedule a consultation')
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ArrowRight className="ml-2 size-4" />
               </Link>
             </Button>
           </LazySection>
@@ -156,7 +155,7 @@ export default async function ServicesPage() {
             <Button size="lg" className="whitespace-normal break-words group" asChild>
               <Link href="/contact">
                 Secondary CTA button text (e.g., 'Get started today')
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ArrowRight className="ml-2 size-4" />
               </Link>
             </Button>
           </div>

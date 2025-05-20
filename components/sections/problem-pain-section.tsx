@@ -1,10 +1,11 @@
 'use client';
-import { Section } from '@/components/layout/Section';
-import LazySection from '@/components/ui/lazy-section';
-import type { problemPainSectionDataSchema } from '@/lib/schemas/sections.schema';
 import { motion } from 'framer-motion';
 import { AlertTriangle } from 'lucide-react';
 import type { z } from 'zod';
+
+import { Section } from '@/components/layout/Section';
+import LazySection from '@/components/ui/lazy-section';
+import type { problemPainSectionDataSchema } from '@/lib/schemas/sections.schema';
 
 // Updated props type alias using Zod schema
 export type ProblemPainSectionProps = z.infer<typeof problemPainSectionDataSchema>;
@@ -24,14 +25,14 @@ export default function ProblemPainSection({
       <LazySection
         animation="slide-up"
         delay={0}
-        className="-mx-3.5 sm:mx-auto pattern-overlay bg-brand-dark text-white rounded-[30px] border shadow-lg p-8 sm:p-12"
+        className="-mx-3.5 sm:mx-auto pattern-overlay bg-brand-dark-2 text-white rounded-[30px] border shadow-lg p-8 sm:p-12"
       >
         <div className="grid gap-12 lg:grid-cols-2">
           <div className="flex flex-col justify-center space-y-8">
             <div className="space-y-4">
               {badgeText && (
                 <div className="inline-flex items-center space-x-2 text-accent">
-                  <AlertTriangle className="h-5 w-5" />
+                  <AlertTriangle className="size-5" />
                   <span className="font-medium">{badgeText}</span>
                 </div>
               )}
@@ -41,7 +42,7 @@ export default function ProblemPainSection({
               )}
             </div>
             {calloutText && (
-              <div className="rounded-lg bg-[rgba(255,255,255,0.08)] p-6">
+              <div className="rounded-lg bg-white/10 p-6">
                 <p className="text-lg font-medium">{calloutText}</p>
               </div>
             )}
@@ -60,7 +61,7 @@ export default function ProblemPainSection({
                   }}
                   transition={{ duration: 0.1, delay: idx * 0.2 }}
                   viewport={{ once: true }}
-                  className="rounded-lg bg-[rgba(255,255,255,0.08)] p-6 shadow-sm hover:shadow-xl transition-shadow duration-300"
+                  className="rounded-lg bg-white/10 p-6 shadow-sm hover:shadow-xl transition-shadow duration-300"
                 >
                   <h3 className="mb-3 text-xl font-bold text-accent">{card.title}</h3>
                   <p className="text-muted-foreground text-base md:text-lg">{card.description}</p>

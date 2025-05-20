@@ -1,9 +1,10 @@
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+
 import DynamicPageRenderer from '@/components/layout/DynamicPageRenderer';
 import { getResourceBySlug, getResources } from '@/lib/data/resources';
 import { defaultMetadata } from '@/lib/metadata';
 import { siteConfig } from '@/lib/site.config.local';
-import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
   const resources = await getResources();

@@ -1,12 +1,12 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import type { z } from 'zod';
 
 import { Section } from '@/components/layout/Section';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
@@ -17,7 +17,6 @@ import OptimizedImage from '@/components/ui/optimized-image';
 import blurDataMap from '@/lib/blurDataURL.json';
 import type { heroSectionDataSchema } from '@/lib/schemas/sections.schema';
 import { siteConfig } from '@/lib/siteConfig';
-import type { z } from 'zod';
 
 const HeroStats = dynamic(() => import('@/components/sections/hero-stats'), {
   ssr: false,
@@ -70,8 +69,8 @@ export default function HeroSection({
       <div className="absolute inset-0 bg-grid-pattern opacity-10" />
 
       {/* Floating elements for visual interest */}
-      {/* <div className="hidden sm:block absolute top-20 right-10 w-64 h-64 bg-[rgba(var(--primary-rgb),0.05)] rounded-full blur-3xl" />
-			<div className="hidden sm:block absolute bottom-10 left-10 w-72 h-72 bg-[rgba(var(--brand-primary-rgb),0.2)] rounded-full blur-3xl" /> */}
+      {/* <div className="hidden sm:block absolute top-20 right-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+			<div className="hidden sm:block absolute bottom-10 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl" /> */}
 
       <Section
         fullBleed={false}
@@ -115,14 +114,14 @@ export default function HeroSection({
                       }}
                     >
                       {primaryCta.text}
-                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
                     </Button>
                   )}
                   {showSecondaryCta && secondaryCta?.text && secondaryCta.href && (
                     <Button
                       size="lg"
                       variant="ghost"
-                      className="bg-transparent text-primary hover:text-primary/80 hover:bg-transparent"
+                      className="bg-transparent text-primary hover:text-primary80 hover:bg-transparent"
                       asChild
                     >
                       <Link href={secondaryCta.href}>{secondaryCta.text}</Link>
@@ -138,14 +137,14 @@ export default function HeroSection({
                     {[1, 2, 3, 4].map(i => (
                       <div
                         key={i}
-                        className="inline-block h-8 w-8 rounded-full ring-2 ring-white overflow-hidden bg-neutral-background/200"
+                        className="inline-block size-8 rounded-full ring-2 ring-white overflow-hidden bg-neutral-background/200"
                       >
                         <Image
                           src="/placeholder.svg?height=32&width=32"
                           alt="User avatar"
                           width={32}
                           height={32}
-                          className="h-full w-full object-cover"
+                          className="size-full object-cover"
                         />
                       </div>
                     ))}
@@ -160,7 +159,7 @@ export default function HeroSection({
 
           <LazySection
             delay={0.2}
-            className={`relative w-full max-w-[600px] transform md:translate-y-6 ${variant === 'imageLeft' ? 'md:order-1' : 'ml-auto'}`}
+            className={`relative w-full max-w-[600px] md:translate-y-6${variant === 'imageLeft' ? 'md:order-1' : 'ml-auto'}`}
           >
             <AspectRatio ratio={6 / 5} className="overflow-visible rounded-xl shadow-2xl relative">
               <OptimizedImage
@@ -174,13 +173,13 @@ export default function HeroSection({
                 blurDataURL={blurDataMap[imageToDisplay as keyof typeof blurDataMap]}
                 onError={() => setCurrentImageSrc(defaultImageSrc)}
               />
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6 rounded-b-xl">
+              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent p-6 rounded-b-xl">
                 <p className="text-white font-medium"> </p>
               </div>
               {showOverlayStat && overlayTitle && overlayValue && (
-                <div className="hidden md:block absolute -bottom-6 -left-6 h-24 w-2/3 rounded-xl p-4 shadow-lg z-10 bg-asset-band">
+                <div className="hidden md:block absolute -bottom-6 -left-6 h-24 w-2/3 rounded-xl p-4 shadow-lg z-10 bg-primary">
                   <div className="flex items-center space-x-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-neutral-surface">
+                    <div className="flex size-12 items-center justify-center rounded-full bg-neutral-surface">
                       <svg
                         aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg"

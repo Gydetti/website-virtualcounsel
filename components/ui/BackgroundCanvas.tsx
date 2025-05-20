@@ -1,6 +1,7 @@
 'use client';
-import { siteConfig } from '@/lib/siteConfig';
 import { useEffect, useRef } from 'react';
+
+import { siteConfig } from '@/lib/siteConfig';
 
 export default function BackgroundCanvas() {
   // Supported types: "none" | "gradient" | "particles" | "parallax" | "noise" | "wave" | "image"
@@ -178,5 +179,5 @@ export default function BackgroundCanvas() {
     };
   }, [animatedBackgroundType, backgroundImageUrl]);
 
-  return <canvas ref={canvasRef} className="fixed inset-0 -z-10 w-full h-full" />;
+  return <canvas ref={canvasRef} className="fixed inset-0 -z-10 size-full" />;
 }

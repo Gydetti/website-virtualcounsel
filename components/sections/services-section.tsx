@@ -1,5 +1,10 @@
 'use client';
 
+import { ArrowRight, BarChart2, Globe, Zap } from 'lucide-react';
+import Link from 'next/link';
+import type { CSSProperties } from 'react';
+import type { z } from 'zod';
+
 import { Section } from '@/components/layout/Section';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -13,16 +18,12 @@ import {
 } from '@/components/ui/card';
 import LazySection from '@/components/ui/lazy-section';
 import type { serviceItemSchema, servicesSectionDataSchema } from '@/lib/schemas/sections.schema';
-import { ArrowRight, BarChart2, Globe, Zap } from 'lucide-react';
-import Link from 'next/link';
-import type { CSSProperties } from 'react';
-import type { z } from 'zod';
 
 // Map of icon names to components
 const iconMap: Record<string, React.ReactNode> = {
-  Globe: <Globe className="h-10 w-10 text-primary" />,
-  BarChart2: <BarChart2 className="h-10 w-10 text-primary" />,
-  Zap: <Zap className="h-10 w-10 text-primary" />,
+  Globe: <Globe className="size-10 text-primary" />,
+  BarChart2: <BarChart2 className="size-10 text-primary" />,
+  Zap: <Zap className="size-10 text-primary" />,
 };
 
 // Updated props type alias using Zod schema
@@ -48,8 +49,8 @@ export default function ServicesSection({
       className="relative overflow-hidden "
     >
       {/* Decorative elements - re-enabled and styled with theme colors */}
-      <div className="hidden sm:block absolute top-0 right-0 w-64 h-64 bg-[rgba(var(--primary-rgb),0.03)] rounded-full -translate-y-1/3 translate-x-1/3 blur-3xl pointer-events-none" />
-      <div className="hidden sm:block absolute bottom-0 left-0 w-72 h-72 bg-[rgba(var(--secondary-rgb),0.03)] rounded-full translate-y-1/3 -translate-x-1/3 blur-3xl pointer-events-none" />
+      <div className="hidden sm:block absolute top-0 right-0 size-64 bg-primary/3 rounded-full -translate-y-1/3 translate-x-1/3 blur-3xl pointer-events-none" />
+      <div className="hidden sm:block absolute bottom-0 left-0 size-72 bg-secondary/3 rounded-full translate-y-1/3 -translate-x-1/3 blur-3xl pointer-events-none" />
 
       <div className="relative z-10">
         {/* Header CSS-only stagger */}
@@ -91,10 +92,8 @@ export default function ServicesSection({
                 )}
 
                 <CardHeader className="pt-12">
-                  <div className="mb-6 bg-[rgba(var(--primary-rgb),0.1)] w-16 h-16 rounded-lg flex items-center justify-center">
-                    {iconMap[service.icon ?? 'Globe'] || (
-                      <Globe className="h-10 w-10 text-primary" />
-                    )}
+                  <div className="mb-6 bg-primary/10 size-16 rounded-lg flex items-center justify-center">
+                    {iconMap[service.icon ?? 'Globe'] || <Globe className="size-10 text-primary" />}
                   </div>
                   <CardTitle className="text-xl font-bold">{service.title}</CardTitle>
                   <CardDescription className="text-foreground">
@@ -106,7 +105,7 @@ export default function ServicesSection({
                   <ul className="space-y-3">
                     {service.features?.map(feature => (
                       <li key={feature} className="flex items-start">
-                        <span className="text-feedback-success mr-3 flex-shrink-0 mt-0.5">
+                        <span className="text-feedback-success mr-3 shrink-0 mt-0.5">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="24"
@@ -117,7 +116,7 @@ export default function ServicesSection({
                             strokeWidth="2"
                             strokeLinecap="round"
                             strokeLinejoin="round"
-                            className="h-5 w-5"
+                            className="size-5"
                           >
                             <title>Check mark icon</title>
                             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
@@ -142,7 +141,7 @@ export default function ServicesSection({
                   >
                     <Link href={`/services/${service.slug}`}>
                       {`Learn more about ${service.title}`}
-                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
                     </Link>
                   </Button>
                 </CardFooter>
@@ -166,7 +165,7 @@ export default function ServicesSection({
               >
                 <Link href={viewAllCta.href}>
                   {viewAllCta.text}
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </Button>
             </div>

@@ -1,5 +1,6 @@
-import { servicesOverviewSectionDataSchema } from '@/lib/schemas/sections.schema';
 import type { z } from 'zod';
+
+import { servicesOverviewSectionDataSchema } from '@/lib/schemas/sections.schema';
 
 export const servicesOverviewSectionData: z.infer<typeof servicesOverviewSectionDataSchema> = {
   badgeText: 'Our services',

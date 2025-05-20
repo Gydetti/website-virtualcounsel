@@ -1,8 +1,9 @@
 'use client';
 
-import { trackEvent } from '@/lib/tracking-utils';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
+
+import { trackEvent } from '@/lib/tracking-utils';
 
 export default function PageViewTracker() {
   const pathname = usePathname();

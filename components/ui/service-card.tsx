@@ -1,3 +1,6 @@
+import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
+
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -8,8 +11,6 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { siteConfig } from '@/lib/siteConfig';
-import { ArrowRight } from 'lucide-react';
-import Link from 'next/link';
 
 interface ServiceCardProps {
   title: string;
@@ -43,7 +44,7 @@ export default function ServiceCard({
         </div>
       )}
       <CardHeader className={`${popular ? 'pt-12' : ''}`}>
-        <div className="mb-6 bg-[rgba(var(--primary-rgb),0.1)] w-16 h-16 rounded-lg flex items-center justify-center">
+        <div className="mb-6 bg-primary/10 size-16 rounded-lg flex items-center justify-center">
           {icon}
         </div>
         <CardTitle className="text-xl font-bold">{title}</CardTitle>
@@ -53,7 +54,7 @@ export default function ServiceCard({
         <ul className="space-y-3">
           {features.map(feature => (
             <li key={feature} className="flex items-start">
-              <span className="text-feedback-success mr-3 flex-shrink-0 mt-0.5">
+              <span className="text-feedback-success mr-3 shrink-0 mt-0.5">
                 <svg
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
@@ -65,7 +66,7 @@ export default function ServiceCard({
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="h-5 w-5"
+                  className="size-5"
                 >
                   <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                   <polyline points="22 4 12 14.01 9 11.01" />
@@ -80,7 +81,7 @@ export default function ServiceCard({
         <Button className="group w-full" variant={popular ? 'default' : 'outline'} asChild>
           <Link href={`/services/${slug}`}>
             {`Learn more about ${title}`}
-            <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+            <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
           </Link>
         </Button>
       </CardFooter>

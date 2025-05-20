@@ -1,4 +1,4 @@
-import { type VariantProps, cva } from 'class-variance-authority';
+import { cva, type VariantProps } from 'class-variance-authority';
 import type { HTMLAttributes } from 'react';
 
 import { cn } from '@/lib/utils';
@@ -8,13 +8,10 @@ const badgeVariants = cva(
   {
     variants: {
       variant: {
-        default:
-          'border-transparent bg-[rgba(var(--primary-rgb),0.1)] text-primary hover:bg-[rgba(var(--primary-rgb),0.2)]',
-        dark: 'border-transparent bg-[rgba(var(--primary-rgb),0.8)] text-primary hover:bg-[rgba(var(--primary-rgb),0.7)]',
-        secondary:
-          'border-transparent bg-[rgba(var(--secondary-rgb),0.1)] text-secondary hover:bg-[rgba(var(--secondary-rgb),0.2)]',
-        accent:
-          'border-transparent bg-[rgba(var(--accent-rgb),0.1)] text-accent hover:bg-[rgba(var(--accent-rgb),0.2)]',
+        default: 'border-transparent bg-primary/10 text-primary hover:bg-primary/20',
+        dark: 'border-transparent bg-[rgba(var(--primary-rgb),0.8)] text-primary hover:bg-primary/70',
+        secondary: 'border-transparent bg-secondary/10 text-secondary hover:bg-secondary/20',
+        accent: 'border-transparent bg-accent/10 text-accent hover:bg-accent/20',
         destructive:
           'border-transparent bg-destructive text-destructive-foreground hover:bg-destructive-80',
         outline: 'text-foreground',

@@ -1,3 +1,8 @@
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import type { CSSProperties } from 'react';
+
 import { Section } from '@/components/layout/Section';
 import { Badge } from '@/components/ui/badge';
 import LazySection from '@/components/ui/lazy-section';
@@ -5,10 +10,6 @@ import TestimonialCard from '@/components/ui/testimonial-card';
 import * as homepageData from '@/lib/data/homepage';
 import { defaultMetadata } from '@/lib/metadata';
 import { siteConfig } from '@/lib/site.config.local';
-import type { Metadata } from 'next';
-import Link from 'next/link';
-import { notFound } from 'next/navigation';
-import type { CSSProperties } from 'react';
 
 // Generate page metadata
 export async function generateMetadata(): Promise<Metadata> {
@@ -90,7 +91,7 @@ export default function TestimonialsPage() {
           </p>
           <Link
             href="/contact"
-            className="inline-block px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition"
+            className="inline-block px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary90 transition"
           >
             Contact Us
           </Link>

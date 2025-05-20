@@ -1,9 +1,11 @@
-import { getResourceBySlug } from '@/lib/data/resources';
-import type { resourceSchema } from '@/lib/schemas/contentBlocks.schema';
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { beforeAll, describe, expect, it } from 'vitest';
 import type { z } from 'zod';
+
+import { getResourceBySlug } from '@/lib/data/resources';
+import type { resourceSchema } from '@/lib/schemas/contentBlocks.schema';
+
 import ResourceDetailSection from './ResourceDetailSection';
 
 type ResourceType = z.infer<typeof resourceSchema>;

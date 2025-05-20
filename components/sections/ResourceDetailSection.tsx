@@ -1,16 +1,12 @@
-import type {
-  resourceContentBlockSchema,
-  resourceSchema,
-} from '@/lib/schemas/contentBlocks.schema';
+import Image from 'next/image';
 import type { z } from 'zod';
 
 import ContentBlockRenderer from '@/components/content-blocks/ContentBlockRenderer';
 import FormBlock from '@/components/content-blocks/FormBlock'; // Assuming FormBlock can be used
 import { Section } from '@/components/layout/Section';
-import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import LazySection from '@/components/ui/lazy-section';
-import Image from 'next/image';
+import type { resourceSchema } from '@/lib/schemas/contentBlocks.schema';
 
 interface ResourceDetailSectionProps {
   resource: z.infer<typeof resourceSchema>;
@@ -48,9 +44,9 @@ export default function ResourceDetailSection({ resource }: ResourceDetailSectio
   return (
     <Section
       id={`resource-${resource.slug}-detail`}
-      className="relative overflow-hidden bg-gradient-to-r from-brand-light via-transparent to-transparent py-12 md:py-20 z-10"
+      className="relative overflow-hidden py-12 md:py-20 z-10"
     >
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 ">
         {/* Enhanced Hero Area for the Resource */}
         <div className="grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center mb-12 md:mb-20">
           {/* Hero Items: sequential fade-up animations */}
@@ -72,7 +68,7 @@ export default function ResourceDetailSection({ resource }: ResourceDetailSectio
                 <ul className="list-none space-y-2 text-left text-foreground">
                   <li className="flex items-start">
                     <svg
-                      className="w-5 h-5 text-primary mr-2 flex-shrink-0 mt-1"
+                      className="size-5 text-primary mr-2 shrink-0 mt-1"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                       aria-hidden="true"
@@ -88,7 +84,7 @@ export default function ResourceDetailSection({ resource }: ResourceDetailSectio
                   </li>
                   <li className="flex items-start">
                     <svg
-                      className="w-5 h-5 text-primary mr-2 flex-shrink-0 mt-1"
+                      className="size-5 text-primary mr-2 shrink-0 mt-1"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                       aria-hidden="true"
@@ -104,7 +100,7 @@ export default function ResourceDetailSection({ resource }: ResourceDetailSectio
                   </li>
                   <li className="flex items-start">
                     <svg
-                      className="w-5 h-5 text-primary mr-2 flex-shrink-0 mt-1"
+                      className="size-5 text-primary mr-2 shrink-0 mt-1"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                       aria-hidden="true"
@@ -124,7 +120,7 @@ export default function ResourceDetailSection({ resource }: ResourceDetailSectio
           </div>
           <div className="flex flex-col items-center">
             <LazySection animation="fade-up" delay={0.4}>
-              <div className="w-full max-w-md mb-6 transform transition-all duration-500 hover:scale-105">
+              <div className="w-full max-w-md mb-6 transition-all duration-500 hover:scale-105">
                 <Image
                   src={imgSrc}
                   alt={imgAlt}

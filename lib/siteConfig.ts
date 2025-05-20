@@ -2,6 +2,7 @@
 // and exports the validated site configuration object for use throughout the application.
 
 import { z } from 'zod';
+
 import {
   type SiteConfigSchema as SiteConfigType,
   siteConfigSchema,

@@ -1,8 +1,8 @@
+import type { Metadata } from 'next';
+
 import { getResourceBySlug } from '@/lib/data/resources';
 import { defaultMetadata } from '@/lib/metadata';
 import { siteConfig } from '@/lib/siteConfig';
-import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
 
 interface Params {
   params: { slug: string };

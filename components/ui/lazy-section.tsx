@@ -1,9 +1,9 @@
 'use client';
+import { motion, useReducedMotion } from 'framer-motion';
 import type { CSSProperties, ReactNode } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { siteConfig } from '@/lib/siteConfig';
-import { motion, useReducedMotion } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
 
 interface LazySectionProps {
   children: ReactNode;

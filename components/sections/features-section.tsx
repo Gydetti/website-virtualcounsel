@@ -1,13 +1,14 @@
 'use client';
+import { ArrowRight, CheckCircle, XCircle } from 'lucide-react';
+import Link from 'next/link';
+import type { CSSProperties } from 'react';
+import type { z } from 'zod';
+
 import { Section } from '@/components/layout/Section';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import OptimizedImage from '@/components/ui/optimized-image';
 import type { featuresSectionDataSchema } from '@/lib/schemas/sections.schema';
-import { ArrowRight, CheckCircle, XCircle } from 'lucide-react';
-import Link from 'next/link';
-import type { CSSProperties } from 'react';
-import type { z } from 'zod';
 
 // Updated props type alias using Zod schema
 export type FeaturesSectionProps = z.infer<typeof featuresSectionDataSchema>;
@@ -73,7 +74,7 @@ export default function FeaturesSection({
               <ul className="space-y-3">
                 {withoutItems?.map(item => (
                   <li key={item} className="flex items-start">
-                    <XCircle className="text-feedback-error mr-2 h-5 w-5 flex-shrink-0 mt-0.5" />
+                    <XCircle className="text-feedback-error mr-2 size-5 shrink-0 mt-0.5" />
                     <span className="text-foreground">{item}</span>
                   </li>
                 ))}
@@ -82,7 +83,7 @@ export default function FeaturesSection({
           )}
           {/* Decorative arrow: CSS-only fade-up */}
           <div
-            className="hidden md:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+            className="hidden md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
             style={{ '--index': 1 } as React.CSSProperties}
           >
             <OptimizedImage
@@ -103,7 +104,7 @@ export default function FeaturesSection({
               <ul className="space-y-3">
                 {withItems?.map(item => (
                   <li key={item} className="flex items-start">
-                    <CheckCircle className="text-feedback-success mr-2 h-5 w-5 flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="text-feedback-success mr-2 size-5 shrink-0 mt-0.5" />
                     <span className="text-foreground">{item}</span>
                   </li>
                 ))}
@@ -123,7 +124,7 @@ export default function FeaturesSection({
             <Button size="lg" className="group" asChild>
               <Link href={cta.href}>
                 {cta.text}
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
           </div>

@@ -1,5 +1,10 @@
 'use client';
 
+import Link from 'next/link';
+import type { CSSProperties } from 'react';
+import { useLayoutEffect, useRef } from 'react';
+import type { z } from 'zod';
+
 import { Section } from '@/components/layout/Section';
 import StructuredData from '@/components/seo/structured-data';
 import {
@@ -13,10 +18,6 @@ import { Button } from '@/components/ui/button';
 import LazySection from '@/components/ui/lazy-section';
 import type { ctaSchema } from '@/lib/schemas/common.schema';
 import { siteConfig } from '@/lib/siteConfig';
-import Link from 'next/link';
-import type { CSSProperties } from 'react';
-import { useLayoutEffect, useRef } from 'react';
-import type { z } from 'zod';
 
 export interface FaqItem {
   question: string;

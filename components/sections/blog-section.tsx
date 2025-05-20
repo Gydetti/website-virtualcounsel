@@ -1,4 +1,10 @@
 'use client';
+import { ArrowRight } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import type { CSSProperties } from 'react';
+import type { z } from 'zod';
+
 import { Section } from '@/components/layout/Section';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -12,11 +18,6 @@ import {
 } from '@/components/ui/card';
 import LazySection from '@/components/ui/lazy-section';
 import type { blogSectionDataSchema } from '@/lib/schemas/sections.schema';
-import { ArrowRight } from 'lucide-react';
-import Image from 'next/image';
-import Link from 'next/link';
-import type { CSSProperties } from 'react';
-import type { z } from 'zod';
 
 // Updated props type alias using Zod schema
 export type BlogSectionProps = z.infer<typeof blogSectionDataSchema>;
@@ -35,8 +36,8 @@ export default function BlogSection({
   return (
     <Section className="relative overflow-hidden pattern-overlay pattern-overlay-fade">
       {/* Decorative elements - re-enabled and styled with theme colors */}
-      <div className="hidden sm:block absolute top-0 left-1/4 w-72 h-72 bg-[rgba(var(--secondary-rgb),0.02)] rounded-full -translate-y-1/2 blur-3xl pointer-events-none opacity-70" />
-      <div className="hidden sm:block absolute bottom-0 right-1/4 w-72 h-72 bg-[rgba(var(--primary-rgb),0.02)] rounded-full translate-y-1/2 blur-3xl pointer-events-none" />
+      <div className="hidden sm:block absolute top-0 left-1/4 size-72 bg-secondary/2 rounded-full -translate-y-1/2 blur-3xl pointer-events-none opacity-70" />
+      <div className="hidden sm:block absolute bottom-0 right-1/4 size-72 bg-primary/2 rounded-full translate-y-1/2 blur-3xl pointer-events-none" />
 
       <div className="relative z-10">
         {/* Header stagger container */}
@@ -70,7 +71,7 @@ export default function BlogSection({
         >
           {posts.map((post, index) => (
             <div key={post.id} className="h-full" style={{ '--index': index } as CSSProperties}>
-              <Card className="w-full h-full flex flex-col justify-between overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-gradient-to-b from-card to-transparent border border-border shadow-lg">
+              <Card className="size-full flex flex-col justify-between overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-gradient-to-b from-card to-transparent border border-border shadow-lg">
                 <div className="relative h-48 w-full overflow-hidden">
                   <Image
                     src={post.image?.src || '/placeholder.svg'}
@@ -108,7 +109,7 @@ export default function BlogSection({
                   >
                     <Link href={`/blog/${post.slug}`} className="transition-none">
                       {`Read more: ${post.title}`}
-                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
                     </Link>
                   </Button>
                 </CardFooter>
@@ -127,7 +128,7 @@ export default function BlogSection({
             >
               <Link href={viewAllCta.href}>
                 {viewAllCta.text}
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
           </div>

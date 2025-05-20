@@ -1,7 +1,8 @@
+import { notFound } from 'next/navigation';
+
 import LandingLayout from '@/app/landing/layout';
 import ResourceDetailSection from '@/components/sections/ResourceDetailSection';
 import { getResourceBySlug, getResources } from '@/lib/data/resources';
-import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
   const resources = await getResources();

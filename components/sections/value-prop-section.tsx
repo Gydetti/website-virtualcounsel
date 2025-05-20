@@ -1,12 +1,13 @@
 'use client';
 
+import { CheckCircle } from 'lucide-react';
+import type { ComponentType, CSSProperties, SVGProps } from 'react';
+import type { z } from 'zod';
+
 import { Section } from '@/components/layout/Section';
 import { Badge } from '@/components/ui/badge';
 import LazySection from '@/components/ui/lazy-section';
 import type { valuePropSectionDataSchema } from '@/lib/schemas/sections.schema';
-import { CheckCircle } from 'lucide-react';
-import type { CSSProperties, ComponentType, SVGProps } from 'react';
-import type { z } from 'zod';
 
 // Updated props type alias using Zod schema
 export type ValuePropSectionProps = z.infer<typeof valuePropSectionDataSchema>;
@@ -65,8 +66,8 @@ export default function ValuePropSection({
               className="flex flex-col items-start space-y-3 rounded-lg p-6 shadow-sm hover:shadow-md"
               style={{ '--index': idx } as CSSProperties}
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[rgba(var(--primary-rgb),0.1)] text-primary">
-                <Icon className="h-6 w-6" />
+              <div className="flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+                <Icon className="size-6" />
               </div>
               <h3 className="text-xl font-bold">{benefit.title}</h3>
               <p className="text-neutral-text/500">{benefit.description}</p>

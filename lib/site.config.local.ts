@@ -32,14 +32,31 @@ export const siteConfig: SiteConfigSchema = {
   // eslint-disable-next-line no-restricted-syntax
   theme: {
     colors: {
-      primary: '#2563EB', // <--- Restored primary blue (Tailwind blue-600)
-      secondary: '#3B82F6', // <--- Restored secondary
-      accent: '#FF9D48', // <--- Accent color for highlights, CTAs etc (Tailwind orange-500)
-      background: '#F8F8F8', // <--- Light grey/white background
-      header: '#1F1F1F', // <--- Header/title color (dark black)
-      body: '#2B2A33', // <--- Body text color (black-dark gray)
-      lightGrey: '#EFEFF0', // <--- Light grey for backgrounds, cards, etc.
-      heroBackground: '#F5F9FF', // <--- Default hero background (corresponds to brand-hero-background)
+      primary: '#3D5A98', // Main brand color
+      secondary: '#042A41', // Secondary brand color
+      accent: '#F78D50', // Primary accent for CTAs & highlights
+      accent2: '#FF6666', // Secondary accent
+      accent3: '#D6EFFF', // Tertiary accent
+      extra1: '#2563EB', // Dark neutral
+      neutral2: '#2B2A33', // Dark neutral variant
+      neutral3: '#EFEFF0', // Light neutral
+      neutral4: '#6EC1E4', // Cool blue neutral
+      neutral5: '#48ACF0', // Bright blue
+      neutral6: '#99C6C3', // Teal light
+      neutral7: '#CAEDE5', // Mint light
+      neutral8: '#669592', // Teal gray
+      neutral9: '#022F0B', // Dark green
+      neutral10: '#3E8948', // Mid green
+      neutral11: '#61CE70', // Bright green
+      neutral12: '#5A93FD', // Blue accent
+      neutral13: '#81ADFF', // Light blue accent
+      neutral14: '#BDCCE9', // Light periwinkle
+      neutral15: '#F8F8F8', // Off-white neutral
+      background: '#FFFFFF', // Page background
+      header: '#1F1F1F', // Header text color
+      body: '#2B2A33', // Body text color
+      lightGrey: '#EFEFF0', // Light grey surfaces
+      heroBackground: '#F5F9FF', // Default hero background
     },
     logo: {
       src: '/images/placeholders/png-Logo.webp', // <--- Path to site logo
@@ -307,7 +324,6 @@ export const siteConfig: SiteConfigSchema = {
           variant: 'classic',
         },
         { id: 'about-values', sectionType: 'AboutValuesSection' },
-        { id: 'about-social-proof', sectionType: 'AboutSocialProofSection' },
         { id: 'about-testimonials', sectionType: 'TestimonialsSection' },
         { id: 'about-cta', sectionType: 'CtaSection' },
       ],

@@ -1,5 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 import type { MetadataRoute } from 'next';
+
 import { siteConfig } from '@/lib/siteConfig';
 
 export default function manifest(): MetadataRoute.Manifest {

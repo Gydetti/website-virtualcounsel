@@ -1,7 +1,3 @@
-import { SubscribeForm } from '@/components/ui/SubscribeForm';
-import { Button } from '@/components/ui/button';
-import { siteConfig } from '@/lib/siteConfig';
-import { cn } from '@/lib/utils';
 import {
   ArrowRight,
   ExternalLink,
@@ -13,10 +9,15 @@ import {
   Phone,
   Twitter,
 } from 'lucide-react';
-import Link from 'next/link';
 import Image from 'next/image';
-import LazySection from '@/components/ui/lazy-section';
+import Link from 'next/link';
 import type { CSSProperties } from 'react';
+
+import { Button } from '@/components/ui/button';
+import LazySection from '@/components/ui/lazy-section';
+import { SubscribeForm } from '@/components/ui/SubscribeForm';
+import { siteConfig } from '@/lib/siteConfig';
+import { cn } from '@/lib/utils';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -34,8 +35,8 @@ export default function Footer() {
       {/* Newsletter subscription */}
       <div className="relative overflow-hidden py-10 text-white bg-hero-gradient">
         {/* Decorative blur spots */}
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full -translate-y-1/2 blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/10 rounded-full translate-y-1/2 blur-3xl" />
+        <div className="absolute top-0 left-1/4 size-96 bg-primary/10 rounded-full -translate-y-1/2 blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 size-96 bg-secondary/10 rounded-full translate-y-1/2 blur-3xl" />
         <div className="container-wide relative z-10">
           <LazySection
             animation="none"
@@ -57,10 +58,10 @@ export default function Footer() {
         </div>
       </div>
 
-      <footer className="bg-brand-dark text-white relative overflow-hidden">
+      <footer className="bg-brand-dark-2 text-white relative overflow-hidden">
         {/* Decorative elements */}
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full -translate-y-1/2 blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/10 rounded-full translate-y-1/2 blur-3xl" />
+        <div className="absolute top-0 left-1/4 size-96 bg-primary/10 rounded-full -translate-y-1/2 blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 size-96 bg-secondary/10 rounded-full translate-y-1/2 blur-3xl" />
 
         <div className="container-wide py-12 md:py-16 relative z-10">
           <LazySection
@@ -98,7 +99,7 @@ export default function Footer() {
                   className="inline-flex items-center justify-center text-white hover:text-brand-light transition-colors bg-neutral-surface/10 p-2 rounded-full"
                   aria-label="Facebook"
                 >
-                  <Facebook className="h-5 w-5" />
+                  <Facebook className="size-5" />
                 </Link>
                 <Link
                   href={siteConfig.social.instagram ?? ''}
@@ -107,7 +108,7 @@ export default function Footer() {
                   className="inline-flex items-center justify-center text-white hover:text-brand-light transition-colors bg-neutral-surface/10 p-2 rounded-full"
                   aria-label="Instagram"
                 >
-                  <Instagram className="h-5 w-5" />
+                  <Instagram className="size-5" />
                 </Link>
                 <Link
                   href={siteConfig.social.twitter ?? ''}
@@ -116,7 +117,7 @@ export default function Footer() {
                   className="inline-flex items-center justify-center text-white hover:text-brand-light transition-colors bg-neutral-surface/10 p-2 rounded-full"
                   aria-label="Twitter"
                 >
-                  <Twitter className="h-5 w-5" />
+                  <Twitter className="size-5" />
                 </Link>
                 <Link
                   href={siteConfig.social.linkedin ?? ''}
@@ -125,7 +126,7 @@ export default function Footer() {
                   className="inline-flex items-center justify-center text-white hover:text-brand-light transition-colors bg-neutral-surface/10 p-2 rounded-full"
                   aria-label="LinkedIn"
                 >
-                  <Linkedin className="h-5 w-5" />
+                  <Linkedin className="size-5" />
                 </Link>
               </div>
             </div>
@@ -206,7 +207,7 @@ export default function Footer() {
               <h3 className="mt-0 mb-4">Contact</h3>
               <ul className="space-y-4 text-white">
                 <li className="flex items-start">
-                  <Mail className="h-4 w-4 mr-2 mt-1" />
+                  <Mail className="size-4 mr-2 mt-1" />
                   <span>Email:</span>
                   <a
                     href={`mailto:${siteConfig.contact.email ?? ''}`}
@@ -216,7 +217,7 @@ export default function Footer() {
                   </a>
                 </li>
                 <li className="flex items-start">
-                  <Phone className="h-4 w-4 mr-2 mt-1" />
+                  <Phone className="size-4 mr-2 mt-1" />
                   <span>Phone:</span>
                   <a
                     href={`tel:${siteConfig.contact.phone ?? ''}`}
@@ -226,7 +227,7 @@ export default function Footer() {
                   </a>
                 </li>
                 <li className="flex items-start">
-                  <MapPin className="h-4 w-4 mr-2 mt-1" />
+                  <MapPin className="size-4 mr-2 mt-1" />
                   <span>Address:</span>
                   <address className="ml-1 not-italic">
                     {siteConfig.contact.address?.line1 ?? ''}
@@ -249,7 +250,7 @@ export default function Footer() {
               >
                 <Link href="/contact">
                   Contact us
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </Button>
             </div>
@@ -271,7 +272,7 @@ export default function Footer() {
                 className="inline-flex text-neutral-text/200 hover:text-white text-sm"
               >
                 <span>Website gemaakt met 🍌 door Groeien met Gydo</span>
-                <ExternalLink className="ml-1 h-4 w-4" />
+                <ExternalLink className="ml-1 size-4" />
               </Link>
               <Link
                 style={{ '--index': 2 } as CSSProperties}

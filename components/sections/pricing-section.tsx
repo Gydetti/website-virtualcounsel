@@ -1,10 +1,11 @@
 'use client';
 
+import type { z } from 'zod';
+
 import { Section } from '@/components/layout/Section';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import type { pricingCardSchema, pricingSectionDataSchema } from '@/lib/schemas/sections.schema';
-import type { z } from 'zod';
 
 // Updated props type alias using Zod schema
 export type PricingSectionProps = z.infer<typeof pricingSectionDataSchema>;
@@ -51,7 +52,7 @@ export default function PricingSection({
               <CardTitle>{card.title}</CardTitle>
               <div className="mt-2 text-3xl font-bold">{card.price}</div>
             </CardHeader>
-            <CardContent className="flex-grow px-6 py-4">
+            <CardContent className="grow px-6 py-4">
               <ul className="space-y-3">
                 {card.features.map(feature => (
                   <li key={feature} className="flex items-start">
@@ -65,7 +66,7 @@ export default function PricingSection({
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        className="h-5 w-5"
+                        className="size-5"
                       >
                         <title>Feature checkmark</title>
                         <polyline points="20 6 9 17 4 12" />
@@ -76,7 +77,7 @@ export default function PricingSection({
                 ))}
               </ul>
             </CardContent>
-            <CardFooter className="text-center px-6 py-6">
+            <CardFooter className="text-center p-6">
               {card.cta?.href && card.cta?.text && (
                 <Button asChild className="w-full py-3 text-sm font-semibold">
                   <a href={card.cta.href}>{card.cta.text}</a>

@@ -21,3 +21,7 @@ Remember: you are on auto-mode meaning you will proceed with taking actions. Thi
 And understand the codebase that we're working on @gmg-template-website-2025. I'll share more information/instructions in the next prompts!
 
 There is one key thing you are always forgetting: that is the importance of testing your own work after making significatn changes. SO PLEASE, REMEMBER THIS TIME TO RUN ALL THE TESTS AND CHECKS after a few code changes!!
+
+
+
+

@@ -1,10 +1,9 @@
 'use client';
 
-import { createContext, forwardRef, useCallback, useContext, useEffect, useState } from 'react';
-import type { ComponentProps, Context, HTMLAttributes, KeyboardEvent } from 'react';
-
 import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
+import type { ComponentProps, HTMLAttributes, KeyboardEvent } from 'react';
+import { createContext, forwardRef, useCallback, useContext, useEffect, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -196,7 +195,7 @@ const CarouselPrevious = forwardRef<HTMLButtonElement, ComponentProps<typeof But
         onClick={scrollPrev}
         {...props}
       >
-        <ArrowLeft className="h-4 w-4" />
+        <ArrowLeft className="size-4" />
         <span className="sr-only">Previous slide</span>
       </Button>
     );
@@ -224,7 +223,7 @@ const CarouselNext = forwardRef<HTMLButtonElement, ComponentProps<typeof Button>
         onClick={scrollNext}
         {...props}
       >
-        <ArrowRight className="h-4 w-4" />
+        <ArrowRight className="size-4" />
         <span className="sr-only">Next slide</span>
       </Button>
     );
@@ -233,10 +232,10 @@ const CarouselNext = forwardRef<HTMLButtonElement, ComponentProps<typeof Button>
 CarouselNext.displayName = 'CarouselNext';
 
 export {
-  type CarouselApi,
   Carousel,
+  type CarouselApi,
   CarouselContent,
   CarouselItem,
-  CarouselPrevious,
   CarouselNext,
+  CarouselPrevious,
 };

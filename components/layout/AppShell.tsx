@@ -1,14 +1,15 @@
 'use client';
 
-import PageTransitionWrapper from '@/components/layout/PageTransitionWrapper';
+import dynamic from 'next/dynamic';
+import { Suspense } from 'react';
+
 import Footer from '@/components/layout/footer';
 import Header from '@/components/layout/header';
+import PageTransitionWrapper from '@/components/layout/PageTransitionWrapper';
 import DataLayerProvider from '@/components/tracking/data-layer-provider';
 import BfcacheSafety from '@/components/ui/BfcacheSafety';
 import ScrollToTop from '@/components/ui/scroll-to-top';
 import { siteConfig } from '@/lib/siteConfig';
-import dynamic from 'next/dynamic';
-import { Suspense } from 'react';
 
 const DynamicBackgroundCanvas = dynamic(() => import('@/components/ui/BackgroundCanvas'), {
   ssr: false,

@@ -1,20 +1,19 @@
-import LazySection from '@/components/ui/lazy-section'; // Assuming LazySection is still used
-import type { pageSectionConfigSchema, pageStructureSchema } from '@/lib/schemas/siteConfig.schema'; // Adjust path as needed
 /* biome-disable-file */
 import dynamic from 'next/dynamic';
 import type { ComponentType, FC } from 'react';
 import type { z } from 'zod';
-import HeroSection from '@/components/sections/hero-section';
 
 // Replace static section imports with dynamic for heavy sections
 // Dynamically import HeroSection to code-split JS-driven animations
 // const HeroSection = dynamic(() => import('@/components/sections/hero-section'));
 import AboutSection from '@/components/sections/about-section';
+import AboutValuesSection from '@/components/sections/about-values-section';
 import BlogSection from '@/components/sections/blog-section';
 import ClientsSection from '@/components/sections/clients-section';
 import ContactSection from '@/components/sections/contact-section';
 import CtaSection from '@/components/sections/cta-section';
 import FeaturesSection from '@/components/sections/features-section';
+import HeroSection from '@/components/sections/hero-section';
 import HomepageFaqSection from '@/components/sections/homepage-faq-section';
 import KpiSection from '@/components/sections/kpi-section';
 import ProblemPainSection from '@/components/sections/problem-pain-section';
@@ -23,22 +22,21 @@ import ServicesSection from '@/components/sections/services-section';
 import SolutionVisionSection from '@/components/sections/solution-vision-section';
 // Static imports for simple, CSS-only sections
 import ValuePropSection from '@/components/sections/value-prop-section';
+import LazySection from '@/components/ui/lazy-section'; // Assuming LazySection is still used
+import type { pageSectionConfigSchema, pageStructureSchema } from '@/lib/schemas/siteConfig.schema'; // Adjust path as needed
 // Dynamically import heavy, code-split sections (SSR enabled by default in server components)
 const TestimonialsSection = dynamic(() => import('@/components/sections/testimonials-section'));
 const ResourceDetailSection = dynamic(() => import('@/components/sections/ResourceDetailSection'));
 const ResourceListSection = dynamic(() => import('@/components/sections/ResourceListSection'));
-import AboutSocialProofSection from '@/components/sections/about-social-proof-section';
-import AboutValuesSection from '@/components/sections/about-values-section';
-
-import { getBlogPosts, getServices } from '@/lib/data-utils'; // Now using these
+// ++ NEW IMPORTS FOR DATA ++
 import {
   aboutPageMainContentData,
   aboutSocialProofSectionData,
   aboutValuesSectionData,
-} from '@/lib/data/aboutPageData'; // ++ Import about page data and new aboutValues/aboutSocialProof data
-// ++ NEW IMPORTS FOR DATA ++
+} from '@/lib/data/aboutPageData';
 import * as homepageData from '@/lib/data/homepage';
 import { getResourceBySlug as getResourceBySlugFromData, getResources } from '@/lib/data/resources'; // Alias to avoid conflict if used directly
+import { getBlogPosts, getServices } from '@/lib/data-utils'; // Now using these
 import { siteConfig } from '@/lib/site.config.local'; // For blog limit
 
 // Define the type for the component props
@@ -72,7 +70,6 @@ const sectionComponentMap: Record<string, ComponentType<any>> = {
   ResourceDetailSection,
   ResourceListSection,
   AboutValuesSection,
-  AboutSocialProofSection,
 };
 
 // Define simple, CSS-only sections to wrap with a single LazySection animation="none"
@@ -195,8 +192,6 @@ const getSectionData = async (
         return aboutPageMainContentData;
       case 'AboutValuesSection':
         return aboutValuesSectionData;
-      case 'AboutSocialProofSection':
-        return aboutSocialProofSectionData;
       case 'TestimonialsSection':
         return homepageData.testimonialsSectionData;
       case 'CtaSection':

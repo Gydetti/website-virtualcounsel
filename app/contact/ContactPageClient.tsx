@@ -1,23 +1,15 @@
 'use client';
-import type { ChangeEvent, FormEvent, CSSProperties } from 'react';
+import { Facebook, Instagram, Linkedin, Mail, Phone, Twitter } from 'lucide-react';
+import type { ChangeEvent, CSSProperties, FormEvent } from 'react';
+import { useState } from 'react';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import LazySection from '@/components/ui/lazy-section';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import { siteConfig } from '@/lib/siteConfig';
-import { Facebook, Instagram, Linkedin, Mail, Phone, Twitter } from 'lucide-react';
-import { useState } from 'react';
-import ReCAPTCHA from 'react-google-recaptcha';
-import { z } from 'zod';
 
 export default function ContactPageClient() {
   const contactConfig = siteConfig.contactForm;
@@ -173,7 +165,7 @@ export default function ContactPageClient() {
 
                     <Button
                       type="submit"
-                      className="w-full bg-primary hover:bg-primary/90 text-white py-3 rounded-lg"
+                      className="w-full bg-primary hover:bg-primary90 text-white py-3 rounded-lg"
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? 'Sending...' : submitted ? 'Message Sent!' : 'Send Message'}
@@ -200,7 +192,7 @@ export default function ContactPageClient() {
 
                     <ul className="space-y-2">
                       <li className="flex items-start">
-                        <Mail aria-hidden="true" className="h-6 w-6 mr-4 mt-1" />
+                        <Mail aria-hidden="true" className="size-6 mr-4 mt-1" />
                         <div>
                           <p className="font-semibold mb-1">Email</p>
                           <a
@@ -213,7 +205,7 @@ export default function ContactPageClient() {
                       </li>
 
                       <li className="flex items-start">
-                        <Phone aria-hidden="true" className="h-6 w-6 mr-4 mt-1" />
+                        <Phone aria-hidden="true" className="size-6 mr-4 mt-1" />
                         <div>
                           <p className="font-semibold mb-1">Phone</p>
                           <a
@@ -229,31 +221,31 @@ export default function ContactPageClient() {
                     <div className="mt-auto flex space-x-4">
                       <a
                         href="/"
-                        className="h-10 w-10 rounded-full bg-neutral-surface/20 flex items-center justify-center hover:bg-neutral-surface/30 transition-colors"
+                        className="size-10 rounded-full bg-neutral-surface/20 flex items-center justify-center hover:bg-neutral-surface/30 transition-colors"
                         aria-label="Facebook"
                       >
-                        <Facebook className="h-5 w-5 text-white" />
+                        <Facebook className="size-5 text-white" />
                       </a>
                       <a
                         href="/"
-                        className="h-10 w-10 rounded-full bg-neutral-surface/20 flex items-center justify-center hover:bg-neutral-surface/30 transition-colors"
+                        className="size-10 rounded-full bg-neutral-surface/20 flex items-center justify-center hover:bg-neutral-surface/30 transition-colors"
                         aria-label="Twitter"
                       >
-                        <Twitter className="h-5 w-5 text-white" />
+                        <Twitter className="size-5 text-white" />
                       </a>
                       <a
                         href="/"
-                        className="h-10 w-10 rounded-full bg-neutral-surface/20 flex items-center justify-center hover:bg-neutral-surface/30 transition-colors"
+                        className="size-10 rounded-full bg-neutral-surface/20 flex items-center justify-center hover:bg-neutral-surface/30 transition-colors"
                         aria-label="Instagram"
                       >
-                        <Instagram className="h-5 w-5 text-white" />
+                        <Instagram className="size-5 text-white" />
                       </a>
                       <a
                         href="/"
-                        className="h-10 w-10 rounded-full bg-neutral-surface/20 flex items-center justify-center hover:bg-neutral-surface/30 transition-colors"
+                        className="size-10 rounded-full bg-neutral-surface/20 flex items-center justify-center hover:bg-neutral-surface/30 transition-colors"
                         aria-label="LinkedIn"
                       >
-                        <Linkedin className="h-5 w-5 text-white" />
+                        <Linkedin className="size-5 text-white" />
                       </a>
                     </div>
                   </div>

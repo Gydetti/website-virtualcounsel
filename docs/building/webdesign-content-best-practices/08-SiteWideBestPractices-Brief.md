@@ -39,7 +39,7 @@ These principles apply site-wide and are crucial for user experience, credibilit
   - **Style Application:** Apply a consistent style guide across all pages/components:
     - Color Palette (brand colors used purposefully, e.g., for CTAs).
     - Typography (consistent fonts, sizes, weights for headings, body text).
-    - Button Styles (uniform appearance for primary/secondary actions).
+    - Button Styles (uniform appearance for primarysecondary actions).
     - Image Style (consistent tone, quality, type).
     - Layout Structure (consistent use of spacing, alignment, grids).
   - **Design Quality:** Ensure a modern, clean, professional aesthetic. Prioritize clarity and user experience over unnecessary embellishments. Use ample whitespace.

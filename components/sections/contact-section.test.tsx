@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { axe } from 'jest-axe';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
+
 import ContactSection from './contact-section';
 
 describe('ContactSection', () => {

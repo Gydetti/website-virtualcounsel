@@ -5,7 +5,17 @@ updates:
     schedule:
       interval: 'weekly'
     open-pull-requests-limit: 5
+    allow:
+      - dependency-type: 'direct'
+        update-types: ['patch', 'minor']
+    automerge: true
+    automerge-type: 'auto'
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
       interval: 'weekly'
+    allow:
+      - dependency-type: 'all'
+        update-types: ['patch', 'minor']
+    automerge: true
+    automerge-type: 'auto'

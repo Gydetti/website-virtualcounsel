@@ -1,10 +1,9 @@
 'use client';
 
-import { forwardRef, useCallback, useContext, useEffect, useId, useRef, useState } from 'react';
-import type { ComponentPropsWithoutRef, ElementRef } from 'react';
-
 import * as MenubarPrimitive from '@radix-ui/react-menubar';
 import { Check, ChevronRight, Circle } from 'lucide-react';
+import type { ComponentPropsWithoutRef, ElementRef } from 'react';
+import { forwardRef } from 'react';
 
 import { cn } from '@/lib/utils';
 
@@ -64,7 +63,7 @@ const MenubarSubTrigger = forwardRef<
     {...props}
   >
     {children}
-    <ChevronRight className="ml-auto h-4 w-4" />
+    <ChevronRight className="ml-auto size-4" />
   </MenubarPrimitive.SubTrigger>
 ));
 MenubarSubTrigger.displayName = MenubarPrimitive.SubTrigger.displayName;
@@ -135,9 +134,9 @@ const MenubarCheckboxItem = forwardRef<
     checked={checked}
     {...props}
   >
-    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+    <span className="absolute left-2 flex size-3.5 items-center justify-center">
       <MenubarPrimitive.ItemIndicator>
-        <Check className="h-4 w-4" />
+        <Check className="size-4" />
       </MenubarPrimitive.ItemIndicator>
     </span>
     {children}
@@ -157,9 +156,9 @@ const MenubarRadioItem = forwardRef<
     )}
     {...props}
   >
-    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+    <span className="absolute left-2 flex size-3.5 items-center justify-center">
       <MenubarPrimitive.ItemIndicator>
-        <Circle className="h-2 w-2 fill-current" />
+        <Circle className="size-2 fill-current" />
       </MenubarPrimitive.ItemIndicator>
     </span>
     {children}
@@ -205,19 +204,19 @@ MenubarShortcut.displayname = 'MenubarShortcut';
 
 export {
   Menubar,
-  MenubarMenu,
-  MenubarTrigger,
-  MenubarContent,
-  MenubarItem,
-  MenubarSeparator,
-  MenubarLabel,
   MenubarCheckboxItem,
+  MenubarContent,
+  MenubarGroup,
+  MenubarItem,
+  MenubarLabel,
+  MenubarMenu,
+  MenubarPortal,
   MenubarRadioGroup,
   MenubarRadioItem,
-  MenubarPortal,
+  MenubarSeparator,
+  MenubarShortcut,
+  MenubarSub,
   MenubarSubContent,
   MenubarSubTrigger,
-  MenubarGroup,
-  MenubarSub,
-  MenubarShortcut,
+  MenubarTrigger,
 };

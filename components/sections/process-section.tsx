@@ -1,11 +1,12 @@
 'use client';
 
+import type { CSSProperties } from 'react';
+import type { z } from 'zod';
+
 import { Section } from '@/components/layout/Section';
 import { Badge } from '@/components/ui/badge';
 import LazySection from '@/components/ui/lazy-section';
 import type { processSectionDataSchema } from '@/lib/schemas/sections.schema';
-import type { CSSProperties } from 'react';
-import type { z } from 'zod';
 
 // Updated props type alias using Zod schema
 export type ProcessSectionProps = z.infer<typeof processSectionDataSchema>;
@@ -56,7 +57,7 @@ export default function ProcessSection({
         {/* Steps: animate each step sequentially on initial load */}
         <div className="relative">
           {/* Timeline line */}
-          <div className="absolute left-[40px] top-0 bottom-0 w-0.5 bg-neutral-background/200 hidden md:block" />
+          <div className="absolute left-[40px] inset-y-0 w-0.5 bg-neutral-background/200 hidden md:block" />
           <div className="space-y-16">
             {steps.map((step, index) => (
               <LazySection
@@ -65,12 +66,12 @@ export default function ProcessSection({
                 delay={0.1 + index * 0.1}
                 className="flex flex-col md:flex-row gap-8"
               >
-                <div className="flex-shrink-0 flex items-start justify-center relative z-10">
-                  <div className="w-20 h-20 rounded-full flex items-center justify-center text-2xl font-bold shadow-md bg-primary text-white">
+                <div className="shrink-0 flex items-start justify-center relative z-10">
+                  <div className="size-20 rounded-full flex items-center justify-center text-2xl font-bold shadow-md bg-primary text-white">
                     {step.number || String(index + 1).padStart(2, '0')}
                   </div>
                 </div>
-                <div className="flex-grow w-full bg-neutral-surface p-8 rounded-xl shadow-md border hover:shadow-lg transition-shadow">
+                <div className="grow w-full bg-neutral-surface p-8 rounded-xl shadow-md border hover:shadow-lg transition-shadow">
                   <h3 className="mb-1">{step.title}</h3>
                   {step.subtitle && (
                     <p className="text-primary font-medium mb-3">{step.subtitle}</p>

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+
 import { ctaSchema, imageSchema, linkSchema } from './common.schema';
 
 // Base block type for discrimination

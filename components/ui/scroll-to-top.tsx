@@ -1,9 +1,10 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowUp } from 'lucide-react';
 import { useCallback, useEffect, useState } from 'react';
+
+import { Button } from '@/components/ui/button';
 
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
@@ -40,11 +41,11 @@ export default function ScrollToTop() {
         >
           <Button
             size="icon"
-            className="h-12 w-12 rounded-full bg-transparent hover:bg-transparent shadow-lg border border-primary"
+            className="size-12 rounded-full bg-transparent hover:bg-transparent shadow-lg border border-primary"
             onClick={scrollToTop}
             aria-label="Scroll to top"
           >
-            <ArrowUp className="h-6 w-6 text-primary" />
+            <ArrowUp className="size-6 text-primary" />
           </Button>
         </motion.div>
       )}

@@ -1,8 +1,8 @@
-import LazySection from '@/components/ui/lazy-section';
-import type { heroSectionDataSchema } from '@/lib/schemas/sections.schema';
-import dynamic from 'next/dynamic';
 import CountUp from 'react-countup';
 import type { z } from 'zod';
+
+import LazySection from '@/components/ui/lazy-section';
+import type { heroSectionDataSchema } from '@/lib/schemas/sections.schema';
 
 export type HeroStatsProps = {
   stats: z.infer<typeof heroSectionDataSchema>['stats'];

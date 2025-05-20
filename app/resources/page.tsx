@@ -1,9 +1,10 @@
-import { defaultMetadata } from '@/lib/metadata';
-import { siteConfig } from '@/lib/site.config.local';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+
 import ResourceListSection from '@/components/sections/ResourceListSection';
 import { getResources } from '@/lib/data/resources';
+import { defaultMetadata } from '@/lib/metadata';
+import { siteConfig } from '@/lib/site.config.local';
 
 // Metadata
 export async function generateMetadata(): Promise<Metadata> {

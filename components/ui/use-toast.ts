@@ -1,8 +1,8 @@
 'use client';
 
 // Inspired by react-hot-toast library
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { ReactNode } from 'react';
+import { useEffect, useState } from 'react';
 
 import type { ToastActionElement, ToastProps } from '@/components/ui/toast';
 
@@ -187,4 +187,4 @@ function useToast() {
   };
 }
 
-export { useToast, toast };
+export { toast, useToast };

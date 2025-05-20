@@ -4,3 +4,7 @@ app/faq/**
 app/privacy-policy/**
 app/terms-of-service/**
 app/cookie-policy/** 
+docs/
+
+docs/building/general/**
+doc/**

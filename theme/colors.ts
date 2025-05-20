@@ -6,8 +6,10 @@
 export const semanticColors = {
   brand: {
     primary: 'hsl(var(--brand-primary))',
-    light: 'hsl(var(--brand-light))',
-    dark: 'hsl(var(--brand-dark))',
+    light: 'var(--brand-light)',
+    'light-2': 'var(--brand-light-2)',
+    dark: 'var(--brand-dark)',
+    'dark-2': 'var(--brand-dark-2)',
     secondary: 'hsl(var(--brand-secondary))',
     heroBackground: 'hsl(var(--brand-hero-background))',
   },
@@ -32,8 +34,8 @@ export const semanticColors = {
   },
   // General asset colors for visuals and charts
   asset: {
-    // Band accent color for assets (hex #3C82F6)
-    band: 'hsl(217.5 91.3% 60%)',
+    // Band accent color for assets (mapped to theme accent)
+    band: 'hsl(var(--brand-accent))',
   },
 };
 
@@ -44,10 +46,10 @@ export const semanticColors = {
 export const semanticGradients = {
   // Original newsletter subscription gradient from the archived template
   'hero-gradient':
-    'linear-gradient(to bottom right, hsl(222,47%,22%) 0%, hsl(222,47%,18%) 50%, hsl(222,47%,14%) 100%)',
+    'linear-gradient(to bottom right, var(--brand-dark-2) 0%, hsl(var(--brand-secondary)) 50%, hsl(var(--brand-primary)) 100%)',
   'footer-gradient':
     'linear-gradient(135deg, hsl(var(--brand-dark)) 0%, hsl(var(--brand-dark)) 100%)',
   // Global body gradient from primary color into transparent
   'body-gradient':
-    'linear-gradient(to bottom right, rgba(var(--primary-rgb), 0.1) 0%, transparent 100%)',
+    'linear-gradient(to bottom right, rgb(var(--extra1-rgb) / 0.1) 0%, transparent 100%)',
 };

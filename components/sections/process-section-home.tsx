@@ -1,10 +1,11 @@
 'use client';
 
+import type { CSSProperties } from 'react';
+
 import { Section } from '@/components/layout/Section';
 import type { ProcessSectionProps } from '@/components/sections/process-section';
 import { Badge } from '@/components/ui/badge';
 import LazySection from '@/components/ui/lazy-section';
-import type { CSSProperties } from 'react';
 
 export default function ProcessSectionHome({
   badgeText,
@@ -21,7 +22,7 @@ export default function ProcessSectionHome({
         className="stagger-container mx-auto max-w-6xl text-center"
         style={{ '--stagger-delay': '0.1s' } as CSSProperties}
       >
-        <Badge variant="light" className="mb-4" style={{ '--index': 0 } as CSSProperties}>
+        <Badge className="mb-4" style={{ '--index': 0 } as CSSProperties}>
           {badgeText}
         </Badge>
         {heading && (
@@ -50,7 +51,7 @@ export default function ProcessSectionHome({
         {steps.map((step, i) => (
           <div key={step.id} className="relative" style={{ '--index': i } as CSSProperties}>
             <div className="relative z-10 h-full flex flex-col items-center rounded-xl border border-divider bg-neutral-surface p-4 text-center shadow-sm transition-all hover:shadow-md card-equal-height">
-              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary text-white text-lg font-semibold mb-4">
+              <div className="flex size-14 items-center justify-center rounded-full bg-primary text-white text-lg font-semibold mb-4">
                 {step.number ?? String(i + 1).padStart(2, '00')}
               </div>
               <div className="card-content flex flex-col items-center gap-4">

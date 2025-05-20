@@ -5,6 +5,12 @@ alwaysApply: true
 ---
 # Build and Deployment Workflow Rule
 
+> **Primary Local Verification:**  
+> Use the `verify:local` script to run a full local verification (clear production cache, build, lint, type-check, unit/integration tests, and E2E) in one command without affecting your dev server's `.next` directory:
+> ```bash
+> npm run verify:local
+> ```
+
 **Note:** Production builds now output into `.next-prod`, while development previews continue to use `.next`. Clearing the production cache should only remove `.next-prod`.
 
 Always perform the following steps on any code changes before pushing to the `main` branch:
@@ -76,3 +82,9 @@ _Do not skip any step in this workflow—ensuring a fully functional, bug-free c
   ```
 
 And to run a Lighthouse check use `npm run lhci` and `npm run lhci:prod` for live URL real results.
+
+## Local All-in-One Verification
+Instead of running each step manually, you can use the `verify:local` script to clear the production cache, run build, lint, type-check, unit/integration tests, and end-to-end tests in one command:
+```bash
+npm run verify:local
+```

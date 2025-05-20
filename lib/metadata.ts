@@ -2,6 +2,7 @@
 /* biome-disable-file */
 /* biome-disable lint/suspicious/noExplicitAny */
 import type { Metadata } from 'next';
+
 import { siteConfig } from './siteConfig';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

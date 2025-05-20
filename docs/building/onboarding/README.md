@@ -1108,7 +1108,7 @@ This setup ensures the site is always styled, always dynamic, and always ready f
    <div class="bg-[rgba(var(--primary-rgb),0.4)]">…</div>
    ```
 
-With this in place, any future AI or human can instantly see how to write and extend color-opacity utilities—and you'll never accidentally ship a broken `text-primary/40` again.
+With this in place, any future AI or human can instantly see how to write and extend color-opacity utilities—and you'll never accidentally ship a broken `text-primary40` again.
 
 ### KPI Section & About Section Feature Flags
 

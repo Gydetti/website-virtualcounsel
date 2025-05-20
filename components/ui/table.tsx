@@ -1,13 +1,7 @@
 'use client';
 
-import { forwardRef, useId } from 'react';
-import type {
-  ComponentPropsWithoutRef,
-  ElementRef,
-  HTMLAttributes,
-  TdHTMLAttributes,
-  ThHTMLAttributes,
-} from 'react';
+import type { ComponentPropsWithoutRef, ElementRef } from 'react';
+import { forwardRef } from 'react';
 
 import { cn } from '@/lib/utils';
 
@@ -91,4 +85,4 @@ const TableCaption = forwardRef<ElementRef<'caption'>, ComponentPropsWithoutRef<
 );
 TableCaption.displayName = 'TableCaption';
 
-export { Table, TableHeader, TableBody, TableFooter, TableHead, TableRow, TableCell, TableCaption };
+export { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow };

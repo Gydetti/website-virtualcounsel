@@ -1,3 +1,9 @@
+import { ArrowLeft, ArrowRight, Calendar, Clock, Share2, User } from 'lucide-react';
+import type { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+
 import { Section } from '@/components/layout/Section';
 import BlogSchema from '@/components/seo/blog-schema';
 import StructuredData from '@/components/seo/structured-data';
@@ -7,12 +13,6 @@ import { Card, CardContent } from '@/components/ui/card';
 import { getBlogPostBySlug, getBlogPosts } from '@/lib/data-utils';
 import { defaultMetadata } from '@/lib/metadata';
 import { siteConfig } from '@/lib/siteConfig';
-import { ArrowLeft, ArrowRight, Calendar, Clock, Share2, User } from 'lucide-react';
-import type { Metadata } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
-import { notFound } from 'next/navigation';
-import type { ReactNode } from 'react';
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -117,7 +117,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
           {/* Back link and category badge grouped to prevent overlap on small screens */}
           <div className="flex flex-wrap items-center gap-3 mb-6">
             <Link href="/blog" className="inline-flex items-center text-primary hover:underline">
-              <ArrowLeft className="mr-2 h-4 w-4" />
+              <ArrowLeft className="mr-2 size-4" />
               Back link text (e.g. 'Back to blog overview')
             </Link>
             <Badge>{post.category}</Badge>
@@ -126,11 +126,11 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
 
           <div className="flex flex-wrap items-center gap-4 text-neutral-text/600 mb-8">
             <div className="flex items-center">
-              <User className="h-4 w-4 mr-2" />
+              <User className="size-4 mr-2" />
               <span>{author.name}</span>
             </div>
             <div className="flex items-center">
-              <Calendar className="h-4 w-4 mr-2" />
+              <Calendar className="size-4 mr-2" />
               <span className="text-sm text-neutral-text/500">
                 {new Date(post.date).toLocaleDateString('en-US', {
                   year: 'numeric',
@@ -140,7 +140,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
               </span>
             </div>
             <div className="flex items-center">
-              <Clock className="h-4 w-4 mr-2" />
+              <Clock className="size-4 mr-2" />
               <span className="text-sm text-neutral-text/500">
                 Reading time (e.g. '5 min read')
               </span>
@@ -182,7 +182,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      className="h-5 w-5"
+                      className="size-5"
                     >
                       <title>Twitter</title>
                       <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
@@ -200,7 +200,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      className="h-5 w-5"
+                      className="size-5"
                     >
                       <title>Facebook</title>
                       <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
@@ -218,7 +218,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      className="h-5 w-5"
+                      className="size-5"
                     >
                       <title>LinkedIn</title>
                       <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
@@ -227,7 +227,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
                     </svg>
                   </Button>
                   <Button size="icon" variant="ghost" aria-label="Copy link">
-                    <Share2 className="h-5 w-5" />
+                    <Share2 className="size-5" />
                   </Button>
                 </div>
               </div>
@@ -239,7 +239,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
               <CardContent className="p-6">
                 <h3 className="mb-4">About the Author</h3>
                 <div className="flex items-center mb-4">
-                  <div className="relative h-16 w-16 rounded-full overflow-hidden mr-4">
+                  <div className="relative size-16 rounded-full overflow-hidden mr-4">
                     <Image
                       src={author.image || '/placeholder.svg'}
                       alt={author.name}
@@ -319,7 +319,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
                 <Button variant="link" className="p-0 h-auto text-primary" asChild>
                   <Link href={`/blog/${relatedPost.slug}`}>
                     Read More
-                    <ArrowRight className="ml-2 h-4 w-4" />
+                    <ArrowRight className="ml-2 size-4" />
                   </Link>
                 </Button>
               </CardContent>

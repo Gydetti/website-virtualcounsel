@@ -1,9 +1,10 @@
 'use client';
 
-import { cn } from '@/lib/utils';
-import { createContext, forwardRef, useContext, useId, useMemo } from 'react';
 import type { ComponentType, ReactNode } from 'react';
+import { createContext, forwardRef, useContext, useId, useMemo } from 'react';
 import * as RechartsPrimitive from 'recharts';
+
+import { cn } from '@/lib/utils';
 
 // Format: { THEME_NAME: CSS_SELECTOR }
 const THEMES = { light: '' } as const;
@@ -276,7 +277,7 @@ const ChartLegendContent = forwardRef<
               <itemConfig.icon />
             ) : (
               <div
-                className="h-2 w-2 shrink-0 rounded-[2px]"
+                className="size-2 shrink-0 rounded-[2px]"
                 style={{
                   backgroundColor: item.color,
                 }}
@@ -319,9 +320,9 @@ function getPayloadConfigFromPayload(config: ChartConfig, payload: unknown, key:
 
 export {
   ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
   ChartLegend,
   ChartLegendContent,
   ChartStyle,
+  ChartTooltip,
+  ChartTooltipContent,
 };

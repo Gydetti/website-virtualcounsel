@@ -1,6 +1,7 @@
-import type { videoBlockSchema } from '@/lib/schemas/contentBlocks.schema';
 import type { FC } from 'react';
 import type { z } from 'zod';
+
+import type { videoBlockSchema } from '@/lib/schemas/contentBlocks.schema';
 
 // Props inferred from Zod schema
 type VideoBlockProps = z.infer<typeof videoBlockSchema>;

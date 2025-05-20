@@ -39,7 +39,7 @@ This is handled automatically in `app/layout.tsx` by converting the hex to RGB a
    - Keep color utilities mapped to `var(--primary)`, `var(--secondary)`, etc. for solid fills.
    - For alpha/opacity, use arbitrary values: `bg-[rgba(var(--secondary-rgb),0.1)]`.
 3. **Component Update:**
-   - Search for all `/10`, `/20`, etc. usages with theme colors (e.g., `bg-secondary/10`, `from-primary/20`).
+   - Search for all `/10`, `/20`, etc. usages with theme colors (e.g., `bg-secondary/10`, `from-primary20`).
    - Replace with `bg-[rgba(var(--secondary-rgb),0.1)]`, `from-[rgba(var(--primary-rgb),0.2)]`, etc.
    - For text and borders, use the solid CSS variable.
 4. **Documentation:**

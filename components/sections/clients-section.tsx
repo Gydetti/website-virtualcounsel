@@ -1,11 +1,13 @@
 'use client';
+import Image from 'next/image';
+import type { CSSProperties } from 'react';
+import type { z } from 'zod';
+
 import { Section } from '@/components/layout/Section';
 import { Badge } from '@/components/ui/badge';
 import LazySection from '@/components/ui/lazy-section';
 import type { clientsSectionDataSchema } from '@/lib/schemas/sections.schema';
-import Image from 'next/image';
-import type { CSSProperties } from 'react';
-import type { z } from 'zod';
+
 import styles from './clients-section.module.css';
 
 // Updated props type alias

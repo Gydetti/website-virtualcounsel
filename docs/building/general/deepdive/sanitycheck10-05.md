@@ -14,7 +14,7 @@ To make the template exceptionally easy for an AI agent (or yourself with AI ass
   - Could also manage image assets by placing them in `assets/images/raw/<client_name>/<category>` and then triggering `npm run image-optimize`.
 - **Component Prop Standardization for AI**: Ensure components accept all text, image URLs, links, and style variations (e.g., color schemes, layout choices for a section) primarily through props. Minimize hardcoded values within components that an AI would need to parse and replace.
 - **"AI Hint" Comments**: In complex components or data structures, use structured comments (e.g., `// AI_CUSTOMIZE_POINT: This headline should reflect the client's primary value proposition. Max 70 chars.`) to guide the AI agent.
-- **Dynamic Theme Engine**: Beyond primary/secondary colors, consider a more extensive theme object in `siteConfig` that an AI can populate (e.g., font pairings, border radius scale, shadow styles, spacing units) which then translates to CSS variables or Tailwind utility generation.
+- **Dynamic Theme Engine**: Beyond primarysecondary colors, consider a more extensive theme object in `siteConfig` that an AI can populate (e.g., font pairings, border radius scale, shadow styles, spacing units) which then translates to CSS variables or Tailwind utility generation.
 
 ## 2. Advanced UX/UI & "Wow" Factors (Configurable Options)
 

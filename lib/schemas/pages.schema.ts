@@ -1,5 +1,6 @@
 // Placeholder for page-specific Zod schemas (e.g., blog posts, service pages)
 import { z } from 'zod';
+
 import { imageSchema, seoSchema } from './common.schema';
 
 export const authorSchema = z.object({

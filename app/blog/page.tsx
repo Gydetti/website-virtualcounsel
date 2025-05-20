@@ -1,3 +1,7 @@
+import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+
 import { Section } from '@/components/layout/Section';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -13,10 +17,6 @@ import OptimizedImage from '@/components/ui/optimized-image';
 import { getBlogPosts } from '@/lib/data-utils';
 import { defaultMetadata } from '@/lib/metadata';
 import { siteConfig } from '@/lib/siteConfig';
-import { ArrowRight } from 'lucide-react';
-import type { Metadata } from 'next';
-import Link from 'next/link';
-import { notFound } from 'next/navigation';
 
 // Disable this page if blog feature is off or page not enabled
 if (
@@ -43,9 +43,7 @@ export default async function BlogPage() {
       <Section className="relative overflow-hidden bg-gradient-to-r from-brand-primary/10 to-brand-hero-background z-10">
         <LazySection>
           <div className="text-center mb-16">
-            <Badge className="mb-4 bg-brand-light text-primary hover:bg-brand-light/90">
-              Short label introducing blog section
-            </Badge>
+            <Badge className="mb-4">Short label introducing blog section</Badge>
             <h1 className="">Blog page heading</h1>
             <p className="text-neutral-text max-w-3xl mx-auto">
               Brief description explaining content focus and reader benefits.
@@ -86,7 +84,7 @@ export default async function BlogPage() {
                           </span>
                           <div className="text-primary flex items-center space-x-2">
                             <span>{`Read featured article: ${featuredPost.title}`}</span>
-                            <ArrowRight className="ml-2 h-4 w-4" />
+                            <ArrowRight className="ml-2 size-4" />
                           </div>
                         </div>
                       </div>
@@ -140,7 +138,7 @@ export default async function BlogPage() {
                     <CardFooter className="mt-auto pt-0">
                       <div className="mt-auto pt-0 whitespace-normal break-words text-primary flex items-center space-x-2">
                         <span>{`Read more: ${post.title}`}</span>
-                        <ArrowRight className="ml-2 h-4 w-4" />
+                        <ArrowRight className="ml-2 size-4" />
                       </div>
                     </CardFooter>
                   </Card>

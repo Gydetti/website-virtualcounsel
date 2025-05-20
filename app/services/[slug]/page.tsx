@@ -1,19 +1,19 @@
+import { ArrowRight } from 'lucide-react';
+import type { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import type { CSSProperties } from 'react';
+
 import { Section } from '@/components/layout/Section';
 import ProcessSection from '@/components/sections/process-section';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import LazySection from '@/components/ui/lazy-section';
 import { getServiceBySlug, getServices } from '@/lib/data-utils';
 import { iconComponents } from '@/lib/icon-utils';
 import { defaultMetadata } from '@/lib/metadata';
 import { siteConfig } from '@/lib/siteConfig';
-import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
-import type { Metadata } from 'next';
-import Image from 'next/image';
-import type { CSSProperties } from 'react';
-import Link from 'next/link';
-import { notFound } from 'next/navigation';
-import LazySection from '@/components/ui/lazy-section';
 
 interface ServicePageProps {
   params: Promise<{ slug: string }>;
@@ -149,7 +149,7 @@ export default async function ServicePage(props: ServicePageProps) {
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div className="space-y-6">
             <LazySection animation="slide-up" delay={0}>
-              <IconComponent className="h-20 w-20 text-primary mb-6" />
+              <IconComponent className="size-20 text-primary mb-6" />
             </LazySection>
             <LazySection animation="fade-up" delay={0.1}>
               <h1 className="mb-4 break-words">{service.title}</h1>
@@ -158,10 +158,10 @@ export default async function ServicePage(props: ServicePageProps) {
               <p className="text-neutral-text mb-8">{service.description}</p>
             </LazySection>
             <LazySection animation="fade-up" delay={0.3}>
-              <Button size="lg" className="bg-primary hover:bg-primary/90" asChild>
+              <Button size="lg" className="bg-primary hover:bg-primary90" asChild>
                 <Link href="/contact">
                   Schedule a Consultation
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  <ArrowRight className="ml-2 size-4" />
                 </Link>
               </Button>
             </LazySection>
@@ -172,8 +172,8 @@ export default async function ServicePage(props: ServicePageProps) {
             delay={0.4}
             className="relative h-[400px] rounded-xl overflow-hidden shadow-xl"
           >
-            <div className="absolute inset-0 flex items-center justify-center bg-neutral-background/100">
-              <IconComponent className="h-32 w-32 text-brand-primary/30" />
+            <div className="absolute inset-0 flex items-center justify-center bg-neutral-background-100">
+              <IconComponent className="size-32 text-brand-primary30" />
             </div>
           </LazySection>
         </div>
@@ -190,7 +190,7 @@ export default async function ServicePage(props: ServicePageProps) {
             {benefits.map((benefit, idx) => (
               <LazySection key={benefit.title} animation="slide-up" delay={0.1 + idx * 0.1}>
                 <Card className="flex flex-col h-full text-center p-6 hover:shadow-lg transition-shadow">
-                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
+                  <div className="inline-flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
                     <span className="text-2xl">{benefit.icon}</span>
                   </div>
                   <h3 className="text-xl font-bold mb-2">{benefit.title}</h3>
@@ -241,12 +241,12 @@ export default async function ServicePage(props: ServicePageProps) {
           </p>
           <Button
             size="lg"
-            className="bg-neutral-surface text-primary hover:bg-neutral-background/100"
+            className="bg-neutral-surface text-primary hover:bg-neutral-background-100"
             asChild
           >
             <Link href="/contact">
               Primary CTA text guiding next action
-              <ArrowRight className="ml-2 h-4 w-4" />
+              <ArrowRight className="ml-2 size-4" />
             </Link>
           </Button>
         </div>
@@ -270,7 +270,7 @@ export default async function ServicePage(props: ServicePageProps) {
                 <div key={testimonial.author} style={{ '--index': idx + 1 } as CSSProperties}>
                   <Card className="p-6">
                     <div className="flex items-start">
-                      <div className="relative h-16 w-16 rounded-full overflow-hidden mr-4 flex-shrink-0">
+                      <div className="relative size-16 rounded-full overflow-hidden mr-4 shrink-0">
                         <Image
                           src={testimonial.image || '/placeholder.svg'}
                           alt={testimonial.author}

@@ -1,12 +1,13 @@
+import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
+import type { CSSProperties } from 'react';
+import type { z } from 'zod';
+
 import { Section } from '@/components/layout/Section';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import LazySection from '@/components/ui/lazy-section';
 import type { ctaSectionDataSchema } from '@/lib/schemas/sections.schema';
-import { ArrowRight } from 'lucide-react';
-import Link from 'next/link';
-import type { CSSProperties } from 'react';
-import type { z } from 'zod';
 
 // Updated props type alias using Zod schema
 export type CtaSectionProps = z.infer<typeof ctaSectionDataSchema>;
@@ -23,11 +24,11 @@ export default function CtaSection({
       id="cta-section"
       aria-labelledby="cta-section-heading"
       fullBleed
-      className="pattern-overlay bg-brand-dark text-white relative overflow-hidden py-8"
+      className="pattern-overlay bg-brand-dark-2 text-white relative overflow-hidden py-8"
     >
       {/* Decorative elements matching the dark theme */}
-      <div className="hidden sm:block absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
-      <div className="hidden sm:block absolute bottom-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+      <div className="hidden sm:block absolute top-0 right-0 size-96 bg-primary/10 rounded-full blur-3xl" />
+      <div className="hidden sm:block absolute bottom-0 left-0 size-96 bg-primary/10 rounded-full blur-3xl" />
 
       {/* CSS-only stagger container */}
       <LazySection
@@ -72,7 +73,7 @@ export default function CtaSection({
               >
                 <Link href={primaryCta.href}>
                   {primaryCta.text}
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </Button>
             )}
@@ -85,7 +86,7 @@ export default function CtaSection({
               >
                 <Link href={secondaryCta.href}>
                   {secondaryCta.text}
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </Button>
             )}

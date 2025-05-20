@@ -2,5 +2,11 @@ node_modules
 .next
 .next-prod
 dist
-public 
+public
 test-results/
+next-sitemap.config.js
+docs/building/general/fix-theme-templating-variants-colors.md
+docs/
+
+docs/building/general/**
+doc/**

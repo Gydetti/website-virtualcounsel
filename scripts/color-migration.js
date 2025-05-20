@@ -52,10 +52,10 @@ const dynamicPatterns = [
   { regex: /\bbg-green-(\d{1,3})\b/g, replace: () => 'bg-feedback-success-bg' },
   { regex: /\bborder-green-(\d{1,3})\b/g, replace: () => 'border-feedback-success' },
   // Primary opacity utilities
-  { regex: /\bhover:bg-primary-(\d{1,3})\b/g, replace: (_, p1) => `hover:bg-primary/${p1}` },
-  { regex: /\bbg-primary-(\d{1,3})\b/g, replace: (_, p1) => `bg-primary/${p1}` },
+  { regex: /\bhover:bg-primary-(\d{1,3})\b/g, replace: (_, p1) => `hover:bg-primary${p1}` },
+  { regex: /\bbg-primary-(\d{1,3})\b/g, replace: (_, p1) => `bg-primary${p1}` },
   // Map text-primary numeric suffix to slash-based opacity
-  { regex: /\btext-primary-(\d{1,3})\b/g, replace: (_, p1) => `text-primary/${p1}` },
+  { regex: /\btext-primary-(\d{1,3})\b/g, replace: (_, p1) => `text-primary${p1}` },
   // Slate grayscale mapping to neutral tokens
   { regex: /\btext-slate-(\d{1,3})\b/g, replace: (_, p1) => `text-neutral-text/${p1}` },
   {

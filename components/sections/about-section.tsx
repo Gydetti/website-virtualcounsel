@@ -1,5 +1,9 @@
 'use client';
 
+import { ArrowRight, CheckCircle, Star } from 'lucide-react';
+import Link from 'next/link';
+import type { z } from 'zod';
+
 import { Section } from '@/components/layout/Section';
 import KpiSection from '@/components/sections/kpi-section';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
@@ -10,10 +14,6 @@ import OptimizedImage from '@/components/ui/optimized-image';
 import * as homepageData from '@/lib/data/homepage';
 import type { aboutSectionDataSchema } from '@/lib/schemas/sections.schema';
 import { siteConfig } from '@/lib/site.config.local';
-import { motion } from 'framer-motion';
-import { ArrowRight, CheckCircle, Star } from 'lucide-react';
-import Link from 'next/link';
-import type { z } from 'zod';
 
 // Updated props type alias using Zod schema
 export type AboutSectionProps = z.infer<typeof aboutSectionDataSchema> & {
@@ -95,7 +95,7 @@ export default function AboutSection({
           <LazySection
             animation="slide-up"
             delay={0}
-            className={`relative w-full max-w-[600px] transform md:translate-y-6 ${imageOrderClass}`}
+            className={`relative w-full max-w-[600px] md:translate-y-6${imageOrderClass}`}
           >
             <AspectRatio ratio={6 / 5} className="overflow-visible rounded-xl shadow-2xl relative">
               <OptimizedImage
@@ -112,9 +112,7 @@ export default function AboutSection({
             <div className={contentOrderClass}>
               {badgeText && (
                 <LazySection animation="fade-up" delay={0.2}>
-                  <Badge variant="light" className="mb-4">
-                    {badgeText}
-                  </Badge>
+                  <Badge className="mb-4">{badgeText}</Badge>
                 </LazySection>
               )}
               {heading && (
@@ -169,9 +167,9 @@ export default function AboutSection({
                           className="rounded-xl border bg-neutral-surface p-6 shadow-sm hover:shadow-md transition-shadow"
                         >
                           <div
-                            className={`flex h-12 w-12 items-center justify-center rounded-full ${card.iconBg}`}
+                            className={`flex size-12 items-center justify-center rounded-full ${card.iconBg}`}
                           >
-                            <Icon className={`${card.iconColor} h-6 w-6`} />
+                            <Icon className={`${card.iconColor} size-6`} />
                           </div>
                           <h3 className="mt-4 text-lg font-semibold text-neutral-text">
                             {card.title}
@@ -185,10 +183,10 @@ export default function AboutSection({
               )}
               {siteConfig.features.enableAboutHeroCta && cta?.href && cta?.text && (
                 <LazySection animation="fade-up" delay={0.6}>
-                  <Button size="lg" className="bg-primary hover:bg-primary/90 group" asChild>
+                  <Button size="lg" className="bg-primary hover:bg-primary90 group" asChild>
                     <Link href={cta.href}>
                       {cta.text}
-                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
                     </Link>
                   </Button>
                 </LazySection>
@@ -209,9 +207,7 @@ export default function AboutSection({
         <LazySection animation="slide-up" delay={0} className={contentOrderClass}>
           {badgeText && (
             <LazySection animation="fade-up" delay={0.2}>
-              <Badge variant="light" className="mb-4">
-                {badgeText}
-              </Badge>
+              <Badge className="mb-4">{badgeText}</Badge>
             </LazySection>
           )}
           {heading && (
@@ -234,10 +230,10 @@ export default function AboutSection({
           )}
           {cta?.href && cta?.text && (
             <LazySection animation="fade-up" delay={0.5}>
-              <Button size="lg" className="bg-primary hover:bg-primary/90 group" asChild>
+              <Button size="lg" className="bg-primary hover:bg-primary90 group" asChild>
                 <Link href={cta.href}>
                   {cta.text}
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </Button>
             </LazySection>
@@ -263,9 +259,9 @@ export default function AboutSection({
                       className="rounded-xl border bg-neutral-surface p-6 shadow-sm hover:shadow-md transition-shadow"
                     >
                       <div
-                        className={`flex h-12 w-12 items-center justify-center rounded-full ${card.iconBg}`}
+                        className={`flex size-12 items-center justify-center rounded-full ${card.iconBg}`}
                       >
-                        <Icon className={`${card.iconColor} h-6 w-6`} />
+                        <Icon className={`${card.iconColor} size-6`} />
                       </div>
                       <h3 className="mt-4 text-lg font-semibold text-neutral-text">{card.title}</h3>
                       <p className="mt-2 text-sm text-neutral-text">{card.description}</p>

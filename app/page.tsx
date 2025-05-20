@@ -1,7 +1,8 @@
+import type { Metadata } from 'next';
+
 import DynamicPageRenderer from '@/components/layout/DynamicPageRenderer';
 import { defaultMetadata } from '@/lib/metadata';
 import { siteConfig } from '@/lib/site.config.local'; // Use the local config for data
-import type { Metadata } from 'next';
 
 // Find the page structure for the homepage
 const homepageStructure = siteConfig.pageStructures?.find(p => p.path === '/');

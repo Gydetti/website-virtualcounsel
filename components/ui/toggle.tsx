@@ -1,10 +1,9 @@
 'use client';
 
-import { forwardRef, useId } from 'react';
-import type { ComponentPropsWithoutRef, ElementRef } from 'react';
-
 import * as TogglePrimitive from '@radix-ui/react-toggle';
-import { type VariantProps, cva } from 'class-variance-authority';
+import { cva, type VariantProps } from 'class-variance-authority';
+import type { ComponentPropsWithoutRef, ElementRef } from 'react';
+import { forwardRef } from 'react';
 
 import { cn } from '@/lib/utils';
 
