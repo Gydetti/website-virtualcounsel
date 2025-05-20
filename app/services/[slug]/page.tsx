@@ -145,7 +145,7 @@ export default async function ServicePage(props: ServicePageProps) {
 
   return (
     <>
-      <Section className="bg-gradient-to-r from-brand-primary/10 to-brand-hero-background">
+      <Section bgClass={siteConfig.sectionStyles?.heroGradient ?? ''}>
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div className="space-y-6">
             <LazySection animation="slide-up" delay={0}>

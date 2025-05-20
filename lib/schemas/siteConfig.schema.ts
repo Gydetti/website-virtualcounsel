@@ -241,6 +241,12 @@ export const siteConfigSchema = z.object({
   contactForm: contactFormSchemaDefinition,
   contact: contactDetailsSchema,
   sectionsDataKeys: sectionsDataKeysSchema,
+  // SECTION STYLES: Utility classes for special sections (e.g., hero gradients)
+  sectionStyles: z
+    .object({
+      heroGradient: z.string().nonempty(),
+    })
+    .optional(),
   // ++ ADDING NEW FIELD FOR PAGE STRUCTURES ++
   pageStructures: z.array(pageStructureSchema).optional(),
 });

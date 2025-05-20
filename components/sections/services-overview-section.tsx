@@ -5,6 +5,7 @@ import { Section } from '@/components/layout/Section';
 import { Badge } from '@/components/ui/badge';
 import LazySection from '@/components/ui/lazy-section';
 import type { servicesOverviewSectionDataSchema } from '@/lib/schemas/sections.schema';
+import { siteConfig } from '@/lib/siteConfig';
 
 export type ServicesOverviewSectionProps = z.infer<typeof servicesOverviewSectionDataSchema>;
 
@@ -16,7 +17,8 @@ export default function ServicesOverviewSection({
   return (
     <Section
       id="services-overview"
-      className="relative overflow-hidden bg-gradient-to-r from-brand-primary/10 to-brand-hero-background z-10 py-12"
+      bgClass={siteConfig.sectionStyles?.heroGradient ?? ''}
+      className="relative z-10 py-12"
     >
       <LazySection
         animation="none"

@@ -20,6 +20,8 @@ import { Input } from '@/components/ui/input';
 import LazySection from '@/components/ui/lazy-section';
 import { staticContent } from '@/lib/data/staticContent';
 import type { CSSProperties } from 'react';
+import { Section } from '@/components/layout/Section';
+import { siteConfig } from '@/lib/siteConfig';
 
 export default function FaqClientPage() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -49,8 +51,10 @@ export default function FaqClientPage() {
   return (
     <>
       <StructuredData type="faq" data={{ items: faqSchemaData }} />
-      {/* FAQ Hero section with CSS-only staggered reveal */}
-      <section className="relative overflow-hidden bg-gradient-to-r from-brand-primary/10 to-brand-hero-background py-16 md:py-24 z-10">
+      <Section
+        bgClass={siteConfig.sectionStyles?.heroGradient ?? ''}
+        className="relative py-16 md:py-24 z-10"
+      >
         <LazySection
           animation="none"
           className="stagger-container text-center max-w-3xl mx-auto"
@@ -92,7 +96,7 @@ export default function FaqClientPage() {
             </svg>
           </div>
         </LazySection>
-      </section>
+      </Section>
 
       <LazySection>
         <section className="py-16">

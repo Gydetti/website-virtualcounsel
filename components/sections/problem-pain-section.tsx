@@ -18,10 +18,7 @@ export default function ProblemPainSection({
   cards,
 }: ProblemPainSectionProps) {
   return (
-    <Section
-      id="pain"
-      className="bg-gradient-to-b from-transparent to-[rgba(var(--accent-rgb),0.1)]"
-    >
+    <Section id="pain" className="bg-gradient-to-b from-transparent to-accent/10">
       <LazySection
         animation="slide-up"
         delay={0}

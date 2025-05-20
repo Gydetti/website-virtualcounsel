@@ -60,10 +60,11 @@ export default function HeroSection({
   const contentOrderClass = variant === 'imageLeft' ? 'md:order-2' : '';
 
   return (
-    <section
+    <Section
       id="hero-section"
       aria-labelledby="hero-section-heading"
-      className="hero-pattern relative overflow-hidden bg-gradient-to-r from-brand-primary/10 to-brand-hero-background md:min-h-[880px] flex"
+      bgClass={siteConfig.sectionStyles?.heroGradient ?? ''}
+      className="hero-pattern relative md:min-h-[880px] flex"
     >
       {/* Background pattern */}
       <div className="absolute inset-0 bg-grid-pattern opacity-10" />
@@ -214,6 +215,6 @@ export default function HeroSection({
         aria-hidden="true"
         className="absolute bottom-0 left-0 w-1/5 h-1 bg-gradient-to-r from-black/10 to-transparent pointer-events-none"
       />
-    </section>
+    </Section>
   );
 }

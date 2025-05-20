@@ -5,13 +5,20 @@
  */
 export const semanticColors = {
   brand: {
-    primary: 'hsl(var(--brand-primary))',
-    light: 'var(--brand-light)',
-    'light-2': 'var(--brand-light-2)',
-    dark: 'var(--brand-dark)',
-    'dark-2': 'var(--brand-dark-2)',
-    secondary: 'hsl(var(--brand-secondary))',
-    heroBackground: 'hsl(var(--brand-hero-background))',
+    primary: ({ opacityValue = 1 }: { opacityValue?: number }) =>
+      `hsl(var(--brand-primary) / ${opacityValue})`,
+    light: ({ opacityValue = 1 }: { opacityValue?: number }) =>
+      `rgb(var(--brand-light-rgb) / ${opacityValue})`,
+    'light-2': ({ opacityValue = 1 }: { opacityValue?: number }) =>
+      `rgb(var(--brand-light-2-rgb) / ${opacityValue})`,
+    dark: ({ opacityValue = 1 }: { opacityValue?: number }) =>
+      `rgb(var(--brand-dark-rgb) / ${opacityValue})`,
+    'dark-2': ({ opacityValue = 1 }: { opacityValue?: number }) =>
+      `rgb(var(--brand-dark-2-rgb) / ${opacityValue})`,
+    secondary: ({ opacityValue = 1 }: { opacityValue?: number }) =>
+      `rgb(var(--brand-secondary-rgb) / ${opacityValue})`,
+    heroBackground: ({ opacityValue = 1 }: { opacityValue?: number }) =>
+      `rgb(var(--brand-hero-background-rgb) / ${opacityValue})`,
   },
   neutral: {
     background: 'hsl(var(--background))', // page backgrounds, sections

@@ -1,5 +1,2 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
 # Run ESLint to enforce no hard-coded hex or Tailwind color classes
 npm run lint -- --max-warnings=0 

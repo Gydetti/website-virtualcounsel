@@ -40,7 +40,7 @@ export default async function BlogPage() {
 
   return (
     <>
-      <Section className="relative overflow-hidden bg-gradient-to-r from-brand-primary/10 to-brand-hero-background z-10">
+      <Section bgClass={siteConfig.sectionStyles?.heroGradient ?? ''} className="relative z-10">
         <LazySection>
           <div className="text-center mb-16">
             <Badge className="mb-4">Short label introducing blog section</Badge>

@@ -44,6 +44,8 @@ const config = {
     './src/**/*.{ts,tsx}',
     '*.{js,ts,jsx,tsx,mdx}',
   ],
+  // Ensure these gradient utilities are always generated even when used via dynamic bgClass
+  safelist: ['bg-gradient-to-r', 'from-brand-primary/10', 'to-brand-hero-background'],
   prefix: '',
   theme: {
     container: {

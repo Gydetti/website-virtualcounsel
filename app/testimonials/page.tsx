@@ -34,8 +34,9 @@ export default function TestimonialsPage() {
     <>
       {/* Introduction Section with CSS-only staggered reveal */}
       <Section
-        className="relative overflow-hidden bg-gradient-to-r from-brand-primary/10 to-brand-hero-background z-10 py-12"
         id="testimonials-intro"
+        bgClass={siteConfig.sectionStyles?.heroGradient ?? ''}
+        className="relative z-10 py-12"
       >
         <LazySection
           animation="none"

@@ -65,7 +65,7 @@ Always perform the following steps on any code changes before pushing to the `ma
 After **every** build, lint, and test step passes with **zero errors**, **zero warnings**, and **all tests green**:
 
 7. **Git Push**  
-   Commit any final changes and push to the `main` branch.  
+   Commit any final changes and push to the `main` branch. On live repository, the entire codebase. git push origin main. So not just the files updated in the chat, THE ENTIRE CODEBASE. Find all files updated or created.
 
 8. **Auto-Deployment to Vercel**  
    Pushing to `main` will trigger your Vercel workflow and deploy to production.

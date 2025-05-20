@@ -4,6 +4,7 @@ import type { ChangeEvent, CSSProperties, FormEvent } from 'react';
 import { useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 
+import { Section } from '@/components/layout/Section';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -71,8 +72,10 @@ export default function ContactPageClient() {
 
   return (
     <>
-      {/* Contact Hero section with CSS-only staggered reveal */}
-      <section className="relative overflow-hidden bg-gradient-to-r from-brand-primary/10 to-brand-hero-background py-16 md:py-24 z-10">
+      <Section
+        bgClass={siteConfig.sectionStyles?.heroGradient ?? ''}
+        className="relative py-16 md:py-24 z-10"
+      >
         <LazySection
           animation="none"
           className="stagger-container text-center max-w-3xl mx-auto"
@@ -94,7 +97,7 @@ export default function ContactPageClient() {
             Brief subtitle explaining how visitors can reach out and what to expect
           </p>
         </LazySection>
-      </section>
+      </Section>
 
       <LazySection>
         <section className="py-16">

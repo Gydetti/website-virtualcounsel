@@ -32,7 +32,7 @@ export default function SolutionVisionSection({
   return (
     <Section
       id="solution-vision-section"
-      className="pattern-overlay pattern-overlay-fade bg-gradient-to-b from-[rgba(var(--accent-rgb),0.1)] via-transparent to-transparent"
+      className="pattern-overlay pattern-overlay-fade bg-gradient-to-b from-accent/10 via-transparent to-transparent"
     >
       {/* Scroll reveal header */}
       <LazySection animation="slide-up" delay={0} className="text-center mb-16 max-w-4xl mx-auto">
@@ -86,7 +86,7 @@ export default function SolutionVisionSection({
         >
           <p className="text-neutral-text font-medium mb-2">{calloutText}</p>
           {calloutCta?.href && calloutCta?.text && (
-            <a href={calloutCta.href} className="text-secondary font-semibold">
+            <a href={calloutCta.href} className="text-accent font-semibold">
               {calloutCta.text} →
             </a>
           )}

@@ -202,6 +202,11 @@ export const siteConfig: SiteConfigSchema = {
     // FIRST_EDIT: Toggle the KPI stats section display on the About page
     enableAboutKpiSection: true,
   },
+  // SECTION STYLES: Utility classes for special sections (e.g., hero)
+  sectionStyles: {
+    // Gradient class for hero-like top sections
+    heroGradient: 'bg-gradient-to-r from-brand-primary/10 to-brand-hero-background',
+  },
   // ENABLED PAGES: Defines which page routes are active and included in sitemap.
   enabledPages: [
     '/', // <--- Homepage always enabled usually
