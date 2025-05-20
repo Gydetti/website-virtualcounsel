@@ -5,13 +5,16 @@ alwaysApply: true
 ---
 # Build and Deployment Workflow Rule
 
+**Note:** Production builds now output into `.next-prod`, while development previews continue to use `.next`. Clearing the production cache should only remove `.next-prod`.
+
 Always perform the following steps on any code changes before pushing to the `main` branch:
 
 1. **Clear Cache**  
-   Remove the Next.js build cache by deleting the `.next` directory:  
+   Remove the Next.js production build cache by deleting the `.next-prod` directory:  
    ```bash
-   rm -rf .next
-   ```
+   rm -rf .next-prod
+   ```  
+   *Your dev server's `.next` directory remains intact when running builds in parallel.*
 
 2. **Internal Build**  
    Ensure the application compiles without errors:  

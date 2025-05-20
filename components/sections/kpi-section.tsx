@@ -36,12 +36,13 @@ export default function KpiSection({
     'p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col items-center text-center h-full',
   ].join(' ');
 
-  // Grid content for KPI items with CSS-only stagger animation
+  // Grid content for KPI items with CSS-only stagger animation, constrained to 450px on mobile
   const content = (
     <LazySection
       animation="none"
-      className={`stagger-container ${containerClasses}`}
-      style={{ '--stagger-delay': '0.2s' } as CSSProperties}
+      className={`stagger-container ${containerClasses} w-full max-w-[450px] mx-auto md:max-w-none ${
+        isHomepage ? '[--stagger-delay:0.1s] md:[--stagger-delay:0.2s]' : '[--stagger-delay:0.2s]'
+      }`}
     >
       {stats.map((stat, index) => (
         <div key={stat.id} className={cardClasses} style={{ '--index': index } as CSSProperties}>
@@ -61,14 +62,13 @@ export default function KpiSection({
       ))}
     </LazySection>
   );
-  // If embedded under AboutSection, render without padding container
+  // Always wrap KPI content in a padded section for spacing
   if (embedInAbout) {
     return content;
   }
-  // Wrap KPI content in a Section container for horizontal padding and max-width
   return (
-    <Section fullBleed={false} className={`${sectionMargin} max-w-[500px] md:max-w-none mx-auto`}>
+    <div className={`${sectionMargin} px-4 sm:px-6 md:px-8 xl:px-20 py-8 sm:py-12 md:py-16`}>
       {content}
-    </Section>
+    </div>
   );
 }

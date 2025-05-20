@@ -4,6 +4,7 @@ node_modules/**
 # Ignore Next.js build output
 /.next
 /.next/**
+/.next-prod
 
 # Ignore example template code directory
 /Z-EXAMPLE-WEBSITE/**
@@ -24,7 +25,7 @@ test-results/**
 
 # Ignore any .next directory at any depth
 **/.next/**
-
+**/.next-prod/**
 # Ignore Partytown vendor code
 public/~partytown/**
 

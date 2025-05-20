@@ -65,6 +65,7 @@ export default function ResourceListSection({
                         src={srcMap[resource.slug]}
                         alt={resource.heroImage?.alt || resource.title}
                         fill
+                        priority
                         style={{ objectFit: 'cover' }}
                         onError={() => {
                           setSrcMap(prev => ({

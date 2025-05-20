@@ -4,18 +4,9 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import nodemailer from 'nodemailer';
 import { Client as PostmarkClient } from 'postmark';
-import { z } from 'zod';
+import { contactSchema } from '../../../lib/schemas/contact.schema';
 import { siteConfig } from '../../../lib/siteConfig';
-
-// Define schema for contact form payload
-export const contactSchema = z.object({
-  name: z.string().nonempty(),
-  email: z.string().email(),
-  phone: z.string().optional(),
-  subject: z.string().nonempty(),
-  message: z.string().nonempty(),
-  honeypot: z.string().optional(),
-});
+import { ZodError } from 'zod';
 
 export async function POST(request: NextRequest) {
   try {
@@ -244,8 +235,11 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: true });
   } catch (error: unknown) {
     // Handle validation errors
-    if (error instanceof z.ZodError) {
-      return NextResponse.json({ success: false, errors: error.errors }, { status: 400 });
+    if (error instanceof ZodError) {
+      return NextResponse.json(
+        { success: false, errors: (error as ZodError).issues },
+        { status: 400 }
+      );
     }
     console.error('Contact API error:', error);
     return NextResponse.json(

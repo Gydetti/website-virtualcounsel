@@ -115,20 +115,33 @@ export const staticContent = {
       'Voor privacygerelateerde vragen: {{E-mailadres voor privacygerelateerde vragen}}. Indien u een klacht heeft over de verwerking van uw persoonsgegevens, vragen wij u hierover direct contact met ons op te nemen. U heeft altijd het recht een klacht in te dienen bij de Autoriteit Persoonsgegevens: https://autoriteitpersoonsgegevens.nl/nl/contact-met-de-autoriteit-persoonsgegevens/tip-ons',
   }),
   termsOfService: termsOfServiceSchema.parse({
-    lastUpdated: 'January 1, 2025',
-    introduction: 'Explain purpose of terms and applicable audience',
-    acceptance: 'Explain that using the website implies acceptance',
-    services: 'General description of services offered',
-    userAccounts: 'Rules and responsibilities for user accounts',
-    intellectualProperty: 'Explain content ownership and IP rights',
-    userContent: 'Rules for user-submitted content',
-    prohibitedActivities: 'List activities not allowed on the site',
-    limitationOfLiability: 'Explain limits of liability for damages or losses',
-    indemnification: 'Explain user indemnification obligations',
-    termination: 'Explain terms for terminating user access',
-    governingLaw: 'Specify the governing law jurisdiction',
-    changes: 'Explain how users will be notified of changes',
-    contactInfo: 'Provide contact details for terms inquiries',
+    lastUpdated: '{{Datum laatste bijwerking}}',
+    introduction:
+      'In deze algemene voorwaarden worden de volgende definities gebruikt en zijn deze voorwaarden van toepassing op alle aanbiedingen en overeenkomsten tussen {{businessName}} en klanten.',
+    acceptance:
+      'Door gebruik te maken van onze diensten of door het aangaan van een overeenkomst, gaat de klant akkoord met deze algemene voorwaarden.',
+    services:
+      'Alle door {{businessName}} aan de klant geleverde producten en diensten, waaronder {{korte generieke omschrijving van diensten (bijv. advies, coaching, ontwerp, training)}}, zoals gespecificeerd in de overeenkomst.',
+    userAccounts:
+      'De klant is verantwoordelijk voor het vertrouwelijk houden van zijn accountgegevens en voor alle activiteiten die onder zijn account plaatsvinden.',
+    intellectualProperty:
+      'Alle intellectuele eigendomsrechten op materialen die in het kader van de overeenkomst zijn ontwikkeld, berusten uitsluitend bij {{businessName}}.',
+    userContent:
+      'Gebruikersinhoud verstrekt door de klant blijft eigendom van de klant, maar de klant verleent {{businessName}} een wereldwijde, niet-exclusieve licentie om deze te gebruiken voor de uitvoering van de overeenkomst.',
+    prohibitedActivities:
+      'De klant mag de diensten niet gebruiken voor illegale activiteiten of activiteiten die inbreuk maken op de rechten van derden.',
+    limitationOfLiability:
+      '{{businessName}} is niet aansprakelijk voor indirecte schade, gevolgschade of gederfde winst.',
+    indemnification:
+      'De klant vrijwaart {{businessName}} tegen alle aanspraken van derden die voortvloeien uit het gebruik van de diensten.',
+    termination:
+      '{{businessName}} kan de overeenkomst beëindigen in geval van wanprestatie door de klant of faillissement van de klant.',
+    governingLaw:
+      'Op deze voorwaarden is Nederlands recht van toepassing. Geschillen worden voorgelegd aan de bevoegde rechter in Nederland.',
+    changes:
+      'Wij behouden ons het recht voor deze voorwaarden te wijzigen. Wijzigingen worden op de website gepubliceerd.',
+    contactInfo:
+      'Voor vragen over deze voorwaarden kunt u contact opnemen via {{privacyContactEmail}}.',
   }),
   faqCategories: faqCategorySchema.array().parse([
     {

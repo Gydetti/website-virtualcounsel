@@ -1,4 +1,4 @@
-import { contactSchema } from '@/app/api/contact/route';
+import { contactSchema } from '@/lib/schemas/contact.schema';
 import { describe, expect, it } from 'vitest';
 
 describe('contactSchema validation', () => {

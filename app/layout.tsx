@@ -10,6 +10,7 @@ import './globals.css';
 import WebVitalsReporter from '@/components/analytics/WebVitalsReporter';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/next';
+import { themeVariants } from '@/lib/theme.variants';
 
 // Poppins for headings
 const poppins = Poppins({
@@ -30,6 +31,11 @@ const raleway = Raleway({
 });
 
 const siteUrl = siteConfig.site.url || 'http://localhost:3000';
+
+// Hardcoded default theme variant (no env var needed)
+const themeKey = 'v3';
+// Simplify fallback to direct property access
+const variant = themeVariants[themeKey] ?? themeVariants.v1;
 
 export const metadata = defaultMetadata({
   metadataBase: new URL(siteUrl),
@@ -144,11 +150,30 @@ function getThemeCssVars(theme: typeof siteConfig.theme): string {
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const themeCssVars = getThemeCssVars(siteConfig.theme);
+  // Merge variant overrides into the base theme to preserve full schema
+  const baseTheme = siteConfig.theme;
+  const mergedTheme = {
+    ...baseTheme,
+    colors: {
+      ...baseTheme.colors,
+      primary: variant.colors.primary,
+      secondary: variant.colors.secondary,
+      accent: variant.colors.accent,
+      ...(variant.colors.background && { background: variant.colors.background }),
+      ...(variant.colors.heroBackground && { heroBackground: variant.colors.heroBackground }),
+    },
+    typography: {
+      ...baseTheme.typography,
+      headingFont: variant.typography.headingFont,
+      bodyFont: variant.typography.bodyFont,
+    },
+  };
+  // Cast to satisfy theme schema for CSS variable generation
+  const themeCssVars = getThemeCssVars(mergedTheme as typeof siteConfig.theme);
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Inline theme CSS variables to prevent FOUC */}
         <style>{`:root {${themeCssVars}}`}</style>
         {/* `viewport` meta will be injected by Next.js and the metadata API */}
         {/* Preconnect to Google Fonts */}

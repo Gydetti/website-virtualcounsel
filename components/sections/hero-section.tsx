@@ -103,13 +103,13 @@ export default function HeroSection({
               </LazySection>
             )}
             {(primaryCta?.text || secondaryCta?.text) && (
-              <LazySection delay={0.4}>
-                <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <LazySection delay={0.4} className="">
+                <div className="flex flex-col sm:flex-row gap-4 pt-4 w-5/5">
                   {primaryCta?.text && primaryCta.href && (
                     <Button
                       size="lg"
                       variant="spark"
-                      className={`group ${!showSecondaryCta || !secondaryCta?.text ? 'w-full sm:w-auto' : ''}`}
+                      className={`group ${!showSecondaryCta || !secondaryCta?.text ? 'flex w-4/5 sm:w-auto' : ''}`}
                       onClick={() => {
                         if (primaryCta.href) router.push(primaryCta.href);
                       }}

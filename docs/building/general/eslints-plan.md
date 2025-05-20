@@ -153,7 +153,23 @@ Extend and compose the following presets and plugins:
 - **Phased rollout**: start with errors for color tokens, hooks, imports, images; migrate legacy code incrementally
 - **Automated fixes**: enable `--fix` for import sort, unused imports, basic style issues
 
-## 7. Maintenance & Evolution
+## 7. Automated Dependency Management & Upgrade Strategy
+
+- Use Dependabot (or a similar tool) to open PRs for dependency version updates on a regular cadence (e.g., weekly).
+- Configure auto-merge for non-breaking patch and minor updates once CI checks pass to reduce manual overhead.
+- Manually review major version bump PRs to assess breaking-change notes and update code accordingly.
+- Ensure each dependency PR invokes the full CI pipeline (build, format-check, lint, type-check, tests, E2E) before merge.
+- Leverage a shared `dependabot.yml` template so every client repository stays in sync with the same update policy.
+
+## 8. Vercel Deployment & Preview Workflow
+
+- Every branch or PR triggers a Vercel Preview Deployment—use these URLs for smoke tests on key pages (home, landing, resources).
+- Protect the `main` branch: only merge PRs after CI passes and successful staging or manual validation.
+- Production builds and deployments occur exclusively on successful pushes to `main`, ensuring controlled releases.
+- Document and automate key smoke-test scenarios against Preview Deployments to catch regressions early.
+- Implement rollback strategies via feature flags or Vercel's rollback capabilities to swiftly revert if issues arise.
+
+## 9. Maintenance & Evolution
 
 - Review lint rule output weekly in tracking board
 - Update plugin versions quarterly

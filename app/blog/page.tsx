@@ -1,6 +1,5 @@
 import { Section } from '@/components/layout/Section';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
@@ -56,47 +55,44 @@ export default async function BlogPage() {
           {featuredPost && (
             <LazySection delay={0}>
               <div className="mb-16">
-                <Card className="overflow-hidden border-none shadow-xl">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="relative h-64 md:h-full overflow-hidden">
-                      <OptimizedImage
-                        src={featuredPost.coverImage?.src || '/images/placeholders/placeholder.svg'}
-                        alt={featuredPost.coverImage?.alt || featuredPost.title}
-                        fill
-                        className="absolute inset-0 object-cover"
-                      />
-                    </div>
-                    <div className="p-6 md:p-8 flex flex-col justify-center">
-                      <Badge className="w-fit mb-4">{featuredPost.category}</Badge>
-                      <CardTitle className="text-2xl md:text-3xl font-bold break-words mb-4">
-                        <Link
-                          href={`/blog/${featuredPost.slug}`}
-                          className="hover:text-primary transition-colors"
-                        >
+                <Link href={`/blog/${featuredPost.slug}`} className="block group">
+                  <Card className="overflow-hidden border-none shadow-xl transition-shadow hover:shadow-xl">
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="relative h-64 md:h-full overflow-hidden">
+                        <OptimizedImage
+                          src={
+                            featuredPost.coverImage?.src || '/images/placeholders/placeholder.svg'
+                          }
+                          alt={featuredPost.coverImage?.alt || featuredPost.title}
+                          fill
+                          className="absolute inset-0 object-cover"
+                        />
+                      </div>
+                      <div className="p-6 md:p-8 flex flex-col justify-center">
+                        <Badge className="w-fit mb-4">{featuredPost.category}</Badge>
+                        <CardTitle className="text-2xl md:text-3xl font-bold break-words mb-4">
                           {featuredPost.title}
-                        </Link>
-                      </CardTitle>
-                      <CardDescription className="text-neutral-text/600 mb-6 text-lg break-words">
-                        {featuredPost.excerpt}
-                      </CardDescription>
-                      <div className="flex items-center justify-between mt-auto">
-                        <span className="text-sm text-neutral-text/500">
-                          {new Date(featuredPost.date).toLocaleDateString('en-US', {
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric',
-                          })}
-                        </span>
-                        <Button variant="link" className="p-0 h-auto text-primary" asChild>
-                          <Link href={`/blog/${featuredPost.slug}`}>
-                            {`Read featured article: ${featuredPost.title}`}
+                        </CardTitle>
+                        <CardDescription className="text-neutral-text/600 mb-6 text-lg break-words">
+                          {featuredPost.excerpt}
+                        </CardDescription>
+                        <div className="flex items-center justify-between mt-auto">
+                          <span className="text-sm text-neutral-text/500">
+                            {new Date(featuredPost.date).toLocaleDateString('en-US', {
+                              year: 'numeric',
+                              month: 'long',
+                              day: 'numeric',
+                            })}
+                          </span>
+                          <div className="text-primary flex items-center space-x-2">
+                            <span>{`Read featured article: ${featuredPost.title}`}</span>
                             <ArrowRight className="ml-2 h-4 w-4" />
-                          </Link>
-                        </Button>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </Card>
+                  </Card>
+                </Link>
               </div>
             </LazySection>
           )}

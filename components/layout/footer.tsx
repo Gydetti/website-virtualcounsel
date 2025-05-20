@@ -67,7 +67,7 @@ export default function Footer() {
             animation="none"
             className={cn(
               'stagger-container mb-12',
-              'grid gap-8 grid-cols-1 md:grid-cols-2',
+              'grid gap-8 grid-cols-1 md:grid-cols-2 items-start',
               showFooterServices ? 'lg:grid-cols-4' : 'lg:grid-cols-2'
             )}
             style={{ '--stagger-delay': '0.1s' } as CSSProperties}
@@ -131,7 +131,7 @@ export default function Footer() {
             </div>
 
             <div style={{ '--index': 1 } as CSSProperties}>
-              <h3 className="mb-4">Quick links</h3>
+              <h3 className="mt-0 mb-4">Quick links</h3>
               <ul className="space-y-2">
                 {filteredQuickLinks.map(link => (
                   <li key={link.href}>
@@ -151,7 +151,7 @@ export default function Footer() {
 
             {showFooterServices && (
               <div style={{ '--index': 2 } as CSSProperties}>
-                <h3 className="mb-4">Services</h3>
+                <h3 className="mt-0 mb-4">Services</h3>
                 <ul className="space-y-2">
                   <li>
                     <Link
@@ -203,7 +203,7 @@ export default function Footer() {
             )}
 
             <div style={{ '--index': showFooterServices ? 3 : 2 } as CSSProperties}>
-              <h3 className="mb-4">Contact</h3>
+              <h3 className="mt-0 mb-4">Contact</h3>
               <ul className="space-y-4 text-white">
                 <li className="flex items-start">
                   <Mail className="h-4 w-4 mr-2 mt-1" />
@@ -257,7 +257,7 @@ export default function Footer() {
 
           <LazySection
             animation="none"
-            className="stagger-container border-t border-divider/700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center"
+            className="stagger-container border-t border-divider/700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-start"
             style={{ '--stagger-delay': '0.1s' } as CSSProperties}
           >
             <p style={{ '--index': 0 } as CSSProperties} className="text-neutral-text/200 text-sm">
@@ -268,7 +268,7 @@ export default function Footer() {
                 href="https://groeienmetgydo.nl"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center text-neutral-text/100 hover:text-white text-sm"
+                className="inline-flex text-neutral-text/200 hover:text-white text-sm"
               >
                 <span>Website gemaakt met 🍌 door Groeien met Gydo</span>
                 <ExternalLink className="ml-1 h-4 w-4" />
