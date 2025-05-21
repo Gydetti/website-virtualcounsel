@@ -14,21 +14,21 @@ export const themeVariants: Record<string, SiteConfig['theme']> = {
       accent: rawConfig.theme.colors.accent2,
       accent2: rawConfig.theme.colors.accent3,
       accent3: rawConfig.theme.colors.accent,
-      neutral1: rawConfig.theme.colors.neutral2,
-      neutral2: rawConfig.theme.colors.neutral3,
-      neutral3: rawConfig.theme.colors.neutral4,
-      neutral4: rawConfig.theme.colors.neutral5,
-      neutral5: rawConfig.theme.colors.neutral6,
-      neutral6: rawConfig.theme.colors.neutral7,
-      neutral7: rawConfig.theme.colors.neutral8,
-      neutral8: rawConfig.theme.colors.neutral9,
-      neutral9: rawConfig.theme.colors.neutral10,
-      neutral10: rawConfig.theme.colors.neutral11,
-      neutral11: rawConfig.theme.colors.neutral12,
-      neutral12: rawConfig.theme.colors.neutral13,
-      neutral13: rawConfig.theme.colors.neutral14,
-      neutral14: rawConfig.theme.colors.neutral15,
-      neutral15: rawConfig.theme.colors.neutral1,
+      extra1: rawConfig.theme.colors.extra2,
+      extra2: rawConfig.theme.colors.extra3,
+      extra3: rawConfig.theme.colors.extra4,
+      extra4: rawConfig.theme.colors.extra5,
+      extra5: rawConfig.theme.colors.extra6,
+      extra6: rawConfig.theme.colors.extra7,
+      extra7: rawConfig.theme.colors.extra8,
+      extra8: rawConfig.theme.colors.extra9,
+      extra9: rawConfig.theme.colors.extra10,
+      extra10: rawConfig.theme.colors.extra11,
+      extra11: rawConfig.theme.colors.extra12,
+      extra12: rawConfig.theme.colors.extra13,
+      extra13: rawConfig.theme.colors.extra14,
+      extra14: rawConfig.theme.colors.extra15,
+      extra15: rawConfig.theme.colors.extra1,
       background: rawConfig.theme.colors.heroBackground as string,
       heroBackground: rawConfig.theme.colors.background as string,
       header: rawConfig.theme.colors.body as string,
@@ -50,7 +50,7 @@ export const themeVariants: Record<string, SiteConfig['theme']> = {
     borders: {
       radiusBase: '1rem', // larger rounded corners
       widthBase: '2px',
-      colorBase: '#4B5563', // darker neutral border
+      colorBase: '#4B5563', // darker extra border
     },
     shadows: {
       sm: '0 2px 4px rgba(0,0,0,0.1)',
@@ -70,26 +70,26 @@ export const themeVariants: Record<string, SiteConfig['theme']> = {
       accent: '#50A8F7', // Complementary accent
       accent2: '#66FF99', // Secondary complement
       accent3: '#002100', // Tertiary complement
-      neutral1: '#DFDFDF', // Inverse neutral1
-      neutral2: '#CFCFCC', // Inverse neutral2
-      neutral3: '#0E0E0E', // Inverse neutral3
-      neutral4: '#913E1B', // Inverse neutral4
-      neutral5: '#B7530F', // Inverse neutral5
-      neutral6: '#63393C', // Inverse neutral6
-      neutral7: '#35121A', // Inverse neutral7
-      neutral8: '#996A6D', // Inverse neutral8
-      neutral9: '#FDD0F4', // Inverse neutral9
-      neutral10: '#C376B7', // Inverse neutral10
-      neutral11: '#9E318F', // Inverse neutral11
-      neutral12: '#A56C02', // Inverse neutral12
-      neutral13: '#7E5200', // Inverse neutral13
-      neutral14: '#423316', // Inverse neutral14
-      neutral15: '#070707', // Inverse neutral15
+      extra1: '#DFDFDF', // Inverse extra1
+      extra2: '#CFCFCC', // Inverse extra2
+      extra3: '#0E0E0E', // Inverse extra3
+      extra4: '#913E1B', // Inverse extra4
+      extra5: '#B7530F', // Inverse extra5
+      extra6: '#63393C', // Inverse extra6
+      extra7: '#35121A', // Inverse extra7
+      extra8: '#996A6D', // Inverse extra8
+      extra9: '#FDD0F4', // Inverse extra9
+      extra10: '#C376B7', // Inverse extra10
+      extra11: '#9E318F', // Inverse extra11
+      extra12: '#A56C02', // Inverse extra12
+      extra13: '#7E5200', // Inverse extra13
+      extra14: '#423316', // Inverse extra14
+      extra15: '#070707', // Inverse extra15
       background: '#000000', // Dark mode background
       heroBackground: '#1A1A1A',
       header: '#FFFFFF', // Light mode header text
       body: '#CCCCCC', // Light grey body text
-      lightGrey: '#3D3D3D', // Dark neutral surfaces
+      lightGrey: '#3D3D3D', // Dark extra surfaces
     },
     typography: {
       headingFont: 'Playfair Display',

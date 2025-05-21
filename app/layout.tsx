@@ -112,11 +112,21 @@ function toKebabCase(str: string): string {
 function getThemeCssVars(theme: typeof siteConfig.theme, variantKey: string): string {
   // Base HSL values for primary color
   const [h, s, l] = hexToHslServer(theme.colors.primary);
-  // Compute four color variants:
+  // Compute first- and second-level color variants
   const primaryLight = hslToHexServer(h, s, Math.min(l + 20, 100));
   const primaryLight2 = hslToHexServer(h, s, Math.min(l + 30, 100));
   const primaryDark = hslToHexServer(h, s, Math.max(l - 20, 0));
   const primaryDark2 = hslToHexServer(h, s, Math.max(l - 30, 0));
+  // Compute third-level primary variants
+  const primaryLight3 = hslToHexServer(h, s, Math.min(l + 40, 100));
+  const primaryDark3 = hslToHexServer(h, s, Math.max(l - 40, 0));
+  // Compute light/dark variants for secondary and accent
+  const [hSec, sSec, lSec] = hexToHslServer(theme.colors.secondary);
+  const secondaryLight = hslToHexServer(hSec, sSec, Math.min(lSec + 20, 100));
+  const secondaryDark = hslToHexServer(hSec, sSec, Math.max(lSec - 30, 0));
+  const [hAcc, sAcc, lAcc] = hexToHslServer(theme.colors.accent);
+  const accentLight = hslToHexServer(hAcc, sAcc, Math.min(lAcc + 20, 100));
+  const accentDark = hslToHexServer(hAcc, sAcc, Math.max(lAcc - 20, 0));
 
   // Inject CSS variables for each original theme color
   const cssVars = Object.entries(theme.colors)
@@ -139,6 +149,18 @@ function getThemeCssVars(theme: typeof siteConfig.theme, variantKey: string): st
     --brand-light-2-rgb: ${hexToRgbServer(primaryLight2)};
     --brand-dark-2: ${primaryDark2};
     --brand-dark-2-rgb: ${hexToRgbServer(primaryDark2)};
+    --brand-light-3: ${primaryLight3};
+    --brand-light-3-rgb: ${hexToRgbServer(primaryLight3)};
+    --brand-dark-3: ${primaryDark3};
+    --brand-dark-3-rgb: ${hexToRgbServer(primaryDark3)};
+    --brand-secondary-light: ${secondaryLight};
+    --brand-secondary-light-rgb: ${hexToRgbServer(secondaryLight)};
+    --brand-secondary-dark: ${secondaryDark};
+    --brand-secondary-dark-rgb: ${hexToRgbServer(secondaryDark)};
+    --brand-accent-light: ${accentLight};
+    --brand-accent-light-rgb: ${hexToRgbServer(accentLight)};
+    --brand-accent-dark: ${accentDark};
+    --brand-accent-dark-rgb: ${hexToRgbServer(accentDark)};
   `.trim();
 }
 

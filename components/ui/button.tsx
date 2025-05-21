@@ -27,7 +27,9 @@ const buttonVariants = cva(
         white:
           'bg-neutral-surface text-neutral-text shadow-lg hover:bg-neutral-surface/90 transition-shadow duration-200',
         spark:
-          'bg-primary text-primary-foreground shadow-lg hover:shadow-xl hover:bg-primary hover:brightness-110 transition-shadow duration-200',
+          'bg-primary text-white shadow-lg hover:shadow-xl hover:bg-primary hover:brightness-110 transition-shadow duration-200',
+        sparkextra1:
+          'bg-extra1 text-white shadow-lg hover:shadow-xl hover:bg-extra1 hover:brightness-110 transition-shadow duration-200',
       },
       size: {
         default: 'px-4 py-2.5',
@@ -55,14 +57,18 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       ? 'transition-transform hover:scale-[1.025] duration-200'
       : '';
     const Comp = asChild ? Slot : 'button';
+    // Detect any variant containing 'spark' to apply spark effect
+    const variantStr = String(variant);
+    const isSpark = variantStr.includes('spark');
 
-    if (variant === 'spark') {
+    if (isSpark) {
       return (
         <Comp
           ref={ref}
           type={props.type || 'button'}
           className={cn(
-            buttonVariants({ variant: 'default', size }),
+            // apply styling for the specific spark variant (e.g. 'spark', 'sparkExtra1')
+            buttonVariants({ variant, size }),
             microClass,
             'spark-button',
             className

@@ -32,26 +32,26 @@ export const siteConfig: SiteConfigSchema = {
   // eslint-disable-next-line no-restricted-syntax
   theme: {
     colors: {
-      primary: '#3D5A98', // Main brand color
-      secondary: '#042A41', // Secondary brand color
+      primary: '#2563EB', // Main brand color
+      secondary: '#3D5A98', // Secondary brand color
       accent: '#F78D50', // Primary accent for CTAs & highlights
       accent2: '#FF6666', // Secondary accent
       accent3: '#D6EFFF', // Tertiary accent
-      extra1: '#2563EB', // Dark neutral
-      neutral2: '#2B2A33', // Dark neutral variant
-      neutral3: '#EFEFF0', // Light neutral
-      neutral4: '#6EC1E4', // Cool blue neutral
-      neutral5: '#48ACF0', // Bright blue
-      neutral6: '#99C6C3', // Teal light
-      neutral7: '#CAEDE5', // Mint light
-      neutral8: '#669592', // Teal gray
-      neutral9: '#022F0B', // Dark green
-      neutral10: '#3E8948', // Mid green
-      neutral11: '#61CE70', // Bright green
-      neutral12: '#5A93FD', // Blue accent
-      neutral13: '#81ADFF', // Light blue accent
-      neutral14: '#BDCCE9', // Light periwinkle
-      neutral15: '#F8F8F8', // Off-white neutral
+      extra1: '#2563EB', // Dark extra
+      extra2: '#3D5A98', // Dark extra variant
+      extra3: '#042A41', // Light extra
+      extra4: '#6EC1E4', // Cool blue extra
+      extra5: '#48ACF0', // Bright blue
+      extra6: '#99C6C3', // Teal light
+      extra7: '#CAEDE5', // Mint light
+      extra8: '#669592', // Teal gray
+      extra9: '#022F0B', // Dark green
+      extra10: '#3E8948', // Mid green
+      extra11: '#61CE70', // Bright green
+      extra12: '#5A93FD', // Blue accent
+      extra13: '#81ADFF', // Light blue accent
+      extra14: '#BDCCE9', // Light periwinkle
+      extra15: '#F8F8F8', // Off-white extra
       background: '#FFFFFF', // Page background
       header: '#1F1F1F', // Header text color
       body: '#2B2A33', // Body text color

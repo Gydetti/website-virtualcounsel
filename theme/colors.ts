@@ -15,10 +15,22 @@ export const semanticColors = {
       `rgb(var(--brand-dark-rgb) / ${opacityValue})`,
     'dark-2': ({ opacityValue = 1 }: { opacityValue?: number }) =>
       `rgb(var(--brand-dark-2-rgb) / ${opacityValue})`,
+    'light-3': ({ opacityValue = 1 }: { opacityValue?: number }) =>
+      `rgb(var(--brand-light-3-rgb) / ${opacityValue})`,
+    'dark-3': ({ opacityValue = 1 }: { opacityValue?: number }) =>
+      `rgb(var(--brand-dark-3-rgb) / ${opacityValue})`,
     secondary: ({ opacityValue = 1 }: { opacityValue?: number }) =>
       `rgb(var(--brand-secondary-rgb) / ${opacityValue})`,
+    'secondary-light': ({ opacityValue = 1 }: { opacityValue?: number }) =>
+      `rgb(var(--brand-secondary-light-rgb) / ${opacityValue})`,
+    'secondary-dark': ({ opacityValue = 1 }: { opacityValue?: number }) =>
+      `rgb(var(--brand-secondary-dark-rgb) / ${opacityValue})`,
     heroBackground: ({ opacityValue = 1 }: { opacityValue?: number }) =>
       `rgb(var(--brand-hero-background-rgb) / ${opacityValue})`,
+    'accent-light': ({ opacityValue = 1 }: { opacityValue?: number }) =>
+      `rgb(var(--brand-accent-light-rgb) / ${opacityValue})`,
+    'accent-dark': ({ opacityValue = 1 }: { opacityValue?: number }) =>
+      `rgb(var(--brand-accent-dark-rgb) / ${opacityValue})`,
   },
   neutral: {
     background: 'hsl(var(--background))', // page backgrounds, sections
