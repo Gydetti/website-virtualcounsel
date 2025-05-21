@@ -65,7 +65,7 @@ export const semanticColors = {
 export const semanticGradients = {
   // Original newsletter subscription gradient from the archived template
   'hero-gradient':
-    'linear-gradient(to bottom right, var(--brand-dark-2) 0%, hsl(var(--brand-secondary)) 50%, hsl(var(--brand-primary)) 100%)',
+    'linear-gradient(to bottom right, var(--brand-secondary-dark) 0%, hsl(var(--brand-secondary)) 50%, hsl(var(--brand-primary)) 100%)',
   'footer-gradient':
     'linear-gradient(135deg, hsl(var(--brand-dark)) 0%, hsl(var(--brand-dark)) 100%)',
   // Global body gradient from primary color into transparent

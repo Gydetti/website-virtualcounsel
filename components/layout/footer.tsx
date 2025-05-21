@@ -58,7 +58,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <footer className="bg-brand-dark-2 text-white relative overflow-hidden">
+      <footer className="bg-brand-secondary-dark text-white relative overflow-hidden">
         {/* Decorative elements */}
         <div className="absolute top-0 left-1/4 size-96 bg-primary/10 rounded-full -translate-y-1/2 blur-3xl" />
         <div className="absolute bottom-0 right-1/4 size-96 bg-secondary/10 rounded-full translate-y-1/2 blur-3xl" />
