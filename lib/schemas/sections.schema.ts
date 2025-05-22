@@ -52,6 +52,13 @@ export const servicesSectionDataSchema = z.object({
   services: z.array(serviceItemSchema),
   displayType: z.enum(['grid', 'list', 'carousel']).optional().default('grid'),
   viewAllCta: ctaSchema.optional(),
+  // Optional per-section background pattern overrides
+  patternStyle: z
+    .enum(['none', 'dots', 'grid', 'waves', 'noise', 'triangles', 'hexagons', 'crosshatch'])
+    .optional(),
+  patternOpacity: z.number().min(0).max(1).optional(),
+  patternFade: z.enum(['none', 'edges', 'top', 'bottom']).optional(),
+  patternColor: z.string().optional(),
 });
 
 export const testimonialItemSchema = z.object({

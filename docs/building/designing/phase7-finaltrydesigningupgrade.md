@@ -85,6 +85,8 @@ Here's our current implementation progress against the design enhancement bluepr
    - **CtaSection:** Hybrid semantic/custom class styling, pattern overlays, micro-interactions on buttons
    - **HomepageFaqSection:** Accordion layout, CSS-only stagger, JSON-LD injection for structured data
    - **AboutSection:** Integrated pattern overrides, refined overlays, responsive typography
+   - **ServicesSection:** Integrated pattern overrides, theme-driven spacing, decorative overlays
+   - **ResourceDetailSection** & **ResourceListSection:** Enabled pattern and spacing overrides through Section component
 
 3. **Typography & Spacing Refinement**
    - Defined CSS variables for line-height (`--text-leading-*`) and letter-spacing (`--text-tracking-*`) in `app/globals.css`
@@ -137,6 +139,7 @@ The codebase maintains full backward compatibility while introducing the new the
 - Extended `aboutSectionDataSchema` to include `patternStyle` and `patternOpacity` for type-safe pattern overrides in the AboutSection.
 - Updated `AboutSection` component to destructure and pass `patternStyle` and `patternOpacity` props to the `Section` wrapper, enabling background pattern support per section.
 - Added `patternColor` support in the `Section` component and Zod schemas, allowing any valid CSS color string (hex, rgba, named colors) for per-section pattern overrides.
+- Extended `servicesSectionDataSchema` and `ResourceDetailSectionProps` to support `patternStyle`, `patternOpacity`, `patternFade`, and `patternColor`, enabling theme-driven overrides in Services and Resource sections.
 
 ## Important Clarification: Content Preservation Focus
 
@@ -1491,6 +1494,7 @@ Use these snippets as templates when adding new visual tokens, patterns, animati
 - Extended `aboutSectionDataSchema` to include `patternStyle` and `patternOpacity` for type-safe pattern overrides in the AboutSection.
 - Updated AboutSection component to destructure and pass `patternStyle` and `patternOpacity` props to the `Section` wrapper, enabling background pattern support per section.
 - Added `patternColor` support in the `Section` component and Zod schemas, allowing any valid CSS color string (hex, rgba, named colors) for per-section pattern overrides.
+- Extended `servicesSectionDataSchema` and `ResourceDetailSectionProps` to support `patternStyle`, `patternOpacity`, `patternFade`, and `patternColor`, enabling theme-driven overrides in Services and Resource sections.
 
 ## Important Clarification: Content Preservation Focus
 

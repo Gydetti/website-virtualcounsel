@@ -10,10 +10,21 @@ import type { resourceSchema } from '@/lib/schemas/contentBlocks.schema';
 
 interface ResourceDetailSectionProps {
   resource: z.infer<typeof resourceSchema>;
+  // Optional per-section background pattern overrides
+  patternStyle?: string;
+  patternOpacity?: number;
+  patternFade?: 'none' | 'edges' | 'top' | 'bottom';
+  patternColor?: string;
   // We might need to pass form configuration if not part of resource schema directly
 }
 
-export default function ResourceDetailSection({ resource }: ResourceDetailSectionProps) {
+export default function ResourceDetailSection({
+  resource,
+  patternStyle,
+  patternOpacity,
+  patternFade,
+  patternColor,
+}: ResourceDetailSectionProps) {
   // Placeholder form configuration - this would ideally come from resource data or a central config
   const downloadFormConfig = {
     fields: [
@@ -44,6 +55,10 @@ export default function ResourceDetailSection({ resource }: ResourceDetailSectio
   return (
     <Section
       id={`resource-${resource.slug}-detail`}
+      patternStyle={patternStyle}
+      patternOpacity={patternOpacity}
+      patternFade={patternFade}
+      patternColor={patternColor}
       className="relative overflow-hidden py-12 md:py-20 z-10"
     >
       <div className="container mx-auto px-4 ">

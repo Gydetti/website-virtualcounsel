@@ -36,6 +36,10 @@ export default function ServicesSection({
   services,
   // displayType is part of schema, but not used for rendering logic here yet
   viewAllCta, // Replaces viewAllText and viewAllLink
+  patternStyle,
+  patternOpacity,
+  patternFade,
+  patternColor,
 }: ServicesSectionProps) {
   if (!services || services.length === 0) {
     // Schema implies services array is required, but good to check
@@ -46,6 +50,10 @@ export default function ServicesSection({
     <Section
       id="services-section"
       aria-labelledby="services-section-heading"
+      patternStyle={patternStyle}
+      patternOpacity={patternOpacity}
+      patternFade={patternFade}
+      patternColor={patternColor}
       className="relative overflow-hidden "
     >
       {/* Decorative elements - re-enabled and styled with theme colors */}

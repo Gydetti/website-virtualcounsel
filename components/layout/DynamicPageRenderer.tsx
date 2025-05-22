@@ -293,6 +293,8 @@ const DynamicPageRenderer: FC<DynamicPageRendererProps> = async ({
           key={section.id}
           patternStyle={section.patternStyle}
           patternOpacity={section.patternOpacity}
+          patternFade={section.patternFade}
+          patternColor={section.patternColor}
           {...section.data}
         />
       );
@@ -316,6 +318,8 @@ const DynamicPageRenderer: FC<DynamicPageRendererProps> = async ({
             variant={section.variant}
             patternStyle={section.patternStyle}
             patternOpacity={section.patternOpacity}
+            patternFade={section.patternFade}
+            patternColor={section.patternColor}
             {...section.data}
           />
         </LazySection>
@@ -329,6 +333,8 @@ const DynamicPageRenderer: FC<DynamicPageRendererProps> = async ({
           <Component
             patternStyle={section.patternStyle}
             patternOpacity={section.patternOpacity}
+            patternFade={section.patternFade}
+            patternColor={section.patternColor}
             {...section.data}
             isHomepage={true}
           />
@@ -343,6 +349,8 @@ const DynamicPageRenderer: FC<DynamicPageRendererProps> = async ({
           <Component
             patternStyle={section.patternStyle}
             patternOpacity={section.patternOpacity}
+            patternFade={section.patternFade}
+            patternColor={section.patternColor}
             {...section.data}
             isAboutPage={true}
           />
@@ -358,6 +366,8 @@ const DynamicPageRenderer: FC<DynamicPageRendererProps> = async ({
             variant={section.variant}
             patternStyle={section.patternStyle}
             patternOpacity={section.patternOpacity}
+            patternFade={section.patternFade}
+            patternColor={section.patternColor}
             isHomepage={true}
             {...section.data}
           />
@@ -371,6 +381,8 @@ const DynamicPageRenderer: FC<DynamicPageRendererProps> = async ({
           variant={section.variant}
           patternStyle={section.patternStyle}
           patternOpacity={section.patternOpacity}
+          patternFade={section.patternFade}
+          patternColor={section.patternColor}
           {...section.data}
         />
       </LazySection>
