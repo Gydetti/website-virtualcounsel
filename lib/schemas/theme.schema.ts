@@ -9,6 +9,7 @@ export const typographySchema = z.object({
   headingFont: z.string().min(1, 'Heading font cannot be empty'),
   bodyFont: z.string().min(1, 'Body font cannot be empty'),
   baseSize: z.string().default('16px'),
+  textStyle: z.enum(['balanced', 'tight', 'airy']).default('balanced'),
 });
 
 export const spacingScaleSchema = z.object({

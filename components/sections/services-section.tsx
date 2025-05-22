@@ -160,7 +160,8 @@ export default function ServicesSection({
             <div style={{ '--index': 0 } as CSSProperties}>
               <Button
                 size="lg"
-                className="group w-full sm:w-auto whitespace-normal break-words"
+                variant="default"
+                className="group w-full sm:w-auto whitespace-normal break-words bg-primary hover:bg-primary/90 text-white"
                 asChild
               >
                 <Link href={viewAllCta.href}>

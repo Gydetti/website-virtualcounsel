@@ -4,8 +4,10 @@ import type { CSSProperties } from 'react';
 import CountUp from 'react-countup';
 import type { z } from 'zod';
 
+import { Section } from '@/components/layout/Section';
 import LazySection from '@/components/ui/lazy-section';
 import type { kpiSectionDataSchema } from '@/lib/schemas/sections.schema';
+import { siteConfig } from '@/lib/siteConfig';
 
 export type KpiSectionProps = z.infer<typeof kpiSectionDataSchema> & {
   /** Skip wrapper & use default styling when embedding inside AboutSection on homepage */
@@ -14,6 +16,9 @@ export type KpiSectionProps = z.infer<typeof kpiSectionDataSchema> & {
   isHomepage?: boolean;
   /** Render with About page–specific styles */
   isAboutPage?: boolean;
+  // Per-section overrides
+  patternStyle?: string;
+  patternOpacity?: number;
 };
 
 export default function KpiSection({
@@ -21,7 +26,13 @@ export default function KpiSection({
   embedInAbout,
   isHomepage,
   isAboutPage,
-}: KpiSectionProps) {
+  // Per-section overrides
+  patternStyle,
+  patternOpacity,
+}: KpiSectionProps & {
+  patternStyle?: string;
+  patternOpacity?: number;
+}) {
   // Determine section margin based on page context
   const sectionMargin = isAboutPage ? 'mt-0' : isHomepage ? 'mt-0' : 'mt-0';
   // Always use default KPI grid layout for even spreading
@@ -67,8 +78,17 @@ export default function KpiSection({
     return content;
   }
   return (
-    <div className={`${sectionMargin} px-4 sm:px-6 md:px-8 xl:px-20 py-8 sm:py-12 md:py-16`}>
-      {content}
-    </div>
+    <Section
+      id="kpi-section"
+      aria-labelledby="kpi-section-heading"
+      className="relative overflow-hidden py-16 md:py-24 bg-primary/5"
+      patternStyle={patternStyle ?? siteConfig.theme.visualStyle?.patternStyle}
+      patternOpacity={patternOpacity ?? siteConfig.theme.visualStyle?.patternOpacity}
+    >
+      {/* Content wrapper */}
+      <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        {content}
+      </div>
+    </Section>
   );
 }

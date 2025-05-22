@@ -328,12 +328,10 @@ export default function Header() {
             <div className="hidden lg:flex lg:items-center lg:ml-8">
               <Button
                 asChild
-                className="bg-primary hover:bg-primary/90 group text-sm h-10 px-3 min-h-0 min-w-0"
+                variant="default"
+                className="bgroup text-sm h-10 px-3 min-h-0 min-w-0"
               >
-                <Link href="/contact">
-                  Main CTA button
-                  <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
-                </Link>
+                <Link href="/contact">Main CTA button</Link>
               </Button>
             </div>
           </nav>

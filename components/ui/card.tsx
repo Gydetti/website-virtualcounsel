@@ -5,7 +5,7 @@ import { forwardRef } from 'react';
 import { siteConfig } from '@/lib/siteConfig';
 import { cn } from '@/lib/utils';
 
-const cardVariants = cva('rounded-lg border bg-card text-card-foreground', {
+const cardVariants = cva('border bg-card text-card-foreground', {
   variants: {
     elevation: {
       flat: 'shadow-none',
@@ -48,9 +48,16 @@ export interface CardProps
 
 const Card = forwardRef<HTMLDivElement, CardProps>(
   ({ className, elevation, hover, border, padding, equalHeight, ...props }, ref) => {
+    // Dynamic border radius based on theme config
+    const configBorderRadius = siteConfig.theme.visualStyle?.borderRadius || 'medium';
+    const radiusMap: Record<'sharp' | 'medium' | 'soft', string> = {
+      sharp: 'rounded-none',
+      medium: 'rounded-md',
+      soft: 'rounded-xl',
+    };
+    const borderRadiusClass = radiusMap[configBorderRadius as keyof typeof radiusMap];
     // Get default card style from site config if available
     const configCardStyle = siteConfig.theme.visualStyle?.cardStyle || 'subtle';
-
     // Map config style to elevation if not explicitly set
     const mappedElevation =
       elevation ||
@@ -59,10 +66,8 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
         : configCardStyle === 'pronounced'
           ? 'pronounced'
           : 'subtle');
-
     // Apply equal height class if requested
     const heightClass = equalHeight ? 'flex flex-col h-full' : '';
-
     // Use micro-interactions if enabled
     const shouldAddHover = siteConfig.features.enableMicroInteractions && hover === 'none';
     const mappedHover = shouldAddHover ? 'lift' : hover;
@@ -71,6 +76,7 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
       <div
         ref={ref}
         className={cn(
+          borderRadiusClass,
           cardVariants({
             elevation: mappedElevation,
             hover: mappedHover,

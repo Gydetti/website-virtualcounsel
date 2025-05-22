@@ -288,7 +288,14 @@ const DynamicPageRenderer: FC<DynamicPageRendererProps> = async ({
     const sectionDelay = Math.min(rawDelay, maxDelay);
     // HeroSection: render directly without wrapping in LazySection to keep background static
     if (section.sectionType === 'HeroSection') {
-      elements.push(<Component key={section.id} {...section.data} />);
+      elements.push(
+        <Component
+          key={section.id}
+          patternStyle={section.patternStyle}
+          patternOpacity={section.patternOpacity}
+          {...section.data}
+        />
+      );
       continue;
     }
     // AboutSection on About page: render directly so background is static and internal animations handle content
@@ -305,7 +312,12 @@ const DynamicPageRenderer: FC<DynamicPageRendererProps> = async ({
           className="stagger-container"
           style={{ '--stagger-delay': `${sectionDelay}s` } as React.CSSProperties}
         >
-          <Component variant={section.variant} {...section.data} />
+          <Component
+            variant={section.variant}
+            patternStyle={section.patternStyle}
+            patternOpacity={section.patternOpacity}
+            {...section.data}
+          />
         </LazySection>
       );
       continue;
@@ -314,7 +326,12 @@ const DynamicPageRenderer: FC<DynamicPageRendererProps> = async ({
     if (section.sectionType === 'KpiSection' && pagePath === '/') {
       elements.push(
         <LazySection key={section.id} animation="none">
-          <Component {...section.data} isHomepage={true} />
+          <Component
+            patternStyle={section.patternStyle}
+            patternOpacity={section.patternOpacity}
+            {...section.data}
+            isHomepage={true}
+          />
         </LazySection>
       );
       continue;
@@ -323,7 +340,12 @@ const DynamicPageRenderer: FC<DynamicPageRendererProps> = async ({
     if (section.sectionType === 'KpiSection' && pagePath === '/about') {
       elements.push(
         <LazySection key={section.id} animation="fade-up" delay={sectionDelay}>
-          <Component {...section.data} isAboutPage={true} />
+          <Component
+            patternStyle={section.patternStyle}
+            patternOpacity={section.patternOpacity}
+            {...section.data}
+            isAboutPage={true}
+          />
         </LazySection>
       );
       continue;
@@ -332,14 +354,25 @@ const DynamicPageRenderer: FC<DynamicPageRendererProps> = async ({
     if (pagePath === '/' && section.sectionType === 'AboutSection') {
       elements.push(
         <LazySection key={section.id} animation="fade-up" delay={sectionDelay}>
-          <Component variant={section.variant} isHomepage={true} {...section.data} />
+          <Component
+            variant={section.variant}
+            patternStyle={section.patternStyle}
+            patternOpacity={section.patternOpacity}
+            isHomepage={true}
+            {...section.data}
+          />
         </LazySection>
       );
       continue;
     }
     elements.push(
       <LazySection key={section.id} animation="fade-up" delay={sectionDelay}>
-        <Component variant={section.variant} {...section.data} />
+        <Component
+          variant={section.variant}
+          patternStyle={section.patternStyle}
+          patternOpacity={section.patternOpacity}
+          {...section.data}
+        />
       </LazySection>
     );
   }

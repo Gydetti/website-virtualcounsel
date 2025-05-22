@@ -30,6 +30,8 @@ const extraColors: Record<string, (opts: { opacityValue?: number }) => string> =
   ring: ({ opacityValue = 1 }) => `rgb(var(--ring-rgb) / ${opacityValue})`,
   popover: ({ opacityValue = 1 }) => `hsl(var(--popover) / ${opacityValue})`,
   card: ({ opacityValue = 1 }) => `hsl(var(--card) / ${opacityValue})`,
+  // Text color for card backgrounds
+  'card-foreground': ({ opacityValue = 1 }) => `hsl(var(--card-foreground) / ${opacityValue})`,
   muted: ({ opacityValue = 1 }) => `hsl(var(--muted) / ${opacityValue})`,
   destructive: ({ opacityValue = 1 }) => `hsl(var(--destructive) / ${opacityValue})`,
 };

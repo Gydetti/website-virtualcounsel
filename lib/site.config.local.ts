@@ -69,6 +69,7 @@ export const siteConfig: SiteConfigSchema = {
       headingFont: 'Poppins',
       bodyFont: 'Raleway',
       baseSize: '16px',
+      textStyle: 'balanced',
     },
     spacing: {
       xs: '0.25rem',
@@ -93,7 +94,7 @@ export const siteConfig: SiteConfigSchema = {
       pronounced: '0 8px 16px rgba(0, 0, 0, 0.1)',
     },
     layout: {
-      containerMaxWidth: '1280px',
+      containerMaxWidth: '1600px',
       containerPadding: '1rem',
     },
     // New animation configuration
@@ -107,8 +108,8 @@ export const siteConfig: SiteConfigSchema = {
       cardStyle: 'subtle', // flat, subtle, pronounced
       borderRadius: 'medium', // sharp, medium, soft
       contentDensity: 'balanced', // compact, balanced, airy
-      patternStyle: 'none', // none, dots, grid, waves, noise, etc.
-      patternOpacity: 0.05, // 0-1
+      patternStyle: 'grid', // none, dots, grid, waves, noise, etc.
+      patternOpacity: 0.1, // 0-1
     },
     // Section treatment configuration
     sectionStyles: {
@@ -129,7 +130,7 @@ export const siteConfig: SiteConfigSchema = {
        */
       ctaStyle: 'bg-brand-secondary-dark', // or 'bg-brand-secondary-dark text-white'
       dividerStyle: 'fade', // none, line, gradient, fade
-      heroStyle: 'gradient', // flat, gradient, pattern, image
+      heroStyle: 'pattern', // flat, gradient, pattern, image
       testimonialStyle: 'cards', // minimal, cards, featured
     },
   },
@@ -322,27 +323,74 @@ export const siteConfig: SiteConfigSchema = {
     blog: { limit: 3 }, // <--- Number of posts to show in blog previews
   },
   // PAGE STRUCTURES: Defines the layout (sections and their order) for each page.
+  // Optional per-section pattern overrides (fallback to global defaults if omitted):
+  //   patternStyle: 'none' | 'dots' | 'grid' | 'waves' | 'noise' | 'triangles' | 'hexagons' | 'crosshatch'
+  //   patternOpacity: number (0-1)
   pageStructures: [
     {
-      path: '/', // <--- HOMEPAGE STRUCTURE
-      seo: undefined, // <--- SEO overrides for homepage (title, description, etc.)
+      path: '/',
+      seo: undefined, // <--- SEO overrides for homepage
       sections: [
-        // <--- Sections on the homepage, IN ORDER OF APPEARANCE
-        { id: 'home-hero', sectionType: 'HeroSection' }, // <--- ID is unique key for React, sectionType maps to component
-        { id: 'home-value-prop', sectionType: 'ValuePropSection' },
-        { id: 'home-clients', sectionType: 'ClientsSection' },
-        { id: 'home-problem-pain', sectionType: 'ProblemPainSection' },
-        { id: 'home-solution-vision', sectionType: 'SolutionVisionSection' },
-        { id: 'home-features', sectionType: 'FeaturesSection' },
-        { id: 'home-testimonials', sectionType: 'TestimonialsSection' },
-        { id: 'home-cta', sectionType: 'CtaSection' },
-        { id: 'home-about', sectionType: 'AboutSection' },
-        { id: 'home-kpi', sectionType: 'KpiSection' },
-        { id: 'home-services', sectionType: 'ServicesSection' }, // <--- Or use ServicesPreviewSection for a summary
-        { id: 'home-process', sectionType: 'ProcessSectionHome' },
-        { id: 'home-blog', sectionType: 'BlogSection' }, // <--- Or use BlogPreviewSection for a summary
-        { id: 'home-faq', sectionType: 'HomepageFaqSection' }, // <--- FAQ specifically for homepage
-        { id: 'home-contact', sectionType: 'ContactSection' },
+        {
+          id: 'home-hero',
+          sectionType: 'HeroSection' /* patternStyle: 'grid', patternOpacity: 0.1 */,
+        }, // example override commented out
+        {
+          id: 'home-value-prop',
+          sectionType: 'ValuePropSection' /* patternStyle: 'grid', patternOpacity: 0.1 */,
+        },
+        {
+          id: 'home-clients',
+          sectionType: 'ClientsSection' /* patternStyle: 'grid', patternOpacity: 0.1 */,
+        },
+        {
+          id: 'home-problem-pain',
+          sectionType: 'ProblemPainSection' /* patternStyle: 'grid', patternOpacity: 0.1 */,
+        },
+        {
+          id: 'home-solution-vision',
+          sectionType: 'SolutionVisionSection' /* patternStyle: 'grid', patternOpacity: 0.1 */,
+        },
+        {
+          id: 'home-features',
+          sectionType: 'FeaturesSection' /* patternStyle: 'grid', patternOpacity: 0.1 */,
+        },
+        {
+          id: 'home-testimonials',
+          sectionType: 'TestimonialsSection' /* patternStyle: 'grid', patternOpacity: 0.1 */,
+        },
+        {
+          id: 'home-cta',
+          sectionType: 'CtaSection' /* patternStyle: 'grid', patternOpacity: 0.1 */,
+        },
+        {
+          id: 'home-about',
+          sectionType: 'AboutSection' /* patternStyle: 'grid', patternOpacity: 0.1 */,
+        },
+        {
+          id: 'home-kpi',
+          sectionType: 'KpiSection' /* patternStyle: 'grid', patternOpacity: 0.1 */,
+        },
+        {
+          id: 'home-services',
+          sectionType: 'ServicesSection' /* patternStyle: 'grid', patternOpacity: 0.1 */,
+        },
+        {
+          id: 'home-process',
+          sectionType: 'ProcessSectionHome' /* patternStyle: 'grid', patternOpacity: 0.1 */,
+        },
+        {
+          id: 'home-blog',
+          sectionType: 'BlogSection' /* patternStyle: 'grid', patternOpacity: 0.1 */,
+        },
+        {
+          id: 'home-faq',
+          sectionType: 'HomepageFaqSection' /* patternStyle: 'grid', patternOpacity: 0.1 */,
+        },
+        {
+          id: 'home-contact',
+          sectionType: 'ContactSection' /* patternStyle: 'grid', patternOpacity: 0.1 */,
+        },
       ],
     },
     {

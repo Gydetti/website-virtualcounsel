@@ -44,10 +44,7 @@ export default function TestimonialsPage() {
           style={{ '--stagger-delay': '0.1s' } as CSSProperties}
         >
           {badgeText && (
-            <Badge
-              className="mb-4 bg-brand-light text-primary hover:bg-brand-light/90"
-              style={{ '--index': 0 } as CSSProperties}
-            >
+            <Badge className="mb-4" style={{ '--index': 0 } as CSSProperties}>
               {badgeText}
             </Badge>
           )}

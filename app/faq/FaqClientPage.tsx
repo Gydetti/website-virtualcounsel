@@ -60,10 +60,7 @@ export default function FaqClientPage() {
           className="stagger-container text-center max-w-3xl mx-auto"
           style={{ '--stagger-delay': '0.1s' } as CSSProperties}
         >
-          <Badge
-            className="mb-4 bg-brand-light text-primary hover:bg-brand-light/90"
-            style={{ '--index': 0 } as CSSProperties}
-          >
+          <Badge className="mb-4" style={{ '--index': 0 } as CSSProperties}>
             {staticContent.faqSection.badge}
           </Badge>
           <h1 style={{ '--index': 1 } as CSSProperties}>{staticContent.faqSection.title}</h1>

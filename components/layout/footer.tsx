@@ -244,10 +244,7 @@ export default function Footer() {
                   </address>
                 </li>
               </ul>
-              <Button
-                asChild
-                className="mt-4 bg-neutral-surface text-brand-dark hover:bg-neutral-background/200 group"
-              >
+              <Button asChild className="mt-4 group" variant="white">
                 <Link href="/contact">
                   Contact us
                   <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />

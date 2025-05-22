@@ -4,7 +4,6 @@ import type { CSSProperties } from 'react';
 import type { z } from 'zod';
 
 import { Section } from '@/components/layout/Section';
-import { BackgroundPattern } from '@/components/ui/background-pattern';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import LazySection from '@/components/ui/lazy-section';
@@ -12,7 +11,10 @@ import type { ctaSectionDataSchema } from '@/lib/schemas/sections.schema';
 import { siteConfig } from '@/lib/siteConfig';
 
 // Updated props type alias using Zod schema
-export type CtaSectionProps = z.infer<typeof ctaSectionDataSchema>;
+export type CtaSectionProps = z.infer<typeof ctaSectionDataSchema> & {
+  patternStyle?: string;
+  patternOpacity?: number;
+};
 
 export default function CtaSection({
   badgeText,
@@ -20,6 +22,8 @@ export default function CtaSection({
   description,
   primaryCta,
   secondaryCta,
+  patternStyle,
+  patternOpacity,
 }: CtaSectionProps) {
   // Get CTA style from siteConfig
   const ctaStyle = siteConfig.theme.sectionStyles?.ctaStyle || 'standard';
@@ -32,51 +36,31 @@ export default function CtaSection({
   };
   const bgColorClass = semanticBgMap[ctaStyle] || ctaStyle;
 
-  // Configure pattern based on theme settings
-  const showPattern = siteConfig.theme.visualStyle?.patternStyle !== 'none';
-  const patternOpacity = ctaStyle === 'bold' ? 'medium' : 'subtle';
-
-  // Use animation settings from config
-  const animationIntensity = siteConfig.theme.animation?.intensity || 'subtle';
+  // Determine numeric opacity override or use config
+  const usedOpacity = patternOpacity ?? siteConfig.theme.visualStyle?.patternOpacity;
 
   return (
     <Section
       id="cta-section"
       aria-labelledby="cta-section-heading"
       fullBleed
+      patternStyle={patternStyle ?? siteConfig.theme.visualStyle?.patternStyle}
+      patternOpacity={usedOpacity}
       className={`relative overflow-hidden py-10 md:py-16 ${bgColorClass}`}
     >
-      {/* Enhanced background styling */}
-      {showPattern && (
-        <BackgroundPattern
-          pattern={
-            siteConfig.theme.visualStyle?.patternStyle as
-              | 'dots'
-              | 'grid'
-              | 'waves'
-              | 'noise'
-              | 'triangles'
-              | 'hexagons'
-              | 'crosshatch'
-              | undefined
-          }
-          opacity={patternOpacity}
-          color="white"
-          animated={siteConfig.features.enableMicroInteractions}
-          className="absolute inset-0 z-0 "
-          patternSize={40}
-        />
-      )}
-
       {/* Decorative elements matching the theme */}
       <div className="hidden sm:block absolute top-0 right-0 size-96 bg-primary/10 rounded-full blur-3xl" />
       <div className="hidden sm:block absolute bottom-0 left-0 size-96 bg-primary/10 rounded-full blur-3xl" />
 
       {/* Content with enhanced animations */}
-      <div className="relative z-10 text-center pattern-overlay">
+      <div className="relative z-10 text-center">
         {/* Badge */}
         {badgeText && (
-          <LazySection animation="fade-up" delay={0.1} intensity={animationIntensity}>
+          <LazySection
+            animation="fade-up"
+            delay={0.1}
+            intensity={siteConfig.theme.animation?.intensity || 'subtle'}
+          >
             <Badge variant="light" className="mb-4">
               {badgeText}
             </Badge>
@@ -85,7 +69,11 @@ export default function CtaSection({
 
         {/* Heading */}
         {heading && (
-          <LazySection animation="fade-up" delay={0.2} intensity={animationIntensity}>
+          <LazySection
+            animation="fade-up"
+            delay={0.2}
+            intensity={siteConfig.theme.animation?.intensity || 'subtle'}
+          >
             <h2 id="cta-section-heading" className="text-white">
               {heading}
             </h2>
@@ -94,14 +82,22 @@ export default function CtaSection({
 
         {/* Description */}
         {description && (
-          <LazySection animation="fade-up" delay={0.3} intensity={animationIntensity}>
+          <LazySection
+            animation="fade-up"
+            delay={0.3}
+            intensity={siteConfig.theme.animation?.intensity || 'subtle'}
+          >
             <p className="text-white/90 max-w-xl mx-auto mb-8">{description}</p>
           </LazySection>
         )}
 
         {/* CTA buttons */}
         {(primaryCta?.text || secondaryCta?.text) && (
-          <LazySection animation="fade-up" delay={0.4} intensity={animationIntensity}>
+          <LazySection
+            animation="fade-up"
+            delay={0.4}
+            intensity={siteConfig.theme.animation?.intensity || 'subtle'}
+          >
             <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4 sm:gap-8 md:gap-12">
               {primaryCta?.href && primaryCta?.text && (
                 <Button

@@ -138,9 +138,30 @@ function getThemeCssVars(theme: typeof siteConfig.theme, variantKey: string): st
     })
     .join('\n');
 
-  // Append computed variants
+  // Append theme-specific overrides for layout, typography, borders, spacing, shadows, and computed variants
   return `
     ${cssVars}
+    /* Layout Overrides */
+    --container-padding: ${theme.layout.containerPadding};
+    --container-max-width: ${siteConfig.theme.layout.containerMaxWidth};
+    /* Typography Overrides */
+    --font-base-size: ${theme.typography.baseSize};
+    /* Border Overrides */
+    --radius: ${theme.borders.radiusBase};
+    --border-width-base: ${theme.borders.widthBase};
+    --border-color-base: ${theme.borders.colorBase};
+    /* Spacing Overrides */
+    --space-xs: ${theme.spacing.xs};
+    --space-sm: ${theme.spacing.sm};
+    --space-md: ${theme.spacing.md};
+    --space-lg: ${theme.spacing.lg};
+    --space-xl: ${theme.spacing.xl};
+    /* Shadow Overrides */
+    --shadow-flat: ${theme.shadows.flat};
+    --shadow-subtle: ${theme.shadows.subtle};
+    --shadow-medium: ${theme.shadows.medium};
+    --shadow-pronounced: ${theme.shadows.pronounced};
+    /* Computed Color Variants */
     --brand-light: ${primaryLight};
     --brand-light-rgb: ${hexToRgbServer(primaryLight)};
     --brand-dark: ${primaryDark};
@@ -165,22 +186,17 @@ function getThemeCssVars(theme: typeof siteConfig.theme, variantKey: string): st
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  // Merge variant overrides into the base theme to preserve full schema
-  const baseTheme = siteConfig.theme;
+  // Merge full variant into the base theme (colors, typography, spacing, borders, shadows, layout, animation, visualStyle, sectionStyles)
   const mergedTheme = {
-    ...baseTheme,
+    ...siteConfig.theme,
+    ...variant,
     colors: {
-      ...baseTheme.colors,
-      primary: variant.colors.primary,
-      secondary: variant.colors.secondary,
-      accent: variant.colors.accent,
-      ...(variant.colors.background && { background: variant.colors.background }),
-      ...(variant.colors.heroBackground && { heroBackground: variant.colors.heroBackground }),
+      ...siteConfig.theme.colors,
+      ...variant.colors,
     },
     typography: {
-      ...baseTheme.typography,
-      headingFont: variant.typography.headingFont,
-      bodyFont: variant.typography.bodyFont,
+      ...siteConfig.theme.typography,
+      ...variant.typography,
     },
   };
   // Compute secondary light/dark variants for primary color

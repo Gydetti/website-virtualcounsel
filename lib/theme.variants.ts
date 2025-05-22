@@ -39,6 +39,7 @@ export const themeVariants: Record<string, SiteConfig['theme']> = {
       headingFont: 'Montserrat',
       bodyFont: 'Roboto',
       baseSize: '18px', // slightly larger base font
+      textStyle: rawConfig.theme.typography.textStyle,
     },
     spacing: {
       xs: '0.5rem',
@@ -60,6 +61,24 @@ export const themeVariants: Record<string, SiteConfig['theme']> = {
     layout: {
       containerMaxWidth: '1024px',
       containerPadding: '1.5rem',
+    },
+    animation: {
+      speed: 'slow',
+      style: 'smooth',
+      intensity: 'moderate',
+    },
+    visualStyle: {
+      cardStyle: 'subtle',
+      borderRadius: 'soft',
+      contentDensity: 'airy',
+      patternStyle: 'noise',
+      patternOpacity: 0.1,
+    },
+    sectionStyles: {
+      ctaStyle: 'accent',
+      dividerStyle: 'fade',
+      heroStyle: 'pattern',
+      testimonialStyle: 'cards',
     },
   },
   v3: {
@@ -95,6 +114,7 @@ export const themeVariants: Record<string, SiteConfig['theme']> = {
       headingFont: 'Playfair Display',
       bodyFont: 'Open Sans',
       baseSize: '17px',
+      textStyle: rawConfig.theme.typography.textStyle,
     },
     spacing: {
       xs: '0.25rem',
@@ -116,6 +136,24 @@ export const themeVariants: Record<string, SiteConfig['theme']> = {
     layout: {
       containerMaxWidth: '1200px',
       containerPadding: '1.25rem',
+    },
+    animation: {
+      speed: 'fast',
+      style: 'energetic',
+      intensity: 'pronounced',
+    },
+    visualStyle: {
+      cardStyle: 'pronounced',
+      borderRadius: 'sharp',
+      contentDensity: 'compact',
+      patternStyle: 'hexagons',
+      patternOpacity: 0.05,
+    },
+    sectionStyles: {
+      ctaStyle: 'bold',
+      dividerStyle: 'line',
+      heroStyle: 'image',
+      testimonialStyle: 'featured',
     },
   },
   // TODO: add 'final' variant combining v1 and v2 choices

@@ -19,10 +19,10 @@ const buttonVariants = cva(
         destructive:
           'bg-destructive text-destructive-foreground shadow-md hover:shadow-lg active:shadow-sm active:translate-y-0.5 transition-all duration-200 hover:bg-destructive-90',
         outline:
-          'border border-input bg-neutral-background shadow-md hover:shadow-lg active:shadow-sm active:translate-y-0.5 transition-all duration-200 hover:bg-accent/10 hover:text-accent-foreground',
+          'border border-input bg-neutral-background shadow-md hover:shadow-lg active:shadow-sm active:translate-y-0.5 transition-all duration-200 hover:bg-neutral-background hover:text-accent-foreground',
         secondary:
           'bg-[var(--secondary)] text-secondary-foreground shadow-md hover:shadow-lg active:shadow-sm active:translate-y-0.5 transition-all duration-200 hover:bg-secondary/90',
-        ghost: 'hover:bg-accent/10 hover:text-accent-foreground active:bg-accent/20',
+        ghost: '!shadow-none hover:text-accent-foreground active:bg-accent/20',
         link: 'text-primary underline-offset-4 hover:underline',
         white:
           'bg-neutral-surface text-neutral-text shadow-md hover:shadow-lg active:shadow-sm active:translate-y-0.5 transition-all duration-200 hover:bg-neutral-surface/90',
@@ -30,6 +30,7 @@ const buttonVariants = cva(
           'bg-primary text-white shadow-md hover:shadow-lg active:shadow-sm active:translate-y-0.5 transition-all duration-200 hover:bg-primary hover:brightness-110',
         sparkextra1:
           'bg-extra1 text-white shadow-md hover:shadow-lg active:shadow-sm active:translate-y-0.5 transition-all duration-200 hover:bg-extra1 hover:brightness-110',
+        clean: '',
       },
       size: {
         default: 'px-4 py-2.5',
@@ -70,6 +71,22 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     { className, variant, size, elevation, animation, asChild = false, children, ...props },
     ref
   ) => {
+    // Dynamic border radius from theme config
+    const configBorderRadius = siteConfig.theme.visualStyle?.borderRadius || 'medium';
+    const radiusMap: Record<'sharp' | 'medium' | 'soft', string> = {
+      sharp: 'rounded-none',
+      medium: 'rounded-md',
+      soft: 'rounded-xl',
+    };
+    const borderRadiusClass = radiusMap[configBorderRadius as keyof typeof radiusMap];
+    // Dynamic text style based on theme typography
+    const configTextStyle = siteConfig.theme.typography.textStyle || 'balanced';
+    const textStyleMap: Record<'balanced' | 'tight' | 'airy', string> = {
+      balanced: 'text-style-balanced',
+      tight: 'text-style-tight',
+      airy: 'text-style-airy',
+    };
+    const textStyleClass = textStyleMap[configTextStyle as keyof typeof textStyleMap];
     // Get animation settings from site config
     const configIntensity = siteConfig.theme.animation?.intensity || 'subtle';
     const configSpeed = siteConfig.theme.animation?.speed || 'balanced';
@@ -88,6 +105,24 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       : '';
 
     const Comp = asChild ? Slot : 'button';
+    // Handle fully custom 'clean' variant: apply only flex centering and given className
+    const isClean = variant === 'clean';
+    if (isClean) {
+      return (
+        <Comp
+          className={cn(
+            'inline-flex items-center justify-center',
+            microClass,
+            textStyleClass,
+            className
+          )}
+          ref={ref}
+          {...props}
+        >
+          {children}
+        </Comp>
+      );
+    }
     // Detect any variant containing 'spark' to apply spark effect
     const variantStr = String(variant);
     const isSpark = variantStr.includes('spark');
@@ -98,11 +133,14 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           ref={ref}
           type={props.type || 'button'}
           className={cn(
-            // apply styling for the specific spark variant (e.g. 'spark', 'sparkExtra1')
-            buttonVariants({ variant, size, elevation, animation }),
+            // dynamic border radius and text style
+            borderRadiusClass,
             microClass,
+            textStyleClass,
             'spark-button',
-            className
+            className,
+            // variant classes last to ensure proper override
+            buttonVariants({ variant, size, elevation, animation })
           )}
           {...props}
         >
@@ -118,9 +156,13 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <Comp
         className={cn(
-          buttonVariants({ variant, size, elevation, animation }),
+          // dynamic border radius and text style
+          borderRadiusClass,
           microClass,
-          className
+          textStyleClass,
+          className,
+          // variant classes last to ensure proper override
+          buttonVariants({ variant, size, elevation, animation })
         )}
         ref={ref}
         {...props}

@@ -23,6 +23,11 @@ export const heroSectionDataSchema = z.object({
   showOverlayStat: z.boolean().optional().default(false),
   overlayTitle: z.string().optional(),
   overlayValue: z.string().optional(),
+  // Optional per-section background pattern overrides
+  patternStyle: z
+    .enum(['none', 'dots', 'grid', 'waves', 'noise', 'triangles', 'hexagons', 'crosshatch'])
+    .optional(),
+  patternOpacity: z.number().min(0).max(1).optional(),
 });
 
 export const serviceItemSchema = z.object({
@@ -89,6 +94,11 @@ export const ctaSectionDataSchema = z.object({
   description: z.string().optional(),
   primaryCta: ctaSchema.optional(),
   secondaryCta: ctaSchema.optional(),
+  // Optional per-section background pattern overrides
+  patternStyle: z
+    .enum(['none', 'dots', 'grid', 'waves', 'noise', 'triangles', 'hexagons', 'crosshatch'])
+    .optional(),
+  patternOpacity: z.number().min(0).max(1).optional(),
 });
 
 const aboutStatItemSchema = z.object({
@@ -177,6 +187,11 @@ export const featuresSectionDataSchema = z.object({
     .optional(),
   // The CTA is commented out in the component, but we can include it in the schema
   cta: ctaSchema.optional(),
+  // Optional per-section background pattern overrides
+  patternStyle: z
+    .enum(['none', 'dots', 'grid', 'waves', 'noise', 'triangles', 'hexagons', 'crosshatch'])
+    .optional(),
+  patternOpacity: z.number().min(0).max(1).optional(),
 });
 
 export const valuePropBenefitSchema = z.object({
@@ -298,6 +313,11 @@ export const kpiStatItemSchema = z.object({
 });
 export const kpiSectionDataSchema = z.object({
   stats: z.array(kpiStatItemSchema).min(1, 'Must provide at least one KPI stat'),
+  // Optional per-section background pattern overrides
+  patternStyle: z
+    .enum(['none', 'dots', 'grid', 'waves', 'noise', 'triangles', 'hexagons', 'crosshatch'])
+    .optional(),
+  patternOpacity: z.number().min(0).max(1).optional(),
 });
 
 // End of section-specific schemas for now.

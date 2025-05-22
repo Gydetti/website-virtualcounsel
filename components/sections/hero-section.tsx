@@ -10,7 +10,6 @@ import type { z } from 'zod';
 
 import { Section } from '@/components/layout/Section';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
-import { BackgroundPattern } from '@/components/ui/background-pattern';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import LazySection from '@/components/ui/lazy-section';
@@ -28,6 +27,9 @@ const HeroTyping = dynamic(() => import('@/components/sections/hero-typing'), {
 
 export type HeroSectionProps = z.infer<typeof heroSectionDataSchema> & {
   variant?: 'imageLeft' | 'imageRight' | 'centered';
+  // Optional per-section background pattern overrides
+  patternStyle?: string;
+  patternOpacity?: number;
 };
 
 export default function HeroSection({
@@ -45,6 +47,8 @@ export default function HeroSection({
   showOverlayStat = false,
   overlayTitle,
   overlayValue,
+  patternStyle,
+  patternOpacity,
 }: HeroSectionProps) {
   // Hero image source state with fallback
   const [currentImageSrc, setCurrentImageSrc] = useState(image?.src);
@@ -63,35 +67,20 @@ export default function HeroSection({
   // Get hero style from siteConfig
   const heroStyle = siteConfig.theme.sectionStyles?.heroStyle || 'gradient';
 
+  // Determine raw pattern and opacity override
+  const rawPatternStyle = patternStyle ?? siteConfig.theme.visualStyle?.patternStyle;
+  const usedOpacity = patternOpacity ?? siteConfig.theme.visualStyle?.patternOpacity;
+
   return (
     <Section
       id="hero-section"
       aria-labelledby="hero-section-heading"
       bgClass={siteConfig.sectionStyles?.heroGradient ?? ''}
-      className="hero-pattern relative md:min-h-[880px] flex"
+      patternStyle={rawPatternStyle}
+      patternOpacity={usedOpacity}
+      className="relative md:min-h-[880px] flex"
     >
-      {/* Enhanced background with BackgroundPattern component */}
-      {heroStyle === 'pattern' ? (
-        <BackgroundPattern
-          pattern={
-            siteConfig.theme.visualStyle?.patternStyle as
-              | 'dots'
-              | 'grid'
-              | 'waves'
-              | 'noise'
-              | 'triangles'
-              | 'hexagons'
-              | 'crosshatch'
-              | undefined
-          }
-          color="primary"
-          animated={siteConfig.features.enableMicroInteractions}
-          className="absolute inset-0 z-0"
-          patternSize={40}
-        />
-      ) : (
-        <div className="absolute inset-0 bg-grid-pattern opacity-10" />
-      )}
+      {/* BackgroundPattern now handled by Section */}
 
       {/* Floating elements for visual interest */}
       {/* <div className="hidden sm:block absolute top-20 right-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />

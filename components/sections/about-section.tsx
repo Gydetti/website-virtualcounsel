@@ -184,7 +184,7 @@ export default function AboutSection({
               )}
               {siteConfig.features.enableAboutHeroCta && cta?.href && cta?.text && (
                 <LazySection animation="fade-up" delay={0.6}>
-                  <Button size="lg" className="bg-primary hover:bg-primary90 group" asChild>
+                  <Button size="lg" variant="default" className="group" asChild>
                     <Link href={cta.href}>
                       {cta.text}
                       <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
@@ -232,7 +232,7 @@ export default function AboutSection({
           )}
           {cta?.href && cta?.text && (
             <LazySection animation="fade-up" delay={0.5}>
-              <Button size="lg" className="bg-primary hover:bg-primary90 group" asChild>
+              <Button size="lg" variant="default" className="group" asChild>
                 <Link href={cta.href}>
                   {cta.text}
                   <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />

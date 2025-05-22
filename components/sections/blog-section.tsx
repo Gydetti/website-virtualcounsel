@@ -104,7 +104,9 @@ export default function BlogSection({
                 <CardFooter className="pt-0">
                   <Button
                     variant="link"
-                    className="group w-full whitespace-normal break-words shadow-none hover:shadow-none hover:scale-100"
+                    elevation="flat"
+                    animation="none"
+                    className="group w-full whitespace-normal break-words !border-none"
                     asChild
                   >
                     <Link href={`/blog/${post.slug}`} className="transition-none">
