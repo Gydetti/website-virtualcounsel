@@ -3,9 +3,9 @@ import { defineConfig } from '@playwright/test';
 export default defineConfig({
   testDir: 'tests/e2e',
   webServer: {
-    command: 'rm -rf .next && npm run dev -- --port 3010',
+    command: 'npm run build && next start -p 3010',
     port: 3010,
-    reuseExistingServer: true,
+    reuseExistingServer: false,
   },
   use: {
     baseURL: 'http://localhost:3010',
