@@ -34,6 +34,34 @@
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.15);
+    /* Enhanced Shadow System */
+    --shadow-flat: none;
+    --shadow-subtle: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --shadow-medium: 0 4px 8px rgba(0, 0, 0, 0.08);
+    --shadow-pronounced: 0 8px 16px rgba(0, 0, 0, 0.1);
+
+    /* Animation Timing */
+    --animation-speed-fast: 150ms;
+    --animation-speed-base: 300ms;
+    --animation-speed-slow: 500ms;
+
+    /* Easing Functions */
+    --ease-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --ease-smooth: cubic-bezier(0.645, 0.045, 0.355, 1);
+    --ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);
+    --ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+    /* Interactive States */
+    --hover-lift: translateY(-2px);
+    --active-press: translateY(1px);
+
+    /* Pattern Opacity */
+    --pattern-opacity: 0.05;
+
+    /* Section Spacing */
+    --section-spacing-compact: 3rem;
+    --section-spacing-balanced: 5rem;
+    --section-spacing-airy: 8rem;
 
     /* Layout */
     --container-max-width: 1280px;
@@ -181,6 +209,24 @@
   .responsive-gap {
     /* mobile: gap-4, sm:gap-8, md:gap-12 */
     @apply gap-4 sm:gap-8 md:gap-12;
+  }
+
+  /* Card elevation system */
+  .card-elevation-0 {
+    box-shadow: var(--shadow-flat);
+    border: 1px solid var(--border-color-base);
+  }
+
+  .card-elevation-1 {
+    box-shadow: var(--shadow-subtle);
+  }
+
+  .card-elevation-2 {
+    box-shadow: var(--shadow-medium);
+  }
+
+  .card-elevation-3 {
+    box-shadow: var(--shadow-pronounced);
   }
 }
 
@@ -411,4 +457,20 @@ input[type='submit'],
 [role='button'] {
   min-height: 48px;
   min-width: 48px;
+}
+
+/* Enhanced Button Styles */
+.btn-primary {
+  transition:
+    transform var(--animation-speed-base) var(--ease-out),
+    box-shadow var(--animation-speed-base) var(--ease-out),
+    background-color var(--animation-speed-base) linear;
+}
+.btn-primary:hover {
+  transform: var(--hover-lift);
+  box-shadow: var(--shadow-medium);
+}
+.btn-primary:active {
+  transform: var(--active-press);
+  box-shadow: var(--shadow-subtle);
 }

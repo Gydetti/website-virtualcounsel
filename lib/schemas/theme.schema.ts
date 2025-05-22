@@ -29,12 +29,46 @@ export const shadowSchema = z.object({
   sm: z.string().min(1, 'Shadow sm cannot be empty'),
   md: z.string().min(1, 'Shadow md cannot be empty'),
   lg: z.string().min(1, 'Shadow lg cannot be empty'),
+  // Enhanced shadow system
+  flat: z.string().optional(),
+  subtle: z.string().optional(),
+  medium: z.string().optional(),
+  pronounced: z.string().optional(),
 });
 
 export const layoutSchema = z.object({
   containerMaxWidth: z.string().min(1, 'Container max width cannot be empty'),
   containerPadding: z.string().min(1, 'Container padding cannot be empty'),
 });
+
+export const animationSchema = z
+  .object({
+    speed: z.enum(['fast', 'balanced', 'slow']).default('balanced'),
+    style: z.enum(['smooth', 'bounce', 'energetic']).default('smooth'),
+    intensity: z.enum(['subtle', 'moderate', 'pronounced']).default('subtle'),
+  })
+  .optional();
+
+export const visualStyleSchema = z
+  .object({
+    cardStyle: z.enum(['flat', 'subtle', 'pronounced']).default('subtle'),
+    borderRadius: z.enum(['sharp', 'medium', 'soft']).default('medium'),
+    contentDensity: z.enum(['compact', 'balanced', 'airy']).default('balanced'),
+    patternStyle: z
+      .enum(['none', 'dots', 'grid', 'waves', 'noise', 'triangles', 'hexagons', 'crosshatch'])
+      .default('dots'),
+    patternOpacity: z.number().min(0).max(1).default(0.05),
+  })
+  .optional();
+
+export const themeSectionStylesSchema = z
+  .object({
+    dividerStyle: z.enum(['none', 'line', 'gradient', 'fade']).default('fade'),
+    heroStyle: z.enum(['flat', 'gradient', 'pattern', 'image']).default('gradient'),
+    testimonialStyle: z.enum(['minimal', 'cards', 'featured']).default('cards'),
+    ctaStyle: z.string().default('accent'),
+  })
+  .optional();
 
 export const themeSchema = z.object({
   colors: z
@@ -77,4 +111,10 @@ export const themeSchema = z.object({
   borders: borderSchema,
   shadows: shadowSchema,
   layout: layoutSchema,
+  // New animation configuration
+  animation: animationSchema,
+  // Visual style configuration
+  visualStyle: visualStyleSchema,
+  // Section treatment configuration
+  sectionStyles: themeSectionStylesSchema,
 });

@@ -86,10 +86,51 @@ export const siteConfig: SiteConfigSchema = {
       sm: '0 1px 2px rgba(0, 0, 0, 0.05)',
       md: '0 4px 6px rgba(0, 0, 0, 0.1)',
       lg: '0 10px 15px rgba(0, 0, 0, 0.15)',
+      // Enhanced shadow system
+      flat: 'none',
+      subtle: '0 2px 4px rgba(0, 0, 0, 0.05)',
+      medium: '0 4px 8px rgba(0, 0, 0, 0.08)',
+      pronounced: '0 8px 16px rgba(0, 0, 0, 0.1)',
     },
     layout: {
       containerMaxWidth: '1280px',
       containerPadding: '1rem',
+    },
+    // New animation configuration
+    animation: {
+      speed: 'balanced', // fast, balanced, slow
+      style: 'smooth', // smooth, bounce, energetic
+      intensity: 'subtle', // subtle, moderate, pronounced
+    },
+    // Visual style configuration
+    visualStyle: {
+      cardStyle: 'subtle', // flat, subtle, pronounced
+      borderRadius: 'medium', // sharp, medium, soft
+      contentDensity: 'balanced', // compact, balanced, airy
+      patternStyle: 'none', // none, dots, grid, waves, noise, etc.
+      patternOpacity: 0.05, // 0-1
+    },
+    // Section treatment configuration
+    sectionStyles: {
+      /**
+       * CTA section background style.
+       * - Use a semantic key: 'bold', 'accent', 'standard'
+       * - Or use any Tailwind or custom class string, e.g. 'bg-[hsl(var(--brand-dark-3))] text-white'
+       * Examples:
+       *   ctaStyle: 'bold'
+       *   ctaStyle: 'bg-[hsl(var(--brand-dark-3))] text-white'
+       *
+       * Available color tokens (from theme.colors):
+       *   primary, secondary, accent, accent2, accent3, extra1, ..., brand-dark-3, etc.
+       *   Use as: 'bg-[hsl(var(--primary))]', 'bg-[hsl(var(--brand-dark-3))]', etc.
+       *
+       * Available pattern styles (for patternStyle):
+       *   'none', 'dots', 'grid', 'waves', 'noise', 'triangles', 'hexagons', 'crosshatch'
+       */
+      ctaStyle: 'bg-brand-secondary-dark', // or 'bg-brand-secondary-dark text-white'
+      dividerStyle: 'fade', // none, line, gradient, fade
+      heroStyle: 'gradient', // flat, gradient, pattern, image
+      testimonialStyle: 'cards', // minimal, cards, featured
     },
   },
   // NAVIGATION LINKS: Main site navigation (header).

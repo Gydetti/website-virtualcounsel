@@ -60,10 +60,28 @@ export default function ValuePropSection({
       >
         {benefits.map((benefit, idx) => {
           const Icon = iconMap[benefit.icon as keyof typeof iconMap] ?? CheckCircle;
+          const isLastOdd = benefits.length % 2 === 1 && idx === benefits.length - 1;
+          if (isLastOdd) {
+            return (
+              <div
+                key={benefit.id}
+                className="md:col-span-2 md:flex md:justify-center lg:col-span-1 lg:block h-full"
+                style={{ '--index': idx } as CSSProperties}
+              >
+                <div className="flex flex-col items-start space-y-3 rounded-lg p-6 shadow-sm hover:shadow-md size-full md:w-1/2 lg:w-full">
+                  <div className="flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+                    <Icon className="size-6" />
+                  </div>
+                  <h3 className="text-xl font-bold">{benefit.title}</h3>
+                  <p className="text-neutral-text/500">{benefit.description}</p>
+                </div>
+              </div>
+            );
+          }
           return (
             <div
               key={benefit.id}
-              className="flex flex-col items-start space-y-3 rounded-lg p-6 shadow-sm hover:shadow-md"
+              className="flex flex-col items-start space-y-3 rounded-lg p-6 shadow-sm hover:shadow-md h-full"
               style={{ '--index': idx } as CSSProperties}
             >
               <div className="flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">

@@ -2,6 +2,108 @@
 
 > **Purpose:** This document outlines a systematic approach to enhancing the **visual design only** of the template website while maintaining performance, configurability, and respecting the existing architecture, content, and page structure.
 
+> **Important Implementation Learnings (2025-06)**
+>
+> **1. Dynamic Tailwind Class Support from Config:**
+> - To achieve true config-driven styling, Tailwind's `content` array must include the `lib/` directory (where config and theme files live). This ensures any class name (e.g. `bg-brand-dark-2`, `bg-[hsl(var(--brand-dark-3))]`, etc.) used in config is picked up and generated.
+> - Arbitrary-value utilities (like `bg-[hsl(var(--brand-dark-3))]`) require a `safelist` pattern in `tailwind.config.ts` to guarantee generation.
+>
+> **2. Hybrid Semantic + Direct Class System:**
+> - Section style config (e.g. `ctaStyle`) now supports both semantic keys (like `'bold'`, `'accent'`, etc.) and any direct Tailwind/custom class string. This gives ultimate flexibility and keeps all visual tweaks centralized in config, not components.
+> - Example usage:
+>   ```ts
+>   ctaStyle: 'bg-brand-dark-2 text-white' // semantic/dynamic
+>   ctaStyle: 'bg-[hsl(var(--brand-dark-3))] text-white' // arbitrary
+>   ctaStyle: 'bg-blue-900 text-white' // any Tailwind
+>   ```
+>
+> **3. Never Hardcode Brand Colors in Components:**
+> - Always use dynamic brand tokens (e.g. `bg-primary/10`) instead of hardcoded colors (e.g. `bg-white/10`).
+> - Example mistake: using `bg-white/10` for a decorative element in the CTA section. This was reverted to `bg-primary/10` to maintain brand consistency and dynamic theming.
+>
+> **4. Always Test Config-Driven Classes:**
+> - After changing config-driven classes, always rebuild and verify in the browser that the expected background/utility is present. If not, check Tailwind's content globs and safelist.
+>
+> **Summary:**
+> These steps ensure the codebase is maximally flexible, future-proof, and easy for both designers and developers to maintain. All visual changes should be made in config, not components, and all dynamic classes must be supported by Tailwind's build pipeline.
+
+## Animation Troubleshooting
+
+When working with the **LazySection** component and Framer Motion, watch out for these common pitfalls:
+
+- If you hardcode `initial="visible"` and `animate="visible"`, the Intersection Observer cannot toggle visibility, so scroll-based animations will never trigger. Always use:
+  ```tsx
+  initial="hidden"
+  animate={isVisible ? 'visible' : 'hidden'}
+  ```
+  so the section animates only when it comes into view.
+
+- Framer Motion requires easing values as numeric cubic-bezier arrays (e.g. `[0.645, 0.045, 0.355, 1]`). Passing CSS variable strings like `'var(--ease-smooth)'` will cause runtime errors (`Invalid easing type`). Map easing names to arrays instead.
+
+## Phase 7 Design Enhancement Implementation Status
+
+Here's our current implementation progress against the design enhancement blueprint:
+
+### Completed
+
+1. **Core Visual Enhancement**
+   - Added enhanced shadow system tokens in `app/globals.css` (`--shadow-flat`, `--shadow-subtle`, `--shadow-medium`, `--shadow-pronounced`)
+   - Added animation timing variables in `app/globals.css` (`--animation-speed-fast`, `--animation-speed-base`, `--animation-speed-slow`)
+   - Added easing functions in `app/globals.css` (`--ease-bounce`, `--ease-smooth`, `--ease-in-out`, `--ease-out`) 
+   - Added interactive state transforms in `app/globals.css` (`--hover-lift`, `--active-press`)
+   - Added pattern opacity and section spacing variables in `app/globals.css`
+   - Added card elevation utilities in `app/globals.css`
+   - Extended theme configurations in `lib/site.config.local.ts` with animation, visual style and section style options
+   - Updated schema definitions in `lib/schemas/theme.schema.ts` to validate new config options
+
+2. **Component Enhancements**
+   - Enhanced `LazySection` component with improved animation options and easing function handling
+   - Enhanced `Button` component with configurable elevation and animation variants
+   - Enhanced `Card` component with configurable hover states, elevation options, and theme-driven styling
+   - Created new `BackgroundPattern` component for sophisticated pattern backgrounds using canvas
+   
+3. **Section Enhancements**  
+   - Enhanced Hero section with configurable background patterns and theme-driven styling
+   - Enhanced Testimonials section with improved card elevation, animation, and staggered reveals
+   - Enhanced CTA section with configurable background patterns, style variants, and improved animations
+   - Implemented proper staggered animations for consistent section reveal behavior
+
+### In Progress
+
+1. **Section Refinements**
+   - Continuing to apply enhancements to remaining sections
+   - Fine-tuning spacing, animations, and responsive behavior
+
+2. **Animation & Interaction Layer**
+   - Implementing consistent animation timing across components
+   - Optimizing staggered animation performance
+
+### Next Steps
+
+1. **Complete Section Enhancements**
+   - Enhance Feature sections with refined card styling
+   - Complete responsive adjustments for all enhanced sections
+
+2. **Implement Variant-Specific Refinements**
+   - Define and implement variant personalities
+   - Create variant-specific component treatments
+
+3. **Testing & Optimization**
+   - Test performance across devices
+   - Validate responsive behavior
+   - Optimize for Core Web Vitals
+
+### Verification
+
+All implemented enhancements have been verified with:
+- ESLint (no warnings or errors)
+- Production build (successful)
+- Unit tests (passing)
+- Integration tests (passing)
+- End-to-end tests (passing)
+
+The codebase maintains full backward compatibility while introducing the new theme-driven styling architecture.
+
 ## Important Clarification: Content Preservation Focus
 
 **This plan focuses exclusively on visual design enhancements.** We will:
@@ -18,6 +120,7 @@ Instead, we will focus on making the existing content and structure **look more 
 - Better visual consistency and polish across all elements
 
 The goal is to create a visually impressive website that feels trustworthy and premium while maintaining the exact same content and structure that's already in place.
+
 
 ## Current Visual Assessment
 

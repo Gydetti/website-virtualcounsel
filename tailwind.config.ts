@@ -42,15 +42,29 @@ const config = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
+    './lib/**/*.{ts,tsx}',
     '*.{js,ts,jsx,tsx,mdx}',
   ],
   // Ensure these gradient utilities are always generated even when used via dynamic bgClass
-  safelist: ['bg-gradient-to-r', 'from-brand-primary/10', 'to-brand-hero-background'],
+  safelist: [
+    'bg-gradient-to-r',
+    'from-brand-primary/10',
+    'to-brand-hero-background',
+    { pattern: /^bg-\[.*\]/ },
+  ],
   prefix: '',
   theme: {
+    // Configure the container utility's max-width at each breakpoint
     container: {
       center: true,
       padding: 'var(--container-padding)',
+      screens: {
+        sm: '1600px',
+        md: '1600px',
+        lg: '1600px',
+        xl: '1600px', // increased from 1280px to 1440px
+        '2xl': '1600px', // new extra-large cap
+      },
     },
     extend: {
       spacing: {
