@@ -538,6 +538,18 @@
     line-height: var(--text-leading-airy);
     letter-spacing: var(--text-tracking-airy);
   }
+
+  /* Dynamic pattern color override using CSS variable --pattern-color */
+  .bg-grid-pattern,
+  .bg-dots-pattern,
+  .bg-stripes-pattern,
+  .bg-hex-pattern,
+  .bg-triangle-pattern,
+  .bg-crosshatch-pattern,
+  .bg-noise-pattern,
+  .bg-waves-pattern {
+    background-color: var(--pattern-color, transparent);
+  }
 }
 
 /* Spark effect utility */

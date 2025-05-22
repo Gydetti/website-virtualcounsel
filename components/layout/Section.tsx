@@ -15,6 +15,10 @@ export interface SectionProps extends HTMLAttributes<HTMLElement> {
   patternStyle?: string;
   /** Optional per-section background opacity override */
   patternOpacity?: number;
+  /** Optional per-section pattern fade override (none, edges, top, bottom) */
+  patternFade?: 'none' | 'edges' | 'top' | 'bottom';
+  /** Optional per-section pattern color override (any valid CSS color string) */
+  patternColor?: string;
 }
 
 export function Section({
@@ -24,6 +28,8 @@ export function Section({
   bgClass = '',
   patternStyle,
   patternOpacity,
+  patternFade,
+  patternColor,
   ...rest
 }: SectionProps) {
   // Dynamic section padding based on content density (compact, balanced, airy)
@@ -36,6 +42,14 @@ export function Section({
   };
   const sectionPaddingClass =
     paddingMap[contentDensity as keyof typeof paddingMap] || paddingMap.balanced;
+  // Only apply section pattern when patternStyle prop is provided; default to none
+  const usedPatternStyle = patternStyle ?? 'none';
+  // Fallback to global patternOpacity only when override has no explicit opacity
+  const usedPatternOpacity = patternStyle
+    ? (patternOpacity ?? siteConfig.theme.visualStyle?.patternOpacity)
+    : undefined;
+  const usedPatternFade = patternFade ?? 'none';
+  const usedPatternColor = patternColor;
   // Horizontal padding: use CSS variable --container-padding (variant-driven) and CSS .container for max-width
   const containerClasses = 'container mx-auto';
   if (fullBleed) {
@@ -45,11 +59,13 @@ export function Section({
         {...rest}
       >
         {/* Render pattern background if requested */}
-        {patternStyle !== 'none' && (
+        {usedPatternStyle !== 'none' && (
           <BackgroundPattern
-            pattern={patternStyle as BackgroundPatternProps['pattern']}
+            pattern={usedPatternStyle as BackgroundPatternProps['pattern']}
+            fade={usedPatternFade as BackgroundPatternProps['fade']}
+            color={usedPatternColor}
             className="absolute inset-0 z-0"
-            style={{ opacity: patternOpacity ?? undefined }}
+            style={{ opacity: usedPatternOpacity }}
           />
         )}
         <div className={containerClasses}>{children}</div>
@@ -62,11 +78,13 @@ export function Section({
       {...rest}
     >
       {/* Render pattern background if requested */}
-      {patternStyle !== 'none' && (
+      {usedPatternStyle !== 'none' && (
         <BackgroundPattern
-          pattern={patternStyle as BackgroundPatternProps['pattern']}
+          pattern={usedPatternStyle as BackgroundPatternProps['pattern']}
+          fade={usedPatternFade as BackgroundPatternProps['fade']}
+          color={usedPatternColor}
           className="absolute inset-0 z-0"
-          style={{ opacity: patternOpacity ?? undefined }}
+          style={{ opacity: usedPatternOpacity }}
         />
       )}
       {children}

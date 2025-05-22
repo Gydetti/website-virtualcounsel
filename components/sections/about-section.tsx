@@ -30,6 +30,8 @@ export type AboutSectionProps = z.infer<typeof aboutSectionDataSchema> & {
     iconBg: string;
     iconColor: string;
   }[];
+  patternStyle?: string;
+  patternOpacity?: number;
   isHomepage?: boolean;
 };
 
@@ -43,6 +45,8 @@ export default function AboutSection({
   cta,
   philosophy,
   featureCards,
+  patternStyle,
+  patternOpacity,
   isHomepage = false,
 }: AboutSectionProps) {
   const containerClasses =
@@ -90,6 +94,8 @@ export default function AboutSection({
       <Section
         id="about"
         bgClass={siteConfig.sectionStyles?.heroGradient ?? ''}
+        patternStyle={patternStyle}
+        patternOpacity={patternOpacity}
         className="relative z-10"
       >
         <div className={outerContainerClass}>
@@ -203,6 +209,8 @@ export default function AboutSection({
     <Section
       id="about"
       bgClass={siteConfig.sectionStyles?.heroGradient ?? ''}
+      patternStyle={patternStyle}
+      patternOpacity={patternOpacity}
       className={`relative z-10${isHomepage ? ' md:min-h-[880px] flex items-center' : ''}`}
     >
       <div className={outerContainerClass}>

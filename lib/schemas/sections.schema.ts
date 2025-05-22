@@ -28,6 +28,9 @@ export const heroSectionDataSchema = z.object({
     .enum(['none', 'dots', 'grid', 'waves', 'noise', 'triangles', 'hexagons', 'crosshatch'])
     .optional(),
   patternOpacity: z.number().min(0).max(1).optional(),
+  patternFade: z.enum(['none', 'edges', 'top', 'bottom']).optional(),
+  // Optional per-section pattern color override (any valid CSS color string)
+  patternColor: z.string().optional(),
 });
 
 export const serviceItemSchema = z.object({
@@ -99,6 +102,9 @@ export const ctaSectionDataSchema = z.object({
     .enum(['none', 'dots', 'grid', 'waves', 'noise', 'triangles', 'hexagons', 'crosshatch'])
     .optional(),
   patternOpacity: z.number().min(0).max(1).optional(),
+  patternFade: z.enum(['none', 'edges', 'top', 'bottom']).optional(),
+  // Optional per-section pattern color override (any valid CSS color string)
+  patternColor: z.string().optional(),
 });
 
 const aboutStatItemSchema = z.object({
@@ -131,6 +137,14 @@ export const aboutSectionDataSchema = z.object({
     .optional(),
   // Add optional features list (bullet items)
   featuresList: z.array(z.string()).optional(),
+  // Optional per-section background pattern overrides
+  patternStyle: z
+    .enum(['none', 'dots', 'grid', 'waves', 'noise', 'triangles', 'hexagons', 'crosshatch'])
+    .optional(),
+  patternOpacity: z.number().min(0).max(1).optional(),
+  patternFade: z.enum(['none', 'edges', 'top', 'bottom']).optional(),
+  // Optional per-section pattern color override (any valid CSS color string)
+  patternColor: z.string().optional(),
 });
 
 export const processStepSchema = z.object({
@@ -192,6 +206,9 @@ export const featuresSectionDataSchema = z.object({
     .enum(['none', 'dots', 'grid', 'waves', 'noise', 'triangles', 'hexagons', 'crosshatch'])
     .optional(),
   patternOpacity: z.number().min(0).max(1).optional(),
+  patternFade: z.enum(['none', 'edges', 'top', 'bottom']).optional(),
+  // Optional per-section pattern color override (any valid CSS color string)
+  patternColor: z.string().optional(),
 });
 
 export const valuePropBenefitSchema = z.object({
@@ -318,6 +335,9 @@ export const kpiSectionDataSchema = z.object({
     .enum(['none', 'dots', 'grid', 'waves', 'noise', 'triangles', 'hexagons', 'crosshatch'])
     .optional(),
   patternOpacity: z.number().min(0).max(1).optional(),
+  patternFade: z.enum(['none', 'edges', 'top', 'bottom']).optional(),
+  // Optional per-section pattern color override (any valid CSS color string)
+  patternColor: z.string().optional(),
 });
 
 // End of section-specific schemas for now.

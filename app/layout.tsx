@@ -214,6 +214,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   };
   // Generate CSS variables based on active variant
   const themeCssVars = getThemeCssVars(augmentedTheme as typeof siteConfig.theme, themeKey);
+  // Text style class from theme typography (balanced | tight | airy)
+  const textStyleClass = `text-style-${mergedTheme.typography.textStyle}`;
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -267,7 +269,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="apple-touch-icon" href="/favicon.ico" />
       </head>
       <body
-        className={`${poppins.variable} ${raleway.variable} font-sans antialiased bg-body-gradient`}
+        className={`${poppins.variable} ${raleway.variable} font-sans antialiased bg-body-gradient ${textStyleClass}`}
       >
         <WebVitalsReporter />
         <SpeedInsights />

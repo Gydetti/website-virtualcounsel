@@ -333,7 +333,8 @@ export const siteConfig: SiteConfigSchema = {
       sections: [
         {
           id: 'home-hero',
-          sectionType: 'HeroSection' /* patternStyle: 'grid', patternOpacity: 0.1 */,
+          sectionType:
+            'HeroSection' /* patternStyle: 'grid', patternOpacity: 0.1, patternFade: 'edges', patternColor: 'rgba(var(--accent-rgb), 0.2)' */,
         }, // example override commented out
         {
           id: 'home-value-prop',
@@ -361,11 +362,15 @@ export const siteConfig: SiteConfigSchema = {
         },
         {
           id: 'home-cta',
-          sectionType: 'CtaSection' /* patternStyle: 'grid', patternOpacity: 0.1 */,
+          sectionType: 'CtaSection',
+          patternStyle: 'grid',
+          patternOpacity: 0.03,
         },
         {
           id: 'home-about',
-          sectionType: 'AboutSection' /* patternStyle: 'grid', patternOpacity: 0.1 */,
+          sectionType:
+            'AboutSection' /* patternStyle: 'grid', patternOpacity: 0.1, patternFade: 'edges', patternColor: 'rgba(var(--accent-rgb), 0.2)' */,
+          variant: 'classic',
         },
         {
           id: 'home-kpi',
@@ -414,12 +419,22 @@ export const siteConfig: SiteConfigSchema = {
       sections: [
         {
           id: 'about-main-content',
-          sectionType: 'AboutSection',
+          sectionType:
+            'AboutSection' /* patternStyle: 'grid', patternOpacity: 0.1, patternFade: 'edges', patternColor: 'rgba(var(--accent-rgb), 0.2)' */,
           variant: 'classic',
         },
-        { id: 'about-values', sectionType: 'AboutValuesSection' },
-        { id: 'about-testimonials', sectionType: 'TestimonialsSection' },
-        { id: 'about-cta', sectionType: 'CtaSection' },
+        {
+          id: 'about-values',
+          sectionType: 'AboutValuesSection' /* patternStyle: 'grid', patternOpacity: 0.1 */,
+        },
+        {
+          id: 'about-testimonials',
+          sectionType: 'TestimonialsSection' /* patternStyle: 'grid', patternOpacity: 0.1 */,
+        },
+        {
+          id: 'about-cta',
+          sectionType: 'CtaSection' /* patternStyle: 'grid', patternOpacity: 0.1 */,
+        },
       ],
     },
   ],
