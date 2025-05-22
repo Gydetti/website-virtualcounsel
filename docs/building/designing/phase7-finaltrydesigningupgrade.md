@@ -96,7 +96,6 @@ Here's our current implementation progress against the design enhancement bluepr
 ### In Progress
 
 1. **Remaining Section Refinements**
-   - **ServicesSection** & **ResourceContent**: apply theme-driven styling, spacing, and pattern overrides
    - **Landing & Resource pages**: ensure design consistency, pattern treatments, and animations across dynamic routes
 
 2. **Animation & Interaction Layer**
@@ -108,7 +107,7 @@ Here's our current implementation progress against the design enhancement bluepr
 ### Next Steps
 
 1. **Finalize Section Enhancements**
-   - Complete **AboutSection** variant treatments and **ServicesSection**/**ResourceContent** pattern and styling defaults
+   - Complete **Landing & Resource pages** design consistency, pattern, spacing, and animation standards
    - Add any remaining sections (e.g., **FAQ** full page, **Terms**, **Privacy**) to match pattern, spacing, and animation standards
 
 2. **Implement Variant-Specific Refinements**
@@ -140,6 +139,7 @@ The codebase maintains full backward compatibility while introducing the new the
 - Updated `AboutSection` component to destructure and pass `patternStyle` and `patternOpacity` props to the `Section` wrapper, enabling background pattern support per section.
 - Added `patternColor` support in the `Section` component and Zod schemas, allowing any valid CSS color string (hex, rgba, named colors) for per-section pattern overrides.
 - Extended `servicesSectionDataSchema` and `ResourceDetailSectionProps` to support `patternStyle`, `patternOpacity`, `patternFade`, and `patternColor`, enabling theme-driven overrides in Services and Resource sections.
+- Extended `ResourceListSectionProps` to support `patternStyle`, `patternOpacity`, `patternFade`, and `patternColor`, enabling pattern overrides for resource listing sections.
 
 ## Important Clarification: Content Preservation Focus
 
@@ -1495,6 +1495,7 @@ Use these snippets as templates when adding new visual tokens, patterns, animati
 - Updated AboutSection component to destructure and pass `patternStyle` and `patternOpacity` props to the `Section` wrapper, enabling background pattern support per section.
 - Added `patternColor` support in the `Section` component and Zod schemas, allowing any valid CSS color string (hex, rgba, named colors) for per-section pattern overrides.
 - Extended `servicesSectionDataSchema` and `ResourceDetailSectionProps` to support `patternStyle`, `patternOpacity`, `patternFade`, and `patternColor`, enabling theme-driven overrides in Services and Resource sections.
+- Extended `ResourceListSectionProps` to support `patternStyle`, `patternOpacity`, `patternFade`, and `patternColor`, enabling pattern overrides for resource listing sections.
 
 ## Important Clarification: Content Preservation Focus
 

@@ -13,16 +13,31 @@ interface ResourceListSectionProps {
   id: string;
   title?: string;
   resources: Array<z.infer<typeof resourceSchema>>;
+  patternStyle?: string;
+  patternOpacity?: number;
+  patternFade?: 'none' | 'edges' | 'top' | 'bottom';
+  patternColor?: string;
 }
 
 export default function ResourceListSection({
   id,
   title = 'Our Resources',
   resources,
+  patternStyle,
+  patternOpacity,
+  patternFade,
+  patternColor,
 }: ResourceListSectionProps) {
   if (!resources || resources.length === 0) {
     return (
-      <Section id={id} className="py-12">
+      <Section
+        id={id}
+        patternStyle={patternStyle}
+        patternOpacity={patternOpacity}
+        patternFade={patternFade}
+        patternColor={patternColor}
+        className="py-12"
+      >
         <div className="container mx-auto px-4 text-center">
           <p>No resources available at the moment. Please check back later.</p>
         </div>
@@ -47,7 +62,15 @@ export default function ResourceListSection({
   const [srcMap, setSrcMap] = useState<Record<string, string>>(initialSrcMap);
 
   return (
-    <Section id={id} bgClass={siteConfig.sectionStyles?.heroGradient ?? ''} className="py-12 z-10">
+    <Section
+      id={id}
+      patternStyle={patternStyle}
+      patternOpacity={patternOpacity}
+      patternFade={patternFade}
+      patternColor={patternColor}
+      bgClass={siteConfig.sectionStyles?.heroGradient ?? ''}
+      className="py-12 z-10"
+    >
       <LazySection>
         <h1 className="text-center mb-10">{title}</h1>
       </LazySection>
