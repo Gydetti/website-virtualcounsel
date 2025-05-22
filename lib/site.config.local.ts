@@ -95,7 +95,7 @@ export const siteConfig: SiteConfigSchema = {
     },
     layout: {
       containerMaxWidth: '1600px',
-      containerPadding: '1rem',
+      containerPadding: '4rem',
     },
     // New animation configuration
     animation: {

@@ -60,7 +60,7 @@ export const themeVariants: Record<string, SiteConfig['theme']> = {
     },
     layout: {
       containerMaxWidth: '1024px',
-      containerPadding: '1.5rem',
+      containerPadding: rawConfig.theme.layout.containerPadding,
     },
     animation: {
       speed: 'slow',
@@ -135,7 +135,7 @@ export const themeVariants: Record<string, SiteConfig['theme']> = {
     },
     layout: {
       containerMaxWidth: '1200px',
-      containerPadding: '1.25rem',
+      containerPadding: rawConfig.theme.layout.containerPadding,
     },
     animation: {
       speed: 'fast',

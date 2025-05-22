@@ -32,7 +32,7 @@ const raleway = Raleway({
 
 const siteUrl = siteConfig.site.url || 'http://localhost:3000';
 
-// Hardcoded default theme variant (no env var needed)
+// 🔥🔥🔥 Hardcoded default theme variant (no env var needed)
 const themeKey = 'v1';
 // Simplify fallback to direct property access
 const variant = themeVariants[themeKey] ?? themeVariants.v1;

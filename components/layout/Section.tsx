@@ -36,8 +36,8 @@ export function Section({
   };
   const sectionPaddingClass =
     paddingMap[contentDensity as keyof typeof paddingMap] || paddingMap.balanced;
-  // Horizontal padding: 1rem base, 1.5rem sm, 2rem md, 5rem xl & above
-  const containerClasses = 'container mx-auto px-4 sm:px-6 md:px-8 xl:px-20';
+  // Horizontal padding: use CSS variable --container-padding (variant-driven) and CSS .container for max-width
+  const containerClasses = 'container mx-auto';
   if (fullBleed) {
     return (
       <section
@@ -58,7 +58,7 @@ export function Section({
   }
   return (
     <section
-      className={`${sectionPaddingClass} ${containerClasses} overflow-hidden ${bgClass} ${className}`}
+      className={`${sectionPaddingClass} container mx-auto overflow-hidden ${bgClass} ${className}`}
       {...rest}
     >
       {/* Render pattern background if requested */}
