@@ -92,6 +92,7 @@ Here's our current implementation progress against the design enhancement bluepr
    - Defined CSS variables for line-height (`--text-leading-*`) and letter-spacing (`--text-tracking-*`) in `app/globals.css`
    - Introduced utility classes `.text-style-balanced`, `.text-style-tight`, `.text-style-airy` under `@layer utilities`
    - Dynamically applied `textStyle` via a `text-style-<value>` class on the `<body>` based on `siteConfig.theme.typography.textStyle`
+   - Added responsive horizontal padding to the `Section` component (mobile `px-4`, `sm:px-6`, `md:px-8`, `xl:px-20`), restoring original mobile and tablet gutters
 
 ### In Progress
 

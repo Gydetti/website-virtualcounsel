@@ -73,6 +73,8 @@ After each meaningful batch of changes, provide a concise update including:
 3. Any new patterns or gotchas that should be documented
 4. What's next in your implementation plan
 
+It's crucial and to your core right now that you understand where we are at the process. You understand and review all the steps about what has been done, what has been completed, and all the next steps. The document might be a little bit outdated, so you also validate the point that you're starting on. Like if the previous work has been really done, and if the work that you're going to do hasn't been done already. You're also self-controlling here (self-correcting). Thank you. 
+
 Please proceed with phase 7 implementation, maintaining the project's commitment to configurability, performance, and visual excellence.
 
 
