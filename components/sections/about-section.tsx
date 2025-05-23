@@ -68,7 +68,7 @@ export default function AboutSection({
     : 'mx-auto max-w-[var(--container-max-width)] px-4 sm:px-6 md:px-8 xl:px-20'; // Standard padding for other variants
 
   // For imageRight, add padding to individual content sections
-  const contentPaddingClass = variant === 'imageRight' ? 'pr-4 sm:pr-6 md:pr-8 xl:pr-20' : '';
+  const contentPaddingClass = variant === 'imageRight' ? 'md:pr-8 xl:pr-20' : '';
 
   // Refactored image rendering logic - now uses same size as Classic variant
   const renderImage = () => {
