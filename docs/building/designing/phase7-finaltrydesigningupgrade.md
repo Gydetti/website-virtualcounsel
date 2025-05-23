@@ -14,6 +14,7 @@
 >   npm run verify:local
 >   ```
 > 4. **Command for AI Assistants**: Read and integrate this Key Implementation Learnings section before making any code changes or adding new dynamic classes.
+> 5. **Pattern Default Caution**: Do not assume global pattern defaults will apply—**always** default `patternStyle` to `'none'` unless a per-section override is explicitly provided; inadvertently using a global fallback can cause unintended pattern rendering across all sections.
 >
 > **1. Dynamic Tailwind Class Support from Config:**
 > - To achieve true config-driven styling, Tailwind's `content` array must include the `lib/` directory (where config and theme files live). This ensures any class name (e.g. `bg-brand-dark-2`, `bg-[hsl(var(--brand-dark-3))]`, etc.) used in config is picked up and generated.
