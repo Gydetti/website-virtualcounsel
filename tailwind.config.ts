@@ -52,7 +52,12 @@ const config = {
     'bg-gradient-to-r',
     'from-brand-primary/10',
     'to-brand-hero-background',
-    { pattern: /^bg-\[.*\]/ },
+    // Add specific patterns that might be used dynamically
+    { pattern: /^bg-(brand|primary|secondary|accent).*/ },
+    // Include any dynamic class patterns that might be missed by content scanning
+    'bg-brand-secondary-dark',
+    'bg-brand-dark-2',
+    'bg-brand-dark-3',
   ],
   prefix: '',
   theme: {

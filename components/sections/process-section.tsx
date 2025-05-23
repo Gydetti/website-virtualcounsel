@@ -58,7 +58,7 @@ export default function ProcessSection({
         <div className="relative">
           {/* Center timeline line */}
           <div className="absolute left-1/2 -translate-x-1/2 inset-y-0 w-0.5 bg-gradient-to-b from-primary/30 via-primary/20 to-primary/10 hidden md:block" />
-          
+
           <div className="space-y-16">
             {steps.map((step, index) => (
               <LazySection
@@ -67,14 +67,20 @@ export default function ProcessSection({
                 delay={0.1 + index * 0.1}
                 className="relative"
               >
-                <div className={`flex items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-8`}>
+                {/* Mobile circle - visible on mobile only - MOVED TO TOP */}
+                <div className="md:hidden flex justify-center mb-6">
+                  <div className="size-16 rounded-full flex items-center justify-center text-lg font-bold shadow-lg bg-gradient-to-br from-primary to-primary/80 text-white border-2 border-white">
+                    {step.number || String(index + 1).padStart(2, '0')}
+                  </div>
+                </div>
+
+                <div
+                  className={`flex items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-8`}
+                >
                   {/* Card */}
                   <div className="group w-full md:w-5/12 bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:-translate-y-1">
-                    {/* Card header with step indicator */}
+                    {/* Card header with step indicator - hide mobile number since it's now above */}
                     <div className="flex items-center gap-3 mb-4">
-                      <div className="md:hidden size-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold">
-                        {String(index + 1).padStart(2, '0')}
-                      </div>
                       <div className="h-1 w-12 bg-gradient-to-r from-primary to-primary/50 rounded-full" />
                     </div>
                     <h3 className="text-xl font-bold mb-3">{step.title}</h3>
@@ -106,33 +112,28 @@ export default function ProcessSection({
                       </div>
                     )}
                   </div>
-                  
+
                   {/* Center circle - visible on desktop */}
                   <div className="hidden md:flex shrink-0 relative z-10">
                     {/* Connecting line to card */}
-                    <div className={`absolute top-1/2 -translate-y-1/2 ${index % 2 === 0 ? '-right-8' : '-left-8'} w-8 h-0.5 ${index % 2 === 0 ? 'bg-gradient-to-r from-primary/40 to-transparent' : 'bg-gradient-to-l from-primary/40 to-transparent'}`} />
-                    
+                    <div
+                      className={`absolute top-1/2 -translate-y-1/2 ${index % 2 === 0 ? '-right-8' : '-left-8'} w-8 h-0.5 ${index % 2 === 0 ? 'bg-gradient-to-r from-primary/40 to-transparent' : 'bg-gradient-to-l from-primary/40 to-transparent'}`}
+                    />
+
                     <div className="size-20 rounded-full flex items-center justify-center text-xl font-bold shadow-xl bg-gradient-to-br from-primary to-primary/80 text-white border-4 border-white relative overflow-hidden group-hover:scale-110 transition-transform duration-300">
                       {/* Subtle shine effect */}
                       <div className="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       {step.number || String(index + 1).padStart(2, '0')}
                     </div>
                   </div>
-                  
+
                   {/* Spacer for opposite side */}
                   <div className="hidden md:block w-5/12" />
                 </div>
-                
-                {/* Mobile circle - visible on mobile only */}
-                <div className="md:hidden flex justify-center mt-6">
-                  <div className="size-14 rounded-full flex items-center justify-center text-lg font-bold shadow-lg bg-gradient-to-br from-primary to-primary/80 text-white border-2 border-white">
-                    {step.number || String(index + 1).padStart(2, '0')}
-                  </div>
-                </div>
-                
-                {/* Progress indicator for mobile */}
+
+                {/* Progress indicator for mobile - moved closer to card */}
                 {index < steps.length - 1 && (
-                  <div className="md:hidden flex justify-center mt-4">
+                  <div className="md:hidden flex justify-center mt-6">
                     <div className="w-0.5 h-8 bg-gradient-to-b from-primary/40 to-primary/20" />
                   </div>
                 )}

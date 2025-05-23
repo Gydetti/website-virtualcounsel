@@ -63,9 +63,10 @@ export default function AboutSection({
     : containerClasses;
 
   // Dynamic container classes - remove padding for imageRight variant
-  const containerPaddingClass = variant === 'imageRight' 
-    ? 'mx-auto max-w-[var(--container-max-width)]' // No padding for imageRight
-    : 'mx-auto max-w-[var(--container-max-width)] px-4 sm:px-6 md:px-8 xl:px-20'; // Standard padding for other variants
+  const containerPaddingClass =
+    variant === 'imageRight'
+      ? 'mx-auto max-w-[var(--container-max-width)]' // No padding for imageRight
+      : 'mx-auto max-w-[var(--container-max-width)] px-4 sm:px-6 md:px-8 xl:px-20'; // Standard padding for other variants
 
   // For imageRight, add padding to individual content sections
   const contentPaddingClass = variant === 'imageRight' ? 'md:pr-8 xl:pr-20' : '';
@@ -115,12 +116,20 @@ export default function AboutSection({
         <div className={containerPaddingClass}>
           {/* Badge and heading above the grid layout */}
           {badgeText && (
-            <LazySection animation="fade-up" delay={0.2} className={`text-center ${contentPaddingClass}`}>
+            <LazySection
+              animation="fade-up"
+              delay={0.2}
+              className={`text-center ${contentPaddingClass}`}
+            >
               <Badge className="mb-4">{badgeText}</Badge>
             </LazySection>
           )}
           {heading && (
-            <LazySection animation="fade-up" delay={0.3} className={`text-center ${contentPaddingClass}`}>
+            <LazySection
+              animation="fade-up"
+              delay={0.3}
+              className={`text-center ${contentPaddingClass}`}
+            >
               {isHomepage ? (
                 <h2 className="text-heading mb-8">{heading}</h2>
               ) : (
@@ -134,7 +143,10 @@ export default function AboutSection({
               delay={0}
               className={`${imageOrderClass} md:row-start-1`}
             >
-              <AspectRatio ratio={6 / 5} className="overflow-visible rounded-xl shadow-2xl relative">
+              <AspectRatio
+                ratio={6 / 5}
+                className="overflow-visible rounded-xl shadow-2xl relative"
+              >
                 <OptimizedImage
                   src={image?.src || '/images/placeholders/placeholder.svg'}
                   alt={image?.alt || 'About our company'}
@@ -145,7 +157,11 @@ export default function AboutSection({
                 />
               </AspectRatio>
             </LazySection>
-            <LazySection animation="slide-up" delay={0.1} className={`${contentOrderClass} md:row-start-1`}>
+            <LazySection
+              animation="slide-up"
+              delay={0.1}
+              className={`${contentOrderClass} md:row-start-1`}
+            >
               {!isHomepage && paragraphs && paragraphs.length > 0 && (
                 <LazySection animation="fade-up" delay={0.4}>
                   {paragraphs.map(p => (
@@ -248,12 +264,20 @@ export default function AboutSection({
       <div className={containerPaddingClass}>
         {/* Badge and heading above the grid layout */}
         {badgeText && (
-          <LazySection animation="fade-up" delay={0.2} className={`text-center ${contentPaddingClass}`}>
+          <LazySection
+            animation="fade-up"
+            delay={0.2}
+            className={`text-center ${contentPaddingClass}`}
+          >
             <Badge className="mb-4">{badgeText}</Badge>
           </LazySection>
         )}
         {heading && (
-          <LazySection animation="fade-up" delay={0.3} className={`text-center ${contentPaddingClass}`}>
+          <LazySection
+            animation="fade-up"
+            delay={0.3}
+            className={`text-center ${contentPaddingClass}`}
+          >
             {isHomepage ? (
               <h2 className="text-heading mb-8">{heading}</h2>
             ) : (
@@ -262,10 +286,18 @@ export default function AboutSection({
           </LazySection>
         )}
         <div className={outerContainerClass}>
-          <LazySection animation="slide-up" delay={0} className={`${imageOrderClass} md:row-start-1`}>
+          <LazySection
+            animation="slide-up"
+            delay={0}
+            className={`${imageOrderClass} md:row-start-1`}
+          >
             {renderImage()}
           </LazySection>
-          <LazySection animation="slide-up" delay={0.1} className={`${contentOrderClass} md:row-start-1 ${variant === 'imageRight' ? contentPaddingClass : ''}`}>
+          <LazySection
+            animation="slide-up"
+            delay={0.1}
+            className={`${contentOrderClass} md:row-start-1 ${variant === 'imageRight' ? contentPaddingClass : ''}`}
+          >
             {!isHomepage && paragraphs && paragraphs.length > 0 && (
               <LazySection animation="fade-up" delay={0.4}>
                 {paragraphs.map(p => (
@@ -312,7 +344,9 @@ export default function AboutSection({
                       key={card.id}
                       className="rounded-xl border bg-neutral-surface p-6 shadow-sm hover:shadow-md transition-shadow"
                     >
-                      <div className={`flex size-12 items-center justify-center rounded-full ${card.iconBg}`}>
+                      <div
+                        className={`flex size-12 items-center justify-center rounded-full ${card.iconBg}`}
+                      >
                         <Icon className={`${card.iconColor} size-6`} />
                       </div>
                       <h3 className="mt-4 text-lg font-semibold text-neutral-text">{card.title}</h3>

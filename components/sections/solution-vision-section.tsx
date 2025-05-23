@@ -41,11 +41,7 @@ export default function SolutionVisionSection({
             {badgeText}
           </Badge>
         </motion.div>
-        <motion.h2
-          custom={1}
-          variants={textVariants}
-          className="section-title"
-        >
+        <motion.h2 custom={1} variants={textVariants} className="section-title">
           {heading}
         </motion.h2>
         <motion.p custom={2} variants={textVariants} className="section-subtitle">

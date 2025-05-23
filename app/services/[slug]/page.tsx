@@ -194,11 +194,11 @@ export default async function ServicePage(props: ServicePageProps) {
             style={{ '--stagger-delay': '0.1s' } as CSSProperties}
           >
             {benefits.map((benefit, idx) => (
-              <Card 
+              <Card
                 key={benefit.title}
-                equalHeight 
-                padding="large" 
-                hover="lift" 
+                equalHeight
+                padding="large"
+                hover="lift"
                 className="text-center h-full flex flex-col justify-center items-center"
                 style={{ '--index': idx } as CSSProperties}
               >

@@ -26,10 +26,7 @@ export default function ProcessSectionHome({
           {badgeText}
         </Badge>
         {heading && (
-          <h2
-            className="mt-4 tracking-tight"
-            style={{ '--index': 1 } as CSSProperties}
-          >
+          <h2 className="mt-4 tracking-tight" style={{ '--index': 1 } as CSSProperties}>
             {heading}
           </h2>
         )}

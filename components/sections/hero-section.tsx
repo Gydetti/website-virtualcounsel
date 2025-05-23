@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef,useState } from 'react';
 import type { z } from 'zod';
 
 import { Section } from '@/components/layout/Section';
@@ -21,9 +21,47 @@ import { siteConfig } from '@/lib/siteConfig';
 const HeroStats = dynamic(() => import('@/components/sections/hero-stats'), {
   ssr: false,
 });
-const HeroTyping = dynamic(() => import('@/components/sections/hero-typing'), {
-  ssr: false,
-});
+
+// Inline typing component to prevent layout shift and remove unnecessary dynamic import
+function HeroTyping({ typingWords }: { typingWords?: string[] }) {
+  const typingRef = useRef<HTMLSpanElement>(null);
+  const [displayText, setDisplayText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [loopNum, setLoopNum] = useState(0);
+  const [typingSpeed, setTypingSpeed] = useState(150);
+
+  useEffect(() => {
+    if (!typingWords || typingWords.length === 0) return;
+    const handleTyping = () => {
+      const current = loopNum % typingWords.length;
+      const fullText = typingWords[current];
+      setDisplayText(
+        isDeleting
+          ? fullText.substring(0, displayText.length - 1)
+          : fullText.substring(0, displayText.length + 1)
+      );
+      setTypingSpeed(isDeleting ? 50 : 100);
+      if (!isDeleting && displayText === fullText) {
+        setTimeout(() => setIsDeleting(true), 1500);
+      } else if (isDeleting && displayText === '') {
+        setIsDeleting(false);
+        setLoopNum(loopNum + 1);
+        setTypingSpeed(500);
+      }
+    };
+    const timer = setTimeout(handleTyping, typingSpeed);
+    return () => clearTimeout(timer);
+  }, [displayText, isDeleting, loopNum, typingSpeed, typingWords]);
+
+  return (
+    <span className="block mt-3 md:mt-3 lg:mt-4 text-primary">
+      <span className="inline-block min-h-[1.2em]" ref={typingRef}>
+        {displayText}
+        <span className="typing-cursor" />
+      </span>
+    </span>
+  );
+}
 
 export type HeroSectionProps = z.infer<typeof heroSectionDataSchema> & {
   variant?: 'imageLeft' | 'imageRight' | 'centered';
@@ -87,19 +125,17 @@ export default function HeroSection({
 			<div className="hidden sm:block absolute bottom-10 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl" /> */}
 
       <div className="grid lg:grid-cols-2 items-center gap-8 sm:gap-8 md:gap-10 lg:gap-10">
-        <LazySection
-          delay={0.1}
-          className={`${contentOrderClass} flex flex-col justify-center space-y-6 z-10`}
-        >
+        {/* Removed parent LazySection to prevent delay compounding */}
+        <div className={`${contentOrderClass} flex flex-col justify-center space-y-6 z-10`}>
           {badgeText && (
-            <LazySection delay={0.2}>
+            <LazySection delay={0.1}>
               <Badge variant="dark" className="w-fit text-white">
                 {badgeText}
               </Badge>
             </LazySection>
           )}
           {headline && (
-            <LazySection delay={0.3}>
+            <LazySection delay={0.2}>
               <h1 id="hero-section-heading" className="font-bold leading-tight text-balance">
                 <span className="block">{headline}</span>
                 <HeroTyping typingWords={typingWords} />
@@ -107,7 +143,7 @@ export default function HeroSection({
             </LazySection>
           )}
           {subheadline && (
-            <LazySection delay={0.4}>
+            <LazySection delay={0.3}>
               <p className="text-neutral-text max-w-lg">{subheadline}</p>
             </LazySection>
           )}
@@ -141,7 +177,7 @@ export default function HeroSection({
             </LazySection>
           )}
           {showHelpedStats && (
-            <LazySection delay={0.4}>
+            <LazySection delay={0.5}>
               <div className="flex space-x-4 mt-6 text-sm">
                 <div className="flex -space-x-2">
                   {[1, 2, 3, 4].map(i => (
@@ -165,10 +201,10 @@ export default function HeroSection({
               </div>
             </LazySection>
           )}
-        </LazySection>
+        </div>
 
         <LazySection
-          delay={0.2}
+          delay={0.1}
           className={`relative w-full max-w-[600px] self-center mx-auto ${
             variant === 'imageLeft' ? 'md:order-1 lg:ml-0 lg:mr-auto' : 'lg:ml-auto lg:mr-0'
           }`}

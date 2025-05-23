@@ -114,7 +114,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
     <>
       <BlogSchema {...blogSchemaData} />
       <StructuredData type="article" data={blogSchemaData} />
-      
+
       {/* Blog Header Section */}
       <Section className="">
         <div className="max-w-4xl mx-auto">
@@ -125,17 +125,25 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
             style={{ '--stagger-delay': '0.1s' } as CSSProperties}
           >
             {/* Back link and category badge grouped to prevent overlap on small screens */}
-            <div className="flex flex-wrap items-center gap-3 mb-6" style={{ '--index': 0 } as CSSProperties}>
+            <div
+              className="flex flex-wrap items-center gap-3 mb-6"
+              style={{ '--index': 0 } as CSSProperties}
+            >
               <Link href="/blog" className="inline-flex items-center text-primary hover:underline">
                 <ArrowLeft className="mr-2 size-4" />
                 Back link text (e.g. 'Back to blog overview')
               </Link>
               <Badge>{post.category}</Badge>
             </div>
-            
-            <h1 className="" style={{ '--index': 1 } as CSSProperties}>{post.title}</h1>
 
-            <div className="flex flex-wrap items-center gap-4 text-neutral-text/600 mb-8" style={{ '--index': 2 } as CSSProperties}>
+            <h1 className="" style={{ '--index': 1 } as CSSProperties}>
+              {post.title}
+            </h1>
+
+            <div
+              className="flex flex-wrap items-center gap-4 text-neutral-text/600 mb-8"
+              style={{ '--index': 2 } as CSSProperties}
+            >
               <div className="flex items-center">
                 <User className="size-4 mr-2" />
                 <span>{author.name}</span>
@@ -166,8 +174,8 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
         <div className="grid lg:grid-cols-4 gap-8 md:gap-12">
           <div className="lg:col-span-3">
             {/* Hero Image */}
-            <LazySection 
-              animation="fade" 
+            <LazySection
+              animation="fade"
               delay={0.3}
               fullHeight={false}
               className="relative h-[400px] w-full mb-8 rounded-xl overflow-hidden"
@@ -332,7 +340,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
         <LazySection animation="fade-up" delay={0.1}>
           <h2 className="text-3xl font-bold mb-12">Related Articles</h2>
         </LazySection>
-        
+
         <LazySection
           animation="none"
           className="stagger-container grid md:grid-cols-2 lg:grid-cols-3 gap-8"

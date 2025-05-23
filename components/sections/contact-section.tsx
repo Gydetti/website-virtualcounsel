@@ -112,11 +112,7 @@ export default function ContactSection({ badgeText, heading, subtitle }: Contact
         >
           <div>
             {badgeText && <Badge className="mb-4">{badgeText}</Badge>}
-            {heading && (
-              <h2 id="contact-section-heading">
-                {heading}
-              </h2>
-            )}
+            {heading && <h2 id="contact-section-heading">{heading}</h2>}
             {subtitle && <p className="section-subtitle">{subtitle}</p>}
           </div>
         </LazySection>

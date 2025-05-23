@@ -41,11 +41,7 @@ export default function ValuePropSection({
             {badgeText}
           </Badge>
         )}
-        {heading && (
-          <h2 style={{ '--index': 1 } as CSSProperties}>
-            {heading}
-          </h2>
-        )}
+        {heading && <h2 style={{ '--index': 1 } as CSSProperties}>{heading}</h2>}
         {subheading && (
           <p className="section-subtitle" style={{ '--index': 2 } as CSSProperties}>
             {subheading}
