@@ -1,21 +1,19 @@
-import tailwindcss from 'tailwindcss';
-import autoprefixer from 'autoprefixer';
-
-/** @type {import('postcss-load-config').Config} */
-const config = {
+module.exports = {
   plugins: {
     tailwindcss: {},
     autoprefixer: {},
+    // Only add cssnano for production builds to minimize CSS
     ...(process.env.NODE_ENV === 'production'
       ? {
           cssnano: {
             preset: [
               'default',
               {
+                // Disable discardComments to preserve important comments
                 discardComments: { removeAll: true },
+                // Normalize and minify
                 normalizeWhitespace: true,
                 mergeLonghand: true,
-                minifySelectors: true,
               },
             ],
           },
@@ -23,5 +21,3 @@ const config = {
       : {}),
   },
 };
-
-export default config;
