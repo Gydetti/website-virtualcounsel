@@ -131,7 +131,7 @@ export default function AboutSection({
                   )}
                 </LazySection>
               )}
-              {paragraphs && paragraphs.length > 0 && (
+              {!isHomepage && paragraphs && paragraphs.length > 0 && (
                 <LazySection animation="fade-up" delay={0.4}>
                   {paragraphs.map(p => (
                     <p key={p.slice(0, 16)} className="text-neutral-text mb-6 last:mb-8">
@@ -140,7 +140,7 @@ export default function AboutSection({
                   ))}
                 </LazySection>
               )}
-              {stats && stats.length > 0 && (
+              {!isHomepage && stats && stats.length > 0 && (
                 <LazySection animation="fade-up" delay={0.5}>
                   <div className="grid grid-cols-2 gap-4 mb-8">
                     {stats.map(stat => (
@@ -214,41 +214,45 @@ export default function AboutSection({
       className={`relative z-10${isHomepage ? ' md:min-h-[880px] flex items-center' : ''}`}
     >
       <div className={outerContainerClass}>
-        <LazySection animation="slide-up" delay={0} className={contentOrderClass}>
-          {badgeText && (
-            <LazySection animation="fade-up" delay={0.2}>
-              <Badge className="mb-4">{badgeText}</Badge>
-            </LazySection>
-          )}
-          {heading && (
-            <LazySection animation="fade-up" delay={0.3}>
-              {isHomepage ? (
-                <h2 className="text-heading">{heading}</h2>
-              ) : (
-                <h1 className="text-heading">{heading}</h1>
-              )}
-            </LazySection>
-          )}
-          {paragraphs && paragraphs.length > 0 && (
-            <LazySection animation="fade-up" delay={0.4}>
-              {paragraphs.map(p => (
-                <p key={p.slice(0, 16)} className="text-neutral-text mb-6 last:mb-8">
-                  {p}
-                </p>
-              ))}
-            </LazySection>
-          )}
-          {cta?.href && cta?.text && (
-            <LazySection animation="fade-up" delay={0.5}>
-              <Button size="lg" variant="default" className="group" asChild>
-                <Link href={cta.href}>
-                  {cta.text}
-                  <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
-                </Link>
-              </Button>
-            </LazySection>
-          )}
-        </LazySection>
+        {/* Only show heading, paragraphs, and CTA on the About page (not on homepage) */}
+        {!isHomepage && (
+          <LazySection animation="slide-up" delay={0} className={contentOrderClass}>
+            {badgeText && (
+              <LazySection animation="fade-up" delay={0.2}>
+                <Badge className="mb-4">{badgeText}</Badge>
+              </LazySection>
+            )}
+            {heading && (
+              <LazySection animation="fade-up" delay={0.3}>
+                {isHomepage ? (
+                  <h2 className="text-heading">{heading}</h2>
+                ) : (
+                  <h1 className="text-heading">{heading}</h1>
+                )}
+              </LazySection>
+            )}
+            {!isHomepage && paragraphs && paragraphs.length > 0 && (
+              <LazySection animation="fade-up" delay={0.4}>
+                {paragraphs.map(p => (
+                  <p key={p.slice(0, 16)} className="text-neutral-text mb-6 last:mb-8">
+                    {p}
+                  </p>
+                ))}
+              </LazySection>
+            )}
+            {cta?.href && cta?.text && (
+              <LazySection animation="fade-up" delay={0.5}>
+                <Button size="lg" variant="default" className="group" asChild>
+                  <Link href={cta.href}>
+                    {cta.text}
+                    <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </Button>
+              </LazySection>
+            )}
+          </LazySection>
+        )}
+        {/* Always show philosophy and feature cards on both pages */}
         <LazySection animation="slide-up" delay={0.1} className={imageOrderClass}>
           {philosophy && (
             <LazySection animation="fade-up" delay={0.6}>
