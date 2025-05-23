@@ -44,7 +44,7 @@ export default function SolutionVisionSection({
         <motion.h2
           custom={1}
           variants={textVariants}
-          className="section-title text-3xl sm:text-4xl md:text-5xl"
+          className="section-title"
         >
           {heading}
         </motion.h2>

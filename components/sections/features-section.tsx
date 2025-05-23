@@ -57,7 +57,7 @@ export default function FeaturesSection({
           <div className="max-w-3xl mx-auto text-center mb-16">
             {badgeText && <Badge className="mb-4">{badgeText}</Badge>}
             {heading && (
-              <h2 id="features-section-heading" className="section-title text-neutral-text mb-6">
+              <h2 id="features-section-heading" className="text-neutral-text mb-6">
                 {heading}
               </h2>
             )}

@@ -42,7 +42,7 @@ export default function ValuePropSection({
           </Badge>
         )}
         {heading && (
-          <h2 className="section-title" style={{ '--index': 1 } as CSSProperties}>
+          <h2 style={{ '--index': 1 } as CSSProperties}>
             {heading}
           </h2>
         )}

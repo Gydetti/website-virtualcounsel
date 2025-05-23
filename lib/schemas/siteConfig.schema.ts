@@ -129,6 +129,7 @@ const featureFlagsSchema = z.object({
   enableMicroInteractions: z.boolean().optional().default(false),
   enableFooterServices: z.boolean().optional().default(true),
   enableAboutHeroCta: z.boolean().optional().default(false),
+  enableAboutLearnMoreCta: z.boolean().optional().default(true),
   enableKpiSection: z.boolean().optional().default(false),
   enableAboutKpiSection: z.boolean().optional().default(false),
   enableHomepageFaqCta: z.boolean().optional().default(false),

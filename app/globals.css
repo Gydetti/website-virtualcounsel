@@ -124,7 +124,7 @@
   }
   h2 {
     /* H2: 32px mobile, 36px md */
-    @apply mt-8 mb-4 text-[2rem] md:text-4xl font-bold;
+    @apply text-[2rem] md:text-4xl font-bold mb-6 whitespace-normal break-words;
   }
   h3 {
     /* H3: 26px mobile, 32px md */
@@ -206,11 +206,6 @@
   .section-padding-airy {
     padding-top: var(--section-spacing-airy);
     padding-bottom: var(--section-spacing-airy);
-  }
-
-  .section-title {
-    /* H2 Section Titles: 32px mobile, 36px md */
-    @apply text-[2rem] md:text-[2.25rem] font-bold mb-6 whitespace-normal break-words;
   }
 
   .section-subtitle {

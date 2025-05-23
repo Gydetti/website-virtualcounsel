@@ -113,7 +113,7 @@ export default function ContactSection({ badgeText, heading, subtitle }: Contact
           <div>
             {badgeText && <Badge className="mb-4">{badgeText}</Badge>}
             {heading && (
-              <h2 id="contact-section-heading" className="section-title">
+              <h2 id="contact-section-heading">
                 {heading}
               </h2>
             )}
@@ -121,118 +121,118 @@ export default function ContactSection({ badgeText, heading, subtitle }: Contact
           </div>
         </LazySection>
         {/* Cards: animate individually on scroll */}
-        <div className="grid md:grid-cols-2 gap-4 sm:gap-8 md:gap-12 max-w-4xl mx-auto">
-          <LazySection animation="slide-up" delay={0.1}>
-            {/* Form card */}
-            <div
-              className="h-full flex flex-col bg-neutral-surface rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow"
-              style={{ '--index': 1 } as CSSProperties}
-            >
-              <h3 className="mb-6">Form title prompting user to send a message</h3>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 gap-6">
-                  {fields.map(field => (
-                    <div key={field.name}>
-                      {field.type === 'textarea' ? (
-                        <Textarea
-                          name={field.name}
-                          placeholder={field.placeholder}
-                          value={formData[field.name]}
-                          onChange={handleChange}
-                          required={field.required}
-                          className="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-primary focus:border-transparent"
-                          rows={4}
-                        />
-                      ) : (
-                        <Input
-                          type={field.type}
-                          name={field.name}
-                          placeholder={field.placeholder}
-                          value={formData[field.name]}
-                          onChange={handleChange}
-                          required={field.required}
-                          className="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-primary focus:border-transparent"
-                        />
-                      )}
-                    </div>
-                  ))}
-                  <input
-                    type="text"
-                    name={honeypotName}
-                    value={formData[honeypotName]}
-                    onChange={handleChange}
-                    className="hidden"
-                  />
-                </div>
-                <Button type="submit" className="w-full group" disabled={isSubmitting}>
-                  {isSubmitting ? 'Sending...' : submitted ? 'Message sent!' : 'Send message'}
-                  {!isSubmitting && !submitted && (
-                    <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
-                  )}
-                </Button>
-                {submitted && (
-                  <div className="mt-4 p-4 bg-feedback-success-bg text-feedback-success rounded-lg">
-                    Thank you for your message! We'll get back to you as soon as possible.
+        <LazySection
+          animation="none"
+          className="stagger-container grid md:grid-cols-2 gap-4 sm:gap-8 md:gap-12 max-w-4xl mx-auto items-stretch"
+          style={{ '--stagger-delay': '0.1s' } as CSSProperties}
+        >
+          {/* Form card */}
+          <div
+            className="h-full flex flex-col bg-neutral-surface rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow"
+            style={{ '--index': 0 } as CSSProperties}
+          >
+            <h3 className="mb-6">Form title prompting user to send a message</h3>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 gap-6">
+                {fields.map(field => (
+                  <div key={field.name}>
+                    {field.type === 'textarea' ? (
+                      <Textarea
+                        name={field.name}
+                        placeholder={field.placeholder}
+                        value={formData[field.name]}
+                        onChange={handleChange}
+                        required={field.required}
+                        className="w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                        rows={4}
+                      />
+                    ) : (
+                      <Input
+                        type={field.type}
+                        name={field.name}
+                        placeholder={field.placeholder}
+                        value={formData[field.name]}
+                        onChange={handleChange}
+                        required={field.required}
+                        className="w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                      />
+                    )}
                   </div>
+                ))}
+                <input
+                  type="text"
+                  name={honeypotName}
+                  value={formData[honeypotName]}
+                  onChange={handleChange}
+                  className="hidden"
+                />
+              </div>
+              <Button type="submit" className="w-full group" disabled={isSubmitting}>
+                {isSubmitting ? 'Sending...' : submitted ? 'Message sent!' : 'Send message'}
+                {!isSubmitting && !submitted && (
+                  <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
                 )}
-              </form>
-            </div>
-          </LazySection>
-          <LazySection animation="slide-up" delay={0.2}>
-            {/* Contact info card */}
-            <div
-              className="h-full bg-primary text-white rounded-xl shadow-lg p-8 flex flex-col justify-between hover:shadow-xl transition-shadow"
-              style={{ '--index': 2 } as CSSProperties}
-            >
-              <h3 className="mb-6">Contact information</h3>
-              <ul className="space-y-6">
-                <li className="flex items-start">
-                  <Mail className="size-6 mr-4 shrink-0 mt-1" />
-                  <div>
-                    <p className="font-semibold mb-1">Email</p>
-                    <a
-                      href={`mailto:${siteConfig.contact.email}`}
-                      className="text-white/80 hover:text-white transition-colors"
-                    >
-                      {siteConfig.contact.email}
-                    </a>
-                  </div>
-                </li>
-                <li className="flex items-start">
-                  <Phone className="size-6 mr-4 shrink-0 mt-1" />
-                  <div>
-                    <p className="font-semibold mb-1">Phone</p>
-                    <a
-                      href={`tel:${siteConfig.contact.phone}`}
-                      className="text-white/80 hover:text-white transition-colors"
-                    >
-                      {siteConfig.contact.phone}
-                    </a>
-                  </div>
-                </li>
-                <li className="flex items-start">
-                  <MapPin className="size-6 mr-4 shrink-0 mt-1" />
-                  <div>
-                    <p className="font-semibold mb-1">Address</p>
-                    <address className="text-white/80 not-italic">
-                      {siteConfig.contact.address?.line1}
-                      {siteConfig.contact.address?.line2 && (
-                        <>
-                          <br />
-                          {siteConfig.contact.address.line2}
-                        </>
-                      )}
-                      <br />
-                      {siteConfig.contact.address?.zip} {siteConfig.contact.address?.city}
-                      <br />
-                      {siteConfig.contact.address?.country}
-                    </address>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </LazySection>
-        </div>
+              </Button>
+              {submitted && (
+                <div className="mt-4 p-4 bg-feedback-success-bg text-feedback-success rounded-lg">
+                  Thank you for your message! We'll get back to you as soon as possible.
+                </div>
+              )}
+            </form>
+          </div>
+          {/* Contact info card */}
+          <div
+            className="h-full bg-primary text-white rounded-xl shadow-lg p-8 flex flex-col justify-between hover:shadow-xl transition-shadow"
+            style={{ '--index': 1 } as CSSProperties}
+          >
+            <h3 className="mb-6">Contact information</h3>
+            <ul className="space-y-6">
+              <li className="flex items-start">
+                <Mail className="size-6 mr-4 shrink-0 mt-1" />
+                <div>
+                  <p className="font-semibold mb-1">Email</p>
+                  <a
+                    href={`mailto:${siteConfig.contact.email}`}
+                    className="text-white/80 hover:text-white transition-colors"
+                  >
+                    {siteConfig.contact.email}
+                  </a>
+                </div>
+              </li>
+              <li className="flex items-start">
+                <Phone className="size-6 mr-4 shrink-0 mt-1" />
+                <div>
+                  <p className="font-semibold mb-1">Phone</p>
+                  <a
+                    href={`tel:${siteConfig.contact.phone}`}
+                    className="text-white/80 hover:text-white transition-colors"
+                  >
+                    {siteConfig.contact.phone}
+                  </a>
+                </div>
+              </li>
+              <li className="flex items-start">
+                <MapPin className="size-6 mr-4 shrink-0 mt-1" />
+                <div>
+                  <p className="font-semibold mb-1">Address</p>
+                  <address className="text-white/80 not-italic">
+                    {siteConfig.contact.address?.line1}
+                    {siteConfig.contact.address?.line2 && (
+                      <>
+                        <br />
+                        {siteConfig.contact.address.line2}
+                      </>
+                    )}
+                    <br />
+                    {siteConfig.contact.address?.zip} {siteConfig.contact.address?.city}
+                    <br />
+                    {siteConfig.contact.address?.country}
+                  </address>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </LazySection>
       </div>
     </Section>
   );

@@ -75,7 +75,7 @@ export default function HomepageFaqSection({
           <Badge className="mb-4" style={{ '--index': 0 } as React.CSSProperties}>
             {badgeText}
           </Badge>
-          <h2 className="section-title mb-12" style={{ '--index': 1 } as React.CSSProperties}>
+          <h2 className="mb-12" style={{ '--index': 1 } as React.CSSProperties}>
             {heading}
           </h2>
           {description && (

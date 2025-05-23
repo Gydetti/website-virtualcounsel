@@ -22,6 +22,7 @@ export default function ProblemPainSection({
       <LazySection
         animation="slide-up"
         delay={0}
+        childrenStagger={false}
         className="-mx-3.5 sm:mx-auto bg-brand-secondary-dark text-white rounded-[30px] border shadow-lg p-8 sm:p-12"
       >
         <div className="grid gap-12 lg:grid-cols-2">

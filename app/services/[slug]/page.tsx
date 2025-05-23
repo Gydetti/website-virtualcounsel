@@ -168,8 +168,10 @@ export default async function ServicePage(props: ServicePageProps) {
           </div>
 
           <LazySection
-            animation="slide-up"
+            animation="fade"
             delay={0.4}
+            fullHeight={false}
+            childrenStagger={false}
             className="relative h-[400px] rounded-xl overflow-hidden shadow-xl"
           >
             <div className="absolute inset-0 flex items-center justify-center bg-neutral-background-100">
@@ -186,19 +188,28 @@ export default async function ServicePage(props: ServicePageProps) {
               Key benefits section heading summarizing main outcomes
             </h2>
           </LazySection>
-          <div className="grid md:grid-cols-3 gap-8">
+          <LazySection
+            animation="none"
+            className="stagger-container grid md:grid-cols-3 gap-8"
+            style={{ '--stagger-delay': '0.1s' } as CSSProperties}
+          >
             {benefits.map((benefit, idx) => (
-              <LazySection key={benefit.title} animation="slide-up" delay={0.1 + idx * 0.1}>
-                <Card className="flex flex-col h-full text-center p-6 hover:shadow-lg transition-shadow">
-                  <div className="inline-flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
-                    <span className="text-2xl">{benefit.icon}</span>
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">{benefit.title}</h3>
-                  <p className="text-neutral-text/600">{benefit.description}</p>
-                </Card>
-              </LazySection>
+              <Card 
+                key={benefit.title}
+                equalHeight 
+                padding="large" 
+                hover="lift" 
+                className="text-center h-full flex flex-col justify-center items-center"
+                style={{ '--index': idx } as CSSProperties}
+              >
+                <div className="inline-flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
+                  <span className="text-2xl">{benefit.icon}</span>
+                </div>
+                <h3 className="text-xl font-bold mb-2">{benefit.title}</h3>
+                <p className="text-neutral-text/600">{benefit.description}</p>
+              </Card>
             ))}
-          </div>
+          </LazySection>
         </div>
       </section>
 
@@ -208,27 +219,31 @@ export default async function ServicePage(props: ServicePageProps) {
         <div className="container-wide">
           <LazySection
             animation="none"
-            className="stagger-container"
-            style={{ '--stagger-delay': '0.1s' } as CSSProperties}
+            className="stagger-container text-center mb-12"
+            style={{ '--stagger-delay': '0.2s' } as CSSProperties}
           >
             <h2
-              className="text-3xl font-bold mb-12 text-center"
+              className="text-3xl font-bold text-center"
               style={{ '--index': 0 } as CSSProperties}
             >
               Section heading for service-specific questions
             </h2>
-            <div className="max-w-3xl mx-auto space-y-6">
-              {faq.map((item, idx) => (
-                <div key={item.question} style={{ '--index': idx + 1 } as CSSProperties}>
-                  <Card className="overflow-hidden">
-                    <CardContent className="p-6">
-                      <h3 className="text-xl font-bold mb-2">{item.question}</h3>
-                      <p className="text-neutral-text/600">{item.answer}</p>
-                    </CardContent>
-                  </Card>
-                </div>
-              ))}
-            </div>
+          </LazySection>
+          <LazySection
+            animation="none"
+            className="stagger-container space-y-6 max-w-3xl mx-auto"
+            style={{ '--stagger-delay': '0.2s' } as CSSProperties}
+          >
+            {faq.map((item, idx) => (
+              <div key={item.question} style={{ '--index': idx + 1 } as CSSProperties}>
+                <Card className="overflow-hidden">
+                  <CardContent className="p-6">
+                    <h3 className="text-xl font-bold mb-2">{item.question}</h3>
+                    <p className="text-neutral-text/600">{item.answer}</p>
+                  </CardContent>
+                </Card>
+              </div>
+            ))}
           </LazySection>
         </div>
       </section>

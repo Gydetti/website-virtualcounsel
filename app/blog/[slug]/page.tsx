@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import type { CSSProperties } from 'react';
 
 import { Section } from '@/components/layout/Section';
 import BlogSchema from '@/components/seo/blog-schema';
@@ -10,6 +11,7 @@ import StructuredData from '@/components/seo/structured-data';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import LazySection from '@/components/ui/lazy-section';
 import { getBlogPostBySlug, getBlogPosts } from '@/lib/data-utils';
 import { defaultMetadata } from '@/lib/metadata';
 import { siteConfig } from '@/lib/siteConfig';
@@ -112,196 +114,235 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
     <>
       <BlogSchema {...blogSchemaData} />
       <StructuredData type="article" data={blogSchemaData} />
+      
+      {/* Blog Header Section */}
       <Section className="">
         <div className="max-w-4xl mx-auto">
-          {/* Back link and category badge grouped to prevent overlap on small screens */}
-          <div className="flex flex-wrap items-center gap-3 mb-6">
-            <Link href="/blog" className="inline-flex items-center text-primary hover:underline">
-              <ArrowLeft className="mr-2 size-4" />
-              Back link text (e.g. 'Back to blog overview')
-            </Link>
-            <Badge>{post.category}</Badge>
-          </div>
-          <h1 className="">{post.title}</h1>
+          {/* Header with CSS-only stagger animation */}
+          <LazySection
+            animation="none"
+            className="stagger-container"
+            style={{ '--stagger-delay': '0.1s' } as CSSProperties}
+          >
+            {/* Back link and category badge grouped to prevent overlap on small screens */}
+            <div className="flex flex-wrap items-center gap-3 mb-6" style={{ '--index': 0 } as CSSProperties}>
+              <Link href="/blog" className="inline-flex items-center text-primary hover:underline">
+                <ArrowLeft className="mr-2 size-4" />
+                Back link text (e.g. 'Back to blog overview')
+              </Link>
+              <Badge>{post.category}</Badge>
+            </div>
+            
+            <h1 className="" style={{ '--index': 1 } as CSSProperties}>{post.title}</h1>
 
-          <div className="flex flex-wrap items-center gap-4 text-neutral-text/600 mb-8">
-            <div className="flex items-center">
-              <User className="size-4 mr-2" />
-              <span>{author.name}</span>
+            <div className="flex flex-wrap items-center gap-4 text-neutral-text/600 mb-8" style={{ '--index': 2 } as CSSProperties}>
+              <div className="flex items-center">
+                <User className="size-4 mr-2" />
+                <span>{author.name}</span>
+              </div>
+              <div className="flex items-center">
+                <Calendar className="size-4 mr-2" />
+                <span className="text-sm text-neutral-text/500">
+                  {new Date(post.date).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </span>
+              </div>
+              <div className="flex items-center">
+                <Clock className="size-4 mr-2" />
+                <span className="text-sm text-neutral-text/500">
+                  Reading time (e.g. '5 min read')
+                </span>
+              </div>
             </div>
-            <div className="flex items-center">
-              <Calendar className="size-4 mr-2" />
-              <span className="text-sm text-neutral-text/500">
-                {new Date(post.date).toLocaleDateString('en-US', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                })}
-              </span>
-            </div>
-            <div className="flex items-center">
-              <Clock className="size-4 mr-2" />
-              <span className="text-sm text-neutral-text/500">
-                Reading time (e.g. '5 min read')
-              </span>
-            </div>
-          </div>
+          </LazySection>
         </div>
       </Section>
 
+      {/* Main Content Section */}
       <Section>
         <div className="grid lg:grid-cols-4 gap-8 md:gap-12">
           <div className="lg:col-span-3">
-            <div className="relative h-[400px] w-full mb-8 rounded-xl overflow-hidden">
+            {/* Hero Image */}
+            <LazySection 
+              animation="fade" 
+              delay={0.3}
+              fullHeight={false}
+              className="relative h-[400px] w-full mb-8 rounded-xl overflow-hidden"
+            >
               <Image
                 src={post.coverImage?.src || '/placeholder.svg'}
                 alt={post.coverImage?.alt || post.title}
                 fill
                 className="object-cover"
               />
-            </div>
+            </LazySection>
 
-            <article className="prose prose-lg space-y-6">
-              {/* biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation> */}
-              <div dangerouslySetInnerHTML={{ __html: content }} />
-            </article>
+            {/* Article Content */}
+            <LazySection animation="fade-up" delay={0.4}>
+              <article className="prose prose-lg space-y-6">
+                {/* biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation> */}
+                <div dangerouslySetInnerHTML={{ __html: content }} />
+              </article>
+            </LazySection>
 
-            <div className="flex items-center justify-between mt-12 pt-8 border-t">
-              <div className="flex items-center">
-                <span className="mr-4">Section heading for social share options</span>
-                <div className="flex space-x-2">
-                  <Button size="icon" variant="ghost" aria-label="Share on Twitter">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      aria-hidden="true"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="size-5"
-                    >
-                      <title>Twitter</title>
-                      <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
-                    </svg>
-                  </Button>
-                  <Button size="icon" variant="ghost" aria-label="Share on Facebook">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      aria-hidden="true"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="size-5"
-                    >
-                      <title>Facebook</title>
-                      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                    </svg>
-                  </Button>
-                  <Button size="icon" variant="ghost" aria-label="Share on LinkedIn">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      aria-hidden="true"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="size-5"
-                    >
-                      <title>LinkedIn</title>
-                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                      <rect x="2" y="9" width="4" height="12" />
-                      <circle cx="4" cy="4" r="2" />
-                    </svg>
-                  </Button>
-                  <Button size="icon" variant="ghost" aria-label="Copy link">
-                    <Share2 className="size-5" />
-                  </Button>
+            {/* Social Share Section */}
+            <LazySection animation="fade-up" delay={0.5}>
+              <div className="flex items-center justify-between mt-12 pt-8 border-t">
+                <div className="flex items-center">
+                  <span className="mr-4">Section heading for social share options</span>
+                  <div className="flex space-x-2">
+                    <Button size="icon" variant="ghost" aria-label="Share on Twitter">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="size-5"
+                      >
+                        <title>Twitter</title>
+                        <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
+                      </svg>
+                    </Button>
+                    <Button size="icon" variant="ghost" aria-label="Share on Facebook">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="size-5"
+                      >
+                        <title>Facebook</title>
+                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                      </svg>
+                    </Button>
+                    <Button size="icon" variant="ghost" aria-label="Share on LinkedIn">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="size-5"
+                      >
+                        <title>LinkedIn</title>
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                        <rect x="2" y="9" width="4" height="12" />
+                        <circle cx="4" cy="4" r="2" />
+                      </svg>
+                    </Button>
+                    <Button size="icon" variant="ghost" aria-label="Copy link">
+                      <Share2 className="size-5" />
+                    </Button>
+                  </div>
                 </div>
               </div>
-            </div>
+            </LazySection>
           </div>
 
+          {/* Sidebar */}
           <div className="lg:col-span-1">
-            <Card>
-              <CardContent className="p-6">
-                <h3 className="mb-4">About the Author</h3>
-                <div className="flex items-center mb-4">
-                  <div className="relative size-16 rounded-full overflow-hidden mr-4">
-                    <Image
-                      src={author.image || '/placeholder.svg'}
-                      alt={author.name}
-                      fill
-                      className="object-cover"
-                    />
+            {/* Author Card */}
+            <LazySection animation="slide-left" delay={0.4}>
+              <Card>
+                <CardContent className="p-6">
+                  <h3 className="mb-4">About the Author</h3>
+                  <div className="flex items-center mb-4">
+                    <div className="relative size-16 rounded-full overflow-hidden mr-4">
+                      <Image
+                        src={author.image || '/placeholder.svg'}
+                        alt={author.name}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div>
+                      <h4>{author.name}</h4>
+                      <p className="text-sm text-neutral-text/600">{author.title}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h4>{author.name}</h4>
-                    <p className="text-sm text-neutral-text/600">{author.title}</p>
-                  </div>
-                </div>
-                <p className="text-neutral-text/600 text-sm">{author.bio}</p>
-              </CardContent>
-            </Card>
+                  <p className="text-neutral-text/600 text-sm">{author.bio}</p>
+                </CardContent>
+              </Card>
+            </LazySection>
 
-            <div className="mt-8">
-              <h3 className="mb-4">Categories</h3>
-              <div className="flex flex-wrap gap-2">
-                <Badge
-                  variant="outline"
-                  className="cursor-pointer hover:bg-primary hover:text-white"
-                >
-                  Digital Marketing
-                </Badge>
-                <Badge
-                  variant="outline"
-                  className="cursor-pointer hover:bg-primary hover:text-white"
-                >
-                  Web Design
-                </Badge>
-                <Badge
-                  variant="outline"
-                  className="cursor-pointer hover:bg-primary hover:text-white"
-                >
-                  Business Growth
-                </Badge>
-                <Badge
-                  variant="outline"
-                  className="cursor-pointer hover:bg-primary hover:text-white"
-                >
-                  SEO
-                </Badge>
-                <Badge
-                  variant="outline"
-                  className="cursor-pointer hover:bg-primary hover:text-white"
-                >
-                  Social Media
-                </Badge>
+            {/* Categories */}
+            <LazySection animation="slide-left" delay={0.5}>
+              <div className="mt-8">
+                <h3 className="mb-4">Categories</h3>
+                <div className="flex flex-wrap gap-2">
+                  <Badge
+                    variant="outline"
+                    className="cursor-pointer hover:bg-primary hover:text-white"
+                  >
+                    Digital Marketing
+                  </Badge>
+                  <Badge
+                    variant="outline"
+                    className="cursor-pointer hover:bg-primary hover:text-white"
+                  >
+                    Web Design
+                  </Badge>
+                  <Badge
+                    variant="outline"
+                    className="cursor-pointer hover:bg-primary hover:text-white"
+                  >
+                    Business Growth
+                  </Badge>
+                  <Badge
+                    variant="outline"
+                    className="cursor-pointer hover:bg-primary hover:text-white"
+                  >
+                    SEO
+                  </Badge>
+                  <Badge
+                    variant="outline"
+                    className="cursor-pointer hover:bg-primary hover:text-white"
+                  >
+                    Social Media
+                  </Badge>
+                </div>
               </div>
-            </div>
+            </LazySection>
           </div>
         </div>
       </Section>
 
+      {/* Related Articles Section */}
       <Section className="bg-neutral-background">
-        <h2 className="text-3xl font-bold mb-12">Related Articles</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {relatedPosts.map(relatedPost => (
+        <LazySection animation="fade-up" delay={0.1}>
+          <h2 className="text-3xl font-bold mb-12">Related Articles</h2>
+        </LazySection>
+        
+        <LazySection
+          animation="none"
+          className="stagger-container grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          style={{ '--stagger-delay': '0.15s' } as CSSProperties}
+        >
+          {relatedPosts.map((relatedPost, index) => (
             <Card
               key={relatedPost.id}
               className="overflow-hidden transition-all duration-300 hover:shadow-xl"
+              style={{ '--index': index } as CSSProperties}
             >
               <div className="relative h-48 w-full overflow-hidden">
                 <Image
@@ -325,7 +366,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
               </CardContent>
             </Card>
           ))}
-        </div>
+        </LazySection>
       </Section>
     </>
   );

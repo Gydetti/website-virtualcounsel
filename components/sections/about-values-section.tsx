@@ -26,7 +26,7 @@ export default function AboutValuesSection({
           </Badge>
         )}
         {heading && (
-          <h3 className="section-title mb-6" style={{ '--index': 1 } as CSSProperties}>
+          <h3 className="mb-6" style={{ '--index': 1 } as CSSProperties}>
             {heading}
           </h3>
         )}

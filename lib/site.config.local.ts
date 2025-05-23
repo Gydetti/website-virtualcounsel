@@ -236,6 +236,7 @@ export const siteConfig: SiteConfigSchema = {
     enableValuePropSection: true, // <--- Toggle Value Proposition section display
     enableHomepageFaqCta: false,
     enableAboutHeroCta: false,
+    enableAboutLearnMoreCta: true, // <--- Toggle "Learn more about me" button in AboutSection
     enableLandingPages: true, // <--- Toggle dedicated Landing Page functionality
     enableCustomCookieBanner: false, // <--- Use custom banner instead of Cookiebot (if ID not set)
     enableFooterServices: true, // <--- Toggle services list in footer
@@ -370,7 +371,7 @@ export const siteConfig: SiteConfigSchema = {
           id: 'home-about',
           sectionType:
             'AboutSection' /* patternStyle: 'grid', patternOpacity: 0.1, patternFade: 'edges', patternColor: 'rgba(var(--accent-rgb), 0.2)' */,
-          variant: 'classic',
+          variant: 'imageRight',
         },
         {
           id: 'home-kpi',

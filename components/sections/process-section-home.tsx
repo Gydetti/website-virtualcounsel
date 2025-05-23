@@ -27,7 +27,7 @@ export default function ProcessSectionHome({
         </Badge>
         {heading && (
           <h2
-            className="mt-4 font-bold tracking-tight text-neutral-text"
+            className="mt-4 tracking-tight"
             style={{ '--index': 1 } as CSSProperties}
           >
             {heading}
