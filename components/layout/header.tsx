@@ -204,10 +204,7 @@ export default function Header() {
               : 'bg-neutral-surface shadow-sm lg:bg-neutral-surface/80 lg:backdrop-blur-md py-4'
           )}
         >
-          <nav
-            className="container-wide px-2 sm:px-3 md:px-4 xl:px-10 flex items-center justify-between"
-            aria-label="Global"
-          >
+          <nav className="container flex items-center justify-between" aria-label="Global">
             <div
               className={cn(
                 'flex lg:flex-1 transition-transform duration-300 origin-left',

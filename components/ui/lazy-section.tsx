@@ -50,10 +50,13 @@ export default function LazySection({
   // Global default duration shortened for snappier feel (reduced from 0.6)
   duration = 0.4,
   fullHeight,
-  easingFunction = 'smooth',
-  intensity = 'moderate',
-  willChange = false,
-  childrenStagger = false,
+  // Use global theme animation defaults
+  easingFunction = siteConfig.theme.animation?.style ?? 'smooth',
+  intensity = siteConfig.theme.animation?.intensity ?? 'moderate',
+  // Enable will-change for smooth GPU-accelerated animations
+  willChange = true,
+  // Enable staggered children based on global feature flag
+  childrenStagger = siteConfig.features.enableStaggeredAnimations,
   childrenStaggerDelay = 0.1,
 }: LazySectionProps) {
   const [isVisible, setIsVisible] = useState(false);
@@ -95,6 +98,7 @@ export default function LazySection({
     bounce: [0.175, 0.885, 0.32, 1.275],
     'in-out': [0.42, 0, 0.58, 1],
     out: [0.25, 0.46, 0.45, 0.94],
+    energetic: [0.23, 1, 0.32, 1],
   };
   const getEasingVariable = (): [number, number, number, number] => {
     return easingMap[easingFunction] ?? easingMap.out;

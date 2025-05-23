@@ -71,6 +71,8 @@ Here's our current implementation progress against the design enhancement bluepr
    - `Card` component with theme-driven elevation, hover interactions, and consistent padding/border variants
    - `BackgroundPattern` component for theme-driven pattern backgrounds using CSS utility classes
    - **Section component:** Now uses config-driven section spacing based on `contentDensity`, with a literal class map to ensure Tailwind JIT generates all required padding utilities. No more hardcoded vertical padding in sections.
+   - **PageTransitionWrapper:** Integrated into `AppShell`, enabling configurable route transitions controlled by `siteConfig.features.enablePageTransitions` and `pageTransitionVariant`.
+   - **BackgroundCanvas:** Prototype for animated backgrounds enabled via `animatedBackgroundType` with reduced-motion fallback respecting `prefers-reduced-motion`.
 
 3. **Section Enhancements**
    - **HeroSection:** Configurable patterns, refined typography, immersive typing and stat animations
@@ -102,7 +104,6 @@ Here's our current implementation progress against the design enhancement bluepr
 2. **Animation & Interaction Layer**
    - Fine-tune `LazySection` for `childrenStagger`, `willChange`, and advanced easing/duration mapping
    - Integrate `PageTransitionWrapper` globally and align page transitions with `siteConfig.features` settings
-   - Prototype `BackgroundCanvas` for animated gradients/particles (behind `animatedBackgroundType`) with reduced-motion fallbacks
    - Refine micro-interactions (hover, focus, touch) based on `siteConfig.theme.animation.intensity` and feature flags
 
 ### Next Steps
@@ -135,6 +136,9 @@ The codebase maintains full backward compatibility while introducing the new the
 
 ### Implementation Learnings
 
+- Integrated `PageTransitionWrapper` into `AppShell` to handle route transitions based on `enablePageTransitions` and `pageTransitionVariant` flags without additional layout changes.
+- Noted that AppShell already wraps `children` in `PageTransitionWrapper`, making integration straightforward and fully configuration-driven.
+- Implemented `BackgroundCanvas` prototype to render animated gradients, particles, and other effects based on `animatedBackgroundType`, with an early return when `prefers-reduced-motion` is enabled.
 - Implemented default fallback logic for `patternStyle` and `patternOpacity` in the `Section` component to ensure global theme defaults are applied when no per-section overrides are provided.
 - Extended `aboutSectionDataSchema` to include `patternStyle` and `patternOpacity` for type-safe pattern overrides in the AboutSection.
 - Updated `AboutSection` component to destructure and pass `patternStyle` and `patternOpacity` props to the `Section` wrapper, enabling background pattern support per section.
@@ -1491,6 +1495,8 @@ Use these snippets as templates when adding new visual tokens, patterns, animati
 
 ### Implementation Learnings
 
+- Integrated `PageTransitionWrapper` into `AppShell` to handle route transitions based on `enablePageTransitions` and `pageTransitionVariant` flags without additional layout changes.
+- Noted that AppShell already wraps `children` in `PageTransitionWrapper`, making integration straightforward and fully configuration-driven.
 - Implemented default fallback logic for `patternStyle` and `patternOpacity` in the `Section` component to ensure global theme defaults are applied when no per-section overrides are provided.
 - Extended `aboutSectionDataSchema` to include `patternStyle` and `patternOpacity` for type-safe pattern overrides in the AboutSection.
 - Updated AboutSection component to destructure and pass `patternStyle` and `patternOpacity` props to the `Section` wrapper, enabling background pattern support per section.

@@ -50,8 +50,8 @@ export function Section({
     : undefined;
   const usedPatternFade = patternFade ?? 'none';
   const usedPatternColor = patternColor;
-  // Responsive horizontal padding for container (mobile:1rem, sm:1.5rem, md:2rem, xl:5rem)
-  const containerClasses = 'mx-auto px-4 sm:px-6 md:px-8 xl:px-20';
+  // Use global container utility to enforce max-width from CSS var --container-max-width
+  const containerClasses = 'container';
   // Wrapper classes including vertical padding and background
   const wrapperClasses = `overflow-hidden ${sectionPaddingClass} ${bgClass} ${className}`.trim();
   if (fullBleed) {
