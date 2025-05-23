@@ -12,7 +12,7 @@ export const aboutPageMainContentData: z.infer<typeof aboutSectionDataSchema> = 
     'Paragraph 3: Highlight what makes the company/individual unique, its approach, or its commitment to clients.',
   ],
   image: {
-    src: '/placeholder.svg?width=500&height=500',
+    src: '/images/placeholders/placeholder.svg',
     alt: 'Image representing our company', // Generic alt
     width: 500,
     height: 500,

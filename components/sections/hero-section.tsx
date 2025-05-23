@@ -186,7 +186,7 @@ export default function HeroSection({
                       className="inline-block size-8 rounded-full ring-2 ring-white overflow-hidden bg-neutral-background/200"
                     >
                       <Image
-                        src="/placeholder.svg?height=32&width=32"
+                        src="/images/placeholders/placeholder.svg"
                         alt="User avatar"
                         width={32}
                         height={32}

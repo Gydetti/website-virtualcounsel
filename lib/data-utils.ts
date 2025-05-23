@@ -78,7 +78,7 @@ export const getBlogPosts = async (limit?: number): Promise<BlogPostType[]> => {
       date: '2025-04-15',
       category: 'Digital Marketing',
       coverImage: {
-        src: '/placeholder.svg?height=300&width=600',
+        src: '/images/placeholders/placeholder.svg',
         alt: 'Improve Online Presence',
       },
       content: 'Full blog post content for post-1 would go here...',
@@ -98,7 +98,7 @@ export const getBlogPosts = async (limit?: number): Promise<BlogPostType[]> => {
       date: '2025-03-28',
       category: 'Web Design',
       coverImage: {
-        src: '/placeholder.svg?height=300&width=600',
+        src: '/images/placeholders/placeholder.svg',
         alt: 'Mobile-First Design',
       },
       content: 'Full blog post content for post-2...',
@@ -112,7 +112,7 @@ export const getBlogPosts = async (limit?: number): Promise<BlogPostType[]> => {
       date: '2025-03-10',
       category: 'Automation',
       coverImage: {
-        src: '/placeholder.svg?height=300&width=600',
+        src: '/images/placeholders/placeholder.svg',
         alt: 'Client Onboarding Automation',
       },
       content: 'Full blog post content for post-3...',
@@ -126,7 +126,7 @@ export const getBlogPosts = async (limit?: number): Promise<BlogPostType[]> => {
       date: '2025-02-22',
       category: 'Content Marketing',
       coverImage: {
-        src: '/placeholder.svg?height=300&width=600',
+        src: '/images/placeholders/placeholder.svg',
         alt: 'Content That Converts',
       },
       content: 'Full blog post content for post-4...',
@@ -140,7 +140,7 @@ export const getBlogPosts = async (limit?: number): Promise<BlogPostType[]> => {
       date: '2025-02-05',
       category: 'Brand Building',
       coverImage: {
-        src: '/placeholder.svg?height=300&width=600',
+        src: '/images/placeholders/placeholder.svg',
         alt: 'Building Trust Online',
       },
       content: 'Full blog post content for post-5...',
@@ -154,7 +154,7 @@ export const getBlogPosts = async (limit?: number): Promise<BlogPostType[]> => {
       date: '2025-01-18',
       category: 'Web Design',
       coverImage: {
-        src: '/placeholder.svg?height=300&width=600',
+        src: '/images/placeholders/placeholder.svg',
         alt: 'ROI Web Design',
       },
       content: 'Full blog post content for post-6...',

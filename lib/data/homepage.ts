@@ -82,56 +82,56 @@ export const clientsSectionData: z.infer<typeof clientsSectionDataSchema> = {
     {
       name: 'TechCorp',
       logo: {
-        src: '/placeholder.svg?height=60&width=120',
+        src: '/images/placeholders/placeholder-logo.svg',
         alt: 'TechCorp Logo',
       },
     },
     {
       name: 'InnovateLabs',
       logo: {
-        src: '/placeholder.svg?height=60&width=120',
+        src: '/images/placeholders/placeholder-logo.svg',
         alt: 'InnovateLabs Logo',
       },
     },
     {
       name: 'GrowthPartners',
       logo: {
-        src: '/placeholder.svg?height=60&width=120',
+        src: '/images/placeholders/placeholder-logo.svg',
         alt: 'GrowthPartners Logo',
       },
     },
     {
       name: 'FutureVision',
       logo: {
-        src: '/placeholder.svg?height=60&width=120',
+        src: '/images/placeholders/placeholder-logo.svg',
         alt: 'FutureVision Logo',
       },
     },
     {
       name: 'NextLevel',
       logo: {
-        src: '/placeholder.svg?height=60&width=120',
+        src: '/images/placeholders/placeholder-logo.svg',
         alt: 'NextLevel Logo',
       },
     },
     {
       name: 'PeakPerformance',
       logo: {
-        src: '/placeholder.svg?height=60&width=120',
+        src: '/images/placeholders/placeholder-logo.svg',
         alt: 'PeakPerformance Logo',
       },
     },
     {
       name: 'EliteServices',
       logo: {
-        src: '/placeholder.svg?height=60&width=120',
+        src: '/images/placeholders/placeholder-logo.svg',
         alt: 'EliteServices Logo',
       },
     },
     {
       name: 'PrimeConsulting',
       logo: {
-        src: '/placeholder.svg?height=60&width=120',
+        src: '/images/placeholders/placeholder-logo.svg',
         alt: 'PrimeConsulting Logo',
       },
     },
@@ -150,7 +150,7 @@ export const testimonialsSectionData: z.infer<typeof testimonialsSectionDataSche
       name: 'Sarah Johnson',
       title: 'CEO, Innovate Solutions',
       image: {
-        src: '/placeholder.svg?height=60&width=60',
+        src: '/images/placeholders/placeholder.svg',
         alt: 'Sarah Johnson',
       },
       rating: 5,
@@ -162,7 +162,7 @@ export const testimonialsSectionData: z.infer<typeof testimonialsSectionDataSche
       name: 'Michael Chen',
       title: 'Founder, GrowthTech',
       image: {
-        src: '/placeholder.svg?height=60&width=60',
+        src: '/images/placeholders/placeholder.svg',
         alt: 'Michael Chen',
       },
       rating: 5,
@@ -174,7 +174,7 @@ export const testimonialsSectionData: z.infer<typeof testimonialsSectionDataSche
       name: 'Emma Rodriguez',
       title: 'Marketing Director, Elevate Inc.',
       image: {
-        src: '/placeholder.svg?height=60&width=60',
+        src: '/images/placeholders/placeholder.svg',
         alt: 'Emma Rodriguez',
       },
       rating: 5,
@@ -389,7 +389,7 @@ export const aboutSectionData: z.infer<typeof aboutSectionDataSchema> = {
     'Connect with your audience on a personal level.',
   ],
   image: {
-    src: '/placeholder.svg?height=400&width=600',
+    src: '/images/placeholders/placeholder.svg',
     alt: 'Placeholder image representing company or team',
   },
   stats: [
