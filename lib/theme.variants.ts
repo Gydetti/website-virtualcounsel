@@ -8,37 +8,24 @@ export const themeVariants: Record<string, SiteConfig['theme']> = {
   v2: {
     ...rawConfig.theme,
     colors: {
+      // Base colors for Warm & Approachable: earthy, soft pastels
       ...rawConfig.theme.colors,
-      primary: rawConfig.theme.colors.secondary,
-      secondary: rawConfig.theme.colors.primary,
-      accent: rawConfig.theme.colors.accent2,
-      accent2: rawConfig.theme.colors.accent3,
-      accent3: rawConfig.theme.colors.accent,
-      extra1: rawConfig.theme.colors.extra2,
-      extra2: rawConfig.theme.colors.extra3,
-      extra3: rawConfig.theme.colors.extra4,
-      extra4: rawConfig.theme.colors.extra5,
-      extra5: rawConfig.theme.colors.extra6,
-      extra6: rawConfig.theme.colors.extra7,
-      extra7: rawConfig.theme.colors.extra8,
-      extra8: rawConfig.theme.colors.extra9,
-      extra9: rawConfig.theme.colors.extra10,
-      extra10: rawConfig.theme.colors.extra11,
-      extra11: rawConfig.theme.colors.extra12,
-      extra12: rawConfig.theme.colors.extra13,
-      extra13: rawConfig.theme.colors.extra14,
-      extra14: rawConfig.theme.colors.extra15,
-      extra15: rawConfig.theme.colors.extra1,
-      background: rawConfig.theme.colors.heroBackground as string,
-      heroBackground: rawConfig.theme.colors.background as string,
-      header: rawConfig.theme.colors.body as string,
-      body: rawConfig.theme.colors.header as string,
-      lightGrey: rawConfig.theme.colors.lightGrey as string,
+      primary: '#E07A5F', // terracotta
+      secondary: '#81B29A', // sage green
+      accent: '#F2CC8F', // warm ochre
+      accent2: '#F28482', // soft coral
+      accent3: '#D8C3A5', // sandy beige
+      // Override background and text
+      background: '#F4F1DE', // creamy off-white
+      heroBackground: '#F4F1DE',
+      header: '#3D405B', // gentle gray-purple
+      body: '#6D6875', // muted mauve
+      lightGrey: '#E07A5F', // terracotta tone light
     },
     typography: {
-      headingFont: 'Montserrat',
-      bodyFont: 'Roboto',
-      baseSize: '18px', // slightly larger base font
+      headingFont: 'Nunito',
+      bodyFont: 'Raleway',
+      baseSize: '16px', // standard readable base size
       textStyle: rawConfig.theme.typography.textStyle,
     },
     spacing: {
@@ -49,14 +36,14 @@ export const themeVariants: Record<string, SiteConfig['theme']> = {
       xl: '3rem',
     },
     borders: {
-      radiusBase: '1rem', // larger rounded corners
-      widthBase: '2px',
-      colorBase: '#4B5563', // darker extra border
+      radiusBase: '1rem', // soft, comforting rounding
+      widthBase: '1px',
+      colorBase: '#D8C3A5', // light sandy border
     },
     shadows: {
-      sm: '0 2px 4px rgba(0,0,0,0.1)',
-      md: '0 6px 8px rgba(0,0,0,0.15)',
-      lg: '0 12px 20px rgba(0,0,0,0.2)',
+      sm: '0 1px 2px rgba(0,0,0,0.05)', // gentle shadow
+      md: '0 2px 4px rgba(0,0,0,0.08)',
+      lg: '0 4px 8px rgba(0,0,0,0.1)',
     },
     layout: {
       containerMaxWidth: '1024px',

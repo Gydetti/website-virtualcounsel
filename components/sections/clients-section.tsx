@@ -8,8 +8,6 @@ import { Badge } from '@/components/ui/badge';
 import LazySection from '@/components/ui/lazy-section';
 import type { clientsSectionDataSchema } from '@/lib/schemas/sections.schema';
 
-import styles from './clients-section.module.css';
-
 // Updated props type alias
 export type ClientsSectionProps = z.infer<typeof clientsSectionDataSchema>;
 
@@ -40,16 +38,19 @@ export default function ClientsSection({ badgeText, heading, clients }: ClientsS
 
         <div className="py-4" style={{ '--index': 1 } as CSSProperties}>
           <div className="py-2">
-            <div className={styles.slider_wrapper}>
-              <div className={styles.slider}>
+            <div className="w-full max-w-[calc(166px*6)] mx-auto relative overflow-hidden">
+              <div className="flex animate-scroll">
                 {sliderItems.map(client => (
-                  <div key={`${client.name}-${client.instance}`} className={styles.logo_item}>
+                  <div
+                    key={`${client.name}-${client.instance}`}
+                    className="shrink-0 basis-1/3 sm:basis-1/4 lg:basis-1/6 flex items-center justify-center"
+                  >
                     <Image
                       src={client.logo.src}
                       alt={client.logo.alt}
                       width={120}
                       height={60}
-                      className={`${styles.logo_image} w-24 object-contain`}
+                      className="w-24 object-contain"
                     />
                   </div>
                 ))}

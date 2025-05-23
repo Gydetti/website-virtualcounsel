@@ -64,6 +64,7 @@ Here's our current implementation progress against the design enhancement bluepr
    - **Dynamic section spacing system:** Section vertical padding is now fully config-driven via `siteConfig.theme.visualStyle.contentDensity`, with utility classes (`.section-padding-compact`, `.section-padding-balanced`, `.section-padding-airy`) defined in `app/globals.css` and mapped in code for Tailwind JIT compatibility.
    - Extended `siteConfig.theme` with `animation`, `visualStyle`, and `sectionStyles` in `lib/site.config.local.ts`
    - Updated Zod schemas (`animationSchema`, `visualStyleSchema`, `themeSectionStylesSchema`) in `lib/schemas/theme.schema.ts`
+   - **Theme variants (v2 Warm & Approachable):** Defined in `lib/theme.variants.ts` with earthy/soft pastel palette, softened borders, gentle shadows, and correct override ordering of base theme colors.
 
 2. **Component Enhancements**
    - `LazySection` with advanced animation variants, intensity mapping, easing functions, and children staggering
@@ -73,6 +74,7 @@ Here's our current implementation progress against the design enhancement bluepr
    - **Section component:** Now uses config-driven section spacing based on `contentDensity`, with a literal class map to ensure Tailwind JIT generates all required padding utilities. No more hardcoded vertical padding in sections.
    - **PageTransitionWrapper:** Integrated into `AppShell`, enabling configurable route transitions controlled by `siteConfig.features.enablePageTransitions` and `pageTransitionVariant`.
    - **BackgroundCanvas:** Prototype for animated backgrounds enabled via `animatedBackgroundType` with reduced-motion fallback respecting `prefers-reduced-motion`.
+   - **LandingLayout:** Wrapped landing page content in `PageTransitionWrapper` to enable page transitions on landing routes.
 
 3. **Section Enhancements**
    - **HeroSection:** Configurable patterns, refined typography, immersive typing and stat animations
@@ -89,6 +91,8 @@ Here's our current implementation progress against the design enhancement bluepr
    - **AboutSection:** Integrated pattern overrides, refined overlays, responsive typography
    - **ServicesSection:** Integrated pattern overrides, theme-driven spacing, decorative overlays
    - **ResourceDetailSection** & **ResourceListSection:** Enabled pattern and spacing overrides through Section component
+   - **ResourceDetailSection spacing refactor:** Removed manual padding and redundant inner container wrapper to leverage Section's config-driven spacing and containerClasses for consistent layout
+   - **ResourceListSection spacing refactor:** Removed manual padding and redundant inner container wrapper to leverage Section's config-driven spacing and containerClasses for consistent layout
 
 3. **Typography & Spacing Refinement**
    - Defined CSS variables for line-height (`--text-leading-*`) and letter-spacing (`--text-tracking-*`) in `app/globals.css`
@@ -137,6 +141,7 @@ The codebase maintains full backward compatibility while introducing the new the
 ### Implementation Learnings
 
 - Integrated `PageTransitionWrapper` into `AppShell` to handle route transitions based on `enablePageTransitions` and `pageTransitionVariant` flags without additional layout changes.
+- Integrated `PageTransitionWrapper` into `LandingLayout` to enable page transitions on landing pages.
 - Noted that AppShell already wraps `children` in `PageTransitionWrapper`, making integration straightforward and fully configuration-driven.
 - Implemented `BackgroundCanvas` prototype to render animated gradients, particles, and other effects based on `animatedBackgroundType`, with an early return when `prefers-reduced-motion` is enabled.
 - Implemented default fallback logic for `patternStyle` and `patternOpacity` in the `Section` component to ensure global theme defaults are applied when no per-section overrides are provided.
@@ -145,6 +150,8 @@ The codebase maintains full backward compatibility while introducing the new the
 - Added `patternColor` support in the `Section` component and Zod schemas, allowing any valid CSS color string (hex, rgba, named colors) for per-section pattern overrides.
 - Extended `servicesSectionDataSchema` and `ResourceDetailSectionProps` to support `patternStyle`, `patternOpacity`, `patternFade`, and `patternColor`, enabling theme-driven overrides in Services and Resource sections.
 - Extended `ResourceListSectionProps` to support `patternStyle`, `patternOpacity`, `patternFade`, and `patternColor`, enabling pattern overrides for resource listing sections.
+- Removed nested container and manual padding in `ResourceDetailSection`, relying on `Section`'s config-driven spacing and `containerClasses` for consistency and simplicity.
+- Removed nested container and manual padding in `ResourceListSection`, relying on `Section`'s config-driven spacing and `containerClasses` for consistency and simplicity.
 
 ## Important Clarification: Content Preservation Focus
 
@@ -1496,6 +1503,7 @@ Use these snippets as templates when adding new visual tokens, patterns, animati
 ### Implementation Learnings
 
 - Integrated `PageTransitionWrapper` into `AppShell` to handle route transitions based on `enablePageTransitions` and `pageTransitionVariant` flags without additional layout changes.
+- Integrated `PageTransitionWrapper` into `LandingLayout` to enable page transitions on landing pages.
 - Noted that AppShell already wraps `children` in `PageTransitionWrapper`, making integration straightforward and fully configuration-driven.
 - Implemented default fallback logic for `patternStyle` and `patternOpacity` in the `Section` component to ensure global theme defaults are applied when no per-section overrides are provided.
 - Extended `aboutSectionDataSchema` to include `patternStyle` and `patternOpacity` for type-safe pattern overrides in the AboutSection.
@@ -1503,6 +1511,8 @@ Use these snippets as templates when adding new visual tokens, patterns, animati
 - Added `patternColor` support in the `Section` component and Zod schemas, allowing any valid CSS color string (hex, rgba, named colors) for per-section pattern overrides.
 - Extended `servicesSectionDataSchema` and `ResourceDetailSectionProps` to support `patternStyle`, `patternOpacity`, `patternFade`, and `patternColor`, enabling theme-driven overrides in Services and Resource sections.
 - Extended `ResourceListSectionProps` to support `patternStyle`, `patternOpacity`, `patternFade`, and `patternColor`, enabling pattern overrides for resource listing sections.
+- Removed nested container and manual padding in `ResourceDetailSection`, relying on `Section`'s config-driven spacing and `containerClasses` for consistency and simplicity.
+- Removed nested container and manual padding in `ResourceListSection`, relying on `Section`'s config-driven spacing and `containerClasses` for consistency and simplicity.
 
 ## Important Clarification: Content Preservation Focus
 

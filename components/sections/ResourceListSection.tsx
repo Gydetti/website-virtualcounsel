@@ -36,9 +36,9 @@ export default function ResourceListSection({
         patternOpacity={patternOpacity}
         patternFade={patternFade}
         patternColor={patternColor}
-        className="py-12"
+        className="z-10"
       >
-        <div className="container mx-auto px-4 text-center">
+        <div className="text-center">
           <p>No resources available at the moment. Please check back later.</p>
         </div>
       </Section>
@@ -69,7 +69,7 @@ export default function ResourceListSection({
       patternFade={patternFade}
       patternColor={patternColor}
       bgClass={siteConfig.sectionStyles?.heroGradient ?? ''}
-      className="py-12 z-10"
+      className="z-10"
     >
       <LazySection>
         <h1 className="text-center mb-10">{title}</h1>

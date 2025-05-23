@@ -1,15 +1,17 @@
 'use client';
+import { useReducedMotion } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 
 import { siteConfig } from '@/lib/siteConfig';
 
 export default function BackgroundCanvas() {
-  // Supported types: "none" | "gradient" | "particles" | "parallax" | "noise" | "wave" | "image"
+  // Bail out entirely if animations are disabled or user prefers reduced motion
+  const shouldReduceMotion = useReducedMotion();
   const { animatedBackgroundType, backgroundImageUrl } = siteConfig.features;
+  if (animatedBackgroundType === 'none' || shouldReduceMotion) return null;
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    if (animatedBackgroundType === 'none') return;
     const canvas = canvasRef.current;
     if (!canvas) return;
 

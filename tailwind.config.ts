@@ -120,12 +120,19 @@ const config = {
           '0%': { width: '0' },
           '100%': { width: '100%' },
         },
+        // Clients slider scroll animation
+        scroll: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         blink: 'blink 1s step-end infinite',
         typing: 'typing 3.5s steps(40, end)',
+        // Clients slider scroll
+        scroll: 'scroll 80s linear infinite',
       },
       backgroundImage: {
         'concrete-texture': "url('/images/textures/concrete_texture_overlay_cleaned.png')",

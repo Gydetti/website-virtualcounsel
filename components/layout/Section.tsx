@@ -44,14 +44,15 @@ export function Section({
     paddingMap[contentDensity as keyof typeof paddingMap] || paddingMap.balanced;
   // Only apply section pattern when patternStyle prop is provided; default to none
   const usedPatternStyle = patternStyle ?? 'none';
-  // Fallback to global patternOpacity only when override has no explicit opacity
+  // Fallback to global patternOpacity only when a per-section style override exists
   const usedPatternOpacity = patternStyle
     ? (patternOpacity ?? siteConfig.theme.visualStyle?.patternOpacity)
     : undefined;
   const usedPatternFade = patternFade ?? 'none';
   const usedPatternColor = patternColor;
-  // Use global container utility to enforce max-width from CSS var --container-max-width
-  const containerClasses = 'container';
+  // Center content, cap width to theme value and apply dynamic gutters
+  const containerClasses =
+    'mx-auto max-w-[var(--container-max-width)] px-4 sm:px-6 md:px-8 xl:px-20';
   // Wrapper classes including vertical padding and background
   const wrapperClasses = `overflow-hidden ${sectionPaddingClass} ${bgClass} ${className}`.trim();
   if (fullBleed) {

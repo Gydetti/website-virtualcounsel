@@ -37,7 +37,7 @@ export default function Footer() {
         {/* Decorative blur spots */}
         <div className="absolute top-0 left-1/4 size-96 bg-primary/10 rounded-full -translate-y-1/2 blur-3xl" />
         <div className="absolute bottom-0 right-1/4 size-96 bg-secondary/10 rounded-full translate-y-1/2 blur-3xl" />
-        <div className="container relative z-10">
+        <div className="mx-auto max-w-[var(--container-max-width)] px-4 sm:px-6 md:px-8 xl:px-20 relative z-10">
           <LazySection
             animation="none"
             className="stagger-container flex flex-col md:flex-row items-center justify-between gap-6"
@@ -63,7 +63,7 @@ export default function Footer() {
         <div className="absolute top-0 left-1/4 size-96 bg-primary/10 rounded-full -translate-y-1/2 blur-3xl" />
         <div className="absolute bottom-0 right-1/4 size-96 bg-secondary/10 rounded-full translate-y-1/2 blur-3xl" />
 
-        <div className="container py-12 md:py-16 relative z-10">
+        <div className="mx-auto max-w-[var(--container-max-width)] px-4 sm:px-6 md:px-8 xl:px-20 py-12 md:py-16 relative z-10">
           <LazySection
             animation="none"
             className={cn(

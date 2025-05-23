@@ -1,4 +1,5 @@
 'use client';
+
 import './spark-button.css';
 
 import { Slot } from '@radix-ui/react-slot';
