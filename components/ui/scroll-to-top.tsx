@@ -5,7 +5,6 @@ import { ArrowUp } from 'lucide-react';
 import { useCallback, useEffect, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
 
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
@@ -42,16 +41,12 @@ export default function ScrollToTop() {
         >
           <Button
             variant="clean"
-            className={cn(
-              'inline-flex items-center justify-center gap-2',
-              'size-12 rounded-full bg-transparent hover:bg-transparent',
-              'shadow-lg border border-primary',
-              'transition-transform hover:-translate-y-0.5 active:translate-y-0.5'
-            )}
+            size="icon"
+            className="size-12 rounded-full bg-transparent hover:bg-transparent shadow-lg border border-primary"
             onClick={scrollToTop}
             aria-label="Scroll to top"
           >
-            <ArrowUp className="size-6 text-primary" strokeWidth={1} />
+            <ArrowUp className="size-6 text-primary" />
           </Button>
         </motion.div>
       )}

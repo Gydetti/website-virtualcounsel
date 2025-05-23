@@ -50,14 +50,13 @@ export function Section({
     : undefined;
   const usedPatternFade = patternFade ?? 'none';
   const usedPatternColor = patternColor;
-  // Horizontal padding: use CSS variable --container-padding (variant-driven) and CSS .container for max-width
-  const containerClasses = 'container mx-auto';
+  // Responsive horizontal padding for container (mobile:1rem, sm:1.5rem, md:2rem, xl:5rem)
+  const containerClasses = 'mx-auto px-4 sm:px-6 md:px-8 xl:px-20';
+  // Wrapper classes including vertical padding and background
+  const wrapperClasses = `overflow-hidden ${sectionPaddingClass} ${bgClass} ${className}`.trim();
   if (fullBleed) {
     return (
-      <section
-        className={`overflow-hidden ${sectionPaddingClass} ${bgClass} ${className}`}
-        {...rest}
-      >
+      <section className={wrapperClasses} {...rest}>
         {/* Render pattern background if requested */}
         {usedPatternStyle !== 'none' && (
           <BackgroundPattern
@@ -73,10 +72,7 @@ export function Section({
     );
   }
   return (
-    <section
-      className={`${sectionPaddingClass} container mx-auto overflow-hidden ${bgClass} ${className}`}
-      {...rest}
-    >
+    <section className={wrapperClasses} {...rest}>
       {/* Render pattern background if requested */}
       {usedPatternStyle !== 'none' && (
         <BackgroundPattern
@@ -87,7 +83,7 @@ export function Section({
           style={{ opacity: usedPatternOpacity }}
         />
       )}
-      {children}
+      <div className={containerClasses}>{children}</div>
     </section>
   );
 }
