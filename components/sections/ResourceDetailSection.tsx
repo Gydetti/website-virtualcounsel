@@ -101,12 +101,9 @@ export default function ResourceDetailSection({
               </p>
             )}
 
-            {/* Enhanced benefits section */}
+            {/* Enhanced benefits section - removed duplicate checkmark from heading */}
             <div className="mb-8">
-              <h3 className="text-xl font-semibold mb-6 text-foreground flex items-center gap-2">
-                <CheckCircle className="size-5 text-primary" />
-                What you'll gain
-              </h3>
+              <h3 className="text-xl font-semibold mb-6 text-foreground">What you'll gain</h3>
               <ul className="space-y-4 text-left">
                 {benefits.map(benefit => (
                   <li key={benefit.slice(0, 20)} className="flex items-start gap-3 group">
@@ -154,6 +151,182 @@ export default function ResourceDetailSection({
                 <FormBlock config={downloadFormConfig} />
               </CardContent>
             </Card>
+          </div>
+        </LazySection>
+
+        {/* Product Overview Section */}
+        <LazySection
+          animation="none"
+          className="stagger-container mb-16 md:mb-20"
+          style={{ '--stagger-delay': '0.1s' } as CSSProperties}
+        >
+          <div className="max-w-4xl mx-auto text-center" style={{ '--index': 0 } as CSSProperties}>
+            <h2 className="text-3xl font-bold mb-6 text-foreground">About This Resource</h2>
+            <div className="prose prose-lg mx-auto text-foreground/80">
+              <p className="text-lg leading-relaxed mb-6">
+                Comprehensive overview paragraph explaining what this resource covers, the
+                methodology used, and the transformation readers can expect. This should position
+                the resource as the definitive guide for the specific problem it solves.
+              </p>
+              <p className="leading-relaxed">
+                Additional context paragraph describing the unique approach, research backing, or
+                case studies that make this resource valuable. Mention any frameworks, tools, or
+                actionable strategies included.
+              </p>
+            </div>
+          </div>
+        </LazySection>
+
+        {/* Who This Is For Section */}
+        <LazySection
+          animation="none"
+          className="stagger-container bg-gradient-to-br from-neutral-50 to-white rounded-2xl p-8 md:p-12 mb-16 md:mb-20"
+          style={{ '--stagger-delay': '0.1s' } as CSSProperties}
+        >
+          <div className="max-w-4xl mx-auto" style={{ '--index': 0 } as CSSProperties}>
+            <h2 className="text-3xl font-bold mb-8 text-center text-foreground">
+              Perfect For You If...
+            </h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div>
+                <h3 className="text-xl font-semibold mb-4 text-primary">
+                  ✅ You're ready for this if:
+                </h3>
+                <ul className="space-y-3 text-foreground/80">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="size-5 text-green-500 shrink-0 mt-0.5" />
+                    <span>Specific situation or pain point that describes ideal reader</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="size-5 text-green-500 shrink-0 mt-0.5" />
+                    <span>Current challenge or goal that resonates with target audience</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="size-5 text-green-500 shrink-0 mt-0.5" />
+                    <span>Level of commitment or experience that's required</span>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold mb-4 text-amber-600">
+                  ⚠️ This might not be for you if:
+                </h3>
+                <ul className="space-y-3 text-foreground/80">
+                  <li className="flex items-start gap-3">
+                    <span className="size-5 text-amber-500 shrink-0 mt-0.5">⊘</span>
+                    <span>Specific situation where this resource wouldn't be helpful</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="size-5 text-amber-500 shrink-0 mt-0.5">⊘</span>
+                    <span>Expectation that would lead to disappointment</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="size-5 text-amber-500 shrink-0 mt-0.5">⊘</span>
+                    <span>Alternative solution they should consider instead</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </LazySection>
+
+        {/* Preview/Contents Section */}
+        <LazySection
+          animation="none"
+          className="stagger-container mb-16 md:mb-20"
+          style={{ '--stagger-delay': '0.1s' } as CSSProperties}
+        >
+          <div className="max-w-4xl mx-auto" style={{ '--index': 0 } as CSSProperties}>
+            <h2 className="text-3xl font-bold mb-8 text-center text-foreground">What's Inside</h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="space-y-6">
+                <div className="border-l-4 border-primary pl-6">
+                  <h3 className="text-xl font-semibold mb-2 text-foreground">
+                    Chapter/Section 1 Title
+                  </h3>
+                  <p className="text-foreground/70">
+                    Brief description of what this section covers and the key insights or tools
+                    provided.
+                  </p>
+                </div>
+                <div className="border-l-4 border-primary pl-6">
+                  <h3 className="text-xl font-semibold mb-2 text-foreground">
+                    Chapter/Section 2 Title
+                  </h3>
+                  <p className="text-foreground/70">
+                    Description of the framework, strategy, or methodology explained in this
+                    section.
+                  </p>
+                </div>
+                <div className="border-l-4 border-primary pl-6">
+                  <h3 className="text-xl font-semibold mb-2 text-foreground">
+                    Chapter/Section 3 Title
+                  </h3>
+                  <p className="text-foreground/70">
+                    Overview of actionable steps, templates, or checklists included here.
+                  </p>
+                </div>
+              </div>
+              <div className="space-y-6">
+                <div className="bg-gradient-to-br from-primary/5 to-secondary/5 rounded-xl p-6">
+                  <h3 className="text-xl font-semibold mb-4 text-foreground">Bonus Materials</h3>
+                  <ul className="space-y-3">
+                    <li className="flex items-center gap-3 text-foreground/80">
+                      <CheckCircle className="size-5 text-primary shrink-0" />
+                      <span>Downloadable template or worksheet description</span>
+                    </li>
+                    <li className="flex items-center gap-3 text-foreground/80">
+                      <CheckCircle className="size-5 text-primary shrink-0" />
+                      <span>Quick reference guide or cheat sheet</span>
+                    </li>
+                    <li className="flex items-center gap-3 text-foreground/80">
+                      <CheckCircle className="size-5 text-primary shrink-0" />
+                      <span>Additional resource or tool recommendation</span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="text-center p-6 bg-neutral-50 rounded-xl">
+                  <div className="text-2xl font-bold text-primary mb-2">X Pages</div>
+                  <div className="text-sm text-foreground/70">Total content length</div>
+                  <div className="text-2xl font-bold text-primary mb-2 mt-4">X Minutes</div>
+                  <div className="text-sm text-foreground/70">Estimated reading time</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </LazySection>
+
+        {/* Social Proof Section */}
+        <LazySection
+          animation="none"
+          className="stagger-container bg-gradient-to-r from-primary/5 to-secondary/5 rounded-2xl p-8 md:p-12 mb-16 md:mb-20"
+          style={{ '--stagger-delay': '0.1s' } as CSSProperties}
+        >
+          <div className="max-w-4xl mx-auto text-center" style={{ '--index': 0 } as CSSProperties}>
+            <h2 className="text-3xl font-bold mb-8 text-foreground">
+              Join Thousands Who've Already Transformed Their Results
+            </h2>
+            <div className="grid md:grid-cols-3 gap-8 mb-8">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-primary mb-2">X,XXX+</div>
+                <div className="text-foreground/70">Downloads</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-primary mb-2">XX+</div>
+                <div className="text-foreground/70">5-Star Reviews</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-primary mb-2">XX%</div>
+                <div className="text-foreground/70">Report Positive Results</div>
+              </div>
+            </div>
+            <blockquote className="text-lg italic text-foreground/80 max-w-2xl mx-auto">
+              "Representative testimonial quote highlighting specific transformation or result
+              achieved using this resource. Should be authentic and specific rather than generic."
+            </blockquote>
+            <div className="mt-4 text-foreground/60">
+              — Name, Title/Role of Testimonial Provider
+            </div>
           </div>
         </LazySection>
 
