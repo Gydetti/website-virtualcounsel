@@ -10,6 +10,7 @@ import ProcessSection from '@/components/sections/process-section';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import LazySection from '@/components/ui/lazy-section';
+import { DEFAULT_PLACEHOLDER_IMAGE } from '@/lib/constants';
 import { getServiceBySlug, getServices } from '@/lib/data-utils';
 import { iconComponents } from '@/lib/icon-utils';
 import { defaultMetadata } from '@/lib/metadata';
@@ -172,142 +173,136 @@ export default async function ServicePage(props: ServicePageProps) {
             delay={0.4}
             fullHeight={false}
             childrenStagger={false}
-            className="relative h-[400px] rounded-xl overflow-hidden shadow-xl"
+            className="relative h-[400px] rounded-xl overflow-hidden shadow-2xl"
           >
-            <div className="absolute inset-0 flex items-center justify-center bg-neutral-background-100">
-              <IconComponent className="size-32 text-brand-primary30" />
+            <Image
+              src={DEFAULT_PLACEHOLDER_IMAGE}
+              alt={`${service.title} service hero illustration`}
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="size-full object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-primary/30 flex items-center justify-center">
+              <IconComponent className="size-32 text-white drop-shadow-lg" />
             </div>
           </LazySection>
         </div>
       </Section>
 
-      <section className="py-16">
-        <div className="container-wide">
-          <LazySection animation="fade-up" delay={0} className="text-center mb-12">
-            <h2 className="text-3xl font-bold">
-              Key benefits section heading summarizing main outcomes
-            </h2>
-          </LazySection>
-          <LazySection
-            animation="none"
-            className="stagger-container grid md:grid-cols-3 gap-8"
-            style={{ '--stagger-delay': '0.1s' } as CSSProperties}
-          >
-            {benefits.map((benefit, idx) => (
-              <Card
-                key={benefit.title}
-                equalHeight
-                padding="large"
-                hover="lift"
-                className="text-center h-full flex flex-col justify-center items-center"
-                style={{ '--index': idx } as CSSProperties}
-              >
-                <div className="inline-flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
-                  <span className="text-2xl">{benefit.icon}</span>
-                </div>
-                <h3 className="text-xl font-bold mb-2">{benefit.title}</h3>
-                <p className="text-neutral-text/600">{benefit.description}</p>
-              </Card>
-            ))}
-          </LazySection>
-        </div>
-      </section>
+      <Section>
+        <LazySection animation="fade-up" delay={0} className="text-center mb-12">
+          <h2 className="text-heading text-3xl font-bold">Key Benefits of This Service</h2>
+        </LazySection>
+        <LazySection
+          animation="none"
+          className="stagger-container grid md:grid-cols-3 gap-8 items-stretch"
+          style={{ '--stagger-delay': '0.1s' } as CSSProperties}
+        >
+          {benefits.map((benefit, idx) => (
+            <Card
+              key={benefit.title}
+              className="text-center h-full flex flex-col p-6 transition-all duration-300 hover:shadow-lg"
+              style={{ '--index': idx } as CSSProperties}
+            >
+              <div className="inline-flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary mb-4 mx-auto">
+                <span className="text-2xl">{benefit.icon}</span>
+              </div>
+              <h3 className="text-xl font-semibold mb-3 text-foreground">{benefit.title}</h3>
+              <p className="text-muted-foreground leading-relaxed">{benefit.description}</p>
+            </Card>
+          ))}
+        </LazySection>
+      </Section>
 
       <ProcessSection steps={process} />
 
-      <section className="py-16 bg-neutral-surface">
-        <div className="container-wide">
-          <LazySection
-            animation="none"
-            className="stagger-container text-center mb-12"
-            style={{ '--stagger-delay': '0.2s' } as CSSProperties}
-          >
-            <h2
-              className="text-3xl font-bold text-center"
-              style={{ '--index': 0 } as CSSProperties}
-            >
-              Section heading for service-specific questions
-            </h2>
-          </LazySection>
-          <LazySection
-            animation="none"
-            className="stagger-container space-y-6 max-w-3xl mx-auto"
-            style={{ '--stagger-delay': '0.2s' } as CSSProperties}
-          >
-            {faq.map((item, idx) => (
-              <div key={item.question} style={{ '--index': idx + 1 } as CSSProperties}>
-                <Card className="overflow-hidden">
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-bold mb-2">{item.question}</h3>
-                    <p className="text-neutral-text/600">{item.answer}</p>
-                  </CardContent>
-                </Card>
-              </div>
-            ))}
-          </LazySection>
-        </div>
-      </section>
+      <Section className="bg-neutral-background">
+        <LazySection
+          animation="none"
+          className="stagger-container text-center mb-12"
+          style={{ '--stagger-delay': '0.2s' } as CSSProperties}
+        >
+          <h2 className="text-heading text-3xl font-bold" style={{ '--index': 0 } as CSSProperties}>
+            Frequently Asked Questions
+          </h2>
+        </LazySection>
+        <LazySection
+          animation="none"
+          className="stagger-container space-y-6 max-w-3xl mx-auto"
+          style={{ '--stagger-delay': '0.2s' } as CSSProperties}
+        >
+          {faq.map((item, idx) => (
+            <div key={item.question} style={{ '--index': idx + 1 } as CSSProperties}>
+              <Card className="transition-all duration-200 hover:shadow-md">
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-semibold mb-3 text-foreground">{item.question}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{item.answer}</p>
+                </CardContent>
+              </Card>
+            </div>
+          ))}
+        </LazySection>
+      </Section>
 
-      <section className="py-16 bg-primary text-white">
-        <div className="container-wide text-center">
-          <h2 className="text-3xl font-bold mb-6">Section heading prompting action</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Brief persuasive copy reinforcing the next step
+      <Section className="bg-primary text-white">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold mb-6">Ready to Get Started?</h2>
+          <p className="text-xl mb-8 max-w-2xl mx-auto text-white/90">
+            Take the next step towards achieving your goals with our expert guidance and
+            personalized approach.
           </p>
-          <Button
-            size="lg"
-            className="bg-neutral-surface text-primary hover:bg-neutral-background-100"
-            asChild
-          >
+          <Button size="lg" variant="white" className="group" asChild>
             <Link href="/contact">
-              Primary CTA text guiding next action
-              <ArrowRight className="ml-2 size-4" />
+              Schedule your consultation
+              <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </Button>
         </div>
-      </section>
+      </Section>
 
-      <section className="py-16 bg-neutral-background">
-        <div className="container-wide">
-          <LazySection
-            animation="none"
-            className="stagger-container"
-            style={{ '--stagger-delay': '0.1s' } as CSSProperties}
+      <Section className="bg-neutral-background">
+        <LazySection
+          animation="none"
+          className="stagger-container"
+          style={{ '--stagger-delay': '0.1s' } as CSSProperties}
+        >
+          <h2
+            className="text-heading text-3xl font-bold mb-12 text-center"
+            style={{ '--index': 0 } as CSSProperties}
           >
-            <h2
-              className="text-3xl font-bold mb-12 text-center"
-              style={{ '--index': 0 } as CSSProperties}
-            >
-              Section heading for testimonials
-            </h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              {testimonials.map((testimonial, idx) => (
-                <div key={testimonial.author} style={{ '--index': idx + 1 } as CSSProperties}>
-                  <Card className="p-6">
-                    <div className="flex items-start">
-                      <div className="relative size-16 rounded-full overflow-hidden mr-4 shrink-0">
-                        <Image
-                          src={testimonial.image || '/placeholder.svg'}
-                          alt={testimonial.author}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
+            What Our Clients Say
+          </h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            {testimonials.map((testimonial, idx) => (
+              <div key={testimonial.author} style={{ '--index': idx + 1 } as CSSProperties}>
+                <Card className="p-6 h-full transition-all duration-200 hover:shadow-md">
+                  <div className="flex items-start gap-4">
+                    <div className="relative size-16 rounded-full overflow-hidden shrink-0">
+                      <Image
+                        src={DEFAULT_PLACEHOLDER_IMAGE}
+                        alt={`${testimonial.author} profile photo`}
+                        fill
+                        sizes="64px"
+                        className="size-full object-cover"
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-muted-foreground italic mb-4 leading-relaxed">
+                        "{testimonial.quote}"
+                      </p>
                       <div>
-                        <p className="italic text-neutral-text/600 mb-4">"{testimonial.quote}"</p>
-                        <div>
-                          <p className="font-bold">{testimonial.author}</p>
-                          <p className="text-sm text-neutral-text/500">{testimonial.company}</p>
-                        </div>
+                        <p className="font-semibold text-foreground">{testimonial.author}</p>
+                        <p className="text-sm text-muted-foreground">{testimonial.company}</p>
                       </div>
                     </div>
-                  </Card>
-                </div>
-              ))}
-            </div>
-          </LazySection>
-        </div>
-      </section>
+                  </div>
+                </Card>
+              </div>
+            ))}
+          </div>
+        </LazySection>
+      </Section>
     </>
   );
 }

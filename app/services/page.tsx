@@ -9,6 +9,7 @@ import ServicesOverviewSection from '@/components/sections/services-overview-sec
 import { Button } from '@/components/ui/button';
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import LazySection from '@/components/ui/lazy-section';
+import { DEFAULT_PLACEHOLDER_IMAGE } from '@/lib/constants';
 import { processSectionData } from '@/lib/data/homepage';
 import { servicesOverviewSectionData } from '@/lib/data/servicesPageData';
 import { getServices } from '@/lib/data-utils';
@@ -41,8 +42,8 @@ export default async function ServicesPage() {
     <>
       <ServicesOverviewSection {...servicesOverviewSectionData} />
 
-      <Section className="">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <Section>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
           {services.map((service, index) => {
             const IconComponent = iconComponents[service.icon ?? 'Globe'] || iconComponents.Globe;
 
@@ -50,28 +51,31 @@ export default async function ServicesPage() {
               <LazySection key={service.id} delay={index * 0.1}>
                 <Card className="transition-all duration-300 hover:shadow-xl h-full flex flex-col">
                   <div className="relative h-48 w-full">
-                    <div className="absolute inset-0 flex items-center justify-center bg-primary/10">
-                      <IconComponent className="size-16 text-primary40" />
+                    <Image
+                      src={DEFAULT_PLACEHOLDER_IMAGE}
+                      alt={`${service.title} service illustration`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="size-full object-cover"
+                      priority={index < 3}
+                    />
+                    <div className="absolute inset-0 bg-primary/20 flex items-center justify-center">
+                      <IconComponent className="size-16 text-white drop-shadow-lg" />
                     </div>
                   </div>
-                  <CardHeader>
-                    <div className="mb-4">
-                      <IconComponent className="size-10 text-primary" />
-                    </div>
-                    <CardTitle className="text-xl font-bold break-words">{service.title}</CardTitle>
-                    <CardDescription className="text-neutral-text/600 break-words">
+                  <CardHeader className="flex-1">
+                    <CardTitle className="text-xl font-semibold mb-3 text-foreground">
+                      {service.title}
+                    </CardTitle>
+                    <CardDescription className="text-muted-foreground leading-relaxed">
                       {service.description}
                     </CardDescription>
                   </CardHeader>
-                  <CardFooter className="mt-auto">
-                    <Button
-                      size="lg"
-                      className="w-full whitespace-normal break-words bg-primary hover:bg-primary90"
-                      asChild
-                    >
+                  <CardFooter>
+                    <Button size="lg" className="w-full group" asChild>
                       <Link href={`/services/${service.slug}`}>
-                        {`Learn more about ${service.title}`}
-                        <ArrowRight className="ml-2 size-4" />
+                        Learn more
+                        <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
                       </Link>
                     </Button>
                   </CardFooter>
@@ -85,77 +89,84 @@ export default async function ServicesPage() {
       <Section className="bg-neutral-background">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <LazySection animation="slide-right" className="!overflow-x-visible">
-            <h2 className="text-3xl font-bold mb-6">
-              Heading introducing key reasons to choose these services
-            </h2>
-            <p className="text-neutral-text mb-6">
-              Brief description explaining the purpose of this section and how it builds trust.
+            <h2 className="text-heading text-3xl font-bold mb-6">Why Choose Our Services</h2>
+            <p className="text-muted-foreground mb-8 text-lg">
+              We deliver measurable results through proven methodologies and personalized attention
+              to your business goals.
             </p>
 
-            <div className="space-y-4">
-              <div className="flex items-start">
-                <div className="shrink-0 size-6 rounded-full bg-feedback-success-bg flex items-center justify-center mr-3">
-                  <Check className="size-4 text-feedback-success" />
+            <div className="space-y-6">
+              <div className="flex items-start gap-4">
+                <div className="shrink-0 size-6 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Check className="size-4 text-primary" />
                 </div>
-                <span>Tailored solutions for your specific business needs</span>
+                <span className="text-foreground">
+                  Tailored solutions for your specific business needs
+                </span>
               </div>
-              <div className="flex items-start">
-                <div className="shrink-0 size-6 rounded-full bg-feedback-success-bg flex items-center justify-center mr-3">
-                  <Check className="size-4 text-feedback-success" />
+              <div className="flex items-start gap-4">
+                <div className="shrink-0 size-6 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Check className="size-4 text-primary" />
                 </div>
-                <span>Data-driven strategies that deliver measurable results</span>
+                <span className="text-foreground">
+                  Data-driven strategies that deliver measurable results
+                </span>
               </div>
-              <div className="flex items-start">
-                <div className="shrink-0 size-6 rounded-full bg-feedback-success-bg flex items-center justify-center mr-3">
-                  <Check className="size-4 text-feedback-success" />
+              <div className="flex items-start gap-4">
+                <div className="shrink-0 size-6 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Check className="size-4 text-primary" />
                 </div>
-                <span>Transparent communication throughout the process</span>
+                <span className="text-foreground">
+                  Transparent communication throughout the process
+                </span>
               </div>
-              <div className="flex items-start">
-                <div className="shrink-0 size-6 rounded-full bg-feedback-success-bg flex items-center justify-center mr-3">
-                  <Check className="size-4 text-feedback-success" />
+              <div className="flex items-start gap-4">
+                <div className="shrink-0 size-6 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Check className="size-4 text-primary" />
                 </div>
-                <span>Ongoing support and optimization</span>
+                <span className="text-foreground">Ongoing support and optimization</span>
               </div>
             </div>
 
-            <Button size="lg" className="mt-8 whitespace-normal break-words group" asChild>
+            <Button size="lg" className="mt-8 group" asChild>
               <Link href="/contact">
-                Primary CTA button text (e.g., 'Schedule a consultation')
-                <ArrowRight className="ml-2 size-4" />
+                Schedule a consultation
+                <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
           </LazySection>
 
           <LazySection animation="slide-left" delay={0.15} className="!overflow-x-visible">
-            <div className="relative h-[400px] rounded-xl shadow-xl">
+            <div className="relative h-[400px] rounded-xl overflow-hidden shadow-2xl">
               <Image
-                src="/placeholder.svg?height=600&width=800"
-                alt="Why Choose Us"
+                src={DEFAULT_PLACEHOLDER_IMAGE}
+                alt="Professional consultation and strategic planning session"
                 fill
-                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="size-full object-cover"
+                priority
               />
             </div>
           </LazySection>
         </div>
-        <LazySection>
-          <ProcessSection {...processSectionData} />
-        </LazySection>
+      </Section>
+
+      <Section>
+        <ProcessSection {...processSectionData} />
       </Section>
 
       <Section className="bg-primary text-white">
         <LazySection>
           <div className="text-center">
-            <h2 className="text-3xl font-bold mb-6">
-              Final CTA section heading encouraging action
-            </h2>
-            <p className="text-xl mb-8 max-w-2xl mx-auto">
-              Persuasive text reinforcing the benefit of taking action now
+            <h2 className="text-3xl font-bold mb-6">Ready to Transform Your Business?</h2>
+            <p className="text-xl mb-8 max-w-2xl mx-auto text-white/90">
+              Take the first step towards achieving your business goals with our expert guidance and
+              proven strategies.
             </p>
-            <Button size="lg" className="whitespace-normal break-words group" asChild>
+            <Button size="lg" variant="white" className="group" asChild>
               <Link href="/contact">
-                Secondary CTA button text (e.g., 'Get started today')
-                <ArrowRight className="ml-2 size-4" />
+                Get started today
+                <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
           </div>

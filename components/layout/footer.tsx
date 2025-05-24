@@ -19,7 +19,14 @@ import { SubscribeForm } from '@/components/ui/SubscribeForm';
 import { siteConfig } from '@/lib/siteConfig';
 import { cn } from '@/lib/utils';
 
-export default function Footer() {
+type FooterProps = {
+  /**
+   * Hide the newsletter subscription section (useful for landing pages)
+   */
+  hideNewsletter?: boolean;
+};
+
+export default function Footer({ hideNewsletter = false }: FooterProps) {
   const currentYear = new Date().getFullYear();
   const { enabledPages, features } = siteConfig;
   const filteredQuickLinks = (siteConfig.navLinks || []).filter(
@@ -32,31 +39,33 @@ export default function Footer() {
 
   return (
     <>
-      {/* Newsletter subscription */}
-      <div className="relative overflow-hidden py-10 text-white bg-hero-gradient">
-        {/* Decorative blur spots */}
-        <div className="absolute top-0 left-1/4 size-96 bg-primary/10 rounded-full -translate-y-1/2 blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 size-96 bg-secondary/10 rounded-full translate-y-1/2 blur-3xl" />
-        <div className="mx-auto max-w-[var(--container-max-width)] px-4 sm:px-6 md:px-8 xl:px-20 relative z-10">
-          <LazySection
-            animation="none"
-            className="stagger-container flex flex-col md:flex-row items-center justify-between gap-6"
-            style={{ '--stagger-delay': '0.1s' } as CSSProperties}
-          >
-            <div style={{ '--index': 0 } as CSSProperties}>
-              <h3 className="text-white mb-2">Subscribe to our newsletter</h3>
-            </div>
-            <div style={{ '--index': 1 } as CSSProperties}>
-              <p className="text-body-base text-white">
-                Stay updated with the latest insights and news
-              </p>
-            </div>
-            <div style={{ '--index': 2 } as CSSProperties}>
-              <SubscribeForm />
-            </div>
-          </LazySection>
+      {/* Newsletter subscription - only show if not hidden */}
+      {!hideNewsletter && (
+        <div className="relative overflow-hidden py-10 text-white bg-hero-gradient">
+          {/* Decorative blur spots */}
+          <div className="absolute top-0 left-1/4 size-96 bg-primary/10 rounded-full -translate-y-1/2 blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 size-96 bg-secondary/10 rounded-full translate-y-1/2 blur-3xl" />
+          <div className="mx-auto max-w-[var(--container-max-width)] px-4 sm:px-6 md:px-8 xl:px-20 relative z-10">
+            <LazySection
+              animation="none"
+              className="stagger-container flex flex-col md:flex-row items-center justify-between gap-6"
+              style={{ '--stagger-delay': '0.1s' } as CSSProperties}
+            >
+              <div style={{ '--index': 0 } as CSSProperties}>
+                <h3 className="text-white mb-2">Subscribe to our newsletter</h3>
+              </div>
+              <div style={{ '--index': 1 } as CSSProperties}>
+                <p className="text-body-base text-white">
+                  Stay updated with the latest insights and news
+                </p>
+              </div>
+              <div style={{ '--index': 2 } as CSSProperties}>
+                <SubscribeForm />
+              </div>
+            </LazySection>
+          </div>
         </div>
-      </div>
+      )}
 
       <footer className="bg-brand-secondary-dark text-white relative overflow-hidden">
         {/* Decorative elements */}

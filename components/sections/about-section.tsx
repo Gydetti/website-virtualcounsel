@@ -58,9 +58,7 @@ export default function AboutSection({
   // Content occupies the opposite column
   const contentOrderClass = variant === 'imageRight' ? 'md:col-start-1' : 'md:col-start-2';
 
-  const outerContainerClass = isHomepage
-    ? `${containerClasses} lg:max-w-[85vw] mx-auto`
-    : containerClasses;
+  const outerContainerClass = containerClasses;
 
   // For imageRight, add padding to individual content sections
   const contentPaddingClass = variant === 'imageRight' ? 'md:pr-8 xl:pr-20' : '';
@@ -126,7 +124,7 @@ export default function AboutSection({
             {isHomepage ? (
               <h2 className="text-heading mb-8">{heading}</h2>
             ) : (
-              <h1 className="text-heading mb-8">{heading}</h1>
+              <h1 className="text-heading">{heading}</h1>
             )}
           </LazySection>
         )}
@@ -267,9 +265,9 @@ export default function AboutSection({
           className={`text-center ${contentPaddingClass}`}
         >
           {isHomepage ? (
-            <h2 className="text-heading mb-8">{heading}</h2>
+            <h2 className="text-heading">{heading}</h2>
           ) : (
-            <h1 className="text-heading mb-8">{heading}</h1>
+            <h1 className="text-heading">{heading}</h1>
           )}
         </LazySection>
       )}

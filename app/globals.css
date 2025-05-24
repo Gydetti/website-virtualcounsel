@@ -60,7 +60,7 @@
 
     /* Section Spacing */
     --section-spacing-compact: 3rem;
-    --section-spacing-balanced: 5rem;
+    --section-spacing-balanced: 4rem;
     --section-spacing-airy: 8rem;
 
     /* Layout */
@@ -120,7 +120,7 @@
   /* Global typography scale */
   h1 {
     /* H1: 36px mobile, 48px md, 56px lg */
-    @apply text-4xl md:text-5xl lg:text-[3.5rem] font-bold mb-6;
+    @apply text-4xl md:text-5xl lg:text-[3.5rem] font-bold mb-8;
   }
   h2 {
     /* H2: 32px mobile, 36px md */
@@ -128,11 +128,11 @@
   }
   h3 {
     /* H3: 26px mobile, 32px md */
-    @apply mt-6 mb-3 text-[1.625rem] md:text-[2rem] font-semibold;
+    @apply text-[1.625rem] md:text-[2rem] font-semibold;
   }
   h4 {
     /* H4: 20px mobile, 26px md */
-    @apply mt-6 mb-2 text-[1.25rem] md:text-[1.625rem] font-semibold;
+    @apply text-[1.25rem] md:text-[1.625rem] font-semibold;
   }
   blockquote {
     /* Blockquote styling for professional spacing */
@@ -140,7 +140,7 @@
   }
   p {
     /* Base paragraph: 18px */
-    @apply mb-6 text-lg leading-relaxed;
+    @apply text-lg leading-relaxed;
   }
 
   html {

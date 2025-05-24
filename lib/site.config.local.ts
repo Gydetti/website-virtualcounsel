@@ -371,7 +371,7 @@ export const siteConfig: SiteConfigSchema = {
           id: 'home-about',
           sectionType:
             'AboutSection' /* patternStyle: 'grid', patternOpacity: 0.1, patternFade: 'edges', patternColor: 'rgba(var(--accent-rgb), 0.2)' */,
-          variant: 'imageRight',
+          variant: 'imageLeft',
         },
         {
           id: 'home-kpi',

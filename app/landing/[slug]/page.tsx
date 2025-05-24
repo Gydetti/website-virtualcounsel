@@ -1,6 +1,5 @@
 import { notFound } from 'next/navigation';
 
-import LandingLayout from '@/app/landing/layout';
 import ResourceDetailSection from '@/components/sections/ResourceDetailSection';
 import { getResourceBySlug, getResources } from '@/lib/data/resources';
 
@@ -14,9 +13,5 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
   const resource = await getResourceBySlug(slug);
   if (!resource) notFound();
 
-  return (
-    <LandingLayout>
-      <ResourceDetailSection resource={resource} />
-    </LandingLayout>
-  );
+  return <ResourceDetailSection resource={resource} />;
 }

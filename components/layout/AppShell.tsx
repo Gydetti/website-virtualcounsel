@@ -1,6 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import { usePathname } from 'next/navigation';
 import { Suspense } from 'react';
 
 import Footer from '@/components/layout/footer';
@@ -34,6 +35,9 @@ const DynamicCookieConsentBanner = dynamic(
 );
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  const isLandingPage = pathname?.startsWith('/landing/');
+
   return (
     <>
       <BfcacheSafety />
@@ -50,9 +54,11 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
           <DynamicPageViewTracker />
         </Suspense>
         <div className="flex min-h-screen flex-col">
-          <Header />
+          {/* Only show main Header if NOT on a landing page */}
+          {!isLandingPage && <Header />}
           <PageTransitionWrapper>{children}</PageTransitionWrapper>
-          <Footer />
+          {/* Only show main Footer if NOT on a landing page */}
+          {!isLandingPage && <Footer />}
         </div>
         <ScrollToTop />
         <DynamicToaster />
