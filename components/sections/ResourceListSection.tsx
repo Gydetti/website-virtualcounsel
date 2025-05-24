@@ -75,11 +75,11 @@ export default function ResourceListSection({
         <h1 className="text-center mb-10">{title}</h1>
       </LazySection>
       <LazySection delay={0.1}>
-        <div className={`grid ${gridCols} gap-8`}>
+        <div className={`grid ${gridCols} gap-8 items-stretch`}>
           {resources.map((resource, index) => (
             <LazySection key={resource.slug} delay={(index + 1) * 0.1}>
               <article
-                className={`group relative flex flex-col overflow-hidden rounded-lg border border-[#e5e7eb80] bg-gradient-to-b from-white to-blue-50/30 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${count === 1 ? 'max-w-md mx-auto' : ''}`}
+                className={`group relative flex flex-col h-full overflow-hidden rounded-xl border-0 bg-gradient-to-b from-white to-neutral-50/50 shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 ${count === 1 ? 'max-w-md mx-auto' : ''}`}
               >
                 <Link href={`/resources/${resource.slug}`} className="block h-full">
                   <div className="relative h-48 w-full overflow-hidden sm:h-56">

@@ -66,11 +66,15 @@ export default function BlogSection({
         {/* Posts grid stagger container */}
         <LazySection
           animation="none"
-          className="stagger-container grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 md:gap-12 lg:gap-16 card-equal-height"
+          className="stagger-container grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 md:gap-12 lg:gap-16 card-equal-height justify-items-center"
           style={{ '--stagger-delay': '0.2s' } as CSSProperties}
         >
           {posts.map((post, index) => (
-            <div key={post.id} className="h-full" style={{ '--index': index } as CSSProperties}>
+            <div
+              key={post.id}
+              className="size-full max-w-sm"
+              style={{ '--index': index } as CSSProperties}
+            >
               <Card className="size-full flex flex-col justify-between overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-gradient-to-b from-card to-transparent border border-border shadow-lg">
                 <div className="relative h-48 w-full overflow-hidden">
                   <Image
