@@ -557,7 +557,7 @@ className="grid md:grid-cols-3 gap-8 items-stretch"
 - **Result**: Cards now maintain readable width while preserving responsive grid and equal heights
 
 ### ✅ Priority 3: Resource Page Enhancement (COMPLETED)
-- **Status**: ✅ COMPLETED ✨ MAJOR UPGRADE
+- **Status**: ✅ COMPLETED ✨ MAJOR UPGRADE + DUTCH PROFESSIONAL REFINEMENTS
 - **Issue**: Resource detail pages were too thin and didn't provide enough context for conversion
 - **Problems Fixed**:
   - **Double checkmarks**: Removed CheckCircle icon from "What you'll gain" heading 
@@ -565,20 +565,29 @@ className="grid md:grid-cols-3 gap-8 items-stretch"
   - **No target audience clarity**: Added "Perfect For You If..." section with ✅/⚠️ indicators
   - **Lack of preview**: Added detailed "What's Inside" section with chapter breakdown
   - **Missing social proof**: Added stats and testimonial section
+  - **American marketing tone**: Refined for Dutch/European professional culture
 - **Solution Applied**: Complete landing page redesign with 7 strategic sections:
-  1. **Enhanced Hero** with decorative backgrounds and improved benefits list
-  2. **Product Overview** explaining what the resource covers and methodology
-  3. **Target Audience** with clear "perfect for you if" vs "not for you if" messaging
+  1. **Enhanced Hero** with decorative backgrounds and "Professional Outcomes" (was "What you'll gain")
+  2. **Resource Overview** (was "About This Resource") with evidence-based language
+  3. **Professional Audience** (was "Perfect For You If...") with "Who This Resource Serves"
   4. **Contents Preview** with chapter breakdown and bonus materials
-  5. **Social Proof** with download stats, reviews, and authentic testimonials
-  6. **Enhanced Form** with better styling and context
+  5. **Professional Validation** (was "Social Proof") emphasizing expertise over hype
+  6. **Professional Access Form** (was "Get Your Free Resource") with understated CTA
   7. **Content Blocks** (existing functionality preserved)
+- **Dutch Professional Culture Refinements**:
+  - **Tone**: More consultative, less sales-oriented
+  - **Language**: Professional development focus vs. transformation promises
+  - **Trust Building**: Emphasis on methodology, evidence-based approach, peer validation
+  - **Qualifying Language**: "Designed for professionals who..." vs. "Perfect for you if..."
+  - **Social Proof**: Credibility indicators vs. big download numbers
+  - **Form**: "Access This Professional Resource" vs. "Get Your Free Resource"
 - **UX Improvements**:
-  - Follows proper landing page conversion psychology
+  - Follows proper landing page conversion psychology adapted for European market
   - Meta-descriptive placeholders for easy customization
   - Staggered animations for engaging scroll experience
   - Consistent styling with established design tokens
   - Mobile-responsive design throughout
+  - **Cultural Alignment**: Perfect for coaches, therapists, consultants in Netherlands/EU
 
 ### 🎯 Next Priorities
 Based on the plan, the next items to tackle would be:

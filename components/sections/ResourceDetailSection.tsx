@@ -56,11 +56,11 @@ export default function ResourceDetailSection({
   const imgWidth = resource.heroImage?.width || 700;
   const imgHeight = resource.heroImage?.height || 1000;
 
-  // Dynamic benefits list - fallback to placeholder content
+  // Professional outcomes list - fallback to placeholder content
   const benefits: string[] = [
-    'Detailed step-by-step guidance for immediate implementation',
-    'Expert insights from years of proven experience',
-    'Actionable strategies you can apply right away',
+    'Structured methodology for evidence-based implementation',
+    'Professional frameworks developed through field research',
+    'Assessment tools and outcome measurement strategies',
   ];
 
   return (
@@ -101,9 +101,9 @@ export default function ResourceDetailSection({
               </p>
             )}
 
-            {/* Enhanced benefits section - removed duplicate checkmark from heading */}
+            {/* Professional outcomes section */}
             <div className="mb-8">
-              <h3 className="text-xl font-semibold mb-6 text-foreground">What you'll gain</h3>
+              <h3 className="text-xl font-semibold mb-6 text-foreground">Professional Outcomes</h3>
               <ul className="space-y-4 text-left">
                 {benefits.map(benefit => (
                   <li key={benefit.slice(0, 20)} className="flex items-start gap-3 group">
@@ -139,12 +139,11 @@ export default function ResourceDetailSection({
             {/* Enhanced download form card */}
             <Card className="w-full max-w-md shadow-xl border-0 bg-gradient-to-br from-white to-neutral-50/50 backdrop-blur-sm">
               <CardHeader className="text-center pb-4">
-                <CardTitle className="text-xl font-semibold text-foreground flex items-center justify-center gap-2">
-                  <CheckCircle className="size-5 text-primary" />
-                  Get Your Free Resource
+                <CardTitle className="text-xl font-semibold text-foreground">
+                  Access This Professional Resource
                 </CardTitle>
                 <p className="text-sm text-foreground/70 mt-2">
-                  Download this valuable resource instantly
+                  Complete the form below to receive your copy
                 </p>
               </CardHeader>
               <CardContent className="pt-0">
@@ -161,17 +160,17 @@ export default function ResourceDetailSection({
           style={{ '--stagger-delay': '0.1s' } as CSSProperties}
         >
           <div className="max-w-4xl mx-auto text-center" style={{ '--index': 0 } as CSSProperties}>
-            <h2 className="text-3xl font-bold mb-6 text-foreground">About This Resource</h2>
+            <h2 className="text-3xl font-bold mb-6 text-foreground">Resource Overview</h2>
             <div className="prose prose-lg mx-auto text-foreground/80">
               <p className="text-lg leading-relaxed mb-6">
-                Comprehensive overview paragraph explaining what this resource covers, the
-                methodology used, and the transformation readers can expect. This should position
-                the resource as the definitive guide for the specific problem it solves.
+                Professional development resource covering specific methodology, theoretical
+                framework, and practical applications. Designed to support evidence-based practice
+                and enhance professional competency in this specialized area.
               </p>
               <p className="leading-relaxed">
-                Additional context paragraph describing the unique approach, research backing, or
-                case studies that make this resource valuable. Mention any frameworks, tools, or
-                actionable strategies included.
+                Developed through comprehensive research and field testing, this resource provides
+                structured guidance, assessment tools, and implementation strategies. Includes case
+                study examples and professional references to support continued learning.
               </p>
             </div>
           </div>
@@ -185,44 +184,46 @@ export default function ResourceDetailSection({
         >
           <div className="max-w-4xl mx-auto" style={{ '--index': 0 } as CSSProperties}>
             <h2 className="text-3xl font-bold mb-8 text-center text-foreground">
-              Perfect For You If...
+              Who This Resource Serves
             </h2>
             <div className="grid md:grid-cols-2 gap-8">
               <div>
                 <h3 className="text-xl font-semibold mb-4 text-primary">
-                  ✅ You're ready for this if:
+                  Designed for professionals who:
                 </h3>
                 <ul className="space-y-3 text-foreground/80">
                   <li className="flex items-start gap-3">
-                    <CheckCircle className="size-5 text-green-500 shrink-0 mt-0.5" />
-                    <span>Specific situation or pain point that describes ideal reader</span>
+                    <CheckCircle className="size-5 text-primary shrink-0 mt-0.5" />
+                    <span>Professional context or challenge that describes ideal reader</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <CheckCircle className="size-5 text-green-500 shrink-0 mt-0.5" />
-                    <span>Current challenge or goal that resonates with target audience</span>
+                    <CheckCircle className="size-5 text-primary shrink-0 mt-0.5" />
+                    <span>Specific expertise level or professional development goal</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <CheckCircle className="size-5 text-green-500 shrink-0 mt-0.5" />
-                    <span>Level of commitment or experience that's required</span>
+                    <CheckCircle className="size-5 text-primary shrink-0 mt-0.5" />
+                    <span>Commitment to implementing evidence-based approaches</span>
                   </li>
                 </ul>
               </div>
               <div>
-                <h3 className="text-xl font-semibold mb-4 text-amber-600">
-                  ⚠️ This might not be for you if:
+                <h3 className="text-xl font-semibold mb-4 text-foreground/70">
+                  Consider other resources if you:
                 </h3>
                 <ul className="space-y-3 text-foreground/80">
                   <li className="flex items-start gap-3">
-                    <span className="size-5 text-amber-500 shrink-0 mt-0.5">⊘</span>
-                    <span>Specific situation where this resource wouldn't be helpful</span>
+                    <span className="size-4 text-foreground/40 shrink-0 mt-1">•</span>
+                    <span>Professional context where this approach may not be applicable</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="size-5 text-amber-500 shrink-0 mt-0.5">⊘</span>
-                    <span>Expectation that would lead to disappointment</span>
+                    <span className="size-4 text-foreground/40 shrink-0 mt-1">•</span>
+                    <span>
+                      Experience level that might benefit from foundational resources first
+                    </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="size-5 text-amber-500 shrink-0 mt-0.5">⊘</span>
-                    <span>Alternative solution they should consider instead</span>
+                    <span className="size-4 text-foreground/40 shrink-0 mt-1">•</span>
+                    <span>Specific field or methodology that requires different approaches</span>
                   </li>
                 </ul>
               </div>
@@ -296,36 +297,37 @@ export default function ResourceDetailSection({
           </div>
         </LazySection>
 
-        {/* Social Proof Section */}
+        {/* Professional Validation Section */}
         <LazySection
           animation="none"
-          className="stagger-container bg-gradient-to-r from-primary/5 to-secondary/5 rounded-2xl p-8 md:p-12 mb-16 md:mb-20"
+          className="stagger-container bg-gradient-to-r from-neutral-50/50 to-white rounded-2xl p-8 md:p-12 mb-16 md:mb-20"
           style={{ '--stagger-delay': '0.1s' } as CSSProperties}
         >
           <div className="max-w-4xl mx-auto text-center" style={{ '--index': 0 } as CSSProperties}>
             <h2 className="text-3xl font-bold mb-8 text-foreground">
-              Join Thousands Who've Already Transformed Their Results
+              Trusted by Professional Communities
             </h2>
             <div className="grid md:grid-cols-3 gap-8 mb-8">
               <div className="text-center">
-                <div className="text-3xl font-bold text-primary mb-2">X,XXX+</div>
-                <div className="text-foreground/70">Downloads</div>
+                <div className="text-2xl font-semibold text-primary mb-2">XX+ Years</div>
+                <div className="text-sm text-foreground/70">Combined expertise</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-primary mb-2">XX+</div>
-                <div className="text-foreground/70">5-Star Reviews</div>
+                <div className="text-2xl font-semibold text-primary mb-2">Evidence-Based</div>
+                <div className="text-sm text-foreground/70">Methodology</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-primary mb-2">XX%</div>
-                <div className="text-foreground/70">Report Positive Results</div>
+                <div className="text-2xl font-semibold text-primary mb-2">Peer-Reviewed</div>
+                <div className="text-sm text-foreground/70">Approach</div>
               </div>
             </div>
-            <blockquote className="text-lg italic text-foreground/80 max-w-2xl mx-auto">
-              "Representative testimonial quote highlighting specific transformation or result
-              achieved using this resource. Should be authentic and specific rather than generic."
+            <blockquote className="text-lg text-foreground/80 max-w-2xl mx-auto border-l-4 border-primary pl-6">
+              "Professional testimonial highlighting how this resource enhanced their practice
+              methodology and client outcomes. Should reflect authentic professional development
+              rather than dramatic claims."
             </blockquote>
             <div className="mt-4 text-foreground/60">
-              — Name, Title/Role of Testimonial Provider
+              — Professional Name, Credentials, Field of Practice
             </div>
           </div>
         </LazySection>
