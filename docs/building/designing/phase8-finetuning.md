@@ -557,7 +557,7 @@ className="grid md:grid-cols-3 gap-8 items-stretch"
 - **Result**: Cards now maintain readable width while preserving responsive grid and equal heights
 
 ### ✅ Priority 3: Resource Page Enhancement (COMPLETED)
-- **Status**: ✅ COMPLETED ✨ MAJOR UPGRADE + DUTCH PROFESSIONAL REFINEMENTS
+- **Status**: ✅ COMPLETED ✨ MAJOR UPGRADE + DUTCH PROFESSIONAL REFINEMENTS + ALIGNMENT FIXES
 - **Issue**: Resource detail pages were too thin and didn't provide enough context for conversion
 - **Problems Fixed**:
   - **Double checkmarks**: Removed CheckCircle icon from "What you'll gain" heading 
@@ -588,6 +588,28 @@ className="grid md:grid-cols-3 gap-8 items-stretch"
   - Consistent styling with established design tokens
   - Mobile-responsive design throughout
   - **Cultural Alignment**: Perfect for coaches, therapists, consultants in Netherlands/EU
+
+### 🎯 Alignment & Polish Fixes (December 2024)
+**Critical UX Issues Fixed**:
+1. **Bonus Materials Card Padding**: Fixed uneven padding (was more top/right than bottom/left)
+   - Changed from generic `p-6` to balanced spacing with proper vertical rhythm
+   - Added `h-fit` to prevent unnecessary stretching
+   - Centered heading and improved list spacing
+2. **"Download your free e-book" Section Alignment**: Fixed misaligned form at bottom
+   - Enhanced `FormBlock.tsx` with proper centering (`text-center`, `mx-auto`)
+   - Added consistent typography (`text-3xl font-bold`) 
+   - Constrained form width (`max-w-md mx-auto`) for better visual balance
+3. **Card Content Alignment Throughout**:
+   - Fixed icon-text alignment using `items-start` with `mt-0.5` for proper baseline alignment
+   - Improved spacing consistency (`space-y-4` vs `space-y-3`)
+   - Added responsive text alignment (`text-center md:text-left`)
+4. **Visual Balance Improvements**:
+   - Better vertical spacing in "Who This Resource Serves" section
+   - Enhanced visual hierarchy with improved margins and padding
+   - Replaced bullet points with small rounded dots for cleaner appearance
+   - Added `justify-center` to hero image/form column for better vertical alignment
+
+**Design Principle Applied**: Every element should feel intentionally placed and balanced - no visual elements should appear "off" or accidentally positioned.
 
 ### 🎯 Next Priorities
 Based on the plan, the next items to tackle would be:

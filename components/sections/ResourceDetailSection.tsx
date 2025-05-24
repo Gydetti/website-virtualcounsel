@@ -117,7 +117,7 @@ export default function ResourceDetailSection({
 
           {/* Image & Form Column */}
           <div
-            className="flex flex-col items-center space-y-6"
+            className="flex flex-col items-center justify-center space-y-8"
             style={{ '--index': 1 } as CSSProperties}
           >
             {/* Enhanced resource preview */}
@@ -183,15 +183,15 @@ export default function ResourceDetailSection({
           style={{ '--stagger-delay': '0.1s' } as CSSProperties}
         >
           <div className="max-w-4xl mx-auto" style={{ '--index': 0 } as CSSProperties}>
-            <h2 className="text-3xl font-bold mb-8 text-center text-foreground">
+            <h2 className="text-3xl font-bold mb-10 text-center text-foreground">
               Who This Resource Serves
             </h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <h3 className="text-xl font-semibold mb-4 text-primary">
+            <div className="grid md:grid-cols-2 gap-8 md:gap-12">
+              <div className="space-y-4">
+                <h3 className="text-xl font-semibold mb-6 text-primary text-center md:text-left">
                   Designed for professionals who:
                 </h3>
-                <ul className="space-y-3 text-foreground/80">
+                <ul className="space-y-4 text-foreground/80">
                   <li className="flex items-start gap-3">
                     <CheckCircle className="size-5 text-primary shrink-0 mt-0.5" />
                     <span>Professional context or challenge that describes ideal reader</span>
@@ -206,23 +206,23 @@ export default function ResourceDetailSection({
                   </li>
                 </ul>
               </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-4 text-foreground/70">
+              <div className="space-y-4">
+                <h3 className="text-xl font-semibold mb-6 text-foreground/70 text-center md:text-left">
                   Consider other resources if you:
                 </h3>
-                <ul className="space-y-3 text-foreground/80">
+                <ul className="space-y-4 text-foreground/80">
                   <li className="flex items-start gap-3">
-                    <span className="size-4 text-foreground/40 shrink-0 mt-1">•</span>
+                    <span className="size-2 bg-foreground/40 rounded-full shrink-0 mt-2" />
                     <span>Professional context where this approach may not be applicable</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="size-4 text-foreground/40 shrink-0 mt-1">•</span>
+                    <span className="size-2 bg-foreground/40 rounded-full shrink-0 mt-2" />
                     <span>
                       Experience level that might benefit from foundational resources first
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="size-4 text-foreground/40 shrink-0 mt-1">•</span>
+                    <span className="size-2 bg-foreground/40 rounded-full shrink-0 mt-2" />
                     <span>Specific field or methodology that requires different approaches</span>
                   </li>
                 </ul>
@@ -269,27 +269,29 @@ export default function ResourceDetailSection({
                 </div>
               </div>
               <div className="space-y-6">
-                <div className="bg-gradient-to-br from-primary/5 to-secondary/5 rounded-xl p-6">
-                  <h3 className="text-xl font-semibold mb-4 text-foreground">Bonus Materials</h3>
-                  <ul className="space-y-3">
-                    <li className="flex items-center gap-3 text-foreground/80">
-                      <CheckCircle className="size-5 text-primary shrink-0" />
+                <div className="bg-gradient-to-br from-primary/5 to-secondary/5 rounded-xl p-6 h-fit">
+                  <h3 className="text-xl font-semibold mb-6 text-foreground text-center">
+                    Bonus Materials
+                  </h3>
+                  <ul className="space-y-4">
+                    <li className="flex items-start gap-3 text-foreground/80">
+                      <CheckCircle className="size-5 text-primary shrink-0 mt-0.5" />
                       <span>Downloadable template or worksheet description</span>
                     </li>
-                    <li className="flex items-center gap-3 text-foreground/80">
-                      <CheckCircle className="size-5 text-primary shrink-0" />
+                    <li className="flex items-start gap-3 text-foreground/80">
+                      <CheckCircle className="size-5 text-primary shrink-0 mt-0.5" />
                       <span>Quick reference guide or cheat sheet</span>
                     </li>
-                    <li className="flex items-center gap-3 text-foreground/80">
-                      <CheckCircle className="size-5 text-primary shrink-0" />
+                    <li className="flex items-start gap-3 text-foreground/80">
+                      <CheckCircle className="size-5 text-primary shrink-0 mt-0.5" />
                       <span>Additional resource or tool recommendation</span>
                     </li>
                   </ul>
                 </div>
-                <div className="text-center p-6 bg-neutral-50 rounded-xl">
+                <div className="text-center py-6 px-8 bg-neutral-50 rounded-xl">
                   <div className="text-2xl font-bold text-primary mb-2">X Pages</div>
-                  <div className="text-sm text-foreground/70">Total content length</div>
-                  <div className="text-2xl font-bold text-primary mb-2 mt-4">X Minutes</div>
+                  <div className="text-sm text-foreground/70 mb-4">Total content length</div>
+                  <div className="text-2xl font-bold text-primary mb-2">X Minutes</div>
                   <div className="text-sm text-foreground/70">Estimated reading time</div>
                 </div>
               </div>
