@@ -412,29 +412,48 @@ export const siteConfig: SiteConfigSchema = {
       sections: [{ id: 'resources-list-main', sectionType: 'ResourceListSection' }],
     },
     {
-      path: '/about', // <--- ABOUT US PAGE STRUCTURE
+      path: '/about', // <--- ENHANCED ABOUT PAGE STRUCTURE FOR SOLO ENTREPRENEURS
       seo: {
-        title: 'About Our Company',
-        description: 'Learn more about our company, our mission, and our values.',
+        title: 'About [Name] - Personal Story & Expertise',
+        description:
+          "Learn about [Name]'s journey, qualifications, and unique approach to helping clients achieve transformation.",
       },
       sections: [
         {
           id: 'about-main-content',
-          sectionType:
-            'AboutSection' /* patternStyle: 'grid', patternOpacity: 0.1, patternFade: 'edges', patternColor: 'rgba(var(--accent-rgb), 0.2)' */,
+          sectionType: 'AboutSection',
           variant: 'classic',
+          // patternStyle: 'grid', patternOpacity: 0.05
+        },
+        {
+          id: 'about-personal-journey',
+          sectionType: 'AboutPersonalJourneySection',
+          // patternStyle: 'none', patternOpacity: 0
+        },
+        {
+          id: 'about-credentials',
+          sectionType: 'AboutCredentialsSection',
+          // patternStyle: 'dots', patternOpacity: 0.03
+        },
+        {
+          id: 'about-philosophy',
+          sectionType: 'AboutPhilosophySection',
+          // patternStyle: 'waves', patternOpacity: 0.04
         },
         {
           id: 'about-values',
-          sectionType: 'AboutValuesSection' /* patternStyle: 'grid', patternOpacity: 0.1 */,
+          sectionType: 'AboutValuesSection',
+          // patternStyle: 'grid', patternOpacity: 0.03
         },
         {
           id: 'about-testimonials',
-          sectionType: 'TestimonialsSection' /* patternStyle: 'grid', patternOpacity: 0.1 */,
+          sectionType: 'TestimonialsSection',
+          // patternStyle: 'none', patternOpacity: 0
         },
         {
           id: 'about-cta',
-          sectionType: 'CtaSection' /* patternStyle: 'grid', patternOpacity: 0.1 */,
+          sectionType: 'CtaSection',
+          // patternStyle: 'grid', patternOpacity: 0.05
         },
       ],
     },

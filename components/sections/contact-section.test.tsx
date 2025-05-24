@@ -1,3 +1,4 @@
+/* eslint-disable import/named */
 import { fireEvent, render, screen } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import { describe, expect, it } from 'vitest';

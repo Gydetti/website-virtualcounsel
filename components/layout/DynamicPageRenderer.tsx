@@ -3,6 +3,9 @@ import dynamic from 'next/dynamic';
 import type { ComponentType, FC } from 'react';
 import type { z } from 'zod';
 
+import AboutCredentialsSection from '@/components/sections/about-credentials-section';
+import AboutPersonalJourneySection from '@/components/sections/about-personal-journey-section';
+import AboutPhilosophySection from '@/components/sections/about-philosophy-section';
 // Replace static section imports with dynamic for heavy sections
 // Dynamically import HeroSection to code-split JS-driven animations
 // const HeroSection = dynamic(() => import('@/components/sections/hero-section'));
@@ -30,7 +33,10 @@ const ResourceDetailSection = dynamic(() => import('@/components/sections/Resour
 const ResourceListSection = dynamic(() => import('@/components/sections/ResourceListSection'));
 // ++ NEW IMPORTS FOR DATA ++
 import {
+  aboutCredentialsSectionData,
   aboutPageMainContentData,
+  aboutPersonalJourneySectionData,
+  aboutPhilosophySectionData,
   aboutSocialProofSectionData,
   aboutValuesSectionData,
 } from '@/lib/data/aboutPageData';
@@ -70,6 +76,9 @@ const sectionComponentMap: Record<string, ComponentType<any>> = {
   ResourceDetailSection,
   ResourceListSection,
   AboutValuesSection,
+  AboutPersonalJourneySection,
+  AboutCredentialsSection,
+  AboutPhilosophySection,
 };
 
 // Define simple, CSS-only sections to wrap with a single LazySection animation="none"
@@ -192,6 +201,12 @@ const getSectionData = async (
         return aboutPageMainContentData;
       case 'AboutValuesSection':
         return aboutValuesSectionData;
+      case 'AboutPersonalJourneySection':
+        return aboutPersonalJourneySectionData;
+      case 'AboutCredentialsSection':
+        return aboutCredentialsSectionData;
+      case 'AboutPhilosophySection':
+        return aboutPhilosophySectionData;
       case 'TestimonialsSection':
         return homepageData.testimonialsSectionData;
       case 'CtaSection':

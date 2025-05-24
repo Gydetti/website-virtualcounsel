@@ -1,3 +1,4 @@
+import { Star } from 'lucide-react';
 import type { CSSProperties } from 'react';
 import type { z } from 'zod';
 
@@ -15,35 +16,38 @@ export default function AboutValuesSection({
 }: AboutValuesSectionProps) {
   return (
     <Section id="about-values" className="py-12">
-      <LazySection
-        animation="none"
-        className="stagger-container max-w-3xl mx-auto text-center"
-        style={{ '--stagger-delay': '0.1s' } as CSSProperties}
-      >
+      {/* Header */}
+      <div className="text-center mb-12">
         {badgeText && (
-          <Badge className="mb-4" style={{ '--index': 0 } as CSSProperties}>
-            {badgeText}
-          </Badge>
+          <LazySection animation="fade-up" delay={0.1}>
+            <Badge className="mb-4">{badgeText}</Badge>
+          </LazySection>
         )}
         {heading && (
-          <h3 className="mb-6" style={{ '--index': 1 } as CSSProperties}>
-            {heading}
-          </h3>
+          <LazySection animation="fade-up" delay={0.2}>
+            <h2 className="text-heading mb-4">{heading}</h2>
+          </LazySection>
         )}
-        <ul
-          className="grid grid-cols-1 sm:grid-cols-2 gap-4"
-          style={{ '--index': 2 } as CSSProperties}
-        >
-          {values.map((value, idx) => (
-            <li
-              key={value}
-              className="text-foreground text-lg"
-              style={{ '--index': 3 + idx } as CSSProperties}
-            >
-              • {value}
-            </li>
-          ))}
-        </ul>
+      </div>
+
+      {/* Values Grid */}
+      <LazySection
+        animation="none"
+        className="stagger-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        style={{ '--stagger-delay': '0.1s' } as CSSProperties}
+      >
+        {values.map((value, idx) => (
+          <div
+            key={value}
+            className="bg-neutral-surface/50 border border-border/50 rounded-lg p-6 text-center hover:shadow-md transition-all duration-300 hover:-translate-y-1 h-full flex flex-col justify-center items-center"
+            style={{ '--index': idx } as CSSProperties}
+          >
+            <div className="flex size-10 items-center justify-center rounded-full bg-primary/10 mb-4">
+              <Star className="size-5 text-primary" />
+            </div>
+            <p className="text-neutral-text font-medium text-lg leading-relaxed">{value}</p>
+          </div>
+        ))}
       </LazySection>
     </Section>
   );

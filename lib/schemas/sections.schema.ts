@@ -321,6 +321,65 @@ export const aboutSocialProofSectionDataSchema = z.object({
   socialProof: z.array(socialProofItemSchema).min(1, 'Must provide at least one social proof item'),
 });
 
+// Personal Journey Section Schema - for storytelling and trust building
+const journeyStepSchema = z.object({
+  id: z.string().min(1),
+  timeframe: z.string().min(1),
+  title: z.string().min(1),
+  description: z.string().min(1),
+});
+
+export const aboutPersonalJourneySectionDataSchema = z.object({
+  badgeText: z.string().optional(),
+  heading: z.string().optional(),
+  subtitle: z.string().optional(),
+  journeySteps: z.array(journeyStepSchema).min(1, 'Must provide at least one journey step'),
+  image: imageSchema.optional(),
+});
+
+// Credentials Section Schema - for building authority and trust
+const credentialItemSchema = z.object({
+  id: z.string().min(1),
+  type: z.string().min(1), // e.g., 'Certification', 'Education', 'Experience'
+  title: z.string().min(1),
+  issuer: z.string().min(1),
+  year: z.string().min(1),
+  description: z.string().min(1),
+  icon: z.string().min(1), // icon name for display
+});
+
+export const aboutCredentialsSectionDataSchema = z.object({
+  badgeText: z.string().optional(),
+  heading: z.string().optional(),
+  subtitle: z.string().optional(),
+  credentials: z.array(credentialItemSchema).min(1, 'Must provide at least one credential'),
+  cta: ctaSchema.optional(),
+});
+
+// Philosophy & Approach Section Schema - for detailed methodology explanation
+const philosophyPointSchema = z.object({
+  id: z.string().min(1),
+  title: z.string().min(1),
+  description: z.string().min(1),
+  icon: z.string().min(1),
+});
+
+const quoteSchema = z.object({
+  text: z.string().min(1),
+  author: z.string().min(1),
+});
+
+export const aboutPhilosophySectionDataSchema = z.object({
+  badgeText: z.string().optional(),
+  heading: z.string().optional(),
+  subtitle: z.string().optional(),
+  philosophyPoints: z
+    .array(philosophyPointSchema)
+    .min(1, 'Must provide at least one philosophy point'),
+  quote: quoteSchema.optional(),
+  image: imageSchema.optional(),
+});
+
 // Add schema for Services Overview section
 export const servicesOverviewSectionDataSchema = z.object({
   badgeText: z.string().optional(),
