@@ -22,6 +22,7 @@ Welcome to the **GMG Template Website 2025** master onboarding and handover docu
 15. [Troubleshooting, Gotchas & Post-Mortems](#troubleshooting-gotchas--post-mortems)
 16. [AI/Automation Best Practices](#aiautomation-best-practices)
 17. [Appendix: Feature Flags, Patterns, and Utilities](#appendix-feature-flags-patterns-and-utilities)
+18. [Advanced Patterns & Utilities](#advanced-patterns--utilities)
 
 ---
 
@@ -213,16 +214,44 @@ The GMG Template Website 2025 is a highly configurable, modern, and robust Next.
 - **Color audit**: `misconfigs-final.txt` lists all hardcoded color usages to be migrated to tokens.
 - **References**: See `docs/building/general/`, `lib/site.config.local.ts`, `lib/theme.variants.ts`, `theme/colors.ts`, and onboarding docs for further details.
 
----
+## 18. Advanced Patterns & Utilities
 
-## Customization & Placeholder Extraction
+### Web Vitals API & Analytics Utilities
+- **Custom endpoint:** `app/api/web-vitals/route.ts` collects web vitals metrics for analytics/performance monitoring. Metrics can be forwarded to any analytics service. See also `components/analytics/WebVitalsReporter.tsx` for client-side reporting.
+- **Pattern:** Use this endpoint to collect and analyze real user performance data. Extend as needed for custom analytics.
 
-- **All placeholder copy**: Centralized in `lib/data/staticContent.ts`.
-- **Fallback images**: Use `DEFAULT_PLACEHOLDER_IMAGE` from `lib/constants.ts` everywhere.
-- **Codemods**: Used to extract/replace placeholders and fallback images across the codebase.
-- **CI enforcement**: ESLint and tests block new inline placeholders; see `tests/unit/noPlaceholders.test.ts`.
-- **Onboarding docs**: Reference `staticContent.ts` and `constants.ts` as the single edit points for client copy and images.
-- **Zero-context onboarding**: Any AI agent or developer can inject client copy and images by editing these files and running `npm run ci:verify`.
+### Dynamic Page Composition: DynamicPageRenderer
+- **Component:** `components/layout/DynamicPageRenderer.tsx` enables config-driven, highly dynamic page layouts. Page structures are defined in `siteConfig.pageStructures` and mapped to section components at runtime.
+- **Pattern:** To add or reorder sections, update the config—no code changes needed. Extend this renderer for new section types or custom logic.
+
+### Content Block System
+- **Directory:** `components/content-blocks/` contains modular blocks (FormBlock, CtaBlock, HeadingBlock, HeadingBlock, QuoteBlock, TextBlock, VideoBlock, ImageBlock, ListBlock, ContentBlockRenderer, etc.).
+- **Pattern:** Use for rich, flexible, CMS-like content editing. Compose complex content from reusable blocks. Extend with new block types as needed.
+
+### Custom UI Primitives
+- **Directory:** `components/ui/` contains a large set of custom UI primitives (button, card, input, carousel, background-pattern, spark-button, lazy-section, optimized-image, etc.).
+- **Pattern:** Use these for consistent UI/UX. Many are not just wrappers for shadcn/ui, but have custom logic (e.g., BackgroundCanvas for animated backgrounds, lazy-section for scroll-triggered animations, optimized-image for image optimization).
+- **Best practice:** Prefer these primitives over raw HTML or third-party components for consistency and maintainability.
+
+### Utility Modules
+- **Files:** `lib/data-utils.ts`, `lib/tracking-utils.ts`, `lib/icon-utils.tsx`, `lib/animation.ts`, `lib/utils.ts`.
+- **Pattern:** Centralize data transformation, tracking, icon, and animation logic. Review and extend these utilities as needed for new features.
+
+### Layout & Navigation Patterns
+- **Directory:** `components/layout/` contains AppShell, Section, PageTransitionWrapper, header, footer, navigation, etc.
+- **Pattern:** Use AppShell for global layout, Section for section wrappers, PageTransitionWrapper for animated transitions, and navigation/header/footer for site-wide navigation. Sticky headers, dynamic navigation, and page transitions are all handled here.
+- **Best practice:** Extend these primitives for new layout or navigation needs, and keep navigation config-driven via `siteConfig`.
+
+### SEO & Structured Data Utilities
+- **Directory:** `components/seo/` contains structured-data.tsx and blog-schema.tsx for rich JSON-LD schema generation.
+- **Pattern:** Use and extend these utilities for advanced SEO needs, including custom schema types for new content.
+
+### Analytics & Tracking
+- **Directory:** `components/tracking/` contains DataLayerProvider, tracking-scripts.tsx, and PageViewTracker for analytics and consent gating.
+- **Pattern:** All tracking scripts are consent-gated and config-driven. Extend these for new analytics providers or custom tracking needs.
+
+### Content & Placeholder Extraction
+- **Pattern:** All placeholder copy is centralized in `lib/data/staticContent.ts`. Use codemods/scripts to extract or replace placeholders and fallback images. CI and lint rules enforce no new inline placeholders.
 
 ---
 

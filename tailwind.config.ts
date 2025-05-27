@@ -40,42 +40,21 @@ Object.assign(dynamicColors, extraColors);
 
 const config = {
   content: [
-    './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
     './lib/**/*.{ts,tsx}',
-    '*.{js,ts,jsx,tsx,mdx}',
+    './hooks/**/*.{ts,tsx}',
   ],
-  // Minimize safelist to only truly dynamic patterns that can't be detected
+  // Minimal safelist - only truly dynamic styles that can't be detected statically
   safelist: [
-    // Dynamic gradients that are programmatically generated
-    'bg-gradient-to-r',
-    'from-brand-primary/10',
-    'to-brand-hero-background',
-    // Dynamic pattern backgrounds
-    'bg-grid-pattern',
-    'bg-dots-pattern',
-    'bg-waves-pattern',
-    'bg-noise-pattern',
-    'bg-triangle-pattern',
-    'bg-crosshatch-pattern',
-    'bg-hex-pattern',
-    // Pattern opacity variants
-    'opacity-[0.025]',
-    'opacity-5',
-    'opacity-[0.075]',
-    'opacity-10',
-    // Dynamic text styles that are configurable
+    // Dynamic text styles from theme variants
     'text-style-balanced',
     'text-style-tight',
     'text-style-airy',
-    // Essential animation classes
-    'animate-float',
-    'animate-blink',
-    'animate-pulse',
-    'animate-subtle-rotate',
-    'animate-shimmer',
+    // Dynamic gradients used in components
+    'bg-gradient-to-r',
+    'from-brand-primary/10',
+    'to-brand-hero-background',
   ],
   prefix: '',
   theme: {
