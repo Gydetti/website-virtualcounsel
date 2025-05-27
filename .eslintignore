@@ -8,6 +8,7 @@ docs/
 
 docs/building/general/**
 doc/**
+public/**
 
 # Backup files
 components/sections/hero-section-back-up17-05-2025.tsx

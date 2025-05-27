@@ -39,6 +39,8 @@ app/terms-of-service/**
 app/cookie-policy/**
 
 docs/
+public/**
+public/
 
 # Ignore old Lighthouse config file
 lighthouserc.json

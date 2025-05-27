@@ -47,12 +47,35 @@ const config = {
     './lib/**/*.{ts,tsx}',
     '*.{js,ts,jsx,tsx,mdx}',
   ],
-  // Reduce safelist to only essential patterns that are truly dynamic
+  // Minimize safelist to only truly dynamic patterns that can't be detected
   safelist: [
-    // Only include patterns that are generated programmatically and can't be detected by content scanning
+    // Dynamic gradients that are programmatically generated
     'bg-gradient-to-r',
     'from-brand-primary/10',
     'to-brand-hero-background',
+    // Dynamic pattern backgrounds
+    'bg-grid-pattern',
+    'bg-dots-pattern',
+    'bg-waves-pattern',
+    'bg-noise-pattern',
+    'bg-triangle-pattern',
+    'bg-crosshatch-pattern',
+    'bg-hex-pattern',
+    // Pattern opacity variants
+    'opacity-[0.025]',
+    'opacity-5',
+    'opacity-[0.075]',
+    'opacity-10',
+    // Dynamic text styles that are configurable
+    'text-style-balanced',
+    'text-style-tight',
+    'text-style-airy',
+    // Essential animation classes
+    'animate-float',
+    'animate-blink',
+    'animate-pulse',
+    'animate-subtle-rotate',
+    'animate-shimmer',
   ],
   prefix: '',
   theme: {
