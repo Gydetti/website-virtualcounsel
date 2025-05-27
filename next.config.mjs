@@ -30,6 +30,29 @@ const nextConfig = withBundleAnalyzer({
     // Enable CSS code splitting for better loading
     cssChunking: 'loose',
   },
+  // Optimize CSS delivery and loading performance
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+  // Improve performance with proper headers
+  async headers() {
+    return [
+      {
+        // Add performance headers for CSS resources
+        source: '/_next/static/css/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+        ],
+      },
+    ];
+  },
   async rewrites() {
     return [
       {

@@ -53,7 +53,7 @@ const config = {
     'text-style-airy',
     // Dynamic section padding based on contentDensity
     'section-padding-compact',
-    'section-padding-balanced', 
+    'section-padding-balanced',
     'section-padding-airy',
     // Dynamic pattern background classes (defined in CSS, but need to be preserved)
     'bg-grid-pattern',

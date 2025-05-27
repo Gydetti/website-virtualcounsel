@@ -1,6 +1,20 @@
 # Master Client Onboarding & Codebase Guide
 
-Welcome to the **GMG Template Website 2025** master onboarding and handover document. This is the single source of truth for understanding, customizing, and maintaining the codebase. All information here is validated against the current codebase and onboarding docs—outdated or superseded instructions are clearly marked or omitted.
+---
+
+## 🚀 Quickstart & AI Recipes
+
+**For AI Assistants and Human Developers:**
+- **Zero-context onboarding:**
+  1. Read this doc, `lib/site.config.local.ts`, `lib/theme.variants.ts`, and `lib/data/staticContent.ts`.
+  2. To scaffold a new client: update config, inject copy, run `npm run verify:local`.
+  3. Use codemods/scripts for placeholder extraction, color migration, and fallback image replacement.
+  4. Always validate changes by running the full verification workflow and manual visual QA on key pages.
+- **AI Automation Recipes:**
+  - To add a new section: update `siteConfig.pageStructures`, extend the section schema in `lib/schemas/sections.schema.ts`, and add/override data in `lib/data/`.
+  - To add a new theme variant: extend `lib/theme.variants.ts`, update `app/layout.tsx` logic, and document in this doc and config.
+  - To migrate hardcoded colors: use codemods and lint rules, then update tokens in `theme/colors.ts` and config.
+  - To update placeholder copy: extract from `lib/data/staticContent.ts`, replace, and verify with tests and visual QA.
 
 ---
 
@@ -23,6 +37,9 @@ Welcome to the **GMG Template Website 2025** master onboarding and handover docu
 16. [AI/Automation Best Practices](#aiautomation-best-practices)
 17. [Appendix: Feature Flags, Patterns, and Utilities](#appendix-feature-flags-patterns-and-utilities)
 18. [Advanced Patterns & Utilities](#advanced-patterns--utilities)
+19. [Design System & Visual Patterns](#design-system--visual-patterns)
+20. [How to Update This Doc](#how-to-update-this-doc)
+21. [Lessons from Past Phases & Common Pitfalls (Appendix)](#lessons-from-past-phases--common-pitfalls-appendix)
 
 ---
 
@@ -101,6 +118,15 @@ The GMG Template Website 2025 is a highly configurable, modern, and robust Next.
 - **No local overrides**: Typography, spacing, and backgrounds are controlled by global config and utility classes.
 - **Animations**: Scroll-triggered and staggered animations are handled by `<LazySection>` and controlled by feature flags in `siteConfig.features`.
 - **Testing**: All section components are covered by unit and E2E tests.
+
+## 7. Section Architecture & Dynamic Page Composition
+
+- **Section-driven pages:** All pages are composed of reusable, configurable section components (e.g., HeroSection, AboutSection, ServicesSection, etc.), with layouts and order defined in `siteConfig.pageStructures`.
+- **DynamicPageRenderer:** Central to rendering pages from config, enabling no-code reordering and extension of sections. See `components/layout/DynamicPageRenderer.tsx`.
+- **Per-section visual overrides:** Each section can have its own background pattern, opacity, and color, set via config and validated by Zod schemas. Extend each section's data schema and pass overrides as props (see `lib/schemas/sections.schema.ts`).
+- **No manual padding/containers:** Section spacing and container classes are config-driven for consistency and simplicity.
+- **Pattern system:** Patterns (dots, grid, waves, etc.) are defined in config and can be overridden per section. See `theme-templating-variants.md` and `lib/site.config.local.ts`.
+- **Testing:** All section components are covered by unit and E2E tests. Always run `npm run verify:local` after changes.
 
 ---
 
@@ -253,6 +279,102 @@ The GMG Template Website 2025 is a highly configurable, modern, and robust Next.
 ### Content & Placeholder Extraction
 - **Pattern:** All placeholder copy is centralized in `lib/data/staticContent.ts`. Use codemods/scripts to extract or replace placeholders and fallback images. CI and lint rules enforce no new inline placeholders.
 
+## 19. Design System & Visual Patterns
+
+- **Configurable everything:** All visual options (patterns, gradients, spacing, typography, animations) are centrally configurable in `siteConfig` and theme variants.
+- **Typography & spacing:** Global, responsive typography scale and spacing system, with "balanced", "tight", and "airy" options. See `theme/` and `app/globals.css`.
+- **Pattern library:** Configurable background patterns (dots, grid, waves, etc.) and gradients, with per-section overrides.
+- **Component variants:** Buttons, cards, and other primitives have variant-specific personalities (Professional, Warm, Bold). See `components/ui/`.
+- **CSS modules:** Used only for complex, scoped animations (e.g., infinite logo carousels).
+- **Performance & accessibility:** All enhancements must maintain or improve Core Web Vitals and meet WCAG AA contrast. Animations must respect `prefers-reduced-motion`.
+- **Consistent variant ecosystem:** All design decisions must work across all theme variants (v1, v2, v3).
+- **Micro-interactions:** Subtle, purposeful, and always optional/configurable. See `components/ui/lazy-section.tsx` and `components/layout/PageTransitionWrapper.tsx`.
+
+## 20. How to Update This Doc
+
+- **Validation:** All changes must be validated against the current codebase and config.
+- **Checklist:**
+  - Update for every new feature, pattern, or config option
+  - Cross-link to new/updated blueprints or deep-dives
+  - Mark any deprecated or superseded instructions
+  - Review for clarity, discoverability, and accuracy
+- **Process:**
+  1. Review new/changed code, config, or patterns
+  2. Update this doc with clear, actionable instructions
+  3. Add cross-links to relevant files, blueprints, or onboarding docs
+  4. Validate by running `npm run verify:local` and manual visual QA
+  5. Commit and push only after all checks pass
+
 ---
 
 This document is continuously updated as the codebase evolves. Always validate any onboarding or instructional doc against the current codebase and config files before acting.
+
+## 21. Lessons from Past Phases & Common Pitfalls (Appendix)
+
+### Key Lessons & Prevention Strategies
+
+- **Always Validate Before Changing:**
+  - Never assume a feature or pattern needs improvement—examine the current codebase and implementation first.
+  - Use existing systems and extend them; do not create new systems unless absolutely necessary.
+
+- **Config-Driven Everything:**
+  - All visual and functional options (patterns, spacing, colors, animations) must be centrally configurable in `siteConfig` and theme variants.
+  - Never hardcode brand colors or add new CSS variables/classes that aren't actually used by components.
+
+- **Tailwind JIT & Dynamic Classes:**
+  - Any class name computed at runtime must appear as a literal string in the source or be safelisted in `tailwind.config.ts`.
+  - After changing config-driven classes, always rebuild and verify in the browser.
+
+- **Section & Container Patterns:**
+  - Never add container classes inside Section components—Section already provides the container.
+  - For per-section pattern overrides, always extend the section's data schema and pass overrides via config, not hardcoded props.
+
+- **Testing & Verification Discipline:**
+  - Always run `npm run verify:local` after any significant change (build, lint, test, E2E, visual QA).
+  - Never skip the verification workflow—each tool catches different issues.
+
+- **Animation & Micro-Interaction:**
+  - Use only compositor-friendly CSS properties (`transform`, `opacity`) for animations.
+  - Always respect `prefers-reduced-motion` and test on low-end devices.
+  - Use existing animation/interaction systems (e.g., `LazySection`, `PageTransitionWrapper`) and extend via config.
+
+- **Accessibility & Performance:**
+  - All color combos must meet WCAG AA contrast (4.5:1).
+  - Test for keyboard navigation, screen reader support, and responsive behavior.
+  - Never add features that degrade Core Web Vitals or accessibility.
+
+- **Cultural & Client Context:**
+  - Maintain Dutch/European professional tone—avoid aggressive marketing patterns.
+  - Use meta-descriptive placeholders, not real copy, for all template content.
+
+- **Bug-Fixing & Debugging Patterns:**
+  - Always check parent component prop types before extending.
+  - Use Tailwind v3+ shorthand classes (e.g., `size-full`, `shrink-0`).
+  - For icon usage, always verify the icon exists in the library.
+  - For backup/archive files, use `// @ts-nocheck` at the top to avoid TypeScript errors.
+
+- **Critical Red Flags:**
+  - "Module has no exported member" → Verify all imports exist.
+  - "Type X is not assignable to type Y" → Check parent component prop types.
+  - "structuredClone is not a function" → Missing testing dependencies.
+  - ESLint import/named errors in tests → Add eslint-disable comment.
+  - Tailwind deprecation warnings → Use new shorthand classes.
+  - Build failing after icon changes → Verify lucide-react exports.
+
+### What NOT to Do
+
+- Don't add new CSS variables or utility classes that aren't used by components.
+- Don't create new systems when existing ones can be extended.
+- Don't focus on "trust" or "liveliness" keywords without understanding actual implementation needs.
+- Don't skip the full verification workflow before merging or deploying.
+- Don't hardcode content or structure in components—always use config/data files.
+
+### How to Avoid Past Mistakes
+
+- Read this doc, the latest design blueprints, and config files before starting any enhancement.
+- Validate every change against the current codebase and config.
+- Document every new pattern, config, or lesson in this doc for future maintainers.
+- When in doubt, ask: "Does this already exist? Can I extend it instead of creating something new?"
+- Always prioritize clarity, maintainability, and performance over novelty.
+
+---

@@ -222,9 +222,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <style>{`:root {${themeCssVars}}`}</style>
         {/* `viewport` meta will be injected by Next.js and the metadata API */}
-        {/* Preconnect to Google Fonts */}
+        {/* Performance: Preconnect to Google Fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Performance: DNS prefetch for external resources */}
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://vercel.live" />
         {/* GA4 script for analytics (Partytown) */}
         <script
           type="text/partytown"
