@@ -51,6 +51,24 @@ const config = {
     'text-style-balanced',
     'text-style-tight',
     'text-style-airy',
+    // Dynamic section padding based on contentDensity
+    'section-padding-compact',
+    'section-padding-balanced', 
+    'section-padding-airy',
+    // Dynamic pattern background classes (defined in CSS, but need to be preserved)
+    'bg-grid-pattern',
+    'bg-dots-pattern',
+    'bg-waves-pattern',
+    'bg-noise-pattern',
+    'bg-triangle-pattern',
+    'bg-crosshatch-pattern',
+    'bg-hex-pattern',
+    'bg-stripes-pattern',
+    // Pattern opacity variants
+    'opacity-[0.025]',
+    'opacity-5',
+    'opacity-[0.075]',
+    'opacity-10',
     // Dynamic gradients used in components
     'bg-gradient-to-r',
     'from-brand-primary/10',
