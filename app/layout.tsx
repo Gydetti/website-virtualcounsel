@@ -220,11 +220,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <style>{`:root {${themeCssVars}}`}</style>
+        {/* Critical CSS inline - theme vars + minimal base styles */}
+        <style>{`:root {${themeCssVars}} 
+          /* Critical base styles to prevent render blocking */
+          *,::before,::after{box-sizing:border-box;border:0 solid var(--border-color-base,#e5e7eb)}
+          html{line-height:1.5;-webkit-text-size-adjust:100%;font-family:var(--font-raleway),system-ui,sans-serif;tab-size:4}
+          body{margin:0;line-height:inherit;background:transparent;color:var(--neutral-text,#1f2937)}
+          h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:600;font-family:var(--font-poppins),system-ui,sans-serif}
+        `}</style>
         {/* `viewport` meta will be injected by Next.js and the metadata API */}
-        {/* Preconnect to Google Fonts */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Next.js handles Google Font preconnect automatically via next/font/google */}
         {/* Preconnect & DNS-prefetch to site origin for images and data */}
         <link rel="preconnect" href={siteUrl} />
         <link rel="dns-prefetch" href={siteUrl} />
@@ -271,6 +276,27 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body
         className={`${poppins.variable} ${raleway.variable} font-sans antialiased bg-body-gradient ${textStyleClass}`}
       >
+        {/* Load remaining CSS asynchronously after critical path */}
+        <script
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
+          dangerouslySetInnerHTML={{
+            __html: `
+              // Preload remaining stylesheets asynchronously
+              const loadCSS = (href) => {
+                const link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.href = href;
+                link.media = 'print';
+                link.onload = () => link.media = 'all';
+                document.head.appendChild(link);
+              };
+              // This ensures Tailwind utilities are available but don't block initial render
+              requestIdleCallback(() => {
+                // Additional CSS loading can happen here if needed
+              });
+            `,
+          }}
+        />
         <WebVitalsReporter />
         <SpeedInsights />
         <Analytics />

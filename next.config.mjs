@@ -27,6 +27,8 @@ const nextConfig = withBundleAnalyzer({
     esmExternals: true,
     // Enable CSS optimization for better performance
     optimizeCss: true,
+    // Enable CSS code splitting for better loading
+    cssChunking: 'loose',
   },
   async rewrites() {
     return [
