@@ -88,9 +88,7 @@ export function SubscribeForm() {
       >
         {status === 'loading' ? '…sending' : status === 'success' ? '✅ Subscribed' : 'Subscribe'}
       </Button>
-      {status === 'error' && (
-        <p className="mt-2 text-feedback-error text-sm">Oops—something went wrong.</p>
-      )}
+      {status === 'error' && <p className="text-error-message mt-2">Oops—something went wrong.</p>}
     </form>
   );
 }

@@ -184,10 +184,10 @@ export default function ContactSection({ badgeText, heading, subtitle }: Contact
               <li className="flex items-start">
                 <Mail className="size-6 mr-4 shrink-0 mt-1" />
                 <div>
-                  <p className="font-semibold mb-1">Email</p>
+                  <p className="mb-1 text-white font-medium">Email</p>
                   <a
                     href={`mailto:${siteConfig.contact.email}`}
-                    className="text-white/80 hover:text-white transition-colors"
+                    className="text-white transition-colors"
                   >
                     {siteConfig.contact.email}
                   </a>
@@ -196,10 +196,10 @@ export default function ContactSection({ badgeText, heading, subtitle }: Contact
               <li className="flex items-start">
                 <Phone className="size-6 mr-4 shrink-0 mt-1" />
                 <div>
-                  <p className="font-semibold mb-1">Phone</p>
+                  <p className="mb-1 text-white font-medium">Phone</p>
                   <a
                     href={`tel:${siteConfig.contact.phone}`}
-                    className="text-white/80 hover:text-white transition-colors"
+                    className="text-white transition-colors"
                   >
                     {siteConfig.contact.phone}
                   </a>
@@ -208,8 +208,8 @@ export default function ContactSection({ badgeText, heading, subtitle }: Contact
               <li className="flex items-start">
                 <MapPin className="size-6 mr-4 shrink-0 mt-1" />
                 <div>
-                  <p className="font-semibold mb-1">Address</p>
-                  <address className="text-white/80 not-italic">
+                  <p className="mb-1 text-white font-medium">Address</p>
+                  <address className="text-white not-italic">
                     {siteConfig.contact.address?.line1}
                     {siteConfig.contact.address?.line2 && (
                       <>

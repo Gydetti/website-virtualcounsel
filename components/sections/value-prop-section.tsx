@@ -69,7 +69,7 @@ export default function ValuePropSection({
                     <Icon className="size-6" />
                   </div>
                   <h3 className="text-xl font-bold">{benefit.title}</h3>
-                  <p className="text-neutral-text/500">{benefit.description}</p>
+                  <p className="text-card-description">{benefit.description}</p>
                 </div>
               </div>
             );
@@ -84,7 +84,7 @@ export default function ValuePropSection({
                 <Icon className="size-6" />
               </div>
               <h3 className="text-xl font-bold">{benefit.title}</h3>
-              <p className="text-neutral-text/500">{benefit.description}</p>
+              <p className="text-card-description">{benefit.description}</p>
             </div>
           );
         })}

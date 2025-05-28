@@ -178,7 +178,7 @@ export default function AboutSection({
               <LazySection animation="fade-up" delay={0.4} className="mt-8">
                 <div className="rounded-xl border bg-neutral-background p-8 shadow-sm hover:shadow-md transition-shadow">
                   <h2 className="text-xl font-semibold text-neutral-text">{philosophy.title}</h2>
-                  <p className="mt-2 text-neutral-text leading-relaxed">{philosophy.text}</p>
+                  <p className="text-body-lg">{philosophy.text}</p>
                   {/* Learn More CTA Button inside philosophy card */}
                   {isHomepage && siteConfig.features.enableAboutLearnMoreCta && (
                     <div className="mt-6 text-left">
@@ -228,7 +228,7 @@ export default function AboutSection({
                         <h3 className="mt-4 text-lg font-semibold text-neutral-text">
                           {card.title}
                         </h3>
-                        <p className="mt-2 text-sm text-neutral-text">{card.description}</p>
+                        <p className="text-card-description">{card.description}</p>
                       </div>
                     );
                   })}
@@ -298,7 +298,7 @@ export default function AboutSection({
           {philosophy && (
             <div className="rounded-xl border bg-neutral-background p-8 shadow-sm hover:shadow-md transition-shadow mb-6">
               <h2 className="text-xl font-semibold text-neutral-text">{philosophy.title}</h2>
-              <p className="mt-2 text-neutral-text leading-relaxed">{philosophy.text}</p>
+              <p className="text-body-lg">{philosophy.text}</p>
               {/* Learn More CTA Button inside philosophy card */}
               {isHomepage && siteConfig.features.enableAboutLearnMoreCta && (
                 <div className="mt-6 text-left">
@@ -344,7 +344,7 @@ export default function AboutSection({
                       <Icon className={`${card.iconColor} size-6`} />
                     </div>
                     <h3 className="mt-4 text-lg font-semibold text-neutral-text">{card.title}</h3>
-                    <p className="mt-2 text-sm text-neutral-text">{card.description}</p>
+                    <p className="text-card-description">{card.description}</p>
                   </div>
                 );
               })}

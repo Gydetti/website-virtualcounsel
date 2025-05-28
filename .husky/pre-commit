@@ -1,2 +1,9 @@
-# Run ESLint to enforce no hard-coded hex or Tailwind color classes
-npm run lint -- --max-warnings=0 
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Format and lint entire project
+echo "📋 Running format and lint..."
+npm run format
+npm run lint -- --max-warnings=0
+
+echo "✅ Pre-commit checks passed!" 

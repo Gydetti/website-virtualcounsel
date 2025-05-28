@@ -33,7 +33,7 @@ export default function HeroStats({ stats }: HeroStatsProps) {
                 preserveValue
               />
             </div>
-            <p className="text-neutral-text text-sm md:text-base m-0">{stat.label}</p>
+            <p className="text-stat-label m-0">{stat.label}</p>
           </div>
         ))}
       </div>

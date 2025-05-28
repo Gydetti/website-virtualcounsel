@@ -47,7 +47,12 @@
     "import/no-duplicates": "off",
     "jsx-a11y/heading-has-content": "off",
     "jsx-a11y/anchor-has-content": "off",
-    "@next/next/no-before-interactive-script-outside-document": "off"
+    "@next/next/no-before-interactive-script-outside-document": "off",
+    "regexp/no-misleading-capturing-group": "error",
+    "regexp/no-misleading-unicode-character": "error",
+    "regexp/no-dupe-disjunctions": "error",
+    "regexp/prefer-regexp-exec": "error",
+    "regexp/prefer-regexp-test": "error"
   },
   "settings": {
     "boundaries/elements": [

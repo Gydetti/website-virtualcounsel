@@ -144,7 +144,7 @@ export default function HeroSection({
           )}
           {subheadline && (
             <LazySection delay={0.3}>
-              <p className="text-neutral-text max-w-lg">{subheadline}</p>
+              <p className="text-body-lg text-mobile-center max-w-lg">{subheadline}</p>
             </LazySection>
           )}
           {(primaryCta?.text || secondaryCta?.text) && (
@@ -244,8 +244,8 @@ export default function HeroSection({
                     </svg>
                   </div>
                   <div className="text-white">
-                    <p className="text-sm font-medium m-0">{overlayTitle}</p>
-                    <p className="text-xl font-bold m-0">{overlayValue}</p>
+                    <p className="text-overlay-title m-0">{overlayTitle}</p>
+                    <p className="text-overlay-value m-0">{overlayValue}</p>
                   </div>
                 </div>
               </div>

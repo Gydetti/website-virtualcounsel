@@ -5,6 +5,7 @@ import type { CSSProperties } from 'react';
 
 import { Section } from '@/components/layout/Section';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import LazySection from '@/components/ui/lazy-section';
 import TestimonialCard from '@/components/ui/testimonial-card';
 import * as homepageData from '@/lib/data/homepage';
@@ -88,12 +89,9 @@ export default function TestimonialsPage() {
           <p className="text-neutral-text/600 mb-6">
             Contact us today to get started and see how we can help you achieve similar results.
           </p>
-          <Link
-            href="/contact"
-            className="inline-block px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary90 transition"
-          >
-            Get Your Success Story
-          </Link>
+          <Button asChild size="lg">
+            <Link href="/contact">Get Your Success Story</Link>
+          </Button>
         </div>
       </Section>
     </>

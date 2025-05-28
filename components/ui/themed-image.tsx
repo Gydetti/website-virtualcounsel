@@ -15,7 +15,7 @@ export interface ThemedImageProps extends ComponentProps<typeof Image> {
 }
 
 const ThemedImage = forwardRef<React.ElementRef<typeof Image>, ThemedImageProps>(
-  ({ className, borderRadiusOverride, variant = 'image', ...props }, ref) => {
+  ({ className, borderRadiusOverride, variant = 'image', alt, ...props }, ref) => {
     const { getBorderRadiusClass } = useThemeBorderRadius();
 
     // Map variants to element types for border radius
@@ -29,7 +29,9 @@ const ThemedImage = forwardRef<React.ElementRef<typeof Image>, ThemedImageProps>
     const elementType = variantToElementType[variant] || 'image';
     const borderRadiusClass = getBorderRadiusClass(elementType, borderRadiusOverride);
 
-    return <Image ref={ref} className={cn(borderRadiusClass, className)} alt={props.alt ?? ''} {...props} />;
+    return (
+      <Image ref={ref} className={cn(borderRadiusClass, className)} alt={alt ?? ''} {...props} />
+    );
   }
 );
 

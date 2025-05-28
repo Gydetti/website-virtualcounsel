@@ -87,7 +87,7 @@ export default function CtaSection({
             delay={0.3}
             intensity={siteConfig.theme.animation?.intensity || 'subtle'}
           >
-            <p className="text-white/90 max-w-xl mx-auto mb-8">{description}</p>
+            <p className="text-cta-description max-w-xl mx-auto mb-8">{description}</p>
           </LazySection>
         )}
 

@@ -30,10 +30,24 @@ const extraColors: Record<string, (opts: { opacityValue?: number }) => string> =
   ring: ({ opacityValue = 1 }) => `rgb(var(--ring-rgb) / ${opacityValue})`,
   popover: ({ opacityValue = 1 }) => `hsl(var(--popover) / ${opacityValue})`,
   card: ({ opacityValue = 1 }) => `hsl(var(--card) / ${opacityValue})`,
+  foreground: ({ opacityValue = 1 }) => `hsl(var(--foreground) / ${opacityValue})`,
   // Text color for card backgrounds
   'card-foreground': ({ opacityValue = 1 }) => `hsl(var(--card-foreground) / ${opacityValue})`,
   muted: ({ opacityValue = 1 }) => `hsl(var(--muted) / ${opacityValue})`,
+  'muted-foreground': ({ opacityValue = 1 }) => `hsl(var(--muted-foreground) / ${opacityValue})`,
   destructive: ({ opacityValue = 1 }) => `hsl(var(--destructive) / ${opacityValue})`,
+  'destructive-foreground': ({ opacityValue = 1 }) =>
+    `hsl(var(--destructive-foreground) / ${opacityValue})`,
+  // Feedback colors that map to semantic tokens
+  'feedback-error': ({ opacityValue = 1 }) => `hsl(var(--destructive) / ${opacityValue})`,
+  'feedback-error-bg': ({ opacityValue = 1 }) => `hsl(var(--destructive) / ${opacityValue})`,
+  'feedback-success': ({ opacityValue = 1 }) => `hsl(var(--muted-foreground) / ${opacityValue})`,
+  'feedback-success-bg': ({ opacityValue = 1 }) => `hsl(var(--muted) / ${opacityValue})`,
+  // Neutral text colors
+  'neutral-text': ({ opacityValue = 1 }) => `hsl(var(--foreground) / ${opacityValue})`,
+  'neutral-text-subtle': ({ opacityValue = 1 }) => `hsl(210 16% 93% / ${opacityValue})`, // Light subtle text for dark backgrounds
+  'neutral-surface': ({ opacityValue = 1 }) => `hsl(var(--card) / ${opacityValue})`,
+  'neutral-background': ({ opacityValue = 1 }) => `hsl(var(--background) / ${opacityValue})`,
 };
 // Merge extraColors into dynamicColors to enable utilities like border-border
 Object.assign(dynamicColors, extraColors);
@@ -51,6 +65,27 @@ const config = {
     'text-style-balanced',
     'text-style-tight',
     'text-style-airy',
+    // Typography system utilities
+    'text-body-base',
+    'text-body-lg',
+    'text-caption',
+    'text-caption-muted',
+    'text-section-lead',
+    'text-card-description',
+    'text-stat-label',
+    'text-promo-emphasis',
+    'text-error-message',
+    'text-cta-description',
+    'text-quote-emphasis',
+    'text-overlay-title',
+    'text-overlay-value',
+    // Responsive alignment utilities
+    'text-mobile-center',
+    'text-mobile-left',
+    'text-card-center',
+    'text-section-center',
+    // Light grey styling for subtle text
+    'text-neutral-text-subtle',
     // Dynamic section padding based on contentDensity
     'section-padding-compact',
     'section-padding-balanced',

@@ -92,7 +92,7 @@ export default function ProcessSection({
                         {step.subtitle}
                       </div>
                     )}
-                    <p className="text-gray-600 leading-relaxed mb-6">{step.description}</p>
+                    <p className="text-body-lg mb-6">{step.description}</p>
                     {step.details && step.details.length > 0 && (
                       <div
                         className={`bg-gray-50 p-5 ${getElementBorderRadius('card')} border-l-4 border-primary/30`}

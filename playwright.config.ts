@@ -5,7 +5,7 @@ export default defineConfig({
   webServer: {
     command: 'npm run build && next start -p 3010',
     port: 3010,
-    reuseExistingServer: false,
+    reuseExistingServer: true,
   },
   use: {
     baseURL: 'http://localhost:3010',

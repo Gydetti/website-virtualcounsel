@@ -139,7 +139,7 @@ export default function TestimonialsSection({
                               />
                             ))}
                       </div>
-                      <p className="text-body-base font-medium text-foreground italic mb-8 line-clamp-6">
+                      <p className="text-neutral-text/70 text-base mb-8 line-clamp-6 italic">
                         &quot;{item.quote}&quot;
                       </p>
                       <div className="flex items-center mt-auto">
@@ -156,7 +156,7 @@ export default function TestimonialsSection({
                           <h3 className="text-body-base font-semibold text-neutral-text">
                             {item.name}
                           </h3>
-                          <p className="text-caption text-foreground/80">{item.title}</p>
+                          <p className="text-caption">{item.title}</p>
                         </div>
                       </div>
                     </CardContent>
