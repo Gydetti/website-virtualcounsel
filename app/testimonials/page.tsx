@@ -58,26 +58,27 @@ export default function TestimonialsPage() {
       </Section>
 
       {/* Testimonials Grid Section */}
-      <Section className="py-12 bg-neutral-background" id="testimonials-list">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((t, idx) => (
-            <LazySection
-              key={t.id}
-              animation="slide-up"
-              delay={idx * 0.1}
-              fullHeight
+      <Section className="bg-neutral-background">
+        <LazySection animation="fade-up" delay={0} className="text-center mb-12">
+          <Badge className="mb-6">{badgeText}</Badge>
+          <h1 className="mb-4">{heading}</h1>
+          <p className="text-xl text-neutral-text max-w-3xl mx-auto">{subtitle}</p>
+        </LazySection>
+
+        <LazySection
+          animation="none"
+          className="stagger-container grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch"
+          style={{ '--stagger-delay': '0.15s' } as CSSProperties}
+        >
+          {testimonials.map((testimonial, idx) => (
+            <TestimonialCard
+              key={testimonial.id}
+              testimonial={testimonial}
               className="h-full"
-            >
-              <TestimonialCard
-                quote={t.quote}
-                name={t.name}
-                title={t.title}
-                image={t.image.src}
-                rating={t.rating}
-              />
-            </LazySection>
+              style={{ '--index': idx } as CSSProperties}
+            />
           ))}
-        </div>
+        </LazySection>
       </Section>
 
       {/* CTA Section */}
@@ -91,7 +92,7 @@ export default function TestimonialsPage() {
             href="/contact"
             className="inline-block px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary90 transition"
           >
-            Contact Us
+            Get Your Success Story
           </Link>
         </div>
       </Section>

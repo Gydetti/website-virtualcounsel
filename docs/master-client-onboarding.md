@@ -257,6 +257,8 @@ The GMG Template Website 2025 is a highly configurable, modern, and robust Next.
 ### Custom UI Primitives
 - **Directory:** `components/ui/` contains a large set of custom UI primitives (button, card, input, carousel, background-pattern, spark-button, lazy-section, optimized-image, etc.).
 - **Pattern:** Use these for consistent UI/UX. Many are not just wrappers for shadcn/ui, but have custom logic (e.g., BackgroundCanvas for animated backgrounds, lazy-section for scroll-triggered animations, optimized-image for image optimization).
+- **Equal height cards:** All card components (TestimonialCard, ServiceCard, etc.) support equal height layouts using CSS Grid and flexbox. Use `items-stretch` on the grid container and `card-equal-height h-full` classes on cards. The global CSS includes `.card-equal-height` utilities for consistent card behavior.
+- **Button hover effects:** Service cards and other card-based buttons can disable hover scaling and shadow effects using `hover:scale-100 hover:shadow-none` classes to prevent interference with card layouts.
 - **Best practice:** Prefer these primitives over raw HTML or third-party components for consistency and maintainability.
 
 ### Utility Modules
@@ -266,6 +268,8 @@ The GMG Template Website 2025 is a highly configurable, modern, and robust Next.
 ### Layout & Navigation Patterns
 - **Directory:** `components/layout/` contains AppShell, Section, PageTransitionWrapper, header, footer, navigation, etc.
 - **Pattern:** Use AppShell for global layout, Section for section wrappers, PageTransitionWrapper for animated transitions, and navigation/header/footer for site-wide navigation. Sticky headers, dynamic navigation, and page transitions are all handled here.
+- **Navigation hover functionality:** The header navigation automatically opens dropdown menus on hover for `/services` and `/resources` navigation items. This provides a smooth, modern UX without requiring clicks. The dropdowns auto-close when the mouse leaves both the trigger and the dropdown content.
+- **Mobile navigation:** Uses portal-based overlay to escape stacking context issues. Includes expandable submenus for services and resources with smooth animations.
 - **Best practice:** Extend these primitives for new layout or navigation needs, and keep navigation config-driven via `siteConfig`.
 
 ### SEO & Structured Data Utilities
@@ -279,6 +283,34 @@ The GMG Template Website 2025 is a highly configurable, modern, and robust Next.
 ### Content & Placeholder Extraction
 - **Pattern:** All placeholder copy is centralized in `lib/data/staticContent.ts`. Use codemods/scripts to extract or replace placeholders and fallback images. CI and lint rules enforce no new inline placeholders.
 
+### Section Dividers & WordPress-Style Wave Styling
+- **Component:** `components/ui/section-divider.tsx` provides rich, WordPress-style section dividers with advanced wave and border styling options.
+- **Available variants:** 
+  - `wave` - Classic smooth wave pattern
+  - `curve` - Simple curved divider
+  - `triangle` - Geometric triangle points
+  - `zigzag` - Sharp zigzag pattern
+  - `clouds` - Organic cloud-like shapes
+  - `mountains` - Mountain peak silhouettes
+  - `flowing-wave` - More organic flowing wave
+  - `double-wave` - Two-layer wave effect
+- **Configuration options:**
+  - `position`: 'top' | 'bottom' - Where to place the divider
+  - `size`: 'sm' | 'md' | 'lg' | 'xl' - Height of the divider
+  - `fill`: CSS class for fill color (e.g., 'fill-white', 'fill-primary')
+  - `flip`: boolean - Flips the pattern vertically
+- **Usage pattern:** Place between sections to create visual separation and add professional polish. Perfect for breaking up content sections, especially when sections have different background colors.
+- **Example:**
+  ```tsx
+  <SectionDivider 
+    variant="flowing-wave" 
+    position="bottom" 
+    size="lg" 
+    fill="fill-white" 
+  />
+  ```
+- **Best practice:** Use dividers sparingly for maximum impact. Match the `fill` color to the section above (for bottom dividers) or below (for top dividers) to create seamless transitions.
+
 ## 19. Design System & Visual Patterns
 
 - **Configurable everything:** All visual options (patterns, gradients, spacing, typography, animations) are centrally configurable in `siteConfig` and theme variants.
@@ -289,6 +321,174 @@ The GMG Template Website 2025 is a highly configurable, modern, and robust Next.
 - **Performance & accessibility:** All enhancements must maintain or improve Core Web Vitals and meet WCAG AA contrast. Animations must respect `prefers-reduced-motion`.
 - **Consistent variant ecosystem:** All design decisions must work across all theme variants (v1, v2, v3).
 - **Micro-interactions:** Subtle, purposeful, and always optional/configurable. See `components/ui/lazy-section.tsx` and `components/layout/PageTransitionWrapper.tsx`.
+
+## 19.1 Centralized Border Radius Theme System
+
+**⚠️ CRITICAL:** This system centralizes all border radius styling through theme configuration. Always use the theme system instead of hardcoded Tailwind classes like `rounded-lg`.
+
+### System Overview
+The border radius system provides consistent, theme-driven styling across all components through:
+- **Global adjustment**: Choose 'sharp', 'medium', or 'soft' visual style
+- **Element-specific mappings**: Different component types get appropriate border radius scales  
+- **Centralized configuration**: All values defined in `lib/site.config.local.ts`
+- **CSS variable injection**: Border radius scales become CSS variables in `app/layout.tsx`
+
+### Configuration Structure
+
+**1. Border Radius Scales** (`siteConfig.theme.borders.radiusScales`):
+```typescript
+radiusScales: {
+  xs: '0.125rem',   // 2px - Very small elements
+  sm: '0.25rem',    // 4px - Small elements  
+  md: '0.375rem',   // 6px - Default elements
+  lg: '0.5rem',     // 8px - Cards, inputs
+  xl: '0.75rem',    // 12px - Large sections
+  '2xl': '1rem',    // 16px - Very large elements
+  '3xl': '1.5rem',  // 24px - Hero sections  
+  full: '9999px',   // Fully rounded (pills, avatars)
+  none: '0px'       // No rounding
+}
+```
+
+**2. Element Mappings** (`siteConfig.theme.visualStyle.borderRadiusMappings`):
+```typescript
+borderRadiusMappings: {
+  // Small UI elements
+  badge: 'full',     // Pills/badges are fully rounded
+  pill: 'full',      // Always fully rounded
+  indicator: 'full', // Status indicators
+  
+  // Form elements  
+  button: 'md',      // Standard button rounding
+  input: 'md',       // Form inputs
+  
+  // Content containers
+  card: 'lg',        // Cards and containers
+  modal: 'xl',       // Modals and dialogs
+  section: 'xl',     // Page sections
+  
+  // Media elements
+  image: 'lg',       // Images and media
+  avatar: 'full',    // Profile pictures
+  
+  // Navigation elements
+  nav: 'md',         // Navigation items
+  dropdown: 'md'     // Dropdown menus
+}
+```
+
+**3. Global Visual Style** (`siteConfig.theme.visualStyle.borderRadius`):
+- `'sharp'`: Reduces border radius by one scale step
+- `'medium'`: Uses base scale as-is  
+- `'soft'`: Increases border radius by one scale step
+
+### Component Implementation
+
+**Client Components** use the `useThemeBorderRadius` hook:
+```typescript
+import { useThemeBorderRadius } from '@/hooks/use-theme-border-radius';
+
+function MyComponent() {
+  const { getBorderRadiusClass } = useThemeBorderRadius();
+  
+  return (
+    <div className={`${getBorderRadiusClass('card')} border p-4`}>
+      Content
+    </div>
+  );
+}
+```
+
+**Server Components** use CSS variables directly:
+```typescript
+// In server components, use CSS variables
+<div className="rounded-[var(--radius-lg)] border p-4">
+  Content  
+</div>
+```
+
+### CSS Variables Generated
+The system automatically injects these CSS variables:
+- `--radius-xs` through `--radius-3xl`
+- `--radius-full` and `--radius-none`
+
+### Migration Guidelines
+
+**❌ NEVER use hardcoded classes:**
+```typescript
+// BAD - hardcoded border radius
+<div className="rounded-lg border">
+
+// BAD - inconsistent across theme variants  
+<Badge className="rounded-full">
+```
+
+**✅ ALWAYS use theme system:**
+```typescript
+// GOOD - uses theme system (client component)
+const { getBorderRadiusClass } = useThemeBorderRadius();
+<div className={`${getBorderRadiusClass('card')} border`}>
+
+// GOOD - uses CSS variable (server component)  
+<div className="rounded-[var(--radius-lg)] border">
+
+// GOOD - Badge component uses theme automatically
+<Badge variant="accent">
+```
+
+### Component Coverage
+The following components are already migrated to use the theme system:
+- ✅ `Badge`, `Button`, `Card`, `Input`, `Textarea`, `Skeleton`
+- ✅ `ServiceCard`, `TestimonialCard`, `ThemedImage`, `ThemedSection`
+- ✅ Process sections, hero stats, FAQ accordion
+- ✅ Cookie consent banner and various page sections
+
+### Customization Examples
+
+**For pill-shaped badges:**
+```typescript
+// In site.config.local.ts
+borderRadiusMappings: {
+  badge: 'full'  // Makes all badges fully rounded
+}
+```
+
+**For sharp, minimal design:**
+```typescript
+// In site.config.local.ts  
+visualStyle: {
+  borderRadius: 'sharp'  // Reduces all border radius by one step
+}
+```
+
+**For soft, friendly design:**
+```typescript
+// In site.config.local.ts
+visualStyle: {
+  borderRadius: 'soft'   // Increases all border radius by one step
+}
+```
+
+### Debugging & Common Issues
+
+1. **"getElementBorderRadius is not a function"**
+   - You're using the hook in a server component
+   - Use CSS variables instead: `rounded-[var(--radius-lg)]`
+
+2. **Border radius not updating**
+   - Check the element mapping exists in `borderRadiusMappings`
+   - Verify the component is using the theme system
+
+3. **Inconsistent styling across pages**
+   - Some components still use hardcoded classes
+   - Run: `grep -r "rounded-[^[]" components/` to find hardcoded usage
+
+### Testing & Verification
+After making changes to the border radius system:
+1. Run `npm run build` to ensure no build errors
+2. Test all theme variants (v1, v2, v3) for consistency
+3. Verify visual consistency across different component types
+4. Check that global adjustments (sharp/medium/soft) work properly
 
 ## 20. How to Update This Doc
 

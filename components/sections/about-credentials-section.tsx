@@ -1,5 +1,6 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import { Award, Book, Star } from 'lucide-react';
 import Link from 'next/link';
 import type { CSSProperties } from 'react';
@@ -10,6 +11,7 @@ import { Section } from '@/components/layout/Section';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import LazySection from '@/components/ui/lazy-section';
+import { useThemeBorderRadius } from '@/hooks/use-theme-border-radius';
 import type { aboutCredentialsSectionDataSchema } from '@/lib/schemas/sections.schema';
 
 export type AboutCredentialsSectionProps = z.infer<typeof aboutCredentialsSectionDataSchema> & {
@@ -37,6 +39,8 @@ export default function AboutCredentialsSection({
   patternFade,
   patternColor,
 }: AboutCredentialsSectionProps) {
+  const { getElementBorderRadius } = useThemeBorderRadius();
+
   return (
     <Section
       id="about-credentials"
@@ -80,7 +84,12 @@ export default function AboutCredentialsSection({
               className="h-full"
               style={{ '--index': index } as CSSProperties}
             >
-              <div className="bg-neutral-surface border rounded-xl p-8 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className={`bg-neutral-surface border ${getElementBorderRadius('section')} p-8 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 h-full flex flex-col`}
+              >
                 {/* Icon and Type */}
                 <div className="flex items-center gap-3 mb-4">
                   <div className="flex size-12 items-center justify-center rounded-full bg-primary/10">
@@ -101,7 +110,7 @@ export default function AboutCredentialsSection({
                   </div>
                   <p className="text-neutral-text leading-relaxed">{credential.description}</p>
                 </div>
-              </div>
+              </motion.div>
             </div>
           );
         })}

@@ -150,6 +150,16 @@ function getThemeCssVars(theme: typeof siteConfig.theme, variantKey: string): st
     --radius: ${theme.borders.radiusBase};
     --border-width-base: ${theme.borders.widthBase};
     --border-color-base: ${theme.borders.colorBase};
+    /* Border Radius Scales */
+    --radius-xs: ${theme.borders.radiusScales?.xs || '0.125rem'};
+    --radius-sm: ${theme.borders.radiusScales?.sm || '0.25rem'};
+    --radius-md: ${theme.borders.radiusScales?.md || '0.375rem'};
+    --radius-lg: ${theme.borders.radiusScales?.lg || '0.5rem'};
+    --radius-xl: ${theme.borders.radiusScales?.xl || '0.75rem'};
+    --radius-2xl: ${theme.borders.radiusScales?.['2xl'] || '1rem'};
+    --radius-3xl: ${theme.borders.radiusScales?.['3xl'] || '1.5rem'};
+    --radius-full: ${theme.borders.radiusScales?.full || '9999px'};
+    --radius-none: ${theme.borders.radiusScales?.none || '0px'};
     /* Spacing Overrides */
     --space-xs: ${theme.spacing.xs};
     --space-sm: ${theme.spacing.sm};

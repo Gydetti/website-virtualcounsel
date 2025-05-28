@@ -7,6 +7,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import type { ButtonHTMLAttributes } from 'react';
 import { forwardRef } from 'react';
 
+import { useThemeBorderRadius } from '@/hooks/use-theme-border-radius';
 import { siteConfig } from '@/lib/siteConfig';
 import { cn } from '@/lib/utils';
 
@@ -72,14 +73,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     { className, variant, size, elevation, animation, asChild = false, children, ...props },
     ref
   ) => {
-    // Dynamic border radius from theme config
-    const configBorderRadius = siteConfig.theme.visualStyle?.borderRadius || 'medium';
-    const radiusMap: Record<'sharp' | 'medium' | 'soft', string> = {
-      sharp: 'rounded-none',
-      medium: 'rounded-md',
-      soft: 'rounded-xl',
-    };
-    const borderRadiusClass = radiusMap[configBorderRadius as keyof typeof radiusMap];
+    // Get dynamic border radius from theme configuration
+    const { getBorderRadiusClass } = useThemeBorderRadius();
+    const borderRadiusClass = getBorderRadiusClass('button');
+
     // Dynamic text style based on theme typography
     const configTextStyle = siteConfig.theme.typography.textStyle || 'balanced';
     const textStyleMap: Record<'balanced' | 'tight' | 'airy', string> = {

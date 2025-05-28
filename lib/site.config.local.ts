@@ -82,6 +82,18 @@ export const siteConfig: SiteConfigSchema = {
       radiusBase: '0.5rem',
       widthBase: '1px',
       colorBase: '#e5e7eb',
+      // Element-specific border radius scales
+      radiusScales: {
+        xs: '0.125rem', // 2px - very small elements
+        sm: '0.25rem', // 4px - small elements like badges
+        md: '0.375rem', // 6px - default elements like buttons
+        lg: '0.5rem', // 8px - cards, inputs
+        xl: '0.75rem', // 12px - large cards, sections
+        '2xl': '1rem', // 16px - very large elements
+        '3xl': '1.5rem', // 24px - hero sections, large modals
+        full: '9999px', // fully rounded
+        none: '0px', // no rounding
+      },
     },
     shadows: {
       sm: '0 1px 2px rgba(0, 0, 0, 0.05)',
@@ -110,6 +122,26 @@ export const siteConfig: SiteConfigSchema = {
       contentDensity: 'balanced', // compact, balanced, airy
       patternStyle: 'grid', // none, dots, grid, waves, noise, etc.
       patternOpacity: 0.1, // 0-1
+      // Element-specific border radius mappings
+      borderRadiusMappings: {
+        // Small UI elements
+        badge: 'full',
+        pill: 'full',
+        indicator: 'full',
+        // Form elements
+        button: 'md',
+        input: 'md',
+        // Content containers
+        card: 'lg',
+        modal: 'xl',
+        section: 'xl',
+        // Media elements
+        image: 'lg',
+        avatar: 'full',
+        // Navigation elements
+        nav: 'md',
+        dropdown: 'md',
+      },
     },
     // Section treatment configuration
     sectionStyles: {

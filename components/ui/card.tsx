@@ -2,6 +2,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import type { HTMLAttributes } from 'react';
 import { forwardRef } from 'react';
 
+import { useThemeBorderRadius } from '@/hooks/use-theme-border-radius';
 import { siteConfig } from '@/lib/siteConfig';
 import { cn } from '@/lib/utils';
 
@@ -48,14 +49,10 @@ export interface CardProps
 
 const Card = forwardRef<HTMLDivElement, CardProps>(
   ({ className, elevation, hover, border, padding, equalHeight, ...props }, ref) => {
-    // Dynamic border radius based on theme config
-    const configBorderRadius = siteConfig.theme.visualStyle?.borderRadius || 'medium';
-    const radiusMap: Record<'sharp' | 'medium' | 'soft', string> = {
-      sharp: 'rounded-none',
-      medium: 'rounded-md',
-      soft: 'rounded-xl',
-    };
-    const borderRadiusClass = radiusMap[configBorderRadius as keyof typeof radiusMap];
+    // Get dynamic border radius from theme configuration
+    const { getBorderRadiusClass } = useThemeBorderRadius();
+    const borderRadiusClass = getBorderRadiusClass('card');
+
     // Get default card style from site config if available
     const configCardStyle = siteConfig.theme.visualStyle?.cardStyle || 'subtle';
     // Map config style to elevation if not explicitly set

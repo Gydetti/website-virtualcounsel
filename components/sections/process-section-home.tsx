@@ -1,11 +1,13 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import type { CSSProperties } from 'react';
 
 import { Section } from '@/components/layout/Section';
 import type { ProcessSectionProps } from '@/components/sections/process-section';
 import { Badge } from '@/components/ui/badge';
 import LazySection from '@/components/ui/lazy-section';
+import { useThemeBorderRadius } from '@/hooks/use-theme-border-radius';
 
 export default function ProcessSectionHome({
   badgeText,
@@ -13,6 +15,8 @@ export default function ProcessSectionHome({
   subtitle,
   steps,
 }: ProcessSectionProps) {
+  const { getElementBorderRadius } = useThemeBorderRadius();
+
   if (!steps || steps.length === 0) return null;
 
   return (
@@ -47,7 +51,12 @@ export default function ProcessSectionHome({
       >
         {steps.map((step, i) => (
           <div key={step.id} className="relative" style={{ '--index': i } as CSSProperties}>
-            <div className="relative z-10 h-full flex flex-col items-center rounded-xl border border-divider bg-neutral-surface p-4 text-center shadow-sm transition-all hover:shadow-md card-equal-height">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: i * 0.1 }}
+              className={`relative z-10 h-full flex flex-col items-center ${getElementBorderRadius('card')} border border-divider bg-neutral-surface p-8 text-center shadow-sm transition-all hover:shadow-md card-equal-height`}
+            >
               <div className="flex size-14 items-center justify-center rounded-full bg-primary text-white text-lg font-semibold mb-4">
                 {step.number ?? String(i + 1).padStart(2, '00')}
               </div>
@@ -55,7 +64,7 @@ export default function ProcessSectionHome({
                 <h3 className="text-xl font-semibold text-neutral-text">{step.title}</h3>
                 <p className="text-neutral-text leading-relaxed">{step.description}</p>
               </div>
-            </div>
+            </motion.div>
             {i < steps.length - 1 && (
               <div className="absolute left-1/2 top-1/2 hidden h-1 w-full -translate-y-1/2 bg-neutral-divider z-0 md:block" />
             )}

@@ -24,6 +24,24 @@ export const borderSchema = z.object({
   radiusBase: z.string().min(1, 'Border radius cannot be empty'),
   widthBase: z.string().min(1, 'Border width cannot be empty'),
   colorBase: z.string().min(1, 'Border color cannot be empty'),
+  // Element-specific border radius scales
+  radiusScales: z
+    .object({
+      // Small elements like badges, pills, indicators
+      xs: z.string().default('0.125rem'), // 2px
+      sm: z.string().default('0.25rem'), // 4px
+      // Default elements like buttons, inputs
+      md: z.string().default('0.375rem'), // 6px
+      lg: z.string().default('0.5rem'), // 8px
+      // Large elements like cards, sections
+      xl: z.string().default('0.75rem'), // 12px
+      '2xl': z.string().default('1rem'), // 16px
+      '3xl': z.string().default('1.5rem'), // 24px
+      // Special cases
+      full: z.string().default('9999px'), // Fully rounded
+      none: z.string().default('0px'), // No rounding
+    })
+    .optional(),
 });
 
 export const shadowSchema = z.object({
@@ -59,6 +77,38 @@ export const visualStyleSchema = z
       .enum(['none', 'dots', 'grid', 'waves', 'noise', 'triangles', 'hexagons', 'crosshatch'])
       .default('dots'),
     patternOpacity: z.number().min(0).max(1).default(0.05),
+    // Element-specific border radius mappings based on borderRadius setting
+    borderRadiusMappings: z
+      .object({
+        // Small UI elements (badges, pills, indicators)
+        badge: z.enum(['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', 'full', 'none']).default('sm'),
+        pill: z.enum(['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', 'full', 'none']).default('full'),
+        indicator: z
+          .enum(['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', 'full', 'none'])
+          .default('full'),
+
+        // Form elements
+        button: z.enum(['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', 'full', 'none']).default('md'),
+        input: z.enum(['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', 'full', 'none']).default('md'),
+
+        // Content containers
+        card: z.enum(['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', 'full', 'none']).default('lg'),
+        modal: z.enum(['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', 'full', 'none']).default('xl'),
+        section: z.enum(['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', 'full', 'none']).default('xl'),
+
+        // Media elements
+        image: z.enum(['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', 'full', 'none']).default('lg'),
+        avatar: z
+          .enum(['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', 'full', 'none'])
+          .default('full'),
+
+        // Navigation elements
+        nav: z.enum(['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', 'full', 'none']).default('md'),
+        dropdown: z
+          .enum(['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', 'full', 'none'])
+          .default('md'),
+      })
+      .optional(),
   })
   .optional();
 

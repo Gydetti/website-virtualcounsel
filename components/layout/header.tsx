@@ -30,6 +30,7 @@ import { cn } from '@/lib/utils';
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [expandedMenu, setExpandedMenu] = useState<string | null>(null);
+  const [hoveredMenuItem, setHoveredMenuItem] = useState<string | null>(null);
   const { atTop, direction } = useScrollDirection({ topThreshold: 88 });
   const scrolled = !atTop;
   const isHidden = direction === 'down' && !atTop;
@@ -253,52 +254,64 @@ export default function Header() {
                 if (item.href === '/resources' || item.href === '/services') {
                   const list = item.href === '/resources' ? resourcesList : servicesList;
                   return (
-                    <DropdownMenu key={item.href}>
-                      <DropdownMenuTrigger asChild>
-                        <button
-                          type="button"
-                          className={cn(
-                            'inline-block text-sm font-medium transition-colors relative group focus:outline-none focus:ring-0 !min-h-0 !min-w-0',
-                            isActiveTab(item.href)
-                              ? 'text-primary font-semibold'
-                              : scrolled
-                                ? 'text-neutral-text hover:text-primary'
-                                : 'text-foreground hover:text-primary'
-                          )}
-                        >
-                          {item.text}
-                          <span
+                    <div
+                      key={item.href}
+                      onMouseEnter={() => setHoveredMenuItem(item.href)}
+                      onMouseLeave={() => setHoveredMenuItem(null)}
+                    >
+                      <DropdownMenu open={hoveredMenuItem === item.href}>
+                        <DropdownMenuTrigger asChild>
+                          <button
+                            type="button"
                             className={cn(
-                              'absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300',
-                              isActiveTab(item.href) ? 'w-full' : 'w-0 group-hover:w-full'
+                              'inline-block text-sm font-medium transition-colors relative group focus:outline-none focus:ring-0 !min-h-0 !min-w-0',
+                              isActiveTab(item.href)
+                                ? 'text-primary font-semibold'
+                                : scrolled
+                                  ? 'text-neutral-text hover:text-primary'
+                                  : 'text-foreground hover:text-primary'
                             )}
-                          />
-                          <ChevronDown className="ml-1 inline-block size-4" />
-                        </button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent sideOffset={4} align="start" className="mt-2">
-                        <DropdownMenuItem asChild className="hover:!bg-primary/10">
-                          <Link href={item.href} className="block w-full font-medium px-4 py-2">
-                            View All {item.text}
-                          </Link>
-                        </DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        {list.map(entry => (
-                          <DropdownMenuItem
-                            key={entry.slug}
-                            asChild
-                            className="hover:!bg-primary/10"
                           >
-                            <Link
-                              href={`${item.href}/${entry.slug}`}
-                              className="block w-full px-4 py-2"
-                            >
-                              {entry.title}
+                            {item.text}
+                            <span
+                              className={cn(
+                                'absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300',
+                                isActiveTab(item.href) ? 'w-full' : 'w-0 group-hover:w-full'
+                              )}
+                            />
+                            <ChevronDown className="ml-1 inline-block size-4" />
+                          </button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent
+                          sideOffset={4}
+                          align="start"
+                          className="mt-2"
+                          onPointerEnter={() => setHoveredMenuItem(item.href)}
+                          onPointerLeave={() => setHoveredMenuItem(null)}
+                        >
+                          <DropdownMenuItem asChild className="hover:!bg-primary/10">
+                            <Link href={item.href} className="block w-full font-medium px-4 py-2">
+                              View All {item.text}
                             </Link>
                           </DropdownMenuItem>
-                        ))}
-                      </DropdownMenuContent>
-                    </DropdownMenu>
+                          <DropdownMenuSeparator />
+                          {list.map(entry => (
+                            <DropdownMenuItem
+                              key={entry.slug}
+                              asChild
+                              className="hover:!bg-primary/10"
+                            >
+                              <Link
+                                href={`${item.href}/${entry.slug}`}
+                                className="block w-full px-4 py-2"
+                              >
+                                {entry.title}
+                              </Link>
+                            </DropdownMenuItem>
+                          ))}
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </div>
                   );
                 }
                 return (

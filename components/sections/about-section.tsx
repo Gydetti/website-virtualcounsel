@@ -182,10 +182,16 @@ export default function AboutSection({
                   {/* Learn More CTA Button inside philosophy card */}
                   {isHomepage && siteConfig.features.enableAboutLearnMoreCta && (
                     <div className="mt-6 text-left">
-                      <Button size="lg" variant="white" className="group" asChild>
+                      <Button
+                        size="lg"
+                        variant="white"
+                        animation="none"
+                        className="hover:scale-100 hover:shadow-none hover:-translate-y-0"
+                        asChild
+                      >
                         <Link href="/about">
                           Learn more about me
-                          <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
+                          <ArrowRight className="ml-2 size-4" />
                         </Link>
                       </Button>
                     </div>
@@ -196,10 +202,10 @@ export default function AboutSection({
             {/* Remove standalone button - now integrated into philosophy card */}
             {siteConfig.features.enableAboutHeroCta && cta?.href && cta?.text && (
               <LazySection animation="fade-up" delay={0.6}>
-                <Button size="lg" variant="white" className="group" asChild>
+                <Button size="lg" variant="white" asChild>
                   <Link href={cta.href}>
                     {cta.text}
-                    <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
+                    <ArrowRight className="ml-2 size-4" />
                   </Link>
                 </Button>
               </LazySection>
@@ -296,10 +302,16 @@ export default function AboutSection({
               {/* Learn More CTA Button inside philosophy card */}
               {isHomepage && siteConfig.features.enableAboutLearnMoreCta && (
                 <div className="mt-6 text-left">
-                  <Button size="lg" variant="white" className="group" asChild>
+                  <Button
+                    size="lg"
+                    variant="white"
+                    animation="none"
+                    className="hover:scale-100 hover:shadow-none hover:-translate-y-0"
+                    asChild
+                  >
                     <Link href="/about">
                       Learn more about me
-                      <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
+                      <ArrowRight className="ml-2 size-4" />
                     </Link>
                   </Button>
                 </div>
@@ -309,10 +321,10 @@ export default function AboutSection({
           {/* Remove standalone button - now integrated into philosophy card */}
           {siteConfig.features.enableAboutHeroCta && cta?.href && cta?.text && (
             <LazySection animation="fade-up" delay={0.6}>
-              <Button size="lg" variant="white" className="group" asChild>
+              <Button size="lg" variant="white" asChild>
                 <Link href={cta.href}>
                   {cta.text}
-                  <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="ml-2 size-4" />
                 </Link>
               </Button>
             </LazySection>

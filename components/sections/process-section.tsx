@@ -6,6 +6,7 @@ import type { z } from 'zod';
 import { Section } from '@/components/layout/Section';
 import { Badge } from '@/components/ui/badge';
 import LazySection from '@/components/ui/lazy-section';
+import { useThemeBorderRadius } from '@/hooks/use-theme-border-radius';
 import type { processSectionDataSchema } from '@/lib/schemas/sections.schema';
 
 // Updated props type alias using Zod schema
@@ -17,6 +18,8 @@ export default function ProcessSection({
   subtitle,
   steps,
 }: ProcessSectionProps) {
+  const { getElementBorderRadius } = useThemeBorderRadius();
+
   if (!steps || steps.length === 0) {
     // Schema enforces min(1) for steps
     return null;
@@ -91,7 +94,9 @@ export default function ProcessSection({
                     )}
                     <p className="text-gray-600 leading-relaxed mb-6">{step.description}</p>
                     {step.details && step.details.length > 0 && (
-                      <div className="bg-gray-50 p-5 rounded-xl border-l-4 border-primary/30">
+                      <div
+                        className={`bg-gray-50 p-5 ${getElementBorderRadius('card')} border-l-4 border-primary/30`}
+                      >
                         <h4 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
                           <div className="size-1.5 bg-primary rounded-full" />
                           What this includes:

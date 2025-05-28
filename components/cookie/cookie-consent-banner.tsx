@@ -8,11 +8,13 @@ import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useCookieConsent } from '@/hooks/use-cookie-consent';
+import { useThemeBorderRadius } from '@/hooks/use-theme-border-radius';
 
 export default function CookieConsentBanner() {
   const { consents, isConsentGiven, updateConsent, acceptAll, rejectAll } = useCookieConsent();
   const [showDetails, setShowDetails] = useState(false);
   const [localConsents, setLocalConsents] = useState(consents);
+  const { getElementBorderRadius } = useThemeBorderRadius();
 
   if (isConsentGiven) {
     return null;
@@ -36,7 +38,9 @@ export default function CookieConsentBanner() {
         className="fixed bottom-0 inset-x-0 z-50 p-4 md:p-6"
       >
         <div className="mx-auto max-w-7xl">
-          <div className="bg-neutral-surface rounded-lg shadow-lg border overflow-hidden">
+          <div
+            className={`bg-neutral-surface ${getElementBorderRadius('modal')} shadow-lg border overflow-hidden`}
+          >
             {!showDetails ? (
               <div className="p-6">
                 <div className="flex items-start justify-between mb-4">

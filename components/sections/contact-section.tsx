@@ -163,11 +163,9 @@ export default function ContactSection({ badgeText, heading, subtitle }: Contact
                   className="hidden"
                 />
               </div>
-              <Button type="submit" className="w-full group" disabled={isSubmitting}>
+              <Button type="submit" className="w-full" disabled={isSubmitting}>
                 {isSubmitting ? 'Sending...' : submitted ? 'Message sent!' : 'Send message'}
-                {!isSubmitting && !submitted && (
-                  <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
-                )}
+                {!isSubmitting && !submitted && <ArrowRight className="ml-2 size-4" />}
               </Button>
               {submitted && (
                 <div className="mt-4 p-4 bg-feedback-success-bg text-feedback-success rounded-lg">

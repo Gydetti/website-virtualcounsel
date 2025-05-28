@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import LazySection from '@/components/ui/lazy-section';
 import { Textarea } from '@/components/ui/textarea';
+import { useThemeBorderRadius } from '@/hooks/use-theme-border-radius';
 import { siteConfig } from '@/lib/siteConfig';
 
 export default function ContactPageClient() {
@@ -32,6 +33,7 @@ export default function ContactPageClient() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { getElementBorderRadius } = useThemeBorderRadius();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -101,7 +103,9 @@ export default function ContactPageClient() {
           <div className="container-wide">
             <div className="grid lg:grid-cols-3 gap-12 items-stretch">
               <div className="lg:col-span-2">
-                <div className="bg-neutral-surface rounded-xl shadow-lg p-8">
+                <div
+                  className={`bg-neutral-surface ${getElementBorderRadius('section')} shadow-lg p-8`}
+                >
                   <h2 className="text-2xl font-bold mb-6">
                     Form heading prompting message submission
                   </h2>
@@ -125,7 +129,7 @@ export default function ContactPageClient() {
                             value={formData[field.name]}
                             onChange={handleChange}
                             required={field.required}
-                            className="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-primary focus:border-transparent"
+                            className={`w-full px-4 py-3 ${getElementBorderRadius('input')} border focus:ring-2 focus:ring-primary focus:border-transparent`}
                             rows={4}
                           />
                         ) : (
@@ -138,7 +142,7 @@ export default function ContactPageClient() {
                             value={formData[field.name]}
                             onChange={handleChange}
                             required={field.required}
-                            className="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-primary focus:border-transparent"
+                            className={`w-full px-4 py-3 ${getElementBorderRadius('input')} border focus:ring-2 focus:ring-primary focus:border-transparent`}
                           />
                         )}
                       </div>
@@ -165,19 +169,23 @@ export default function ContactPageClient() {
 
                     <Button
                       type="submit"
-                      className="w-full bg-primary hover:bg-primary90 text-white py-3 rounded-lg"
+                      className={`w-full bg-primary hover:bg-primary90 text-white py-3 ${getElementBorderRadius('button')} transition-colors disabled:opacity-50 disabled:cursor-not-allowed`}
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? 'Sending...' : submitted ? 'Message Sent!' : 'Send Message'}
                     </Button>
 
                     {error && (
-                      <div className="mt-4 p-4 bg-feedback-error-bg text-feedback-error rounded-lg">
+                      <div
+                        className={`mt-4 p-4 bg-feedback-error-bg text-feedback-error ${getElementBorderRadius('card')}`}
+                      >
                         {error}
                       </div>
                     )}
                     {submitted && (
-                      <div className="mt-4 p-4 bg-feedback-success-bg text-feedback-success rounded-lg">
+                      <div
+                        className={`mt-4 p-4 bg-feedback-success-bg text-feedback-success ${getElementBorderRadius('card')}`}
+                      >
                         Thank you for your message! We'll get back to you as soon as possible.
                       </div>
                     )}
@@ -187,7 +195,9 @@ export default function ContactPageClient() {
 
               <div>
                 <LazySection className="h-full">
-                  <div className="bg-primary text-white rounded-xl shadow-lg p-8 h-full flex flex-col">
+                  <div
+                    className={`bg-primary text-white ${getElementBorderRadius('section')} shadow-lg p-8 h-full flex flex-col`}
+                  >
                     <h2 className="text-xl font-semibold mb-4">Contact Details</h2>
 
                     <ul className="space-y-2">

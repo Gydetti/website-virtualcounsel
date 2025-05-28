@@ -17,6 +17,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import LazySection from '@/components/ui/lazy-section';
+import { useThemeBorderRadius } from '@/hooks/use-theme-border-radius';
 import type { serviceItemSchema, servicesSectionDataSchema } from '@/lib/schemas/sections.schema';
 
 // Map of icon names to components
@@ -41,6 +42,8 @@ export default function ServicesSection({
   patternFade,
   patternColor,
 }: ServicesSectionProps) {
+  const { getElementBorderRadius } = useThemeBorderRadius();
+
   if (!services || services.length === 0) {
     // Schema implies services array is required, but good to check
     return null;
@@ -84,78 +87,87 @@ export default function ServicesSection({
           className="stagger-container grid md:grid-cols-2 lg:grid-cols-3 gap-8"
           style={{ '--stagger-delay': '0.2s' } as CSSProperties}
         >
-          {services.map((service: z.infer<typeof serviceItemSchema>, idx) => (
-            <div key={service.id} className="h-full" style={{ '--index': idx } as CSSProperties}>
-              <Card
-                className={`card-equal-height h-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-gradient-to-b from-white to-blue-50/30 ${
-                  service.popular
-                    ? 'border-primary shadow-lg relative'
-                    : 'border-[#e5e7eb80] shadow-lg'
-                }`}
-              >
-                {service.popular && (
-                  <div className="absolute top-0 right-0 bg-primary text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
-                    Popular
-                  </div>
-                )}
+          {services.map((service: z.infer<typeof serviceItemSchema>, idx) => {
+            // get button radius class for theme
+            const buttonRadius = getElementBorderRadius('button');
+            return (
+              <div key={service.id} className="h-full" style={{ '--index': idx } as CSSProperties}>
+                <Card
+                  className={`card-equal-height h-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-gradient-to-b from-white to-blue-50/30 ${
+                    service.popular
+                      ? 'border-primary shadow-lg relative'
+                      : 'border-[#e5e7eb80] shadow-lg'
+                  }`}
+                >
+                  {service.popular && (
+                    <div className="absolute top-0 right-0 bg-primary text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
+                      Popular
+                    </div>
+                  )}
 
-                <CardHeader className="pt-12">
-                  <div className="mb-6 bg-primary/10 size-16 rounded-lg flex items-center justify-center">
-                    {iconMap[service.icon ?? 'Globe'] || <Globe className="size-10 text-primary" />}
-                  </div>
-                  <CardTitle className="text-xl font-bold">{service.title}</CardTitle>
-                  <CardDescription className="text-foreground">
-                    {service.description}
-                  </CardDescription>
-                </CardHeader>
+                  <CardHeader className="pt-12">
+                    <div
+                      className={`mb-6 bg-primary/10 size-16 ${getElementBorderRadius('card')} flex items-center justify-center`}
+                    >
+                      {iconMap[service.icon ?? 'Globe'] || (
+                        <Globe className="size-10 text-primary" />
+                      )}
+                    </div>
+                    <CardTitle className="text-xl font-bold">{service.title}</CardTitle>
+                    <CardDescription className="text-foreground">
+                      {service.description}
+                    </CardDescription>
+                  </CardHeader>
 
-                <CardContent className="card-content">
-                  <ul className="space-y-3">
-                    {service.features?.map(feature => (
-                      <li key={feature} className="flex items-start">
-                        <span className="text-feedback-success mr-3 shrink-0 mt-0.5">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            className="size-5"
-                          >
-                            <title>Check mark icon</title>
-                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                            <polyline points="22 4 12 14.01 9 11.01" />
-                          </svg>
-                        </span>
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
+                  <CardContent className="card-content">
+                    <ul className="space-y-3">
+                      {service.features?.map(feature => (
+                        <li key={feature} className="flex items-start">
+                          <span className="text-feedback-success mr-3 shrink-0 mt-0.5">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              className="size-5"
+                            >
+                              <title>Check mark icon</title>
+                              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                              <polyline points="22 4 12 14.01 9 11.01" />
+                            </svg>
+                          </span>
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
 
-                <CardFooter className="card-footer pt-6">
-                  <Button
-                    variant={service.popular ? 'default' : 'outline'}
-                    className={`group w-full whitespace-normal break-words shadow-none hover:shadow-none hover:scale-100 ${
-                      service.popular
-                        ? '' // Rely on default variant's hover brightness
-                        : 'bg-neutral-surface border border-primary text-primary hover:bg-primary hover:text-white'
-                    }`}
-                    asChild
-                  >
-                    <Link href={`/services/${service.slug}`}>
-                      {`Learn more about ${service.title}`}
-                      <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
-                    </Link>
-                  </Button>
-                </CardFooter>
-              </Card>
-            </div>
-          ))}
+                  <CardFooter className="card-footer pt-6">
+                    <Button
+                      variant="clean"
+                      animation="none"
+                      asChild
+                      className={`w-full ${buttonRadius} text-style-balanced px-4 py-2.5 font-semibold transition-colors duration-200 ${
+                        service.popular
+                          ? 'bg-primary text-white hover:bg-primary/90'
+                          : 'bg-white border border-primary text-primary hover:bg-primary hover:text-white'
+                      }`}
+                    >
+                      <Link href={`/services/${service.slug}`}>
+                        {`Learn more about ${service.title}`}
+                        <ArrowRight className="ml-2 size-4" />
+                      </Link>
+                    </Button>
+                  </CardFooter>
+                </Card>
+              </div>
+            );
+          })}
         </LazySection>
 
         {/* View All CTA stagger */}
@@ -169,12 +181,12 @@ export default function ServicesSection({
               <Button
                 size="lg"
                 variant="default"
-                className="group w-full sm:w-auto whitespace-normal break-words bg-primary hover:bg-primary/90 text-white"
+                className="w-full sm:w-auto whitespace-normal break-words bg-primary hover:bg-primary/90 text-white"
                 asChild
               >
                 <Link href={viewAllCta.href}>
                   {viewAllCta.text}
-                  <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="ml-2 size-4" />
                 </Link>
               </Button>
             </div>

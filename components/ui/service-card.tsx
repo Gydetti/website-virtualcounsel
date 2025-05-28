@@ -10,6 +10,8 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { ThemedSection } from '@/components/ui/themed-section';
+import { useThemeBorderRadius } from '@/hooks/use-theme-border-radius';
 import { siteConfig } from '@/lib/siteConfig';
 
 interface ServiceCardProps {
@@ -32,6 +34,8 @@ export default function ServiceCard({
   const microClass = siteConfig.features.enableMicroInteractions
     ? 'transition-all duration-300 hover:shadow-xl hover:-translate-y-1'
     : '';
+  const { getBorderRadiusClass } = useThemeBorderRadius();
+  const buttonRadius = getBorderRadiusClass('button');
   return (
     <Card
       className={`card-equal-height h-full overflow-hidden ${microClass} ${
@@ -44,9 +48,13 @@ export default function ServiceCard({
         </div>
       )}
       <CardHeader className={`${popular ? 'pt-12' : ''}`}>
-        <div className="mb-6 bg-primary/10 size-16 rounded-lg flex items-center justify-center">
+        <ThemedSection
+          variant="card"
+          hasBackground
+          className="mb-6 bg-primary/10 size-16 flex items-center justify-center"
+        >
           {icon}
-        </div>
+        </ThemedSection>
         <CardTitle className="text-xl font-bold">{title}</CardTitle>
         <CardDescription className="text-body-base text-foreground">{description}</CardDescription>
       </CardHeader>
@@ -78,10 +86,19 @@ export default function ServiceCard({
         </ul>
       </CardContent>
       <CardFooter className="card-footer pt-6">
-        <Button className="group w-full" variant={popular ? 'default' : 'outline'} asChild>
+        <Button
+          variant="clean"
+          animation="none"
+          asChild
+          className={`w-full ${buttonRadius} text-style-balanced px-4 py-2.5 font-semibold transition-colors duration-200 ${
+            popular
+              ? 'bg-primary text-white hover:bg-primary/90'
+              : 'bg-white border border-primary text-primary hover:bg-primary hover:text-white'
+          }`}
+        >
           <Link href={`/services/${slug}`}>
             {`Learn more about ${title}`}
-            <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
+            <ArrowRight className="ml-2 size-4" />
           </Link>
         </Button>
       </CardFooter>

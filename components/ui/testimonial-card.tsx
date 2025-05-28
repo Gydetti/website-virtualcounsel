@@ -4,55 +4,72 @@ import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
 import { DEFAULT_PLACEHOLDER_IMAGE } from '@/lib/constants';
 import { siteConfig } from '@/lib/siteConfig';
+import { cn } from '@/lib/utils';
 
-export interface TestimonialProps {
-  quote: string;
-  name: string;
-  title: string;
-  image: string;
-  rating?: number;
+interface TestimonialCardProps {
+  testimonial: {
+    id: string;
+    quote: string;
+    name: string;
+    title: string;
+    image: {
+      src: string;
+      alt: string;
+    };
+    rating?: number;
+  };
+  className?: string;
+  style?: React.CSSProperties;
 }
 
-export default function TestimonialCard({
-  quote,
-  name,
-  title,
-  image,
-  rating = 5,
-}: TestimonialProps) {
+export default function TestimonialCard({ testimonial, className, style }: TestimonialCardProps) {
+  const { quote, name, title, image, rating } = testimonial;
+
   const microClass = siteConfig.features.enableMicroInteractions
     ? 'transition-all hover:shadow-xl'
     : '';
+
   return (
-    <Card className={`border-none bg-neutral-surface flex flex-col h-full shadow-lg ${microClass}`}>
-      <CardContent className="p-8 flex flex-col flex-1">
-        {rating > 0 && (
-          <div className="flex items-center mb-6">
-            {[1, 2, 3, 4, 5].map(star => (
+    <Card
+      className={cn(
+        'card-equal-height h-full shadow-lg hover:shadow-xl transition-all duration-300',
+        className
+      )}
+      style={style}
+    >
+      <CardContent className="p-6 flex flex-col h-full">
+        {/* Rating stars */}
+        {rating && (
+          <div className="flex items-center gap-1 mb-4">
+            {Array.from({ length: 5 }, (_, i) => (
               <Star
-                key={star}
-                aria-hidden="true"
-                className={`size-5 ${
-                  star <= rating ? 'text-yellow-400 fill-yellow-400' : 'text-neutral-text/300'
-                }`}
+                key={`star-${i + 1}`}
+                className={cn(
+                  'size-4',
+                  i < rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'
+                )}
               />
             ))}
           </div>
         )}
-        <p className="text-foreground italic mb-8">{quote}</p>
-        <div className="flex items-center mt-auto">
-          <div className="mr-4">
-            <Image
-              src={image || DEFAULT_PLACEHOLDER_IMAGE}
-              alt={name}
-              width={60}
-              height={60}
-              className="rounded-full border-2 border-divider"
-            />
-          </div>
+
+        {/* Quote content - flexible space */}
+        <blockquote className="card-content text-neutral-text italic mb-6 grow">
+          "{quote}"
+        </blockquote>
+
+        {/* Author info - fixed at bottom */}
+        <div className="card-footer flex items-center gap-3 mt-auto">
+          <Image
+            src={image.src || DEFAULT_PLACEHOLDER_IMAGE}
+            alt={image.alt}
+            width={48}
+            height={48}
+            className="rounded-full object-cover"
+          />
           <div>
-            <h4 className="text-neutral-text">{name}</h4>
-            <p className="text-foreground">{title}</p>
+            <div className="font-semibold text-foreground">{name}</div>
+            <div className="text-sm text-neutral-text">{title}</div>
           </div>
         </div>
       </CardContent>
