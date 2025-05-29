@@ -136,7 +136,7 @@ export default function HeroSection({
           )}
           {headline && (
             <LazySection delay={0.2}>
-              <h1 id="hero-section-heading" className="font-bold leading-tight text-balance">
+              <h1 id="hero-section-heading" className="font-bold leading-tight text-balance text-center">
                 <span className="block">{headline}</span>
                 <HeroTyping typingWords={typingWords} />
               </h1>
@@ -144,12 +144,12 @@ export default function HeroSection({
           )}
           {subheadline && (
             <LazySection delay={0.3}>
-              <p className="text-body-lg text-mobile-center max-w-lg">{subheadline}</p>
+              <p className="text-body-lg text-center max-w-lg mx-auto">{subheadline}</p>
             </LazySection>
           )}
           {(primaryCta?.text || secondaryCta?.text) && (
             <LazySection delay={0.4} className="">
-              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 pt-4 justify-center sm:justify-start">
+              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 pt-4 justify-center">
                 {primaryCta?.text && primaryCta.href && (
                   <Button
                     size="lg"
@@ -178,25 +178,27 @@ export default function HeroSection({
           )}
           {showHelpedStats && (
             <LazySection delay={0.5}>
-              <div className="flex space-x-4 mt-6 text-sm">
-                <div className="flex -space-x-2">
-                  {[1, 2, 3, 4].map(i => (
-                    <div
-                      key={i}
-                      className="inline-block size-8 rounded-full ring-2 ring-white overflow-hidden bg-neutral-background/200"
-                    >
-                      <Image
-                        src="/images/placeholders/placeholder.svg"
-                        alt="User avatar"
-                        width={32}
-                        height={32}
-                        className="size-full object-cover"
-                      />
-                    </div>
-                  ))}
-                </div>
-                <div className="text-neutral-text">
-                  <span className="font-medium">100+</span> statistic that helps build authority
+              <div className="flex justify-center">
+                <div className="flex space-x-4 mt-6 text-sm text-center">
+                  <div className="flex -space-x-2">
+                    {[1, 2, 3, 4].map(i => (
+                      <div
+                        key={i}
+                        className="inline-block size-8 rounded-full ring-2 ring-white overflow-hidden bg-neutral-background/200"
+                      >
+                        <Image
+                          src="/images/placeholders/placeholder.svg"
+                          alt="User avatar"
+                          width={32}
+                          height={32}
+                          className="size-full object-cover"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                  <div className="text-neutral-text">
+                    <span className="font-medium">100+</span> statistic that helps build authority
+                  </div>
                 </div>
               </div>
             </LazySection>
