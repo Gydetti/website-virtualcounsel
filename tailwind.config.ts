@@ -48,6 +48,21 @@ const extraColors: Record<string, (opts: { opacityValue?: number }) => string> =
   'neutral-text-subtle': ({ opacityValue = 1 }) => `hsl(210 16% 93% / ${opacityValue})`, // Light subtle text for dark backgrounds
   'neutral-surface': ({ opacityValue = 1 }) => `hsl(var(--card) / ${opacityValue})`,
   'neutral-background': ({ opacityValue = 1 }) => `hsl(var(--background) / ${opacityValue})`,
+  // Computed brand color variants - these match the CSS variables generated in layout.tsx
+  'brand-light': ({ opacityValue = 1 }) => `rgb(var(--brand-light-rgb) / ${opacityValue})`,
+  'brand-dark': ({ opacityValue = 1 }) => `rgb(var(--brand-dark-rgb) / ${opacityValue})`,
+  'brand-light-2': ({ opacityValue = 1 }) => `rgb(var(--brand-light-2-rgb) / ${opacityValue})`,
+  'brand-dark-2': ({ opacityValue = 1 }) => `rgb(var(--brand-dark-2-rgb) / ${opacityValue})`,
+  'brand-light-3': ({ opacityValue = 1 }) => `rgb(var(--brand-light-3-rgb) / ${opacityValue})`,
+  'brand-dark-3': ({ opacityValue = 1 }) => `rgb(var(--brand-dark-3-rgb) / ${opacityValue})`,
+  'brand-secondary-light': ({ opacityValue = 1 }) =>
+    `rgb(var(--brand-secondary-light-rgb) / ${opacityValue})`,
+  'brand-secondary-dark': ({ opacityValue = 1 }) =>
+    `rgb(var(--brand-secondary-dark-rgb) / ${opacityValue})`,
+  'brand-accent-light': ({ opacityValue = 1 }) =>
+    `rgb(var(--brand-accent-light-rgb) / ${opacityValue})`,
+  'brand-accent-dark': ({ opacityValue = 1 }) =>
+    `rgb(var(--brand-accent-dark-rgb) / ${opacityValue})`,
 };
 // Merge extraColors into dynamicColors to enable utilities like border-border
 Object.assign(dynamicColors, extraColors);
@@ -108,6 +123,13 @@ const config = {
     'bg-gradient-to-r',
     'from-brand-primary/10',
     'to-brand-hero-background',
+    'bg-hero-gradient',
+    // Computed brand color utilities
+    'bg-brand-secondary-dark',
+    'bg-brand-light',
+    'bg-brand-dark',
+    'text-brand-light',
+    'hover:text-brand-light',
   ],
   prefix: '',
   theme: {

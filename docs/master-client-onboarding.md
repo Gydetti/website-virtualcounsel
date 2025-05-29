@@ -258,7 +258,51 @@ The GMG Template Website 2025 is a highly configurable, modern, and robust Next.
 - **Directory:** `components/ui/` contains a large set of custom UI primitives (button, card, input, carousel, background-pattern, spark-button, lazy-section, optimized-image, etc.).
 - **Pattern:** Use these for consistent UI/UX. Many are not just wrappers for shadcn/ui, but have custom logic (e.g., BackgroundCanvas for animated backgrounds, lazy-section for scroll-triggered animations, optimized-image for image optimization).
 - **Equal height cards:** All card components (TestimonialCard, ServiceCard, etc.) support equal height layouts using CSS Grid and flexbox. Use `items-stretch` on the grid container and `card-equal-height h-full` classes on cards. The global CSS includes `.card-equal-height` utilities for consistent card behavior.
-- **Button hover effects:** Service cards and other card-based buttons can disable hover scaling and shadow effects using `hover:scale-100 hover:shadow-none` classes to prevent interference with card layouts.
+
+#### ⚠️ CRITICAL: Button Hover Effects in Card-Based Designs
+
+**The Pattern:** Buttons inside cards (service cards, contact forms, philosophy cards, etc.) should have **minimal or no hover effects** to maintain visual hierarchy and prevent competing animations.
+
+**Implementation Method:**
+1. **Use `animation="none"` prop** on the Button component to disable built-in hover animations
+2. **Add CSS override classes** to neutralize any remaining hover effects:
+   - `hover:scale-100` - Prevents scaling
+   - `hover:shadow-none` - Removes shadow changes  
+   - `hover:-translate-y-0` - Prevents upward movement
+
+**Example implementations:**
+```tsx
+// ✅ CORRECT - Philosophy card button (about-section.tsx)
+<Button animation="none" className="mt-4">
+  Learn More
+</Button>
+
+// ✅ CORRECT - Service card buttons (service-card.tsx)  
+<Button animation="none" className="hover:scale-100 hover:shadow-none">
+  Discover More
+</Button>
+
+// ✅ CORRECT - Contact form button (contact-section.tsx)
+<Button 
+  type="submit"
+  animation="none" 
+  className="w-full hover:scale-100 hover:shadow-none hover:-translate-y-0"
+  disabled={isSubmitting}
+>
+  Send message
+</Button>
+```
+
+**Why This Matters:**
+- **Visual hierarchy**: Cards are the primary interactive element; buttons inside should be secondary
+- **Design consistency**: Prevents competing animations that create visual chaos
+- **Professional appearance**: Maintains the calm, sophisticated design language
+- **User experience**: Avoids distracting micro-interactions within already interactive containers
+
+**Common Mistake:** Only adding CSS override classes without the `animation="none"` prop. The Button component has built-in hover effects that must be disabled at the component level.
+
+**Debugging:** If you see buttons still moving/scaling on hover, check that both the `animation="none"` prop AND the CSS override classes are applied.
+
 - **Best practice:** Prefer these primitives over raw HTML or third-party components for consistency and maintainability.
 
 ### Utility Modules
@@ -560,6 +604,7 @@ This document is continuously updated as the codebase evolves. Always validate a
   - ESLint import/named errors in tests → Add eslint-disable comment.
   - Tailwind deprecation warnings → Use new shorthand classes.
   - Build failing after icon changes → Verify lucide-react exports.
+  - **Buttons inside cards still have hover animations** → Add `animation="none"` prop AND CSS override classes (`hover:scale-100 hover:shadow-none hover:-translate-y-0`). See "Button Hover Effects in Card-Based Designs" in section 18.
 
 ### What NOT to Do
 

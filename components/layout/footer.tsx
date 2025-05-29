@@ -55,7 +55,7 @@ export default function Footer({ hideNewsletter = false }: FooterProps) {
                 <h3 className="text-white mb-2">Subscribe to our newsletter</h3>
               </div>
               <div style={{ '--index': 1 } as CSSProperties}>
-                <p className="text-body-base text-white">
+                <p className="text-body-base text-white/70">
                   Stay updated with the latest insights and news
                 </p>
               </div>

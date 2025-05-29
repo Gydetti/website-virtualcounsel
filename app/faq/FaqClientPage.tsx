@@ -112,7 +112,7 @@ export default function FaqClientPage() {
                           value={`${/* replaced index-based value */ ''}`}
                           className="border border-divider rounded-lg overflow-hidden"
                         >
-                          <AccordionTrigger className="px-6 py-4 text-body-base font-medium hover:bg-neutral-background text-left">
+                          <AccordionTrigger className="px-6 py-4 text-body-base text-neutral-text font-medium hover:bg-neutral-background text-left">
                             {faq.question}
                           </AccordionTrigger>
                           <AccordionContent className="px-6 py-4 text-body-base bg-neutral-background text-neutral-text">

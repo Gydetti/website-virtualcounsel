@@ -96,7 +96,7 @@ export default function HomepageFaqSection({
               delay={0.1 * idx}
               className="text-center"
             >
-              <h3 className="text-body-base mb-6">{cat.category}</h3>
+              <h3 className="text-body-base text-neutral-text mb-6">{cat.category}</h3>
               <Accordion
                 type="single"
                 collapsible
@@ -108,7 +108,7 @@ export default function HomepageFaqSection({
                     value={`faq-${cat.category}-${q.question}`}
                     className="border rounded-lg overflow-hidden flex flex-col faq-item"
                   >
-                    <AccordionTrigger className="flex items-center justify-between w-full px-4 py-1.5 text-body-base font-medium text-left">
+                    <AccordionTrigger className="flex items-center justify-between w-full px-4 py-1.5 text-body-base text-neutral-text font-medium text-left">
                       {q.question}
                     </AccordionTrigger>
                     <AccordionContent className="px-4 py-2 text-foreground">
