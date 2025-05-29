@@ -40,7 +40,7 @@ export default function TestimonialCard({ testimonial, className, style }: Testi
       <CardContent className="p-6 flex flex-col h-full">
         {/* Rating stars */}
         {rating && (
-          <div className="flex items-center gap-1 mb-4">
+          <div className="flex items-center gap-1 mb-4 justify-center">
             {Array.from({ length: 5 }, (_, i) => (
               <Star
                 key={`star-${i + 1}`}
@@ -54,12 +54,12 @@ export default function TestimonialCard({ testimonial, className, style }: Testi
         )}
 
         {/* Quote content - flexible space */}
-        <blockquote className="card-content text-neutral-text italic mb-6 grow">
+        <blockquote className="card-content text-neutral-text italic mb-6 grow text-left">
           "{quote}"
         </blockquote>
 
         {/* Author info - fixed at bottom */}
-        <div className="card-footer flex items-center gap-3 mt-auto">
+        <div className="card-footer flex items-center gap-3 mt-auto text-center">
           <Image
             src={image.src || DEFAULT_PLACEHOLDER_IMAGE}
             alt={image.alt}
@@ -67,7 +67,7 @@ export default function TestimonialCard({ testimonial, className, style }: Testi
             height={48}
             className="rounded-full object-cover"
           />
-          <div>
+          <div className="text-left">
             <div className="font-semibold text-foreground">{name}</div>
             <div className="text-sm text-neutral-text">{title}</div>
           </div>

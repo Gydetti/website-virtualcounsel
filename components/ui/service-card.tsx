@@ -55,11 +55,11 @@ export default function ServiceCard({
         >
           {icon}
         </ThemedSection>
-        <CardTitle className="text-xl font-bold">{title}</CardTitle>
-        <CardDescription className="text-body-base text-foreground">{description}</CardDescription>
+        <CardTitle className="text-xl font-bold text-center">{title}</CardTitle>
+        <CardDescription className="text-body-base text-foreground text-left">{description}</CardDescription>
       </CardHeader>
       <CardContent className="card-content">
-        <ul className="space-y-3">
+        <ul className="space-y-3 text-left">
           {features.map(feature => (
             <li key={feature} className="flex items-start">
               <span className="text-feedback-success mr-3 shrink-0 mt-0.5">
