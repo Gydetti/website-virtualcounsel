@@ -126,12 +126,14 @@ export default function HeroSection({
 
       <div className="grid lg:grid-cols-2 items-center gap-8 sm:gap-8 md:gap-10 lg:gap-10">
         {/* Removed parent LazySection to prevent delay compounding */}
-        <div className={`${contentOrderClass} flex flex-col justify-center space-y-6 z-10`}>
+        <div className={`${contentOrderClass} flex flex-col justify-center items-center space-y-6 z-10`}>
           {badgeText && (
             <LazySection delay={0.1}>
-              <Badge variant="dark" className="w-fit text-white">
-                {badgeText}
-              </Badge>
+              <div className="flex justify-center w-full">
+                <Badge variant="dark" className="w-fit text-white">
+                  {badgeText}
+                </Badge>
+              </div>
             </LazySection>
           )}
           {headline && (
@@ -151,8 +153,8 @@ export default function HeroSection({
             </LazySection>
           )}
           {(primaryCta?.text || secondaryCta?.text) && (
-            <LazySection delay={0.4} className="">
-              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 pt-4 justify-center">
+            <LazySection delay={0.4} className="w-full">
+              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 pt-4 justify-center items-center">
                 {primaryCta?.text && primaryCta.href && (
                   <Button
                     size="lg"
@@ -181,8 +183,8 @@ export default function HeroSection({
           )}
           {showHelpedStats && (
             <LazySection delay={0.5}>
-              <div className="flex justify-center">
-                <div className="flex space-x-4 mt-6 text-sm text-center">
+              <div className="flex justify-center w-full">
+                <div className="flex items-center space-x-4 mt-6 text-sm">
                   <div className="flex -space-x-2">
                     {[1, 2, 3, 4].map(i => (
                       <div
@@ -199,7 +201,7 @@ export default function HeroSection({
                       </div>
                     ))}
                   </div>
-                  <div className="text-neutral-text">
+                  <div className="text-neutral-text text-center">
                     <span className="font-medium">100+</span> statistic that helps build authority
                   </div>
                 </div>
