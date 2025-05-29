@@ -66,7 +66,7 @@ export default function BlogSection({
         {/* Posts grid stagger container */}
         <LazySection
           animation="none"
-          className="stagger-container grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 md:gap-4 lg:gap-4 card-equal-height justify-items-center"
+          className="stagger-container grid md:grid-cols-2 lg:grid-cols-3 gap-8 card-equal-height justify-items-center"
           style={{ '--stagger-delay': '0.2s' } as CSSProperties}
         >
           {posts.map((post, index) => (
