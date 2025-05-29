@@ -136,7 +136,10 @@ export default function HeroSection({
           )}
           {headline && (
             <LazySection delay={0.2}>
-              <h1 id="hero-section-heading" className="font-bold leading-tight text-balance text-center">
+              <h1
+                id="hero-section-heading"
+                className="font-bold leading-tight text-balance text-center"
+              >
                 <span className="block">{headline}</span>
                 <HeroTyping typingWords={typingWords} />
               </h1>

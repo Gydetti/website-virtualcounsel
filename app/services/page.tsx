@@ -49,7 +49,7 @@ export default async function ServicesPage() {
 
             return (
               <LazySection key={service.id} delay={index * 0.1}>
-                <Card className="transition-all duration-300 hover:shadow-xl h-full flex flex-col">
+                <Card className="card-equal-height h-full transition-all duration-300 hover:shadow-xl">
                   <div className="relative h-48 w-full">
                     <Image
                       src={DEFAULT_PLACEHOLDER_IMAGE}
@@ -63,15 +63,17 @@ export default async function ServicesPage() {
                       <IconComponent className="size-16 text-white drop-shadow-lg" />
                     </div>
                   </div>
-                  <CardHeader className="flex-1">
-                    <CardTitle className="text-xl font-semibold mb-3 text-foreground">
-                      {service.title}
-                    </CardTitle>
-                    <CardDescription className="text-muted-foreground leading-relaxed">
-                      {service.description}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardFooter>
+                  <div className="card-content">
+                    <CardHeader>
+                      <CardTitle className="text-xl font-semibold mb-3 text-foreground">
+                        {service.title}
+                      </CardTitle>
+                      <CardDescription className="text-muted-foreground leading-relaxed">
+                        {service.description}
+                      </CardDescription>
+                    </CardHeader>
+                  </div>
+                  <CardFooter className="card-footer">
                     <Button size="lg" className="w-full group" asChild>
                       <Link href={`/services/${service.slug}`}>
                         Learn more
