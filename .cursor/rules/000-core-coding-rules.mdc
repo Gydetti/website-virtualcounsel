@@ -81,7 +81,7 @@ _Do not skip any step in this workflow—ensuring a fully functional, bug-free c
   npm run lint -- --fix
   ```
 
-And to run a Lighthouse check use `npm run lhci` and `npm run lhci:prod` for live URL real results.
+And to run a Lighthouse check use `npm run lhci:prod` for live URL real results on deployed sites. Local CI testing has been removed due to environment reliability issues.
 
 ## Local All-in-One Verification
 Instead of running each step manually, you can use the `verify:local` script to clear the production cache, run build, lint, type-check, unit/integration tests, and end-to-end tests in one command:

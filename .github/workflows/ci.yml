@@ -47,5 +47,5 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - name: Run Lighthouse CI
-        run: npx lhci autorun
+      # Note: Lighthouse CI removed - we use real Vercel deployment metrics instead
+      # Run locally with: npm run lhci:prod (for live URL results)

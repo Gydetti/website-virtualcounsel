@@ -145,9 +145,9 @@ The GMG Template Website 2025 is a highly configurable, modern, and robust Next.
 - **SEO**: All metadata is driven by config and per-page overrides using Next.js App Router's `generateMetadata`.
 - **JSON-LD**: Organization, WebSite, BreadcrumbList, Article, and FAQ schemas are emitted dynamically based on content.
 - **Sitemap & robots.txt**: Generated via `next-sitemap`, filtering routes based on feature flags and `enabledPages` in config.
-- **Lighthouse**: Automated Lighthouse CI is integrated; results are documented in `docs/lighthouse-gains.md`.
+- **Lighthouse**: Lighthouse testing is done on real Vercel deployments using `npm run lhci:prod` for accurate results. Local CI testing has been removed due to environment reliability issues.
 - **Performance**: Hero images use `next/image` with `priority`, explicit width/height, and are preloaded. Unused JS/CSS is purged, and heavy scripts are dynamically imported. DOM size is minimized by removing excessive wrappers and using semantic lists.
-- **Validation**: After each change, run build, lint, test, E2E, and Lighthouse. All enhancements must maintain or improve Core Web Vitals.
+- **Validation**: After each change, run build, lint, test, E2E, and Lighthouse on the deployed site. All enhancements must maintain or improve Core Web Vitals.
 
 ---
 
