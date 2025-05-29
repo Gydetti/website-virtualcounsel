@@ -116,7 +116,8 @@ export default function HeroSection({
       bgClass={siteConfig.sectionStyles?.heroGradient ?? ''}
       patternStyle={rawPatternStyle}
       patternOpacity={usedOpacity}
-      className="relative flex"
+       className="relative md:min-h-[880px] flex"
+      
     >
       {/* BackgroundPattern now handled by Section */}
 
@@ -149,7 +150,7 @@ export default function HeroSection({
           )}
           {subheadline && (
             <LazySection delay={0.3}>
-              <p className="text-body-lg text-center md:text-left max-w-lg mx-auto md:mx-0">
+              <p className="text-body-lg text-center md:text-left mx-auto md:mx-0">
                 {subheadline}
               </p>
             </LazySection>
@@ -214,7 +215,7 @@ export default function HeroSection({
 
         <LazySection
           delay={0.1}
-          className={`relative w-full max-w-[600px] self-center mx-auto ${
+          className={`relative w-full self-center ${
             variant === 'imageLeft' ? 'md:order-1 lg:ml-0 lg:mr-auto' : 'lg:ml-auto lg:mr-0'
           }`}
         >
@@ -223,7 +224,7 @@ export default function HeroSection({
               src={imageToDisplay}
               alt={imageAltText}
               fill
-              sizes="(max-width: 600px) 100vw, 600px"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
               className="absolute inset-0 object-cover rounded-xl"
               priority
               placeholder="blur"
