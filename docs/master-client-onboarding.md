@@ -534,6 +534,166 @@ After making changes to the border radius system:
 3. Verify visual consistency across different component types
 4. Check that global adjustments (sharp/medium/soft) work properly
 
+### ⚠️ CRITICAL: Multi-Layer Text Color Debugging in 5D Codebase
+
+**The Challenge:** Text color issues in this codebase often span multiple files and layers, creating complex debugging scenarios that require systematic analysis.
+
+#### Understanding the 5 Layers of Text Styling
+
+**Layer 1: Data Content** (`lib/data/`)
+- Contains the actual text content that users see
+- Example: `description: 'Empathy-driven intro highlighting common client problems'`
+
+**Layer 2: Component Rendering** (`components/sections/`)
+- How the text is rendered in JSX with CSS classes
+- Example: `<p className="text-section-lead max-w-[600px] text-neutral-text-subtle">`
+
+**Layer 3: Utility Class Definitions** (`app/globals.css`)
+- Where utility classes like `text-section-lead` are defined
+- Example: `.text-section-lead { @apply text-lg text-foreground leading-relaxed md:text-xl; }`
+
+**Layer 4: Color Token Mapping** (`tailwind.config.ts`)
+- How color tokens resolve to actual color values
+- Example: `'neutral-text-subtle': ({ opacityValue = 1 }) => hsl(210 16% 93% / ${opacityValue})`
+
+**Layer 5: Theme Context** (`layout.tsx` + component backgrounds)
+- Whether the background is light or dark affects which colors should be used
+- Example: `bg-brand-secondary-dark` requires light text, `bg-white` requires dark text
+
+#### Common Multi-Layer Conflicts
+
+**❌ Conflicting Utility Classes:**
+```tsx
+// PROBLEMATIC - utilities with conflicting color definitions
+<p className="text-section-lead text-neutral-text-subtle">
+```
+- `text-section-lead` contains `text-foreground` (dark color)
+- `text-neutral-text-subtle` provides light color
+- CSS specificity determines which wins (often the wrong one)
+
+**❌ Background-Text Mismatch:**
+```tsx
+// PROBLEMATIC - light text utility on light background
+<div className="bg-white">
+  <p className="text-neutral-text-subtle">Hard to read</p>
+</div>
+```
+
+#### Systematic Debugging Approach
+
+**1. Identify the Content Layer**
+```bash
+# Find where the problematic text is defined
+grep -r "problematic text content" lib/data/
+```
+
+**2. Locate the Component Layer**
+```bash
+# Find which component renders this content
+grep -r "variableName\|sectionName" components/
+```
+
+**3. Analyze the Styling Classes**
+- Look for multiple color-related classes on the same element
+- Check if utility classes have built-in color definitions
+
+**4. Trace Utility Class Definitions**
+```bash
+# Check what each utility class actually does
+grep -r "text-section-lead" app/globals.css
+```
+
+**5. Verify Color Token Resolution**
+```bash
+# Check color token definitions
+grep -r "neutral-text-subtle" tailwind.config.ts
+```
+
+**6. Assess Background Context**
+- Dark backgrounds (`bg-brand-secondary-dark`, `bg-gray-900`) need light text
+- Light backgrounds (`bg-white`, `bg-gray-100`) need dark text
+
+#### Proven Fix Patterns
+
+**✅ Remove Conflicting Utilities:**
+```tsx
+// BEFORE (conflicting)
+<p className="text-section-lead max-w-[600px] text-neutral-text-subtle">
+
+// AFTER (direct styling)
+<p className="text-lg leading-relaxed md:text-xl max-w-[600px] text-white/90">
+```
+
+**✅ Context-Aware Color Selection:**
+```tsx
+// Dark background sections
+<div className="bg-brand-secondary-dark">
+  <p className="text-white/90">Light text for dark background</p>
+</div>
+
+// Light background sections  
+<div className="bg-white">
+  <p className="text-neutral-text">Dark text for light background</p>
+</div>
+```
+
+**✅ Consistent Card Text Patterns:**
+```tsx
+// Cards on dark backgrounds
+<div className="bg-white/10"> {/* Semi-transparent on dark */}
+  <p className="text-white/80">Readable card text</p>
+</div>
+
+// Cards on light backgrounds
+<div className="bg-gray-50"> {/* Light card */}
+  <p className="text-neutral-text">Readable card text</p>  
+</div>
+```
+
+#### Prevention Strategies
+
+**1. Never Mix Color Utilities**
+- Only use one color-related class per element
+- If you need sizing + color, apply them separately:
+  ```tsx
+  // GOOD
+  <p className="text-lg leading-relaxed md:text-xl text-white/90">
+  
+  // BAD  
+  <p className="text-section-lead text-neutral-text-subtle">
+  ```
+
+**2. Create Background-Specific Utility Classes**
+- Consider creating utilities like `text-dark-bg` and `text-light-bg`
+- Document which utilities are safe to combine
+
+**3. Component-Level Color Validation**
+- Always test components on both light and dark backgrounds
+- Use browser dev tools to verify actual computed colors
+
+**4. Systematic Color Audit**
+```bash
+# Find potential conflicts
+grep -r "text-.*text-" components/
+grep -r "text-section-lead.*text-" components/
+```
+
+#### File Interaction Map for Text Color Issues
+
+```
+Data (lib/data/) 
+    ↓ (content)
+Component (components/sections/)
+    ↓ (CSS classes)  
+Utility Definitions (app/globals.css)
+    ↓ (color tokens)
+Color Configuration (tailwind.config.ts)
+    ↓ (theme context)
+Background Context (component styling)
+```
+
+**Remember:** Always trace the complete path from content → component → utilities → tokens → context when debugging text color issues.
+
 ## 20. How to Update This Doc
 
 - **Validation:** All changes must be validated against the current codebase and config.
@@ -605,6 +765,7 @@ This document is continuously updated as the codebase evolves. Always validate a
   - Tailwind deprecation warnings → Use new shorthand classes.
   - Build failing after icon changes → Verify lucide-react exports.
   - **Buttons inside cards still have hover animations** → Add `animation="none"` prop AND CSS override classes (`hover:scale-100 hover:shadow-none hover:-translate-y-0`). See "Button Hover Effects in Card-Based Designs" in section 18.
+  - **Text appears dark/unreadable on dark backgrounds** → Check for conflicting utility classes (e.g., `text-section-lead` + `text-neutral-text-subtle`). Remove utilities with built-in colors and use direct color classes. See "Multi-Layer Text Color Debugging" in section 18.
 
 ### What NOT to Do
 
