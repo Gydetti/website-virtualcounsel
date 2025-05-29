@@ -262,28 +262,28 @@ const DynamicPageRenderer: FC<DynamicPageRendererProps> = async ({
       if (pagePath === '/about' && !siteConfig.features.enableAboutKpiSection) {
         continue;
       }
-          // Skip section based on KPI page-specific flags or general feature flags
-    if (section.sectionType === 'KpiSection') {
-      if (pagePath === '/' && !siteConfig.features.enableKpiSection) {
-        continue;
+      // Skip section based on KPI page-specific flags or general feature flags
+      if (section.sectionType === 'KpiSection') {
+        if (pagePath === '/' && !siteConfig.features.enableKpiSection) {
+          continue;
+        }
+        if (pagePath === '/about' && !siteConfig.features.enableAboutKpiSection) {
+          continue;
+        }
+      } else if (section.sectionType === 'TestimonialsSection') {
+        if (!siteConfig.features.enableTestimonials) {
+          continue;
+        }
+      } else if (section.sectionType === 'BlogSection') {
+        if (!siteConfig.features.enableBlog) {
+          continue;
+        }
+      } else {
+        const featureFlagKey = `enable${section.sectionType}` as keyof typeof siteConfig.features;
+        if (siteConfig.features[featureFlagKey] === false) {
+          continue;
+        }
       }
-      if (pagePath === '/about' && !siteConfig.features.enableAboutKpiSection) {
-        continue;
-      }
-    } else if (section.sectionType === 'TestimonialsSection') {
-      if (!siteConfig.features.enableTestimonials) {
-        continue;
-      }
-    } else if (section.sectionType === 'BlogSection') {
-      if (!siteConfig.features.enableBlog) {
-        continue;
-      }
-    } else {
-      const featureFlagKey = `enable${section.sectionType}` as keyof typeof siteConfig.features;
-      if (siteConfig.features[featureFlagKey] === false) {
-        continue;
-      }
-    }
     } else {
       const featureFlagKey = `enable${section.sectionType}` as keyof typeof siteConfig.features;
       if (siteConfig.features[featureFlagKey] === false) {

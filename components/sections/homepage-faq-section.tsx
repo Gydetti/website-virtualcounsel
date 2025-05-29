@@ -87,8 +87,17 @@ export default function HomepageFaqSection({
             </p>
           )}
         </LazySection>
-        {/* FAQ items: animate each category column sequentially */}
-        <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+        {/* FAQ items: responsive grid that centers content when fewer categories */}
+        <div
+          ref={containerRef}
+          className={`grid gap-8 text-left max-w-5xl mx-auto ${
+            categories.length === 1
+              ? 'grid-cols-1 max-w-3xl'
+              : categories.length === 2
+                ? 'grid-cols-1 md:grid-cols-2 max-w-4xl'
+                : 'grid-cols-1 md:grid-cols-3'
+          }`}
+        >
           {categories.map((cat, idx) => (
             <LazySection
               key={cat.category}
@@ -96,7 +105,10 @@ export default function HomepageFaqSection({
               delay={0.1 * idx}
               className="text-center"
             >
-              <h3 className="text-body-base text-neutral-text mb-6">{cat.category}</h3>
+              {/* Category badge with solid background and strong shadow effect */}
+              <div className="inline-flex items-center px-3 py-1 mb-6 bg-neutral-surface border border-divider rounded-full shadow-md">
+                <h3 className="text-sm font-medium text-neutral-text">{cat.category}</h3>
+              </div>
               <Accordion
                 type="single"
                 collapsible
@@ -106,12 +118,12 @@ export default function HomepageFaqSection({
                   <AccordionItem
                     key={q.question}
                     value={`faq-${cat.category}-${q.question}`}
-                    className="border rounded-lg overflow-hidden flex flex-col faq-item"
+                    className="border border-divider rounded-lg overflow-hidden flex flex-col faq-item transition-all shadow-sm hover:shadow-md"
                   >
-                    <AccordionTrigger className="flex items-center justify-between w-full px-4 py-1.5 text-body-base text-neutral-text font-medium text-left">
+                    <AccordionTrigger className="flex items-center justify-between w-full px-6 py-4 text-body-base text-neutral-text font-medium text-left bg-neutral-surface hover:bg-neutral-surface/80 ">
                       {q.question}
                     </AccordionTrigger>
-                    <AccordionContent className="px-4 py-2 text-foreground">
+                    <AccordionContent className="px-6 py-4 text-base text-neutral-text bg-neutral-surface/90 border-t border-divider/50">
                       {q.answer}
                     </AccordionContent>
                   </AccordionItem>

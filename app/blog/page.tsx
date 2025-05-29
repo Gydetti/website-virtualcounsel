@@ -16,15 +16,7 @@ import LazySection from '@/components/ui/lazy-section';
 import OptimizedImage from '@/components/ui/optimized-image';
 import { getBlogPosts } from '@/lib/data-utils';
 import { defaultMetadata } from '@/lib/metadata';
-import { siteConfig } from '@/lib/siteConfig';
-
-// Disable this page if blog feature is off or page not enabled
-if (
-  !siteConfig.features.enableBlog ||
-  (siteConfig.enabledPages && !siteConfig.enabledPages.includes('/blog'))
-) {
-  notFound();
-}
+import { siteConfig } from '@/lib/site.config.local';
 
 export const metadata = defaultMetadata({
   title: `${siteConfig.site.name} | Blog`,
@@ -32,6 +24,14 @@ export const metadata = defaultMetadata({
 });
 
 export default async function BlogPage() {
+  // Guard route by feature flag and enabledPages setting
+  if (
+    !siteConfig.features.enableBlog ||
+    (siteConfig.enabledPages && !siteConfig.enabledPages.includes('/blog'))
+  ) {
+    notFound();
+  }
+
   const allPosts = await getBlogPosts();
 
   // Extract featured post

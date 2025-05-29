@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import type { CSSProperties } from 'react';
 
 import { Section } from '@/components/layout/Section';
@@ -46,16 +45,25 @@ export default function ProcessSectionHome({
 
       <LazySection
         animation="none"
-        className="stagger-container mt-16 grid grid-cols-1  sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 md:gap-12 items-stretch"
+        className={`stagger-container mt-16 grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-stretch mx-auto ${
+          steps.length === 1
+            ? 'md:grid-cols-1 max-w-2xl'
+            : steps.length === 2
+              ? 'md:grid-cols-2 max-w-4xl'
+              : steps.length === 3
+                ? 'md:grid-cols-3 max-w-6xl'
+                : steps.length === 4
+                  ? 'md:grid-cols-4 max-w-7xl'
+                  : steps.length >= 5
+                    ? 'md:grid-cols-4 max-w-7xl' // Cap at 4 columns for readability
+                    : 'md:grid-cols-3 max-w-6xl' // Default fallback
+        }`}
         style={{ '--stagger-delay': '0.2s' } as CSSProperties}
       >
         {steps.map((step, i) => (
           <div key={step.id} className="relative" style={{ '--index': i } as CSSProperties}>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              className={`relative z-10 h-full flex flex-col items-center ${getElementBorderRadius('card')} border border-divider bg-neutral-surface p-8 text-center shadow-sm transition-all hover:shadow-md card-equal-height`}
+            <div
+              className={`relative z-10 size-full flex flex-col items-center ${getElementBorderRadius('card')} border border-divider bg-neutral-surface p-8 text-center shadow-sm transition-all hover:shadow-md card-equal-height`}
             >
               <div className="flex size-14 items-center justify-center rounded-full bg-primary text-white text-lg font-semibold mb-4">
                 {step.number ?? String(i + 1).padStart(2, '00')}
@@ -64,7 +72,7 @@ export default function ProcessSectionHome({
                 <h3 className="text-xl font-semibold text-neutral-text">{step.title}</h3>
                 <p className="text-neutral-text leading-relaxed">{step.description}</p>
               </div>
-            </motion.div>
+            </div>
             {i < steps.length - 1 && (
               <div className="absolute left-1/2 top-1/2 hidden h-1 w-full -translate-y-1/2 bg-neutral-divider z-0 md:block" />
             )}

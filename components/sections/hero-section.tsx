@@ -116,8 +116,7 @@ export default function HeroSection({
       bgClass={siteConfig.sectionStyles?.heroGradient ?? ''}
       patternStyle={rawPatternStyle}
       patternOpacity={usedOpacity}
-       className="relative md:min-h-[880px] flex"
-      
+      className="relative md:min-h-[880px] flex"
     >
       {/* BackgroundPattern now handled by Section */}
 
@@ -150,9 +149,7 @@ export default function HeroSection({
           )}
           {subheadline && (
             <LazySection delay={0.3}>
-              <p className="text-body-lg text-center md:text-left mx-auto md:mx-0">
-                {subheadline}
-              </p>
+              <p className="text-body-lg text-center md:text-left mx-auto md:mx-0">{subheadline}</p>
             </LazySection>
           )}
           {(primaryCta?.text || secondaryCta?.text) && (

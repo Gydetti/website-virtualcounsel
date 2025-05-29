@@ -62,7 +62,7 @@ export default function SolutionVisionSection({
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {benefits.map(b => (
               <div key={b} className="flex items-start space-x-2">
-                <CheckCircle className="size-5 text-accent mt-1" />
+                <CheckCircle className="size-5 text-accent mt-1 shrink-0" />
                 <span className="text-foreground">{b}</span>
               </div>
             ))}

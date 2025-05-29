@@ -12,13 +12,15 @@ import type { clientsSectionDataSchema } from '@/lib/schemas/sections.schema';
 export type ClientsSectionProps = z.infer<typeof clientsSectionDataSchema>;
 
 export default function ClientsSection({ badgeText, heading, clients }: ClientsSectionProps) {
-  // If clients is undefined or empty, perhaps render nothing or a placeholder.
-  // For now, proceeding with the assumption that data layer provides valid clients array if section is enabled.
-  const displayClients = clients && clients.length > 0 ? clients.slice(0, 6) : [];
-  // Duplicate with an instance flag for unique, stable keys
+  // Use the 4 real clients that Groeien met Gydo actually has
+  const displayClients = clients && clients.length > 0 ? clients : [];
+
+  // Create 4 repetitions instead of 2 for smoother infinite scroll with fewer unique items
   const sliderItems = [
     ...displayClients.map(c => ({ ...c, instance: 0 })),
     ...displayClients.map(c => ({ ...c, instance: 1 })),
+    ...displayClients.map(c => ({ ...c, instance: 2 })),
+    ...displayClients.map(c => ({ ...c, instance: 3 })),
   ];
 
   return (
@@ -38,7 +40,8 @@ export default function ClientsSection({ badgeText, heading, clients }: ClientsS
 
         <div className="py-4" style={{ '--index': 1 } as CSSProperties}>
           <div className="py-2">
-            <div className="w-full max-w-[calc(166px*6)] mx-auto relative overflow-hidden">
+            {/* Wider container to accommodate 4 repetitions of 4 clients = 16 total items */}
+            <div className="w-full max-w-[calc(166px*8)] mx-auto relative overflow-hidden">
               <div className="flex animate-scroll">
                 {sliderItems.map(client => (
                   <div
