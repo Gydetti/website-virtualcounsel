@@ -56,7 +56,9 @@ export default function ServiceCard({
           {icon}
         </ThemedSection>
         <CardTitle className="text-xl font-bold text-center">{title}</CardTitle>
-        <CardDescription className="text-body-base text-foreground text-left">{description}</CardDescription>
+        <CardDescription className="text-body-base text-foreground text-left">
+          {description}
+        </CardDescription>
       </CardHeader>
       <CardContent className="card-content">
         <ul className="space-y-3 text-left">

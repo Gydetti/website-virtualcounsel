@@ -43,27 +43,27 @@ export default async function ServicesPage() {
       <ServicesOverviewSection {...servicesOverviewSectionData} />
 
       <Section>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 card-equal-height justify-items-center">
           {services.map((service, index) => {
             const IconComponent = iconComponents[service.icon ?? 'Globe'] || iconComponents.Globe;
 
             return (
               <LazySection key={service.id} delay={index * 0.1}>
-                <Card className="card-equal-height h-full transition-all duration-300 hover:shadow-xl">
-                  <div className="relative h-48 w-full">
-                    <Image
-                      src={DEFAULT_PLACEHOLDER_IMAGE}
-                      alt={`${service.title} service illustration`}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="size-full object-cover"
-                      priority={index < 3}
-                    />
-                    <div className="absolute inset-0 bg-primary/20 flex items-center justify-center">
-                      <IconComponent className="size-16 text-white drop-shadow-lg" />
+                <div className="size-full max-w-sm">
+                  <Card className="size-full flex flex-col justify-between overflow-hidden transition-all duration-300 hover:shadow-xl">
+                    <div className="relative h-48 w-full">
+                      <Image
+                        src={DEFAULT_PLACEHOLDER_IMAGE}
+                        alt={`${service.title} service illustration`}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="size-full object-cover"
+                        priority={index < 3}
+                      />
+                      <div className="absolute inset-0 bg-primary/20 flex items-center justify-center">
+                        <IconComponent className="size-16 text-white drop-shadow-lg" />
+                      </div>
                     </div>
-                  </div>
-                  <div className="card-content">
                     <CardHeader>
                       <CardTitle className="text-xl font-semibold mb-3 text-foreground">
                         {service.title}
@@ -72,16 +72,16 @@ export default async function ServicesPage() {
                         {service.description}
                       </CardDescription>
                     </CardHeader>
-                  </div>
-                  <CardFooter className="card-footer">
-                    <Button size="lg" className="w-full group" asChild>
-                      <Link href={`/services/${service.slug}`}>
-                        Learn more
-                        <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
-                      </Link>
-                    </Button>
-                  </CardFooter>
-                </Card>
+                    <CardFooter>
+                      <Button size="lg" className="w-full group" asChild>
+                        <Link href={`/services/${service.slug}`}>
+                          Learn more
+                          <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
+                        </Link>
+                      </Button>
+                    </CardFooter>
+                  </Card>
+                </div>
               </LazySection>
             );
           })}
