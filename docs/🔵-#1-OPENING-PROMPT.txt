@@ -13,4 +13,7 @@ And understand the codebase that we're working on @gmg-template-website-2025. I'
 
 There is one key thing you are always forgetting: that is the importance of testing your own work after making significatn changes. SO PLEASE, REMEMBER THIS TIME TO RUN ALL THE TESTS AND CHECKS after a few code changes!!
 
+You are going to read the @master-client-onboarding.md = docs/master-client-onboarding.md all the way to the last sentence. It contains also instructions and explainers for future AI Agents that will actually code on the product.
+But you are working on this product. So you can ignore the role/mission of the doc stated but it helps you understand the context of the current codebase and how the product is configured. You are the building agent on this product.
 
+So future AI Agents will have the best template theme set up ever. I'll give you the instructions and topic we're working on in the next prompt message here.

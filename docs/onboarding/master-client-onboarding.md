@@ -245,7 +245,7 @@
    - Any specific instructions or preferences
    - Business context, industry, target audience information
 
-2. **Create comprehensive client blueprint in `docs/onboarding/client-input-files/blueprint-plan-client-codebase-profile.md`:**
+2. **Create comprehensive client blueprint in `docs/onboarding/blueprint-plan-client-codebase-profile.md`:**
 
    **Required blueprint sections:**
    ```markdown
@@ -306,12 +306,18 @@
    - Legal/compliance considerations
    - Any custom development patterns
 
-2. **Update the blueprint with enhanced guidelines:**
+2. **Read current agent handover notes in `docs/onboarding/agent-work-handover-notes.md`:**
+   - Understand current project status and any ongoing work
+   - Check for known issues or technical debt
+   - Review any patterns or lessons learned from previous agents
+   - Note any urgent or high-priority items
+
+3. **Update the blueprint with enhanced guidelines:**
    - Integrate tone of voice into content strategy
    - Apply industry-specific best practices
    - Document any special compliance requirements
 
-3. **Prepare for execution phase:**
+4. **Prepare for execution phase:**
    - Validate all prerequisites are met
    - Ensure understanding of client requirements
    - Confirm technical feasibility of all planned changes
@@ -374,6 +380,13 @@ After completing the 3-step workflow, proceed with systematic implementation:
    - Create client-specific documentation
    - Update maintenance procedures
    - Provide training materials if needed
+
+4. **🔄 MANDATORY: Update agent handover notes (`docs/onboarding/agent-work-handover-notes.md`):**
+   - Document all work completed in this session
+   - Update project status and technical state
+   - Note any issues discovered or lessons learned
+   - Update priority queue for next agent
+   - Document any new patterns or best practices discovered
 
 ---
 
