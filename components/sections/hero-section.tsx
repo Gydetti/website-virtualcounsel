@@ -126,7 +126,9 @@ export default function HeroSection({
 
       <div className="grid lg:grid-cols-2 items-center gap-8 sm:gap-8 md:gap-10 lg:gap-10">
         {/* Removed parent LazySection to prevent delay compounding */}
-        <div className={`${contentOrderClass} flex flex-col justify-center items-center space-y-6 z-10`}>
+        <div
+          className={`${contentOrderClass} flex flex-col justify-center items-center space-y-6 z-10`}
+        >
           {badgeText && (
             <LazySection delay={0.1}>
               <div className="flex justify-center w-full">

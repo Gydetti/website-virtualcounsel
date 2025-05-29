@@ -257,7 +257,7 @@ The GMG Template Website 2025 is a highly configurable, modern, and robust Next.
 ### Custom UI Primitives
 - **Directory:** `components/ui/` contains a large set of custom UI primitives (button, card, input, carousel, background-pattern, spark-button, lazy-section, optimized-image, etc.).
 - **Pattern:** Use these for consistent UI/UX. Many are not just wrappers for shadcn/ui, but have custom logic (e.g., BackgroundCanvas for animated backgrounds, lazy-section for scroll-triggered animations, optimized-image for image optimization).
-- **Equal height cards:** All card components (TestimonialCard, ServiceCard, etc.) support equal height layouts using CSS Grid and flexbox. Use `items-stretch` on the grid container and `card-equal-height h-full` classes on cards. The global CSS includes `.card-equal-height` utilities for consistent card behavior.
+- **Equal height cards:** All card components (TestimonialCard, ServiceCard, etc.) support equal height layouts using CSS Grid and flexbox. Use `card-equal-height justify-items-center` on the grid container, wrap each card in a `size-full max-w-sm` div, and use `size-full flex flex-col justify-between` on the Card component. See working examples in `blog-section.tsx` and `services/page.tsx`. The global CSS includes `.card-equal-height` utilities for consistent card behavior.
 
 #### ⚠️ CRITICAL: Button Hover Effects in Card-Based Designs
 
