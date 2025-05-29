@@ -126,12 +126,10 @@ export default function HeroSection({
 
       <div className="grid lg:grid-cols-2 items-center gap-8 sm:gap-8 md:gap-10 lg:gap-10">
         {/* Removed parent LazySection to prevent delay compounding */}
-        <div
-          className={`${contentOrderClass} flex flex-col justify-center items-center space-y-6 z-10`}
-        >
+        <div className={`${contentOrderClass} flex flex-col justify-center space-y-6 z-10`}>
           {badgeText && (
             <LazySection delay={0.1}>
-              <div className="flex justify-center w-full">
+              <div className="flex justify-center md:justify-start w-full">
                 <Badge variant="dark" className="w-fit text-white">
                   {badgeText}
                 </Badge>
@@ -142,7 +140,7 @@ export default function HeroSection({
             <LazySection delay={0.2}>
               <h1
                 id="hero-section-heading"
-                className="font-bold leading-tight text-balance text-center"
+                className="font-bold leading-tight text-balance text-center md:text-left"
               >
                 <span className="block">{headline}</span>
                 <HeroTyping typingWords={typingWords} />
@@ -151,12 +149,14 @@ export default function HeroSection({
           )}
           {subheadline && (
             <LazySection delay={0.3}>
-              <p className="text-body-lg text-center max-w-lg mx-auto">{subheadline}</p>
+              <p className="text-body-lg text-center md:text-left max-w-lg mx-auto md:mx-0">
+                {subheadline}
+              </p>
             </LazySection>
           )}
           {(primaryCta?.text || secondaryCta?.text) && (
             <LazySection delay={0.4} className="w-full">
-              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 pt-4 justify-center items-center">
+              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 pt-4 justify-center md:justify-start items-center md:items-start">
                 {primaryCta?.text && primaryCta.href && (
                   <Button
                     size="lg"
@@ -185,7 +185,7 @@ export default function HeroSection({
           )}
           {showHelpedStats && (
             <LazySection delay={0.5}>
-              <div className="flex justify-center w-full">
+              <div className="flex justify-center md:justify-start w-full">
                 <div className="flex items-center space-x-4 mt-6 text-sm">
                   <div className="flex -space-x-2">
                     {[1, 2, 3, 4].map(i => (
