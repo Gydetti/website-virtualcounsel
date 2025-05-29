@@ -116,7 +116,7 @@ export default function HeroSection({
       bgClass={siteConfig.sectionStyles?.heroGradient ?? ''}
       patternStyle={rawPatternStyle}
       patternOpacity={usedOpacity}
-      className="relative md:min-h-[880px] flex"
+      className="relative flex"
     >
       {/* BackgroundPattern now handled by Section */}
 
@@ -126,7 +126,7 @@ export default function HeroSection({
 
       <div className="grid lg:grid-cols-2 items-center gap-8 sm:gap-8 md:gap-10 lg:gap-10">
         {/* Removed parent LazySection to prevent delay compounding */}
-        <div className={`${contentOrderClass} flex flex-col justify-center space-y-6 z-10`}>
+        <div className={`${contentOrderClass} flex flex-col justify-center space-y-2 z-10`}>
           {badgeText && (
             <LazySection delay={0.1}>
               <div className="flex justify-center md:justify-start w-full">

@@ -13,6 +13,24 @@ alwaysApply: true
 
 **Note:** Production builds now output into `.next-prod`, while development previews continue to use `.next`. Clearing the production cache should only remove `.next-prod`.
 
+## Development Server Usage Guidelines
+
+**🚫 DO NOT run `npm run dev` unless:**
+- Explicitly requested by the user for browser testing
+- Visual/UI validation required in live browser environment  
+- Hot reload testing needed for iterative development
+- Debugging client-side runtime issues requiring live inspection
+- User specifically asks to "start the dev server" or "test in browser"
+
+**✅ FOR CODE ANALYSIS, DEBUGGING, AND FIXES, USE:**
+- File reading and code inspection tools (primary method)
+- `npm run build` for compile-time errors and TypeScript issues
+- `npm run lint -- --fix` for linting and import sorting issues  
+- `npm run verify:local` for comprehensive validation
+- Static code analysis over live server debugging
+
+**Rationale:** The dev server provides limited value for most debugging tasks. Code analysis through file inspection is more efficient, targeted, and doesn't interfere with existing development workflows. The build process catches 95% of issues without needing a live server.
+
 Always perform the following steps on any code changes before pushing to the `main` branch:
 
 1. **Clear Cache**  

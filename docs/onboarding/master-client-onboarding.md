@@ -1,5 +1,216 @@
 # Master Client Onboarding & Codebase Guide
 
+**🎯 OVERVIEW:** This is the master guide for the GMG Template Website 2025 - a highly configurable, modern Next.js template designed for autonomous AI-driven client onboarding and customization.
+
+---
+
+## 📋 **COMPLETE ONBOARDING SYSTEM**
+
+This onboarding system is split into two comprehensive documents:
+
+### **1. AI Agent Workflow & Role Briefing** 📖
+**File:** `docs/onboarding/ai-agent-workflow-briefing.md`
+
+**👥 FOR:** AI agents who need to understand their role, capabilities, and complete autonomous workflow
+**📋 CONTAINS:**
+- Multi-disciplinary role definition (designer, copywriter, developer, etc.)
+- Complete customization scope and capabilities
+- Quality standards and design expertise
+- 3-step mandatory workflow (understanding → analysis → execution)
+- Critical success factors and common pitfalls
+- Advanced autonomous features and reporting
+
+### **2. Codebase Technical Guide** 🔧
+**File:** `docs/onboarding/codebase-technical-guide.md`
+
+**👥 FOR:** Developers and AI agents who need detailed technical implementation guidance
+**📋 CONTAINS:**
+- Codebase structure and configuration
+- Theming, branding, and design systems
+- Component architecture and patterns
+- Testing, deployment, and CI workflows
+- Advanced utilities and troubleshooting
+- Complete technical reference and best practices
+
+---
+
+## 🚀 **QUICKSTART FOR AI AGENTS**
+
+**🔄 Essential Reading Order:**
+1. **Read this overview** (current document) ← YOU ARE HERE
+2. **Read the AI Agent Workflow & Role Briefing** (`ai-agent-workflow-briefing.md`)
+3. **Read the Codebase Technical Guide** (`codebase-technical-guide.md`)
+4. **Study core configuration files:** `lib/site.config.local.ts`, `lib/theme.variants.ts`, `lib/data/staticContent.ts`
+5. **Validate system integrity:** `npm run verify:local`
+
+**⚡ Zero-Context Setup:**
+```bash
+# 1. Verify everything works
+npm run verify:local
+
+# 2. For client customization:
+# - Update lib/site.config.local.ts (branding, theme, features)
+# - Replace content in lib/data/staticContent.ts
+# - Run verification again
+npm run verify:local
+
+# 3. Deploy (after all tests pass)
+git add . && git commit -m "feat: client customization" && git push origin main
+```
+
+---
+
+## 🏗️ **PROJECT ARCHITECTURE OVERVIEW**
+
+### **Single Source of Truth**
+- **Configuration:** `lib/site.config.local.ts` - All theming, features, content structure
+- **Content:** `lib/data/staticContent.ts` - All placeholder content with meta-instructions
+- **Theming:** `lib/theme.variants.ts` - Multiple visual variants (v1, v2, v3)
+- **Validation:** Zod schemas ensure type safety and data integrity
+
+### **Key Directories**
+- **`app/`** - Next.js App Router pages and API routes
+- **`components/`** - Reusable UI, sections, layout, analytics
+- **`lib/`** - Configuration, data, schemas, utilities
+- **`tests/`** - Unit (Vitest), integration (MSW), E2E (Playwright)
+- **`docs/onboarding/`** - Complete onboarding documentation system
+
+### **Core Features**
+- **Theme variants** with SSR CSS variable injection (no FOUC)
+- **Section-driven pages** with config-based composition
+- **Feature flags** for everything (pages, sections, functionality)
+- **Dynamic content** with meta-instructional placeholders
+- **Image optimization** pipeline with placeholder system
+- **Testing coverage** across all layers (unit, integration, E2E)
+
+---
+
+## 🎨 **CUSTOMIZATION CAPABILITIES**
+
+### **What Can Be Customized (Everything!)**
+- **Visual:** Colors, typography, spacing, border radius, shadows, patterns
+- **Structural:** Page architecture, section order, content blocks, navigation
+- **Content:** Copy, metadata, CTAs, value propositions, service descriptions
+- **Functionality:** Contact forms, newsletters, tracking, analytics
+- **Performance:** Image optimization, bundle splitting, Core Web Vitals
+
+### **How Customization Works**
+1. **Theme System:** All visual tokens defined in config, injected as CSS variables
+2. **Content System:** Structured content with validation schemas
+3. **Feature Flags:** Toggle any functionality on/off
+4. **Section Composition:** Pages built from configurable section components
+5. **Asset Pipeline:** Optimized images with fallback system
+
+---
+
+## 🚨 **CRITICAL WORKFLOWS**
+
+### **🖼️ Image Handling**
+- **INITIAL BUILD:** Maintain placeholder images (never create fake ones)
+- **CLIENT IMAGES:** Will be added to `docs/onboarding/client-input-files/images/` when ready
+- **OPTIMIZATION:** Run `npm run image-optimize` only when client images are provided
+
+### **🧪 Testing & Quality Gates**
+```bash
+# Always run before pushing changes
+npm run verify:local
+```
+- Clears production cache
+- Runs build, lint, type-check
+- Executes unit, integration, and E2E tests
+- Must pass with ZERO errors
+
+### **🚀 Deployment**
+- Push to `main` branch triggers auto-deployment to Vercel
+- All quality gates must pass before pushing
+- Staging validation recommended for major changes
+
+---
+
+## 📁 **CLIENT ONBOARDING FILES**
+
+### **Input Files Location**
+- **Client materials:** `docs/onboarding/client-input-files/`
+- **Extra guidelines:** `docs/onboarding/extra-instructions-guidelines/`
+- **Visual references:** `docs/onboarding/example-screenshots-preview/`
+
+### **Key Working Documents**
+- **Client blueprint:** `docs/onboarding/blueprint-plan-client-codebase-profile.md`
+- **Agent handover:** `docs/onboarding/agent-work-handover-notes.md`
+
+---
+
+## ⚙️ **CORE CONFIGURATION PATTERNS**
+
+### **Theme Configuration**
+```typescript
+// lib/site.config.local.ts
+export const siteConfig = {
+  theme: {
+    colors: { /* semantic color tokens */ },
+    typography: { /* font system */ },
+    spacing: { /* spacing scale */ },
+    borders: { /* border radius system */ }
+  },
+  features: { /* feature flags */ },
+  pageStructures: { /* section composition */ }
+}
+```
+
+### **Content Structure**
+```typescript
+// lib/data/staticContent.ts
+export const content = {
+  pages: {
+    home: {
+      hero: { /* meta-instructional copy */ },
+      about: { /* benefit-focused content */ },
+      services: { /* value proposition structure */ }
+    }
+  }
+}
+```
+
+---
+
+## 🎯 **SUCCESS CRITERIA**
+
+Every customized website must achieve:
+- ✅ **Visual Excellence:** Professional, responsive, accessible design
+- ✅ **Technical Performance:** 90+ Lighthouse scores, fast loading
+- ✅ **Business Results:** Clear value props, optimized conversions
+- ✅ **Code Quality:** All tests pass, no errors/warnings
+- ✅ **Accessibility:** WCAG AA compliance, screen reader support
+
+---
+
+## 🔗 **NEXT STEPS**
+
+**For AI Agents:**
+1. Read `docs/onboarding/ai-agent-workflow-briefing.md` to understand your complete role
+2. Read `docs/onboarding/codebase-technical-guide.md` for technical implementation details
+3. Study the 3-step workflow and execute systematic client onboarding
+
+**For Developers:**
+1. Start with `docs/onboarding/codebase-technical-guide.md` for technical deep-dive
+2. Review `lib/site.config.local.ts` and `lib/theme.variants.ts` for configuration patterns
+3. Run `npm run verify:local` to validate your development environment
+
+---
+
+## 📚 **ADDITIONAL RESOURCES**
+
+- **AI Recipes & Automation:** See quickstart section in workflow briefing
+- **Advanced Patterns:** Detailed in technical guide (section 🔧)
+- **Troubleshooting:** Common pitfalls and solutions in technical guide
+- **Design System:** Complete visual patterns and utilities documentation
+
+---
+
+**🎯 REMEMBER:** This system enables complete autonomous customization from template to production-ready client website. Every decision should be data-driven, every change should be tested, and every customization should follow established patterns.
+
+**📋 DOCUMENTATION:** This master guide provides the overview. The specialized documents contain all the detailed information needed for successful project execution.
+
 ---
 
 ## 🤖 AI Assistant Autonomous Workflow
@@ -244,8 +455,16 @@
    - Existing website screenshots or references
    - Any specific instructions or preferences
    - Business context, industry, target audience information
+   - **⚠️ IMAGES:** Check for images in `docs/onboarding/client-input-files/images/` - if the folder is empty or doesn't exist, images will be provided later in the process
 
-2. **Create comprehensive client blueprint in `docs/onboarding/blueprint-plan-client-codebase-profile.md`:**
+2. **🚨 CRITICAL IMAGE WORKFLOW UNDERSTANDING:**
+   - **Website build comes FIRST, images come LATER**
+   - **NEVER create, generate, or make up fake images**
+   - **ALWAYS maintain existing placeholder images during initial build**
+   - **Client images will be added to `docs/onboarding/client-input-files/images/` when ready**
+   - **Only replace placeholders when real client images are provided**
+
+3. **Create comprehensive client blueprint in `docs/onboarding/blueprint-plan-client-codebase-profile.md`:**
 
    **Required blueprint sections:**
    ```markdown
@@ -287,7 +506,7 @@
    - Maintenance and update procedures
    ```
 
-3. **Document potential challenges and solutions:**
+4. **Document potential challenges and solutions:**
    - Identify any non-standard requirements
    - Plan workarounds for edge cases
    - Note any custom development needs
@@ -340,10 +559,12 @@ After completing the 3-step workflow, proceed with systematic implementation:
    - Update all meta-instructional copy with real content
    - Ensure content follows established patterns and best practices
 
-3. **Asset pipeline:**
-   - Add client images to `assets/images/raw/`
-   - Run `npm run image-optimize`
-   - Update fallback images and placeholders
+3. **🖼️ Asset pipeline (IMAGES COME LATER):**
+   - **🚨 DO NOT replace placeholder images during initial build**
+   - **🚨 DO NOT create, generate, or make up fake images**
+   - **✅ MAINTAIN existing placeholder images from `public/images/placeholders/`**
+   - **📁 Client images will be provided later in `docs/onboarding/client-input-files/images/`**
+   - **⏳ Image optimization workflow (`npm run image-optimize`) will be executed only when real client images are available**
 
 #### **Phase B: Validation & Quality Assurance** ✅
 1. **Mandatory testing workflow:**
@@ -380,6 +601,7 @@ After completing the 3-step workflow, proceed with systematic implementation:
    - Create client-specific documentation
    - Update maintenance procedures
    - Provide training materials if needed
+   - **📝 Document image requirements:** Note in handover that client images should be placed in `docs/onboarding/client-input-files/images/` for future optimization
 
 4. **🔄 MANDATORY: Update agent handover notes (`docs/onboarding/agent-work-handover-notes.md`):**
    - Document all work completed in this session
@@ -387,6 +609,7 @@ After completing the 3-step workflow, proceed with systematic implementation:
    - Note any issues discovered or lessons learned
    - Update priority queue for next agent
    - Document any new patterns or best practices discovered
+   - **📋 Image status:** Document whether client images are pending and expected location
 
 ---
 
@@ -399,6 +622,7 @@ After completing the 3-step workflow, proceed with systematic implementation:
 - ✅ All pages load correctly in multiple browsers
 - ✅ Mobile responsiveness validated
 - ✅ Accessibility compliance confirmed
+- ✅ **Placeholder images maintained (no fake/generated images)**
 
 #### **Common Pitfalls to Avoid:**
 - 🚫 Skipping the full system understanding (Step 1)
@@ -406,6 +630,9 @@ After completing the 3-step workflow, proceed with systematic implementation:
 - 🚫 Hardcoding colors or values instead of using theme system
 - 🚫 Breaking existing patterns for "custom" solutions
 - 🚫 Deploying without comprehensive validation
+- 🚫 **Creating, generating, or making up fake images**
+- 🚫 **Replacing placeholder images before client images are provided**
+- 🚫 **Assuming images are available when `docs/onboarding/client-input-files/images/` is empty**
 
 #### **Emergency Procedures:**
 - **If tests fail:** Stop immediately, analyze logs, fix issues before proceeding
@@ -607,10 +834,32 @@ The GMG Template Website 2025 is a highly configurable, modern, and robust Next.
 ## 8. Images & Asset Pipeline
 
 - **Raw images**: Source images are stored in `assets/images/raw/`.
+- **Client images**: **Client-provided images will be placed in `docs/onboarding/client-input-files/images/` when ready**
 - **Optimized images**: Use `npm run image-optimize` to generate optimized images in `public/images/` and `blurDataURL.json`.
 - **Image components**: Use `next/image` or `<OptimizedImage />` for all images; no `<img>` tags.
 - **Fallbacks**: All fallback images use `DEFAULT_PLACEHOLDER_IMAGE` from `lib/constants.ts`.
 - **Testing**: E2E and unit tests verify image loading and fallbacks.
+
+### 🚨 **CRITICAL IMAGE WORKFLOW:**
+
+1. **Initial Build Phase:**
+   - **MAINTAIN all existing placeholder images**
+   - **DO NOT create, generate, or make up fake images**
+   - **VERIFY all placeholder images load correctly**
+
+2. **Client Image Integration Phase (Later):**
+   - Client images will be provided in `docs/onboarding/client-input-files/images/`
+   - Only then run `npm run image-optimize` to process client images
+   - Replace placeholder references with optimized client images
+   - Update alt text and image descriptions to match client content
+
+3. **Image Requirements for Clients:**
+   - High-resolution source images (minimum 1920px width for hero images)
+   - Proper naming convention (descriptive filenames)
+   - Organized by category (hero/, team/, services/, etc.)
+   - Professional quality and brand-appropriate content
+
+**⚠️ Remember:** The website must function perfectly with placeholder images. Real images are an enhancement, not a requirement for the initial build.
 
 ---
 
