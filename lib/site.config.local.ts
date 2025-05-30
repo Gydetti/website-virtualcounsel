@@ -183,9 +183,10 @@ export const siteConfig: SiteConfigSchema = {
       /**
        * Extra padding to add to hero sections when transparent mode is enabled
        * This prevents content from being hidden behind the transparent header
-       * Responsive: mobile (pt-20 = 80px), tablet (pt-24 = 96px), desktop (pt-28 = 112px)
+       * Supports responsive classes for different screen sizes
+       * Now supports all Tailwind spacing values: pt-16 through pt-48
        */
-      heroTopPadding: 'pt-20 md:pt-24 lg:pt-28', // Responsive padding for different screen sizes
+      heroTopPadding: 'pt-24 md:pt-32 lg:pt-36', // Higher values now work!
 
       /**
        * Transition duration for smooth animations (CSS transition-duration value)

@@ -270,6 +270,34 @@ All schemas follow the established patterns in `lib/schemas/sections.schema.ts`:
 - Need to analyze component structure to determine best schema approach
 - May need nested structure for different sections within the resource detail view
 
+### Available Padding Classes
+
+**Full Range of Padding Classes Now Supported:**
+Tailwind CSS classes `pt-16` through `pt-48` are now available in the safelist:
+
+- **pt-16** = 64px (4rem)
+- **pt-20** = 80px (5rem)  
+- **pt-24** = 96px (6rem)
+- **pt-28** = 112px (7rem)
+- **pt-32** = 128px (8rem) ✨
+- **pt-36** = 144px (9rem) ✨
+- **pt-40** = 160px (10rem) ✨
+- **pt-44** = 176px (11rem) ✨
+- **pt-48** = 192px (12rem) ✨
+
+All classes support responsive variants: `md:pt-32`, `lg:pt-36`, etc.
+
+**Why Higher Values Work Now:**
+Previously, values above `pt-28` weren't working because Tailwind JIT (Just-In-Time) compilation only generates CSS for classes it can detect in your code. Since the `heroTopPadding` is dynamically configurable, Tailwind couldn't detect these classes automatically.
+
+**Solution:** Added transparent header padding classes to the Tailwind safelist in `tailwind.config.ts`, ensuring all padding values are always available.
+
+```typescript
+// Now in tailwind.config.ts safelist:
+'pt-16', 'pt-20', 'pt-24', 'pt-28', 'pt-32', 'pt-36', 'pt-40', 'pt-44', 'pt-48',
+'md:pt-16', 'md:pt-20', // ... all responsive variants
+```
+
 ---
 
 *Continue to expand the audit table and document each refactor as it is completed. See codebase for current progress.*

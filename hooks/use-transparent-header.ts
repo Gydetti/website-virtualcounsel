@@ -7,7 +7,7 @@ import { siteConfig } from '@/lib/siteConfig';
 export function useTransparentHeader() {
   const headerConfig = siteConfig.theme.headerConfig;
   const isTransparentMode = headerConfig?.transparentMode ?? false;
-  const heroTopPadding = headerConfig?.heroTopPadding ?? 'pt-20 md:pt-24 lg:pt-28';
+  const heroTopPadding = headerConfig?.heroTopPadding ?? 'pt-24 md:pt-32 lg:pt-36';
   const transitionDuration = headerConfig?.transitionDuration ?? '300ms';
   const scrollThreshold = headerConfig?.scrollThreshold ?? 50;
 
