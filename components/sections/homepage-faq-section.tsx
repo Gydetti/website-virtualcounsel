@@ -49,19 +49,6 @@ export default function HomepageFaqSection({
     cat.questions.map(q => ({ question: q.question, answer: q.answer }))
   );
 
-  // Calculate max collapsed height and apply to all FAQ cards
-  const containerRef = useRef<HTMLDivElement>(null);
-  useLayoutEffect(() => {
-    if (!containerRef.current) return;
-    const items = Array.from(containerRef.current.querySelectorAll<HTMLDivElement>('.faq-item'));
-    if (items.length === 0) return;
-    const heights = items.map(item => item.getBoundingClientRect().height);
-    const max = Math.max(...heights);
-    for (const item of items) {
-      item.style.minHeight = `${max}px`;
-    }
-  }, []);
-
   return (
     <>
       <StructuredData type="faq" data={{ items: faqSchema }} />
@@ -87,23 +74,14 @@ export default function HomepageFaqSection({
             </p>
           )}
         </LazySection>
-        {/* FAQ items: responsive grid that centers content when fewer categories */}
-        <div
-          ref={containerRef}
-          className={`grid gap-8 text-left max-w-5xl mx-auto ${
-            categories.length === 1
-              ? 'grid-cols-1 max-w-3xl'
-              : categories.length === 2
-                ? 'grid-cols-1 md:grid-cols-2 max-w-4xl'
-                : 'grid-cols-1 md:grid-cols-3'
-          }`}
-        >
+        {/* FAQ items: single column layout with all categories stacked vertically */}
+        <div className="grid grid-cols-1 gap-8 text-left mx-auto max-w-3xl">
           {categories.map((cat, idx) => (
             <LazySection
               key={cat.category}
               animation="fade-up"
               delay={0.1 * idx}
-              className="text-center"
+              className="flex flex-col items-center"
             >
               {/* Category badge with solid background and strong shadow effect */}
               <div className="inline-flex items-center px-3 py-1 mb-6 bg-neutral-surface border border-divider rounded-full shadow-md">
@@ -112,18 +90,19 @@ export default function HomepageFaqSection({
               <Accordion
                 type="single"
                 collapsible
+                className="w-full max-w-2xl"
                 style={{ display: 'grid', gap: '1rem' } as CSSProperties}
               >
                 {cat.questions.map((q, qIdx) => (
                   <AccordionItem
                     key={q.question}
                     value={`faq-${cat.category}-${q.question}`}
-                    className="border border-divider rounded-lg overflow-hidden flex flex-col faq-item transition-all shadow-sm hover:shadow-md"
+                    className="w-full max-w-[670px] min-w-[670px] md:max-w-[670px] md:min-w-[670px] sm:max-w-full sm:min-w-full max-[640px]:max-w-full max-[640px]:min-w-full"
                   >
-                    <AccordionTrigger className="flex items-center justify-between w-full px-6 py-4 text-body-base text-neutral-text font-medium text-left bg-neutral-surface hover:bg-neutral-surface/80 ">
+                    <AccordionTrigger className="flex items-center justify-between w-full px-6 py-4 text-body-base text-neutral-text font-medium text-left bg-neutral-surface rounded-lg shadow-sm hover:shadow-md">
                       {q.question}
                     </AccordionTrigger>
-                    <AccordionContent className="px-6 py-4 text-base text-neutral-text bg-neutral-surface/90 border-t border-divider/50">
+                    <AccordionContent className="w-full px-6 py-4 text-base text-neutral-text bg-neutral-surface/90 border-t border-divider/50 rounded-b-lg text-left">
                       {q.answer}
                     </AccordionContent>
                   </AccordionItem>
