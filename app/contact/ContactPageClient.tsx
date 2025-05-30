@@ -12,6 +12,7 @@ import LazySection from '@/components/ui/lazy-section';
 import { Textarea } from '@/components/ui/textarea';
 import { useThemeBorderRadius } from '@/hooks/use-theme-border-radius';
 import { siteConfig } from '@/lib/siteConfig';
+import { cn } from '@/lib/utils';
 
 export default function ContactPageClient() {
   const contactConfig = siteConfig.contactForm;
@@ -34,6 +35,11 @@ export default function ContactPageClient() {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { getElementBorderRadius } = useThemeBorderRadius();
+
+  // Get header configuration to add extra padding if transparent mode is enabled
+  const headerConfig = siteConfig.theme.headerConfig;
+  const isTransparentHeader = headerConfig?.transparentMode ?? false;
+  const heroTopPadding = headerConfig?.heroTopPadding ?? 'pt-20 md:pt-24 lg:pt-28';
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -76,7 +82,7 @@ export default function ContactPageClient() {
     <>
       <Section
         bgClass={siteConfig.sectionStyles?.heroGradient ?? ''}
-        className="relative py-16 md:py-24 z-10"
+        className={cn('relative z-10', isTransparentHeader && heroTopPadding)}
       >
         <LazySection
           animation="none"

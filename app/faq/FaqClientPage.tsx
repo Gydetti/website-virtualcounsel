@@ -22,6 +22,7 @@ import { staticContent } from '@/lib/data/staticContent';
 import type { CSSProperties } from 'react';
 import { Section } from '@/components/layout/Section';
 import { siteConfig } from '@/lib/siteConfig';
+import { cn } from '@/lib/utils';
 
 export default function FaqClientPage() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -48,12 +49,17 @@ export default function FaqClientPage() {
         .filter(category => category.questions.length > 0)
     : faqCategories;
 
+  // Get header configuration to add extra padding if transparent mode is enabled
+  const headerConfig = siteConfig.theme.headerConfig;
+  const isTransparentHeader = headerConfig?.transparentMode ?? false;
+  const heroTopPadding = headerConfig?.heroTopPadding ?? 'pt-20 md:pt-24 lg:pt-28';
+
   return (
     <>
       <StructuredData type="faq" data={{ items: faqSchemaData }} />
       <Section
         bgClass={siteConfig.sectionStyles?.heroGradient ?? ''}
-        className="relative py-16 md:py-24 z-10"
+        className={cn('relative z-10', isTransparentHeader && heroTopPadding)}
       >
         <LazySection
           animation="none"

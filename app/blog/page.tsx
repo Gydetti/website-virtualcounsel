@@ -18,6 +18,7 @@ import { blogPageData } from '@/lib/data/staticContent';
 import { getBlogPosts } from '@/lib/data-utils';
 import { defaultMetadata } from '@/lib/metadata';
 import { siteConfig } from '@/lib/site.config.local';
+import { cn } from '@/lib/utils';
 
 export const metadata = defaultMetadata({
   title: `${siteConfig.site.name} | Blog`,
@@ -41,9 +42,17 @@ export default async function BlogPage() {
   const featuredPost = allPosts.find(post => post.featured);
   const regularPosts = allPosts.filter(post => !post.featured);
 
+  // Get header configuration to add extra padding if transparent mode is enabled
+  const headerConfig = siteConfig.theme.headerConfig;
+  const isTransparentHeader = headerConfig?.transparentMode ?? false;
+  const heroTopPadding = headerConfig?.heroTopPadding ?? 'pt-20 md:pt-24 lg:pt-28';
+
   return (
     <>
-      <Section bgClass={siteConfig.sectionStyles?.heroGradient ?? ''} className="relative z-10">
+      <Section 
+        bgClass={siteConfig.sectionStyles?.heroGradient ?? ''} 
+        className={cn('relative z-10', isTransparentHeader && heroTopPadding)}
+      >
         <LazySection>
           <div className="text-center mb-16">
             <Badge className="mb-4">{blogPageData.badgeText ?? 'From our blog'}</Badge>

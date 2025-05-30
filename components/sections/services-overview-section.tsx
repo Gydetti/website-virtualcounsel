@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import LazySection from '@/components/ui/lazy-section';
 import type { servicesOverviewSectionDataSchema } from '@/lib/schemas/sections.schema';
 import { siteConfig } from '@/lib/siteConfig';
+import { cn } from '@/lib/utils';
 
 export type ServicesOverviewSectionProps = z.infer<typeof servicesOverviewSectionDataSchema>;
 
@@ -14,11 +15,16 @@ export default function ServicesOverviewSection({
   heading,
   description,
 }: ServicesOverviewSectionProps) {
+  // Get header configuration to add extra padding if transparent mode is enabled
+  const headerConfig = siteConfig.theme.headerConfig;
+  const isTransparentHeader = headerConfig?.transparentMode ?? false;
+  const heroTopPadding = headerConfig?.heroTopPadding ?? 'pt-20 md:pt-24 lg:pt-28';
+
   return (
     <Section
       id="services-overview"
       bgClass={siteConfig.sectionStyles?.heroGradient ?? ''}
-      className="relative z-10 py-12"
+      className={cn('relative z-10', isTransparentHeader && heroTopPadding)}
     >
       <LazySection
         animation="none"

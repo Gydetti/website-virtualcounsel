@@ -8,6 +8,7 @@ import { Section } from '@/components/layout/Section';
 import LazySection from '@/components/ui/lazy-section';
 import type { resourceSchema } from '@/lib/schemas/contentBlocks.schema';
 import { siteConfig } from '@/lib/siteConfig';
+import { cn } from '@/lib/utils';
 
 interface ResourceListSectionProps {
   id: string;
@@ -16,7 +17,7 @@ interface ResourceListSectionProps {
   readMoreText?: string;
   patternStyle?: string;
   patternOpacity?: number;
-  patternFade?: 'none' | 'edges' | 'top' | 'bottom';
+  patternFade?: 'none' | 'edges' | 'vertical' | 'top' | 'bottom';
   patternColor?: string;
 }
 
@@ -30,6 +31,11 @@ export default function ResourceListSection({
   patternFade,
   patternColor,
 }: ResourceListSectionProps) {
+  // Get header configuration to add extra padding if transparent mode is enabled
+  const headerConfig = siteConfig.theme.headerConfig;
+  const isTransparentHeader = headerConfig?.transparentMode ?? false;
+  const heroTopPadding = headerConfig?.heroTopPadding ?? 'pt-20 md:pt-24 lg:pt-28';
+
   if (!resources || resources.length === 0) {
     return (
       <Section
@@ -38,7 +44,7 @@ export default function ResourceListSection({
         patternOpacity={patternOpacity}
         patternFade={patternFade}
         patternColor={patternColor}
-        className="z-10"
+        className={cn('z-10', isTransparentHeader && heroTopPadding)}
       >
         <div className="text-center">
           <p>No resources available at the moment. Please check back later.</p>
@@ -71,7 +77,7 @@ export default function ResourceListSection({
       patternFade={patternFade}
       patternColor={patternColor}
       bgClass={siteConfig.sectionStyles?.heroGradient ?? ''}
-      className="z-10"
+      className={cn('z-10', isTransparentHeader && heroTopPadding)}
     >
       <LazySection>
         <h1 className="text-center mb-10">{title}</h1>

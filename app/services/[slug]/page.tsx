@@ -17,6 +17,7 @@ import { getServiceBySlug, getServices } from '@/lib/data-utils';
 import { iconComponents } from '@/lib/icon-utils';
 import { defaultMetadata } from '@/lib/metadata';
 import { siteConfig } from '@/lib/siteConfig';
+import { cn } from '@/lib/utils';
 
 interface ServicePageProps {
   params: Promise<{ slug: string }>;
@@ -68,9 +69,17 @@ export default async function ServicePage(props: ServicePageProps) {
   const { benefitsSection, faqSection, testimonialsSection, readyToStartCta, buttonLabels } =
     serviceDetailPageData;
 
+  // Get header configuration to add extra padding if transparent mode is enabled
+  const headerConfig = siteConfig.theme.headerConfig;
+  const isTransparentHeader = headerConfig?.transparentMode ?? false;
+  const heroTopPadding = headerConfig?.heroTopPadding ?? 'pt-20 md:pt-24 lg:pt-28';
+
   return (
     <>
-      <Section bgClass={siteConfig.sectionStyles?.heroGradient ?? ''}>
+      <Section 
+        bgClass={siteConfig.sectionStyles?.heroGradient ?? ''}
+        className={cn('relative z-10', isTransparentHeader && heroTopPadding)}
+      >
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div className="space-y-6">
             <LazySection animation="slide-up" delay={0}>

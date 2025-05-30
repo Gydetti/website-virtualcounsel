@@ -11,6 +11,7 @@ import TestimonialCard from '@/components/ui/testimonial-card';
 import * as homepageData from '@/lib/data/homepage';
 import { defaultMetadata } from '@/lib/metadata';
 import { siteConfig } from '@/lib/site.config.local';
+import { cn } from '@/lib/utils';
 
 // Generate page metadata
 export async function generateMetadata(): Promise<Metadata> {
@@ -31,13 +32,18 @@ export default function TestimonialsPage() {
 
   const { badgeText, heading, subtitle, testimonials } = homepageData.testimonialsSectionData;
 
+  // Get header configuration to add extra padding if transparent mode is enabled
+  const headerConfig = siteConfig.theme.headerConfig;
+  const isTransparentHeader = headerConfig?.transparentMode ?? false;
+  const heroTopPadding = headerConfig?.heroTopPadding ?? 'pt-20 md:pt-24 lg:pt-28';
+
   return (
     <>
       {/* Introduction Section with CSS-only staggered reveal */}
       <Section
         id="testimonials-intro"
         bgClass={siteConfig.sectionStyles?.heroGradient ?? ''}
-        className="relative z-10 py-12"
+        className={cn('relative z-10', isTransparentHeader && heroTopPadding)}
       >
         <LazySection
           animation="none"
