@@ -69,6 +69,8 @@ export type HeroSectionProps = z.infer<typeof heroSectionDataSchema> & {
   // Optional per-section background pattern overrides
   patternStyle?: string;
   patternOpacity?: number;
+  patternFade?: 'none' | 'edges' | 'vertical' | 'top' | 'bottom';
+  patternColor?: string;
 };
 
 export default function HeroSection({
@@ -88,6 +90,8 @@ export default function HeroSection({
   overlayValue,
   patternStyle,
   patternOpacity,
+  patternFade,
+  patternColor,
 }: HeroSectionProps) {
   // Hero image source state with fallback
   const [currentImageSrc, setCurrentImageSrc] = useState(image?.src);
@@ -131,6 +135,8 @@ export default function HeroSection({
       bgClass={siteConfig.sectionStyles?.heroGradient ?? ''}
       patternStyle={rawPatternStyle}
       patternOpacity={usedOpacity}
+      patternFade={patternFade}
+      patternColor={patternColor}
       className={cn('relative md:min-h-[880px] flex', isTransparentHeader && heroTopPadding)}
     >
       {/* BackgroundPattern now handled by Section */}
