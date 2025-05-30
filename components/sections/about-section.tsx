@@ -59,7 +59,16 @@ export default function AboutSection({
   // Get header configuration to add extra padding if transparent mode is enabled
   const headerConfig = siteConfig.theme.headerConfig;
   const isTransparentHeader = headerConfig?.transparentMode ?? false;
-  const heroTopPadding = headerConfig?.heroTopPadding ?? 'pt-24';
+  const heroTopPadding = headerConfig?.heroTopPadding ?? 'pt-20 md:pt-24 lg:pt-28';
+
+  // Debug logging in development for about section
+  if (process.env.NODE_ENV === 'development' && isHomepage) {
+    console.log('About Section (Homepage) - Transparent Header:', {
+      isTransparentHeader,
+      heroTopPadding,
+      isHomepage,
+    });
+  }
 
   // Determine spacing and layout based on variant
   let outerContainerClass = 'w-full grid gap-8 md:gap-12 lg:gap-16 items-center';

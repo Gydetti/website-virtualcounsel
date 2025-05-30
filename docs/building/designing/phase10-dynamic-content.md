@@ -38,6 +38,45 @@ headerConfig: {
 - Smooth color transitions for text and backgrounds
 - Fixed positioning when transparent, sticky when standard
 
+### Troubleshooting Transparent Header Spacing
+
+If the header overlaps content when transparent mode is enabled:
+
+1. **Check Console Logs**: When in development mode, check browser console for debug logs:
+   ```
+   Hero Section - Transparent Header: {
+     isTransparentHeader: true,
+     heroTopPadding: "pt-20 md:pt-24 lg:pt-28",
+     headerConfig: {...}
+   }
+   ```
+
+2. **Adjust Padding Values**: Update the `heroTopPadding` in your config:
+   ```typescript
+   headerConfig: {
+     transparentMode: true,
+     // Try different values based on your header height:
+     heroTopPadding: 'pt-24 md:pt-28 lg:pt-32', // More spacing
+     // or
+     heroTopPadding: 'pt-16 md:pt-20 lg:pt-24', // Less spacing
+   }
+   ```
+
+3. **Header Height Reference**:
+   - Mobile: ~80px (use `pt-20` = 80px)
+   - Tablet: ~96px (use `pt-24` = 96px) 
+   - Desktop: ~112px (use `pt-28` = 112px)
+
+4. **Custom Spacing**: You can use any Tailwind spacing classes:
+   ```typescript
+   heroTopPadding: 'pt-[88px] md:pt-[96px] lg:pt-[104px]' // Exact pixel values
+   ```
+
+5. **Multiple Sections**: The spacing is automatically applied to:
+   - Hero sections
+   - About sections (when `isHomepage={true}`)
+   - Any section using the `useTransparentHeader()` hook
+
 ## Progress Tracker
 
 ### ✅ Completed (Fully Dynamic)

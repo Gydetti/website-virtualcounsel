@@ -109,7 +109,16 @@ export default function HeroSection({
   // Get header configuration to add extra padding if transparent mode is enabled
   const headerConfig = siteConfig.theme.headerConfig;
   const isTransparentHeader = headerConfig?.transparentMode ?? false;
-  const heroTopPadding = headerConfig?.heroTopPadding ?? 'pt-24';
+  const heroTopPadding = headerConfig?.heroTopPadding ?? 'pt-20 md:pt-24 lg:pt-28';
+
+  // Debug logging in development
+  if (process.env.NODE_ENV === 'development') {
+    console.log('Hero Section - Transparent Header:', {
+      isTransparentHeader,
+      heroTopPadding,
+      headerConfig,
+    });
+  }
 
   // Determine raw pattern and opacity override
   const rawPatternStyle = patternStyle ?? siteConfig.theme.visualStyle?.patternStyle;

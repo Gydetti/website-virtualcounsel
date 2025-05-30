@@ -129,7 +129,7 @@ export const headerConfigSchema = z
     // Background color when scrolled (only applies in transparent mode)
     scrolledBackgroundColor: z.string().optional(), // e.g., 'bg-white/95'
     // Extra padding to add to hero sections when transparent mode is enabled
-    heroTopPadding: z.string().default('pt-24'), // Tailwind class for top padding
+    heroTopPadding: z.string().default('pt-24'), // Tailwind class(es) for top padding - supports responsive classes
     // Transition settings for smooth animations
     transitionDuration: z.string().default('300ms'),
     // Scroll threshold before background appears (in pixels)
