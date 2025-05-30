@@ -25,6 +25,7 @@ export default function SolutionVisionSection({
   badgeText,
   heading,
   description,
+  imagineTitle,
   benefits,
   calloutText,
   calloutCta, // Replaces calloutLinkText and calloutLinkHref
@@ -57,7 +58,9 @@ export default function SolutionVisionSection({
         transition={{ duration: 0.8, ease: 'easeOut' }}
         className="mx-auto max-w-4xl bg-neutral-surface/20 backdrop-blur-lg rounded-xl shadow-2xl p-6 md:p-12 space-y-8"
       >
-        <h3 className="font-semibold text-lg text-center my-0">Imagine having:</h3>
+        <h3 className="font-semibold text-lg text-center my-0">
+          {imagineTitle ?? 'Imagine having:'}
+        </h3>
         {benefits && benefits.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {benefits.map(b => (

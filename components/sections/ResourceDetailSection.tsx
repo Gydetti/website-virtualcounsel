@@ -10,11 +10,15 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import LazySection from '@/components/ui/lazy-section';
 import { DEFAULT_PLACEHOLDER_IMAGE } from '@/lib/constants';
+import { resourceDetailSectionData } from '@/lib/data/staticContent';
 import type { resourceSchema } from '@/lib/schemas/contentBlocks.schema';
+import type { resourceDetailSectionDataSchema } from '@/lib/schemas/sections.schema';
 import { siteConfig } from '@/lib/site.config.local';
 
 interface ResourceDetailSectionProps {
   resource: z.infer<typeof resourceSchema>;
+  // Optional content overrides
+  contentData?: z.infer<typeof resourceDetailSectionDataSchema>;
   // Optional per-section background pattern overrides
   patternStyle?: string;
   patternOpacity?: number;
@@ -24,6 +28,7 @@ interface ResourceDetailSectionProps {
 
 export default function ResourceDetailSection({
   resource,
+  contentData = resourceDetailSectionData,
   patternStyle,
   patternOpacity,
   patternFade,
@@ -35,19 +40,19 @@ export default function ResourceDetailSection({
       {
         name: 'name',
         type: 'text',
-        label: 'Full Name',
-        placeholder: 'Your full name',
+        label: contentData.formFieldLabels?.nameLabel ?? 'Full Name',
+        placeholder: contentData.formFieldLabels?.namePlaceholder ?? 'Your full name',
         required: true,
       },
       {
         name: 'email',
         type: 'email',
-        label: 'Email Address',
-        placeholder: 'your@email.com',
+        label: contentData.formFieldLabels?.emailLabel ?? 'Email Address',
+        placeholder: contentData.formFieldLabels?.emailPlaceholder ?? 'your@email.com',
         required: true,
       },
     ],
-    submitButtonText: 'Download Your Free Resource',
+    submitButtonText: contentData.downloadButtonText ?? 'Download Your Free Resource',
   };
 
   // Hero image variables with proper fallback
@@ -56,8 +61,8 @@ export default function ResourceDetailSection({
   const imgWidth = resource.heroImage?.width || 700;
   const imgHeight = resource.heroImage?.height || 1000;
 
-  // Professional outcomes list - fallback to placeholder content
-  const benefits: string[] = [
+  // Professional outcomes list - use dynamic content or fallback
+  const benefits: string[] = contentData.professionalOutcomes ?? [
     'Structured methodology for evidence-based implementation',
     'Professional frameworks developed through field research',
     'Assessment tools and outcome measurement strategies',
@@ -103,7 +108,9 @@ export default function ResourceDetailSection({
 
             {/* Professional outcomes section */}
             <div className="mb-8">
-              <h3 className="text-xl font-semibold mb-6 text-foreground">Professional Outcomes</h3>
+              <h3 className="text-xl font-semibold mb-6 text-foreground">
+                {contentData.outcomesTitle ?? 'Professional Outcomes'}
+              </h3>
               <ul className="space-y-4 text-left">
                 {benefits.map(benefit => (
                   <li key={benefit.slice(0, 20)} className="flex items-start gap-3 group">
@@ -140,10 +147,10 @@ export default function ResourceDetailSection({
             <Card className="w-full max-w-md shadow-xl border-0 bg-gradient-to-br from-white to-neutral-50/50 backdrop-blur-sm">
               <CardHeader className="text-center pb-4">
                 <CardTitle className="text-xl font-semibold text-foreground">
-                  Access This Professional Resource
+                  {contentData.accessFormTitle ?? 'Access This Professional Resource'}
                 </CardTitle>
                 <p className="text-sm text-foreground/70 mt-2">
-                  Complete the form below to receive your copy
+                  {contentData.accessFormSubtitle ?? 'Complete the form below to receive your copy'}
                 </p>
               </CardHeader>
               <CardContent className="pt-0">
@@ -160,18 +167,32 @@ export default function ResourceDetailSection({
           style={{ '--stagger-delay': '0.1s' } as CSSProperties}
         >
           <div className="max-w-4xl mx-auto text-center" style={{ '--index': 0 } as CSSProperties}>
-            <h2 className="text-3xl font-bold mb-6 text-foreground">Resource Overview</h2>
+            <h2 className="text-3xl font-bold mb-6 text-foreground">
+              {contentData.overviewTitle ?? 'Resource Overview'}
+            </h2>
             <div className="prose prose-lg mx-auto text-foreground/80">
-              <p className="text-lg leading-relaxed mb-6">
-                Professional development resource covering specific methodology, theoretical
-                framework, and practical applications. Designed to support evidence-based practice
-                and enhance professional competency in this specialized area.
-              </p>
-              <p className="leading-relaxed">
-                Developed through comprehensive research and field testing, this resource provides
-                structured guidance, assessment tools, and implementation strategies. Includes case
-                study examples and professional references to support continued learning.
-              </p>
+              {contentData.overviewParagraphs?.map((paragraph, index) => (
+                <p
+                  key={paragraph.slice(0, 50)}
+                  className={index === 0 ? 'text-lg leading-relaxed mb-6' : 'leading-relaxed'}
+                >
+                  {paragraph}
+                </p>
+              )) ?? (
+                <>
+                  <p className="text-lg leading-relaxed mb-6">
+                    Professional development resource covering specific methodology, theoretical
+                    framework, and practical applications. Designed to support evidence-based
+                    practice and enhance professional competency in this specialized area.
+                  </p>
+                  <p className="leading-relaxed">
+                    Developed through comprehensive research and field testing, this resource
+                    provides structured guidance, assessment tools, and implementation strategies.
+                    Includes case study examples and professional references to support continued
+                    learning.
+                  </p>
+                </>
+              )}
             </div>
           </div>
         </LazySection>
@@ -184,47 +205,45 @@ export default function ResourceDetailSection({
         >
           <div className="max-w-4xl mx-auto" style={{ '--index': 0 } as CSSProperties}>
             <h2 className="text-3xl font-bold mb-10 text-center text-foreground">
-              Who This Resource Serves
+              {contentData.whoThisIsForTitle ?? 'Who This Resource Serves'}
             </h2>
             <div className="grid md:grid-cols-2 gap-8 md:gap-12">
               <div className="space-y-4">
                 <h3 className="text-xl font-semibold mb-6 text-primary text-center md:text-left">
-                  Designed for professionals who:
+                  {contentData.designedForTitle ?? 'Designed for professionals who:'}
                 </h3>
                 <ul className="space-y-4 text-foreground/80">
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="size-5 text-primary shrink-0 mt-0.5" />
-                    <span>Professional context or challenge that describes ideal reader</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="size-5 text-primary shrink-0 mt-0.5" />
-                    <span>Specific expertise level or professional development goal</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="size-5 text-primary shrink-0 mt-0.5" />
-                    <span>Commitment to implementing evidence-based approaches</span>
-                  </li>
+                  {(
+                    contentData.designedForPoints ?? [
+                      'Professional context or challenge that describes ideal reader',
+                      'Specific expertise level or professional development goal',
+                      'Commitment to implementing evidence-based approaches',
+                    ]
+                  ).map((point, index) => (
+                    <li key={point.slice(0, 30)} className="flex items-start gap-3">
+                      <CheckCircle className="size-5 text-primary shrink-0 mt-0.5" />
+                      <span>{point}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
               <div className="space-y-4">
                 <h3 className="text-xl font-semibold mb-6 text-foreground/70 text-center md:text-left">
-                  Consider other resources if you:
+                  {contentData.considerOthersTitle ?? 'Consider other resources if you:'}
                 </h3>
                 <ul className="space-y-4 text-foreground/80">
-                  <li className="flex items-start gap-3">
-                    <span className="size-2 bg-foreground/40 rounded-full shrink-0 mt-2" />
-                    <span>Professional context where this approach may not be applicable</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="size-2 bg-foreground/40 rounded-full shrink-0 mt-2" />
-                    <span>
-                      Experience level that might benefit from foundational resources first
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="size-2 bg-foreground/40 rounded-full shrink-0 mt-2" />
-                    <span>Specific field or methodology that requires different approaches</span>
-                  </li>
+                  {(
+                    contentData.considerOthersPoints ?? [
+                      'Professional context where this approach may not be applicable',
+                      'Experience level that might benefit from foundational resources first',
+                      'Specific field or methodology that requires different approaches',
+                    ]
+                  ).map((point, index) => (
+                    <li key={point.slice(0, 30)} className="flex items-start gap-3">
+                      <span className="size-2 bg-foreground/40 rounded-full shrink-0 mt-2" />
+                      <span>{point}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -238,60 +257,67 @@ export default function ResourceDetailSection({
           style={{ '--stagger-delay': '0.1s' } as CSSProperties}
         >
           <div className="max-w-4xl mx-auto" style={{ '--index': 0 } as CSSProperties}>
-            <h2 className="text-3xl font-bold mb-8 text-center text-foreground">What's Inside</h2>
+            <h2 className="text-3xl font-bold mb-8 text-center text-foreground">
+              {contentData.whatsInsideTitle ?? "What's Inside"}
+            </h2>
             <div className="grid md:grid-cols-2 gap-8">
               <div className="space-y-6">
-                <div className="border-l-4 border-primary pl-6">
-                  <h3 className="text-xl font-semibold mb-2 text-foreground">
-                    Chapter/Section 1 Title
-                  </h3>
-                  <p className="text-foreground/70">
-                    Brief description of what this section covers and the key insights or tools
-                    provided.
-                  </p>
-                </div>
-                <div className="border-l-4 border-primary pl-6">
-                  <h3 className="text-xl font-semibold mb-2 text-foreground">
-                    Chapter/Section 2 Title
-                  </h3>
-                  <p className="text-foreground/70">
-                    Description of the framework, strategy, or methodology explained in this
-                    section.
-                  </p>
-                </div>
-                <div className="border-l-4 border-primary pl-6">
-                  <h3 className="text-xl font-semibold mb-2 text-foreground">
-                    Chapter/Section 3 Title
-                  </h3>
-                  <p className="text-foreground/70">
-                    Overview of actionable steps, templates, or checklists included here.
-                  </p>
-                </div>
+                {(
+                  contentData.chapters ?? [
+                    {
+                      title: 'Chapter/Section 1 Title',
+                      description:
+                        'Brief description of what this section covers and the key insights or tools provided.',
+                    },
+                    {
+                      title: 'Chapter/Section 2 Title',
+                      description:
+                        'Description of the framework, strategy, or methodology explained in this section.',
+                    },
+                    {
+                      title: 'Chapter/Section 3 Title',
+                      description:
+                        'Overview of actionable steps, templates, or checklists included here.',
+                    },
+                  ]
+                ).map(chapter => (
+                  <div key={chapter.title} className="border-l-4 border-primary pl-6">
+                    <h3 className="text-xl font-semibold mb-2 text-foreground">{chapter.title}</h3>
+                    <p className="text-foreground/70">{chapter.description}</p>
+                  </div>
+                ))}
               </div>
               <div className="space-y-6">
                 <div className="bg-gradient-to-br from-primary/5 to-secondary/5 rounded-xl p-6 h-fit">
                   <h3 className="text-xl font-semibold mb-6 text-foreground text-center">
-                    Bonus Materials
+                    {contentData.bonusMaterialsTitle ?? 'Bonus Materials'}
                   </h3>
                   <ul className="space-y-4">
-                    <li className="flex items-start gap-3 text-foreground/80">
-                      <CheckCircle className="size-5 text-primary shrink-0 mt-0.5" />
-                      <span>Downloadable template or worksheet description</span>
-                    </li>
-                    <li className="flex items-start gap-3 text-foreground/80">
-                      <CheckCircle className="size-5 text-primary shrink-0 mt-0.5" />
-                      <span>Quick reference guide or cheat sheet</span>
-                    </li>
-                    <li className="flex items-start gap-3 text-foreground/80">
-                      <CheckCircle className="size-5 text-primary shrink-0 mt-0.5" />
-                      <span>Additional resource or tool recommendation</span>
-                    </li>
+                    {(
+                      contentData.bonusMaterials ?? [
+                        'Downloadable template or worksheet description',
+                        'Quick reference guide or cheat sheet',
+                        'Additional resource or tool recommendation',
+                      ]
+                    ).map(material => (
+                      <li
+                        key={material.slice(0, 30)}
+                        className="flex items-start gap-3 text-foreground/80"
+                      >
+                        <CheckCircle className="size-5 text-primary shrink-0 mt-0.5" />
+                        <span>{material}</span>
+                      </li>
+                    ))}
                   </ul>
                 </div>
                 <div className="text-center py-6 px-8 bg-neutral-50 rounded-xl">
-                  <div className="text-2xl font-bold text-primary mb-2">X Pages</div>
+                  <div className="text-2xl font-bold text-primary mb-2">
+                    {contentData.totalPages ?? 'X Pages'}
+                  </div>
                   <div className="text-sm text-foreground/70 mb-4">Total content length</div>
-                  <div className="text-2xl font-bold text-primary mb-2">X Minutes</div>
+                  <div className="text-2xl font-bold text-primary mb-2">
+                    {contentData.readingTime ?? 'X Minutes'}
+                  </div>
                   <div className="text-sm text-foreground/70">Estimated reading time</div>
                 </div>
               </div>
@@ -307,29 +333,37 @@ export default function ResourceDetailSection({
         >
           <div className="max-w-4xl mx-auto text-center" style={{ '--index': 0 } as CSSProperties}>
             <h2 className="text-3xl font-bold mb-8 text-foreground">
-              Trusted by Professional Communities
+              {contentData.professionalValidationTitle ?? 'Trusted by Professional Communities'}
             </h2>
             <div className="grid md:grid-cols-3 gap-8 mb-8">
               <div className="text-center">
-                <div className="text-2xl font-semibold text-primary mb-2">XX+ Years</div>
+                <div className="text-2xl font-semibold text-primary mb-2">
+                  {contentData.yearsExperience ?? 'XX+ Years'}
+                </div>
                 <div className="text-sm text-foreground/70">Combined expertise</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-semibold text-primary mb-2">Evidence-Based</div>
+                <div className="text-2xl font-semibold text-primary mb-2">
+                  {contentData.methodologyType ?? 'Evidence-Based'}
+                </div>
                 <div className="text-sm text-foreground/70">Methodology</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-semibold text-primary mb-2">Peer-Reviewed</div>
+                <div className="text-2xl font-semibold text-primary mb-2">
+                  {contentData.approachType ?? 'Peer-Reviewed'}
+                </div>
                 <div className="text-sm text-foreground/70">Approach</div>
               </div>
             </div>
             <blockquote className="text-lg text-foreground/80 max-w-2xl mx-auto border-l-4 border-primary pl-6">
-              "Professional testimonial highlighting how this resource enhanced their practice
-              methodology and client outcomes. Should reflect authentic professional development
-              rather than dramatic claims."
+              "
+              {contentData.testimonialQuote ??
+                'Professional testimonial highlighting how this resource enhanced their practice methodology and client outcomes. Should reflect authentic professional development rather than dramatic claims.'}
+              "
             </blockquote>
             <div className="mt-4 text-foreground/60">
-              — Professional Name, Credentials, Field of Practice
+              {contentData.testimonialAuthor ??
+                '— Professional Name, Credentials, Field of Practice'}
             </div>
           </div>
         </LazySection>

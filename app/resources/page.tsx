@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 
 import ResourceListSection from '@/components/sections/ResourceListSection';
 import { getResources } from '@/lib/data/resources';
+import { resourcesPageData } from '@/lib/data/staticContent';
 import { defaultMetadata } from '@/lib/metadata';
 import { siteConfig } from '@/lib/site.config.local';
 
@@ -24,11 +25,19 @@ export default async function ResourcesIndexPage() {
     return (
       <section className="py-12">
         <div className="container mx-auto px-4 text-center">
-          <p className="text-xl text-feedback-error">No resources available at the moment.</p>
+          <p className="text-xl text-feedback-error">
+            {resourcesPageData.noResourcesMessage ?? 'No resources available at the moment.'}
+          </p>
         </div>
       </section>
     );
   }
   // Render resource list with static background; inner content animates
-  return <ResourceListSection id="resources-list-main" resources={resources} />;
+  return (
+    <ResourceListSection
+      id="resources-list-main"
+      resources={resources}
+      readMoreText={resourcesPageData.readMoreText}
+    />
+  );
 }

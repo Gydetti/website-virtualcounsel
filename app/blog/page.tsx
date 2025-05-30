@@ -14,13 +14,16 @@ import {
 } from '@/components/ui/card';
 import LazySection from '@/components/ui/lazy-section';
 import OptimizedImage from '@/components/ui/optimized-image';
+import { blogPageData } from '@/lib/data/staticContent';
 import { getBlogPosts } from '@/lib/data-utils';
 import { defaultMetadata } from '@/lib/metadata';
 import { siteConfig } from '@/lib/site.config.local';
 
 export const metadata = defaultMetadata({
   title: `${siteConfig.site.name} | Blog`,
-  description: 'Read our latest articles and insights on business growth, marketing, and more.',
+  description:
+    blogPageData.description ??
+    'Read our latest articles and insights on business growth, marketing, and more.',
 });
 
 export default async function BlogPage() {
@@ -43,10 +46,11 @@ export default async function BlogPage() {
       <Section bgClass={siteConfig.sectionStyles?.heroGradient ?? ''} className="relative z-10">
         <LazySection>
           <div className="text-center mb-16">
-            <Badge className="mb-4">Short label introducing blog section</Badge>
-            <h1 className="">Blog page heading</h1>
+            <Badge className="mb-4">{blogPageData.badgeText ?? 'From our blog'}</Badge>
+            <h1 className="">{blogPageData.heading ?? 'Latest insights & articles'}</h1>
             <p className="text-neutral-text max-w-3xl mx-auto">
-              Brief description explaining content focus and reader benefits.
+              {blogPageData.description ??
+                'Read our latest articles and insights on business growth, marketing, and more.'}
             </p>
           </div>
 
@@ -83,7 +87,7 @@ export default async function BlogPage() {
                             })}
                           </span>
                           <div className="text-primary flex items-center space-x-2">
-                            <span>{`Read featured article: ${featuredPost.title}`}</span>
+                            <span>{`${blogPageData.readFeaturedText ?? 'Read featured article'}: ${featuredPost.title}`}</span>
                             <ArrowRight className="ml-2 size-4" />
                           </div>
                         </div>
@@ -99,7 +103,9 @@ export default async function BlogPage() {
 
       <LazySection>
         <Section className="bg-neutral-background">
-          <h2 className="text-3xl font-bold mb-12">Section heading for regular posts</h2>
+          <h2 className="text-3xl font-bold mb-12">
+            {blogPageData.regularPostsHeading ?? 'Recent articles'}
+          </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {regularPosts.map((post, index) => (
               <LazySection key={post.id} delay={index * 0.1} className="h-full">
@@ -137,7 +143,7 @@ export default async function BlogPage() {
                     </CardContent>
                     <CardFooter className="mt-auto pt-0">
                       <div className="mt-auto pt-0 whitespace-normal break-words text-primary flex items-center space-x-2">
-                        <span>{`Read more: ${post.title}`}</span>
+                        <span>{`${blogPageData.readMoreText ?? 'Read more'}: ${post.title}`}</span>
                         <ArrowRight className="ml-2 size-4" />
                       </div>
                     </CardFooter>

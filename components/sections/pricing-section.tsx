@@ -14,6 +14,7 @@ export default function PricingSection({
   badgeText, // Added from schema
   heading, // Added from schema
   description, // Added from schema
+  popularBadgeText,
   cards,
 }: PricingSectionProps) {
   if (!cards || cards.length === 0) {
@@ -45,7 +46,7 @@ export default function PricingSection({
           >
             {card.popular && (
               <div className="absolute top-0 right-0 mt-4 mr-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-semibold uppercase">
-                Popular
+                {popularBadgeText || 'Popular'}
               </div>
             )}
             <CardHeader className="text-center bg-background px-6 py-8 rounded-t-lg">

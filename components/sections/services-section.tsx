@@ -35,6 +35,8 @@ export default function ServicesSection({
   heading,
   description,
   services,
+  learnMoreText,
+  popularBadgeText,
   // displayType is part of schema, but not used for rendering logic here yet
   viewAllCta, // Replaces viewAllText and viewAllLink
   patternStyle,
@@ -49,6 +51,28 @@ export default function ServicesSection({
     return null;
   }
 
+  // FIRST_EDIT: Compute responsive grid columns based on number of services
+  const colsClass =
+    services.length === 1
+      ? 'grid-cols-1'
+      : services.length === 2
+        ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-2'
+        : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3';
+
+  // SECOND_EDIT: Adjust gap based on number of services
+  const gapClass = services.length === 2 ? 'gap-6 md:gap-4 lg:gap-6' : 'gap-8';
+
+  // THIRD_EDIT: Adjust card wrapper for different layouts
+  const getCardWrapperClass = (serviceCount: number) => {
+    if (serviceCount === 1) {
+      return 'max-w-[550px] mx-auto size-full';
+    }
+    if (serviceCount === 2) {
+      return 'size-full'; // Remove max-width and centering for 2-card layout
+    }
+    return 'max-w-[550px] mx-auto size-full'; // Keep max-width for 3+ cards
+  };
+
   return (
     <Section
       id="services-section"
@@ -57,7 +81,6 @@ export default function ServicesSection({
       patternOpacity={patternOpacity}
       patternFade={patternFade}
       patternColor={patternColor}
-      className="relative overflow-hidden "
     >
       {/* Decorative elements - re-enabled and styled with theme colors */}
       <div className="hidden sm:block absolute top-0 right-0 size-64 bg-primary/3 rounded-full -translate-y-1/3 translate-x-1/3 blur-3xl pointer-events-none" />
@@ -84,24 +107,28 @@ export default function ServicesSection({
         {/* Services grid CSS-only stagger */}
         <LazySection
           animation="none"
-          className="stagger-container grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className={`stagger-container grid ${gapClass} ${colsClass}`}
           style={{ '--stagger-delay': '0.2s' } as CSSProperties}
         >
           {services.map((service: z.infer<typeof serviceItemSchema>, idx) => {
             // get button radius class for theme
             const buttonRadius = getElementBorderRadius('button');
             return (
-              <div key={service.id} className="h-full" style={{ '--index': idx } as CSSProperties}>
+              <div
+                key={service.id}
+                className={getCardWrapperClass(services.length)}
+                style={{ '--index': idx } as CSSProperties}
+              >
                 <Card
                   className={`card-equal-height h-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-gradient-to-b from-white to-blue-50/30 ${
                     service.popular
-                      ? 'border-primary shadow-lg relative'
+                      ? 'border-accent shadow-lg relative'
                       : 'border-[#e5e7eb80] shadow-lg'
                   }`}
                 >
                   {service.popular && (
-                    <div className="absolute top-0 right-0 bg-primary text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
-                      Popular
+                    <div className="absolute top-0 right-0 bg-accent text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
+                      {popularBadgeText ?? 'Popular'}
                     </div>
                   )}
 
@@ -159,7 +186,7 @@ export default function ServicesSection({
                       }`}
                     >
                       <Link href={`/services/${service.slug}`}>
-                        {`Learn more about ${service.title}`}
+                        {`${learnMoreText ?? 'Learn more about'} ${service.title}`}
                         <ArrowRight className="ml-2 size-4" />
                       </Link>
                     </Button>

@@ -183,6 +183,45 @@ const contactDetailsSchema = z.object({
     .optional(),
 });
 
+const navigationTextSchema = z.object({
+  viewAllText: z.string().optional(),
+  contactUsText: z.string().optional(),
+});
+
+const landingHeaderTextSchema = z.object({
+  defaultCtaText: z.string().optional(),
+});
+
+const cookieConsentTextSchema = z.object({
+  // Banner texts
+  cookieSettingsTitle: z.string().optional(),
+  cookiePreferencesTitle: z.string().optional(),
+  cookieDescription: z.string().optional(),
+
+  // Button labels
+  acceptAllText: z.string().optional(),
+  rejectAllText: z.string().optional(),
+  customizeText: z.string().optional(),
+  backText: z.string().optional(),
+  savePreferencesText: z.string().optional(),
+
+  // Tab labels
+  essentialTabText: z.string().optional(),
+  analyticsTabText: z.string().optional(),
+  marketingTabText: z.string().optional(),
+  preferencesTabText: z.string().optional(),
+
+  // Cookie type descriptions
+  essentialTitle: z.string().optional(),
+  essentialDescription: z.string().optional(),
+  analyticsTitle: z.string().optional(),
+  analyticsDescription: z.string().optional(),
+  marketingTitle: z.string().optional(),
+  marketingDescription: z.string().optional(),
+  preferenceCookiesTitle: z.string().optional(),
+  preferenceCookiesDescription: z.string().optional(),
+});
+
 const sectionsDataKeysSchema = z
   .object({
     hero: z.string().optional(),
@@ -257,6 +296,9 @@ export const siteConfigSchema = z.object({
     .optional(),
   // ++ ADDING NEW FIELD FOR PAGE STRUCTURES ++
   pageStructures: z.array(pageStructureSchema).optional(),
+  navigationText: navigationTextSchema.optional(),
+  landingHeaderText: landingHeaderTextSchema.optional(),
+  cookieConsentText: cookieConsentTextSchema.optional(),
 });
 
 export type SiteConfigSchema = z.infer<typeof siteConfigSchema>;

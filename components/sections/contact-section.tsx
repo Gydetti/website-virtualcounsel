@@ -27,10 +27,25 @@ declare global {
 import type { contactSectionDataSchema } from '@/lib/schemas/sections.schema';
 export type ContactSectionProps = z.infer<typeof contactSectionDataSchema>;
 
-export default function ContactSection({ badgeText, heading, subtitle }: ContactSectionProps) {
+export default function ContactSection({
+  badgeText,
+  heading,
+  subtitle,
+  formTitle,
+  infoTitle,
+  successMessage,
+  buttonLabels,
+}: ContactSectionProps = {}) {
   const fields = siteConfig.contactForm?.fields || [];
   const honeypotName = siteConfig.contactForm?.honeypotFieldName || 'honeypot';
   const recaptchaKey = siteConfig.contactForm?.recaptchaSiteKey;
+  // Default button labels when not provided
+  const defaultLabels = {
+    default: 'Send message',
+    submitting: 'Sending...',
+    success: 'Message sent!',
+  };
+  const labels = buttonLabels ?? defaultLabels;
   // Initialize formData with all field keys (always controlled)
   const [formData, setFormData] = useState<Record<string, string>>(() => {
     const initial: Record<string, string> = {};
@@ -127,7 +142,7 @@ export default function ContactSection({ badgeText, heading, subtitle }: Contact
             className="h-full flex flex-col bg-neutral-surface rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow"
             style={{ '--index': 0 } as CSSProperties}
           >
-            <h3 className="mb-6">Form title prompting user to send a message</h3>
+            <h3 className="mb-6">{formTitle ?? 'Form title prompting user to send a message'}</h3>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 gap-6">
                 {fields.map(field => (
@@ -169,12 +184,13 @@ export default function ContactSection({ badgeText, heading, subtitle }: Contact
                 className="w-full hover:scale-100 hover:shadow-none hover:-translate-y-0"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? 'Sending...' : submitted ? 'Message sent!' : 'Send message'}
+                {isSubmitting ? labels.submitting : submitted ? labels.success : labels.default}
                 {!isSubmitting && !submitted && <ArrowRight className="ml-2 size-4" />}
               </Button>
               {submitted && (
                 <div className="mt-4 p-4 bg-feedback-success-bg text-feedback-success rounded-lg">
-                  Thank you for your message! We'll get back to you as soon as possible.
+                  {successMessage ??
+                    "Thank you for your message! We'll get back to you as soon as possible."}
                 </div>
               )}
             </form>
@@ -184,7 +200,7 @@ export default function ContactSection({ badgeText, heading, subtitle }: Contact
             className="h-full bg-primary text-white rounded-xl shadow-lg p-8 flex flex-col justify-between hover:shadow-xl transition-shadow"
             style={{ '--index': 1 } as CSSProperties}
           >
-            <h3 className="mb-6">Contact information</h3>
+            <h3 className="mb-6">{infoTitle ?? 'Contact information'}</h3>
             <ul className="space-y-6">
               <li className="flex items-start">
                 <Mail className="size-6 mr-4 shrink-0 mt-1" />

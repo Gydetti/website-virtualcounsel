@@ -22,9 +22,18 @@ interface BlogCardProps {
   category: string;
   image: string;
   slug: string;
+  readMoreText?: string;
 }
 
-export default function BlogCard({ title, excerpt, date, category, image, slug }: BlogCardProps) {
+export default function BlogCard({
+  title,
+  excerpt,
+  date,
+  category,
+  image,
+  slug,
+  readMoreText,
+}: BlogCardProps) {
   const microClass = siteConfig.features.enableMicroInteractions
     ? 'transition-all duration-300 hover:shadow-xl hover:-translate-y-1'
     : '';
@@ -55,7 +64,7 @@ export default function BlogCard({ title, excerpt, date, category, image, slug }
       <CardFooter className="pt-0">
         <Button variant="link" className="p-0 h-auto text-primary group" asChild>
           <Link href={`/blog/${slug}`} className="transition-none">
-            Read more
+            {readMoreText || 'Read more'}
             <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
           </Link>
         </Button>

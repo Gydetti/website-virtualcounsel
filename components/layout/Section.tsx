@@ -5,6 +5,8 @@ import { BackgroundPattern } from '@/components/ui/background-pattern';
 import { siteConfig } from '@/lib/siteConfig';
 
 export interface SectionProps extends HTMLAttributes<HTMLElement> {
+  /** Optional per-section container class override */
+  containerClassName?: string;
   /** The content of the section */
   children: ReactNode;
   /** If true, renders a full-bleed section with inner container */
@@ -26,6 +28,7 @@ export function Section({
   className = '',
   fullBleed = true,
   bgClass = '',
+  containerClassName,
   patternStyle,
   patternOpacity,
   patternFade,
@@ -50,9 +53,10 @@ export function Section({
     : undefined;
   const usedPatternFade = patternFade ?? 'none';
   const usedPatternColor = patternColor;
-  // Center content, cap width to theme value and apply dynamic gutters
-  const containerClasses =
+  // Default and override for container classes
+  const defaultContainerClasses =
     'mx-auto max-w-[var(--container-max-width)] px-4 sm:px-6 md:px-8 xl:px-20';
+  const containerClasses = containerClassName ?? defaultContainerClasses;
   // Wrapper classes including vertical padding and background
   const wrapperClasses = `overflow-hidden ${sectionPaddingClass} ${bgClass} ${className}`.trim();
   if (fullBleed) {

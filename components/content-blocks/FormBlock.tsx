@@ -16,6 +16,7 @@ interface FormBlockProps {
       required: boolean;
     }[];
     submitButtonText?: string;
+    pendingMessage?: string;
   };
   title?: string;
   description?: string;
@@ -38,7 +39,8 @@ const FormBlock: FC<FormBlockProps> = ({ config, title, description }) => {
         ) : (
           <div className="max-w-md mx-auto p-6 bg-neutral-50 rounded-xl">
             <p className="text-foreground/70">
-              Form configuration pending. This will display the download form once configured.
+              {config.pendingMessage ||
+                'Form configuration pending. This will display the download form once configured.'}
             </p>
           </div>
         )}

@@ -29,7 +29,7 @@ type LandingHeaderProps = {
 
 export default function LandingHeader({
   showCta = true,
-  ctaText = 'Get Started',
+  ctaText = siteConfig.landingHeaderText?.defaultCtaText || 'Get Started',
   ctaHref = '/contact',
   withBackground = true,
 }: LandingHeaderProps) {

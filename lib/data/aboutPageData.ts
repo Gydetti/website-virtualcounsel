@@ -18,6 +18,7 @@ export const aboutPageMainContentData: z.infer<typeof aboutSectionDataSchema> = 
     width: 500,
     height: 500,
   },
+  variant: 'imageRight',
   stats: [
     {
       id: 'stat-experience',

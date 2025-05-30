@@ -26,6 +26,7 @@ export default function BlogSection({
   badgeText,
   heading,
   subtitle,
+  readMoreText,
   posts,
   viewAllCta,
 }: BlogSectionProps) {
@@ -114,7 +115,7 @@ export default function BlogSection({
                     asChild
                   >
                     <Link href={`/blog/${post.slug}`} className="transition-none">
-                      {`Read more: ${post.title}`}
+                      {`${readMoreText ?? 'Read more'}: ${post.title}`}
                       <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
                     </Link>
                   </Button>

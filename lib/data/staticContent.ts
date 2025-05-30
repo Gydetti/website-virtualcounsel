@@ -1,5 +1,13 @@
 import { z } from 'zod';
 
+import type {
+  blogPageDataSchema,
+  errorPageDataSchema,
+  notFoundPageDataSchema,
+  resourceDetailSectionDataSchema,
+  resourcesPageDataSchema,
+} from '../schemas/sections.schema';
+
 // Cookie Policy schema and data
 export const cookiePolicySchema = z.object({
   lastUpdated: z.string(),
@@ -215,3 +223,113 @@ export const staticContent = {
     },
   },
 } as const;
+
+// ResourceDetailSection default data
+export const resourceDetailSectionData: z.infer<typeof resourceDetailSectionDataSchema> = {
+  // Section headings and titles
+  outcomesTitle: 'Professional Outcomes',
+  overviewTitle: 'Resource Overview',
+  whoThisIsForTitle: 'Who This Resource Serves',
+  designedForTitle: 'Designed for professionals who:',
+  considerOthersTitle: 'Consider other resources if you:',
+  whatsInsideTitle: "What's Inside",
+  bonusMaterialsTitle: 'Bonus Materials',
+  professionalValidationTitle: 'Trusted by Professional Communities',
+  accessFormTitle: 'Access This Professional Resource',
+  accessFormSubtitle: 'Complete the form below to receive your copy',
+  // Button/CTA labels
+  downloadButtonText: 'Download Your Free Resource',
+  // Content sections
+  professionalOutcomes: [
+    'Structured methodology for evidence-based implementation',
+    'Professional frameworks developed through field research',
+    'Assessment tools and outcome measurement strategies',
+  ],
+  overviewParagraphs: [
+    'Professional development resource covering specific methodology, theoretical framework, and practical applications. Designed to support evidence-based practice and enhance professional competency in this specialized area.',
+    'Developed through comprehensive research and field testing, this resource provides structured guidance, assessment tools, and implementation strategies. Includes case study examples and professional references to support continued learning.',
+  ],
+  designedForPoints: [
+    'Professional context or challenge that describes ideal reader',
+    'Specific expertise level or professional development goal',
+    'Commitment to implementing evidence-based approaches',
+  ],
+  considerOthersPoints: [
+    'Professional context where this approach may not be applicable',
+    'Experience level that might benefit from foundational resources first',
+    'Specific field or methodology that requires different approaches',
+  ],
+  chapters: [
+    {
+      title: 'Chapter/Section 1 Title',
+      description:
+        'Brief description of what this section covers and the key insights or tools provided.',
+    },
+    {
+      title: 'Chapter/Section 2 Title',
+      description:
+        'Description of the framework, strategy, or methodology explained in this section.',
+    },
+    {
+      title: 'Chapter/Section 3 Title',
+      description: 'Overview of actionable steps, templates, or checklists included here.',
+    },
+  ],
+  bonusMaterials: [
+    'Downloadable template or worksheet description',
+    'Quick reference guide or cheat sheet',
+    'Additional resource or tool recommendation',
+  ],
+  // Stats
+  totalPages: 'X Pages',
+  readingTime: 'X Minutes',
+  yearsExperience: 'XX+ Years',
+  methodologyType: 'Evidence-Based',
+  approachType: 'Peer-Reviewed',
+  // Testimonial
+  testimonialQuote:
+    'Professional testimonial highlighting how this resource enhanced their practice methodology and client outcomes. Should reflect authentic professional development rather than dramatic claims.',
+  testimonialAuthor: '— Professional Name, Credentials, Field of Practice',
+  // Field labels
+  formFieldLabels: {
+    nameLabel: 'Full Name',
+    namePlaceholder: 'Your full name',
+    emailLabel: 'Email Address',
+    emailPlaceholder: 'your@email.com',
+  },
+};
+
+// Error pages data
+export const notFoundPageData: z.infer<typeof notFoundPageDataSchema> = {
+  statusCode: '404',
+  title: 'Page Not Found',
+  description:
+    'Sorry, the page you are looking for does not exist. It might have been moved, deleted, or you entered the wrong URL.',
+  buttonText: 'Go back home',
+};
+
+export const errorPageData: z.infer<typeof errorPageDataSchema> = {
+  statusCode: '500',
+  title: 'Something went wrong!',
+  description:
+    'We encountered an unexpected error. Please try refreshing the page or contact us if the problem persists.',
+  buttonText: 'Try again',
+};
+
+// Page-specific data
+export const blogPageData: z.infer<typeof blogPageDataSchema> = {
+  badgeText: 'From our blog',
+  heading: 'Latest insights & articles',
+  description: 'Read our latest articles and insights on business growth, marketing, and more.',
+  regularPostsHeading: 'Recent articles',
+  readFeaturedText: 'Read featured article',
+  readMoreText: 'Read more',
+  noPostsMessage: 'No blog posts available at the moment.',
+};
+
+export const resourcesPageData: z.infer<typeof resourcesPageDataSchema> = {
+  noResourcesMessage: 'No resources available at the moment.',
+  readMoreText: 'Read more',
+};
+
+export default staticContent;

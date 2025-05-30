@@ -21,6 +21,8 @@ interface ServiceCardProps {
   features: string[];
   popular?: boolean;
   slug: string;
+  learnMoreText?: string;
+  popularBadgeText?: string;
 }
 
 export default function ServiceCard({
@@ -30,6 +32,8 @@ export default function ServiceCard({
   features,
   popular = false,
   slug,
+  learnMoreText,
+  popularBadgeText,
 }: ServiceCardProps) {
   const microClass = siteConfig.features.enableMicroInteractions
     ? 'transition-all duration-300 hover:shadow-xl hover:-translate-y-1'
@@ -44,7 +48,7 @@ export default function ServiceCard({
     >
       {popular && (
         <div className="absolute top-0 right-0 bg-primary text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
-          Popular
+          {popularBadgeText || 'Popular'}
         </div>
       )}
       <CardHeader className={`${popular ? 'pt-12' : ''}`}>
@@ -99,7 +103,7 @@ export default function ServiceCard({
           }`}
         >
           <Link href={`/services/${slug}`}>
-            {`Learn more about ${title}`}
+            {`${learnMoreText || 'Learn more about'} ${title}`}
             <ArrowRight className="ml-2 size-4" />
           </Link>
         </Button>

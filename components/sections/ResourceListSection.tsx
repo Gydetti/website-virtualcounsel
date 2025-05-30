@@ -13,6 +13,7 @@ interface ResourceListSectionProps {
   id: string;
   title?: string;
   resources: Array<z.infer<typeof resourceSchema>>;
+  readMoreText?: string;
   patternStyle?: string;
   patternOpacity?: number;
   patternFade?: 'none' | 'edges' | 'top' | 'bottom';
@@ -23,6 +24,7 @@ export default function ResourceListSection({
   id,
   title = 'Our Resources',
   resources,
+  readMoreText,
   patternStyle,
   patternOpacity,
   patternFade,
@@ -105,7 +107,7 @@ export default function ResourceListSection({
                       <p className="text-foreground text-sm line-clamp-3">{resource.subtitle}</p>
                     )}
                     <span className="mt-4 inline-block text-primary group-hover:underline">
-                      Read more &rarr;
+                      {readMoreText || 'Read more &rarr;'}
                     </span>
                   </div>
                 </Link>

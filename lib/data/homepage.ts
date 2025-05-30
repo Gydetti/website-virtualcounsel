@@ -215,6 +215,7 @@ export const solutionVisionSectionData: z.infer<typeof solutionVisionSectionData
   badgeText: 'Introducing your solution',
   heading: 'Your clear path to success',
   description: 'Explain how this section outlines your approach to solving client challenges',
+  imagineTitle: 'Imagine having:',
   benefits: [
     'Consistent, predictable results',
     'More time for core activities',
@@ -264,6 +265,7 @@ export const pricingSectionData: z.infer<typeof pricingSectionDataSchema> = {
   badgeText: 'Simple & transparent',
   heading: 'Our pricing plans',
   description: 'Choose the plan that fits your needs.',
+  popularBadgeText: 'Popular',
   cards: [
     {
       id: 'price-basic',
@@ -377,6 +379,7 @@ export const blogPreviewSectionData: Omit<z.infer<typeof blogSectionDataSchema>,
   badgeText: 'From our blog',
   heading: 'Latest articles & insights',
   subtitle: 'Stay updated with our latest news, tips, and industry insights.',
+  readMoreText: 'Read more',
   viewAllCta: { text: 'View all posts', href: '/blog' },
 };
 
@@ -390,8 +393,9 @@ export const aboutSectionData: z.infer<typeof aboutSectionDataSchema> = {
   ],
   image: {
     src: '/images/placeholders/placeholder.svg',
-    alt: 'Placeholder image representing company or team',
+    alt: 'Professional headshot',
   },
+  variant: 'imageRight',
   stats: [
     { id: 'stat-experience', value: '10+ years', label: 'Industry experience' },
     { id: 'stat-clients', value: '500+ happy', label: 'Clients served' },
@@ -406,6 +410,7 @@ export const aboutSectionData: z.infer<typeof aboutSectionDataSchema> = {
     title: 'My philosophy',
     text: "I believe that the best results come from a collaborative approach where we work together as partners to achieve your goals. My clients aren't just customers – they're collaborators in the journey to success.",
   },
+  learnMoreText: 'Learn more about me',
   featureCards: [
     {
       id: 'certified',
@@ -487,6 +492,14 @@ export const contactSectionData: z.infer<typeof contactSectionDataSchema> = {
   heading: 'Contact us today',
   subtitle:
     "Have questions or ready to start your project? Reach out and we'll get back to you shortly. Use the form below or contact us directly via email or phone.",
+  formTitle: 'Send us a message',
+  infoTitle: 'Contact information',
+  buttonLabels: {
+    default: 'Send message',
+    submitting: 'Sending...',
+    success: 'Message sent!',
+  },
+  successMessage: "Thank you for your message! We'll get back to you as soon as possible.",
   // Note: The actual form fields and contact details (email, phone, address)
   // are pulled from siteConfig by the ContactSection component itself.
   // This data object is just for the introductory text specific to the homepage instance.

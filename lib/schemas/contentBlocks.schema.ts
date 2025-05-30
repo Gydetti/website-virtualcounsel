@@ -59,6 +59,7 @@ export const formBlockConfigSchema = z.object({
   portalId: z.string().optional(),
   formId: z.string().optional(),
   embedCode: z.string().optional(),
+  pendingMessage: z.string().optional(),
 });
 
 export const formBlockSchema = baseBlockSchema.extend({

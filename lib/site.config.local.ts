@@ -111,7 +111,7 @@ export const siteConfig: SiteConfigSchema = {
     },
     // New animation configuration
     animation: {
-      speed: 'balanced', // fast, balanced, slow
+      speed: 'fast', // fast, balanced, slow
       style: 'smooth', // smooth, bounce, energetic
       intensity: 'subtle', // subtle, moderate, pronounced
     },
@@ -183,6 +183,50 @@ export const siteConfig: SiteConfigSchema = {
     { text: 'Terms of Service', href: '/terms-of-service' },
     { text: 'Cookie Policy', href: '/cookie-policy' },
   ],
+  // NAVIGATION TEXT: Dynamic text for navigation elements.
+  navigationText: {
+    viewAllText: 'View All', // Text for dropdown "View All" links in header
+    contactUsText: 'Contact us', // Text for footer contact button
+  },
+  // LANDING HEADER TEXT: Dynamic text for landing page headers.
+  landingHeaderText: {
+    defaultCtaText: 'Get Started', // Default CTA text for landing page headers
+  },
+  // COOKIE CONSENT TEXT: Dynamic text for cookie banner and preferences.
+  cookieConsentText: {
+    // Banner texts
+    cookieSettingsTitle: 'Cookie settings',
+    cookiePreferencesTitle: 'Cookie preferences',
+    cookieDescription:
+      'We use cookies to enhance your browsing experience, serve personalized ads or content, and analyze our traffic. By clicking "Accept all", you consent to our use of cookies.',
+
+    // Button labels
+    acceptAllText: 'Accept all',
+    rejectAllText: 'Reject all',
+    customizeText: 'Customize',
+    backText: 'Back',
+    savePreferencesText: 'Save preferences',
+
+    // Tab labels
+    essentialTabText: 'Essential',
+    analyticsTabText: 'Analytics',
+    marketingTabText: 'Marketing',
+    preferencesTabText: 'Preferences',
+
+    // Cookie type descriptions
+    essentialTitle: 'Essential cookies',
+    essentialDescription:
+      'These cookies are necessary for the website to function and cannot be switched off.',
+    analyticsTitle: 'Analytics cookies',
+    analyticsDescription:
+      'These cookies allow us to count visits and traffic sources so we can measure and improve the performance of our site.',
+    marketingTitle: 'Marketing cookies',
+    marketingDescription:
+      'These cookies may be set through our site by our advertising partners to build a profile of your interests.',
+    preferenceCookiesTitle: 'Preference cookies',
+    preferenceCookiesDescription:
+      'These cookies enable personalized features and functionality on our website.',
+  },
   // SOCIAL MEDIA LINKS: URLs for social media profiles.
   social: {
     facebook: '', // <--- Facebook page URL

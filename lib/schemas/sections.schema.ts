@@ -52,6 +52,9 @@ export const servicesSectionDataSchema = z.object({
   services: z.array(serviceItemSchema),
   displayType: z.enum(['grid', 'list', 'carousel']).optional().default('grid'),
   viewAllCta: ctaSchema.optional(),
+  // Button and UI text
+  learnMoreText: z.string().optional(),
+  popularBadgeText: z.string().optional(),
   // Optional per-section background pattern overrides
   patternStyle: z
     .enum(['none', 'dots', 'grid', 'waves', 'noise', 'triangles', 'hexagons', 'crosshatch'])
@@ -92,6 +95,7 @@ export const blogSectionDataSchema = z.object({
   badgeText: z.string().optional(),
   heading: z.string().optional(),
   subtitle: z.string().optional(),
+  readMoreText: z.string().optional(),
   posts: z
     .array(blogPostPreviewSchema)
     .min(1, 'Must provide at least one blog post for the preview'),
@@ -123,13 +127,15 @@ const aboutStatItemSchema = z.object({
 export const aboutSectionDataSchema = z.object({
   badgeText: z.string().optional(),
   heading: z.string().optional(),
-  paragraphs: z.array(z.string().min(1)).optional(), // For the multiple text paragraphs
-  image: imageSchema.optional(),
-  stats: z.array(aboutStatItemSchema).optional(),
+  paragraphs: z.array(z.string()).optional(),
+  image: imageSchema.optional(), // Using standard imageSchema instead of separate fields
+  variant: z
+    .enum(['default', 'imageLeft', 'imageRight', 'centered', 'classic'])
+    .optional()
+    .default('default'),
   cta: ctaSchema.optional(),
-  // Add optional philosophy section
+  stats: z.array(aboutStatItemSchema).optional(),
   philosophy: z.object({ title: z.string(), text: z.string() }).optional(),
-  // Add optional feature cards
   featureCards: z
     .array(
       z.object({
@@ -142,8 +148,8 @@ export const aboutSectionDataSchema = z.object({
       })
     )
     .optional(),
-  // Add optional features list (bullet items)
   featuresList: z.array(z.string()).optional(),
+  learnMoreText: z.string().optional(),
   // Optional per-section background pattern overrides
   patternStyle: z
     .enum(['none', 'dots', 'grid', 'waves', 'noise', 'triangles', 'hexagons', 'crosshatch'])
@@ -251,6 +257,7 @@ export const solutionVisionSectionDataSchema = z.object({
   badgeText: z.string().optional(),
   heading: z.string().optional(),
   description: z.string().optional(),
+  imagineTitle: z.string().optional(),
   benefits: z.array(z.string().min(1)).optional(),
   calloutText: z.string().optional(),
   calloutCta: ctaSchema.optional(), // Consolidates calloutLinkText and calloutLinkHref
@@ -278,6 +285,17 @@ export const contactSectionDataSchema = z.object({
   badgeText: z.string().optional(),
   heading: z.string().optional(),
   subtitle: z.string().optional(),
+  // Section-specific copy fields
+  formTitle: z.string().optional(),
+  infoTitle: z.string().optional(),
+  successMessage: z.string().optional(),
+  buttonLabels: z
+    .object({
+      default: z.string().optional(),
+      submitting: z.string().optional(),
+      success: z.string().optional(),
+    })
+    .optional(),
   // Form fields and provider details are drawn from siteConfig.contactForm
   // Contact info (email, phone, address) is drawn from siteConfig.contact
 });
@@ -297,6 +315,7 @@ export const pricingSectionDataSchema = z.object({
   heading: z.string().optional(),
   description: z.string().optional(), // Or subtitle, depending on preferred terminology
   cards: z.array(pricingCardSchema).min(1, 'Must provide at least one pricing card'),
+  popularBadgeText: z.string().optional(),
   // Add any section-wide options if needed, e.g., disclaimer, currencyToggle
 });
 
@@ -406,5 +425,100 @@ export const kpiSectionDataSchema = z.object({
   patternColor: z.string().optional(),
 });
 
+// ResourceDetailSection schema - for dynamic copy in resource detail views
+export const resourceDetailSectionDataSchema = z.object({
+  // Section headings and titles
+  outcomesTitle: z.string().optional(),
+  overviewTitle: z.string().optional(),
+  whoThisIsForTitle: z.string().optional(),
+  designedForTitle: z.string().optional(),
+  considerOthersTitle: z.string().optional(),
+  whatsInsideTitle: z.string().optional(),
+  bonusMaterialsTitle: z.string().optional(),
+  professionalValidationTitle: z.string().optional(),
+  accessFormTitle: z.string().optional(),
+  accessFormSubtitle: z.string().optional(),
+  // Button/CTA labels
+  downloadButtonText: z.string().optional(),
+  // Content sections
+  professionalOutcomes: z.array(z.string()).optional(),
+  overviewParagraphs: z.array(z.string()).optional(),
+  designedForPoints: z.array(z.string()).optional(),
+  considerOthersPoints: z.array(z.string()).optional(),
+  chapters: z
+    .array(
+      z.object({
+        title: z.string(),
+        description: z.string(),
+      })
+    )
+    .optional(),
+  bonusMaterials: z.array(z.string()).optional(),
+  // Stats
+  totalPages: z.string().optional(),
+  readingTime: z.string().optional(),
+  yearsExperience: z.string().optional(),
+  methodologyType: z.string().optional(),
+  approachType: z.string().optional(),
+  // Testimonial
+  testimonialQuote: z.string().optional(),
+  testimonialAuthor: z.string().optional(),
+  // Field labels
+  formFieldLabels: z
+    .object({
+      nameLabel: z.string().optional(),
+      namePlaceholder: z.string().optional(),
+      emailLabel: z.string().optional(),
+      emailPlaceholder: z.string().optional(),
+    })
+    .optional(),
+  // Optional per-section background pattern overrides
+  patternStyle: z
+    .enum(['none', 'dots', 'grid', 'waves', 'noise', 'triangles', 'hexagons', 'crosshatch'])
+    .optional(),
+  patternOpacity: z.number().min(0).max(1).optional(),
+  patternFade: z.enum(['none', 'edges', 'top', 'bottom']).optional(),
+  patternColor: z.string().optional(),
+});
+
 // End of section-specific schemas for now.
 // The old placeholderSectionsSchema can be removed.
+
+// Error pages schemas
+export const notFoundPageDataSchema = z.object({
+  statusCode: z.string().optional(),
+  title: z.string().optional(),
+  description: z.string().optional(),
+  buttonText: z.string().optional(),
+});
+
+export const errorPageDataSchema = z.object({
+  statusCode: z.string().optional(),
+  title: z.string().optional(),
+  description: z.string().optional(),
+  buttonText: z.string().optional(),
+});
+
+// Page-specific schemas
+export const blogPageDataSchema = z.object({
+  // Header/hero section
+  badgeText: z.string().optional(),
+  heading: z.string().optional(),
+  description: z.string().optional(),
+  // Section titles
+  regularPostsHeading: z.string().optional(),
+  // Text labels for posts
+  readFeaturedText: z.string().optional(),
+  readMoreText: z.string().optional(),
+  // No posts message
+  noPostsMessage: z.string().optional(),
+});
+
+export const resourcesPageDataSchema = z.object({
+  // No resources fallback
+  noResourcesMessage: z.string().optional(),
+  // Dynamic text for resource cards
+  readMoreText: z.string().optional(),
+});
+
+// ============================================================================

@@ -48,7 +48,7 @@ export default function LazySection({
   animation = 'slide-up',
   delay = 0,
   // Global default duration shortened for snappier feel (reduced from 0.6)
-  duration = 0.4,
+  duration = 0.3,
   fullHeight,
   // Use global theme animation defaults
   easingFunction = siteConfig.theme.animation?.style ?? 'smooth',
@@ -57,7 +57,7 @@ export default function LazySection({
   willChange = true,
   // Enable staggered children based on global feature flag
   childrenStagger = siteConfig.features.enableStaggeredAnimations,
-  childrenStaggerDelay = 0.1,
+  childrenStaggerDelay = 0.08,
 }: LazySectionProps) {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -113,10 +113,10 @@ export default function LazySection({
     const configSpeed = siteConfig.theme.animation?.speed || 'balanced';
 
     // Map speed setting to duration in seconds
-    if (configSpeed === 'fast') return 0.15;
-    if (configSpeed === 'slow') return 0.5;
-    // Default balanced speed
-    return 0.3;
+    if (configSpeed === 'fast') return 0.2;
+    if (configSpeed === 'slow') return 0.4;
+    // Default balanced speed - reduced from 0.3
+    return 0.25;
   };
 
   // Combined classes for both non-animated and animated containers

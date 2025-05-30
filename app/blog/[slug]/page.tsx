@@ -12,6 +12,8 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import LazySection from '@/components/ui/lazy-section';
+import OptimizedImage from '@/components/ui/optimized-image';
+import { blogPageData } from '@/lib/data/staticContent';
 import { getBlogPostBySlug, getBlogPosts } from '@/lib/data-utils';
 import { defaultMetadata } from '@/lib/metadata';
 import { siteConfig } from '@/lib/siteConfig';
@@ -367,7 +369,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
                 <p className="text-neutral-text/600 mb-4">{relatedPost.excerpt}</p>
                 <Button variant="link" className="p-0 h-auto text-primary" asChild>
                   <Link href={`/blog/${relatedPost.slug}`}>
-                    Read More
+                    {blogPageData.readMoreText || 'Read More'}
                     <ArrowRight className="ml-2 size-4" />
                   </Link>
                 </Button>

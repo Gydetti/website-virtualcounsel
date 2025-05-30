@@ -255,7 +255,7 @@ export default function Footer({ hideNewsletter = false }: FooterProps) {
               </ul>
               <Button asChild className="mt-4 group" variant="white">
                 <Link href="/contact">
-                  Contact us
+                  {siteConfig.navigationText?.contactUsText || 'Contact us'}
                   <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </Button>

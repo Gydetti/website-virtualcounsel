@@ -141,7 +141,7 @@ export default function Header() {
                                 setExpandedMenu(null);
                               }}
                             >
-                              View All {item.text}
+                              {siteConfig.navigationText?.viewAllText || 'View All'} {item.text}
                             </Link>
                             <hr className="border-t border-neutral-divider my-2" />
                             {list.map(entry => (
@@ -291,7 +291,7 @@ export default function Header() {
                         >
                           <DropdownMenuItem asChild className="hover:!bg-primary/10">
                             <Link href={item.href} className="block w-full font-medium px-4 py-2">
-                              View All {item.text}
+                              {siteConfig.navigationText?.viewAllText || 'View All'} {item.text}
                             </Link>
                           </DropdownMenuItem>
                           <DropdownMenuSeparator />

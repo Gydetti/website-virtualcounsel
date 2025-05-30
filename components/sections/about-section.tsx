@@ -33,6 +33,7 @@ export type AboutSectionProps = z.infer<typeof aboutSectionDataSchema> & {
   patternStyle?: string;
   patternOpacity?: number;
   isHomepage?: boolean;
+  learnMoreText?: string;
 };
 
 export default function AboutSection({
@@ -48,6 +49,7 @@ export default function AboutSection({
   patternStyle,
   patternOpacity,
   isHomepage = false,
+  learnMoreText,
 }: AboutSectionProps) {
   const containerClasses =
     variant === 'centered'
@@ -190,7 +192,7 @@ export default function AboutSection({
                         asChild
                       >
                         <Link href="/about">
-                          Learn more about me
+                          {learnMoreText || 'Learn more about me'}
                           <ArrowRight className="ml-2 size-4" />
                         </Link>
                       </Button>
@@ -310,7 +312,7 @@ export default function AboutSection({
                     asChild
                   >
                     <Link href="/about">
-                      Learn more about me
+                      {learnMoreText || 'Learn more about me'}
                       <ArrowRight className="ml-2 size-4" />
                     </Link>
                   </Button>
