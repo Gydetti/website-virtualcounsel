@@ -522,3 +522,112 @@ export const resourcesPageDataSchema = z.object({
 });
 
 // ============================================================================
+
+// Service Pages Schemas
+
+// Service Detail Benefits Schema
+const serviceBenefitSchema = z.object({
+  id: z.string().min(1, 'Benefit ID cannot be empty'),
+  title: z.string().min(1),
+  description: z.string().min(1),
+  icon: z.string().optional(), // Could be emoji or icon name
+});
+
+// Service Detail FAQ Schema (reusing existing faqItemSchema)
+export const serviceFaqSectionDataSchema = z.object({
+  heading: z.string().optional(),
+  items: z.array(faqItemSchema).min(1, 'Must provide at least one FAQ item'),
+});
+
+// Service Detail Testimonials Schema (different from homepage testimonials)
+const serviceTestimonialSchema = z.object({
+  id: z.string().min(1, 'Testimonial ID cannot be empty'),
+  quote: z.string().min(1),
+  author: z.string().min(1),
+  company: z.string().min(1),
+  image: imageSchema.optional(),
+});
+
+export const serviceTestimonialsSectionDataSchema = z.object({
+  heading: z.string().optional(),
+  testimonials: z.array(serviceTestimonialSchema).min(1, 'Must provide at least one testimonial'),
+});
+
+// Service Detail CTA Section Schema
+export const serviceCtaSectionDataSchema = z.object({
+  heading: z.string().optional(),
+  description: z.string().optional(),
+  buttonText: z.string().optional(),
+  buttonLink: z.string().optional(),
+});
+
+// Complete Service Detail Page Schema
+export const serviceDetailPageDataSchema = z.object({
+  // Benefits section
+  benefitsSection: z.object({
+    heading: z.string().optional(),
+    benefits: z.array(serviceBenefitSchema).min(1, 'Must provide at least one benefit'),
+  }),
+
+  // FAQ section
+  faqSection: serviceFaqSectionDataSchema,
+
+  // Testimonials section
+  testimonialsSection: serviceTestimonialsSectionDataSchema,
+
+  // CTA sections (multiple CTA sections in service detail page)
+  readyToStartCta: serviceCtaSectionDataSchema,
+
+  // Button labels
+  buttonLabels: z
+    .object({
+      consultation: z.string().optional(),
+      scheduleConsultation: z.string().optional(),
+      getStarted: z.string().optional(),
+    })
+    .optional(),
+});
+
+// Services Overview Page - Why Choose Section Schema
+const whyChooseBenefitSchema = z.object({
+  id: z.string().min(1),
+  text: z.string().min(1),
+  icon: z.string().optional(),
+});
+
+export const whyChooseServicesSectionDataSchema = z.object({
+  heading: z.string().optional(),
+  description: z.string().optional(),
+  benefits: z.array(whyChooseBenefitSchema).min(1, 'Must provide at least one benefit'),
+  buttonText: z.string().optional(),
+  buttonLink: z.string().optional(),
+});
+
+// Services Overview Page - CTA Section Schema
+export const servicesCtaSectionDataSchema = z.object({
+  heading: z.string().optional(),
+  description: z.string().optional(),
+  buttonText: z.string().optional(),
+  buttonLink: z.string().optional(),
+});
+
+// Extended Services Page Schema (adding to existing servicesOverviewSectionDataSchema)
+export const servicesPageDataSchema = z.object({
+  // Overview section (already exists)
+  overview: servicesOverviewSectionDataSchema,
+
+  // Why Choose Services section
+  whyChooseSection: whyChooseServicesSectionDataSchema,
+
+  // CTA section
+  ctaSection: servicesCtaSectionDataSchema,
+
+  // Button labels used throughout the page
+  buttonLabels: z
+    .object({
+      learnMore: z.string().optional(),
+      scheduleConsultation: z.string().optional(),
+      getStartedToday: z.string().optional(),
+    })
+    .optional(),
+});

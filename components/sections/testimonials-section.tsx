@@ -139,7 +139,7 @@ export default function TestimonialsSection({
                               />
                             ))}
                       </div>
-                      <p className="text-neutral-text/70 text-base mb-8 line-clamp-6 italic">
+                      <p className="text-neutral-text text-base mb-8 line-clamp-6 italic">
                         &quot;{item.quote}&quot;
                       </p>
                       <div className="flex items-center mt-auto">

@@ -11,7 +11,7 @@ import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@/comp
 import LazySection from '@/components/ui/lazy-section';
 import { DEFAULT_PLACEHOLDER_IMAGE } from '@/lib/constants';
 import { processSectionData } from '@/lib/data/homepage';
-import { servicesOverviewSectionData } from '@/lib/data/servicesPageData';
+import { servicesPageData } from '@/lib/data/servicesPageData';
 import { getServices } from '@/lib/data-utils';
 import { iconComponents } from '@/lib/icon-utils';
 import { defaultMetadata } from '@/lib/metadata';
@@ -38,12 +38,26 @@ export const metadata = defaultMetadata({
 export default async function ServicesPage() {
   const services = await getServices();
 
+  // Get dynamic content
+  const { overview, whyChooseSection, ctaSection, buttonLabels } = servicesPageData;
+
+  // Dynamic grid classes based on number of services for proper centering
+  const getGridClasses = (serviceCount: number) => {
+    if (serviceCount === 1) {
+      return 'grid grid-cols-1 place-items-center gap-8';
+    }
+    if (serviceCount === 2) {
+      return 'grid grid-cols-1 md:grid-cols-2 gap-8 place-items-center max-w-4xl mx-auto';
+    }
+    return 'grid md:grid-cols-2 lg:grid-cols-3 gap-8 card-equal-height justify-items-center';
+  };
+
   return (
     <>
-      <ServicesOverviewSection {...servicesOverviewSectionData} />
+      <ServicesOverviewSection {...overview} />
 
       <Section>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 card-equal-height justify-items-center">
+        <div className={getGridClasses(services.length)}>
           {services.map((service, index) => {
             const IconComponent = iconComponents[service.icon ?? 'Globe'] || iconComponents.Globe;
 
@@ -68,14 +82,19 @@ export default async function ServicesPage() {
                       <CardTitle className="text-xl font-semibold mb-3 text-foreground">
                         {service.title}
                       </CardTitle>
-                      <CardDescription className="text-muted-foreground leading-relaxed">
+                      <CardDescription className="text-neutral-text leading-relaxed">
                         {service.description}
                       </CardDescription>
                     </CardHeader>
                     <CardFooter>
-                      <Button size="lg" className="w-full group" asChild>
+                      <Button
+                        size="lg"
+                        animation="none"
+                        className="w-full hover:scale-100 hover:shadow-none hover:-translate-y-0 group"
+                        asChild
+                      >
                         <Link href={`/services/${service.slug}`}>
-                          Learn more
+                          {buttonLabels?.learnMore || 'Learn more'}
                           <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
                         </Link>
                       </Button>
@@ -91,48 +110,26 @@ export default async function ServicesPage() {
       <Section className="bg-neutral-background">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <LazySection animation="slide-right" className="!overflow-x-visible">
-            <h2 className="text-heading text-3xl font-bold mb-6">Why Choose Our Services</h2>
-            <p className="text-muted-foreground mb-8 text-lg">
-              We deliver measurable results through proven methodologies and personalized attention
-              to your business goals.
-            </p>
+            <h2 className="text-heading text-3xl font-bold mb-6">{whyChooseSection.heading}</h2>
+            <p className="text-neutral-text mb-8 text-lg">{whyChooseSection.description}</p>
 
             <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="shrink-0 size-6 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Check className="size-4 text-primary" />
-                </div>
-                <span className="text-foreground">
-                  Tailored solutions for your specific business needs
-                </span>
-              </div>
-              <div className="flex items-start gap-4">
-                <div className="shrink-0 size-6 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Check className="size-4 text-primary" />
-                </div>
-                <span className="text-foreground">
-                  Data-driven strategies that deliver measurable results
-                </span>
-              </div>
-              <div className="flex items-start gap-4">
-                <div className="shrink-0 size-6 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Check className="size-4 text-primary" />
-                </div>
-                <span className="text-foreground">
-                  Transparent communication throughout the process
-                </span>
-              </div>
-              <div className="flex items-start gap-4">
-                <div className="shrink-0 size-6 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Check className="size-4 text-primary" />
-                </div>
-                <span className="text-foreground">Ongoing support and optimization</span>
-              </div>
+              {whyChooseSection.benefits.map(benefit => {
+                const IconComponent = iconComponents[benefit.icon ?? 'Check'] || Check;
+                return (
+                  <div key={benefit.id} className="flex items-start gap-4">
+                    <div className="shrink-0 size-6 rounded-full bg-primary/10 flex items-center justify-center">
+                      <IconComponent className="size-4 text-primary" />
+                    </div>
+                    <span className="text-foreground">{benefit.text}</span>
+                  </div>
+                );
+              })}
             </div>
 
             <Button size="lg" className="mt-8 group" asChild>
-              <Link href="/contact">
-                Schedule a consultation
+              <Link href={whyChooseSection.buttonLink || '/contact'}>
+                {whyChooseSection.buttonText}
                 <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
@@ -160,14 +157,11 @@ export default async function ServicesPage() {
       <Section className="bg-primary text-white">
         <LazySection>
           <div className="text-center">
-            <h2 className="text-3xl font-bold mb-6">Ready to Transform Your Business?</h2>
-            <p className="text-xl mb-8 max-w-2xl mx-auto text-white/90">
-              Take the first step towards achieving your business goals with our expert guidance and
-              proven strategies.
-            </p>
+            <h2 className="text-3xl font-bold mb-6">{ctaSection.heading}</h2>
+            <p className="text-xl mb-8 max-w-2xl mx-auto text-white/90">{ctaSection.description}</p>
             <Button size="lg" variant="white" className="group" asChild>
-              <Link href="/contact">
-                Get started today
+              <Link href={ctaSection.buttonLink || '/contact'}>
+                {ctaSection.buttonText}
                 <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>

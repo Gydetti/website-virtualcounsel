@@ -51,7 +51,7 @@ export default function ValuePropSection({
       {/* Benefits grid stagger container */}
       <LazySection
         animation="none"
-        className="stagger-container grid grid-cols-1 gap-8 mt-16 md:grid-cols-2 lg:grid-cols-3"
+        className="stagger-container grid grid-cols-1 gap-6 mt-16 md:grid-cols-2 lg:grid-cols-3 justify-items-center max-w-6xl mx-auto"
         style={{ '--stagger-delay': '0.2s' } as CSSProperties}
       >
         {benefits.map((benefit, idx) => {
@@ -61,10 +61,10 @@ export default function ValuePropSection({
             return (
               <div
                 key={benefit.id}
-                className="md:col-span-2 md:flex md:justify-center lg:col-span-1 lg:block h-full"
+                className="md:col-span-2 md:flex md:justify-center lg:col-span-1 lg:block"
                 style={{ '--index': idx } as CSSProperties}
               >
-                <div className="flex flex-col items-start space-y-3 rounded-lg p-6 shadow-sm hover:shadow-md size-full md:w-1/2 lg:w-full">
+                <div className="flex flex-col items-center text-center space-y-3 rounded-lg p-6 shadow-sm hover:shadow-md max-w-[380px] bg-card border border-border/50">
                   <div className="flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
                     <Icon className="size-6" />
                   </div>
@@ -77,7 +77,7 @@ export default function ValuePropSection({
           return (
             <div
               key={benefit.id}
-              className="flex flex-col items-start space-y-3 rounded-lg p-6 shadow-sm hover:shadow-md h-full"
+              className="flex flex-col items-center text-center space-y-3 rounded-lg p-6 shadow-sm hover:shadow-md max-w-[380px] bg-card border border-border/50"
               style={{ '--index': idx } as CSSProperties}
             >
               <div className="flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">

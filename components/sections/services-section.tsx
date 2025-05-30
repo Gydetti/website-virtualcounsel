@@ -127,7 +127,7 @@ export default function ServicesSection({
                   }`}
                 >
                   {service.popular && (
-                    <div className="absolute top-0 right-0 bg-accent text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
+                    <div className="absolute top-0 right-0 bg-accent text-white text-sm font-bold px-3 py-1 rounded-bl-lg">
                       {popularBadgeText ?? 'Popular'}
                     </div>
                   )}

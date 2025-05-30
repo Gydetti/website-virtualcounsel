@@ -54,7 +54,7 @@ function HeroTyping({ typingWords }: { typingWords?: string[] }) {
   }, [displayText, isDeleting, loopNum, typingSpeed, typingWords]);
 
   return (
-    <span className="block mt-3 md:mt-3 lg:mt-4 text-primary">
+    <span className="block text-primary">
       <span className="inline-block min-h-[1.2em]" ref={typingRef}>
         {displayText}
         <span className="typing-cursor" />
@@ -140,7 +140,7 @@ export default function HeroSection({
             <LazySection delay={0.2}>
               <h1
                 id="hero-section-heading"
-                className="font-bold leading-tight text-balance text-center md:text-left"
+                className="font-bold leading-tight text-balance text-center md:text-left mb-2"
               >
                 <span className="block">{headline}</span>
                 <HeroTyping typingWords={typingWords} />
@@ -149,12 +149,14 @@ export default function HeroSection({
           )}
           {subheadline && (
             <LazySection delay={0.3}>
-              <p className="text-body-lg text-center md:text-left mx-auto md:mx-0">{subheadline}</p>
+              <p className="text-body-lg text-center md:text-left mx-auto md:mx-0 md:pr-14 lg:pr-20">
+                {subheadline}
+              </p>
             </LazySection>
           )}
           {(primaryCta?.text || secondaryCta?.text) && (
             <LazySection delay={0.4} className="w-full">
-              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 pt-4 justify-center md:justify-start items-center md:items-start">
+              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 pt-12 justify-center md:justify-start items-center md:items-start">
                 {primaryCta?.text && primaryCta.href && (
                   <Button
                     size="lg"
@@ -184,25 +186,23 @@ export default function HeroSection({
           {showHelpedStats && (
             <LazySection delay={0.5}>
               <div className="flex justify-center md:justify-start w-full">
-                <div className="flex items-center space-x-4 mt-6 text-sm">
-                  <div className="flex -space-x-2">
-                    {[1, 2, 3, 4].map(i => (
-                      <div
-                        key={i}
-                        className="inline-block size-8 rounded-full ring-2 ring-white overflow-hidden bg-neutral-background/200"
-                      >
-                        <Image
-                          src="/images/placeholders/placeholder.svg"
-                          alt="User avatar"
-                          width={32}
-                          height={32}
-                          className="size-full object-cover"
-                        />
-                      </div>
-                    ))}
+                <div className="flex items-center space-x-3 mt-6 text-sm">
+                  <div className="flex items-center justify-center size-10 rounded-full bg-primary/10 shrink-0">
+                    <svg
+                      className="size-5 text-primary"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.403 12.652a3 3 0 0 0 0-5.304 3 3 0 0 0-3.75-3.751 3 3 0 0 0-5.305 0 3 3 0 0 0-3.751 3.75 3 3 0 0 0 0 5.305 3 3 0 0 0 3.75 3.751 3 3 0 0 0 5.305 0 3 3 0 0 0 3.751-3.75Zm-2.546-4.46a.75.75 0 0 0-1.214-.883l-3.236 4.53L8.32 10.29a.75.75 0 1 0-1.14.96l2.253 2.677a.75.75 0 0 0 1.177-.02l3.846-5.384Z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
                   </div>
-                  <div className="text-neutral-text text-center">
-                    <span className="font-medium">100+</span> statistic that helps build authority
+                  <div className="text-neutral-text">
+                    <span className="font-medium">7+ jaar ervaring</span>
                   </div>
                 </div>
               </div>

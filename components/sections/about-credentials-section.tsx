@@ -105,7 +105,7 @@ export default function AboutCredentialsSection({
                   <h3 className="text-xl font-semibold text-neutral-text mb-2">
                     {credential.title}
                   </h3>
-                  <div className="text-neutral-text/70 text-sm mb-3">
+                  <div className="text-neutral-text text-base mb-3">
                     {credential.issuer} • {credential.year}
                   </div>
                   <p className="text-neutral-text leading-relaxed">{credential.description}</p>

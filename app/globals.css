@@ -410,7 +410,7 @@
   }
 
   .text-caption {
-    @apply text-sm text-neutral-text/70 leading-normal;
+    @apply text-sm text-neutral-text leading-normal;
   }
 
   .text-caption-muted {
@@ -423,7 +423,7 @@
   }
 
   .text-card-description {
-    @apply text-sm text-neutral-text/70 leading-normal;
+    @apply text-base text-neutral-text leading-relaxed;
   }
 
   .text-stat-label {

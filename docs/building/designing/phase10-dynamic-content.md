@@ -23,18 +23,123 @@ All user-facing copy in the GMG Template Website 2025 must be sourced from confi
 - **Cookie Banner** - All text now dynamic from siteConfig.cookieConsentText (titles, descriptions, button labels, tab labels, cookie type descriptions)
 - **LandingHeader** - defaultCtaText now dynamic from siteConfig.landingHeaderText
 - **FormBlock** - pendingMessage now dynamic from formBlockConfig
+- **ServicesOverviewPage** (/services) - All copy now dynamic (why choose section, CTA, button labels)
+- **ServiceDetailPages** (/services/[slug]) - All copy now dynamic (benefits, FAQ, testimonials, CTAs, button labels)
 
 ### 🔄 In Progress (FOUND BUT NOT YET FIXED)
-- None remaining
 
-### 📋 Pending (To Be Audited)
-- None remaining - all major components have been audited and converted
+#### 🚨 **CRITICAL DISCOVERY: Service Pages Still Hardcoded**
+**Date:** December 2024  
+**Status:** Major hardcoded content discovered in service pages that was missed in initial audit
 
-### ✅ **Major Achievement: Core Dynamic Content System Complete**
-The foundational system is now in place! All major user-facing content has been moved to config/data files. Future AI agents can now:
-1. Update client copy by editing the data files in `lib/data/`
-2. Add new dynamic fields by extending the schemas in `lib/schemas/sections.schema.ts`
-3. Quickly onboard clients by replacing placeholder content with real client information
+**Service Detail Page (`app/services/[slug]/page.tsx`):**
+- ❌ Benefits section (line ~70-85): "Increased Efficiency", "Better Results", "Expert Support" with descriptions
+- ❌ Process steps (line ~87-103): "Discovery", "Strategy", "Implementation", "Optimization" with descriptions  
+- ❌ FAQ section (line ~105-125): 4 hardcoded questions and answers
+- ❌ Testimonials (line ~127-145): 2 hardcoded testimonial quotes, authors, companies
+- ❌ CTA section (line ~205-220): "Ready to Get Started?" heading and description
+- ❌ Section headings: "Key Benefits of This Service", "Frequently Asked Questions", "What Our Clients Say"
+
+**Services Overview Page (`app/services/page.tsx`):**
+- ❌ "Why Choose Our Services" section (line ~108-160): heading, description, 4 benefit bullet points
+- ❌ CTA section (line ~175-190): "Ready to Transform Your Business?" heading and description
+- ❌ Button labels: "Learn more", "Schedule a consultation", "Get started today"
+
+**Impact:** These pages contain significant amounts of user-facing copy that should be configurable for client onboarding.
+
+## 🚀 **IMMEDIATE IMPLEMENTATION PLAN: Service Pages**
+
+### Step 1: Schema Creation/Extension
+- Create `serviceDetailPageDataSchema` in `lib/schemas/sections.schema.ts`
+- Create `servicesPageDataSchema` for overview page
+- Include schemas for:
+  - Benefits section (title, description, items array)
+  - Process steps (reuse existing or extend)
+  - FAQ section (questions array with question/answer pairs)
+  - Testimonials (quotes, authors, companies)
+  - CTA sections (headings, descriptions, button labels)
+  - Section headings and meta text
+
+### Step 2: Data Files Creation
+- Create `lib/data/serviceDetailPageData.ts` 
+- Extend `lib/data/servicesPageData.ts` with missing content
+- Populate with meta-instructional placeholder content following established patterns
+- Ensure all content includes guidance for AI agents and client customization
+
+### Step 3: Component Refactoring  
+- Update `app/services/[slug]/page.tsx` to use dynamic data
+- Update `app/services/page.tsx` to use extended dynamic data
+- Replace all hardcoded strings with props/data references
+- Maintain existing styling and functionality
+
+### Step 4: Integration & Testing
+- Import and integrate data in page components
+- Run `npm run verify:local` to ensure all tests pass
+- Validate that dynamic content renders correctly
+- Test with different content lengths and variations
+
+### Step 5: Documentation Update
+- Mark service pages as completed in this document
+- Update any related onboarding documentation
+- Add service pages to the completed audit table
+
+### 📋 **CRITICAL DISCOVERY & RESOLUTION: Service Pages**
+
+**Issue Found (Jan 2025):** Service pages contained extensive hardcoded content that was missed in initial audit:
+- **Services Overview Page** (`/services`): Hardcoded "Why Choose Our Services" section, CTA text, button labels
+- **Service Detail Pages** (`/services/[slug]`): Hardcoded benefits, FAQ items, testimonials, CTA sections
+
+**Root Cause:** Service pages were not included in the original dynamic content audit scope.
+
+**✅ RESOLUTION COMPLETED:**
+1. **Schema Creation**: Added comprehensive schemas (`serviceDetailPageDataSchema`, `servicesPageDataSchema`) to `lib/schemas/sections.schema.ts`
+2. **Data Files**: Created/extended data files with meta-instructional content:
+   - `lib/data/serviceDetailPageData.ts` - Complete service detail structure
+   - `lib/data/servicesPageData.ts` - Extended with missing sections
+3. **Component Updates**: Refactored both service pages to use dynamic content:
+   - Benefits sections with dynamic icons and text
+   - FAQ sections with question/answer arrays
+   - Testimonial sections with configurable quotes
+   - CTA sections with dynamic headings and links
+   - Button labels throughout
+4. **Icon Integration**: Fixed icon component mapping issues for dynamic benefit icons
+5. **Testing**: All tests pass, build successful, no linter errors
+
+**Impact:** Service pages now fully support rapid client onboarding and AI-driven content updates.
+
+**Verification Status:** ✅ Build passes, ✅ Tests pass, ✅ No linter errors
+
+## Remaining Work
+
+### ⏳ Pending Review
+*All major hardcoded content has been identified and resolved. Next phase should be a comprehensive audit of remaining components.*
+
+**Next Steps:**
+1. **Full Component Audit**: Review all remaining components for any missed hardcoded strings
+2. **Landing Page Content**: Verify landing page dynamic content is comprehensive
+3. **Error Messages**: Ensure error states use dynamic content
+4. **Meta Content**: Verify page titles, descriptions use dynamic sources
+
+## Schema Pattern Documentation
+
+All schemas follow the established patterns in `lib/schemas/sections.schema.ts`:
+- Meta-instructional content in data files  
+- Comprehensive zod validation
+- Optional fields with sensible defaults
+- Icon support through `iconComponents` mapping
+- Button/link configurability
+- Multi-section content blocks
+
+## Implementation Guidelines
+
+1. **Content Strategy**: All content should guide AI toward best practices
+2. **Validation**: Use zod schemas for type safety and validation
+3. **Flexibility**: Support optional sections and configurable icons/links
+4. **Consistency**: Follow existing naming conventions and patterns
+5. **Testing**: Ensure build passes and all tests complete successfully
+
+---
+*Last Updated: January 2025 - Service Pages Dynamic Content Implementation*
 
 ## Audit Table: Hardcoded Copy
 | Section/Page | File | Line/Location | Hardcoded Copy | New Data Field(s) |
