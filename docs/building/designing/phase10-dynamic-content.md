@@ -353,3 +353,61 @@ Previously, values above `pt-28` weren't working because Tailwind JIT (Just-In-T
 ---
 
 *Continue to expand the audit table and document each refactor as it is completed. See codebase for current progress.*
+
+## 🎨 **CRITICAL DISCOVERY: New Pattern Fade Options**
+
+**Date:** January 2025  
+**Status:** Enhanced pattern system with new fade variants
+
+### **Background Pattern Fade Options**
+The background pattern system now supports these fade variants:
+
+1. **`edges`** - Fades left and right sides (horizontal fade)
+2. **`vertical`** - **NEW!** Fades top and bottom (vertical fade) 
+3. **`top`** - Fades from top only
+4. **`bottom`** - Fades from bottom only
+5. **`none`** - No fade effect
+
+### **Configuration Examples**
+
+**For horizontal edge fade (existing):**
+```typescript
+patternFade: 'edges' // Fades left and right sides
+```
+
+**For vertical edge fade (NEW):**
+```typescript
+patternFade: 'vertical' // Fades top and bottom
+```
+
+**Usage in Section Components:**
+```tsx
+<Section
+  patternStyle="grid"
+  patternOpacity={0.1}
+  patternFade="vertical" // NEW: Top/bottom fade
+  patternColor="rgb(59 130 246 / 0.1)"
+>
+  Content here
+</Section>
+```
+
+**Global Configuration:**
+```typescript
+// In lib/site.config.local.ts
+sectionOverrides: {
+  heroSection: {
+    patternStyle: 'dots',
+    patternOpacity: 0.05,
+    patternFade: 'vertical', // NEW: Use vertical fade globally
+  }
+}
+```
+
+### **Technical Implementation**
+- **CSS Classes:** `.mask-gradient-vertical` applies top/bottom fade
+- **Component Support:** All section components support the new option
+- **Schema Validation:** TypeScript and Zod schemas updated
+- **Backward Compatibility:** Existing `edges` fade unchanged
+
+**Verification Status:** ✅ Build passes, ✅ Tests pass, ✅ No linter errors

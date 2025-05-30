@@ -28,7 +28,7 @@ export const heroSectionDataSchema = z.object({
     .enum(['none', 'dots', 'grid', 'waves', 'noise', 'triangles', 'hexagons', 'crosshatch'])
     .optional(),
   patternOpacity: z.number().min(0).max(1).optional(),
-  patternFade: z.enum(['none', 'edges', 'top', 'bottom']).optional(),
+  patternFade: z.enum(['none', 'edges', 'vertical', 'top', 'bottom']).optional(),
   // Optional per-section pattern color override (any valid CSS color string)
   patternColor: z.string().optional(),
 });
@@ -60,7 +60,7 @@ export const servicesSectionDataSchema = z.object({
     .enum(['none', 'dots', 'grid', 'waves', 'noise', 'triangles', 'hexagons', 'crosshatch'])
     .optional(),
   patternOpacity: z.number().min(0).max(1).optional(),
-  patternFade: z.enum(['none', 'edges', 'top', 'bottom']).optional(),
+  patternFade: z.enum(['none', 'edges', 'vertical', 'top', 'bottom']).optional(),
   patternColor: z.string().optional(),
 });
 
@@ -113,7 +113,7 @@ export const ctaSectionDataSchema = z.object({
     .enum(['none', 'dots', 'grid', 'waves', 'noise', 'triangles', 'hexagons', 'crosshatch'])
     .optional(),
   patternOpacity: z.number().min(0).max(1).optional(),
-  patternFade: z.enum(['none', 'edges', 'top', 'bottom']).optional(),
+  patternFade: z.enum(['none', 'edges', 'vertical', 'top', 'bottom']).optional(),
   // Optional per-section pattern color override (any valid CSS color string)
   patternColor: z.string().optional(),
 });
@@ -155,7 +155,7 @@ export const aboutSectionDataSchema = z.object({
     .enum(['none', 'dots', 'grid', 'waves', 'noise', 'triangles', 'hexagons', 'crosshatch'])
     .optional(),
   patternOpacity: z.number().min(0).max(1).optional(),
-  patternFade: z.enum(['none', 'edges', 'top', 'bottom']).optional(),
+  patternFade: z.enum(['none', 'edges', 'vertical', 'top', 'bottom']).optional(),
   // Optional per-section pattern color override (any valid CSS color string)
   patternColor: z.string().optional(),
 });
@@ -219,7 +219,7 @@ export const featuresSectionDataSchema = z.object({
     .enum(['none', 'dots', 'grid', 'waves', 'noise', 'triangles', 'hexagons', 'crosshatch'])
     .optional(),
   patternOpacity: z.number().min(0).max(1).optional(),
-  patternFade: z.enum(['none', 'edges', 'top', 'bottom']).optional(),
+  patternFade: z.enum(['none', 'edges', 'vertical', 'top', 'bottom']).optional(),
   // Optional per-section pattern color override (any valid CSS color string)
   patternColor: z.string().optional(),
 });
@@ -420,7 +420,7 @@ export const kpiSectionDataSchema = z.object({
     .enum(['none', 'dots', 'grid', 'waves', 'noise', 'triangles', 'hexagons', 'crosshatch'])
     .optional(),
   patternOpacity: z.number().min(0).max(1).optional(),
-  patternFade: z.enum(['none', 'edges', 'top', 'bottom']).optional(),
+  patternFade: z.enum(['none', 'edges', 'vertical', 'top', 'bottom']).optional(),
   // Optional per-section pattern color override (any valid CSS color string)
   patternColor: z.string().optional(),
 });
@@ -477,7 +477,7 @@ export const resourceDetailSectionDataSchema = z.object({
     .enum(['none', 'dots', 'grid', 'waves', 'noise', 'triangles', 'hexagons', 'crosshatch'])
     .optional(),
   patternOpacity: z.number().min(0).max(1).optional(),
-  patternFade: z.enum(['none', 'edges', 'top', 'bottom']).optional(),
+  patternFade: z.enum(['none', 'edges', 'vertical', 'top', 'bottom']).optional(),
   patternColor: z.string().optional(),
 });
 

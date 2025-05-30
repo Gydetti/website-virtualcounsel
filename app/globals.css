@@ -544,6 +544,16 @@
     );
     mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
   }
+  .mask-gradient-vertical {
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 10%,
+      black 90%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+  }
   .mask-gradient-top {
     -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 100%);
     mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 100%);

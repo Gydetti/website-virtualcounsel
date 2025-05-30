@@ -240,7 +240,7 @@ export const pageSectionConfigSchema = z.object({
     .enum(['none', 'dots', 'grid', 'waves', 'noise', 'triangles', 'hexagons', 'crosshatch'])
     .optional(),
   patternOpacity: z.number().min(0).max(1).optional(),
-  patternFade: z.enum(['none', 'edges', 'top', 'bottom']).optional(),
+  patternFade: z.enum(['none', 'edges', 'vertical', 'top', 'bottom']).optional(),
   patternColor: z.string().optional(),
   // TODO: Add fields for section-specific data overrides or a generic data object/key
   // e.g., dataKey: z.string().optional(), variant: z.string().optional()

@@ -28,6 +28,7 @@ const patternVariants = cva('absolute inset-0 z-0 pointer-events-none', {
     fade: {
       none: '',
       edges: 'mask-gradient-edges',
+      vertical: 'mask-gradient-vertical',
       top: 'mask-gradient-top',
       bottom: 'mask-gradient-bottom',
     },

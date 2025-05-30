@@ -17,8 +17,8 @@ export interface SectionProps extends HTMLAttributes<HTMLElement> {
   patternStyle?: string;
   /** Optional per-section background opacity override */
   patternOpacity?: number;
-  /** Optional per-section pattern fade override (none, edges, top, bottom) */
-  patternFade?: 'none' | 'edges' | 'top' | 'bottom';
+  /** Optional per-section pattern fade override (none, edges, vertical, top, bottom) */
+  patternFade?: 'none' | 'edges' | 'vertical' | 'top' | 'bottom';
   /** Optional per-section pattern color override (any valid CSS color string) */
   patternColor?: string;
 }
