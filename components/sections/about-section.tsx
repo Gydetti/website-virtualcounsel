@@ -62,11 +62,12 @@ export default function AboutSection({
   const heroTopPadding = headerConfig?.heroTopPadding ?? 'pt-20 md:pt-24 lg:pt-28';
 
   // Debug logging in development for about section
-  if (process.env.NODE_ENV === 'development' && isHomepage) {
-    console.log('About Section (Homepage) - Transparent Header:', {
+  if (process.env.NODE_ENV === 'development') {
+    console.log('About Section - Transparent Header:', {
       isTransparentHeader,
       heroTopPadding,
       isHomepage,
+      headerConfig,
     });
   }
 
@@ -132,7 +133,7 @@ export default function AboutSection({
         className={cn(
           'relative z-10',
           isHomepage && 'md:min-h-[880px] flex items-center',
-          isTransparentHeader && isHomepage && heroTopPadding
+          isTransparentHeader && !isHomepage && heroTopPadding
         )}
       >
         {/* Badge and heading above the grid layout */}
@@ -285,7 +286,7 @@ export default function AboutSection({
       className={cn(
         'relative z-10',
         isHomepage && 'md:min-h-[880px] flex items-center',
-        isTransparentHeader && isHomepage && heroTopPadding
+        isTransparentHeader && !isHomepage && heroTopPadding
       )}
     >
       {/* Badge and heading above the grid layout */}

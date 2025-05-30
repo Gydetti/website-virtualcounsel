@@ -14,6 +14,7 @@ import { resourceDetailSectionData } from '@/lib/data/staticContent';
 import type { resourceSchema } from '@/lib/schemas/contentBlocks.schema';
 import type { resourceDetailSectionDataSchema } from '@/lib/schemas/sections.schema';
 import { siteConfig } from '@/lib/site.config.local';
+import { cn } from '@/lib/utils';
 
 interface ResourceDetailSectionProps {
   resource: z.infer<typeof resourceSchema>;
@@ -34,6 +35,11 @@ export default function ResourceDetailSection({
   patternFade,
   patternColor,
 }: ResourceDetailSectionProps) {
+  // Get header configuration to add extra padding if transparent mode is enabled
+  const headerConfig = siteConfig.theme.headerConfig;
+  const isTransparentHeader = headerConfig?.transparentMode ?? false;
+  const heroTopPadding = headerConfig?.heroTopPadding ?? 'pt-20 md:pt-24 lg:pt-28';
+
   // Enhanced form configuration - configurable through resource data
   const downloadFormConfig = {
     fields: [
@@ -76,7 +82,7 @@ export default function ResourceDetailSection({
       patternFade={patternFade}
       patternColor={patternColor}
       bgClass={siteConfig.sectionStyles?.heroGradient ?? ''}
-      className="relative overflow-hidden"
+      className={cn('relative overflow-hidden', isTransparentHeader && heroTopPadding)}
     >
       {/* Decorative background elements */}
       <div className="hidden sm:block absolute top-0 left-1/4 size-72 bg-secondary/5 rounded-full -translate-y-1/2 blur-3xl pointer-events-none opacity-70" />

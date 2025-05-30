@@ -76,7 +76,7 @@ export default async function ServicePage(props: ServicePageProps) {
 
   return (
     <>
-      <Section 
+      <Section
         bgClass={siteConfig.sectionStyles?.heroGradient ?? ''}
         className={cn('relative z-10', isTransparentHeader && heroTopPadding)}
       >

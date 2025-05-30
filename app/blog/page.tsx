@@ -49,8 +49,8 @@ export default async function BlogPage() {
 
   return (
     <>
-      <Section 
-        bgClass={siteConfig.sectionStyles?.heroGradient ?? ''} 
+      <Section
+        bgClass={siteConfig.sectionStyles?.heroGradient ?? ''}
         className={cn('relative z-10', isTransparentHeader && heroTopPadding)}
       >
         <LazySection>
