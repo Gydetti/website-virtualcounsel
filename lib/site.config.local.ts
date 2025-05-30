@@ -467,9 +467,12 @@ export const siteConfig: SiteConfigSchema = {
       sections: [
         {
           id: 'home-hero',
-          sectionType:
-            'HeroSection' /* patternStyle: 'grid', patternOpacity: 0.1, patternFade: 'edges', patternColor: 'rgba(var(--accent-rgb), 0.2)' */,
-        }, // example override commented out
+          sectionType: 'HeroSection',
+          patternStyle: 'grid',
+          patternOpacity: 0.1,
+          patternFade: 'vertical',
+          patternColor: 'rgba(var(--accent-rgb), 0.2)',
+        },
         {
           id: 'home-value-prop',
           sectionType: 'ValuePropSection' /* patternStyle: 'grid', patternOpacity: 0.1 */,
