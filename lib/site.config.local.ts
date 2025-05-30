@@ -469,7 +469,7 @@ export const siteConfig: SiteConfigSchema = {
           id: 'home-hero',
           sectionType: 'HeroSection',
           patternStyle: 'grid',
-          patternOpacity: 0.1,
+          patternOpacity: 0.05,
           patternFade: 'vertical',
           patternColor: 'rgba(var(--accent-rgb), 0.2)',
         },
