@@ -3,6 +3,41 @@
 ## Purpose
 All user-facing copy in the GMG Template Website 2025 must be sourced from config/data files, never hardcoded in components or pages. This enables rapid onboarding, easy client customization, and full AI-driven content updates.
 
+## 🎉 NEW FEATURE: Transparent Header Toggle
+
+### Overview
+A new configurable transparent header mode has been implemented that allows the header to:
+- Start transparent and overlay on hero sections
+- Smoothly transition to a solid background when scrolling
+- Eliminate flickering issues with improved scroll handling
+- Easy toggle between transparent and standard header modes
+
+### Configuration
+In `lib/site.config.local.ts`, find the `theme.headerConfig` section:
+
+```typescript
+headerConfig: {
+  transparentMode: true,              // Enable/disable transparent mode
+  scrolledBackgroundColor: 'bg-white/95 backdrop-blur-sm', // Background when scrolled
+  heroTopPadding: 'pt-24',           // Extra padding for hero sections
+  transitionDuration: '300ms',        // Smooth transition duration
+  scrollThreshold: 50,                // Pixels to scroll before background appears
+}
+```
+
+### Features
+- **No Flickering**: Uses requestAnimationFrame and debouncing for smooth transitions
+- **Smart Detection**: Automatically applies to pages with hero sections
+- **Customizable**: All aspects configurable via siteConfig
+- **Performance Optimized**: Passive scroll listeners and efficient state management
+- **Responsive**: Works seamlessly on all device sizes
+
+### Implementation Details
+- Header component updated with transparent mode logic
+- Hero and About sections automatically add extra padding when enabled
+- Smooth color transitions for text and backgrounds
+- Fixed positioning when transparent, sticky when standard
+
 ## Progress Tracker
 
 ### ✅ Completed (Fully Dynamic)

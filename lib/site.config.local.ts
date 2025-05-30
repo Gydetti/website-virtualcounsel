@@ -165,6 +165,37 @@ export const siteConfig: SiteConfigSchema = {
       heroStyle: 'pattern', // flat, gradient, pattern, image
       testimonialStyle: 'cards', // minimal, cards, featured
     },
+    // Header configuration for transparent/overlay mode
+    headerConfig: {
+      /**
+       * Enable transparent header that overlaps hero sections
+       * When true, header starts transparent and gains background on scroll
+       * When false, header always has background (default behavior)
+       */
+      transparentMode: true, // <--- Set to true to enable transparent header
+
+      /**
+       * Background color/classes when scrolled (only applies in transparent mode)
+       * Examples: 'bg-white/95', 'bg-neutral-surface/90', 'bg-black/80'
+       */
+      scrolledBackgroundColor: 'bg-white/95 backdrop-blur-sm',
+
+      /**
+       * Extra padding to add to hero sections when transparent mode is enabled
+       * This prevents content from being hidden behind the transparent header
+       */
+      heroTopPadding: 'pt-24', // Tailwind class for top padding
+
+      /**
+       * Transition duration for smooth animations (CSS transition-duration value)
+       */
+      transitionDuration: '300ms',
+
+      /**
+       * Scroll threshold before background appears (in pixels)
+       */
+      scrollThreshold: 50,
+    },
   },
   // NAVIGATION LINKS: Main site navigation (header).
   navLinks: [

@@ -14,6 +14,7 @@ import OptimizedImage from '@/components/ui/optimized-image';
 import * as homepageData from '@/lib/data/homepage';
 import type { aboutSectionDataSchema } from '@/lib/schemas/sections.schema';
 import { siteConfig } from '@/lib/site.config.local';
+import { cn } from '@/lib/utils';
 
 // Updated props type alias using Zod schema
 export type AboutSectionProps = z.infer<typeof aboutSectionDataSchema> & {
@@ -52,18 +53,32 @@ export default function AboutSection({
   learnMoreText,
 }: AboutSectionProps) {
   const containerClasses =
-    variant === 'centered'
-      ? 'grid grid-cols-1 gap-12 items-center text-center'
-      : 'grid md:grid-cols-2 gap-12 items-center';
-  // Grid column placement for image variants: place image in column 2 for imageRight, else column 1
-  const imageOrderClass = variant === 'imageRight' ? 'md:col-start-2' : 'md:col-start-1';
-  // Content occupies the opposite column
-  const contentOrderClass = variant === 'imageRight' ? 'md:col-start-1' : 'md:col-start-2';
+    'max-w-[var(--container-max-width)] mx-auto px-4 sm:px-6 md:px-8 xl:px-20';
+  const contentPaddingClass = isHomepage ? 'mb-8' : 'mb-10';
 
-  const outerContainerClass = containerClasses;
+  // Get header configuration to add extra padding if transparent mode is enabled
+  const headerConfig = siteConfig.theme.headerConfig;
+  const isTransparentHeader = headerConfig?.transparentMode ?? false;
+  const heroTopPadding = headerConfig?.heroTopPadding ?? 'pt-24';
 
-  // For imageRight, add padding to individual content sections
-  const contentPaddingClass = variant === 'imageRight' ? 'md:pr-8 xl:pr-20' : '';
+  // Determine spacing and layout based on variant
+  let outerContainerClass = 'w-full grid gap-8 md:gap-12 lg:gap-16 items-center';
+  let imageOrderClass = '';
+  let contentOrderClass = '';
+
+  if (variant === 'centered') {
+    outerContainerClass = 'grid grid-cols-1 gap-12 items-center text-center';
+    imageOrderClass = 'md:col-start-1';
+    contentOrderClass = 'md:col-start-2';
+  } else if (variant === 'imageRight') {
+    outerContainerClass = 'grid md:grid-cols-2 gap-12 items-center';
+    imageOrderClass = 'md:col-start-2';
+    contentOrderClass = 'md:col-start-1';
+  } else if (variant === 'classic') {
+    outerContainerClass = 'grid md:grid-cols-2 gap-12 items-center';
+    imageOrderClass = 'md:col-start-1';
+    contentOrderClass = 'md:col-start-2';
+  }
 
   // Refactored image rendering logic - now uses same size as Classic variant
   const renderImage = () => {
@@ -105,7 +120,11 @@ export default function AboutSection({
         bgClass={siteConfig.sectionStyles?.heroGradient ?? ''}
         patternStyle={patternStyle}
         patternOpacity={patternOpacity}
-        className="relative z-10"
+        className={cn(
+          'relative z-10',
+          isHomepage && 'md:min-h-[880px] flex items-center',
+          isTransparentHeader && isHomepage && heroTopPadding
+        )}
       >
         {/* Badge and heading above the grid layout */}
         {badgeText && (
@@ -254,7 +273,11 @@ export default function AboutSection({
       bgClass={siteConfig.sectionStyles?.heroGradient ?? ''}
       patternStyle={patternStyle}
       patternOpacity={patternOpacity}
-      className={`relative z-10${isHomepage ? ' md:min-h-[880px] flex items-center' : ''}`}
+      className={cn(
+        'relative z-10',
+        isHomepage && 'md:min-h-[880px] flex items-center',
+        isTransparentHeader && isHomepage && heroTopPadding
+      )}
     >
       {/* Badge and heading above the grid layout */}
       {badgeText && (

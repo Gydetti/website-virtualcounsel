@@ -17,6 +17,7 @@ import OptimizedImage from '@/components/ui/optimized-image';
 import blurDataMap from '@/lib/blurDataURL.json';
 import type { heroSectionDataSchema } from '@/lib/schemas/sections.schema';
 import { siteConfig } from '@/lib/siteConfig';
+import { cn } from '@/lib/utils';
 
 const HeroStats = dynamic(() => import('@/components/sections/hero-stats'), {
   ssr: false,
@@ -105,6 +106,11 @@ export default function HeroSection({
   // Get hero style from siteConfig
   const heroStyle = siteConfig.theme.sectionStyles?.heroStyle || 'gradient';
 
+  // Get header configuration to add extra padding if transparent mode is enabled
+  const headerConfig = siteConfig.theme.headerConfig;
+  const isTransparentHeader = headerConfig?.transparentMode ?? false;
+  const heroTopPadding = headerConfig?.heroTopPadding ?? 'pt-24';
+
   // Determine raw pattern and opacity override
   const rawPatternStyle = patternStyle ?? siteConfig.theme.visualStyle?.patternStyle;
   const usedOpacity = patternOpacity ?? siteConfig.theme.visualStyle?.patternOpacity;
@@ -116,7 +122,7 @@ export default function HeroSection({
       bgClass={siteConfig.sectionStyles?.heroGradient ?? ''}
       patternStyle={rawPatternStyle}
       patternOpacity={usedOpacity}
-      className="relative md:min-h-[880px] flex"
+      className={cn('relative md:min-h-[880px] flex', isTransparentHeader && heroTopPadding)}
     >
       {/* BackgroundPattern now handled by Section */}
 

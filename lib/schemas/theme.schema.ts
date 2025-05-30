@@ -121,6 +121,22 @@ export const themeSectionStylesSchema = z
   })
   .optional();
 
+// Header configuration schema
+export const headerConfigSchema = z
+  .object({
+    // Enable transparent header that overlaps hero sections
+    transparentMode: z.boolean().default(false),
+    // Background color when scrolled (only applies in transparent mode)
+    scrolledBackgroundColor: z.string().optional(), // e.g., 'bg-white/95'
+    // Extra padding to add to hero sections when transparent mode is enabled
+    heroTopPadding: z.string().default('pt-24'), // Tailwind class for top padding
+    // Transition settings for smooth animations
+    transitionDuration: z.string().default('300ms'),
+    // Scroll threshold before background appears (in pixels)
+    scrollThreshold: z.number().default(50),
+  })
+  .optional();
+
 export const themeSchema = z.object({
   colors: z
     .object({
@@ -168,4 +184,6 @@ export const themeSchema = z.object({
   visualStyle: visualStyleSchema,
   // Section treatment configuration
   sectionStyles: themeSectionStylesSchema,
+  // New header configuration
+  headerConfig: headerConfigSchema,
 });

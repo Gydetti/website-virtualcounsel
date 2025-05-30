@@ -7,7 +7,7 @@ import { ArrowRight, ChevronDown, Menu, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import type { z } from 'zod';
 
@@ -31,10 +31,89 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [expandedMenu, setExpandedMenu] = useState<string | null>(null);
   const [hoveredMenuItem, setHoveredMenuItem] = useState<string | null>(null);
-  const { atTop, direction } = useScrollDirection({ topThreshold: 88 });
-  const scrolled = !atTop;
-  const isHidden = direction === 'down' && !atTop;
+  const [scrolled, setScrolled] = useState(false);
+  const { direction } = useScrollDirection({ topThreshold: 88 });
   const pathname = usePathname();
+  const scrollTimeoutRef = useRef<NodeJS.Timeout>();
+  const rafRef = useRef<number>();
+
+  // Get header configuration
+  const headerConfig = siteConfig.theme.headerConfig;
+  const isTransparentMode = headerConfig?.transparentMode ?? false;
+  const scrollThreshold = headerConfig?.scrollThreshold ?? 50;
+  const transitionDuration = headerConfig?.transitionDuration ?? '300ms';
+  const scrolledBgColor = headerConfig?.scrolledBackgroundColor ?? 'bg-neutral-surface/95';
+
+  // Check if we're on a page with a hero section (pages that should have transparent header)
+  const heroPages = [
+    '/',
+    '/about',
+    '/services',
+    '/blog',
+    '/resources',
+    '/faq',
+    '/contact',
+    '/testimonials',
+  ];
+  const hasHeroSection =
+    heroPages.includes(pathname) ||
+    pathname.startsWith('/services/') ||
+    pathname.startsWith('/resources/');
+  const shouldBeTransparent = isTransparentMode && hasHeroSection && !scrolled;
+
+  // Improved scroll handling with debouncing and requestAnimationFrame
+  const handleScroll = useCallback(() => {
+    // Clear any existing timeout
+    if (scrollTimeoutRef.current) {
+      clearTimeout(scrollTimeoutRef.current);
+    }
+
+    // Cancel any pending animation frame
+    if (rafRef.current) {
+      cancelAnimationFrame(rafRef.current);
+    }
+
+    // Use requestAnimationFrame for smooth updates
+    rafRef.current = requestAnimationFrame(() => {
+      const currentScrollY = window.scrollY;
+      const isScrolled = currentScrollY > scrollThreshold;
+
+      // Only update if the state has changed
+      if (isScrolled !== scrolled) {
+        setScrolled(isScrolled);
+      }
+    });
+
+    // Debounce to prevent excessive updates
+    scrollTimeoutRef.current = setTimeout(() => {
+      rafRef.current = requestAnimationFrame(() => {
+        const currentScrollY = window.scrollY;
+        setScrolled(currentScrollY > scrollThreshold);
+      });
+    }, 10);
+  }, [scrolled, scrollThreshold]);
+
+  useEffect(() => {
+    if (isTransparentMode) {
+      // Initial check
+      handleScroll();
+
+      // Add scroll listener with passive flag for better performance
+      window.addEventListener('scroll', handleScroll, { passive: true });
+
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+        if (scrollTimeoutRef.current) {
+          clearTimeout(scrollTimeoutRef.current);
+        }
+        if (rafRef.current) {
+          cancelAnimationFrame(rafRef.current);
+        }
+      };
+    }
+  }, [isTransparentMode, handleScroll]);
+
+  const isHidden = direction === 'down' && scrolled;
 
   // highlight top-level nav for deeper routes as active
   const isActiveTab = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
@@ -193,17 +272,23 @@ export default function Header() {
     <>
       <header
         className={cn(
-          'sticky top-0 z-50 w-full transition-transform duration-300 will-change-transform',
+          isTransparentMode ? 'fixed' : 'sticky',
+          'top-0 z-50 w-full will-change-transform',
+          'transition-transform',
           isHidden ? '-translate-y-full' : 'translate-y-0'
         )}
+        style={{ transitionDuration }}
       >
         <div
           className={cn(
-            'overflow-hidden transition-all duration-300',
-            scrolled
-              ? 'bg-neutral-surface shadow-sm lg:bg-neutral-surface/80 lg:backdrop-blur-md py-2'
-              : 'bg-neutral-surface shadow-sm lg:bg-neutral-surface/80 lg:backdrop-blur-md py-4'
+            'overflow-hidden transition-all',
+            shouldBeTransparent
+              ? 'bg-transparent py-4'
+              : scrolled
+                ? `${scrolledBgColor} backdrop-blur-md shadow-sm py-2`
+                : 'bg-neutral-surface shadow-sm lg:bg-neutral-surface/80 lg:backdrop-blur-md py-4'
           )}
+          style={{ transitionDuration }}
         >
           <nav
             className="mx-auto max-w-[var(--container-max-width)] px-4 sm:px-6 md:px-8 xl:px-20 flex items-center justify-between"
@@ -211,9 +296,10 @@ export default function Header() {
           >
             <div
               className={cn(
-                'flex lg:flex-1 transition-transform duration-300 origin-left',
-                scrolled ? 'scale-90' : 'scale-100'
+                'flex lg:flex-1 transition-transform origin-left',
+                scrolled && !shouldBeTransparent ? 'scale-90' : 'scale-100'
               )}
+              style={{ transitionDuration }}
             >
               <Link href="/" className="-m-1.5 p-1.5">
                 <span className="sr-only">{siteConfig.site.name}</span>
@@ -227,11 +313,23 @@ export default function Header() {
                     priority
                   />
                   <div className="flex flex-col">
-                    <span className="text-lg font-semibold leading-tight text-neutral-text">
+                    <span
+                      className={cn(
+                        'text-lg font-semibold leading-tight transition-colors',
+                        shouldBeTransparent ? 'text-white' : 'text-neutral-text'
+                      )}
+                      style={{ transitionDuration }}
+                    >
                       {siteConfig.site.name}
                     </span>
                     {siteConfig.theme.logo.subtitle && (
-                      <span className="text-sm text-neutral-text/500 leading-snug">
+                      <span
+                        className={cn(
+                          'text-sm leading-snug transition-colors',
+                          shouldBeTransparent ? 'text-white/70' : 'text-neutral-text/500'
+                        )}
+                        style={{ transitionDuration }}
+                      >
                         {siteConfig.theme.logo.subtitle}
                       </span>
                     )}
@@ -242,9 +340,13 @@ export default function Header() {
             <div className="flex lg:hidden">
               <button
                 type="button"
-                className=" inline-flex items-center justify-center rounded-md p-2.5 text-foreground"
+                className={cn(
+                  'inline-flex items-center justify-center rounded-md p-2.5 transition-colors',
+                  shouldBeTransparent ? 'text-white hover:text-white/80' : 'text-foreground'
+                )}
                 onClick={() => setMobileMenuOpen(true)}
                 aria-label="Open main menu"
+                style={{ transitionDuration }}
               >
                 <Menu className="size-6" aria-hidden="true" />
               </button>
@@ -266,18 +368,23 @@ export default function Header() {
                             className={cn(
                               'inline-block text-sm font-medium transition-colors relative group focus:outline-none focus:ring-0 !min-h-0 !min-w-0',
                               isActiveTab(item.href)
-                                ? 'text-primary font-semibold'
-                                : scrolled
-                                  ? 'text-neutral-text hover:text-primary'
-                                  : 'text-foreground hover:text-primary'
+                                ? shouldBeTransparent
+                                  ? 'text-white font-semibold'
+                                  : 'text-primary font-semibold'
+                                : shouldBeTransparent
+                                  ? 'text-white/90 hover:text-white'
+                                  : 'text-neutral-text hover:text-primary'
                             )}
+                            style={{ transitionDuration }}
                           >
                             {item.text}
                             <span
                               className={cn(
-                                'absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300',
+                                'absolute -bottom-1 left-0 h-0.5 transition-all',
+                                shouldBeTransparent ? 'bg-white' : 'bg-primary',
                                 isActiveTab(item.href) ? 'w-full' : 'w-0 group-hover:w-full'
                               )}
+                              style={{ transitionDuration }}
                             />
                             <ChevronDown className="ml-1 inline-block size-4" />
                           </button>
@@ -321,18 +428,23 @@ export default function Header() {
                     className={cn(
                       'inline-block text-sm font-medium transition-colors relative group !min-h-0 !min-w-0',
                       isActiveTab(item.href)
-                        ? 'text-primary font-semibold'
-                        : scrolled
-                          ? 'text-neutral-text hover:text-primary'
-                          : 'text-foreground hover:text-primary'
+                        ? shouldBeTransparent
+                          ? 'text-white font-semibold'
+                          : 'text-primary font-semibold'
+                        : shouldBeTransparent
+                          ? 'text-white/90 hover:text-white'
+                          : 'text-neutral-text hover:text-primary'
                     )}
+                    style={{ transitionDuration }}
                   >
                     {item.text}
                     <span
                       className={cn(
-                        'absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300',
+                        'absolute -bottom-1 left-0 h-0.5 transition-all',
+                        shouldBeTransparent ? 'bg-white' : 'bg-primary',
                         isActiveTab(item.href) ? 'w-full' : 'w-0 group-hover:w-full'
                       )}
+                      style={{ transitionDuration }}
                     />
                   </Link>
                 );
@@ -341,8 +453,12 @@ export default function Header() {
             <div className="hidden lg:flex lg:items-center lg:ml-8">
               <Button
                 asChild
-                variant="default"
-                className="bgroup text-sm h-10 px-3 min-h-0 min-w-0"
+                variant={shouldBeTransparent ? 'white' : 'default'}
+                className={cn(
+                  'group text-sm h-10 px-3 min-h-0 min-w-0 transition-all',
+                  shouldBeTransparent && 'border-white/20 hover:bg-white/10'
+                )}
+                style={{ transitionDuration }}
               >
                 <Link href="/contact">Main CTA button</Link>
               </Button>
