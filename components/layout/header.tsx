@@ -37,12 +37,26 @@ export default function Header() {
   const scrollTimeoutRef = useRef<NodeJS.Timeout>();
   const rafRef = useRef<number>();
 
-  // Get header configuration
+  // Get header configuration and color settings
   const headerConfig = siteConfig.theme.headerConfig;
   const isTransparentMode = headerConfig?.transparentMode ?? false;
-  const scrollThreshold = headerConfig?.scrollThreshold ?? 50;
+  const scrolledBgColor = headerConfig?.scrolledBackgroundColor ?? 'bg-white/95';
   const transitionDuration = headerConfig?.transitionDuration ?? '300ms';
-  const scrolledBgColor = headerConfig?.scrolledBackgroundColor ?? 'bg-neutral-surface/95';
+  const scrollThreshold = headerConfig?.scrollThreshold ?? 50;
+
+  // Text color configuration
+  const textColors = headerConfig?.textColors;
+  const shouldChangeTextColors = textColors?.changeOnScroll ?? true;
+  const transparentTextColor = textColors?.transparentMode ?? 'text-white';
+  const scrolledTextColor = textColors?.scrolledMode ?? 'text-foreground';
+
+  // CTA color configuration
+  const ctaColors = headerConfig?.ctaColors;
+  const shouldChangeCtaColors = ctaColors?.changeOnScroll ?? true;
+  const transparentCtaColor =
+    ctaColors?.transparentMode ?? 'border-white text-white hover:bg-white hover:text-black';
+  const scrolledCtaColor =
+    ctaColors?.scrolledMode ?? 'border-primary text-primary hover:bg-primary hover:text-white';
 
   // Check if we're on a page with a hero section (pages that should have transparent header)
   const heroPages = [
@@ -60,6 +74,14 @@ export default function Header() {
     pathname.startsWith('/services/') ||
     pathname.startsWith('/resources/');
   const shouldBeTransparent = isTransparentMode && hasHeroSection && !scrolled;
+
+  // Move color calculations here after shouldBeTransparent is defined
+  // Determine current colors based on scroll state and configuration
+  const currentTextColor =
+    shouldChangeTextColors && shouldBeTransparent ? transparentTextColor : scrolledTextColor;
+
+  const currentCtaColor =
+    shouldChangeCtaColors && shouldBeTransparent ? transparentCtaColor : scrolledCtaColor;
 
   // Improved scroll handling with debouncing and requestAnimationFrame
   const handleScroll = useCallback(() => {
@@ -316,19 +338,17 @@ export default function Header() {
                     <span
                       className={cn(
                         'text-lg font-semibold leading-tight transition-colors',
-                        shouldBeTransparent ? 'text-white' : 'text-neutral-text'
+                        currentTextColor
                       )}
-                      style={{ transitionDuration }}
                     >
                       {siteConfig.site.name}
                     </span>
                     {siteConfig.theme.logo.subtitle && (
                       <span
                         className={cn(
-                          'text-sm leading-snug transition-colors',
-                          shouldBeTransparent ? 'text-white/70' : 'text-neutral-text/500'
+                          'text-sm leading-snug transition-colors opacity-70',
+                          currentTextColor
                         )}
-                        style={{ transitionDuration }}
                       >
                         {siteConfig.theme.logo.subtitle}
                       </span>
@@ -342,7 +362,9 @@ export default function Header() {
                 type="button"
                 className={cn(
                   'inline-flex items-center justify-center rounded-md p-2.5 transition-colors',
-                  shouldBeTransparent ? 'text-white hover:text-white/80' : 'text-foreground'
+                  currentTextColor.replace('text-', 'text-').includes('hover:')
+                    ? currentTextColor
+                    : `${currentTextColor} hover:opacity-80`
                 )}
                 onClick={() => setMobileMenuOpen(true)}
                 aria-label="Open main menu"
@@ -368,12 +390,8 @@ export default function Header() {
                             className={cn(
                               'inline-block text-sm font-medium transition-colors relative group focus:outline-none focus:ring-0 !min-h-0 !min-w-0',
                               isActiveTab(item.href)
-                                ? shouldBeTransparent
-                                  ? 'text-white font-semibold'
-                                  : 'text-primary font-semibold'
-                                : shouldBeTransparent
-                                  ? 'text-white/90 hover:text-white'
-                                  : 'text-neutral-text hover:text-primary'
+                                ? `${currentTextColor} font-semibold`
+                                : `${currentTextColor.includes('opacity') ? currentTextColor : `${currentTextColor} hover:opacity-80`}`
                             )}
                             style={{ transitionDuration }}
                           >
@@ -381,7 +399,7 @@ export default function Header() {
                             <span
                               className={cn(
                                 'absolute -bottom-1 left-0 h-0.5 transition-all',
-                                shouldBeTransparent ? 'bg-white' : 'bg-primary',
+                                currentTextColor.includes('text-white') ? 'bg-white' : 'bg-primary',
                                 isActiveTab(item.href) ? 'w-full' : 'w-0 group-hover:w-full'
                               )}
                               style={{ transitionDuration }}
@@ -428,12 +446,8 @@ export default function Header() {
                     className={cn(
                       'inline-block text-sm font-medium transition-colors relative group !min-h-0 !min-w-0',
                       isActiveTab(item.href)
-                        ? shouldBeTransparent
-                          ? 'text-white font-semibold'
-                          : 'text-primary font-semibold'
-                        : shouldBeTransparent
-                          ? 'text-white/90 hover:text-white'
-                          : 'text-neutral-text hover:text-primary'
+                        ? `${currentTextColor} font-semibold`
+                        : `${currentTextColor.includes('opacity') ? currentTextColor : `${currentTextColor} hover:opacity-80`}`
                     )}
                     style={{ transitionDuration }}
                   >
@@ -441,7 +455,7 @@ export default function Header() {
                     <span
                       className={cn(
                         'absolute -bottom-1 left-0 h-0.5 transition-all',
-                        shouldBeTransparent ? 'bg-white' : 'bg-primary',
+                        currentTextColor.includes('text-white') ? 'bg-white' : 'bg-primary',
                         isActiveTab(item.href) ? 'w-full' : 'w-0 group-hover:w-full'
                       )}
                       style={{ transitionDuration }}
@@ -453,10 +467,10 @@ export default function Header() {
             <div className="hidden lg:flex lg:items-center lg:ml-8">
               <Button
                 asChild
-                variant={shouldBeTransparent ? 'white' : 'default'}
+                variant="default"
                 className={cn(
                   'group text-sm h-10 px-3 min-h-0 min-w-0 transition-all',
-                  shouldBeTransparent && 'border-white/20 hover:bg-white/10'
+                  currentCtaColor
                 )}
                 style={{ transitionDuration }}
               >

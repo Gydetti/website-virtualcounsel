@@ -134,6 +134,32 @@ export const headerConfigSchema = z
     transitionDuration: z.string().default('300ms'),
     // Scroll threshold before background appears (in pixels)
     scrollThreshold: z.number().default(50),
+    // Text color configuration
+    textColors: z
+      .object({
+        // Whether to change text colors based on scroll state
+        changeOnScroll: z.boolean().default(true),
+        // Text color when header is transparent (only used if changeOnScroll is true)
+        transparentMode: z.string().default('text-white'),
+        // Text color when header has background (always used, or when changeOnScroll is false)
+        scrolledMode: z.string().default('text-foreground'),
+      })
+      .optional(),
+    // Button/CTA colors in header
+    ctaColors: z
+      .object({
+        // Whether to change CTA colors based on scroll state
+        changeOnScroll: z.boolean().default(true),
+        // CTA styling when header is transparent
+        transparentMode: z
+          .string()
+          .default('border-white text-white hover:bg-white hover:text-black'),
+        // CTA styling when header has background
+        scrolledMode: z
+          .string()
+          .default('border-primary text-primary hover:bg-primary hover:text-white'),
+      })
+      .optional(),
   })
   .optional();
 

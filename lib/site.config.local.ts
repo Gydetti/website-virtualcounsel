@@ -197,6 +197,30 @@ export const siteConfig: SiteConfigSchema = {
        * Scroll threshold before background appears (in pixels)
        */
       scrollThreshold: 50,
+
+      /**
+       * Text color configuration for different header states
+       * - changeOnScroll: whether text colors should change when scrolling (default: true)
+       * - transparentMode: text color when header is transparent
+       * - scrolledMode: text color when header has background
+       */
+      textColors: {
+        changeOnScroll: false, // Keep colors consistent - doesn't change on scroll!
+        transparentMode: 'text-foreground', // Same color always
+        scrolledMode: 'text-foreground', // Same color always
+      },
+
+      /**
+       * CTA button color configuration for different header states
+       * - changeOnScroll: whether CTA colors should change when scrolling (default: true)
+       * - transparentMode: CTA styling when header is transparent
+       * - scrolledMode: CTA styling when header has background
+       */
+      ctaColors: {
+        changeOnScroll: false, // Keep CTA styling consistent
+        transparentMode: 'border-primary text-primary hover:bg-primary hover:text-white',
+        scrolledMode: 'border-primary text-primary hover:bg-primary hover:text-white',
+      },
     },
   },
   // NAVIGATION LINKS: Main site navigation (header).

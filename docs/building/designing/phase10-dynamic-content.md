@@ -11,18 +11,70 @@ A new configurable transparent header mode has been implemented that allows the 
 - Smoothly transition to a solid background when scrolling
 - Eliminate flickering issues with improved scroll handling
 - Easy toggle between transparent and standard header modes
+- **NEW: Configurable text and CTA colors that can remain consistent or change on scroll**
 
 ### Configuration
 In `lib/site.config.local.ts`, find the `theme.headerConfig` section:
 
 ```typescript
 headerConfig: {
-  transparentMode: true,              // Enable/disable transparent mode
-  scrolledBackgroundColor: 'bg-white/95 backdrop-blur-sm', // Background when scrolled
-  heroTopPadding: 'pt-24',           // Extra padding for hero sections
-  transitionDuration: '300ms',        // Smooth transition duration
-  scrollThreshold: 50,                // Pixels to scroll before background appears
+  // Enable transparent mode
+  transparentMode: true, // Set to false for standard header behavior
+  
+  // Background when scrolled
+  scrolledBackgroundColor: 'bg-white/95 backdrop-blur-sm',
+  
+  // Hero section padding (responsive)
+  heroTopPadding: 'pt-24 md:pt-32 lg:pt-36',
+  
+  // Animation settings
+  transitionDuration: '300ms',
+  scrollThreshold: 50,
+  
+  // 🎨 NEW: Text color configuration
+  textColors: {
+    changeOnScroll: false, // Keep same colors always!
+    transparentMode: 'text-foreground', // Color when transparent
+    scrolledMode: 'text-foreground', // Color when scrolled
+  },
+  
+  // 🎨 NEW: CTA button color configuration  
+  ctaColors: {
+    changeOnScroll: false, // Keep same CTA styling always!
+    transparentMode: 'border-primary text-primary hover:bg-primary hover:text-white',
+    scrolledMode: 'border-primary text-primary hover:bg-primary hover:text-white',
+  },
 }
+```
+
+### Color Configuration Options
+
+#### Option 1: Keep Colors Consistent (Recommended)
+```typescript
+textColors: {
+  changeOnScroll: false, // Colors stay the same
+  transparentMode: 'text-foreground',
+  scrolledMode: 'text-foreground',
+},
+ctaColors: {
+  changeOnScroll: false, // CTA stays the same
+  transparentMode: 'border-primary text-primary hover:bg-primary hover:text-white',
+  scrolledMode: 'border-primary text-primary hover:bg-primary hover:text-white',
+},
+```
+
+#### Option 2: Change Colors on Scroll
+```typescript
+textColors: {
+  changeOnScroll: true, // Colors change based on scroll
+  transparentMode: 'text-white', // White text when transparent
+  scrolledMode: 'text-foreground', // Dark text when scrolled
+},
+ctaColors: {
+  changeOnScroll: true, // CTA changes on scroll
+  transparentMode: 'border-white text-white hover:bg-white hover:text-black',
+  scrolledMode: 'border-primary text-primary hover:bg-primary hover:text-white',
+},
 ```
 
 ### Features
