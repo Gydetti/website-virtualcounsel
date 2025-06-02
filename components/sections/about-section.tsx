@@ -114,7 +114,9 @@ export default function AboutSection({
     if (isCircleImage) {
       // ✅ CORRECT implementation for round images
       return (
-        <div className="flex justify-center p-4"> {/* Padding for shadow space */}
+        <div className="flex justify-center p-4">
+          {' '}
+          {/* Padding for shadow space */}
           <OptimizedImage
             src={image.src}
             alt={image.alt || 'About our company representative'}
