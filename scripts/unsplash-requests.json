@@ -1,0 +1,51 @@
+[
+  {
+    "category": "hero",
+    "query": "modern professional office team collaboration",
+    "purpose": "homepage hero section",
+    "count": 2,
+    "orientation": "landscape"
+  },
+  {
+    "category": "about",
+    "query": "business team working together",
+    "purpose": "about page team photo",
+    "count": 1,
+    "orientation": "landscape"
+  },
+  {
+    "category": "services",
+    "query": "consulting business strategy",
+    "purpose": "services page illustrations",
+    "count": 3,
+    "orientation": "landscape"
+  },
+  {
+    "category": "testimonials",
+    "query": "professional headshots diverse people",
+    "purpose": "client testimonial photos",
+    "count": 6,
+    "orientation": "square"
+  },
+  {
+    "category": "team",
+    "query": "professional business portraits",
+    "purpose": "team member photos",
+    "count": 4,
+    "orientation": "portrait"
+  },
+  {
+    "category": "blog",
+    "query": "business technology workspace",
+    "purpose": "blog post featured images",
+    "count": 5,
+    "orientation": "landscape"
+  },
+  {
+    "category": "general",
+    "query": "modern office interior",
+    "purpose": "background and texture images",
+    "count": 3,
+    "orientation": "landscape"
+  }
+]

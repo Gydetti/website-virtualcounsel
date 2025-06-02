@@ -1,7 +1,7 @@
 Please Read all the following files. 
 
 Core onboarding file:
-@master-client-onboarding.md = docs/master-client-onboarding.md
+@1. master-client-onboarding.md = docs/onboarding/1. master-client-onboarding.md
 
 And also, explain me the rules that you have attached with you here! Let's see if you know them properly.
 As a reminder: always run the build + test actions after making significant changes:

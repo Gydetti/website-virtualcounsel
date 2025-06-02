@@ -17,6 +17,7 @@
     "format:check": "prettier --check .",
     "setup": "husky install",
     "image-optimize": "node scripts/image-optimize.js",
+    "fetch-images": "node scripts/fetch-unsplash-images.js",
     "type-check": "tsc --noEmit",
     "deploy": "npm run build && npm run start",
     "ensure-react-imports": "node scripts/ensure-react-imports.js",

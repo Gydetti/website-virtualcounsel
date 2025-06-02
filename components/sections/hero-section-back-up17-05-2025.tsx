@@ -15,7 +15,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import LazySection from '@/components/ui/lazy-section';
 import OptimizedImage from '@/components/ui/optimized-image';
-import blurDataMap from '@/lib/blurDataURL.json';
+import blurDataMap from '@/public/images/blurDataURL.json';
 import type { heroSectionDataSchema } from '@/lib/schemas/sections.schema';
 import { siteConfig } from '@/lib/siteConfig';
 

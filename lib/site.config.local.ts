@@ -69,7 +69,7 @@ export const siteConfig: SiteConfigSchema = {
       headingFont: 'Poppins',
       bodyFont: 'Raleway',
       baseSize: '16px',
-      textStyle: 'balanced',
+      textStyle: 'balanced', // OPTIONS: 'balanced', 'tight', 'airy'
     },
     spacing: {
       xs: '0.25rem',
@@ -111,20 +111,20 @@ export const siteConfig: SiteConfigSchema = {
     },
     // New animation configuration
     animation: {
-      speed: 'fast', // fast, balanced, slow
-      style: 'smooth', // smooth, bounce, energetic
-      intensity: 'subtle', // subtle, moderate, pronounced
+      speed: 'fast', // OPTIONS: 'fast', 'balanced', 'slow'
+      style: 'smooth', // OPTIONS: 'smooth', 'bounce', 'energetic', 'in-out', 'out'
+      intensity: 'subtle', // OPTIONS: 'subtle', 'moderate', 'pronounced'
     },
     // Visual style configuration
     visualStyle: {
-      cardStyle: 'subtle', // flat, subtle, pronounced
-      borderRadius: 'medium', // sharp, medium, soft
-      contentDensity: 'balanced', // compact, balanced, airy
-      patternStyle: 'grid', // none, dots, grid, waves, noise, etc.
-      patternOpacity: 0.1, // 0-1
+      cardStyle: 'subtle', // OPTIONS: 'flat', 'subtle', 'pronounced'
+      borderRadius: 'medium', // OPTIONS: 'sharp', 'medium', 'soft'
+      contentDensity: 'balanced', // OPTIONS: 'compact', 'balanced', 'airy'
+      patternStyle: 'grid', // OPTIONS: 'none', 'dots', 'grid', 'waves', 'noise', 'triangles', 'hexagons', 'crosshatch'
+      patternOpacity: 0.1, // RANGE: 0-1 (decimal)
       // Element-specific border radius mappings
       borderRadiusMappings: {
-        // Small UI elements
+        // Small UI elements - OPTIONS for all: 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', 'full', 'none'
         badge: 'full',
         pill: 'full',
         indicator: 'full',
@@ -161,9 +161,9 @@ export const siteConfig: SiteConfigSchema = {
        *   'none', 'dots', 'grid', 'waves', 'noise', 'triangles', 'hexagons', 'crosshatch'
        */
       ctaStyle: 'bg-brand-secondary-dark', // or 'bg-brand-secondary-dark text-white'
-      dividerStyle: 'fade', // none, line, gradient, fade
-      heroStyle: 'pattern', // flat, gradient, pattern, image
-      testimonialStyle: 'cards', // minimal, cards, featured
+      dividerStyle: 'fade', // OPTIONS: 'none', 'line', 'gradient', 'fade'
+      heroStyle: 'pattern', // OPTIONS: 'flat', 'gradient', 'pattern', 'image'
+      testimonialStyle: 'cards', // OPTIONS: 'minimal', 'cards', 'featured'
     },
     // Header configuration for transparent/overlay mode
     headerConfig: {
@@ -321,7 +321,7 @@ export const siteConfig: SiteConfigSchema = {
   },
   // NEWSLETTER INTEGRATION: Configuration for newsletter subscription form.
   newsletter: {
-    provider: 'mailchimp', // <--- mailchimp | hubspot | activecampaign | "" (disabled)
+    provider: 'mailchimp', // OPTIONS: 'mailchimp', 'hubspot', 'activecampaign', '' (disabled)
     // HubSpot specific settings (only if provider is "hubspot")
     hubspot: { portalId: 'hs-placeholder', formId: 'hs-form-placeholder' },
     // Mailchimp specific settings (only if provider is "mailchimp")
@@ -341,11 +341,11 @@ export const siteConfig: SiteConfigSchema = {
     enableStaggeredAnimations: true,
     // FIRST_EDIT: Toggle page-level route transition animations
     enablePageTransitions: false,
-    // FIRST_EDIT: Variant for page transition animations (fade, slide, cover)
+    // FIRST_EDIT: Variant for page transition animations - OPTIONS: 'fade', 'slide', 'cover'
     pageTransitionVariant: 'cover',
     // FIRST_EDIT: Toggle interactive/animated backgrounds (canvas, particles)
     enableAdvancedBackgrounds: true,
-    // FIRST_EDIT: Choose which animated background style to use (none, gradient, particles, parallax, noise, wave, image)
+    // FIRST_EDIT: Choose which animated background style to use - OPTIONS: 'none', 'gradient', 'particles', 'parallax', 'noise', 'wave', 'image'
     animatedBackgroundType: 'none',
     // FIRST_EDIT: Optional background image URL to use when animatedBackgroundType is "image"
     backgroundImageUrl: '',
@@ -398,12 +398,12 @@ export const siteConfig: SiteConfigSchema = {
   ],
   // CONTACT FORM SETTINGS: Configuration for the contact form.
   contactForm: {
-    provider: 'smtp', // <--- smtp | sendgrid | postmark | etc. | "" (disabled)
+    provider: 'smtp', // OPTIONS: 'smtp', 'sendgrid', 'postmark', '' (disabled)
     fields: [
       // <--- Define fields for the contact form
       {
         name: 'name',
-        type: 'text',
+        type: 'text', // OPTIONS: 'text', 'email', 'tel', 'textarea'
         label: 'Your name',
         placeholder: 'Your name',
         required: true,
@@ -458,8 +458,27 @@ export const siteConfig: SiteConfigSchema = {
   },
   // PAGE STRUCTURES: Defines the layout (sections and their order) for each page.
   // Optional per-section pattern overrides (fallback to global defaults if omitted):
-  //   patternStyle: 'none' | 'dots' | 'grid' | 'waves' | 'noise' | 'triangles' | 'hexagons' | 'crosshatch'
-  //   patternOpacity: number (0-1)
+  //   patternStyle: OPTIONS: 'none', 'dots', 'grid', 'waves', 'noise', 'triangles', 'hexagons', 'crosshatch'
+  //   patternOpacity: RANGE: 0-1 (decimal)
+  //   patternFade: OPTIONS: 'none', 'edges', 'vertical', 'top', 'bottom'
+  //   patternColor: Any valid CSS color string (e.g., 'rgba(var(--accent-rgb), 0.2)')
+  //
+  // LazySection animation options for components:
+  //   animation: OPTIONS: 'fade', 'fade-up', 'slide-up', 'slide-down', 'slide-left', 'slide-right', 'zoom', 'none'
+  //   delay: Numeric value in seconds (e.g., 0.1, 0.2)
+  //   duration: Numeric value in seconds (e.g., 0.3, 0.5)
+  //   intensity: OPTIONS: 'subtle', 'moderate', 'pronounced'
+  //   easingFunction: OPTIONS: 'smooth', 'bounce', 'in-out', 'out', 'energetic'
+  //
+  // Button component options:
+  //   variant: OPTIONS: 'default', 'destructive', 'outline', 'secondary', 'ghost', 'link', 'white', 'spark', 'sparkextra1', 'clean'
+  //   size: OPTIONS: 'default', 'sm', 'lg', 'icon'
+  //   elevation: OPTIONS: 'flat', 'subtle', 'medium', 'pronounced'
+  //   animation: OPTIONS: 'none', 'subtle', 'moderate', 'pronounced'
+  //
+  // Badge component options:
+  //   variant: OPTIONS: 'default', 'dark', 'secondary', 'accent', 'destructive', 'outline', 'light'
+  //   shape: OPTIONS: 'default' (uses theme border radius), 'pill' (fully rounded)
   pageStructures: [
     {
       path: '/',
@@ -507,7 +526,7 @@ export const siteConfig: SiteConfigSchema = {
           id: 'home-about',
           sectionType:
             'AboutSection' /* patternStyle: 'grid', patternOpacity: 0.1, patternFade: 'edges', patternColor: 'rgba(var(--accent-rgb), 0.2)' */,
-          variant: 'imageLeft',
+          variant: 'imageLeft', // OPTIONS: 'default', 'imageLeft', 'imageRight', 'centered', 'classic'
         },
         {
           id: 'home-kpi',
@@ -558,7 +577,7 @@ export const siteConfig: SiteConfigSchema = {
         {
           id: 'about-main-content',
           sectionType: 'AboutSection',
-          variant: 'classic',
+          variant: 'classic', // OPTIONS: 'default', 'imageLeft', 'imageRight', 'centered', 'classic'
           // patternStyle: 'grid', patternOpacity: 0.05
         },
         {
