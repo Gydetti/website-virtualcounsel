@@ -90,7 +90,7 @@ export default function AboutSection({
     contentOrderClass = 'md:col-start-2';
   }
 
-  // Refactored image rendering logic - now uses same size as Classic variant
+  // ✅ Enhanced image rendering logic with circle detection and drop shadows
   const renderImage = () => {
     if (!image?.src) {
       console.warn('Image source is missing. Using placeholder.');
@@ -108,6 +108,28 @@ export default function AboutSection({
       );
     }
 
+    // ✅ CRITICAL: Detect circle images by filename
+    const isCircleImage = image.src.includes('circle');
+
+    if (isCircleImage) {
+      // ✅ CORRECT implementation for round images
+      return (
+        <div className="flex justify-center p-4"> {/* Padding for shadow space */}
+          <OptimizedImage
+            src={image.src}
+            alt={image.alt || 'About our company representative'}
+            width={600} // Determines max size - important!
+            height={600} // Must match desired max size
+            sizes="(max-width: 640px) 90vw, (max-width: 768px) 400px, 600px" // Responsive sizes
+            className="max-w-full h-auto rounded-full" // NO shadow-* classes here!
+            dropShadow="drop-shadow-[0_25px_50px_rgba(0,0,0,0.25)]" // Strong custom shadow
+            priority
+          />
+        </div>
+      );
+    }
+
+    // ✅ For regular (non-circle) images, keep AspectRatio
     return (
       <AspectRatio ratio={6 / 5} className="overflow-visible rounded-xl shadow-2xl relative">
         <OptimizedImage
@@ -165,16 +187,7 @@ export default function AboutSection({
             delay={0}
             className={`${imageOrderClass} md:row-start-1`}
           >
-            <AspectRatio ratio={6 / 5} className="overflow-visible rounded-xl shadow-2xl relative">
-              <OptimizedImage
-                src={image?.src || '/images/placeholders/placeholder.svg'}
-                alt={image?.alt || 'About our company'}
-                fill
-                sizes="(max-width: 600px) 100vw, 600px"
-                className="absolute inset-0 object-cover rounded-xl"
-                priority
-              />
-            </AspectRatio>
+            {renderImage()}
           </LazySection>
           <LazySection
             animation="slide-up"

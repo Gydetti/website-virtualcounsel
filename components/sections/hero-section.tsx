@@ -237,18 +237,21 @@ export default function HeroSection({
             variant === 'imageLeft' ? 'md:order-1 lg:ml-0 lg:mr-auto' : 'lg:ml-auto lg:mr-0'
           }`}
         >
-          <AspectRatio ratio={6 / 5} className="overflow-visible rounded-xl shadow-2xl relative">
+          {/* ✅ FIXED: Natural aspect ratio with max-width constraint (replaces AspectRatio) */}
+          <div className="relative max-w-[450px] mx-auto">
             <OptimizedImage
               src={imageToDisplay}
               alt={imageAltText}
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
-              className="absolute inset-0 object-cover rounded-xl"
+              width={600} // Intrinsic max width
+              height={600} // Intrinsic max height (scales proportionally)
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+              className="max-w-full h-auto rounded-xl shadow-2xl" // Natural scaling
               priority
               placeholder="blur"
               blurDataURL={blurDataMap[imageToDisplay as keyof typeof blurDataMap]}
               onError={() => setCurrentImageSrc(defaultImageSrc)}
             />
+            {/* Optional overlay gradient and stats */}
             <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent p-6 rounded-b-xl">
               <p className="text-white font-medium"> </p>
             </div>
@@ -278,7 +281,7 @@ export default function HeroSection({
                 </div>
               </div>
             )}
-          </AspectRatio>
+          </div>
         </LazySection>
       </div>
 

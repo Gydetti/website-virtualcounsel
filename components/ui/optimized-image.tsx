@@ -21,7 +21,33 @@ interface OptimizedImageProps {
   objectFit?: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down';
   onLoad?: () => void;
   onError?: ReactEventHandler<HTMLImageElement>;
+  /** Drop shadow effect - applies filter drop-shadow to the image itself */
+  dropShadow?: 'none' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | string;
 }
+
+/**
+ * Helper function to convert dropShadow prop to Tailwind utility class
+ * ⚠️ CRITICAL: Must handle '2xl' case explicitly to avoid drop-shadow-[2xl] bug
+ */
+const getDropShadowClass = (shadow: string) => {
+  switch (shadow) {
+    case 'sm':
+      return 'drop-shadow-sm';
+    case 'md':
+      return 'drop-shadow-md';
+    case 'lg':
+      return 'drop-shadow-lg';
+    case 'xl':
+      return 'drop-shadow-xl';
+    case '2xl':
+      return 'drop-shadow-2xl'; // ESSENTIAL FIX: Explicit case for 2xl
+    case 'none':
+      return '';
+    default:
+      // Handle custom drop-shadow values
+      return shadow.startsWith('drop-shadow') ? shadow : `drop-shadow-[${shadow}]`;
+  }
+};
 
 export default function OptimizedImage({
   src,
@@ -37,6 +63,7 @@ export default function OptimizedImage({
   objectFit = 'cover',
   onLoad,
   onError,
+  dropShadow = 'none',
 }: OptimizedImageProps) {
   // Initialize isLoading based on priority to skip skeleton for priority images
   const [isLoading, setIsLoading] = useState(!priority);
@@ -60,8 +87,11 @@ export default function OptimizedImage({
     ? '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'
     : undefined;
 
+  // Remove overflow-hidden when dropShadow is active to prevent clipping
+  const containerOverflow = dropShadow !== 'none' ? '' : 'overflow-hidden';
+
   return (
-    <div className={cn('relative overflow-hidden', className)}>
+    <div className={cn('relative', containerOverflow, className)}>
       {isLoading && (
         <div
           className="absolute inset-0 bg-neutral-background/200 animate-pulse"
@@ -88,7 +118,9 @@ export default function OptimizedImage({
           objectFit === 'contain' && 'object-contain',
           objectFit === 'fill' && 'object-fill',
           objectFit === 'none' && 'object-none',
-          objectFit === 'scale-down' && 'object-scale-down'
+          objectFit === 'scale-down' && 'object-scale-down',
+          // Apply drop shadow class directly to the image
+          getDropShadowClass(dropShadow)
         )}
       />
     </div>

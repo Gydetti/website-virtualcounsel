@@ -158,6 +158,12 @@ const config = {
     'bg-brand-dark',
     'text-brand-light',
     'hover:text-brand-light',
+    // Drop shadow utilities for image enhancements (especially round images)
+    'drop-shadow-sm',
+    'drop-shadow-md',
+    'drop-shadow-lg',
+    'drop-shadow-xl',
+    'drop-shadow-2xl', // Critical for round image shadows!
   ],
   prefix: '',
   theme: {

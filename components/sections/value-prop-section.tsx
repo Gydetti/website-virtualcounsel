@@ -6,6 +6,7 @@ import type { z } from 'zod';
 
 import { Section } from '@/components/layout/Section';
 import { Badge } from '@/components/ui/badge';
+import { Card } from '@/components/ui/card';
 import LazySection from '@/components/ui/lazy-section';
 import type { valuePropSectionDataSchema } from '@/lib/schemas/sections.schema';
 
@@ -51,7 +52,7 @@ export default function ValuePropSection({
       {/* Benefits grid stagger container */}
       <LazySection
         animation="none"
-        className="stagger-container grid grid-cols-1 gap-6 mt-16 md:grid-cols-2 lg:grid-cols-3 justify-items-center max-w-6xl mx-auto"
+        className="stagger-container grid grid-cols-1 gap-6 mt-16 md:grid-cols-2 lg:grid-cols-3 justify-items-center card-equal-height max-w-6xl mx-auto"
         style={{ '--stagger-delay': '0.2s' } as CSSProperties}
       >
         {benefits.map((benefit, idx) => {
@@ -61,30 +62,32 @@ export default function ValuePropSection({
             return (
               <div
                 key={benefit.id}
-                className="md:col-span-2 md:flex md:justify-center lg:col-span-1 lg:block"
+                className="md:col-span-2 md:flex md:justify-center lg:col-span-1 lg:block size-full max-w-sm"
                 style={{ '--index': idx } as CSSProperties}
               >
-                <div className="flex flex-col items-center text-center space-y-3 rounded-lg p-6 shadow-sm hover:shadow-md max-w-[380px] bg-card border border-border/50">
+                <Card className="flex flex-col items-center text-center space-y-3 p-6 hover:shadow-md transition-shadow size-full">
                   <div className="flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
                     <Icon className="size-6" />
                   </div>
                   <h3 className="text-xl font-bold">{benefit.title}</h3>
                   <p className="text-card-description">{benefit.description}</p>
-                </div>
+                </Card>
               </div>
             );
           }
           return (
             <div
               key={benefit.id}
-              className="flex flex-col items-center text-center space-y-3 rounded-lg p-6 shadow-sm hover:shadow-md max-w-[380px] bg-card border border-border/50"
+              className="size-full max-w-sm"
               style={{ '--index': idx } as CSSProperties}
             >
-              <div className="flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-                <Icon className="size-6" />
-              </div>
-              <h3 className="text-xl font-bold">{benefit.title}</h3>
-              <p className="text-card-description">{benefit.description}</p>
+              <Card className="flex flex-col items-center text-center space-y-3 p-6 hover:shadow-md transition-shadow size-full">
+                <div className="flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  <Icon className="size-6" />
+                </div>
+                <h3 className="text-xl font-bold">{benefit.title}</h3>
+                <p className="text-card-description">{benefit.description}</p>
+              </Card>
             </div>
           );
         })}
