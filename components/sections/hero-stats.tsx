@@ -16,7 +16,7 @@ export default function HeroStats({ stats }: HeroStatsProps) {
 
   if (!stats || stats.length === 0) return null;
   return (
-    <LazySection animation="slide-up" delay={0.4} className="mt-10">
+    <LazySection animation="slide-up" delay={0.4} className="mt-10 md:mt-16 lg:mt-20">
       <div
         className={`relative z-10 bg-neutral-surface ${getElementBorderRadius('section')} shadow-lg p-6 md:p-8 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8`}
       >
