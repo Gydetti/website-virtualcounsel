@@ -238,7 +238,7 @@
     margin-right: auto;
     grid-template-columns: 1fr; /* Mobile: single column */
   }
-  
+
   @media (min-width: 768px) {
     .service-features-grid-4 {
       grid-template-columns: repeat(2, minmax(0, 384px));
@@ -257,7 +257,7 @@
     margin-right: auto;
     grid-template-columns: 1fr; /* Mobile: single column */
   }
-  
+
   @media (min-width: 768px) {
     .problem-section-grid-3 {
       grid-template-columns: repeat(3, minmax(0, 320px));
@@ -265,7 +265,7 @@
       max-width: calc((320px * 3) + (1.5rem * 2)) !important; /* 3 cards + 2 gaps */
     }
   }
-  
+
   @media (min-width: 1024px) {
     .service-features-grid-4 {
       grid-template-columns: repeat(2, 384px); /* Fixed width at larger screens */

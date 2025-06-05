@@ -37,6 +37,13 @@ export const metadata = defaultMetadata({
 export default async function ServicesPage() {
   const services = await getServices();
 
+  // Sort services to show popular ones first
+  const sortedServices = [...services].sort((a, b) => {
+    if (a.popular && !b.popular) return -1;
+    if (!a.popular && b.popular) return 1;
+    return 0;
+  });
+
   // Get dynamic content
   const { overview, whyChooseSection, ctaSection, buttonLabels } = servicesPageData;
 
@@ -56,14 +63,19 @@ export default async function ServicesPage() {
       <ServicesOverviewSection {...overview} />
 
       <Section>
-        <div className={getGridClasses(services.length)}>
-          {services.map((service, index) => {
+        <div className={getGridClasses(sortedServices.length)}>
+          {sortedServices.map((service, index) => {
             const IconComponent = iconComponents[service.icon ?? 'Globe'] || iconComponents.Globe;
 
             return (
               <LazySection key={service.id} delay={index * 0.1}>
                 <div className="size-full max-w-sm">
-                  <Card className="size-full flex flex-col justify-between overflow-hidden transition-all duration-300 hover:shadow-xl">
+                  <Card className="size-full flex flex-col justify-between overflow-hidden transition-all duration-300 hover:shadow-xl relative">
+                    {service.popular && (
+                      <div className="absolute top-0 right-0 z-10 bg-accent text-white text-sm font-bold px-3 py-1 rounded-bl-lg">
+                        Populair
+                      </div>
+                    )}
                     <div className="relative h-48 w-full">
                       <Image
                         src={DEFAULT_PLACEHOLDER_IMAGE}
@@ -137,7 +149,7 @@ export default async function ServicesPage() {
           <LazySection animation="slide-left" delay={0.15} className="!overflow-x-visible">
             <div className="relative h-[400px] rounded-xl overflow-hidden shadow-2xl">
               <Image
-                src={DEFAULT_PLACEHOLDER_IMAGE}
+                src="/images/team/virtual-counsel-maarten-pointing.webp"
                 alt="Professional consultation and strategic planning session"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"

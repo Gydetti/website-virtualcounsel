@@ -29,9 +29,9 @@ export default function ProblemPainSection({
           <div className="flex flex-col justify-center space-y-8">
             <div className="space-y-4">
               {badgeText && (
-                <div className="inline-flex items-center space-x-2 text-accent">
+                <div className="inline-flex items-center space-x-2 text-amber-400">
                   <AlertTriangle className="size-5" />
-                  <span className="font-medium">{badgeText}</span>
+                  <span className="font-medium text-sm uppercase tracking-wider">{badgeText}</span>
                 </div>
               )}
               {heading && <h2 className=" text-white">{heading}</h2>}
@@ -63,7 +63,7 @@ export default function ProblemPainSection({
                   viewport={{ once: true }}
                   className="rounded-lg bg-white/10 p-6 shadow-sm hover:shadow-xl transition-shadow duration-300"
                 >
-                  <h3 className="mb-3 text-xl font-bold text-accent">{card.title}</h3>
+                  <h3 className="mb-3 text-xl font-bold text-amber-400">{card.title}</h3>
                   <p className="text-white/95 text-base md:text-lg">{card.description}</p>
                 </motion.div>
               ))}

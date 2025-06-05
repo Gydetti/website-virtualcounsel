@@ -331,7 +331,6 @@ export const homepageFaqSectionData: z.infer<typeof homepageFaqSectionDataSchema
       ],
     },
   ],
-  cta: { text: 'Bekijk alle veelgestelde vragen', href: '/faq' },
 };
 
 // Services Preview Section on Homepage

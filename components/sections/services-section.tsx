@@ -43,7 +43,14 @@ export default function ServicesSection({
   patternOpacity,
   patternFade,
   patternColor,
-}: ServicesSectionProps) {
+  totalServicesCount,
+  remainingServicesCount,
+  showRemainingCount,
+}: ServicesSectionProps & {
+  totalServicesCount?: number;
+  remainingServicesCount?: number;
+  showRemainingCount?: boolean;
+}) {
   const { getElementBorderRadius } = useThemeBorderRadius();
 
   if (!services || services.length === 0) {
@@ -204,7 +211,15 @@ export default function ServicesSection({
             className="stagger-container text-center mt-12"
             style={{ '--stagger-delay': '0.1s' } as CSSProperties}
           >
-            <div style={{ '--index': 0 } as CSSProperties}>
+            {showRemainingCount && remainingServicesCount && remainingServicesCount > 0 && (
+              <p
+                className="text-lg text-muted-foreground mb-6"
+                style={{ '--index': 0 } as CSSProperties}
+              >
+                En nog {remainingServicesCount} andere specialistische diensten voor ICT-bedrijven
+              </p>
+            )}
+            <div style={{ '--index': showRemainingCount ? 1 : 0 } as CSSProperties}>
               <Button
                 size="lg"
                 variant="default"

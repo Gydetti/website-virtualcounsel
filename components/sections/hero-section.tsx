@@ -168,9 +168,11 @@ export default function HeroSection({
                 className="font-bold leading-tight text-balance text-center md:text-left mb-2"
               >
                 <span className="block">
-                  {headline === 'De juridische partner voor <span class="text-primary">ICT- & softwarebedrijven</span>' ? (
+                  {headline ===
+                  'De juridische partner voor <span class="text-primary">ICT- & softwarebedrijven</span>' ? (
                     <>
-                      De juridische partner voor <span className="text-primary">ICT- & softwarebedrijven</span>
+                      De juridische partner voor{' '}
+                      <span className="text-primary">ICT- & softwarebedrijven</span>
                     </>
                   ) : (
                     headline

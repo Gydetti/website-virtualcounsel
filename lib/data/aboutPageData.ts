@@ -230,7 +230,7 @@ export const aboutPhilosophySectionData = {
     author: 'Maarten van Beek',
   },
   image: {
-    src: '/images/general/philosophy-visual.svg',
+    src: '/images/general/handshake.webp',
     alt: 'VirtualCounsel filosofie - balans tussen juridische zekerheid en business innovatie',
     width: 500,
     height: 400,

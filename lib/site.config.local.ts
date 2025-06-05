@@ -176,7 +176,6 @@ export const siteConfig: SiteConfigSchema = {
     { text: 'Over Mij', href: '/about' },
     { text: 'Succesverhalen', href: '/testimonials' },
     { text: 'Blog', href: '/blog' },
-    { text: 'FAQ', href: '/faq' },
     { text: 'Contact', href: '/contact' },
   ],
   // FOOTER LINKS: Links appearing in the site footer
@@ -315,7 +314,6 @@ export const siteConfig: SiteConfigSchema = {
     '/services',
     '/about',
     '/blog',
-    '/faq',
     '/resources',
     '/contact',
     '/privacy-policy',

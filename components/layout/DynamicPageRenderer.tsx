@@ -130,11 +130,19 @@ const getSectionData = async (
         };
       }
       case 'ServicesSection': {
-        const services = await getServices();
+        const allServices = await getServices();
+        const popularServices = allServices.filter(service => service.popular);
+        const displayServices = popularServices.slice(0, 3);
+        const totalServicesCount = allServices.length;
+        const remainingServicesCount = totalServicesCount - displayServices.length;
+
         return {
           ...homepageData.servicesPreviewSectionData,
           id: sectionConfig.id,
-          services,
+          services: displayServices,
+          totalServicesCount,
+          remainingServicesCount,
+          showRemainingCount: true,
         };
       }
       case 'BlogPreviewSection': {

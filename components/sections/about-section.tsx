@@ -328,12 +328,16 @@ export default function AboutSection({
         </LazySection>
       )}
       <div className={outerContainerClass}>
-        <LazySection animation="slide-up" delay={0} className={`${imageOrderClass} md:row-start-1`}>
+        <LazySection
+          animation="slide-up"
+          delay={variant === 'imageRight' ? 0.3 : 0}
+          className={`${imageOrderClass} md:row-start-1`}
+        >
           {renderImage()}
         </LazySection>
         <LazySection
           animation="slide-up"
-          delay={0.1}
+          delay={variant === 'imageRight' ? 0.1 : 0.1}
           className={`${contentOrderClass} md:row-start-1 ${variant === 'imageRight' ? contentPaddingClass : ''}`}
         >
           {!isHomepage && paragraphs && paragraphs.length > 0 && (
