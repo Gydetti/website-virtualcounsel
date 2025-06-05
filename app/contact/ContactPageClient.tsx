@@ -63,7 +63,7 @@ export default function ContactPageClient() {
       });
       const result = await res.json();
       if (!res.ok || !result.success) {
-        setError(result.error || 'Failed to send message');
+        setError(result.error || 'Er ging iets mis bij het versturen');
       } else {
         setSubmitted(true);
         setFormData(initialFormData);
@@ -72,7 +72,7 @@ export default function ContactPageClient() {
         setTimeout(() => setSubmitted(false), 5000);
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Internal error');
+      setError(err instanceof Error ? err.message : 'Interne fout');
     } finally {
       setIsSubmitting(false);
     }
@@ -90,16 +90,17 @@ export default function ContactPageClient() {
           style={{ '--stagger-delay': '0.1s' } as CSSProperties}
         >
           <Badge className="mb-4" style={{ '--index': 0 } as CSSProperties}>
-            Contact section
+            Contact
           </Badge>
           <h1 style={{ '--index': 1 } as CSSProperties}>
-            Section heading inviting users to reach out
+            Laten we samenwerken aan uw juridische zekerheid
           </h1>
           <p
             className="text-neutral-text mb-8 whitespace-normal break-words"
             style={{ '--index': 2 } as CSSProperties}
           >
-            Brief subtitle explaining how visitors can reach out and what to expect
+            Plan een gratis kennismakingsgesprek of stel direct uw vraag. Wij reageren binnen 24
+            uur.
           </p>
         </LazySection>
       </Section>
@@ -112,9 +113,7 @@ export default function ContactPageClient() {
                 <div
                   className={`bg-neutral-surface ${getElementBorderRadius('section')} shadow-lg p-8`}
                 >
-                  <h2 className="text-2xl font-bold mb-6">
-                    Form heading prompting message submission
-                  </h2>
+                  <h2 className="text-2xl font-bold mb-6">Stuur ons een bericht</h2>
 
                   <form onSubmit={handleSubmit} className="space-y-6">
                     {/* Dynamic fields from config */}
@@ -178,7 +177,11 @@ export default function ContactPageClient() {
                       className={`w-full bg-primary hover:bg-primary90 text-white py-3 ${getElementBorderRadius('button')} transition-colors disabled:opacity-50 disabled:cursor-not-allowed`}
                       disabled={isSubmitting}
                     >
-                      {isSubmitting ? 'Sending...' : submitted ? 'Message Sent!' : 'Send Message'}
+                      {isSubmitting
+                        ? 'Versturen...'
+                        : submitted
+                          ? 'Bericht verstuurd!'
+                          : 'Verstuur bericht'}
                     </Button>
 
                     {error && (
@@ -192,7 +195,7 @@ export default function ContactPageClient() {
                       <div
                         className={`mt-4 p-4 bg-feedback-success-bg text-feedback-success ${getElementBorderRadius('card')}`}
                       >
-                        Thank you for your message! We'll get back to you as soon as possible.
+                        Bedankt voor uw bericht! We nemen zo snel mogelijk contact met u op.
                       </div>
                     )}
                   </form>
@@ -204,18 +207,18 @@ export default function ContactPageClient() {
                   <div
                     className={`bg-primary text-white ${getElementBorderRadius('section')} shadow-lg p-8 h-full flex flex-col`}
                   >
-                    <h2 className="text-xl font-semibold mb-4">Contact Details</h2>
+                    <h2 className="text-xl font-semibold mb-4">Contactgegevens</h2>
 
-                    <ul className="space-y-2">
+                    <ul className="space-y-4 mb-8">
                       <li className="flex items-start">
                         <Mail aria-hidden="true" className="size-6 mr-4 mt-1" />
                         <div>
-                          <p className="font-semibold mb-1">Email</p>
+                          <p className="font-semibold mb-1">E-mail</p>
                           <a
-                            href="mailto:name@email.com"
+                            href="mailto:info@virtualcounsel.nl"
                             className="text-white/80 hover:text-white transition-colors"
                           >
-                            name@email.com
+                            info@virtualcounsel.nl
                           </a>
                         </div>
                       </li>
@@ -223,45 +226,63 @@ export default function ContactPageClient() {
                       <li className="flex items-start">
                         <Phone aria-hidden="true" className="size-6 mr-4 mt-1" />
                         <div>
-                          <p className="font-semibold mb-1">Phone</p>
+                          <p className="font-semibold mb-1">Telefoon</p>
                           <a
-                            href="tel:+314567676"
+                            href="tel:+31611718358"
                             className="text-white/80 hover:text-white transition-colors"
                           >
-                            +314567676
+                            +31 6 11718358
                           </a>
                         </div>
                       </li>
                     </ul>
 
+                    <div className="mb-6">
+                      <p className="font-semibold mb-2">Adres</p>
+                      <p className="text-white/80">
+                        Wibautstraat 131D
+                        <br />
+                        1091 GL Amsterdam
+                        <br />
+                        Nederland
+                      </p>
+                    </div>
+
+                    <div className="mb-6">
+                      <p className="font-semibold mb-2">KvK-nummer</p>
+                      <p className="text-white/80">81070411</p>
+                    </div>
+
+                    <div className="mb-6">
+                      <p className="font-semibold mb-2">Plan direct een gesprek</p>
+                      <a
+                        href="https://calendly.com/virtualcounsel"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-white/80 hover:text-white transition-colors underline"
+                      >
+                        Boek via Calendly
+                      </a>
+                    </div>
+
                     <div className="mt-auto flex space-x-4">
                       <a
-                        href="/"
-                        className="size-10 rounded-full bg-neutral-surface/20 flex items-center justify-center hover:bg-neutral-surface/30 transition-colors"
-                        aria-label="Facebook"
-                      >
-                        <Facebook className="size-5 text-white" />
-                      </a>
-                      <a
-                        href="/"
-                        className="size-10 rounded-full bg-neutral-surface/20 flex items-center justify-center hover:bg-neutral-surface/30 transition-colors"
-                        aria-label="Twitter"
-                      >
-                        <Twitter className="size-5 text-white" />
-                      </a>
-                      <a
-                        href="/"
-                        className="size-10 rounded-full bg-neutral-surface/20 flex items-center justify-center hover:bg-neutral-surface/30 transition-colors"
-                        aria-label="Instagram"
-                      >
-                        <Instagram className="size-5 text-white" />
-                      </a>
-                      <a
-                        href="/"
+                        href="https://www.linkedin.com/company/virtualcounsel"
                         className="size-10 rounded-full bg-neutral-surface/20 flex items-center justify-center hover:bg-neutral-surface/30 transition-colors"
                         aria-label="LinkedIn"
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
                         <Linkedin className="size-5 text-white" />
+                      </a>
+                      <a
+                        href="https://twitter.com/virtualcounsel"
+                        className="size-10 rounded-full bg-neutral-surface/20 flex items-center justify-center hover:bg-neutral-surface/30 transition-colors"
+                        aria-label="Twitter"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Twitter className="size-5 text-white" />
                       </a>
                     </div>
                   </div>

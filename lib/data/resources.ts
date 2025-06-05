@@ -32,16 +32,17 @@ export type Resource = {
   sections: ResourceSection[];
 };
 
-// Sample resource data conformed to the new Zod schemas
+// Virtual Counsel resource data
 const sampleResourcesData: z.infer<typeof resourceSchema>[] = [
   {
-    slug: 'example-ebook',
-    resourceType: 'ebook',
-    title: 'E-book: The ultimate guide to conversion optimization',
-    subtitle: 'Learn proven tactics to boost your landing page conversions.',
+    slug: 'saas-contracten-checklist',
+    resourceType: 'guide',
+    title: 'SaaS Contracten Checklist: De complete gids voor ICT-bedrijven',
+    subtitle:
+      '50+ essentiële clausules voor waterdichte SaaS-overeenkomsten die uw recurring revenue beschermen.',
     heroImage: {
-      src: '/images/resources/example-ebook-hero.jpg',
-      alt: 'Hero image for the ultimate guide to conversion optimization e-book', // Provide a meaningful alt
+      src: '/images/resources/saas-checklist-hero.jpg',
+      alt: 'SaaS Contracten Checklist voor ICT-bedrijven',
       width: 1200,
       height: 630,
     },
@@ -49,33 +50,121 @@ const sampleResourcesData: z.infer<typeof resourceSchema>[] = [
       {
         type: 'text',
         content:
-          "Introduce the resource: who it's for, why it's valuable, and what your reader will learn.",
+          'Deze uitgebreide checklist is speciaal ontwikkeld voor Nederlandse SaaS-providers en software-bedrijven die hun contracten professioneel willen inrichten. Op basis van 10+ jaar ervaring in de tech-industrie delen we de meest kritische contractuele aandachtspunten die vaak over het hoofd worden gezien.',
         id: 'b1a7e8c2-1f2d-4e3a-9b5c-1a2b3c4d5e6f',
+      },
+      {
+        type: 'text',
+        content:
+          'Wat krijgt u? Een praktische checklist met 50+ essentiële clausules, concrete voorbeeldteksten, specifieke aandachtspunten voor verschillende SaaS-modellen (B2B, B2C, Enterprise), tips voor internationale contracten en een bonus sectie over aansprakelijkheidsbeperking.',
+        id: 'b1a7e8c2-1f2d-4e3a-9b5c-1a2b3c4d5e7f',
       },
       {
         type: 'image',
         image: {
-          src: '/images/resources/example-ebook-preview.png',
-          alt: 'Preview of the conversion optimization guide',
+          src: '/images/resources/saas-checklist-preview.png',
+          alt: 'Preview van de SaaS contracten checklist',
           width: 800,
           height: 600,
         },
-        caption: 'A sneak peek inside the guide.',
+        caption: 'Een voorproefje van de complete checklist.',
         id: 'c2b8f9d3-2e3f-5a4b-8c6d-2b3c4d5e6f7a',
       },
       {
         type: 'form',
-        title: 'Download your free e-book',
-        description: 'Enter your details below to get instant access.',
+        title: 'Download uw gratis SaaS contracten checklist',
+        description: 'Vul uw gegevens in voor directe toegang tot de checklist.',
         config: {
           provider: 'custom',
-          embedCode: '<!-- Placeholder for custom form embed code -->',
+          embedCode: '<!-- VirtualCounsel form embed voor SaaS checklist -->',
         },
         id: 'd3c9e0e4-3f4a-6b5c-9d7e-3c4d5e6f7a8b',
       },
     ],
-    // seo: { title: "...", description: "..." } // SEO data can be added here
-    // publishedDate: new Date().toISOString(), // Example for publishedDate
+  },
+  {
+    slug: 'avg-compliance-gids-software',
+    resourceType: 'guide',
+    title: 'AVG Compliance Gids voor Software-bedrijven',
+    subtitle:
+      'Praktische stappen voor GDPR-compliant software ontwikkelen en data processing agreements opstellen.',
+    heroImage: {
+      src: '/images/resources/avg-guide-hero.jpg',
+      alt: 'AVG GDPR Compliance Gids voor Software-bedrijven',
+      width: 1200,
+      height: 630,
+    },
+    sections: [
+      {
+        type: 'text',
+        content:
+          'Privacy by design is niet langer optioneel. Deze gids helpt software-ontwikkelaars en SaaS-providers om AVG-compliant te worden zonder de innovatie te remmen. We vertalen de complexe privacywetgeving naar concrete acties voor uw development team.',
+        id: 'avg-intro-1',
+      },
+      {
+        type: 'text',
+        content:
+          'Inclusief: Privacy by design principes voor developers, template verwerkersovereenkomst (DPA), data retention beleid voorbeelden, security maatregelen checklist, sub-processor management framework en incident response procedures.',
+        id: 'avg-content-2',
+      },
+      {
+        type: 'form',
+        title: 'Download de AVG Compliance Gids',
+        description: 'Ontvang direct toegang tot alle templates en checklists.',
+        config: {
+          provider: 'custom',
+          embedCode: '<!-- VirtualCounsel form embed voor AVG gids -->',
+        },
+        id: 'avg-form-3',
+      },
+    ],
+  },
+  {
+    slug: 'ip-bescherming-tech-startups',
+    resourceType: 'whitepaper',
+    title: 'Intellectueel Eigendom beschermen: De tech startup survival guide',
+    subtitle: 'Voorkom dat uw code, algoritmes en innovaties in verkeerde handen vallen.',
+    heroImage: {
+      src: '/images/resources/ip-guide-hero.jpg',
+      alt: 'Intellectueel Eigendom bescherming voor tech startups',
+      width: 1200,
+      height: 630,
+    },
+    sections: [
+      {
+        type: 'text',
+        content:
+          'Uw source code is uw belangrijkste asset. Deze whitepaper laat zien hoe u vanaf dag één uw intellectuele eigendom beschermt, van employee IP agreements tot open source compliance en van trade secrets tot software patents.',
+        id: 'ip-intro-1',
+      },
+      {
+        type: 'text',
+        content:
+          'Behandelde onderwerpen: IP overdrachtsovereenkomsten voor developers, open source risico management, bescherming van algoritmes en AI-modellen, investeringsklare IP-structuur opzetten, internationale IP-strategie voor tech-bedrijven.',
+        id: 'ip-content-2',
+      },
+      {
+        type: 'image',
+        image: {
+          src: '/images/resources/ip-framework-preview.png',
+          alt: 'IP bescherming framework voor tech bedrijven',
+          width: 800,
+          height: 600,
+        },
+        caption: 'Het VirtualCounsel IP-bescherming framework.',
+        id: 'ip-image-3',
+      },
+      {
+        type: 'form',
+        title: 'Download de IP Bescherming Guide',
+        description: 'Krijg toegang tot het complete framework en alle templates.',
+        config: {
+          provider: 'custom',
+          embedCode: '<!-- VirtualCounsel form embed voor IP guide -->',
+        },
+        id: 'ip-form-4',
+      },
+    ],
   },
 ];
 

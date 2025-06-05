@@ -23,159 +23,135 @@ import {
 // Note: The old PropType imports are removed as we'll use Zod inferred types.
 
 export const heroSectionData: z.infer<typeof heroSectionDataSchema> = {
-  badgeText: 'Short, attention-grabbing badge',
-  headline: 'Headline stating your core value',
-  subheadline: 'Supportive subtitle: what you do, for whom, and the primary result',
-  primaryCta: { text: 'Main CTA button', href: '/contact' },
-  secondaryCta: { text: 'Secondary CTA button', href: '/about' },
+  badgeText: 'Juridisch advies voor de tech industrie',
+  headline: 'De juridische partner voor ICT- & softwarebedrijven',
+  subheadline:
+    'We nemen het juridische werk uit handen zodat u zich kunt focussen op uw onderneming. Geen standaard contracten, maar maatwerk dat past bij uw specifieke situatie.',
+  primaryCta: { text: 'Maak een afspraak', href: '/contact' },
+  secondaryCta: { text: 'Bekijk onze diensten', href: '/services' },
   showSecondaryCta: true,
-  typingWords: ['Unique value prop', 'Key benefit', 'Target audience'],
+  typingWords: ['SaaS leveranciers', 'IT dienstverleners', 'Software ontwikkelaars'],
   stats: [
-    { value: 7, suffix: '+', label: 'Years of experience' },
-    { value: 98, suffix: '%', label: 'Client satisfaction rate' },
-    { value: 40, suffix: '+', label: 'Successful projects delivered' },
-    { value: 300, suffix: '+', label: 'Happy clients' },
+    { value: 5, suffix: '+', label: 'Jaar ervaring in ICT-recht' },
+    { value: 50, suffix: '+', label: 'Tevreden klanten' },
+    { value: 100, suffix: '%', label: 'Focus op tech' },
+    { value: 2, suffix: ' weken', label: 'Gemiddelde levertijd' },
   ],
   image: {
-    src: '/images/hero/hero-main.webp',
-    alt: 'Professional business hero image for homepage',
+    src: '/images/placeholders/hero-legal-tech.webp',
+    alt: 'Maarten van Beek - VirtualCounsel juridisch advies',
   },
-  showHelpedStats: true,
-  showOverlayStat: true,
-  overlayTitle: 'Overlay stat title',
-  overlayValue: '+150%',
+  showHelpedStats: false,
+  showOverlayStat: false,
+  overlayTitle: '',
+  overlayValue: '',
 };
 
 export const featuresSectionData: z.infer<typeof featuresSectionDataSchema> = {
-  badgeText: 'See the clear difference',
-  heading: 'From problem state to solution state',
-  description: 'Contrast typical challenges versus ideal outcomes',
+  badgeText: 'Features',
+  heading: 'Features comparison',
+  description: 'Features comparison description',
   comparison: {
     without: {
-      title: 'Current state',
-      items: [
-        'Pain point placeholder one',
-        'Pain point placeholder two',
-        'Pain point placeholder three',
-        'Pain point placeholder four',
-        'Pain point placeholder five',
-      ],
+      title: 'Without our solution',
+      items: [],
     },
     with: {
-      title: 'Future state',
-      items: [
-        'Solution placeholder one',
-        'Solution placeholder two',
-        'Solution placeholder three',
-        'Solution placeholder four',
-        'Solution placeholder five',
-      ],
+      title: 'With our solution',
+      items: [],
     },
   },
-  cta: { text: 'Discover our method', href: '/services' },
+  cta: { text: 'Learn more', href: '/services' },
 };
 
 export const clientsSectionData: z.infer<typeof clientsSectionDataSchema> = {
-  badgeText: 'Trusted by leading brands',
-  heading: 'Client logos showcasing credibility and partnerships', // Schema allows it, component might not use it
+  badgeText: 'Vertrouwd door',
+  heading: 'Bedrijven die op ons vertrouwen',
   clients: [
     {
-      name: 'TechCorp',
+      name: 'NN Group',
       logo: {
-        src: '/images/placeholders/placeholder-logo.svg',
-        alt: 'TechCorp Logo',
+        src: '/images/placeholders/logo-nn.svg',
+        alt: 'NN Group Logo',
       },
     },
     {
-      name: 'InnovateLabs',
+      name: 'Deloitte',
       logo: {
-        src: '/images/placeholders/placeholder-logo.svg',
-        alt: 'InnovateLabs Logo',
+        src: '/images/placeholders/logo-deloitte.svg',
+        alt: 'Deloitte Logo',
       },
     },
     {
-      name: 'GrowthPartners',
+      name: 'ICT Waarborg',
       logo: {
-        src: '/images/placeholders/placeholder-logo.svg',
-        alt: 'GrowthPartners Logo',
+        src: '/images/placeholders/logo-ict-waarborg.svg',
+        alt: 'ICT Waarborg Logo',
       },
     },
     {
-      name: 'FutureVision',
+      name: 'ISOPlanner',
       logo: {
-        src: '/images/placeholders/placeholder-logo.svg',
-        alt: 'FutureVision Logo',
+        src: '/images/placeholders/logo-isoplanner.svg',
+        alt: 'ISOPlanner Logo',
       },
     },
     {
-      name: 'NextLevel',
+      name: 'Blendle',
       logo: {
-        src: '/images/placeholders/placeholder-logo.svg',
-        alt: 'NextLevel Logo',
+        src: '/images/placeholders/logo-blendle.svg',
+        alt: 'Blendle Logo',
       },
     },
     {
-      name: 'PeakPerformance',
+      name: 'Sanoma',
       logo: {
-        src: '/images/placeholders/placeholder-logo.svg',
-        alt: 'PeakPerformance Logo',
-      },
-    },
-    {
-      name: 'EliteServices',
-      logo: {
-        src: '/images/placeholders/placeholder-logo.svg',
-        alt: 'EliteServices Logo',
-      },
-    },
-    {
-      name: 'PrimeConsulting',
-      logo: {
-        src: '/images/placeholders/placeholder-logo.svg',
-        alt: 'PrimeConsulting Logo',
+        src: '/images/placeholders/logo-sanoma.svg',
+        alt: 'Sanoma Logo',
       },
     },
   ],
 };
 
 export const testimonialsSectionData: z.infer<typeof testimonialsSectionDataSchema> = {
-  badgeText: 'Testimonials',
-  heading: 'Testimonial section',
-  subtitle: 'Important section to build credibility with real client feedback',
+  badgeText: 'Succesverhalen',
+  heading: 'Wat onze klanten zeggen',
+  subtitle:
+    'Ontdek hoe we ICT- en softwarebedrijven hebben geholpen met praktisch juridisch advies.',
   testimonials: [
     {
       id: 'testimonial-1',
       quote:
-        'Working with this team transformed our online presence. Within three months, our website traffic increased by 150% and our leads doubled. Their strategic approach and attention to detail made all the difference.',
-      name: 'Sarah Johnson',
-      title: 'CEO, Innovate Solutions',
+        'Hij doet pragmatische reviews waarbij hij rekening houdt met de commerciële context, zodat er geen overbodige obstakels worden opgeworpen. Hij denkt mee, stelt goede alternatieven voor, en komt snel tot de kern.',
+      name: 'Tim van Dalen',
+      title: 'CEO, Tech Startup',
       image: {
-        src: '/images/placeholders/placeholder.svg',
-        alt: 'Sarah Johnson',
+        src: '/images/placeholders/testimonial-1.jpg',
+        alt: 'Tim van Dalen',
       },
       rating: 5,
     },
     {
       id: 'testimonial-2',
       quote:
-        'I was skeptical about digital marketing until I started working with this team. They took the time to understand my business and created a strategy that actually works. My ROI has been incredible.',
-      name: 'Michael Chen',
-      title: 'Founder, GrowthTech',
+        'VirtualCounsel begrijpt echt wat er speelt in onze industrie. Geen juridisch jargon, maar concrete oplossingen die werken. De vaste prijzen geven ons zekerheid en de snelle levertijden zijn een verademing.',
+      name: 'Sarah Janssen',
+      title: 'Legal Manager, SaaS Provider',
       image: {
-        src: '/images/placeholders/placeholder.svg',
-        alt: 'Michael Chen',
+        src: '/images/placeholders/testimonial-2.jpg',
+        alt: 'Sarah Janssen',
       },
       rating: 5,
     },
     {
       id: 'testimonial-3',
       quote:
-        "The level of expertise and personalized service is outstanding. They don't just implement tactics; they develop comprehensive strategies tailored to my specific goals. I've seen consistent growth month after month.",
-      name: 'Emma Rodriguez',
-      title: 'Marketing Director, Elevate Inc.',
+        'Eindelijk een jurist die onze taal spreekt! Maarten kent de ins en outs van software development en dat merk je in zijn adviezen. Hij is een echte partner, geen externe adviseur.',
+      name: 'Erik Vermeer',
+      title: 'CTO, Software Bureau',
       image: {
-        src: '/images/placeholders/placeholder.svg',
-        alt: 'Emma Rodriguez',
+        src: '/images/placeholders/testimonial-3.jpg',
+        alt: 'Erik Vermeer',
       },
       rating: 5,
     },
@@ -183,247 +159,245 @@ export const testimonialsSectionData: z.infer<typeof testimonialsSectionDataSche
 };
 
 export const problemPainSectionData: z.infer<typeof problemPainSectionDataSchema> = {
-  badgeText: 'Problem section',
-  heading: 'Understanding client challenges',
-  description: 'Empathy-driven intro highlighting common client problems',
-  calloutText: 'Optional: emphasize the cost of inaction',
+  badgeText: 'De uitdaging',
+  heading: 'De kosten van standaard contracten',
+  description:
+    'ICT- en softwarebedrijven lopen tegen specifieke juridische uitdagingen aan die generieke juristen vaak niet begrijpen.',
+  calloutText: 'Elke dag zonder goede juridische bescherming is een risico voor uw bedrijf.',
   cards: [
     {
       id: 'pain-card-1',
-      title: 'Pain point one',
-      description: 'Describe how this challenge affects the client',
+      title: 'Generieke contracten',
+      description:
+        'Standaard templates die niet passen bij SaaS modellen, agile development of managed services.',
     },
     {
       id: 'pain-card-2',
-      title: 'Pain point two',
-      description: 'Explain this second common frustration briefly',
+      title: 'Onbegrip voor tech',
+      description:
+        "Juristen die API's, SLA's en open source niet begrijpen en daarom verkeerde adviezen geven.",
     },
     {
       id: 'pain-card-3',
-      title: 'Pain point three',
-      description: 'Outline another key challenge your clients face',
+      title: 'Trage levering',
+      description:
+        'Weken wachten op contracten terwijl uw deal on hold staat of de ontwikkeling vertraagt.',
     },
     {
       id: 'pain-card-4',
-      title: 'Pain point four',
-      description: 'Highlight an additional obstacle impacting clients',
+      title: 'Onvoorspelbare kosten',
+      description: 'Nacalculaties en verrassingen op de factuur maken budgetteren onmogelijk.',
     },
   ],
 };
 
 export const solutionVisionSectionData: z.infer<typeof solutionVisionSectionDataSchema> = {
-  badgeText: 'Introducing your solution',
-  heading: 'Your clear path to success',
-  description: 'Explain how this section outlines your approach to solving client challenges',
-  imagineTitle: 'Imagine having:',
+  badgeText: 'De oplossing',
+  heading: 'Concrete juridische bescherming in 4 stappen',
+  description:
+    'Met VirtualCounsel krijgt u een juridische partner die uw business begrijpt en met u meedenkt.',
+  imagineTitle: 'Stel u voor:',
   benefits: [
-    'Consistent, predictable results',
-    'More time for core activities',
-    'Confidence in your strategy',
-    'Optional: additional benefit placeholder',
-    'Optional: another key outcome',
+    'Contracten die perfect aansluiten bij uw businessmodel',
+    'Een jurist die uw technische taal spreekt',
+    'Documenten binnen 1-2 weken geleverd',
+    'Vaste prijzen zonder verrassingen achteraf',
+    'Direct toegang tot een specialist, geen juniors',
   ],
-  calloutText: 'Optional: inspiring statement about expected outcomes',
-  calloutCta: { text: 'Learn how it works', href: '/about' },
+  calloutText: 'Van juridisch obstakel naar strategisch voordeel.',
+  calloutCta: { text: 'Ontdek onze aanpak', href: '/about' },
 };
 
 export const ctaSectionData: z.infer<typeof ctaSectionDataSchema> = {
-  badgeText: 'Ready to get started?',
-  heading: "Let's build your success story together",
-  description: 'Persuasive message reinforcing the benefit of acting now',
-  primaryCta: { text: 'Schedule a consultation', href: '/contact' },
-  secondaryCta: { text: 'Download a free resource', href: '/services' },
+  badgeText: 'Klaar om te starten?',
+  heading: 'Laten we uw juridische zaken regelen',
+  description:
+    'Boek een gratis kennismakingsgesprek en ontdek hoe we uw ICT-bedrijf kunnen beschermen en laten groeien.',
+  primaryCta: { text: 'Plan een kennismaking', href: '/contact' },
+  secondaryCta: { text: 'Download gratis SaaS gids', href: '/resources' },
 };
 
 export const valuePropSectionData: z.infer<typeof valuePropSectionDataSchema> = {
-  badgeText: 'Why choose us?',
-  heading: 'How we deliver exceptional results',
-  subheading: 'Highlight key differentiators that answer "What\'s in it for the client?"]',
+  badgeText: 'Waarom kiezen voor VirtualCounsel?',
+  heading: 'Een juridische partner die uw business begrijpt',
+  subheading:
+    'Met VirtualCounsel haal je geen standaard jurist in huis, maar een betrokken juridische partner die jouw bedrijf echt begrijpt.',
   benefits: [
     {
       id: 'benefit-1',
-      title: 'Achieve goals faster',
-      description: 'Accelerate outcomes with targeted strategies for your business.',
+      title: 'Diepgaande ICT-kennis',
+      description:
+        'Jarenlange ervaring in de tech-industrie betekent dat we uw uitdagingen echt begrijpen.',
       icon: 'check-circle',
     },
     {
       id: 'benefit-2',
-      title: 'Tailored solutions',
-      description: 'Receive custom plans crafted to your unique needs.',
+      title: 'Vaste prijzen',
+      description: 'Geen verrassingen achteraf. U weet vooraf exact wat het kost.',
       icon: 'check-circle',
     },
     {
       id: 'benefit-3',
-      title: 'Measurable impact',
-      description: 'Track real results with clear metrics and KPIs.',
+      title: 'Snelle levering',
+      description: 'Documenten binnen 1-2 weken, zodat u door kunt met ondernemen.',
       icon: 'check-circle',
     },
   ],
 };
 
 export const pricingSectionData: z.infer<typeof pricingSectionDataSchema> = {
-  badgeText: 'Simple & transparent',
-  heading: 'Our pricing plans',
-  description: 'Choose the plan that fits your needs.',
-  popularBadgeText: 'Popular',
+  badgeText: 'Pricing',
+  heading: 'Pricing plans',
+  description: 'Choose the plan that fits your needs',
+  popularBadgeText: 'Most popular',
   cards: [
     {
-      id: 'price-basic',
+      id: 'basic',
       title: 'Basic',
-      price: '$99/mo',
-      features: ['Feature A', 'Feature B', 'Feature C'],
-      cta: { text: 'Choose basic', href: '/#pricing' },
-      popular: false,
-    },
-    {
-      id: 'price-pro',
-      title: 'Pro',
-      price: '$199/mo',
-      features: ['Feature A', 'Feature B', 'Feature C', 'Feature D'],
-      cta: { text: 'Choose pro', href: '/#pricing' },
-      popular: true,
-    },
-    {
-      id: 'price-enterprise',
-      title: 'Enterprise',
-      price: '$299/mo',
-      features: ['All pro features', 'Feature E', 'Feature F'],
-      cta: { text: 'Contact sales', href: '/contact' },
+      price: '0',
+      features: ['Basic features'],
+      cta: {
+        text: 'Get started',
+        href: '/contact',
+      },
       popular: false,
     },
   ],
 };
 
 export const homepageFaqSectionData: z.infer<typeof homepageFaqSectionDataSchema> = {
-  badgeText: 'Your questions answered',
-  heading: 'Frequently asked questions',
+  badgeText: 'Veelgestelde vragen',
+  heading: 'Antwoorden op uw vragen',
   description:
-    "Find quick answers to common inquiries about our services and processes. If you don't see your question here, feel free to reach out!",
+    'Hier vindt u antwoorden op de meest gestelde vragen over onze dienstverlening. Staat uw vraag er niet bij? Neem gerust contact op!',
   categories: [
     {
-      category: 'General questions',
+      category: 'Algemeen',
       questions: [
         {
-          question: 'What services do you offer?',
+          question: 'Voor welke bedrijven is VirtualCounsel geschikt?',
           answer:
-            'We provide digital growth strategy, web design, content marketing, and automation to help businesses scale.',
+            'Wij zijn gespecialiseerd in juridisch advies voor ICT- en softwarebedrijven, waaronder SaaS providers, software ontwikkelaars, IT dienstverleners en tech startups.',
         },
         {
-          question: 'How do I get started?',
+          question: 'Wat maakt VirtualCounsel anders dan andere juristen?',
           answer:
-            'You can reach out via our contact form or schedule a consultation to discuss your needs and goals.',
+            'Wij hebben diepgaande kennis van de tech-industrie, werken met vaste prijzen, leveren binnen 1-2 weken en u heeft direct contact met een specialist - geen juniors of assistenten.',
         },
         {
-          question: 'Which industries do you serve?',
+          question: "In welke regio's bent u actief?",
           answer:
-            'We work with entrepreneurs and small businesses across tech, professional services, e-commerce, and more.',
+            'Wij werken volledig digitaal en bedienen klanten door heel Nederland. Voor internationale contracten hebben we ervaring met Engels recht en internationale tech-deals.',
         },
       ],
     },
     {
-      category: 'Services',
+      category: 'Werkwijze',
       questions: [
         {
-          question: 'Can I customize my service package?',
+          question: 'Hoe werkt het traject?',
           answer:
-            'Absolutely—each package is tailored to your specific goals and budget to ensure the best outcome.',
+            'We starten met een gratis kennismakingsgesprek, gevolgd door een intake waar we uw situatie analyseren. Daarna stellen we een aanpak voor met vaste prijs en levertijd. Na akkoord gaan we direct aan de slag.',
         },
         {
-          question: 'How long does a typical project take?',
-          answer: 'Most projects take between 4 to 8 weeks, depending on the scope and complexity.',
+          question: 'Hoe snel kan ik documenten verwachten?',
+          answer:
+            'De meeste documenten leveren we binnen 1-2 weken. Voor complexe projecten maken we vooraf een realistische planning met u.',
         },
         {
-          question: 'Do you provide ongoing support?',
+          question: 'Bieden jullie ook doorlopend juridisch advies?',
           answer:
-            'Yes, we offer maintenance and optimization services after launch to keep your digital presence at peak performance.',
+            'Ja, veel klanten kiezen voor een strippenkaart of abonnement voor doorlopende juridische ondersteuning. Dit bespreken we graag tijdens het kennismakingsgesprek.',
         },
       ],
     },
     {
-      category: 'Pricing & billing',
+      category: 'Tarieven',
       questions: [
         {
-          question: 'What are your pricing options?',
+          question: 'Wat zijn jullie tarieven?',
           answer:
-            'We offer both fixed-price packages and hourly rates, allowing flexibility based on project needs.',
+            'Wij werken met vaste prijzen per project, zodat u vooraf weet waar u aan toe bent. De prijs is afhankelijk van de complexiteit en omvang. Geen uurtje-factuurtje of nacalculaties.',
         },
         {
-          question: 'Do you offer payment plans?',
+          question: 'Zijn er opstartkosten?',
           answer:
-            'Yes, we can structure payments into milestones to fit your budgeting requirements.',
+            'Nee, het kennismakingsgesprek is gratis en vrijblijvend. U betaalt pas wanneer we een concrete opdracht overeenkomen.',
         },
         {
-          question: 'Is there a refund policy?',
+          question: 'Kan ik ook per uur afnemen?',
           answer:
-            "If you're not satisfied within the first 14 days of service, we offer a full refund.",
+            'Voor ad-hoc vragen is dat mogelijk, maar de meeste klanten kiezen voor projectprijzen of een strippenkaart omdat dat meer zekerheid biedt.',
         },
       ],
     },
   ],
-  cta: { text: 'View all FAQs', href: '/faq' },
+  cta: { text: 'Bekijk alle veelgestelde vragen', href: '/faq' },
 };
 
-// ++ Data for Services Preview Section on Homepage (Corrected) ++
+// Services Preview Section on Homepage
 export const servicesPreviewSectionData: Omit<
   z.infer<typeof servicesSectionDataSchema>,
   'services'
 > = {
-  heading: 'Services we offer',
-  description: 'Explore our range of expert services designed to help your business thrive.',
-  viewAllCta: { text: 'View all services', href: '/services' },
-  displayType: 'grid', // Added as per schema, can be overridden if needed by component
+  heading: 'Onze expertise',
+  description:
+    'Specialistische juridische diensten voor software- en ICT-bedrijven. Van contracten tot compliance.',
+  viewAllCta: { text: 'Bekijk alle diensten', href: '/services' },
+  displayType: 'grid',
 };
 
-// ++ Data for Blog Preview Section on Homepage ++
+// Blog Preview Section on Homepage
 export const blogPreviewSectionData: Omit<z.infer<typeof blogSectionDataSchema>, 'posts'> = {
-  badgeText: 'From our blog',
-  heading: 'Latest articles & insights',
-  subtitle: 'Stay updated with our latest news, tips, and industry insights.',
-  readMoreText: 'Read more',
-  viewAllCta: { text: 'View all posts', href: '/blog' },
+  badgeText: 'Kennisbank',
+  heading: 'Laatste juridische inzichten',
+  subtitle:
+    'Praktische tips en updates over ICT-recht, contracten en compliance voor tech-bedrijven.',
+  readMoreText: 'Lees meer',
+  viewAllCta: { text: 'Naar de kennisbank', href: '/blog' },
 };
 
 export const aboutSectionData: z.infer<typeof aboutSectionDataSchema> = {
-  badgeText: 'About section',
-  heading: 'Tell your company story',
+  badgeText: 'Over VirtualCounsel',
+  heading: 'De jurist die jullie taal spreekt',
   paragraphs: [
-    'Use this section to introduce your company, its mission, and core values.',
-    'Highlight key milestones, achievements, or what makes your team unique.',
-    'Connect with your audience on a personal level.',
+    'Ik ben Maarten van Beek, oprichter van VirtualCounsel. Met jarenlange ervaring in de tech-industrie begrijp ik de unieke uitdagingen waar ICT- en softwarebedrijven mee te maken hebben.',
+    'Bij grote kantoren was ik vaak de enige die echt begreep wat een API was of waarom SaaS-modellen andere contracten nodig hebben. Daarom richtte ik VirtualCounsel op: juridisch advies dat aansluit bij de realiteit van tech-bedrijven.',
+    'Mijn klanten waarderen vooral de combinatie van diepgaande juridische kennis en begrip voor hun business. Geen eindeloze discussies over technische details, maar direct to-the-point advies dat werkt.',
   ],
   image: {
-    src: '/images/placeholders/placeholder.svg',
-    alt: 'Professional headshot',
+    src: '/images/placeholders/maarten-van-beek.jpg',
+    alt: 'Maarten van Beek - Oprichter VirtualCounsel',
   },
   variant: 'imageRight',
   stats: [
-    { id: 'stat-experience', value: '10+ years', label: 'Industry experience' },
-    { id: 'stat-clients', value: '500+ happy', label: 'Clients served' },
+    { id: 'stat-experience', value: '10+ jaar', label: 'Ervaring in ICT-recht' },
+    { id: 'stat-clients', value: '50+ bedrijven', label: 'Geholpen' },
     {
-      id: 'stat-projects',
-      value: '1000+ projects',
-      label: 'Successfully delivered',
+      id: 'stat-delivery',
+      value: '1-2 weken',
+      label: 'Gemiddelde levertijd',
     },
   ],
-  cta: { text: 'Learn more about us', href: '/about' },
+  cta: { text: 'Meer over mijn aanpak', href: '/about' },
   philosophy: {
-    title: 'My philosophy',
-    text: "I believe that the best results come from a collaborative approach where we work together as partners to achieve your goals. My clients aren't just customers – they're collaborators in the journey to success.",
+    title: 'Mijn filosofie',
+    text: 'Juridisch advies moet uw business vooruit helpen, niet vertragen. Daarom werk ik pragmatisch, snel en altijd met uw commerciële doelen in gedachten. Geen juridisch geneuzel, maar concrete oplossingen.',
   },
-  learnMoreText: 'Learn more about me',
+  learnMoreText: 'Leer mij beter kennen',
   featureCards: [
     {
       id: 'certified',
-      title: 'Certified professional',
-      description: 'Industry-recognized credentials and certifications',
+      title: 'ICT-recht specialist',
+      description: 'Gecertificeerd en erkend expert in technologie recht',
       icon: 'Star',
-      iconBg: 'bg-amber-100',
-      iconColor: 'text-amber-600',
+      iconBg: 'bg-blue-100',
+      iconColor: 'text-blue-600',
     },
     {
       id: 'proven',
-      title: 'Proven results',
-      description: 'Track record of success with measurable outcomes',
+      title: 'Bewezen resultaten',
+      description: 'Honderden succesvolle contracten en deals begeleid',
       icon: 'CheckCircle',
       iconBg: 'bg-emerald-100',
       iconColor: 'text-emerald-600',
@@ -431,78 +405,73 @@ export const aboutSectionData: z.infer<typeof aboutSectionDataSchema> = {
   ],
 };
 
-// ++ Data for Process Section on Homepage ++
+// Process Section - showing 4-step approach
 export const processSectionData: z.infer<typeof processSectionDataSchema> = {
-  badgeText: 'Our method',
-  heading: 'How we achieve results',
+  badgeText: 'Onze aanpak',
+  heading: 'Van probleem naar oplossing in 4 stappen',
   subtitle:
-    'A clear, step-by-step overview of our proven process, designed for transparency and client success.',
+    'Een transparant proces waarbij u altijd weet waar u aan toe bent. Geen verrassingen, wel resultaat.',
   steps: [
     {
       id: 'step-01',
       number: '01',
-      title: 'Discovery & strategy',
-      description: 'Understand your goals, audience, and challenges to create a tailored plan.',
+      title: 'Gratis kennismaking',
+      description: 'We bespreken uw situatie en bepalen of we een match zijn.',
       details: [
-        'Initial consultation and needs assessment.',
-        'Market research and competitor analysis.',
-        'Defining key performance indicators (KPIs).',
+        '30 minuten videogesprek via Calendly',
+        'Vrijblijvend en zonder kosten',
+        'Direct praktisch advies waar mogelijk',
       ],
     },
     {
       id: 'step-02',
       number: '02',
-      title: 'Design & development',
-      description: 'Crafting a user-centric design and building a robust, scalable solution.',
+      title: 'Intake & analyse',
+      description: 'Diepgaande analyse van uw juridische vraagstuk en businessmodel.',
       details: [
-        'Wireframing and prototyping based on UX best practices.',
-        'Visual design aligned with your brand identity.',
-        'Agile development sprints for iterative progress.',
+        'Inventarisatie van uw specifieke situatie',
+        'Analyse van bestaande contracten',
+        "Identificatie van risico's en kansen",
       ],
     },
     {
       id: 'step-03',
       number: '03',
-      title: 'Testing & launch',
-      description: 'Ensuring quality through rigorous testing before a seamless deployment.',
+      title: 'Voorstel & prijs',
+      description: 'Concrete aanpak met vaste prijs en duidelijke levertijd.',
       details: [
-        'Comprehensive QA across devices and browsers.',
-        'Performance and security testing.',
-        'Go-live strategy and post-launch monitoring.',
+        'Gedetailleerd plan van aanpak',
+        'Vaste prijs zonder verrassingen',
+        'Realistische planning (meestal 1-2 weken)',
       ],
     },
     {
       id: 'step-04',
       number: '04',
-      title: 'Growth & optimization',
-      description:
-        'Continuously analyzing data to refine strategies and drive ongoing improvement.',
+      title: 'Uitvoering & nazorg',
+      description: 'Professionele documenten met uitleg en ondersteuning bij implementatie.',
       details: [
-        'Regular performance reporting and insights.',
-        'A/B testing and conversion rate optimization (CRO).',
-        'Adapting to market changes and new opportunities.',
+        'Documenten op maat voor uw situatie',
+        'Persoonlijke toelichting en Q&A',
+        'Gratis kleine aanpassingen binnen 30 dagen',
       ],
     },
   ],
 };
 
-// ++ Data for Contact Section on Homepage ++
+// Contact Section on Homepage
 export const contactSectionData: z.infer<typeof contactSectionDataSchema> = {
-  badgeText: 'Get in touch',
-  heading: 'Contact us today',
+  badgeText: 'Neem contact op',
+  heading: 'Laten we kennismaken',
   subtitle:
-    "Have questions or ready to start your project? Reach out and we'll get back to you shortly. Use the form below or contact us directly via email or phone.",
-  formTitle: 'Send us a message',
-  infoTitle: 'Contact information',
+    'Heeft u juridische vragen over uw ICT-bedrijf? Plan een gratis kennismakingsgesprek of stuur een bericht. Ik reageer meestal binnen één werkdag.',
+  formTitle: 'Stuur een bericht',
+  infoTitle: 'Contactgegevens',
   buttonLabels: {
-    default: 'Send message',
-    submitting: 'Sending...',
-    success: 'Message sent!',
+    default: 'Verstuur bericht',
+    submitting: 'Wordt verzonden...',
+    success: 'Bericht verzonden!',
   },
-  successMessage: "Thank you for your message! We'll get back to you as soon as possible.",
-  // Note: The actual form fields and contact details (email, phone, address)
-  // are pulled from siteConfig by the ContactSection component itself.
-  // This data object is just for the introductory text specific to the homepage instance.
 };
 
 // ++ Data for KPI Stats Section on Homepage ++

@@ -2,6 +2,12 @@ import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { vi } from 'vitest';
 vi.mock('next/navigation', () => ({ useRouter: () => ({ push: vi.fn() }) }));
+// Mock the OptimizedImage component to avoid blur data URL issues in tests
+vi.mock('@/components/ui/optimized-image', () => ({
+  default: ({ alt, className }: { alt: string; className: string }) => (
+    <img alt={alt} className={className} src="/placeholder.svg" />
+  ),
+}));
 import HeroSection from '@/components/sections/hero-section';
 import { heroSectionData } from '@/lib/data/homepage';
 

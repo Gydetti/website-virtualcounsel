@@ -3,109 +3,103 @@ import type { z } from 'zod';
 import { serviceDetailPageDataSchema } from '@/lib/schemas/sections.schema';
 
 /**
- * Service Detail Page Data - Meta-instructional placeholder content
+ * Virtual Counsel Service Detail Page Data
  *
- * This file contains structured, meta-instructional content for service detail pages.
- * All content is designed to guide AI agents and content creators toward best practices.
- *
- * Content Strategy:
- * - Benefits: Focus on outcomes and value, not features
- * - FAQ: Address common objections and concerns
- * - Testimonials: Build trust with specific, credible examples
- * - CTAs: Create urgency and clear next steps
+ * This file contains structured content for service detail pages.
+ * Content is in Dutch and focused on legal services for ICT/Software companies.
  */
 
 export const serviceDetailPageData: z.infer<typeof serviceDetailPageDataSchema> = {
-  // Benefits Section - Key outcomes clients achieve
+  // Benefits Section - Voordelen van de dienst
   benefitsSection: {
-    heading: 'Key Benefits of This Service',
+    heading: 'Waarom kiezen voor deze dienst?',
     benefits: [
       {
-        id: 'benefit-efficiency',
-        title: 'Increased Efficiency',
+        id: 'benefit-expertise',
+        title: 'Diepgaande tech-kennis',
         description:
-          'Save time and resources with streamlined processes and automation tailored to your business needs.',
+          "Juridisch advies van een specialist die de taal van software, SaaS en IT-dienstverlening spreekt. Geen uitleg nodig over API's of cloud architectuur.",
         icon: '✓',
       },
       {
-        id: 'benefit-results',
-        title: 'Better Results',
+        id: 'benefit-speed',
+        title: 'Snelle levering',
         description:
-          'Achieve measurable outcomes with data-driven strategies that deliver real business impact.',
+          'Documenten binnen 1-2 weken geleverd. Voor spoedgevallen kunnen we nog sneller schakelen. U weet altijd waar u aan toe bent.',
         icon: '✓',
       },
       {
-        id: 'benefit-support',
-        title: 'Expert Support',
+        id: 'benefit-fixed-price',
+        title: 'Vaste prijzen',
         description:
-          'Get guidance from specialists with years of industry experience and proven track records.',
+          'Geen uurtje-factuurtje maar heldere afspraken vooraf. U weet exact wat het kost voordat we beginnen.',
         icon: '✓',
       },
     ],
   },
 
-  // FAQ Section - Address common concerns and objections
+  // FAQ Section - Veelgestelde vragen per dienst
   faqSection: {
-    heading: 'Frequently Asked Questions',
+    heading: 'Veelgestelde vragen',
     items: [
       {
-        question: 'How long does it take to see results?',
+        question: 'Hoe snel kan ik de documenten verwachten?',
         answer:
-          "While timelines vary based on your specific situation and goals, most clients begin seeing initial results within 30-60 days. We'll provide you with a more specific timeline during our consultation based on your unique circumstances.",
+          'De meeste documenten leveren we binnen 5-10 werkdagen. Voor complexere projecten maken we vooraf een realistische planning. Spoed? Dat kan tegen een toeslag - we leveren dan binnen 2-3 werkdagen.',
       },
       {
-        question: 'Do you offer ongoing support?',
+        question: 'Kan ik ook doorlopende ondersteuning krijgen?',
         answer:
-          'Yes, we provide comprehensive ongoing support and maintenance to ensure your continued success. We offer various support packages to meet your needs and budget, from basic check-ins to full-service management.',
+          'Jazeker! Veel klanten kiezen voor een strippenkaart of maandelijks abonnement. Zo heeft u altijd snel juridisch advies bij de hand zonder hoge kosten. Ideaal voor groeiende tech-bedrijven.',
       },
       {
-        question: 'How do you measure success?',
+        question: 'Hoe werkt het reviewproces?',
         answer:
-          'We establish clear KPIs and success metrics at the beginning of our engagement and provide regular reports on progress. Our focus is always on delivering measurable results that directly impact your bottom line and business objectives.',
+          'Na oplevering heeft u 5 werkdagen om feedback te geven. We verwerken uw feedback kosteloos (mits binnen scope). Daarna bespreken we de definitieve versie telefonisch door zodat u precies weet wat er staat.',
       },
       {
-        question: 'What makes your approach different?',
+        question: 'Zijn jullie documenten up-to-date?',
         answer:
-          "Our approach combines data-driven strategies with creative solutions, all tailored to your specific business needs and industry context. We focus on sustainable, long-term growth rather than quick fixes that don't last.",
+          'Absoluut. We volgen alle relevante wetgeving op de voet - van AVG updates tot de nieuwe AI Act. Uw documenten voldoen altijd aan de laatste wettelijke vereisten en best practices in de tech-industrie.',
       },
     ],
   },
 
-  // Testimonials Section - Build trust with social proof
+  // Testimonials Section - Klant ervaringen
   testimonialsSection: {
-    heading: 'What Our Clients Say',
+    heading: 'Wat klanten zeggen',
     testimonials: [
       {
-        id: 'testimonial-jane',
+        id: 'testimonial-tech',
         quote:
-          'Working with this team transformed our business approach. Their expertise and dedication to our success made all the difference in achieving our goals.',
-        author: 'Jane Smith',
-        company: 'Tech Solutions Inc.',
+          'VirtualCounsel begrijpt echt wat wij als SaaS-bedrijf nodig hebben. De contracten sluiten perfect aan bij ons businessmodel en groeiambities.',
+        author: 'Robert van der Berg',
+        company: 'CloudPlatform B.V.',
       },
       {
-        id: 'testimonial-john',
+        id: 'testimonial-startup',
         quote:
-          'The results exceeded our expectations. Their strategic approach and attention to detail delivered real business impact that we can measure.',
-        author: 'John Davis',
-        company: 'Growth Ventures',
+          'Voor onze funding ronde hadden we snel professionele contracten nodig. Binnen een week hadden we alles op orde - de investeerders waren onder de indruk.',
+        author: 'Sarah Jansen',
+        company: 'TechStartup Amsterdam',
       },
     ],
   },
 
-  // Ready to Start CTA Section - Create urgency and clear next step
+  // Ready to Start CTA Section - Actie ondernemen
   readyToStartCta: {
-    heading: 'Ready to Get Started?',
+    heading: 'Klaar om uw juridische zaken te regelen?',
     description:
-      'Take the next step towards achieving your goals with our expert guidance and personalized approach that delivers real results.',
-    buttonText: 'Schedule your consultation',
+      'Boek een gratis kennismakingsgesprek en ontdek hoe we uw specifieke situatie kunnen aanpakken. Binnen 30 minuten weet u precies wat mogelijk is.',
+    buttonText: 'Plan uw gesprek',
     buttonLink: '/contact',
   },
 
-  // Button Labels - Consistent terminology throughout service detail pages
+  // Button Labels - Nederlandse labels
   buttonLabels: {
-    consultation: 'Schedule a Consultation',
-    scheduleConsultation: 'Schedule your consultation',
-    getStarted: 'Get started today',
+    consultation: 'Plan een gesprek',
+    scheduleConsultation: 'Plan uw kennismaking',
+    getStarted: 'Start vandaag',
   },
 };
 

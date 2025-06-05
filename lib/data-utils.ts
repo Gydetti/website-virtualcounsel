@@ -10,60 +10,138 @@ import type { serviceItemSchema } from './schemas/sections.schema'; // Service i
 export type ServiceType = z.infer<typeof serviceItemSchema>;
 export type BlogPostType = z.infer<typeof blogPostSchema>;
 
-// Sample services data
+// Virtual Counsel services data
 export const getServices = async (): Promise<ServiceType[]> => {
   const servicesData: ServiceType[] = [
     {
       id: 'service-1',
-      title: 'Web Design & Development',
+      title: 'Intellectuele eigendom bij software',
       description:
-        'Custom websites that convert visitors into customers with modern design and seamless functionality.',
-      icon: 'Globe',
+        'Bescherm uw IP rechten en voorkom kostbare geschillen. Wij regelen eigendomsoverdracht, open source compliance en investeringsklare structuren.',
+      icon: 'Shield',
       features: [
-        'Responsive design for all devices',
-        'SEO-optimized structure',
-        'Fast loading speeds',
-        'User-friendly navigation',
+        'IP overdrachtsovereenkomsten',
+        'Open source risico-analyse',
+        'Holding structuur advies',
+        'Investeringsklare IP structuur',
+        'Bescherming tegen claims',
       ],
-      popular: false,
-      slug: 'web-design-development',
+      popular: true,
+      slug: 'intellectuele-eigendom-software',
     },
     {
       id: 'service-2',
-      title: 'Digital Marketing Strategy',
+      title: 'Contracten en algemene voorwaarden',
       description:
-        'Data-driven marketing strategies that increase your online visibility and drive qualified traffic.',
-      icon: 'BarChart2',
+        'Op maat gemaakte contracten die aansluiten bij agile werken, SaaS modellen en managed services. Geen generieke templates.',
+      icon: 'FileText',
       features: [
-        'Comprehensive market analysis',
-        'Competitor research',
-        'Custom marketing plan',
-        'Performance tracking',
-        'Regular optimization',
+        'SaaS overeenkomsten',
+        'Agile development contracten',
+        'Managed services agreements',
+        'API licentievoorwaarden',
+        'Reseller en partner contracten',
       ],
       popular: true,
-      slug: 'digital-marketing-strategy',
+      slug: 'contracten-algemene-voorwaarden',
     },
     {
       id: 'service-3',
-      title: 'Business Automation',
+      title: 'Beperking van aansprakelijkheid',
       description:
-        'Streamline your operations with custom automation solutions that save time and reduce errors.',
-      icon: 'Zap',
+        'Effectieve aansprakelijkheidsbeperking die stand houdt in de rechtbank. Bescherm uw bedrijf tegen onredelijke claims.',
+      icon: 'ShieldCheck',
       features: [
-        'Workflow analysis',
-        'Custom automation setup',
-        'Integration with existing tools',
-        'Training and support',
-        'Ongoing optimization',
+        'Slimme liability caps',
+        'Branche-specifieke clausules',
+        'Indemnification regelingen',
+        'Verzekering afstemming',
+        'Force majeure bescherming',
       ],
       popular: false,
-      slug: 'business-automation',
+      slug: 'beperking-aansprakelijkheid',
+    },
+    {
+      id: 'service-4',
+      title: 'Privacy en AVG compliance',
+      description:
+        'Actuele privacy documentatie en GDPR compliance voor software- en SaaS-bedrijven. Inclusief verwerkersovereenkomsten.',
+      icon: 'Lock',
+      features: [
+        'Privacy policies op maat',
+        'Verwerkersovereenkomsten (DPA)',
+        'Cookie compliance',
+        'Data breach procedures',
+        'Privacy by design advies',
+      ],
+      popular: true,
+      slug: 'privacy-avg-compliance',
+    },
+    {
+      id: 'service-5',
+      title: 'Distributeur en reseller overeenkomsten',
+      description:
+        'Schaalbare partner agreements voor software distributie. Bescherm uw product terwijl u groeit via partners.',
+      icon: 'Users',
+      features: [
+        'Channel partner agreements',
+        'White-label contracten',
+        'Revenue sharing modellen',
+        'Territorium bescherming',
+        'Partner compliance regels',
+      ],
+      popular: false,
+      slug: 'distributeur-reseller-overeenkomsten',
+    },
+    {
+      id: 'service-6',
+      title: 'Investeringsklaar worden',
+      description:
+        'Juridische due diligence voorbereiding voor funding rondes. Zorg dat uw documentatie investeerders overtuigt.',
+      icon: 'TrendingUp',
+      features: [
+        'Legal audit & cleanup',
+        'Cap table optimalisatie',
+        'IP portfolio review',
+        'Contract harmonisatie',
+        'Data room voorbereiding',
+      ],
+      popular: false,
+      slug: 'investeringsklaar-worden',
+    },
+    {
+      id: 'service-7',
+      title: "Service Level Agreements (SLA's)",
+      description:
+        "Professionele SLA's die duidelijke verwachtingen scheppen zonder onredelijke risico's voor uw IT-dienstverlening.",
+      icon: 'Clock',
+      features: [
+        'Uptime garanties',
+        'Response time afspraken',
+        'Escalatie procedures',
+        'Credit structuren',
+        'Performance metrics',
+      ],
+      popular: false,
+      slug: 'service-level-agreements',
+    },
+    {
+      id: 'service-8',
+      title: 'AI Act compliance',
+      description:
+        'Navigeer de nieuwe EU AI regelgeving. Risicoanalyse, documentatie en compliance voor AI-componenten in uw software.',
+      icon: 'Cpu',
+      features: [
+        'AI risico classificatie',
+        'Compliance documentatie',
+        'Transparantie vereisten',
+        'Audit trail opzet',
+        'Ethische AI richtlijnen',
+      ],
+      popular: true,
+      slug: 'ai-act-compliance',
     },
   ];
-  // In a real app, this data would be fetched and then validated.
-  // For mock data, we assume it conforms. We can add parsing for robustness:
-  // return z.array(serviceItemSchema).parse(servicesData);
   return servicesData;
 };
 
@@ -72,101 +150,101 @@ export const getBlogPosts = async (limit?: number): Promise<BlogPostType[]> => {
   const postsDataRaw = [
     {
       id: 'post-1',
-      title: '5 Ways to Improve Your Online Presence',
+      title: 'De 5 grootste juridische valkuilen voor SaaS-bedrijven',
       excerpt:
-        'Learn the essential strategies to boost your visibility online and attract more customers to your business.',
+        'Vermijd kostbare fouten met deze essentiële juridische checklist voor SaaS-providers. Van licentiemodellen tot aansprakelijkheid.',
       date: '2025-04-15',
-      category: 'Digital Marketing',
+      category: 'SaaS & Licenties',
       coverImage: {
         src: '/images/placeholders/placeholder.svg',
-        alt: 'Improve Online Presence',
+        alt: 'Juridische valkuilen SaaS',
       },
-      content: 'Full blog post content for post-1 would go here...',
-      slug: 'improve-online-presence',
+      content: 'Volledige artikel inhoud over juridische valkuilen voor SaaS-bedrijven...',
+      slug: 'juridische-valkuilen-saas-bedrijven',
       featured: true,
       author: {
-        name: 'Default Author',
-        image: { src: '/placeholder.svg', alt: 'Author' },
+        name: 'Maarten van Beek',
+        image: { src: '/placeholder.svg', alt: 'Maarten van Beek' },
       },
-      seo: { title: 'SEO Title for Post 1' },
+      seo: { title: 'De 5 grootste juridische valkuilen voor SaaS-bedrijven | VirtualCounsel' },
     },
     {
       id: 'post-2',
-      title: 'The Importance of Mobile-First Design',
+      title: 'Open source software in commerciële producten: wat mag wel en niet?',
       excerpt:
-        "With most web traffic coming from mobile devices, here's why your website needs to prioritize mobile users.",
+        'Een praktische gids over het gebruik van open source componenten in uw software. GPL, MIT, Apache - wat betekenen deze licenties voor u?',
       date: '2025-03-28',
-      category: 'Web Design',
+      category: 'Intellectueel Eigendom',
       coverImage: {
         src: '/images/placeholders/placeholder.svg',
-        alt: 'Mobile-First Design',
+        alt: 'Open source licenties',
       },
-      content: 'Full blog post content for post-2...',
-      slug: 'mobile-first-design',
+      content: 'Volledige artikel over open source licenties en commercieel gebruik...',
+      slug: 'open-source-software-commerciele-producten',
     },
     {
       id: 'post-3',
-      title: 'Automating Your Client Onboarding Process',
+      title: 'Verwerkersovereenkomst voor IT-bedrijven: een praktische aanpak',
       excerpt:
-        'Discover how automation can streamline your client onboarding and create a better first impression.',
+        "Alles wat u moet weten over verwerkersovereenkomsten (DPA's) voor IT-dienstverleners. Inclusief concrete voorbeelden en valkuilen.",
       date: '2025-03-10',
-      category: 'Automation',
+      category: 'Privacy & AVG',
       coverImage: {
         src: '/images/placeholders/placeholder.svg',
-        alt: 'Client Onboarding Automation',
+        alt: 'Verwerkersovereenkomst IT',
       },
-      content: 'Full blog post content for post-3...',
-      slug: 'automating-client-onboarding',
+      content: 'Artikel over verwerkersovereenkomsten voor IT-bedrijven...',
+      slug: 'verwerkersovereenkomst-it-bedrijven-praktisch',
     },
     {
       id: 'post-4',
-      title: 'How to Create Content That Converts',
+      title: 'Aansprakelijkheid beperken in software contracten: zo doet u het goed',
       excerpt:
-        'Learn the secrets to creating engaging content that not only attracts readers but turns them into customers.',
+        'Effectieve aansprakelijkheidsbeperking die stand houdt in de rechtszaal. Specifiek voor software- en IT-dienstverleners.',
       date: '2025-02-22',
-      category: 'Content Marketing',
+      category: 'Contracten',
       coverImage: {
         src: '/images/placeholders/placeholder.svg',
-        alt: 'Content That Converts',
+        alt: 'Aansprakelijkheid software',
       },
-      content: 'Full blog post content for post-4...',
-      slug: 'content-that-converts',
+      content: 'Artikel over aansprakelijkheidsbeperking in software contracten...',
+      slug: 'aansprakelijkheid-beperken-software-contracten',
     },
     {
       id: 'post-5',
-      title: 'Building Trust with Your Online Audience',
+      title: 'AI Act compliance checklist voor software ontwikkelaars',
       excerpt:
-        'Explore proven strategies to establish credibility and build lasting trust with your online audience.',
+        'De EU AI Act komt eraan. Is uw software met AI-componenten klaar? Praktische checklist voor ontwikkelaars en product owners.',
       date: '2025-02-05',
-      category: 'Brand Building',
+      category: 'AI & Compliance',
       coverImage: {
         src: '/images/placeholders/placeholder.svg',
-        alt: 'Building Trust Online',
+        alt: 'AI Act compliance',
       },
-      content: 'Full blog post content for post-5...',
-      slug: 'building-trust-online',
+      content: 'Artikel over AI Act compliance voor software ontwikkelaars...',
+      slug: 'ai-act-compliance-checklist-software',
     },
     {
       id: 'post-6',
-      title: 'The ROI of Professional Web Design',
+      title: 'Due diligence voorbereiding: juridische documenten voor tech funding',
       excerpt:
-        'Understand the real business impact and return on investment from professional web design services.',
+        'Welke juridische documenten heeft u nodig voor een investeringsronde? Complete checklist voor tech-startups en scale-ups.',
       date: '2025-01-18',
-      category: 'Web Design',
+      category: 'Investeringen',
       coverImage: {
         src: '/images/placeholders/placeholder.svg',
-        alt: 'ROI Web Design',
+        alt: 'Due diligence tech',
       },
-      content: 'Full blog post content for post-6...',
-      slug: 'roi-web-design',
+      content: 'Artikel over juridische voorbereiding voor funding rondes...',
+      slug: 'due-diligence-juridische-documenten-tech-funding',
     },
   ];
 
   const postsDataForValidation = postsDataRaw.map(post => ({
     ...post,
     author: post.author || {
-      name: 'Default Author',
-      image: { src: '/placeholder.svg', alt: 'Author' },
+      name: 'Maarten van Beek',
+      image: { src: '/placeholder.svg', alt: 'Maarten van Beek' },
     },
     seo: post.seo || { title: post.title },
   }));

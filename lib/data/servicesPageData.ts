@@ -6,74 +6,69 @@ import {
 } from '@/lib/schemas/sections.schema';
 
 /**
- * Services Page Data - Meta-instructional placeholder content
+ * Virtual Counsel Services Page Data
  *
  * This file contains structured content for the services overview page.
- * All content follows meta-instructional patterns to guide AI agents toward best practices.
- *
- * Content Strategy:
- * - Overview: Clear value proposition and service introduction
- * - Why Choose: Differentiation and competitive advantages
- * - CTA: Clear next steps and conversion optimization
+ * Content is in Dutch and focused on ICT/Software legal services.
  */
 
 export const servicesOverviewSectionData: z.infer<typeof servicesOverviewSectionDataSchema> = {
-  badgeText: 'Our services',
-  heading: 'What we offer',
+  badgeText: 'Onze expertise',
+  heading: 'Juridische diensten voor de tech industrie',
   description:
-    'Explore our full range of services designed to help your business grow, optimize operations, and achieve measurable success.',
+    'Specialistische juridische ondersteuning voor ICT- en softwarebedrijven. Van contracten tot compliance - wij spreken uw taal.',
 };
 
 // Complete services page data with all sections
 export const servicesPageData: z.infer<typeof servicesPageDataSchema> = {
-  // Overview section (existing)
+  // Overview section
   overview: servicesOverviewSectionData,
 
   // Why Choose Services section - differentiation and value
   whyChooseSection: {
-    heading: 'Why Choose Our Services',
+    heading: 'Waarom kiezen voor VirtualCounsel?',
     description:
-      'We deliver measurable results through proven methodologies and personalized attention to your business goals.',
+      'Met diepgaande kennis van de tech-industrie leveren we juridisch advies dat aansluit bij uw businessmodel en werkwijze.',
     benefits: [
       {
-        id: 'benefit-tailored',
-        text: 'Tailored solutions for your specific business needs',
+        id: 'benefit-tech-knowledge',
+        text: 'Diepgaande kennis van software, SaaS en IT-dienstverlening',
         icon: 'Check',
       },
       {
-        id: 'benefit-data-driven',
-        text: 'Data-driven strategies that deliver measurable results',
+        id: 'benefit-fixed-price',
+        text: 'Vaste prijzen - geen verrassingen achteraf',
         icon: 'Check',
       },
       {
-        id: 'benefit-transparent',
-        text: 'Transparent communication throughout the process',
+        id: 'benefit-fast-delivery',
+        text: 'Snelle levering binnen 1-2 weken',
         icon: 'Check',
       },
       {
-        id: 'benefit-ongoing',
-        text: 'Ongoing support and optimization',
+        id: 'benefit-direct-contact',
+        text: 'Direct contact met specialist - geen juniors',
         icon: 'Check',
       },
     ],
-    buttonText: 'Schedule a consultation',
+    buttonText: 'Plan een kennismaking',
     buttonLink: '/contact',
   },
 
   // Main CTA section - conversion focused
   ctaSection: {
-    heading: 'Ready to Transform Your Business?',
+    heading: 'Klaar om uw juridische zaken te regelen?',
     description:
-      'Take the first step towards achieving your business goals with our expert guidance and proven strategies.',
-    buttonText: 'Get started today',
+      'Boek een gratis kennismakingsgesprek en ontdek hoe we uw ICT-bedrijf kunnen beschermen en laten groeien.',
+    buttonText: 'Maak een afspraak',
     buttonLink: '/contact',
   },
 
   // Button labels for consistency across the page
   buttonLabels: {
-    learnMore: 'Learn more',
-    scheduleConsultation: 'Schedule a consultation',
-    getStartedToday: 'Get started today',
+    learnMore: 'Meer informatie',
+    scheduleConsultation: 'Plan een gesprek',
+    getStartedToday: 'Start vandaag',
   },
 };
 
