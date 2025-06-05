@@ -56,7 +56,9 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         <div className="flex min-h-screen flex-col">
           {/* Only show main Header if NOT on a landing page */}
           {!isLandingPage && <Header />}
-          <PageTransitionWrapper>{children}</PageTransitionWrapper>
+          <main className="grow">
+            <PageTransitionWrapper>{children}</PageTransitionWrapper>
+          </main>
           {/* Only show main Footer if NOT on a landing page */}
           {!isLandingPage && <Footer />}
         </div>
