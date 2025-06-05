@@ -5,7 +5,7 @@ import { aboutSectionDataSchema } from '../schemas/sections.schema';
 export const aboutPageMainContentData: z.infer<typeof aboutSectionDataSchema> = {
   // Virtual Counsel - Maarten van Beek About Section
   badgeText: 'Over VirtualCounsel',
-  heading: 'De juridische partner die de taal van tech spreekt',
+  heading: 'De Juridische Partner voor Tech',
   paragraphs: [
     'Ik ben Maarten van Beek, oprichter van VirtualCounsel. Met meer dan 10 jaar ervaring in het adviseren van ICT- en softwarebedrijven begrijp ik de unieke uitdagingen waar tech-ondernemers tegenaan lopen.',
     'Na jaren als bedrijfsjurist bij verschillende tech-bedrijven zag ik hoe vaak juridisch advies niet aansloot bij de realiteit van software ontwikkeling, SaaS-modellen en agile werken. Daarom richtte ik VirtualCounsel op: juridisch advies dat écht werkt voor tech-bedrijven.',
@@ -18,29 +18,7 @@ export const aboutPageMainContentData: z.infer<typeof aboutSectionDataSchema> = 
     width: 500,
     height: 500,
   },
-  variant: 'imageRight',
-  stats: [
-    {
-      id: 'stat-experience',
-      value: '10+ jaar',
-      label: 'Ervaring in ICT-recht',
-    },
-    {
-      id: 'stat-clients',
-      value: '150+',
-      label: 'Tech-bedrijven geholpen',
-    },
-    {
-      id: 'stat-contracts',
-      value: '500+',
-      label: 'Contracten opgesteld',
-    },
-    {
-      id: 'stat-delivery',
-      value: '1-2 weken',
-      label: 'Gemiddelde levertijd',
-    },
-  ],
+  variant: 'classic',
   cta: {
     text: 'Plan een kennismaking',
     href: '/contact',

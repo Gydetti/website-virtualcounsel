@@ -71,43 +71,85 @@ export const clientsSectionData: z.infer<typeof clientsSectionDataSchema> = {
     {
       name: 'NN Group',
       logo: {
-        src: '/images/placeholders/logo-nn.svg',
+        src: 'https://www.virtualcounsel.nl/images/nn.png',
         alt: 'NN Group Logo',
       },
     },
     {
       name: 'Deloitte',
       logo: {
-        src: '/images/placeholders/logo-deloitte.svg',
+        src: 'https://www.virtualcounsel.nl/images/deloitte.png',
         alt: 'Deloitte Logo',
+      },
+    },
+    {
+      name: 'Unravel',
+      logo: {
+        src: 'https://www.virtualcounsel.nl/images/UNRAVEL.png',
+        alt: 'Unravel Logo',
+      },
+    },
+    {
+      name: 'Fleks',
+      logo: {
+        src: 'https://www.virtualcounsel.nl/images/FLEKS.png',
+        alt: 'Fleks Logo',
+      },
+    },
+    {
+      name: 'Griffid',
+      logo: {
+        src: 'https://www.virtualcounsel.nl/images/GRIFFID.png',
+        alt: 'Griffid Logo',
+      },
+    },
+    {
+      name: 'Mapiq',
+      logo: {
+        src: 'https://www.virtualcounsel.nl/images/MAPIQ.png',
+        alt: 'Mapiq Logo',
+      },
+    },
+    {
+      name: 'TandemDrive',
+      logo: {
+        src: 'https://www.virtualcounsel.nl/images/logo-tandemdrive.svg',
+        alt: 'TandemDrive Logo',
+      },
+    },
+    {
+      name: 'Pionative',
+      logo: {
+        src: 'https://www.virtualcounsel.nl/images/logo-pionative-7-png.png',
+        alt: 'Pionative Logo',
+      },
+    },
+    {
+      name: 'Passionfruit',
+      logo: {
+        src: 'https://www.virtualcounsel.nl/images/passionfruit.png',
+        alt: 'Passionfruit Logo',
+      },
+    },
+    {
+      name: 'DreamSolution',
+      logo: {
+        src: 'https://www.virtualcounsel.nl/images/dreamsolution.svg',
+        alt: 'DreamSolution Logo',
       },
     },
     {
       name: 'ICT Waarborg',
       logo: {
-        src: '/images/placeholders/logo-ict-waarborg.svg',
+        src: 'https://www.virtualcounsel.nl/images/ictwaarborg.png',
         alt: 'ICT Waarborg Logo',
       },
     },
     {
-      name: 'ISOPlanner',
+      name: 'Equip',
       logo: {
-        src: '/images/placeholders/logo-isoplanner.svg',
-        alt: 'ISOPlanner Logo',
-      },
-    },
-    {
-      name: 'Blendle',
-      logo: {
-        src: '/images/placeholders/logo-blendle.svg',
-        alt: 'Blendle Logo',
-      },
-    },
-    {
-      name: 'Sanoma',
-      logo: {
-        src: '/images/placeholders/logo-sanoma.svg',
-        alt: 'Sanoma Logo',
+        src: 'https://www.virtualcounsel.nl/images/equip.png',
+        alt: 'Equip Logo',
       },
     },
   ],

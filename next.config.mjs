@@ -22,6 +22,14 @@ const nextConfig = withBundleAnalyzer({
   },
   images: {
     unoptimized: false,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'www.virtualcounsel.nl',
+        port: '',
+        pathname: '/images/**',
+      },
+    ],
   },
   experimental: {
     esmExternals: true,

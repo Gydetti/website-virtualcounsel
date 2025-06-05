@@ -138,7 +138,7 @@ export const getServices = async (): Promise<ServiceType[]> => {
         'Up-to-date met de laatste Europese regelgeving',
         'Praktische compliance zonder innovatie te remmen',
       ],
-      popular: true,
+      popular: false,
       slug: 'ai-act-compliance',
     },
   ];

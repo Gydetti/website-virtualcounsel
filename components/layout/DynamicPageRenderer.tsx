@@ -1,112 +1,100 @@
 /* biome-disable-file */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+'use client';
+
 import dynamic from 'next/dynamic';
-import type { ComponentType, FC } from 'react';
+import type { ComponentType } from 'react';
+import React from 'react';
 import type { z } from 'zod';
 
-import AboutCredentialsSection from '@/components/sections/about-credentials-section';
-import AboutPersonalJourneySection from '@/components/sections/about-personal-journey-section';
-import AboutPhilosophySection from '@/components/sections/about-philosophy-section';
-// Replace static section imports with dynamic for heavy sections
-// Dynamically import HeroSection to code-split JS-driven animations
-// const HeroSection = dynamic(() => import('@/components/sections/hero-section'));
-import AboutSection from '@/components/sections/about-section';
-import AboutValuesSection from '@/components/sections/about-values-section';
-import BlogSection from '@/components/sections/blog-section';
-import ClientsSection from '@/components/sections/clients-section';
-import ContactSection from '@/components/sections/contact-section';
-import CtaSection from '@/components/sections/cta-section';
-import FeaturesSection from '@/components/sections/features-section';
-import HeroSection from '@/components/sections/hero-section';
-import HomepageFaqSection from '@/components/sections/homepage-faq-section';
-import KpiSection from '@/components/sections/kpi-section';
-import ProblemPainSection from '@/components/sections/problem-pain-section';
-import ProcessSectionHome from '@/components/sections/process-section-home';
-import ServicesSection from '@/components/sections/services-section';
-import SolutionVisionSection from '@/components/sections/solution-vision-section';
-// Static imports for simple, CSS-only sections
-import ValuePropSection from '@/components/sections/value-prop-section';
-import LazySection from '@/components/ui/lazy-section'; // Assuming LazySection is still used
-import type { pageSectionConfigSchema, pageStructureSchema } from '@/lib/schemas/siteConfig.schema'; // Adjust path as needed
-// Dynamically import heavy, code-split sections (SSR enabled by default in server components)
+// Dynamic imports
+const HeroSection = dynamic(() => import('@/components/sections/hero-section'));
+const ValuePropSection = dynamic(() => import('@/components/sections/value-prop-section'));
+const ClientsSection = dynamic(() => import('@/components/sections/clients-section'));
+const ProblemPainSection = dynamic(() => import('@/components/sections/problem-pain-section'));
+const SolutionVisionSection = dynamic(
+  () => import('@/components/sections/solution-vision-section')
+);
+const AboutSection = dynamic(() => import('@/components/sections/about-section'));
+const ServicesSection = dynamic(() => import('@/components/sections/services-section'));
+const BlogSection = dynamic(() => import('@/components/sections/blog-section'));
+const CtaSection = dynamic(() => import('@/components/sections/cta-section'));
+const BlogPreviewSection = dynamic(() => import('@/components/sections/blog-section'));
+const FeaturesSection = dynamic(() => import('@/components/sections/features-section'));
+const PricingSection = dynamic(() => import('@/components/sections/pricing-section'));
+const HomepageFaqSection = dynamic(() => import('@/components/sections/homepage-faq-section'));
 const TestimonialsSection = dynamic(() => import('@/components/sections/testimonials-section'));
+const AboutValuesSection = dynamic(() => import('@/components/sections/about-values-section'));
+const AboutPersonalJourneySection = dynamic(
+  () => import('@/components/sections/about-personal-journey-section')
+);
+const AboutCredentialsSection = dynamic(
+  () => import('@/components/sections/about-credentials-section')
+);
+const AboutPhilosophySection = dynamic(
+  () => import('@/components/sections/about-philosophy-section')
+);
+const ProcessSection = dynamic(() => import('@/components/sections/process-section'));
 const ResourceDetailSection = dynamic(() => import('@/components/sections/ResourceDetailSection'));
 const ResourceListSection = dynamic(() => import('@/components/sections/ResourceListSection'));
-// ++ NEW IMPORTS FOR DATA ++
-import {
-  aboutCredentialsSectionData,
-  aboutPageMainContentData,
-  aboutPersonalJourneySectionData,
-  aboutPhilosophySectionData,
-  aboutSocialProofSectionData,
-  aboutValuesSectionData,
-} from '@/lib/data/aboutPageData';
-import * as homepageData from '@/lib/data/homepage';
-import { getResourceBySlug as getResourceBySlugFromData, getResources } from '@/lib/data/resources'; // Alias to avoid conflict if used directly
-import { getBlogPosts, getServices } from '@/lib/data-utils'; // Now using these
-import { siteConfig } from '@/lib/site.config.local'; // For blog limit
+const ServicesOverviewSection = dynamic(
+  () => import('@/components/sections/services-overview-section')
+);
+const ServicesWhyChooseSection = dynamic(
+  () => import('@/components/sections/services-why-choose-section')
+);
 
-// Define the type for the component props
-type PageStructure = z.infer<typeof pageStructureSchema>;
-type PageSectionConfig = z.infer<typeof pageSectionConfigSchema>; // Added for clarity
-
-interface DynamicPageRendererProps {
-  pagePath: string; // To help with data fetching context if needed
-  pageStructure: PageStructure;
-  // We might need a way to pass down all site-wide section data, or fetch it here.
-  // allSectionsData: Record<string, unknown>; // Using unknown for potential future prop
-}
-
-// biome-ignore lint: Diverse section components in map, type safety at component prop level.
 const sectionComponentMap: Record<string, ComponentType<any>> = {
   HeroSection,
   ValuePropSection,
   ClientsSection,
   ProblemPainSection,
   SolutionVisionSection,
-  FeaturesSection,
-  TestimonialsSection,
-  CtaSection,
   AboutSection,
-  KpiSection,
   ServicesSection,
-  ProcessSectionHome,
   BlogSection,
+  CtaSection,
+  BlogPreviewSection,
+  FeaturesSection,
+  PricingSection,
   HomepageFaqSection,
-  ContactSection,
-  ResourceDetailSection,
-  ResourceListSection,
+  TestimonialsSection,
   AboutValuesSection,
   AboutPersonalJourneySection,
   AboutCredentialsSection,
   AboutPhilosophySection,
+  ProcessSection,
+  ResourceDetailSection,
+  ResourceListSection,
+  ServicesOverviewSection,
+  ServicesWhyChooseSection,
 };
 
-// Define simple, CSS-only sections to wrap with a single LazySection animation="none"
-const cssOnlySections = new Set<string>([
-  'ValuePropSection',
-  'ClientsSection',
-  'ProblemPainSection',
-  'SolutionVisionSection',
-  'FeaturesSection',
-  'CtaSection',
-  'ServicesSection',
-  'ProcessSectionHome',
-  'BlogSection',
-  'HomepageFaqSection',
-  'ContactSection',
-]);
+// Data imports
+import * as aboutPageData from '@/lib/data/aboutPageData';
+import * as homepageData from '@/lib/data/homepage';
+import { getResourceBySlug as getResourceBySlugFromData, getResources } from '@/lib/data/resources';
+import * as serviceDetailPageData from '@/lib/data/serviceDetailPageData';
+import * as servicesPageData from '@/lib/data/servicesPageData';
+import { getBlogPosts, getServiceBySlug, getServices } from '@/lib/data-utils';
+import type { pageSectionConfigSchema, pageStructureSchema } from '@/lib/schemas/siteConfig.schema';
+import { siteConfig } from '@/lib/site.config.local';
 
-// Async data fetching
-const getSectionData = async (
-  pagePath: string,
-  sectionConfig: PageSectionConfig
-): Promise<Record<string, unknown>> => {
+// Types
+type PageStructure = z.infer<typeof pageStructureSchema>;
+type SectionConfig = z.infer<typeof pageSectionConfigSchema>;
+
+// Props interface
+interface DynamicPageRendererProps {
+  pagePath: string;
+  pageStructure: PageStructure;
+}
+
+async function getSectionData(sectionConfig: SectionConfig, pagePath: string): Promise<any> {
   if (pagePath === '/') {
     switch (sectionConfig.sectionType) {
       case 'HeroSection':
         return homepageData.heroSectionData;
-      case 'KpiSection':
-        return homepageData.kpiSectionData;
       case 'ValuePropSection':
         return homepageData.valuePropSectionData;
       case 'ClientsSection':
@@ -115,22 +103,12 @@ const getSectionData = async (
         return homepageData.problemPainSectionData;
       case 'SolutionVisionSection':
         return homepageData.solutionVisionSectionData;
-      case 'FeaturesSection':
-        return homepageData.featuresSectionData;
-      case 'TestimonialsSection':
-        return homepageData.testimonialsSectionData;
-      case 'CtaSection':
-        return homepageData.ctaSectionData;
-      case 'ServicesPreviewSection': {
-        const services = await getServices();
-        return {
-          ...homepageData.servicesPreviewSectionData,
-          id: sectionConfig.id,
-          services: services.slice(0, 3),
-        };
-      }
+      case 'AboutSection':
+        return homepageData.aboutSectionData;
       case 'ServicesSection': {
         const allServices = await getServices();
+
+        // Only filter for popular services on homepage
         const popularServices = allServices.filter(service => service.popular);
         const displayServices = popularServices.slice(0, 3);
         const totalServicesCount = allServices.length;
@@ -151,70 +129,41 @@ const getSectionData = async (
         return {
           ...homepageData.blogPreviewSectionData,
           id: sectionConfig.id,
-          posts: posts,
-        };
-      }
-      case 'BlogSection': {
-        const blogLimit = siteConfig.sectionsDataKeys?.blog?.limit || 3;
-        const posts = await getBlogPosts(blogLimit);
-        return {
-          ...homepageData.blogPreviewSectionData,
-          id: sectionConfig.id,
           posts,
         };
       }
-      case 'HomepageFaqSection':
-        return homepageData.homepageFaqSectionData;
-      case 'AboutSection':
-        return homepageData.aboutSectionData;
+      case 'CtaSection':
+        return homepageData.ctaSectionData;
+      case 'KpiSection':
+        return homepageData.kpiSectionData;
+      case 'FeaturesSection':
+        return homepageData.featuresSectionData;
+      case 'PricingSection':
+        return homepageData.pricingSectionData;
+      case 'TestimonialsSection':
+        return homepageData.testimonialsSectionData;
       case 'ProcessSection':
         return homepageData.processSectionData;
-      case 'ProcessSectionHome':
-        return homepageData.processSectionData;
-      case 'ContactSection':
-        return homepageData.contactSectionData;
+      case 'HomepageFaqSection':
+        return homepageData.homepageFaqSectionData;
       default:
-        console.warn(
-          `Data for section type "${sectionConfig.sectionType}" (id: ${sectionConfig.id}) not implemented for homepage.`
-        );
-        return { id: sectionConfig.id };
-    }
-  }
-
-  if (pagePath.startsWith('/resources/')) {
-    const slug = pagePath.substring('/resources/'.length);
-    if (slug && sectionConfig.sectionType === 'ResourceDetailSection') {
-      const resource = await getResourceBySlugFromData(slug);
-      if (resource) {
-        return { resource: resource };
-      }
-      console.warn(`Resource with slug "${slug}" not found for ResourceDetailSection.`);
-      return { resource: null };
-    }
-  }
-
-  if (pagePath === '/resources') {
-    if (sectionConfig.sectionType === 'ResourceListSection') {
-      const resources = await getResources();
-      return {
-        id: sectionConfig.id,
-        resources: resources,
-      };
+        console.warn(`Unknown section type '${sectionConfig.sectionType}' for homepage`);
+        return null;
     }
   }
 
   if (pagePath === '/about') {
     switch (sectionConfig.sectionType) {
       case 'AboutSection':
-        return aboutPageMainContentData;
+        return aboutPageData.aboutPageMainContentData;
       case 'AboutValuesSection':
-        return aboutValuesSectionData;
+        return aboutPageData.aboutValuesSectionData;
       case 'AboutPersonalJourneySection':
-        return aboutPersonalJourneySectionData;
+        return aboutPageData.aboutPersonalJourneySectionData;
       case 'AboutCredentialsSection':
-        return aboutCredentialsSectionData;
+        return aboutPageData.aboutCredentialsSectionData;
       case 'AboutPhilosophySection':
-        return aboutPhilosophySectionData;
+        return aboutPageData.aboutPhilosophySectionData;
       case 'TestimonialsSection':
         return homepageData.testimonialsSectionData;
       case 'CtaSection':
@@ -223,217 +172,95 @@ const getSectionData = async (
         return homepageData.kpiSectionData;
       default:
         console.warn(
-          `Data for section type "${sectionConfig.sectionType}" (id: ${sectionConfig.id}) not implemented for /about page.`
+          `Unknown section type '${sectionConfig.sectionType}' for about page, falling back to homepage data`
         );
-        return { id: sectionConfig.id };
+        return getSectionData(sectionConfig, '/');
     }
   }
 
-  console.warn(
-    `Data fetching for section type "${sectionConfig.sectionType}" on page "${pagePath}" (id: ${sectionConfig.id}) is not implemented.`
+  if (pagePath === '/services') {
+    switch (sectionConfig.sectionType) {
+      case 'ServicesOverviewSection': {
+        return {
+          ...servicesPageData.servicesPageData.overview,
+          id: sectionConfig.id,
+        };
+      }
+      case 'ServicesSection': {
+        const allServices = await getServices();
+
+        // On services page, show all services sorted by popular first
+        const sortedServices = [...allServices].sort((a, b) => {
+          if (a.popular && !b.popular) return -1;
+          if (!a.popular && b.popular) return 1;
+          return 0;
+        });
+
+        return {
+          ...homepageData.servicesPreviewSectionData,
+          id: sectionConfig.id,
+          services: sortedServices,
+          displayType: 'grid',
+        };
+      }
+      case 'ServicesWhyChooseSection': {
+        return {
+          ...servicesPageData.servicesPageData.whyChooseSection,
+          id: sectionConfig.id,
+        };
+      }
+      case 'ProcessSection':
+        return homepageData.processSectionData;
+      case 'CtaSection': {
+        return {
+          ...servicesPageData.servicesPageData.ctaSection,
+          id: sectionConfig.id,
+        };
+      }
+      default:
+        console.warn(`Unknown section type '${sectionConfig.sectionType}' for services page`);
+        return null;
+    }
+  }
+
+  // Default fallback for all other pages
+  return getSectionData(sectionConfig, '/');
+}
+
+// Main component - not async anymore
+export default function DynamicPageRenderer({ pagePath, pageStructure }: DynamicPageRendererProps) {
+  const [sectionData, setSectionData] = React.useState<any[]>([]);
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    async function loadSectionData() {
+      const data = await Promise.all(
+        pageStructure.sections.map((sectionConfig: SectionConfig) =>
+          getSectionData(sectionConfig, pagePath)
+        )
+      );
+      // Filter out null values before setting state
+      setSectionData(data.filter((item): item is Record<string, any> => item !== null));
+      setIsLoading(false);
+    }
+    loadSectionData();
+  }, [pagePath, pageStructure.sections]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <>
+      {pageStructure.sections.map((sectionConfig: SectionConfig, index: number) => {
+        const Component = sectionComponentMap[sectionConfig.sectionType];
+        const data = sectionData[index];
+        if (!Component || !data) {
+          console.warn(`No component found for section type: ${sectionConfig.sectionType}`);
+          return null;
+        }
+        return <Component key={sectionConfig.id} {...data} />;
+      })}
+    </>
   );
-  return { id: sectionConfig.id };
-};
-
-// DynamicPageRenderer becomes an async component
-const DynamicPageRenderer: FC<DynamicPageRendererProps> = async ({
-  pagePath,
-  pageStructure,
-  // allSectionsData
-}) => {
-  if (!pageStructure?.sections || pageStructure.sections.length === 0) {
-    // Or render a fallback, or handle this upstream
-    return <p>No sections configured for this page.</p>;
-  }
-
-  // Fetch data for all sections in parallel
-  const sectionsWithDataPromises = pageStructure.sections.map(sectionConfig =>
-    getSectionData(pagePath, sectionConfig).then(data => ({
-      ...sectionConfig,
-      data,
-    }))
-  );
-  const sectionsWithData = await Promise.all(sectionsWithDataPromises);
-
-  // Configure stagger timing (reduced for snappier feel)
-  const delayStep = 0.1; // 100ms between section animations
-  const maxDelay = 0.3; // cap maximum delay at 300ms
-  // Group Problem and Solution sections to share background
-  const elements = [];
-  for (let i = 0; i < sectionsWithData.length; i++) {
-    const section = sectionsWithData[i];
-    // Skip section based on KPI page-specific flags or general feature flags
-    if (section.sectionType === 'KpiSection') {
-      if (pagePath === '/' && !siteConfig.features.enableKpiSection) {
-        continue;
-      }
-      if (pagePath === '/about' && !siteConfig.features.enableAboutKpiSection) {
-        continue;
-      }
-      // Skip section based on KPI page-specific flags or general feature flags
-      if (section.sectionType === 'KpiSection') {
-        if (pagePath === '/' && !siteConfig.features.enableKpiSection) {
-          continue;
-        }
-        if (pagePath === '/about' && !siteConfig.features.enableAboutKpiSection) {
-          continue;
-        }
-      } else if (section.sectionType === 'TestimonialsSection') {
-        if (!siteConfig.features.enableTestimonials) {
-          continue;
-        }
-      } else if (section.sectionType === 'BlogSection') {
-        if (!siteConfig.features.enableBlog) {
-          continue;
-        }
-      } else {
-        const featureFlagKey = `enable${section.sectionType}` as keyof typeof siteConfig.features;
-        if (siteConfig.features[featureFlagKey] === false) {
-          continue;
-        }
-      }
-    } else {
-      const featureFlagKey = `enable${section.sectionType}` as keyof typeof siteConfig.features;
-      if (siteConfig.features[featureFlagKey] === false) {
-        continue;
-      }
-    }
-    // Group ProblemPainSection & SolutionVisionSection if both enabled
-    if (
-      section.sectionType === 'ProblemPainSection' &&
-      siteConfig.features.enableProblemPainSection &&
-      i + 1 < sectionsWithData.length &&
-      sectionsWithData[i + 1].sectionType === 'SolutionVisionSection' &&
-      siteConfig.features.enableSolutionVisionSection
-    ) {
-      const nextSection = sectionsWithData[i + 1];
-      elements.push(
-        <LazySection key={`${section.id}-${nextSection.id}`} animation="none">
-          <ProblemPainSection {...section.data} />
-          <SolutionVisionSection {...nextSection.data} />
-        </LazySection>
-      );
-      i++; // Skip the next section as it's already rendered
-      continue;
-    }
-    const Component = sectionComponentMap[section.sectionType];
-    if (!Component) {
-      console.error(
-        `Error: Unknown section type "${section.sectionType}" for id "${section.id}" on page "${pagePath}". Check component map.`
-      );
-      elements.push(
-        <div key={section.id} className="py-8 text-center text-feedback-error">
-          Unknown section type: {section.sectionType} (ID: {section.id})
-        </div>
-      );
-      continue;
-    }
-    // Compute clamped delay for this section
-    const rawDelay = i * delayStep;
-    const sectionDelay = Math.min(rawDelay, maxDelay);
-    // HeroSection: render directly without wrapping in LazySection to keep background static
-    if (section.sectionType === 'HeroSection') {
-      elements.push(
-        <Component
-          key={section.id}
-          patternStyle={section.patternStyle}
-          patternOpacity={section.patternOpacity}
-          patternFade={section.patternFade}
-          patternColor={section.patternColor}
-          {...section.data}
-        />
-      );
-      continue;
-    }
-    // AboutSection on About page: render directly so background is static and internal animations handle content
-    if (pagePath === '/about' && section.sectionType === 'AboutSection') {
-      elements.push(<Component key={section.id} variant={section.variant} {...section.data} />);
-      continue;
-    }
-    // CSS-only sections: wrap with LazySection animation="none" for stagger-trigger
-    if (cssOnlySections.has(section.sectionType)) {
-      elements.push(
-        <LazySection
-          key={section.id}
-          animation="none"
-          className="stagger-container"
-          style={{ '--stagger-delay': `${sectionDelay}s` } as React.CSSProperties}
-        >
-          <Component
-            variant={section.variant}
-            patternStyle={section.patternStyle}
-            patternOpacity={section.patternOpacity}
-            patternFade={section.patternFade}
-            patternColor={section.patternColor}
-            {...section.data}
-          />
-        </LazySection>
-      );
-      continue;
-    }
-    // Special case: KpiSection on homepage
-    if (section.sectionType === 'KpiSection' && pagePath === '/') {
-      elements.push(
-        <LazySection key={section.id} animation="none">
-          <Component
-            patternStyle={section.patternStyle}
-            patternOpacity={section.patternOpacity}
-            patternFade={section.patternFade}
-            patternColor={section.patternColor}
-            {...section.data}
-            isHomepage={true}
-          />
-        </LazySection>
-      );
-      continue;
-    }
-    // Special case: KpiSection on About page
-    if (section.sectionType === 'KpiSection' && pagePath === '/about') {
-      elements.push(
-        <LazySection key={section.id} animation="fade-up" delay={sectionDelay}>
-          <Component
-            patternStyle={section.patternStyle}
-            patternOpacity={section.patternOpacity}
-            patternFade={section.patternFade}
-            patternColor={section.patternColor}
-            {...section.data}
-            isAboutPage={true}
-          />
-        </LazySection>
-      );
-      continue;
-    }
-    // Special case: AboutSection on homepage gets isHomepage={true}
-    if (pagePath === '/' && section.sectionType === 'AboutSection') {
-      elements.push(
-        <LazySection key={section.id} animation="fade-up" delay={sectionDelay}>
-          <Component
-            variant={section.variant}
-            patternStyle={section.patternStyle}
-            patternOpacity={section.patternOpacity}
-            patternFade={section.patternFade}
-            patternColor={section.patternColor}
-            isHomepage={true}
-            {...section.data}
-          />
-        </LazySection>
-      );
-      continue;
-    }
-    elements.push(
-      <LazySection key={section.id} animation="fade-up" delay={sectionDelay}>
-        <Component
-          variant={section.variant}
-          patternStyle={section.patternStyle}
-          patternOpacity={section.patternOpacity}
-          patternFade={section.patternFade}
-          patternColor={section.patternColor}
-          {...section.data}
-        />
-      </LazySection>
-    );
-  }
-  return <>{elements}</>;
-};
-
-export default DynamicPageRenderer;
+}

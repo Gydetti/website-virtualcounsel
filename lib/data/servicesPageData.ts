@@ -53,6 +53,10 @@ export const servicesPageData: z.infer<typeof servicesPageDataSchema> = {
     ],
     buttonText: 'Plan een kennismaking',
     buttonLink: '/contact',
+    image: {
+      src: '/images/team/virtual-counsel-maarten-pointing.webp',
+      alt: 'Maarten van Beek - VirtualCounsel specialist in ICT-recht',
+    },
   },
 
   // Main CTA section - conversion focused

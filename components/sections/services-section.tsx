@@ -101,7 +101,7 @@ export default function ServicesSection({
           style={{ '--stagger-delay': '0.1s' } as CSSProperties}
         >
           <Badge className="mb-4" style={{ '--index': 0 } as CSSProperties}>
-            {badgeText || 'Our Services'}
+            {badgeText || 'Mijn diensten'}
           </Badge>
           <h2 id="services-section-heading" className="" style={{ '--index': 1 } as CSSProperties}>
             {heading}

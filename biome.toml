@@ -53,7 +53,8 @@ ignore = [
   "test-results/**",
   "public/~partytown/**",
   "docs/building/inspiration/**",
-  "docs/archived/**"
+  "docs/archived/**",
+  "components/layout/DynamicPageRenderer.tsx"
 ]
 
 # organizeImports should skip these paths too

@@ -493,5 +493,35 @@ export const siteConfig: SiteConfigSchema = {
         },
       ],
     },
+    {
+      path: '/services',
+      seo: {
+        title: 'Onze Diensten - Juridische expertise voor ICT-bedrijven',
+        description:
+          'Specialistische juridische diensten voor software- en ICT-bedrijven. Van contracten tot compliance, wij spreken uw taal.',
+      },
+      sections: [
+        {
+          id: 'services-overview',
+          sectionType: 'ServicesOverviewSection',
+        },
+        {
+          id: 'services-grid',
+          sectionType: 'ServicesSection',
+        },
+        {
+          id: 'services-why-choose',
+          sectionType: 'ServicesWhyChooseSection',
+        },
+        {
+          id: 'services-process',
+          sectionType: 'ProcessSection',
+        },
+        {
+          id: 'services-cta',
+          sectionType: 'CtaSection',
+        },
+      ],
+    },
   ],
 };

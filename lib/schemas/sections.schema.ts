@@ -659,6 +659,7 @@ export const whyChooseServicesSectionDataSchema = z.object({
   benefits: z.array(whyChooseBenefitSchema).min(1, 'Must provide at least one benefit'),
   buttonText: z.string().optional(),
   buttonLink: z.string().optional(),
+  image: imageSchema.optional(),
 });
 
 // Services Overview Page - CTA Section Schema
