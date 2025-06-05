@@ -13,8 +13,8 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 
   const pageSeo = aboutPageStructure?.seo;
-  const title = pageSeo?.title || 'About Us';
-  const description = pageSeo?.description || `Learn more about ${siteConfig.site.name}.`;
+  const title = pageSeo?.title || 'Over Mij';
+  const description = pageSeo?.description || `Lees meer over ${siteConfig.site.name}.`;
 
   return defaultMetadata({
     title: `${title} | ${siteConfig.site.name}`,

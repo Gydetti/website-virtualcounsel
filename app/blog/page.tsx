@@ -24,7 +24,7 @@ export const metadata = defaultMetadata({
   title: `${siteConfig.site.name} | Blog`,
   description:
     blogPageData.description ??
-    'Read our latest articles and insights on business growth, marketing, and more.',
+    'Lees mijn laatste artikelen en inzichten over ICT-recht, contracten en compliance.',
 });
 
 export default async function BlogPage() {
@@ -89,14 +89,14 @@ export default async function BlogPage() {
                         </CardDescription>
                         <div className="flex items-center justify-between mt-auto">
                           <span className="text-sm text-neutral-text/500">
-                            {new Date(featuredPost.date).toLocaleDateString('en-US', {
+                            {new Date(featuredPost.date).toLocaleDateString('nl-NL', {
                               year: 'numeric',
                               month: 'long',
                               day: 'numeric',
                             })}
                           </span>
                           <div className="text-primary flex items-center space-x-2">
-                            <span>{`${blogPageData.readFeaturedText ?? 'Read featured article'}: ${featuredPost.title}`}</span>
+                            <span>{`${blogPageData.readFeaturedText ?? 'Lees het uitgelichte artikel'}: ${featuredPost.title}`}</span>
                             <ArrowRight className="ml-2 size-4" />
                           </div>
                         </div>
@@ -134,7 +134,7 @@ export default async function BlogPage() {
                           {post.category}
                         </Badge>
                         <span className="text-xs text-neutral-text/500">
-                          {new Date(post.date).toLocaleDateString('en-US', {
+                          {new Date(post.date).toLocaleDateString('nl-NL', {
                             year: 'numeric',
                             month: 'long',
                             day: 'numeric',

@@ -99,8 +99,7 @@ export default function ContactPageClient() {
             className="text-neutral-text mb-8 whitespace-normal break-words"
             style={{ '--index': 2 } as CSSProperties}
           >
-            Plan een gratis kennismakingsgesprek of stel direct uw vraag. Wij reageren binnen 24
-            uur.
+            Plan een gratis kennismakingsgesprek of stel direct uw vraag. Ik reageer binnen 24 uur.
           </p>
         </LazySection>
       </Section>
@@ -113,7 +112,7 @@ export default function ContactPageClient() {
                 <div
                   className={`bg-neutral-surface ${getElementBorderRadius('section')} shadow-lg p-8`}
                 >
-                  <h2 className="text-2xl font-bold mb-6">Stuur ons een bericht</h2>
+                  <h2 className="text-2xl font-bold mb-6">Stuur mij een bericht</h2>
 
                   <form onSubmit={handleSubmit} className="space-y-6">
                     {/* Dynamic fields from config */}
@@ -195,7 +194,7 @@ export default function ContactPageClient() {
                       <div
                         className={`mt-4 p-4 bg-feedback-success-bg text-feedback-success ${getElementBorderRadius('card')}`}
                       >
-                        Bedankt voor uw bericht! We nemen zo snel mogelijk contact met u op.
+                        Bedankt voor uw bericht! Ik neem zo snel mogelijk contact met u op.
                       </div>
                     )}
                   </form>

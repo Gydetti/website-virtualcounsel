@@ -26,12 +26,11 @@ if (
 }
 
 export const metadata = defaultMetadata({
-  title: `${siteConfig.site.name} | Services`,
-  description: 'Explore our range of services designed to help entrepreneurs grow their business.',
+  title: `${siteConfig.site.name} | Diensten`,
+  description: 'Ontdek mijn aanbod van diensten, ontworpen om ondernemers te helpen groeien.',
   openGraph: {
-    title: `${siteConfig.site.name} | Services`,
-    description:
-      'Explore our range of services designed to help entrepreneurs grow their business.',
+    title: `${siteConfig.site.name} | Diensten`,
+    description: 'Ontdek mijn aanbod van diensten, ontworpen om ondernemers te helpen groeien.',
   },
 });
 

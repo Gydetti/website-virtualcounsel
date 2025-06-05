@@ -24,21 +24,21 @@ import {
 
 export const heroSectionData: z.infer<typeof heroSectionDataSchema> = {
   badgeText: 'Juridisch advies voor de tech industrie',
-  headline: 'De juridische partner voor ICT- & softwarebedrijven',
+  headline: 'De juridische partner voor <span class="text-primary">ICT- & softwarebedrijven</span>',
   subheadline:
-    'We nemen het juridische werk uit handen zodat u zich kunt focussen op uw onderneming. Geen standaard contracten, maar maatwerk dat past bij uw specifieke situatie.',
+    'Ik neem het juridische werk uit handen zodat u zich kunt focussen op uw onderneming. Geen standaard contracten, maar maatwerk dat past bij uw specifieke situatie.',
   primaryCta: { text: 'Maak een afspraak', href: '/contact' },
-  secondaryCta: { text: 'Bekijk onze diensten', href: '/services' },
+  secondaryCta: { text: 'Bekijk mijn diensten', href: '/services' },
   showSecondaryCta: true,
-  typingWords: ['SaaS leveranciers', 'IT dienstverleners', 'Software ontwikkelaars'],
+  typingWords: ['Tech bedrijven'], // Minimal content to satisfy schema typing words
   stats: [
-    { value: 5, suffix: '+', label: 'Jaar ervaring in ICT-recht' },
+    { value: 7, suffix: '+', label: 'Jaar ervaring in ICT-recht' },
     { value: 50, suffix: '+', label: 'Tevreden klanten' },
     { value: 100, suffix: '%', label: 'Focus op tech' },
     { value: 2, suffix: ' weken', label: 'Gemiddelde levertijd' },
   ],
   image: {
-    src: '/images/hero/hero-main.webp',
+    src: '/images/team/virtual-counsel-maarten-hero.webp',
     alt: 'Maarten van Beek - VirtualCounsel juridisch advies',
   },
   showHelpedStats: true,
@@ -66,7 +66,7 @@ export const featuresSectionData: z.infer<typeof featuresSectionDataSchema> = {
 
 export const clientsSectionData: z.infer<typeof clientsSectionDataSchema> = {
   badgeText: 'Vertrouwd door',
-  heading: 'Bedrijven die op ons vertrouwen',
+  heading: 'Bedrijven die op mij vertrouwen',
   clients: [
     {
       name: 'NN Group',
@@ -115,9 +115,8 @@ export const clientsSectionData: z.infer<typeof clientsSectionDataSchema> = {
 
 export const testimonialsSectionData: z.infer<typeof testimonialsSectionDataSchema> = {
   badgeText: 'Succesverhalen',
-  heading: 'Wat onze klanten zeggen',
-  subtitle:
-    'Ontdek hoe we ICT- en softwarebedrijven hebben geholpen met praktisch juridisch advies.',
+  heading: 'Wat mijn klanten zeggen',
+  subtitle: 'Ontdek hoe ik ICT- en softwarebedrijven heb geholpen met praktisch juridisch advies.',
   testimonials: [
     {
       id: 'testimonial-1',
@@ -205,14 +204,14 @@ export const solutionVisionSectionData: z.infer<typeof solutionVisionSectionData
     'Direct toegang tot een specialist, geen juniors',
   ],
   calloutText: 'Van juridisch obstakel naar strategisch voordeel.',
-  calloutCta: { text: 'Ontdek onze aanpak', href: '/about' },
+  calloutCta: { text: 'Ontdek mijn aanpak', href: '/about' },
 };
 
 export const ctaSectionData: z.infer<typeof ctaSectionDataSchema> = {
   badgeText: 'Klaar om te starten?',
   heading: 'Laten we uw juridische zaken regelen',
   description:
-    'Boek een gratis kennismakingsgesprek en ontdek hoe we uw ICT-bedrijf kunnen beschermen en laten groeien.',
+    'Boek een gratis kennismakingsgesprek en ontdek hoe ik uw ICT-bedrijf kan beschermen en laten groeien.',
   primaryCta: { text: 'Plan een kennismaking', href: '/contact' },
   secondaryCta: { text: 'Download gratis SaaS gids', href: '/resources' },
 };
@@ -227,7 +226,7 @@ export const valuePropSectionData: z.infer<typeof valuePropSectionDataSchema> = 
       id: 'benefit-1',
       title: 'Diepgaande ICT-kennis',
       description:
-        'Jarenlange ervaring in de tech-industrie betekent dat we uw uitdagingen echt begrijpen.',
+        'Jarenlange ervaring in de tech-industrie betekent dat ik uw uitdagingen echt begrijp.',
       icon: 'check-circle',
     },
     {
@@ -269,7 +268,7 @@ export const homepageFaqSectionData: z.infer<typeof homepageFaqSectionDataSchema
   badgeText: 'Veelgestelde vragen',
   heading: 'Antwoorden op uw vragen',
   description:
-    'Hier vindt u antwoorden op de meest gestelde vragen over onze dienstverlening. Staat uw vraag er niet bij? Neem gerust contact op!',
+    'Hier vindt u antwoorden op de meest gestelde vragen over mijn dienstverlening. Staat uw vraag er niet bij? Neem gerust contact op!',
   categories: [
     {
       category: 'Algemeen',
@@ -277,17 +276,17 @@ export const homepageFaqSectionData: z.infer<typeof homepageFaqSectionDataSchema
         {
           question: 'Voor welke bedrijven is VirtualCounsel geschikt?',
           answer:
-            'Wij zijn gespecialiseerd in juridisch advies voor ICT- en softwarebedrijven, waaronder SaaS providers, software ontwikkelaars, IT dienstverleners en tech startups.',
+            'Ik ben gespecialiseerd in juridisch advies voor ICT- en softwarebedrijven, waaronder SaaS providers, software ontwikkelaars, IT dienstverleners en tech startups.',
         },
         {
           question: 'Wat maakt VirtualCounsel anders dan andere juristen?',
           answer:
-            'Wij hebben diepgaande kennis van de tech-industrie, werken met vaste prijzen, leveren binnen 1-2 weken en u heeft direct contact met een specialist - geen juniors of assistenten.',
+            'Ik heb diepgaande kennis van de tech-industrie, werk met vaste prijzen, lever binnen 1-2 weken en u heeft direct contact met een specialist - geen juniors of assistenten.',
         },
         {
           question: "In welke regio's bent u actief?",
           answer:
-            'Wij werken volledig digitaal en bedienen klanten door heel Nederland. Voor internationale contracten hebben we ervaring met Engels recht en internationale tech-deals.',
+            'Ik werk volledig digitaal en bedien klanten door heel Nederland. Voor internationale contracten heb ik ervaring met Engels recht en internationale tech-deals.',
         },
       ],
     },
@@ -297,17 +296,17 @@ export const homepageFaqSectionData: z.infer<typeof homepageFaqSectionDataSchema
         {
           question: 'Hoe werkt het traject?',
           answer:
-            'We starten met een gratis kennismakingsgesprek, gevolgd door een intake waar we uw situatie analyseren. Daarna stellen we een aanpak voor met vaste prijs en levertijd. Na akkoord gaan we direct aan de slag.',
+            'Ik start met een gratis kennismakingsgesprek, gevolgd door een intake waar ik uw situatie analyseer. Daarna stel ik een aanpak voor met vaste prijs en levertijd. Na akkoord ga ik direct aan de slag.',
         },
         {
           question: 'Hoe snel kan ik documenten verwachten?',
           answer:
-            'De meeste documenten leveren we binnen 1-2 weken. Voor complexe projecten maken we vooraf een realistische planning met u.',
+            'De meeste documenten lever ik binnen 1-2 weken. Voor complexe projecten maak ik vooraf een realistische planning met u.',
         },
         {
           question: 'Bieden jullie ook doorlopend juridisch advies?',
           answer:
-            'Ja, veel klanten kiezen voor een strippenkaart of abonnement voor doorlopende juridische ondersteuning. Dit bespreken we graag tijdens het kennismakingsgesprek.',
+            'Ja, veel klanten kiezen voor een strippenkaart of abonnement voor doorlopende juridische ondersteuning. Dit bespreek ik graag tijdens het kennismakingsgesprek.',
         },
       ],
     },
@@ -317,12 +316,12 @@ export const homepageFaqSectionData: z.infer<typeof homepageFaqSectionDataSchema
         {
           question: 'Wat zijn jullie tarieven?',
           answer:
-            'Wij werken met vaste prijzen per project, zodat u vooraf weet waar u aan toe bent. De prijs is afhankelijk van de complexiteit en omvang. Geen uurtje-factuurtje of nacalculaties.',
+            'Ik werk met vaste prijzen per project, zodat u vooraf weet waar u aan toe bent. De prijs is afhankelijk van de complexiteit en omvang. Geen uurtje-factuurtje of nacalculaties.',
         },
         {
           question: 'Zijn er opstartkosten?',
           answer:
-            'Nee, het kennismakingsgesprek is gratis en vrijblijvend. U betaalt pas wanneer we een concrete opdracht overeenkomen.',
+            'Nee, het kennismakingsgesprek is gratis en vrijblijvend. U betaalt pas wanneer ik een concrete opdracht overeenkom.',
         },
         {
           question: 'Kan ik ook per uur afnemen?',
@@ -340,7 +339,7 @@ export const servicesPreviewSectionData: Omit<
   z.infer<typeof servicesSectionDataSchema>,
   'services'
 > = {
-  heading: 'Onze expertise',
+  heading: 'Mijn expertise',
   description:
     'Specialistische juridische diensten voor software- en ICT-bedrijven. Van contracten tot compliance.',
   viewAllCta: { text: 'Bekijk alle diensten', href: '/services' },
@@ -366,7 +365,7 @@ export const aboutSectionData: z.infer<typeof aboutSectionDataSchema> = {
     'Mijn klanten waarderen vooral de combinatie van diepgaande juridische kennis en begrip voor hun business. Geen eindeloze discussies over technische details, maar direct to-the-point advies dat werkt.',
   ],
   image: {
-    src: '/images/placeholders/maarten-van-beek.jpg',
+    src: '/images/team/virtual-counsel-maarten-about1.webp',
     alt: 'Maarten van Beek - Oprichter VirtualCounsel',
   },
   variant: 'imageRight',
@@ -407,7 +406,7 @@ export const aboutSectionData: z.infer<typeof aboutSectionDataSchema> = {
 
 // Process Section - showing 4-step approach
 export const processSectionData: z.infer<typeof processSectionDataSchema> = {
-  badgeText: 'Onze aanpak',
+  badgeText: 'Mijn aanpak',
   heading: 'Van probleem naar oplossing in 4 stappen',
   subtitle:
     'Een transparant proces waarbij u altijd weet waar u aan toe bent. Geen verrassingen, wel resultaat.',
@@ -416,7 +415,7 @@ export const processSectionData: z.infer<typeof processSectionDataSchema> = {
       id: 'step-01',
       number: '01',
       title: 'Gratis kennismaking',
-      description: 'We bespreken uw situatie en bepalen of we een match zijn.',
+      description: 'Ik bespreek uw situatie en bepaal of we een match zijn.',
       details: [
         '30 minuten videogesprek via Calendly',
         'Vrijblijvend en zonder kosten',

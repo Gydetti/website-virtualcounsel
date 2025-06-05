@@ -189,8 +189,8 @@ export default function Header() {
                     priority
                   />
                   <div className="flex flex-col">
-                    <span className="text-lg font-semibold leading-tight text-neutral-text">
-                      {siteConfig.site.name}
+                    <span className="text-lg font-bold leading-tight text-neutral-text">
+                      Virtual<span className="text-primary">Counsel</span>
                     </span>
                     {siteConfig.theme.logo.subtitle && (
                       <span className="text-sm text-neutral-text/500 leading-snug">
@@ -279,7 +279,7 @@ export default function Header() {
                 className="bg-primary hover:bg-primary/90 group text-sm h-10 px-3 min-h-0 min-w-0"
               >
                 <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
-                  Get in touch
+                  Maak een afspraak
                   <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </Button>
@@ -337,11 +337,11 @@ export default function Header() {
                   <div className="flex flex-col">
                     <span
                       className={cn(
-                        'text-lg font-semibold leading-tight transition-colors',
+                        'text-lg font-bold leading-tight transition-colors',
                         currentTextColor
                       )}
                     >
-                      {siteConfig.site.name}
+                      Virtual<span className="text-primary">Counsel</span>
                     </span>
                     {siteConfig.theme.logo.subtitle && (
                       <span

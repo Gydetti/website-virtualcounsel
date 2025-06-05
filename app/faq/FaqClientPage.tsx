@@ -134,8 +134,8 @@ export default function FaqClientPage() {
               <div className="text-center py-12">
                 <h2 className="text-2xl font-bold mb-4">Geen resultaten gevonden</h2>
                 <p className="text-neutral-text/600 mb-8">
-                  We konden geen veelgestelde vragen vinden die overeenkomen met uw zoekopdracht.
-                  Probeer een andere zoekterm of bekijk onze categorieën.
+                  Ik kon geen veelgestelde vragen vinden die overeenkomen met uw zoekopdracht.
+                  Probeer een andere zoekterm of bekijk mijn categorieën.
                 </p>
                 <Button
                   variant="outline"

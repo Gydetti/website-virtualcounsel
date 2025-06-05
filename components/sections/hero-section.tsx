@@ -141,13 +141,13 @@ export default function HeroSection({
     >
       {/* BackgroundPattern now handled by Section */}
 
-      {/* Enhanced gradient overlay for modern look */}
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/50 pointer-events-none" />
+      {/* Enhanced gradient overlay with primary brand color - left to right fade */}
+      <div className="absolute inset-0 bg-gradient-to-r from-primary/15 via-primary/8 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/30 pointer-events-none" />
 
-      {/* Floating elements for visual interest */}
-      <div className="hidden sm:block absolute top-20 right-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
-      <div className="hidden sm:block absolute bottom-10 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
+      {/* Floating elements for visual interest - complement the left-to-right gradient */}
+      <div className="hidden sm:block absolute top-20 right-10 size-64 bg-primary/8 rounded-full blur-3xl" />
+      <div className="hidden sm:block absolute bottom-10 left-10 size-72 bg-primary/12 rounded-full blur-3xl" />
 
       <div className="grid lg:grid-cols-2 items-center gap-8 sm:gap-8 md:gap-10 lg:gap-10">
         {/* Removed parent LazySection to prevent delay compounding */}
@@ -167,8 +167,16 @@ export default function HeroSection({
                 id="hero-section-heading"
                 className="font-bold leading-tight text-balance text-center md:text-left mb-2"
               >
-                <span className="block">{headline}</span>
-                <HeroTyping typingWords={typingWords} />
+                <span className="block">
+                  {headline === 'De juridische partner voor <span class="text-primary">ICT- & softwarebedrijven</span>' ? (
+                    <>
+                      De juridische partner voor <span className="text-primary">ICT- & softwarebedrijven</span>
+                    </>
+                  ) : (
+                    headline
+                  )}
+                </span>
+                {/* <HeroTyping typingWords={typingWords} /> */}
               </h1>
             </LazySection>
           )}
@@ -243,23 +251,24 @@ export default function HeroSection({
             variant === 'imageLeft' ? 'md:order-1 lg:ml-0 lg:mr-auto' : 'lg:ml-auto lg:mr-0'
           }`}
         >
-          {/* ✅ FIXED: Natural aspect ratio with max-width constraint (replaces AspectRatio) */}
-          <div className="relative max-w-[450px] mx-auto">
+          {/* ✅ ENHANCED: Fixed height container with object-cover for better cropping */}
+          <div className="relative h-[400px] md:h-[500px] rounded-xl overflow-hidden shadow-2xl md:translate-y-6 transition-all">
             <OptimizedImage
               src={imageToDisplay}
               alt={imageAltText}
-              width={600} // Intrinsic max width
-              height={600} // Intrinsic max height (scales proportionally)
+              fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
-              className="max-w-full h-auto rounded-xl shadow-2xl" // Natural scaling
+              className="absolute inset-0 scale-110 object-[75%_25%]"
+              objectFit="cover"
               priority
               placeholder="blur"
               blurDataURL={blurDataMap[imageToDisplay as keyof typeof blurDataMap]}
               onError={() => setCurrentImageSrc(defaultImageSrc)}
             />
-            {/* Optional overlay gradient and stats */}
-            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent p-6 rounded-b-xl">
-              <p className="text-white font-medium"> </p>
+            {/* Enhanced gradient overlay with darker shadow for better text visibility */}
+            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/85 via-black/50 to-transparent p-6 z-10">
+              <p className="text-white font-medium">Maarten van Beek, Oprichter VirtualCounsel</p>
+              <p className="text-white/90 text-sm">ICT-jurist met jarenlange ervaring</p>
             </div>
             {showOverlayStat && overlayTitle && overlayValue && (
               <div className="hidden md:block absolute -bottom-6 -left-6 h-24 w-2/3 rounded-xl p-4 shadow-lg z-10 bg-primary">

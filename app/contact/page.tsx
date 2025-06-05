@@ -7,7 +7,8 @@ import ContactPageClient from './ContactPageClient';
 
 export const metadata = defaultMetadata({
   title: `${siteConfig.site.name} | Contact`,
-  description: 'Get in touch with us to discuss your business needs and how we can help you grow.',
+  description:
+    'Neem contact met mij op om uw zakelijke behoeften te bespreken en hoe ik u kan helpen groeien.',
 });
 
 export default function ContactPage() {

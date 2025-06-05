@@ -42,9 +42,9 @@ export default function FaqAccordion({ items, defaultOpen }: FaqAccordionProps) 
         exit={{ opacity: 0 }}
         className="text-center py-12"
       >
-        <h3 className="mb-2">No results found</h3>
+        <h3 className="mb-2">Geen resultaten gevonden</h3>
         <p className="text-foreground">
-          We couldn't find any FAQs matching your search. Please try a different search term.
+          Ik kon geen FAQs vinden die overeenkomen met uw zoekopdracht. Probeer een andere zoekterm.
         </p>
       </motion.div>
     );

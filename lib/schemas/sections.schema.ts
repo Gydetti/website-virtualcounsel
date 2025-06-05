@@ -561,8 +561,66 @@ export const serviceCtaSectionDataSchema = z.object({
   buttonLink: z.string().optional(),
 });
 
+// Service Detail Problem Schema
+const serviceProblemItemSchema = z.object({
+  title: z.string().min(1),
+  description: z.string().min(1),
+  impact: z.string().optional(),
+});
+
+export const serviceProblemSectionDataSchema = z.object({
+  heading: z.string().min(1),
+  mainProblemStatement: z.string().min(1),
+  problems: z.array(serviceProblemItemSchema).min(1, 'Must provide at least one problem'),
+});
+
+// Service Detail Feature Schema
+const serviceFeatureSchema = z.object({
+  id: z.string().min(1),
+  title: z.string().min(1),
+  description: z.string().min(1),
+  icon: z.string().optional(),
+});
+
+// Service Detail Process Step Schema
+const serviceProcessStepSchema = z.object({
+  id: z.string().min(1),
+  title: z.string().min(1),
+  description: z.string().min(1),
+  duration: z.string().optional(),
+  icon: z.string().optional(),
+});
+
+// Service Detail Unique Value Schema
+const serviceDifferentiatorSchema = z.object({
+  title: z.string().min(1),
+  description: z.string().min(1),
+});
+
+export const serviceUniqueValueDataSchema = z.object({
+  heading: z.string().min(1),
+  statement: z.string().min(1),
+  differentiators: z.array(serviceDifferentiatorSchema).min(1),
+  highlight: z.string().optional(),
+});
+
 // Complete Service Detail Page Schema
 export const serviceDetailPageDataSchema = z.object({
+  // Target audience
+  targetAudience: z.array(z.string().min(1)).optional(),
+
+  // Problem section
+  problemSection: serviceProblemSectionDataSchema.optional(),
+
+  // Features/benefits
+  features: z.array(serviceFeatureSchema).optional(),
+
+  // Process steps
+  processSteps: z.array(serviceProcessStepSchema).optional(),
+
+  // Unique value proposition
+  uniqueValue: serviceUniqueValueDataSchema.optional(),
+
   // Benefits section
   benefitsSection: z.object({
     heading: z.string().optional(),

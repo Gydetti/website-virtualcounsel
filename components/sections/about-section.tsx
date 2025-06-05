@@ -83,11 +83,11 @@ export default function AboutSection({
   } else if (variant === 'imageRight') {
     outerContainerClass = 'grid md:grid-cols-2 gap-12 items-center';
     imageOrderClass = 'md:col-start-2';
-    contentOrderClass = 'md:col-start-1';
+    contentOrderClass = 'md:col-start-1 flex flex-col justify-center';
   } else if (variant === 'classic') {
     outerContainerClass = 'grid md:grid-cols-2 gap-12 items-center';
     imageOrderClass = 'md:col-start-1';
-    contentOrderClass = 'md:col-start-2';
+    contentOrderClass = 'md:col-start-2 flex flex-col justify-center';
   }
 
   // ✅ Enhanced image rendering logic with circle detection and drop shadows

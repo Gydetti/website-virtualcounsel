@@ -38,7 +38,7 @@ export default function SolutionVisionSection({
       {/* Scroll reveal header */}
       <LazySection animation="slide-up" delay={0} className="text-center mb-16 max-w-4xl mx-auto">
         <motion.div custom={0} variants={textVariants} className="mb-4">
-          <Badge variant="accent" className="px-3 py-1">
+          <Badge variant="default" className="px-3 py-1 bg-primary text-white hover:bg-primary/90">
             {badgeText}
           </Badge>
         </motion.div>
@@ -65,7 +65,7 @@ export default function SolutionVisionSection({
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {benefits.map(b => (
               <div key={b} className="flex items-start space-x-2">
-                <CheckCircle className="size-5 text-accent mt-1 shrink-0" />
+                <CheckCircle className="size-5 text-primary mt-1 shrink-0" />
                 <span className="text-foreground">{b}</span>
               </div>
             ))}
@@ -81,11 +81,14 @@ export default function SolutionVisionSection({
           whileInView="visible"
           viewport={{ once: true }}
           variants={textVariants}
-          className="mt-16 max-w-4xl mx-auto bg-accent/10 p-6 rounded-lg"
+          className="mt-16 max-w-4xl mx-auto bg-primary/5 border border-primary/20 p-6 rounded-lg"
         >
           <p className="text-neutral-text font-medium mb-2">{calloutText}</p>
           {calloutCta?.href && calloutCta?.text && (
-            <a href={calloutCta.href} className="text-accent font-semibold">
+            <a
+              href={calloutCta.href}
+              className="text-primary font-semibold hover:text-primary/80 transition-colors"
+            >
               {calloutCta.text} →
             </a>
           )}

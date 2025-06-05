@@ -7,7 +7,7 @@ import FaqClientPage from './FaqClientPage';
 export const metadata = defaultMetadata({
   title: `${siteConfig.site.name} | FAQ`,
   description:
-    'Veelgestelde vragen over mijn diensten, werkwijze en samenwerking. Alle antwoorden op vragen over Website Development, Growth Marketing en Virtual Assistant services.',
+    'Vind hier antwoorden op veelgestelde vragen over mijn diensten, werkwijze en specialisaties in ICT-recht.',
 });
 
 export default function FaqPage() {

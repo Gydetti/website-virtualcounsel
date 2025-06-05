@@ -59,7 +59,7 @@ export const siteConfig: SiteConfigSchema = {
       heroBackground: '#f0f7ff', // Light blue hero background
     },
     logo: {
-      src: '/images/placeholders/virtualcounsel-logo.webp', // Will be replaced with actual logo
+      src: '/images/branding/virtual-counsel-transparant-white-logo-icon.webp',
       alt: 'VirtualCounsel Logo',
       subtitle: 'Juridisch advies voor ICT', // Subtitle next to logo
     },
@@ -173,7 +173,7 @@ export const siteConfig: SiteConfigSchema = {
   navLinks: [
     { text: 'Home', href: '/' },
     { text: 'Diensten', href: '/services' },
-    { text: 'Over Ons', href: '/about' },
+    { text: 'Over Mij', href: '/about' },
     { text: 'Succesverhalen', href: '/testimonials' },
     { text: 'Blog', href: '/blog' },
     { text: 'FAQ', href: '/faq' },
@@ -200,7 +200,7 @@ export const siteConfig: SiteConfigSchema = {
     cookieSettingsTitle: 'Cookie-instellingen',
     cookiePreferencesTitle: 'Cookie voorkeuren',
     cookieDescription:
-      'Wij gebruiken cookies om uw browse-ervaring te verbeteren, gepersonaliseerde advertenties of inhoud te tonen en ons verkeer te analyseren. Door op "Accepteer alles" te klikken, stemt u in met ons gebruik van cookies.',
+      'Ik gebruik cookies om uw browse-ervaring te verbeteren, gepersonaliseerde advertenties of inhoud te tonen en mijn verkeer te analyseren. Door op "Accepteer alles" te klikken, stemt u in met mijn gebruik van cookies.',
 
     // Button labels
     acceptAllText: 'Accepteer alles',
@@ -221,13 +221,13 @@ export const siteConfig: SiteConfigSchema = {
       'Deze cookies zijn noodzakelijk voor het functioneren van de website en kunnen niet worden uitgeschakeld.',
     analyticsTitle: 'Analytics cookies',
     analyticsDescription:
-      'Deze cookies stellen ons in staat om bezoeken en verkeersbronnen te tellen, zodat we de prestaties van onze site kunnen meten en verbeteren.',
+      'Deze cookies stellen mij in staat om bezoeken en verkeersbronnen te tellen, zodat ik de prestaties van mijn site kan meten en verbeteren.',
     marketingTitle: 'Marketing cookies',
     marketingDescription:
-      'Deze cookies kunnen door onze advertentiepartners via onze site worden geplaatst om een profiel van uw interesses op te bouwen.',
+      'Deze cookies kunnen door mijn advertentiepartners via mijn site worden geplaatst om een profiel van uw interesses op te bouwen.',
     preferenceCookiesTitle: 'Voorkeur cookies',
     preferenceCookiesDescription:
-      'Deze cookies maken gepersonaliseerde functies en functionaliteit op onze website mogelijk.',
+      'Deze cookies maken gepersonaliseerde functies en functionaliteit op mijn website mogelijk.',
   },
   // SOCIAL MEDIA LINKS: Virtual Counsel social profiles
   social: {
@@ -352,7 +352,7 @@ export const siteConfig: SiteConfigSchema = {
         name: 'message',
         type: 'textarea',
         label: 'Uw bericht',
-        placeholder: 'Hoe kunnen wij u helpen?',
+        placeholder: 'Hoe kan ik u helpen?',
         required: true,
       },
     ],
@@ -415,6 +415,12 @@ export const siteConfig: SiteConfigSchema = {
           sectionType: 'SolutionVisionSection', // 4-step process
         },
         {
+          id: 'home-cta',
+          sectionType: 'CtaSection', // Book consultation CTA
+          patternStyle: 'dots',
+          patternOpacity: 0.03,
+        },
+        {
           id: 'home-about',
           sectionType: 'AboutSection', // Maarten introduction
           variant: 'imageRight',
@@ -435,12 +441,6 @@ export const siteConfig: SiteConfigSchema = {
           id: 'home-faq',
           sectionType: 'HomepageFaqSection', // Common questions
         },
-        {
-          id: 'home-cta',
-          sectionType: 'CtaSection', // Book consultation CTA
-          patternStyle: 'dots',
-          patternOpacity: 0.03,
-        },
       ],
     },
     {
@@ -452,7 +452,7 @@ export const siteConfig: SiteConfigSchema = {
       seo: {
         title: 'Juridische Resources voor ICT-bedrijven',
         description:
-          'Ontdek onze verzameling van juridische gidsen, checklists en tools speciaal voor software- en ICT-bedrijven.',
+          'Ontdek mijn verzameling van juridische gidsen, checklists en tools speciaal voor software- en ICT-bedrijven.',
       },
       sections: [{ id: 'resources-list-main', sectionType: 'ResourceListSection' }],
     },

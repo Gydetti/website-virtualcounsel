@@ -52,7 +52,7 @@ export default function Footer({ hideNewsletter = false }: FooterProps) {
               style={{ '--stagger-delay': '0.1s' } as CSSProperties}
             >
               <div style={{ '--index': 0 } as CSSProperties}>
-                <h3 className="text-white mb-2">Meld u aan voor onze nieuwsbrief</h3>
+                <h3 className="text-white mb-2">Meld u aan voor mijn nieuwsbrief</h3>
               </div>
               <div style={{ '--index': 1 } as CSSProperties}>
                 <p className="text-body-base text-white/70">
@@ -141,7 +141,7 @@ export default function Footer({ hideNewsletter = false }: FooterProps) {
             </div>
 
             <div style={{ '--index': 1 } as CSSProperties}>
-              <h3 className="mt-0 mb-4">Snelle links</h3>
+              <h3 className="mt-0 mb-4">Voor u</h3>
               <ul className="space-y-2">
                 {filteredQuickLinks.map(link => (
                   <li key={link.href}>

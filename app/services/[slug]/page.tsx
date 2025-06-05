@@ -6,17 +6,22 @@ import { notFound } from 'next/navigation';
 import type { CSSProperties } from 'react';
 
 import { Section } from '@/components/layout/Section';
-import ProcessSection from '@/components/sections/process-section';
+import ServiceFeaturesSection from '@/components/sections/service-detail/service-features-section';
+import ServiceHeroSection from '@/components/sections/service-detail/service-hero-section';
+import ServiceProblemSection from '@/components/sections/service-detail/service-problem-section';
+import ServiceProcessSection from '@/components/sections/service-detail/service-process-section';
+import ServiceUniqueValueSection from '@/components/sections/service-detail/service-unique-value-section';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import LazySection from '@/components/ui/lazy-section';
 import { DEFAULT_PLACEHOLDER_IMAGE } from '@/lib/constants';
 import { processSectionData } from '@/lib/data/homepage';
 import { serviceDetailPageData } from '@/lib/data/serviceDetailPageData';
+import { getServiceDetailData } from '@/lib/data/serviceDetailPageData';
 import { getServiceBySlug, getServices } from '@/lib/data-utils';
 import { iconComponents } from '@/lib/icon-utils';
 import { defaultMetadata } from '@/lib/metadata';
-import { siteConfig } from '@/lib/siteConfig';
+import { siteConfig } from '@/lib/site.config.local';
 import { cn } from '@/lib/utils';
 
 interface ServicePageProps {
@@ -63,180 +68,178 @@ export default async function ServicePage(props: ServicePageProps) {
     notFound();
   }
 
-  const IconComponent = iconComponents[service.icon ?? 'Globe'] || iconComponents.Globe;
+  // Get service-specific enhanced content
+  const serviceDetailData = getServiceDetailData(slug);
 
-  // Get dynamic content
-  const { benefitsSection, faqSection, testimonialsSection, readyToStartCta, buttonLabels } =
-    serviceDetailPageData;
-
-  // Get header configuration to add extra padding if transparent mode is enabled
+  // Get header configuration
   const headerConfig = siteConfig.theme.headerConfig;
   const isTransparentHeader = headerConfig?.transparentMode ?? false;
   const heroTopPadding = headerConfig?.heroTopPadding ?? 'pt-20 md:pt-24 lg:pt-28';
 
   return (
     <>
+      {/* Hero Section */}
       <Section
         bgClass={siteConfig.sectionStyles?.heroGradient ?? ''}
         className={cn('relative z-10', isTransparentHeader && heroTopPadding)}
       >
-        <div className="grid md:grid-cols-2 gap-8 items-center">
-          <div className="space-y-6">
-            <LazySection animation="slide-up" delay={0}>
-              <IconComponent className="size-20 text-primary mb-6" />
-            </LazySection>
-            <LazySection animation="fade-up" delay={0.1}>
-              <h1 className="mb-4 break-words">{service.title}</h1>
-            </LazySection>
-            <LazySection animation="fade-up" delay={0.2}>
-              <p className="text-neutral-text mb-8">{service.description}</p>
-            </LazySection>
-            <LazySection animation="fade-up" delay={0.3}>
-              <Button size="lg" className="bg-primary hover:bg-primary90" asChild>
-                <Link href="/contact">
-                  {buttonLabels?.consultation || 'Schedule a Consultation'}
-                  <ArrowRight className="ml-2 size-4" />
-                </Link>
-              </Button>
-            </LazySection>
-          </div>
+        <ServiceHeroSection
+          title={service.title}
+          description={service.description}
+          targetAudience={serviceDetailData.targetAudience || []}
+          icon={service.icon ?? 'Globe'}
+          slug={service.slug}
+          trustIndicators={['Vaste prijzen', '1-2 weken levering', 'Direct contact met specialist']}
+        />
+      </Section>
 
-          <LazySection
-            animation="fade"
-            delay={0.4}
-            fullHeight={false}
-            childrenStagger={false}
-            className="relative h-[400px] rounded-xl overflow-hidden shadow-2xl"
-          >
-            <Image
-              src={DEFAULT_PLACEHOLDER_IMAGE}
-              alt={`${service.title} service hero illustration`}
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="size-full object-cover"
-              priority
-            />
-            <div className="absolute inset-0 bg-primary/30 flex items-center justify-center">
-              <IconComponent className="size-32 text-white drop-shadow-lg" />
+      {/* Problem Section */}
+      {serviceDetailData.problemSection && (
+        <Section className="bg-neutral-background">
+          <ServiceProblemSection
+            heading={serviceDetailData.problemSection.heading}
+            problems={serviceDetailData.problemSection.problems}
+            mainProblemStatement={serviceDetailData.problemSection.mainProblemStatement}
+          />
+        </Section>
+      )}
+
+      {/* Features/Benefits Section */}
+      {serviceDetailData.features && serviceDetailData.features.length > 0 && (
+        <Section>
+          <ServiceFeaturesSection
+            heading="Wat krijgt u concreet?"
+            subheading="Praktische oplossingen die direct waarde toevoegen aan uw business"
+            features={serviceDetailData.features}
+            layout="grid"
+          />
+        </Section>
+      )}
+
+      {/* Process Section */}
+      {serviceDetailData.processSteps && serviceDetailData.processSteps.length > 0 && (
+        <Section className="bg-primary/5">
+          <ServiceProcessSection
+            heading="Hoe werkt het?"
+            subheading="Een helder en efficiënt proces van A tot Z"
+            steps={serviceDetailData.processSteps}
+            ctaText="Start vandaag nog"
+            ctaLink="/contact"
+          />
+        </Section>
+      )}
+
+      {/* Unique Value Section */}
+      {serviceDetailData.uniqueValue && (
+        <Section>
+          <ServiceUniqueValueSection
+            heading={serviceDetailData.uniqueValue.heading}
+            uniqueValueStatement={serviceDetailData.uniqueValue.statement}
+            keyDifferentiators={serviceDetailData.uniqueValue.differentiators}
+            highlight={serviceDetailData.uniqueValue.highlight}
+          />
+        </Section>
+      )}
+
+      {/* FAQ Section */}
+      {serviceDetailData.faqSection && (
+        <Section className="bg-neutral-background">
+          <div className="max-w-3xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                {serviceDetailData.faqSection.heading}
+              </h2>
             </div>
-          </LazySection>
-        </div>
-      </Section>
-
-      <Section>
-        <LazySection animation="fade-up" delay={0} className="text-center mb-12">
-          <h2 className="text-heading text-3xl font-bold">{benefitsSection.heading}</h2>
-        </LazySection>
-        <LazySection
-          animation="none"
-          className="stagger-container grid md:grid-cols-3 gap-8 items-stretch"
-          style={{ '--stagger-delay': '0.1s' } as CSSProperties}
-        >
-          {benefitsSection.benefits.map((benefit, idx) => (
-            <Card
-              key={benefit.id}
-              className="text-center h-full flex flex-col p-6 transition-all duration-300 hover:shadow-lg"
-              style={{ '--index': idx } as CSSProperties}
-            >
-              <div className="inline-flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary mb-4 mx-auto">
-                <span className="text-2xl">{benefit.icon}</span>
-              </div>
-              <h3 className="text-xl font-semibold mb-3 text-foreground">{benefit.title}</h3>
-              <p className="text-neutral-text leading-relaxed">{benefit.description}</p>
-            </Card>
-          ))}
-        </LazySection>
-      </Section>
-
-      <ProcessSection steps={processSectionData.steps} />
-
-      <Section className="bg-neutral-background">
-        <LazySection
-          animation="none"
-          className="stagger-container text-center mb-12"
-          style={{ '--stagger-delay': '0.2s' } as CSSProperties}
-        >
-          <h2 className="text-heading text-3xl font-bold" style={{ '--index': 0 } as CSSProperties}>
-            {faqSection.heading}
-          </h2>
-        </LazySection>
-        <LazySection
-          animation="none"
-          className="stagger-container space-y-6 max-w-3xl mx-auto"
-          style={{ '--stagger-delay': '0.2s' } as CSSProperties}
-        >
-          {faqSection.items.map((item, idx) => (
-            <div
-              key={`faq-${item.question.slice(0, 20).replace(/\s+/g, '-').toLowerCase()}`}
-              style={{ '--index': idx + 1 } as CSSProperties}
-            >
-              <Card className="transition-all duration-200 hover:shadow-md">
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold mb-3 text-foreground">{item.question}</h3>
-                  <p className="text-neutral-text leading-relaxed">{item.answer}</p>
-                </CardContent>
-              </Card>
-            </div>
-          ))}
-        </LazySection>
-      </Section>
-
-      <Section className="bg-primary text-white">
-        <div className="text-center">
-          <h2 className="text-3xl font-bold mb-6">{readyToStartCta.heading}</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto text-white/90">
-            {readyToStartCta.description}
-          </p>
-          <Button size="lg" variant="white" className="group" asChild>
-            <Link href={readyToStartCta.buttonLink || '/contact'}>
-              {readyToStartCta.buttonText}
-              <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
-            </Link>
-          </Button>
-        </div>
-      </Section>
-
-      <Section className="bg-neutral-background">
-        <LazySection
-          animation="none"
-          className="stagger-container"
-          style={{ '--stagger-delay': '0.1s' } as CSSProperties}
-        >
-          <h2
-            className="text-heading text-3xl font-bold mb-12 text-center"
-            style={{ '--index': 0 } as CSSProperties}
-          >
-            {testimonialsSection.heading}
-          </h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            {testimonialsSection.testimonials.map((testimonial, idx) => (
-              <div key={testimonial.id} style={{ '--index': idx + 1 } as CSSProperties}>
-                <Card className="p-6 h-full transition-all duration-200 hover:shadow-md">
-                  <div className="flex items-start gap-4">
-                    <div className="relative size-16 rounded-full overflow-hidden shrink-0">
-                      <Image
-                        src={DEFAULT_PLACEHOLDER_IMAGE}
-                        alt={`${testimonial.author} profile photo`}
-                        fill
-                        sizes="64px"
-                        className="size-full object-cover"
-                      />
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-neutral-text italic mb-4 leading-relaxed">
-                        "{testimonial.quote}"
-                      </p>
-                      <div>
-                        <p className="font-semibold text-foreground">{testimonial.author}</p>
-                        <p className="text-sm text-neutral-text">{testimonial.company}</p>
-                      </div>
-                    </div>
+            <div className="space-y-6">
+              {serviceDetailData.faqSection.items.map(item => (
+                <details
+                  key={`faq-${item.question.slice(0, 20).replace(/\s+/g, '-').toLowerCase()}`}
+                  className="group bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden"
+                >
+                  <summary className="flex items-center justify-between cursor-pointer p-6 hover:bg-gray-50 transition-colors">
+                    <h3 className="text-lg font-semibold text-foreground pr-4">{item.question}</h3>
+                    <span className="shrink-0 text-primary transition-transform group-open:rotate-180">
+                      <svg className="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <title>Uitklappen</title>
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </span>
+                  </summary>
+                  <div className="px-6 pb-6">
+                    <p className="text-neutral-text leading-relaxed">{item.answer}</p>
                   </div>
-                </Card>
+                </details>
+              ))}
+            </div>
+          </div>
+        </Section>
+      )}
+
+      {/* Testimonials Section */}
+      {serviceDetailData.testimonialsSection && (
+        <Section>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              {serviceDetailData.testimonialsSection.heading}
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {serviceDetailData.testimonialsSection.testimonials.map(testimonial => (
+              <div
+                key={testimonial.id}
+                className="bg-white p-8 rounded-xl shadow-lg border border-gray-100"
+              >
+                <div className="flex items-start gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <svg
+                      key={`star-rating-${testimonial.id}-${i}`}
+                      className="size-5 text-yellow-400 fill-current"
+                      viewBox="0 0 20 20"
+                    >
+                      <title>Ster {i + 1} van 5</title>
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+                <blockquote className="text-neutral-text italic mb-6 text-lg">
+                  "{testimonial.quote}"
+                </blockquote>
+                <div>
+                  <p className="font-semibold text-foreground">{testimonial.author}</p>
+                  <p className="text-sm text-neutral-text">{testimonial.company}</p>
+                </div>
               </div>
             ))}
           </div>
-        </LazySection>
+        </Section>
+      )}
+
+      {/* CTA Section */}
+      <Section className="bg-primary text-white">
+        <div className="text-center max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            {serviceDetailData.readyToStartCta.heading}
+          </h2>
+          <p className="text-xl mb-8 text-white/90">
+            {serviceDetailData.readyToStartCta.description}
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" variant="white" className="group" asChild>
+              <Link href={serviceDetailData.readyToStartCta.buttonLink || '/contact'}>
+                {serviceDetailData.readyToStartCta.buttonText}
+                <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </Button>
+            <Button size="lg" variant="white" className="opacity-90 hover:opacity-100" asChild>
+              <Link href="tel:+31611718358">Bel direct: 06 11718358</Link>
+            </Button>
+          </div>
+        </div>
       </Section>
     </>
   );

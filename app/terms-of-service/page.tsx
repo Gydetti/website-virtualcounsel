@@ -20,9 +20,9 @@ if (siteConfig.enabledPages && !siteConfig.enabledPages.includes('/terms-of-serv
 }
 
 export const metadata = {
-  title: 'Terms of Service | Entrepreneur Template',
+  title: `Algemene Voorwaarden | ${siteConfig.site.name}`,
   description:
-    'Our terms of service outline the rules and guidelines for using our website and services.',
+    'Mijn algemene voorwaarden beschrijven de regels en richtlijnen voor het gebruik van mijn website en diensten.',
 };
 
 export default function TermsOfServicePage() {

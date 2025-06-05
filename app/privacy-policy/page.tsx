@@ -6,9 +6,9 @@ import { notFound } from 'next/navigation';
 import { staticContent } from '@/lib/data/staticContent';
 
 export const metadata = defaultMetadata({
-  title: `${siteConfig.site.name} | Privacy Policy`,
+  title: `${siteConfig.site.name} | Privacybeleid`,
   description:
-    'Our privacy policy outlines how we collect, use, and protect your personal information.',
+    'Mijn privacybeleid beschrijft hoe ik uw persoonlijke informatie verzamel, gebruik en bescherm.',
 });
 
 export default function PrivacyPolicyPage() {
@@ -32,11 +32,11 @@ export default function PrivacyPolicyPage() {
             <h2>1. Introduction</h2>
             {/* Dynamic Introduction using client-provided legal info */}
             <p>
-              {siteConfig.legal?.businessName} ("wij","ons","onze"), gevestigd te{' '}
-              {siteConfig.legal?.address?.line1}
+              Ik, handelend onder de naam {siteConfig.legal?.businessName} ("ik", "mij", "mijn"),
+              gevestigd te {siteConfig.legal?.address?.line1}
               {siteConfig.legal?.address?.line2 ? `, ${siteConfig.legal.address.line2}` : ''},{' '}
               {siteConfig.legal?.address?.zip} {siteConfig.legal?.address?.city}, ingeschreven bij
-              de Kamer van Koophandel onder nummer {siteConfig.legal?.kvkNumber}, is
+              de Kamer van Koophandel onder nummer {siteConfig.legal?.kvkNumber}, ben
               verantwoordelijk voor de verwerking van persoonsgegevens zoals weergegeven in deze
               privacyverklaring.
             </p>

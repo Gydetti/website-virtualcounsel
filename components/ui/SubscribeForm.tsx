@@ -76,7 +76,7 @@ export function SubscribeForm() {
     <form onSubmit={handleSubscribe} className="w-full md:w-auto flex flex-col sm:flex-row gap-3">
       <Input
         type="email"
-        placeholder="Your email address"
+        placeholder="Uw e-mailadres"
         value={email}
         onChange={e => setEmail(e.currentTarget.value)}
         className="bg-neutral-surface/30 border-white/60 text-white placeholder:text-white focus:border-white"

@@ -5,9 +5,9 @@ import { notFound } from 'next/navigation';
 import { staticContent } from '@/lib/data/staticContent';
 
 export const metadata = {
-  title: 'Cookie Policy | Entrepreneur Template',
+  title: `Cookiebeleid | ${siteConfig.site.name}`,
   description:
-    'Our cookie policy explains how we use cookies and similar technologies on our website.',
+    'Mijn cookiebeleid legt uit hoe ik cookies en vergelijkbare technologieën gebruik op mijn website.',
 };
 
 export default function CookiePolicyPage() {

@@ -13,10 +13,10 @@ import {
  */
 
 export const servicesOverviewSectionData: z.infer<typeof servicesOverviewSectionDataSchema> = {
-  badgeText: 'Onze expertise',
+  badgeText: 'Mijn expertise',
   heading: 'Juridische diensten voor de tech industrie',
   description:
-    'Specialistische juridische ondersteuning voor ICT- en softwarebedrijven. Van contracten tot compliance - wij spreken uw taal.',
+    'Specialistische juridische ondersteuning voor ICT- en softwarebedrijven. Van contracten tot compliance - ik spreek uw taal.',
 };
 
 // Complete services page data with all sections
@@ -28,7 +28,7 @@ export const servicesPageData: z.infer<typeof servicesPageDataSchema> = {
   whyChooseSection: {
     heading: 'Waarom kiezen voor VirtualCounsel?',
     description:
-      'Met diepgaande kennis van de tech-industrie leveren we juridisch advies dat aansluit bij uw businessmodel en werkwijze.',
+      'Met diepgaande kennis van de tech-industrie lever ik juridisch advies dat aansluit bij uw businessmodel en werkwijze.',
     benefits: [
       {
         id: 'benefit-tech-knowledge',
@@ -59,7 +59,7 @@ export const servicesPageData: z.infer<typeof servicesPageDataSchema> = {
   ctaSection: {
     heading: 'Klaar om uw juridische zaken te regelen?',
     description:
-      'Boek een gratis kennismakingsgesprek en ontdek hoe we uw ICT-bedrijf kunnen beschermen en laten groeien.',
+      'Boek een gratis kennismakingsgesprek en ontdek hoe ik uw ICT-bedrijf kunnen beschermen en laten groeien.',
     buttonText: 'Maak een afspraak',
     buttonLink: '/contact',
   },

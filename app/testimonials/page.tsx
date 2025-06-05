@@ -17,7 +17,7 @@ import { cn } from '@/lib/utils';
 export async function generateMetadata(): Promise<Metadata> {
   return defaultMetadata({
     title: `Testimonials | ${siteConfig.site.name}`,
-    description: 'Read real success stories and testimonials from our clients',
+    description: 'Lees echte succesverhalen en testimonials van mijn klanten',
   });
 }
 
@@ -93,11 +93,11 @@ export default function TestimonialsPage() {
         <div className="text-center max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold mb-4">Klaar om uw eigen succesverhaal te schrijven?</h2>
           <p className="text-neutral-text/600 mb-6">
-            Neem vandaag nog contact op om te beginnen en te ontdekken hoe we u kunnen helpen
+            Neem vandaag nog contact op om te beginnen en te ontdekken hoe ik u kan helpen
             vergelijkbare resultaten te behalen.
           </p>
           <Button asChild size="lg">
-            <Link href="/contact">Get Your Success Story</Link>
+            <Link href="/contact">Schrijf uw succesverhaal</Link>
           </Button>
         </div>
       </Section>

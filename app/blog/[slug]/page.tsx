@@ -66,41 +66,41 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
   const relatedPosts = allPosts.filter(p => p.id !== post.id).slice(0, 3);
 
   // Sample content for the blog post
-  const content = `
-    <p>In today's digital landscape, establishing a strong online presence is more important than ever for businesses of all sizes. Whether you're a solopreneur just starting out or an established small business looking to expand your reach, your online presence can make or break your success.</p>
-    
-    <h2>Why Online Presence Matters</h2>
-    
-    <p>Your online presence is often the first impression potential customers have of your business. In fact, studies show that over 70% of consumers research companies online before making a purchase decision. If your online presence is weak or non-existent, you're missing out on valuable opportunities to connect with potential customers.</p>
-    
-    <p>A strong online presence helps establish credibility, build trust, and showcase your expertise. It allows you to reach a wider audience, engage with customers, and ultimately drive more sales and growth for your business.</p>
-    
-    <h2>Key Components of a Strong Online Presence</h2>
-    
-    <ul>
-      <li>A professional, mobile-friendly website that clearly communicates your value proposition</li>
-      <li>Active social media profiles on platforms where your target audience spends time</li>
-      <li>Consistent branding across all online channels</li>
-      <li>Valuable content that addresses your audience's needs and questions</li>
-      <li>Positive online reviews and testimonials</li>
-    </ul>
-    
-    <p>Investing in these areas can significantly impact how potential customers perceive your business and whether they choose to engage with you.</p>
-    
-    <blockquote>The question isn't whether you need an online presence—it's whether your current online presence is working as hard as it could be for your business.</blockquote>
-    
-    <h2>Taking the Next Step</h2>
-    
-    <p>If you're looking to improve your online presence, start by assessing your current digital footprint. What comes up when you search for your business online? How does your website compare to competitors? Are you actively engaging with your audience on social media?</p>
-    
-    <p>Once you've identified areas for improvement, develop a strategic plan to enhance your online presence. This might involve redesigning your website, creating a content strategy, or implementing a social media management system.</p>
-  `;
+  //   const content = `
+  //     <p>In today's digital landscape, establishing a strong online presence is more important than ever for businesses of all sizes. Whether you're a solopreneur just starting out or an established small business looking to expand your reach, your online presence can make or break your success.</p>
+  //
+  //     <h2>Why Online Presence Matters</h2>
+  //
+  //     <p>Your online presence is often the first impression potential customers have of your business. In fact, studies show that over 70% of consumers research companies online before making a purchase decision. If your online presence is weak or non-existent, you're missing out on valuable opportunities to connect with potential customers.</p>
+  //
+  //     <p>A strong online presence helps establish credibility, build trust, and showcase your expertise. It allows you to reach a wider audience, engage with customers, and ultimately drive more sales and growth for your business.</p>
+  //
+  //     <h2>Key Components of a Strong Online Presence</h2>
+  //
+  //     <ul>
+  //       <li>A professional, mobile-friendly website that clearly communicates your value proposition</li>
+  //       <li>Active social media profiles on platforms where your target audience spends time</li>
+  //       <li>Consistent branding across all online channels</li>
+  //       <li>Valuable content that addresses your audience's needs and questions</li>
+  //       <li>Positive online reviews and testimonials</li>
+  //     </ul>
+  //
+  //     <p>Investing in these areas can significantly impact how potential customers perceive your business and whether they choose to engage with you.</p>
+  //
+  //     <blockquote>The question isn't whether you need an online presence—it's whether your current online presence is working as hard as it could be for your business.</blockquote>
+  //
+  //     <h2>Taking the Next Step</h2>
+  //
+  //     <p>If you're looking to improve your online presence, start by assessing your current digital footprint. What comes up when you search for your business online? How does your website compare to competitors? Are you actively engaging with your audience on social media?</p>
+  //
+  //     <p>Once you've identified areas for improvement, develop a strategic plan to enhance your online presence. This might involve redesigning your website, creating a content strategy, or implementing a social media management system.</p>
+  //   `;
 
   const author = {
-    name: 'Sarah Johnson',
-    title: 'Digital Marketing Specialist',
-    bio: 'Sarah has over 8 years of experience helping businesses grow their online presence. She specializes in content strategy, SEO, and social media marketing.',
-    image: '/placeholder.svg?height=100&width=100',
+    name: 'Maarten van Beek',
+    title: 'Oprichter VirtualCounsel, ICT-jurist',
+    bio: 'Specialist in ICT-recht, helpt softwarebedrijven en IT-dienstverleners met praktisch juridisch advies. Focus op contracten, privacy (AVG), en intellectueel eigendom.',
+    image: '/images/placeholders/maarten-van-beek.jpg',
   };
 
   const blogSchemaData = {
@@ -133,7 +133,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
             >
               <Link href="/blog" className="inline-flex items-center text-primary hover:underline">
                 <ArrowLeft className="mr-2 size-4" />
-                Back link text (e.g. 'Back to blog overview')
+                Terug naar blogoverzicht
               </Link>
               <Badge>{post.category}</Badge>
             </div>
@@ -153,7 +153,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
               <div className="flex items-center">
                 <Calendar className="size-4 mr-2" />
                 <span className="text-sm text-neutral-text/500">
-                  {new Date(post.date).toLocaleDateString('en-US', {
+                  {new Date(post.date).toLocaleDateString('nl-NL', {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric',
@@ -163,7 +163,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
               <div className="flex items-center">
                 <Clock className="size-4 mr-2" />
                 <span className="text-sm text-neutral-text/500">
-                  Reading time (e.g. '5 min read')
+                  Leestijd (bijv. '5 min lezen')
                 </span>
               </div>
             </div>
@@ -194,7 +194,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
             <LazySection animation="fade-up" delay={0.4}>
               <article className="prose prose-lg space-y-6">
                 {/* biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation> */}
-                <div dangerouslySetInnerHTML={{ __html: content }} />
+                <div dangerouslySetInnerHTML={{ __html: post.content || '' }} />
               </article>
             </LazySection>
 
@@ -202,7 +202,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
             <LazySection animation="fade-up" delay={0.5}>
               <div className="flex items-center justify-between mt-12 pt-8 border-t">
                 <div className="flex items-center">
-                  <span className="mr-4">Section heading for social share options</span>
+                  <span className="mr-4">Deel dit artikel</span>
                   <div className="flex space-x-2">
                     <Button size="icon" variant="ghost" aria-label="Share on Twitter">
                       <svg
@@ -275,7 +275,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
             <LazySection animation="slide-left" delay={0.4}>
               <Card>
                 <CardContent className="p-6">
-                  <h3 className="mb-4">About the Author</h3>
+                  <h3 className="mb-4">Over de auteur</h3>
                   <div className="flex items-center mb-4">
                     <div className="relative size-16 rounded-full overflow-hidden mr-4">
                       <Image
@@ -298,7 +298,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
             {/* Categories */}
             <LazySection animation="slide-left" delay={0.5}>
               <div className="mt-8">
-                <h3 className="mb-4">Categories</h3>
+                <h3 className="mb-4">Categorieën</h3>
                 <div className="flex flex-wrap gap-2">
                   <Badge
                     variant="outline"
@@ -340,7 +340,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
       {/* Related Articles Section */}
       <Section className="bg-neutral-background">
         <LazySection animation="fade-up" delay={0.1}>
-          <h2 className="text-3xl font-bold mb-12">Related Articles</h2>
+          <h2 className="text-3xl font-bold mb-12">Gerelateerde artikelen</h2>
         </LazySection>
 
         <LazySection

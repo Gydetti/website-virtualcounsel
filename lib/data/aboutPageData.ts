@@ -13,7 +13,7 @@ export const aboutPageMainContentData: z.infer<typeof aboutSectionDataSchema> = 
     'Wat mij drijft? Het gevoel wanneer een klant zegt: "Eindelijk een jurist die ons begrijpt!" Dat is waar ik het voor doe - juridische zekerheid bieden zonder uw innovatie te remmen.',
   ],
   image: {
-    src: '/images/team/maarten-van-beek.jpg',
+    src: '/images/team/virtual-counsel-maarten-about2.webp',
     alt: 'Maarten van Beek - Oprichter VirtualCounsel',
     width: 500,
     height: 500,
@@ -146,7 +146,7 @@ export const aboutPersonalJourneySectionData = {
     },
   ],
   image: {
-    src: '/images/general/journey-timeline.svg',
+    src: '/images/team/virtual-counsel-maarten-about3.webp',
     alt: 'Professionele ontwikkeling van traditioneel recht naar tech-specialisatie',
     width: 500,
     height: 400,
