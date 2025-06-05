@@ -51,13 +51,11 @@ const sampleResourcesData: z.infer<typeof resourceSchema>[] = [
         type: 'text',
         content:
           'Deze uitgebreide checklist is speciaal ontwikkeld voor Nederlandse SaaS-providers en software-bedrijven die hun contracten professioneel willen inrichten. Op basis van 10+ jaar ervaring in de tech-industrie delen we de meest kritische contractuele aandachtspunten die vaak over het hoofd worden gezien.',
-        id: 'b1a7e8c2-1f2d-4e3a-9b5c-1a2b3c4d5e6f',
       },
       {
         type: 'text',
         content:
           'Wat krijgt u? Een praktische checklist met 50+ essentiële clausules, concrete voorbeeldteksten, specifieke aandachtspunten voor verschillende SaaS-modellen (B2B, B2C, Enterprise), tips voor internationale contracten en een bonus sectie over aansprakelijkheidsbeperking.',
-        id: 'b1a7e8c2-1f2d-4e3a-9b5c-1a2b3c4d5e7f',
       },
       {
         type: 'image',
@@ -68,7 +66,6 @@ const sampleResourcesData: z.infer<typeof resourceSchema>[] = [
           height: 600,
         },
         caption: 'Een voorproefje van de complete checklist.',
-        id: 'c2b8f9d3-2e3f-5a4b-8c6d-2b3c4d5e6f7a',
       },
       {
         type: 'form',
@@ -78,7 +75,6 @@ const sampleResourcesData: z.infer<typeof resourceSchema>[] = [
           provider: 'custom',
           embedCode: '<!-- VirtualCounsel form embed voor SaaS checklist -->',
         },
-        id: 'd3c9e0e4-3f4a-6b5c-9d7e-3c4d5e6f7a8b',
       },
     ],
   },
@@ -99,13 +95,11 @@ const sampleResourcesData: z.infer<typeof resourceSchema>[] = [
         type: 'text',
         content:
           'Privacy by design is niet langer optioneel. Deze gids helpt software-ontwikkelaars en SaaS-providers om AVG-compliant te worden zonder de innovatie te remmen. We vertalen de complexe privacywetgeving naar concrete acties voor uw development team.',
-        id: 'avg-intro-1',
       },
       {
         type: 'text',
         content:
           'Inclusief: Privacy by design principes voor developers, template verwerkersovereenkomst (DPA), data retention beleid voorbeelden, security maatregelen checklist, sub-processor management framework en incident response procedures.',
-        id: 'avg-content-2',
       },
       {
         type: 'form',
@@ -115,7 +109,6 @@ const sampleResourcesData: z.infer<typeof resourceSchema>[] = [
           provider: 'custom',
           embedCode: '<!-- VirtualCounsel form embed voor AVG gids -->',
         },
-        id: 'avg-form-3',
       },
     ],
   },
@@ -135,13 +128,11 @@ const sampleResourcesData: z.infer<typeof resourceSchema>[] = [
         type: 'text',
         content:
           'Uw source code is uw belangrijkste asset. Deze whitepaper laat zien hoe u vanaf dag één uw intellectuele eigendom beschermt, van employee IP agreements tot open source compliance en van trade secrets tot software patents.',
-        id: 'ip-intro-1',
       },
       {
         type: 'text',
         content:
           'Behandelde onderwerpen: IP overdrachtsovereenkomsten voor developers, open source risico management, bescherming van algoritmes en AI-modellen, investeringsklare IP-structuur opzetten, internationale IP-strategie voor tech-bedrijven.',
-        id: 'ip-content-2',
       },
       {
         type: 'image',
@@ -152,7 +143,6 @@ const sampleResourcesData: z.infer<typeof resourceSchema>[] = [
           height: 600,
         },
         caption: 'Het VirtualCounsel IP-bescherming framework.',
-        id: 'ip-image-3',
       },
       {
         type: 'form',
@@ -162,7 +152,6 @@ const sampleResourcesData: z.infer<typeof resourceSchema>[] = [
           provider: 'custom',
           embedCode: '<!-- VirtualCounsel form embed voor IP guide -->',
         },
-        id: 'ip-form-4',
       },
     ],
   },

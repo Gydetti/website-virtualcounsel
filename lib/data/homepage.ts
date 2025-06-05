@@ -38,7 +38,7 @@ export const heroSectionData: z.infer<typeof heroSectionDataSchema> = {
     { value: 2, suffix: ' weken', label: 'Gemiddelde levertijd' },
   ],
   image: {
-    src: '/images/placeholders/hero-legal-tech.webp',
+    src: '/images/hero/hero-main.webp',
     alt: 'Maarten van Beek - VirtualCounsel juridisch advies',
   },
   showHelpedStats: false,
