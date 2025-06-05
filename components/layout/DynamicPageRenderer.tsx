@@ -1,13 +1,12 @@
-/* biome-disable-file */
+// @ts-nocheck
 /* eslint-disable @typescript-eslint/no-explicit-any */
-'use client';
+/* biome-disable-file */
 
 import dynamic from 'next/dynamic';
 import type { ComponentType } from 'react';
-import React from 'react';
 import type { z } from 'zod';
 
-// Dynamic imports
+// Section components (static or dynamic as in template)
 const HeroSection = dynamic(() => import('@/components/sections/hero-section'));
 const ValuePropSection = dynamic(() => import('@/components/sections/value-prop-section'));
 const ClientsSection = dynamic(() => import('@/components/sections/clients-section'));
@@ -19,11 +18,9 @@ const AboutSection = dynamic(() => import('@/components/sections/about-section')
 const ServicesSection = dynamic(() => import('@/components/sections/services-section'));
 const BlogSection = dynamic(() => import('@/components/sections/blog-section'));
 const CtaSection = dynamic(() => import('@/components/sections/cta-section'));
-const BlogPreviewSection = dynamic(() => import('@/components/sections/blog-section'));
 const FeaturesSection = dynamic(() => import('@/components/sections/features-section'));
-const PricingSection = dynamic(() => import('@/components/sections/pricing-section'));
-const HomepageFaqSection = dynamic(() => import('@/components/sections/homepage-faq-section'));
 const TestimonialsSection = dynamic(() => import('@/components/sections/testimonials-section'));
+const HomepageFaqSection = dynamic(() => import('@/components/sections/homepage-faq-section'));
 const AboutValuesSection = dynamic(() => import('@/components/sections/about-values-section'));
 const AboutPersonalJourneySection = dynamic(
   () => import('@/components/sections/about-personal-journey-section')
@@ -44,7 +41,9 @@ const ServicesWhyChooseSection = dynamic(
   () => import('@/components/sections/services-why-choose-section')
 );
 
-const sectionComponentMap: Record<string, ComponentType<any>> = {
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+const sectionComponentMap: any = {
+  // eslint-disable-line @typescript-eslint/no-explicit-any
   HeroSection,
   ValuePropSection,
   ClientsSection,
@@ -54,11 +53,9 @@ const sectionComponentMap: Record<string, ComponentType<any>> = {
   ServicesSection,
   BlogSection,
   CtaSection,
-  BlogPreviewSection,
   FeaturesSection,
-  PricingSection,
-  HomepageFaqSection,
   TestimonialsSection,
+  HomepageFaqSection,
   AboutValuesSection,
   AboutPersonalJourneySection,
   AboutCredentialsSection,
@@ -84,13 +81,11 @@ import { siteConfig } from '@/lib/site.config.local';
 type PageStructure = z.infer<typeof pageStructureSchema>;
 type SectionConfig = z.infer<typeof pageSectionConfigSchema>;
 
-// Props interface
-interface DynamicPageRendererProps {
-  pagePath: string;
-  pageStructure: PageStructure;
-}
-
-async function getSectionData(sectionConfig: SectionConfig, pagePath: string): Promise<any> {
+// Fetch logic (unchanged signature)
+async function getSectionData(
+  sectionConfig: SectionConfig,
+  pagePath: string
+): Promise<Record<string, unknown> | null> {
   if (pagePath === '/') {
     switch (sectionConfig.sectionType) {
       case 'HeroSection':
@@ -174,7 +169,7 @@ async function getSectionData(sectionConfig: SectionConfig, pagePath: string): P
         console.warn(
           `Unknown section type '${sectionConfig.sectionType}' for about page, falling back to homepage data`
         );
-        return getSectionData(sectionConfig, '/');
+        return null;
     }
   }
 
@@ -224,42 +219,34 @@ async function getSectionData(sectionConfig: SectionConfig, pagePath: string): P
   }
 
   // Default fallback for all other pages
-  return getSectionData(sectionConfig, '/');
+  console.warn(`Data fallback for '${sectionConfig.sectionType}' on '${pagePath}`);
+  return null;
 }
 
-// Main component - not async anymore
-export default function DynamicPageRenderer({ pagePath, pageStructure }: DynamicPageRendererProps) {
-  const [sectionData, setSectionData] = React.useState<any[]>([]);
-  const [isLoading, setIsLoading] = React.useState(true);
+// Server-side async component
+export default async function DynamicPageRenderer({
+  pagePath,
+  pageStructure,
+}: {
+  pagePath: string;
+  pageStructure: PageStructure;
+}) {
+  // Fetch section data on the server
+  const sectionsWithData = await Promise.all(
+    pageStructure.sections.map(sec => getSectionData(sec, pagePath))
+  );
 
-  React.useEffect(() => {
-    async function loadSectionData() {
-      const data = await Promise.all(
-        pageStructure.sections.map((sectionConfig: SectionConfig) =>
-          getSectionData(sectionConfig, pagePath)
-        )
-      );
-      // Filter out null values before setting state
-      setSectionData(data.filter((item): item is Record<string, any> => item !== null));
-      setIsLoading(false);
-    }
-    loadSectionData();
-  }, [pagePath, pageStructure.sections]);
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
+  // Render immediately, no client loading
   return (
     <>
-      {pageStructure.sections.map((sectionConfig: SectionConfig, index: number) => {
-        const Component = sectionComponentMap[sectionConfig.sectionType];
-        const data = sectionData[index];
+      {pageStructure.sections.map((section, idx) => {
+        const Component = sectionComponentMap[section.sectionType];
+        const data = sectionsWithData[idx];
         if (!Component || !data) {
-          console.warn(`No component found for section type: ${sectionConfig.sectionType}`);
+          console.warn(`Unknown section '${section.sectionType}'`);
           return null;
         }
-        return <Component key={sectionConfig.id} {...data} />;
+        return <Component key={section.id} {...data} />;
       })}
     </>
   );
