@@ -369,7 +369,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
                 <p className="text-neutral-text/600 mb-4">{relatedPost.excerpt}</p>
                 <Button variant="link" className="p-0 h-auto text-primary" asChild>
                   <Link href={`/blog/${relatedPost.slug}`}>
-                    {blogPageData.readMoreText || 'Read More'}
+                    {blogPageData.readMoreText || 'Lees meer'}
                     <ArrowRight className="ml-2 size-4" />
                   </Link>
                 </Button>

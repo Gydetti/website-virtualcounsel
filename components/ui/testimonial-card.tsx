@@ -46,7 +46,7 @@ export default function TestimonialCard({ testimonial, className, style }: Testi
                 key={`star-${i + 1}`}
                 className={cn(
                   'size-4',
-                  i < rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'
+                  i < rating ? 'text-yellow-400 fill-yellow-400' : 'text-neutral-text/40'
                 )}
               />
             ))}

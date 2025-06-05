@@ -48,7 +48,7 @@ export default function ServiceCard({
     >
       {popular && (
         <div className="absolute top-0 right-0 bg-primary text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
-          {popularBadgeText || 'Popular'}
+          {popularBadgeText || 'Populair'}
         </div>
       )}
       <CardHeader className={`${popular ? 'pt-12' : ''}`}>
@@ -103,7 +103,7 @@ export default function ServiceCard({
           }`}
         >
           <Link href={`/services/${slug}`}>
-            {`${learnMoreText || 'Learn more about'} ${title}`}
+            {`${learnMoreText || 'Meer informatie over'} ${title}`}
             <ArrowRight className="ml-2 size-4" />
           </Link>
         </Button>

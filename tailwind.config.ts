@@ -45,7 +45,7 @@ const extraColors: Record<string, (opts: { opacityValue?: number }) => string> =
   'feedback-success-bg': ({ opacityValue = 1 }) => `hsl(var(--muted) / ${opacityValue})`,
   // Neutral text colors
   'neutral-text': ({ opacityValue = 1 }) => `hsl(var(--foreground) / ${opacityValue})`,
-  'neutral-text-subtle': ({ opacityValue = 1 }) => `hsl(210 16% 93% / ${opacityValue})`, // Light subtle text for dark backgrounds
+  'neutral-text-subtle': ({ opacityValue = 1 }) => `hsl(210 16% 60% / ${opacityValue})`, // Medium gray text with better contrast
   'neutral-surface': ({ opacityValue = 1 }) => `hsl(var(--card) / ${opacityValue})`,
   'neutral-background': ({ opacityValue = 1 }) => `hsl(var(--background) / ${opacityValue})`,
   // Computed brand color variants - these match the CSS variables generated in layout.tsx

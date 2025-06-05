@@ -281,7 +281,7 @@ export const siteConfig: SiteConfigSchema = {
 
     // Sections
     enableHeroSection: true,
-    enableHeroStats: false, // No stats in hero for legal services
+    enableHeroStats: true, // Enable KPI stats bar in hero section
     enableBlog: true, // Blog enabled for content marketing
     enableServices: true, // All 8 services enabled
     enableContactForm: true,
@@ -302,12 +302,12 @@ export const siteConfig: SiteConfigSchema = {
     enableLandingPages: true, // For future campaigns
     enableCustomCookieBanner: true, // Using custom AVG-compliant banner
     enableFooterServices: true, // List services in footer
-    enableKpiSection: false,
+    enableKpiSection: false, // Using hero stats instead
     enableAboutKpiSection: false, // No KPIs for solo practice
   },
   // SECTION STYLES: Utility classes for special sections
   sectionStyles: {
-    heroGradient: 'bg-gradient-to-br from-blue-50 to-white',
+    heroGradient: 'bg-gradient-to-r from-white via-blue-50/50 to-white',
   },
   // ENABLED PAGES: All pages active for Virtual Counsel
   enabledPages: [

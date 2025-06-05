@@ -136,7 +136,7 @@
   }
   blockquote {
     /* Blockquote styling for professional spacing */
-    @apply mt-6 mb-6 pl-4 border-l-4 border-gray-200 italic text-gray-700;
+    @apply mt-6 mb-6 pl-4 border-l-4 border-neutral-divider italic text-neutral-text;
   }
   p {
     /* Base paragraph: 18px */

@@ -41,7 +41,7 @@ export const heroSectionData: z.infer<typeof heroSectionDataSchema> = {
     src: '/images/hero/hero-main.webp',
     alt: 'Maarten van Beek - VirtualCounsel juridisch advies',
   },
-  showHelpedStats: false,
+  showHelpedStats: true,
   showOverlayStat: false,
   overlayTitle: '',
   overlayValue: '',
@@ -61,7 +61,7 @@ export const featuresSectionData: z.infer<typeof featuresSectionDataSchema> = {
       items: [],
     },
   },
-  cta: { text: 'Learn more', href: '/services' },
+  cta: { text: 'Lees meer', href: '/services' },
 };
 
 export const clientsSectionData: z.infer<typeof clientsSectionDataSchema> = {
@@ -249,7 +249,7 @@ export const pricingSectionData: z.infer<typeof pricingSectionDataSchema> = {
   badgeText: 'Pricing',
   heading: 'Pricing plans',
   description: 'Choose the plan that fits your needs',
-  popularBadgeText: 'Most popular',
+  popularBadgeText: 'Meest populair',
   cards: [
     {
       id: 'basic',
@@ -257,7 +257,7 @@ export const pricingSectionData: z.infer<typeof pricingSectionDataSchema> = {
       price: '0',
       features: ['Basic features'],
       cta: {
-        text: 'Get started',
+        text: 'Begin nu',
         href: '/contact',
       },
       popular: false,
@@ -479,23 +479,23 @@ export const kpiSectionData: z.infer<typeof kpiSectionDataSchema> = {
   stats: [
     {
       id: 'kpi-experience',
-      value: 10,
+      value: 7,
       suffix: '+',
-      label: 'Years of experience',
+      label: 'Jaar ervaring in ICT-recht',
     },
     {
       id: 'kpi-satisfaction',
-      value: 98,
+      value: 100,
       suffix: '%',
-      label: 'Client satisfaction rate',
+      label: 'Klanttevredenheid',
     },
     {
-      id: 'kpi-projects',
-      value: 40,
+      id: 'kpi-companies',
+      value: 50,
       suffix: '+',
-      label: 'Successful projects delivered',
+      label: 'ICT-bedrijven geholpen',
     },
-    { id: 'kpi-clients', value: 300, suffix: '+', label: 'Happy clients' },
+    { id: 'kpi-response', value: 24, suffix: 'h', label: 'Gemiddelde reactietijd' },
   ],
 };
 

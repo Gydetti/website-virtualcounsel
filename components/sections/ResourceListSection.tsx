@@ -113,7 +113,7 @@ export default function ResourceListSection({
                       <p className="text-foreground text-sm line-clamp-3">{resource.subtitle}</p>
                     )}
                     <span className="mt-4 inline-block text-primary group-hover:underline">
-                      {readMoreText || 'Read more &rarr;'}
+                      {readMoreText || 'Lees meer &rarr;'}
                     </span>
                   </div>
                 </Link>

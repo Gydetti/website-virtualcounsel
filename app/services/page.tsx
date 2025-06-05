@@ -94,7 +94,7 @@ export default async function ServicesPage() {
                         asChild
                       >
                         <Link href={`/services/${service.slug}`}>
-                          {buttonLabels?.learnMore || 'Learn more'}
+                          {buttonLabels?.learnMore || 'Meer informatie'}
                           <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
                         </Link>
                       </Button>

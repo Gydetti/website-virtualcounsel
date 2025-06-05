@@ -46,7 +46,7 @@ export default function CtaSection({
       fullBleed
       patternStyle={patternStyle ?? siteConfig.theme.visualStyle?.patternStyle}
       patternOpacity={usedOpacity}
-      className={`relative overflow-hidden py-10 md:py-16 ${bgColorClass}`}
+      className={`relative overflow-hidden ${bgColorClass}`}
     >
       {/* Decorative elements matching the theme */}
       <div className="hidden sm:block absolute top-0 right-0 size-96 bg-primary/10 rounded-full blur-3xl" />

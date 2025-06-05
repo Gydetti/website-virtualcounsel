@@ -30,8 +30,8 @@ export async function POST(request: NextRequest) {
       data.phone ? `<p><strong>Phone:</strong> ${data.phone}</p>` : '',
       `<p><strong>Message:</strong><br/>${data.message.replace(/\n/g, '<br/>')}</p>`,
     ].join('');
-    const confirmationSubject = `Thanks for contacting ${siteConfig.site.name}`;
-    const confirmationHtml = `<p>Hi ${data.name},</p><p>Thanks for your message. We'll get back to you soon.</p><hr/>${ownerHtml}`;
+    const confirmationSubject = `Bedankt voor uw bericht aan ${siteConfig.site.name}`;
+    const confirmationHtml = `<p>Beste ${data.name},</p><p>Bedankt voor uw bericht. We nemen zo snel mogelijk contact met u op.</p><hr/>${ownerHtml}`;
 
     // Send via configured provider
     switch (provider) {

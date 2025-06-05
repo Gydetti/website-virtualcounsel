@@ -18,7 +18,7 @@ export default function NotFound() {
       <Button size="lg" className="bg-primary hover:bg-primary90" asChild>
         <Link href="/">
           <ArrowLeft className="mr-2 size-4" />
-          {notFoundPageData.buttonText ?? 'Back to Home'}
+          {notFoundPageData.buttonText ?? 'Terug naar Home'}
         </Link>
       </Button>
     </div>

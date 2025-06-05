@@ -236,7 +236,7 @@ export default function AboutSection({
                         asChild
                       >
                         <Link href="/about">
-                          {learnMoreText || 'Learn more about me'}
+                          {learnMoreText || 'Leer mij beter kennen'}
                           <ArrowRight className="ml-2 size-4" />
                         </Link>
                       </Button>
@@ -360,7 +360,7 @@ export default function AboutSection({
                     asChild
                   >
                     <Link href="/about">
-                      {learnMoreText || 'Learn more about me'}
+                      {learnMoreText || 'Leer mij beter kennen'}
                       <ArrowRight className="ml-2 size-4" />
                     </Link>
                   </Button>

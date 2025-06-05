@@ -91,9 +91,10 @@ export default function TestimonialsPage() {
       {/* CTA Section */}
       <Section className="py-12 bg-neutral-surface" id="testimonials-cta">
         <div className="text-center max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold mb-4">Ready to write your own success story?</h2>
+          <h2 className="text-3xl font-bold mb-4">Klaar om uw eigen succesverhaal te schrijven?</h2>
           <p className="text-neutral-text/600 mb-6">
-            Contact us today to get started and see how we can help you achieve similar results.
+            Neem vandaag nog contact op om te beginnen en te ontdekken hoe we u kunnen helpen
+            vergelijkbare resultaten te behalen.
           </p>
           <Button asChild size="lg">
             <Link href="/contact">Get Your Success Story</Link>

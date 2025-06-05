@@ -128,7 +128,7 @@ export default function ServicesSection({
                 >
                   {service.popular && (
                     <div className="absolute top-0 right-0 bg-accent text-white text-sm font-bold px-3 py-1 rounded-bl-lg">
-                      {popularBadgeText ?? 'Popular'}
+                      {popularBadgeText ?? 'Populair'}
                     </div>
                   )}
 
@@ -186,7 +186,7 @@ export default function ServicesSection({
                       }`}
                     >
                       <Link href={`/services/${service.slug}`}>
-                        {`${learnMoreText ?? 'Learn more about'} ${service.title}`}
+                        {`${learnMoreText ?? 'Meer informatie over'} ${service.title}`}
                         <ArrowRight className="ml-2 size-4" />
                       </Link>
                     </Button>

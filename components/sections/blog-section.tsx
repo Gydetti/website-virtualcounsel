@@ -115,7 +115,7 @@ export default function BlogSection({
                     asChild
                   >
                     <Link href={`/blog/${post.slug}`} className="transition-none">
-                      {`${readMoreText ?? 'Read more'}: ${post.title}`}
+                      {`${readMoreText ?? 'Lees verder'}: ${post.title}`}
                       <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
                     </Link>
                   </Button>

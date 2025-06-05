@@ -102,7 +102,7 @@ export default function TestimonialsSection({
               style={{ touchAction: 'pan-y' }}
             >
               {testimonials.map((item, index) => (
-                <motion.div key={item.id} className="w-full shrink-0 sm:px-4 pb-12">
+                <motion.div key={item.id} className="w-full shrink-0 sm:px-4 pb-8">
                   <Card
                     elevation={cardElevation}
                     hover="lift"
@@ -207,7 +207,7 @@ export default function TestimonialsSection({
       <LazySection animation="fade-up" delay={0.2} className="mt-16 flex justify-center">
         <div className="inline-flex items-center rounded-full border border-secondary/20 bg-neutral-surface px-6 py-2 text-sm font-medium shadow-lg">
           <span className="mr-2 size-2 rounded-full bg-secondary" />
-          Show that you are certified or an expert in your field
+          Erkend ICT-jurist • Lid Nederlandse Advocatenorde
         </div>
       </LazySection>
     </Section>

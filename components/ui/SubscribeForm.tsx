@@ -86,9 +86,9 @@ export function SubscribeForm() {
         disabled={status === 'loading' || status === 'success'}
         className="bg-neutral-surface text-primary hover:bg-neutral-background/200"
       >
-        {status === 'loading' ? '…sending' : status === 'success' ? '✅ Subscribed' : 'Subscribe'}
+        {status === 'loading' ? '…verzenden' : status === 'success' ? '✅ Aangemeld' : 'Aanmelden'}
       </Button>
-      {status === 'error' && <p className="text-error-message mt-2">Oops—something went wrong.</p>}
+      {status === 'error' && <p className="text-error-message mt-2">Oeps—er is iets misgegaan.</p>}
     </form>
   );
 }

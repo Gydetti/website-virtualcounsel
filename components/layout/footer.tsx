@@ -52,11 +52,11 @@ export default function Footer({ hideNewsletter = false }: FooterProps) {
               style={{ '--stagger-delay': '0.1s' } as CSSProperties}
             >
               <div style={{ '--index': 0 } as CSSProperties}>
-                <h3 className="text-white mb-2">Subscribe to our newsletter</h3>
+                <h3 className="text-white mb-2">Meld u aan voor onze nieuwsbrief</h3>
               </div>
               <div style={{ '--index': 1 } as CSSProperties}>
                 <p className="text-body-base text-white/70">
-                  Stay updated with the latest insights and news
+                  Blijf op de hoogte van de laatste juridische ontwikkelingen
                 </p>
               </div>
               <div style={{ '--index': 2 } as CSSProperties}>
@@ -141,7 +141,7 @@ export default function Footer({ hideNewsletter = false }: FooterProps) {
             </div>
 
             <div style={{ '--index': 1 } as CSSProperties}>
-              <h3 className="mt-0 mb-4">Quick links</h3>
+              <h3 className="mt-0 mb-4">Snelle links</h3>
               <ul className="space-y-2">
                 {filteredQuickLinks.map(link => (
                   <li key={link.href}>
@@ -161,51 +161,51 @@ export default function Footer({ hideNewsletter = false }: FooterProps) {
 
             {showFooterServices && (
               <div style={{ '--index': 2 } as CSSProperties}>
-                <h3 className="mt-0 mb-4">Services</h3>
+                <h3 className="mt-0 mb-4">Diensten</h3>
                 <ul className="space-y-2">
                   <li>
                     <Link
-                      href="/services/web-design-development"
+                      href="/services/intellectuele-eigendom-software"
                       className="text-white hover:text-brand-light transition-colors inline-flex items-center group"
                     >
                       <span className="w-0 h-0.5 bg-neutral-surface transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
-                      Web design & development
+                      Intellectuele eigendom bij software
                     </Link>
                   </li>
                   <li>
                     <Link
-                      href="/services/digital-marketing-strategy"
+                      href="/services/contracten-algemene-voorwaarden"
                       className="text-white hover:text-brand-light transition-colors inline-flex items-center group"
                     >
                       <span className="w-0 h-0.5 bg-neutral-surface transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
-                      Digital marketing strategy
+                      Contracten en algemene voorwaarden
                     </Link>
                   </li>
                   <li>
                     <Link
-                      href="/services/business-automation"
+                      href="/services/privacy-avg-compliance"
                       className="text-white hover:text-brand-light transition-colors inline-flex items-center group"
                     >
                       <span className="w-0 h-0.5 bg-neutral-surface transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
-                      Business automation
+                      Privacy en AVG compliance
                     </Link>
                   </li>
                   <li>
                     <Link
-                      href="/services/content-creation"
+                      href="/services/beperking-aansprakelijkheid"
                       className="text-white hover:text-brand-light transition-colors inline-flex items-center group"
                     >
                       <span className="w-0 h-0.5 bg-neutral-surface transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
-                      Content creation
+                      Beperking van aansprakelijkheid
                     </Link>
                   </li>
                   <li>
                     <Link
-                      href="/services/seo-optimization"
+                      href="/services/ai-act-compliance"
                       className="text-white hover:text-brand-light transition-colors inline-flex items-center group"
                     >
                       <span className="w-0 h-0.5 bg-neutral-surface transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
-                      SEO optimization
+                      AI Act compliance
                     </Link>
                   </li>
                 </ul>
@@ -227,7 +227,7 @@ export default function Footer({ hideNewsletter = false }: FooterProps) {
                 </li>
                 <li className="flex items-start">
                   <Phone className="size-4 mr-2 mt-1" />
-                  <span>Phone:</span>
+                  <span>Telefoon:</span>
                   <a
                     href={`tel:${siteConfig.contact.phone ?? ''}`}
                     className="ml-1 hover:text-brand-light"
@@ -237,7 +237,7 @@ export default function Footer({ hideNewsletter = false }: FooterProps) {
                 </li>
                 <li className="flex items-start">
                   <MapPin className="size-4 mr-2 mt-1" />
-                  <span>Address:</span>
+                  <span>Adres:</span>
                   <address className="ml-1 not-italic">
                     {siteConfig.contact.address?.line1 ?? ''}
                     {siteConfig.contact.address?.line2 && (
@@ -255,7 +255,7 @@ export default function Footer({ hideNewsletter = false }: FooterProps) {
               </ul>
               <Button asChild className="mt-4 group" variant="white">
                 <Link href="/contact">
-                  {siteConfig.navigationText?.contactUsText || 'Contact us'}
+                  {siteConfig.navigationText?.contactUsText || 'Neem contact op'}
                   <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </Button>
@@ -268,7 +268,7 @@ export default function Footer({ hideNewsletter = false }: FooterProps) {
             style={{ '--stagger-delay': '0.1s' } as CSSProperties}
           >
             <p style={{ '--index': 0 } as CSSProperties} className="text-neutral-text/200 text-sm">
-              © {currentYear} {siteConfig.site.name}. All rights reserved.
+              © {currentYear} {siteConfig.site.name}. Alle rechten voorbehouden.
             </p>
             <div style={{ '--index': 1 } as CSSProperties} className="flex space-x-6 mt-4 md:mt-0">
               <Link

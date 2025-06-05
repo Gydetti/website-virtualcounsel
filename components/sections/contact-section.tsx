@@ -190,7 +190,7 @@ export default function ContactSection({
               {submitted && (
                 <div className="mt-4 p-4 bg-feedback-success-bg text-feedback-success rounded-lg">
                   {successMessage ??
-                    "Thank you for your message! We'll get back to you as soon as possible."}
+                    'Bedankt voor uw bericht! We nemen zo snel mogelijk contact met u op.'}
                 </div>
               )}
             </form>

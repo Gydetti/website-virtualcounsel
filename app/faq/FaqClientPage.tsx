@@ -132,17 +132,17 @@ export default function FaqClientPage() {
               ))
             ) : (
               <div className="text-center py-12">
-                <h2 className="text-2xl font-bold mb-4">No results found</h2>
+                <h2 className="text-2xl font-bold mb-4">Geen resultaten gevonden</h2>
                 <p className="text-neutral-text/600 mb-8">
-                  We couldn't find any FAQs matching your search. Please try a different search term
-                  or browse our categories.
+                  We konden geen veelgestelde vragen vinden die overeenkomen met uw zoekopdracht.
+                  Probeer een andere zoekterm of bekijk onze categorieën.
                 </p>
                 <Button
                   variant="outline"
                   className="border-primary text-primary hover:bg-primary hover:text-white"
                   onClick={() => setSearchQuery('')}
                 >
-                  Clear Search
+                  Zoekopdracht wissen
                 </Button>
               </div>
             )}

@@ -474,7 +474,7 @@ export default function Header() {
                 )}
                 style={{ transitionDuration }}
               >
-                <Link href="/contact">Main CTA button</Link>
+                <Link href="/contact">Maak een afspraak</Link>
               </Button>
             </div>
           </nav>

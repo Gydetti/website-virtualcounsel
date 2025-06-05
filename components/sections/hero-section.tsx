@@ -141,9 +141,13 @@ export default function HeroSection({
     >
       {/* BackgroundPattern now handled by Section */}
 
+      {/* Enhanced gradient overlay for modern look */}
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/50 pointer-events-none" />
+
       {/* Floating elements for visual interest */}
-      {/* <div className="hidden sm:block absolute top-20 right-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
-			<div className="hidden sm:block absolute bottom-10 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl" /> */}
+      <div className="hidden sm:block absolute top-20 right-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+      <div className="hidden sm:block absolute bottom-10 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
 
       <div className="grid lg:grid-cols-2 items-center gap-8 sm:gap-8 md:gap-10 lg:gap-10">
         {/* Removed parent LazySection to prevent delay compounding */}
@@ -223,7 +227,9 @@ export default function HeroSection({
                     </svg>
                   </div>
                   <div className="text-neutral-text">
-                    <span className="font-medium">7+ jaar ervaring</span>
+                    <span className="font-semibold">Geen verplichtingen</span>
+                    <span className="mx-2">•</span>
+                    <span className="text-muted-foreground">Gratis kennismakingsgesprek</span>
                   </div>
                 </div>
               </div>

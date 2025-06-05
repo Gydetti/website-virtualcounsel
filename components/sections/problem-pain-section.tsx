@@ -36,7 +36,7 @@ export default function ProblemPainSection({
               )}
               {heading && <h2 className=" text-white">{heading}</h2>}
               {description && (
-                <p className="text-lg leading-relaxed md:text-xl max-w-[600px] text-white/90">
+                <p className="text-lg leading-relaxed md:text-xl max-w-[600px] text-white">
                   {description}
                 </p>
               )}
@@ -64,7 +64,7 @@ export default function ProblemPainSection({
                   className="rounded-lg bg-white/10 p-6 shadow-sm hover:shadow-xl transition-shadow duration-300"
                 >
                   <h3 className="mb-3 text-xl font-bold text-accent">{card.title}</h3>
-                  <p className="text-white/80 text-base md:text-lg">{card.description}</p>
+                  <p className="text-white/95 text-base md:text-lg">{card.description}</p>
                 </motion.div>
               ))}
             </div>

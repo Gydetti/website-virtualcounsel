@@ -97,7 +97,7 @@ export default function ProcessSection({
                       <div
                         className={`bg-gray-50 p-5 ${getElementBorderRadius('card')} border-l-4 border-primary/30`}
                       >
-                        <h4 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
+                        <h4 className="text-sm font-semibold text-neutral-text mb-3 flex items-center gap-2">
                           <div className="size-1.5 bg-primary rounded-full" />
                           What this includes:
                         </h4>
@@ -105,11 +105,11 @@ export default function ProcessSection({
                           {step.details.slice(0, 3).map(detail => (
                             <li key={detail} className="flex items-start gap-2">
                               <div className="size-1.5 bg-primary/60 rounded-full mt-2 shrink-0" />
-                              <span className="text-gray-600">{detail}</span>
+                              <span className="text-neutral-text/80">{detail}</span>
                             </li>
                           ))}
                           {step.details.length > 3 && (
-                            <li className="text-gray-400 text-xs font-medium mt-2">
+                            <li className="text-neutral-text/60 text-xs font-medium mt-2">
                               +{step.details.length - 3} more...
                             </li>
                           )}

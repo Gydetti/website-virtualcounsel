@@ -152,7 +152,7 @@ export default async function BlogPage() {
                     </CardContent>
                     <CardFooter className="mt-auto pt-0">
                       <div className="mt-auto pt-0 whitespace-normal break-words text-primary flex items-center space-x-2">
-                        <span>{`${blogPageData.readMoreText ?? 'Read more'}: ${post.title}`}</span>
+                        <span>{`${blogPageData.readMoreText ?? 'Lees verder'}: ${post.title}`}</span>
                         <ArrowRight className="ml-2 size-4" />
                       </div>
                     </CardFooter>
