@@ -1,19 +1,23 @@
 import { z } from 'zod';
 
-import { aboutSectionDataSchema } from '../schemas/sections.schema';
+// biome-ignore lint/style/useImportType: Schemas are used in z.infer<typeof T> which requires runtime imports
+import {
+  aboutFeatureCardsSectionDataSchema,
+  aboutSectionDataSchema,
+} from '../schemas/sections.schema';
 
 export const aboutPageMainContentData: z.infer<typeof aboutSectionDataSchema> = {
   // Virtual Counsel - Maarten van Beek About Section
   badgeText: 'Over VirtualCounsel',
   heading: 'De Juridische Partner voor Tech',
   paragraphs: [
-    'Ik ben Maarten van Beek, oprichter van VirtualCounsel. Met meer dan 10 jaar ervaring in het adviseren van ICT- en softwarebedrijven begrijp ik de unieke uitdagingen waar tech-ondernemers tegenaan lopen.',
-    'Na jaren als bedrijfsjurist bij verschillende tech-bedrijven zag ik hoe vaak juridisch advies niet aansloot bij de realiteit van software ontwikkeling, SaaS-modellen en agile werken. Daarom richtte ik VirtualCounsel op: juridisch advies dat écht werkt voor tech-bedrijven.',
-    'Mijn aanpak is praktisch en to-the-point. Geen juridisch jargon, maar concrete oplossingen die aansluiten bij uw businessmodel. Of het nu gaat om SaaS-contracten, open source compliance of AI-regelgeving - ik spreek uw taal.',
-    'Wat mij drijft? Het gevoel wanneer een klant zegt: "Eindelijk een jurist die ons begrijpt!" Dat is waar ik het voor doe - juridische zekerheid bieden zonder uw innovatie te remmen.',
+    'Ik ben Maarten van Beek, oprichter van VirtualCounsel. Met meer dan **10 jaar ervaring** in het adviseren van **ICT- en softwarebedrijven** begrijp ik de unieke uitdagingen waar tech-ondernemers tegenaan lopen.',
+    'Na jaren als bedrijfsjurist bij verschillende tech-bedrijven zag ik hoe vaak juridisch advies niet aansloot bij de realiteit van **software ontwikkeling, SaaS-modellen en agile werken**. Daarom richtte ik VirtualCounsel op: juridisch advies dat écht werkt voor tech-bedrijven.',
+    'Mijn aanpak is **praktisch en to-the-point**. Geen juridisch jargon, maar concrete oplossingen die aansluiten bij uw businessmodel. Of het nu gaat om **SaaS-contracten, open source compliance of AI-regelgeving** - ik spreek uw taal.',
+    'Wat mij drijft? Het gevoel wanneer een klant zegt: **"Eindelijk een jurist die ons begrijpt!"** Dat is waar ik het voor doe - juridische zekerheid bieden zonder uw innovatie te remmen.',
   ],
   image: {
-    src: '/images/team/virtual-counsel-maarten-about2.webp',
+    src: '/images/team/virtual-counsel-maarten-about4.webp',
     alt: 'Maarten van Beek - Oprichter VirtualCounsel',
     width: 500,
     height: 500,
@@ -23,6 +27,42 @@ export const aboutPageMainContentData: z.infer<typeof aboutSectionDataSchema> = 
     text: 'Plan een kennismaking',
     href: '/contact',
   },
+};
+
+export const aboutFeatureCardsSectionData: z.infer<typeof aboutFeatureCardsSectionDataSchema> = {
+  badgeText: 'Waarom VirtualCounsel',
+  heading: 'Juridische expertise die werkt voor tech',
+  subheading:
+    'Ontdek waarom meer dan 100 ICT-bedrijven kiezen voor VirtualCounsel als hun juridische partner.',
+  featureCards: [
+    {
+      id: 'certified',
+      title: 'ICT-recht specialist',
+      description:
+        'Gecertificeerd en erkend expert in technologie recht met jarenlange ervaring in de sector.',
+      icon: 'Star',
+      iconBg: 'bg-blue-100',
+      iconColor: 'text-blue-600',
+    },
+    {
+      id: 'proven',
+      title: 'Bewezen resultaten',
+      description:
+        'Honderden succesvolle contracten en deals begeleid voor SaaS-bedrijven en tech startups.',
+      icon: 'CheckCircle',
+      iconBg: 'bg-emerald-100',
+      iconColor: 'text-emerald-600',
+    },
+    {
+      id: 'practical',
+      title: 'Praktische aanpak',
+      description:
+        'Geen juridisch jargon, maar concrete oplossingen die direct toepasbaar zijn in uw bedrijf.',
+      icon: 'CheckCircle',
+      iconBg: 'bg-purple-100',
+      iconColor: 'text-purple-600',
+    },
+  ],
 };
 
 // Validate data
@@ -37,8 +77,8 @@ try {
 
 // Virtual Counsel waarden en filosofie
 export const aboutValuesSectionData = {
-  badgeText: 'Onze waarden',
-  heading: 'De principes die ons werk sturen',
+  badgeText: 'Mijn waarden',
+  heading: 'De principes die mijn werk sturen',
   values: [
     'Tech-first denken: Juridisch advies dat aansluit bij moderne software ontwikkeling',
     'Transparantie: Vaste prijzen en duidelijke afspraken - geen verrassingen',
@@ -60,7 +100,7 @@ export const aboutSocialProofSectionData = {
       name: 'Thomas K.',
       title: 'CTO, CloudScale Solutions',
       image: {
-        src: '/images/testimonials/placeholder-client-1.jpg',
+        src: '/images/placeholders/placeholder.svg',
         alt: 'Thomas K. - CTO CloudScale Solutions',
         width: 60,
         height: 60,
@@ -73,7 +113,7 @@ export const aboutSocialProofSectionData = {
       name: 'Linda M.',
       title: 'Legal Counsel, DataFlow B.V.',
       image: {
-        src: '/images/testimonials/placeholder-client-2.jpg',
+        src: '/images/placeholders/placeholder.svg',
         alt: 'Linda M. - Legal Counsel DataFlow',
         width: 60,
         height: 60,
@@ -86,7 +126,7 @@ export const aboutSocialProofSectionData = {
       name: 'Pieter V.',
       title: 'Founder & CEO, TechStart',
       image: {
-        src: '/images/testimonials/placeholder-client-3.jpg',
+        src: '/images/placeholders/placeholder.svg',
         alt: 'Pieter V. - Founder TechStart',
         width: 60,
         height: 60,

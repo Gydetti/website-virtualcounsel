@@ -228,7 +228,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const textStyleClass = `text-style-${mergedTheme.typography.textStyle}`;
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="overflow-x-hidden">
       <head>
         <style>{`:root {${themeCssVars}}`}</style>
         {/* `viewport` meta will be injected by Next.js and the metadata API */}

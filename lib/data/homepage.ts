@@ -38,7 +38,7 @@ export const heroSectionData: z.infer<typeof heroSectionDataSchema> = {
     { value: 2, suffix: ' weken', label: 'Gemiddelde levertijd' },
   ],
   image: {
-    src: '/images/team/virtual-counsel-maarten-hero.webp',
+    src: '/images/team/virtual-counsel-maarten-hero-hq.webp',
     alt: 'Maarten van Beek - VirtualCounsel juridisch advies',
   },
   showHelpedStats: true,
@@ -167,7 +167,7 @@ export const testimonialsSectionData: z.infer<typeof testimonialsSectionDataSche
       name: 'Tim van Dalen',
       title: 'CEO, Tech Startup',
       image: {
-        src: '/images/placeholders/testimonial-1.jpg',
+        src: '/images/placeholders/placeholder.svg',
         alt: 'Tim van Dalen',
       },
       rating: 5,
@@ -179,7 +179,7 @@ export const testimonialsSectionData: z.infer<typeof testimonialsSectionDataSche
       name: 'Sarah Janssen',
       title: 'Legal Manager, SaaS Provider',
       image: {
-        src: '/images/placeholders/testimonial-2.jpg',
+        src: '/images/placeholders/placeholder.svg',
         alt: 'Sarah Janssen',
       },
       rating: 5,
@@ -191,7 +191,7 @@ export const testimonialsSectionData: z.infer<typeof testimonialsSectionDataSche
       name: 'Erik Vermeer',
       title: 'CTO, Software Bureau',
       image: {
-        src: '/images/placeholders/testimonial-3.jpg',
+        src: '/images/placeholders/placeholder.svg',
         alt: 'Erik Vermeer',
       },
       rating: 5,
@@ -237,7 +237,7 @@ export const solutionVisionSectionData: z.infer<typeof solutionVisionSectionData
   heading: 'Concrete juridische bescherming in 4 stappen',
   description:
     'Met VirtualCounsel krijgt u een juridische partner die uw business begrijpt en met u meedenkt.',
-  imagineTitle: 'Stel u voor:',
+  imagineTitle: 'Hoe het ook kan zijn:',
   benefits: [
     'Contracten die perfect aansluiten bij uw businessmodel',
     'Een jurist die uw technische taal spreekt',
@@ -346,7 +346,7 @@ export const homepageFaqSectionData: z.infer<typeof homepageFaqSectionDataSchema
             'De meeste documenten lever ik binnen 1-2 weken. Voor complexe projecten maak ik vooraf een realistische planning met u.',
         },
         {
-          question: 'Bieden jullie ook doorlopend juridisch advies?',
+          question: 'Bied jij ook doorlopend juridisch advies?',
           answer:
             'Ja, veel klanten kiezen voor een strippenkaart of abonnement voor doorlopende juridische ondersteuning. Dit bespreek ik graag tijdens het kennismakingsgesprek.',
         },
@@ -356,7 +356,7 @@ export const homepageFaqSectionData: z.infer<typeof homepageFaqSectionDataSchema
       category: 'Tarieven',
       questions: [
         {
-          question: 'Wat zijn jullie tarieven?',
+          question: 'Wat zijn jouw tarieven?',
           answer:
             'Ik werk met vaste prijzen per project, zodat u vooraf weet waar u aan toe bent. De prijs is afhankelijk van de complexiteit en omvang. Geen uurtje-factuurtje of nacalculaties.',
         },
@@ -406,7 +406,7 @@ export const aboutSectionData: z.infer<typeof aboutSectionDataSchema> = {
     'Mijn klanten waarderen vooral de combinatie van diepgaande juridische kennis en begrip voor hun business. Geen eindeloze discussies over technische details, maar direct to-the-point advies dat werkt.',
   ],
   image: {
-    src: '/images/team/virtual-counsel-maarten-about1.webp',
+    src: '/images/team/virtual-counsel-maarten-about2-hq.webp',
     alt: 'Maarten van Beek - Oprichter VirtualCounsel',
   },
   variant: 'imageRight',
@@ -422,7 +422,7 @@ export const aboutSectionData: z.infer<typeof aboutSectionDataSchema> = {
   cta: { text: 'Meer over mijn aanpak', href: '/about' },
   philosophy: {
     title: 'Mijn filosofie',
-    text: 'Juridisch advies moet uw business vooruit helpen, niet vertragen. Daarom werk ik pragmatisch, snel en altijd met uw commerciële doelen in gedachten. Geen juridisch geneuzel, maar concrete oplossingen.',
+    text: 'Juridisch advies moet uw organisatie vooruit helpen, niet vertragen. Daarom werk ik pragmatisch, snel en altijd met uw commerciële doelen in gedachten. Geen juridisch geneuzel, maar concrete oplossingen.',
   },
   learnMoreText: 'Leer mij beter kennen',
   featureCards: [

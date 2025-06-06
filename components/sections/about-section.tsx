@@ -1,416 +1,229 @@
 'use client';
 
-import { ArrowRight, CheckCircle, Star } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import type { z } from 'zod';
 
 import { Section } from '@/components/layout/Section';
-import KpiSection from '@/components/sections/kpi-section';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import LazySection from '@/components/ui/lazy-section';
 import OptimizedImage from '@/components/ui/optimized-image';
-import * as homepageData from '@/lib/data/homepage';
+import { useThemeBorderRadius } from '@/hooks/use-theme-border-radius';
+import { DEFAULT_PLACEHOLDER_IMAGE } from '@/lib/constants';
 import type { aboutSectionDataSchema } from '@/lib/schemas/sections.schema';
 import { siteConfig } from '@/lib/site.config.local';
 import { cn } from '@/lib/utils';
+import { parseMarkdownParts } from '@/lib/utils/text-formatting';
 
-// Updated props type alias using Zod schema
 export type AboutSectionProps = z.infer<typeof aboutSectionDataSchema> & {
-  variant?: 'imageLeft' | 'imageRight' | 'centered' | 'classic';
+  isHomepage?: boolean;
   philosophy?: {
     title: string;
     text: string;
   };
-  featureCards?: {
-    id: string;
-    title: string;
-    description: string;
-    icon: string;
-    iconBg: string;
-    iconColor: string;
-  }[];
   patternStyle?: string;
   patternOpacity?: number;
-  isHomepage?: boolean;
-  learnMoreText?: string;
 };
 
 export default function AboutSection({
-  variant = 'imageLeft',
   badgeText,
   heading,
   paragraphs,
   image,
-  stats,
   cta,
   philosophy,
-  featureCards,
+  isHomepage = false,
   patternStyle,
   patternOpacity,
-  isHomepage = false,
-  learnMoreText,
 }: AboutSectionProps) {
-  const containerClasses =
-    'max-w-[var(--container-max-width)] mx-auto px-4 sm:px-6 md:px-8 xl:px-20';
-  const contentPaddingClass = isHomepage ? 'mb-8' : 'mb-10';
+  const { getBorderRadiusClass } = useThemeBorderRadius();
 
-  // Get header configuration to add extra padding if transparent mode is enabled
+  // Get header configuration for transparent header support
   const headerConfig = siteConfig.theme.headerConfig;
   const isTransparentHeader = headerConfig?.transparentMode ?? false;
   const heroTopPadding = headerConfig?.heroTopPadding ?? 'pt-20 md:pt-24 lg:pt-28';
 
-  // Debug logging in development for about section
-  if (process.env.NODE_ENV === 'development') {
-    console.log('About Section - Transparent Header:', {
-      isTransparentHeader,
-      heroTopPadding,
-      isHomepage,
-      headerConfig,
-    });
-  }
-
-  // Determine spacing and layout based on variant
-  let outerContainerClass = 'w-full grid gap-8 md:gap-12 lg:gap-16 items-center';
-  let imageOrderClass = '';
-  let contentOrderClass = '';
-
-  if (variant === 'centered') {
-    outerContainerClass = 'grid grid-cols-1 gap-12 items-center text-center';
-    imageOrderClass = 'md:col-start-1';
-    contentOrderClass = 'md:col-start-2';
-  } else if (variant === 'imageRight') {
-    outerContainerClass = 'grid md:grid-cols-2 gap-12 items-center';
-    imageOrderClass = 'md:col-start-2';
-    contentOrderClass = 'md:col-start-1 flex flex-col justify-center';
-  } else if (variant === 'classic') {
-    outerContainerClass = 'grid md:grid-cols-2 gap-12 items-center';
-    imageOrderClass = 'md:col-start-1';
-    contentOrderClass = 'md:col-start-2 flex flex-col justify-center';
-  }
-
-  // ✅ Enhanced image rendering logic with circle detection and drop shadows
-  const renderImage = () => {
-    if (!image?.src) {
-      console.warn('Image source is missing. Using placeholder.');
-      return (
-        <AspectRatio ratio={6 / 5} className="overflow-visible rounded-xl shadow-2xl relative">
-          <OptimizedImage
-            src="/images/placeholders/placeholder.svg"
-            alt="Placeholder image representing company or team"
-            fill
-            sizes="(max-width: 600px) 100vw, 600px"
-            className="absolute inset-0 object-cover rounded-xl"
-            priority
-          />
-        </AspectRatio>
-      );
-    }
-
-    // ✅ CRITICAL: Detect circle images by filename
-    const isCircleImage = image.src.includes('circle');
-
-    if (isCircleImage) {
-      // ✅ CORRECT implementation for round images
-      return (
-        <div className="flex justify-center p-4">
-          {' '}
-          {/* Padding for shadow space */}
-          <OptimizedImage
-            src={image.src}
-            alt={image.alt || 'About our company representative'}
-            width={600} // Determines max size - important!
-            height={600} // Must match desired max size
-            sizes="(max-width: 640px) 90vw, (max-width: 768px) 400px, 600px" // Responsive sizes
-            className="max-w-full h-auto rounded-full" // NO shadow-* classes here!
-            dropShadow="drop-shadow-[0_25px_50px_rgba(0,0,0,0.25)]" // Strong custom shadow
-            priority
-          />
-        </div>
-      );
-    }
-
-    // ✅ For regular (non-circle) images, keep AspectRatio
-    return (
-      <AspectRatio ratio={6 / 5} className="overflow-visible rounded-xl shadow-2xl relative">
-        <OptimizedImage
-          src={image.src}
-          alt={image.alt || 'About our company'}
-          fill
-          sizes="(max-width: 600px) 100vw, 600px"
-          className="absolute inset-0 object-cover rounded-xl"
-          priority
-        />
-      </AspectRatio>
-    );
-  };
-
-  // Legacy 'classic' two-column layout with image left and original content
-  if (variant === 'classic') {
+  if (isHomepage) {
+    // Homepage version: Image left, text right, philosophy section below with dark background
+    // Note: Homepage about section doesn't need hero top padding since it's not at the top
     return (
       <Section
         id="about"
         bgClass={siteConfig.sectionStyles?.heroGradient ?? ''}
         patternStyle={patternStyle}
         patternOpacity={patternOpacity}
-        className={cn(
-          'relative z-10',
-          isHomepage && 'md:min-h-[880px] flex items-center',
-          isTransparentHeader && !isHomepage && heroTopPadding
-        )}
+        className="relative z-10"
       >
-        {/* Badge and heading above the grid layout */}
-        {badgeText && (
-          <LazySection
-            animation="fade-up"
-            delay={0.2}
-            className={`text-center ${contentPaddingClass}`}
-          >
-            <Badge className="mb-4">{badgeText}</Badge>
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+          {/* Image on left */}
+          <LazySection animation="slide-up" delay={0}>
+            <div className="relative">
+              <AspectRatio ratio={5 / 6}>
+                <OptimizedImage
+                  src={image?.src || DEFAULT_PLACEHOLDER_IMAGE}
+                  alt={image?.alt || 'About our company'}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className={cn(getBorderRadiusClass('image'), 'object-[30%_center]')}
+                  priority={isHomepage}
+                  objectFit="cover"
+                />
+              </AspectRatio>
+            </div>
           </LazySection>
-        )}
-        {heading && (
-          <LazySection
-            animation="fade-up"
-            delay={0.3}
-            className={`text-center ${contentPaddingClass}`}
-          >
-            {isHomepage ? (
-              <h2 className="text-heading mb-8">{heading}</h2>
-            ) : (
-              <h1 className="text-heading">{heading}</h1>
-            )}
-          </LazySection>
-        )}
-        <div className={outerContainerClass}>
-          <LazySection
-            animation="slide-up"
-            delay={0}
-            className={`${imageOrderClass} md:row-start-1`}
-          >
-            {renderImage()}
-          </LazySection>
-          <LazySection
-            animation="slide-up"
-            delay={0.1}
-            className={`${contentOrderClass} md:row-start-1`}
-          >
-            {!isHomepage && paragraphs && paragraphs.length > 0 && (
-              <LazySection animation="fade-up" delay={0.4}>
-                {paragraphs.map(p => (
-                  <p key={p.slice(0, 16)} className="text-neutral-text mb-6 last:mb-8">
-                    {p}
-                  </p>
-                ))}
-              </LazySection>
-            )}
-            {!isHomepage && stats && stats.length > 0 && (
-              <LazySection animation="fade-up" delay={0.5}>
-                <div className="grid grid-cols-2 gap-4 mb-8">
-                  {stats.map(stat => (
-                    <div
-                      key={stat.id}
-                      className="bg-neutral-surface p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow"
-                    >
-                      <div className="font-bold text-primary text-xl">{stat.value}</div>
-                      <div className="text-neutral-text">{stat.label}</div>
-                    </div>
-                  ))}
-                </div>
-              </LazySection>
-            )}
-            {philosophy && (
-              <LazySection animation="fade-up" delay={0.4} className="mt-8">
-                <div className="rounded-xl border bg-neutral-background p-8 shadow-sm hover:shadow-md transition-shadow">
-                  <h2 className="text-xl font-semibold text-neutral-text">{philosophy.title}</h2>
-                  <p className="text-body-lg">{philosophy.text}</p>
-                  {/* Learn More CTA Button inside philosophy card */}
-                  {isHomepage && siteConfig.features.enableAboutLearnMoreCta && (
-                    <div className="mt-6 text-left">
-                      <Button
-                        size="lg"
-                        variant="white"
-                        animation="none"
-                        className="hover:scale-100 hover:shadow-none hover:-translate-y-0"
-                        asChild
-                      >
-                        <Link href="/about">
-                          {learnMoreText || 'Leer mij beter kennen'}
-                          <ArrowRight className="ml-2 size-4" />
-                        </Link>
-                      </Button>
-                    </div>
-                  )}
-                </div>
-              </LazySection>
-            )}
-            {/* Remove standalone button - now integrated into philosophy card */}
-            {siteConfig.features.enableAboutHeroCta && cta?.href && cta?.text && (
-              <LazySection animation="fade-up" delay={0.6}>
-                <Button size="lg" variant="white" asChild>
-                  <Link href={cta.href}>
-                    {cta.text}
-                    <ArrowRight className="ml-2 size-4" />
-                  </Link>
-                </Button>
-              </LazySection>
-            )}
-            {featureCards && featureCards.length > 0 && (
-              <LazySection animation="fade-up" delay={0.6} className="mt-8">
-                <div className="grid gap-4 sm:grid-cols-2">
-                  {featureCards.map(card => {
-                    const Icon = card.icon === 'Star' ? Star : CheckCircle;
+
+          {/* Content on right */}
+          <div className="space-y-8">
+            <LazySection animation="slide-up" delay={0.1} className="space-y-6">
+              {badgeText && <Badge className="mb-4">{badgeText}</Badge>}
+
+              {heading && (
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight">
+                  {heading}
+                </h2>
+              )}
+
+              {paragraphs && paragraphs.length > 0 && (
+                <div className="space-y-4">
+                  {paragraphs.slice(0, 2).map(paragraph => {
+                    const parts = parseMarkdownParts(paragraph);
                     return (
-                      <div
-                        key={card.id}
-                        className="rounded-xl border bg-neutral-surface p-6 shadow-sm hover:shadow-md transition-shadow"
+                      <p
+                        key={paragraph.slice(0, 20)}
+                        className="text-lg leading-relaxed text-foreground/80"
                       >
-                        <div
-                          className={`flex size-12 items-center justify-center rounded-full ${card.iconBg}`}
-                        >
-                          <Icon className={`${card.iconColor} size-6`} />
-                        </div>
-                        <h3 className="mt-4 text-lg font-semibold text-neutral-text">
-                          {card.title}
-                        </h3>
-                        <p className="text-card-description">{card.description}</p>
-                      </div>
+                        {parts.map((part, index) =>
+                          part.isBold ? (
+                            <strong
+                              key={`${paragraph.slice(0, 10)}-${index}`}
+                              className="font-semibold text-primary-dark"
+                            >
+                              {part.text}
+                            </strong>
+                          ) : (
+                            part.text
+                          )
+                        )}
+                      </p>
                     );
                   })}
                 </div>
+              )}
+            </LazySection>
+
+            {/* Philosophy section with dark brand background */}
+            {philosophy && (
+              <LazySection animation="slide-up" delay={0.2}>
+                <div
+                  className={cn(
+                    'p-6 lg:p-8',
+                    getBorderRadiusClass('card'),
+                    'bg-brand-secondary-dark text-white relative overflow-hidden'
+                  )}
+                >
+                  {/* Subtle pattern overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
+
+                  <div className="relative z-10">
+                    <h3 className="text-xl font-semibold mb-4 text-white">{philosophy.title}</h3>
+                    <p className="text-white/90 leading-relaxed mb-6">{philosophy.text}</p>
+
+                    {/* Button to about page */}
+                    <Button
+                      variant="outline"
+                      className="border-white/30 text-white hover:bg-white/10 hover:border-white/60 transition-all duration-200"
+                      animation="none"
+                      asChild
+                    >
+                      <Link href="/about">
+                        Meer over mij
+                        <ArrowRight className="ml-2 size-4" />
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
               </LazySection>
             )}
-          </LazySection>
+          </div>
         </div>
-        {isHomepage && siteConfig.features.enableAboutKpiSection && (
-          <LazySection animation="fade-up" delay={0.3} className="w-full mt-20">
-            <KpiSection stats={homepageData.kpiSectionData.stats} embedInAbout />
-          </LazySection>
-        )}
       </Section>
     );
   }
 
+  // About page version: Image left, title and text on right (simple layout)
+  // Note: About page gets hero padding because it's the first section and needs to account for transparent header
   return (
     <Section
       id="about"
       bgClass={siteConfig.sectionStyles?.heroGradient ?? ''}
       patternStyle={patternStyle}
       patternOpacity={patternOpacity}
-      className={cn(
-        'relative z-10',
-        isHomepage && 'md:min-h-[880px] flex items-center',
-        isTransparentHeader && !isHomepage && heroTopPadding
-      )}
+      className={cn('relative z-10', isTransparentHeader && heroTopPadding)}
     >
-      {/* Badge and heading above the grid layout */}
-      {badgeText && (
-        <LazySection
-          animation="fade-up"
-          delay={0.2}
-          className={`text-center ${contentPaddingClass}`}
-        >
-          <Badge className="mb-4">{badgeText}</Badge>
+      <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        {/* Image on left */}
+        <LazySection animation="slide-up" delay={0}>
+          <div className="relative">
+            <AspectRatio ratio={5 / 6}>
+              <OptimizedImage
+                src={image?.src || DEFAULT_PLACEHOLDER_IMAGE}
+                alt={image?.alt || 'About our company'}
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className={getBorderRadiusClass('image')}
+                priority
+                objectFit="cover"
+              />
+            </AspectRatio>
+          </div>
         </LazySection>
-      )}
-      {heading && (
-        <LazySection
-          animation="fade-up"
-          delay={0.3}
-          className={`text-center ${contentPaddingClass}`}
-        >
-          {isHomepage ? (
-            <h2 className="text-heading">{heading}</h2>
-          ) : (
-            <h1 className="text-heading">{heading}</h1>
-          )}
-        </LazySection>
-      )}
-      <div className={outerContainerClass}>
-        <LazySection
-          animation="slide-up"
-          delay={variant === 'imageRight' ? 0.3 : 0}
-          className={`${imageOrderClass} md:row-start-1`}
-        >
-          {renderImage()}
-        </LazySection>
-        <LazySection
-          animation="slide-up"
-          delay={variant === 'imageRight' ? 0.1 : 0.1}
-          className={`${contentOrderClass} md:row-start-1 ${variant === 'imageRight' ? contentPaddingClass : ''}`}
-        >
-          {!isHomepage && paragraphs && paragraphs.length > 0 && (
-            <LazySection animation="fade-up" delay={0.4}>
-              {paragraphs.map(p => (
-                <p key={p.slice(0, 16)} className="text-neutral-text mb-6 last:mb-8">
-                  {p}
-                </p>
-              ))}
-            </LazySection>
-          )}
-          {philosophy && (
-            <div className="rounded-xl border bg-neutral-background p-8 shadow-sm hover:shadow-md transition-shadow mb-6">
-              <h2 className="text-xl font-semibold text-neutral-text">{philosophy.title}</h2>
-              <p className="text-body-lg">{philosophy.text}</p>
-              {/* Learn More CTA Button inside philosophy card */}
-              {isHomepage && siteConfig.features.enableAboutLearnMoreCta && (
-                <div className="mt-6 text-left">
-                  <Button
-                    size="lg"
-                    variant="white"
-                    animation="none"
-                    className="hover:scale-100 hover:shadow-none hover:-translate-y-0"
-                    asChild
-                  >
-                    <Link href="/about">
-                      {learnMoreText || 'Leer mij beter kennen'}
-                      <ArrowRight className="ml-2 size-4" />
-                    </Link>
-                  </Button>
-                </div>
-              )}
-            </div>
-          )}
-          {/* Remove standalone button - now integrated into philosophy card */}
-          {siteConfig.features.enableAboutHeroCta && cta?.href && cta?.text && (
-            <LazySection animation="fade-up" delay={0.6}>
-              <Button size="lg" variant="white" asChild>
-                <Link href={cta.href}>
-                  {cta.text}
-                  <ArrowRight className="ml-2 size-4" />
-                </Link>
-              </Button>
-            </LazySection>
-          )}
-          {featureCards && featureCards.length > 0 && (
-            <div className="grid gap-4 sm:grid-cols-2 mt-8">
-              {featureCards.map(card => {
-                const Icon = card.icon === 'Star' ? Star : CheckCircle;
+
+        {/* Content on right */}
+        <LazySection animation="slide-up" delay={0.1} className="space-y-6">
+          {badgeText && <Badge className="mb-4">{badgeText}</Badge>}
+
+          {heading && <h1 className="">{heading}</h1>}
+
+          {paragraphs && paragraphs.length > 0 && (
+            <div className="space-y-6">
+              {paragraphs.map(paragraph => {
+                const parts = parseMarkdownParts(paragraph);
                 return (
-                  <div
-                    key={card.id}
-                    className="rounded-xl border bg-neutral-surface p-6 shadow-sm hover:shadow-md transition-shadow"
+                  <p
+                    key={paragraph.slice(0, 20)}
+                    className="text-lg leading-relaxed text-foreground/80"
                   >
-                    <div
-                      className={`flex size-12 items-center justify-center rounded-full ${card.iconBg}`}
-                    >
-                      <Icon className={`${card.iconColor} size-6`} />
-                    </div>
-                    <h3 className="mt-4 text-lg font-semibold text-neutral-text">{card.title}</h3>
-                    <p className="text-card-description">{card.description}</p>
-                  </div>
+                    {parts.map((part, index) =>
+                      part.isBold ? (
+                        <strong
+                          key={`${paragraph.slice(0, 10)}-${index}`}
+                          className="font-semibold text-primary-dark"
+                        >
+                          {part.text}
+                        </strong>
+                      ) : (
+                        part.text
+                      )
+                    )}
+                  </p>
                 );
               })}
             </div>
           )}
+
+          {cta?.href && cta?.text && (
+            <Button size="lg" className="mt-8" asChild>
+              <Link href={cta.href}>
+                {cta.text}
+                <ArrowRight className="ml-2 size-4" />
+              </Link>
+            </Button>
+          )}
         </LazySection>
       </div>
-      {isHomepage && siteConfig.features.enableAboutKpiSection && (
-        <LazySection animation="fade-up" delay={0.3} className="w-full mt-20">
-          <KpiSection stats={homepageData.kpiSectionData.stats} embedInAbout />
-        </LazySection>
-      )}
     </Section>
   );
 }

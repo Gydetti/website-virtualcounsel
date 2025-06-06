@@ -1,63 +1,123 @@
+'use client';
+
+import { Quote, Star } from 'lucide-react';
 import type { CSSProperties } from 'react';
 import type { z } from 'zod';
 
+import type { SectionProps } from '@/components/layout/Section';
 import { Section } from '@/components/layout/Section';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { Badge } from '@/components/ui/badge';
 import LazySection from '@/components/ui/lazy-section';
 import OptimizedImage from '@/components/ui/optimized-image';
+import { useThemeBorderRadius } from '@/hooks/use-theme-border-radius';
+import { DEFAULT_PLACEHOLDER_IMAGE } from '@/lib/constants';
 import type { aboutSocialProofSectionDataSchema } from '@/lib/schemas/sections.schema';
 
-export type AboutSocialProofSectionProps = z.infer<typeof aboutSocialProofSectionDataSchema>;
+export type AboutSocialProofSectionProps = z.infer<typeof aboutSocialProofSectionDataSchema> & {
+  patternStyle?: string;
+  patternOpacity?: number;
+  patternFade?: SectionProps['patternFade'];
+  patternColor?: string;
+};
 
 export default function AboutSocialProofSection({
   badgeText,
   heading,
   socialProof,
+  patternStyle,
+  patternOpacity,
+  patternFade,
+  patternColor,
 }: AboutSocialProofSectionProps) {
+  const { getElementBorderRadius } = useThemeBorderRadius();
+
   return (
-    <Section id="about-social-proof" className="py-12 bg-background">
-      <LazySection
-        animation="none"
-        className="stagger-container max-w-4xl mx-auto text-center"
-        style={{ '--stagger-delay': '0.1s' } as CSSProperties}
-      >
+    <Section
+      id="about-social-proof"
+      patternStyle={patternStyle}
+      patternOpacity={patternOpacity}
+      patternFade={patternFade}
+      patternColor={patternColor}
+      className="relative z-10 py-16"
+    >
+      {/* Header */}
+      <div className="text-center mb-16">
         {badgeText && (
-          <Badge className="mb-4" style={{ '--index': 0 } as CSSProperties}>
-            {badgeText}
-          </Badge>
+          <LazySection animation="fade-up" delay={0.1}>
+            <Badge className="mb-4">{badgeText}</Badge>
+          </LazySection>
         )}
         {heading && (
-          <h3 className="mb-6" style={{ '--index': 1 } as CSSProperties}>
-            {heading}
-          </h3>
+          <LazySection animation="fade-up" delay={0.2}>
+            <h2 className="text-heading mb-4">{heading}</h2>
+          </LazySection>
         )}
-        <div
-          className="grid grid-cols-1 sm:grid-cols-2 gap-8"
-          style={{ '--index': 2 } as CSSProperties}
-        >
-          {socialProof.map((item, idx) => (
+      </div>
+
+      {/* Social Proof Grid */}
+      <LazySection
+        childrenStagger={true}
+        delay={0.3}
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch"
+        style={{ '--stagger-delay': '0.1s' } as CSSProperties}
+      >
+        {socialProof.map((testimonial, index) => (
+          <div
+            key={testimonial.id}
+            className="h-full"
+            style={{ '--index': index } as CSSProperties}
+          >
             <div
-              key={item.id}
-              className="p-6 bg-neutral-surface rounded-lg shadow hover:shadow-md transition-shadow"
-              style={{ '--index': 3 + idx } as CSSProperties}
+              className={`bg-neutral-surface border ${getElementBorderRadius('section')} p-8 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 h-full flex flex-col`}
             >
-              {item.image?.src && (
-                <div className="mb-4 flex justify-center">
-                  <OptimizedImage
-                    src={item.image.src}
-                    alt={item.image.alt || item.name}
-                    width={60}
-                    height={60}
-                    className="rounded-full"
-                  />
+              {/* Quote Icon */}
+              <div className="mb-6">
+                <Quote className="size-8 text-primary" />
+              </div>
+
+              {/* Quote Text */}
+              <div className="flex-1 mb-6">
+                <blockquote className="text-neutral-text leading-relaxed">
+                  "{testimonial.quote}"
+                </blockquote>
+              </div>
+
+              {/* Author Info */}
+              <div className="flex items-center gap-4">
+                {testimonial.image?.src && (
+                  <div className="size-12 shrink-0">
+                    <AspectRatio ratio={1} className="overflow-hidden rounded-full">
+                      <OptimizedImage
+                        src={testimonial.image.src}
+                        alt={testimonial.image.alt || `${testimonial.name} - testimonial`}
+                        fill
+                        sizes="48px"
+                        className="size-full object-cover"
+                      />
+                    </AspectRatio>
+                  </div>
+                )}
+                <div className="flex-1">
+                  <div className="font-semibold text-neutral-text">{testimonial.name}</div>
+                  {testimonial.title && (
+                    <div className="text-sm text-neutral-text/70">{testimonial.title}</div>
+                  )}
                 </div>
-              )}
-              <p className="italic text-foreground mb-4">"{item.quote}"</p>
-              <div className="font-semibold text-neutral-text">{item.name}</div>
-              {item.title && <div className="text-neutral-text/500 text-sm">{item.title}</div>}
+              </div>
+
+              {/* Star Rating (Optional visual enhancement) */}
+              <div className="flex gap-1 mt-4 justify-end">
+                {[...Array(5)].map((_, i) => (
+                  <Star
+                    key={`star-${testimonial.id}-${i}`}
+                    className="size-4 text-yellow-400 fill-current"
+                  />
+                ))}
+              </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </LazySection>
     </Section>
   );

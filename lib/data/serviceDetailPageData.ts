@@ -63,7 +63,7 @@ export const serviceDetailPageData: ServiceDetailData = {
           'Na oplevering heeft u 5 werkdagen om feedback te geven. We verwerken uw feedback kosteloos (mits binnen scope). Daarna bespreken we de definitieve versie telefonisch door zodat u precies weet wat er staat.',
       },
       {
-        question: 'Zijn jullie documenten up-to-date?',
+        question: 'Zijn jouw documenten up-to-date?',
         answer:
           'Absoluut. Ik volg alle relevante wetgeving op de voet - van AVG updates tot de nieuwe AI Act. Uw documenten voldoen altijd aan de laatste wettelijke vereisten en best practices in de tech-industrie.',
       },
@@ -459,7 +459,7 @@ export const servicesDetailData: Record<string, ServiceDetailData> = {
             'Essentieel zijn: gebruiksrechten, uptime-garanties, data-eigendom, privacy, aansprakelijkheidsbeperking, betalingsvoorwaarden en beëindigingsafspraken. Ik zorg dat alle elementen kloppen en aansluiten bij uw specifieke SaaS-model - of u nu B2B of B2C werkt.',
         },
         {
-          question: 'Kunnen jullie ook internationale contracten maken?',
+          question: 'Kan je ook internationale contracten maken?',
           answer:
             'Jazeker. Ik maak Engelstalige contracten voor internationale klanten, rekening houdend met verschillende rechtssystemen. Voor complexe internationale deals werk ik samen met lokale specialisten om volledige dekking te garanderen.',
         },

@@ -160,6 +160,30 @@ export const aboutSectionDataSchema = z.object({
   patternColor: z.string().optional(),
 });
 
+export const aboutFeatureCardsSectionDataSchema = z.object({
+  badgeText: z.string().optional(),
+  heading: z.string().optional(),
+  subheading: z.string().optional(),
+  featureCards: z.array(
+    z.object({
+      id: z.string(),
+      title: z.string(),
+      description: z.string(),
+      icon: z.string(),
+      iconBg: z.string(),
+      iconColor: z.string(),
+    })
+  ),
+  // Optional per-section background pattern overrides
+  patternStyle: z
+    .enum(['none', 'dots', 'grid', 'waves', 'noise', 'triangles', 'hexagons', 'crosshatch'])
+    .optional(),
+  patternOpacity: z.number().min(0).max(1).optional(),
+  patternFade: z.enum(['none', 'edges', 'vertical', 'top', 'bottom']).optional(),
+  // Optional per-section pattern color override (any valid CSS color string)
+  patternColor: z.string().optional(),
+});
+
 export const processStepSchema = z.object({
   id: z.string().min(1, 'Step ID cannot be empty'),
   number: z

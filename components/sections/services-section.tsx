@@ -89,10 +89,6 @@ export default function ServicesSection({
       patternFade={patternFade}
       patternColor={patternColor}
     >
-      {/* Decorative elements - re-enabled and styled with theme colors */}
-      <div className="hidden sm:block absolute top-0 right-0 size-64 bg-primary/3 rounded-full -translate-y-1/3 translate-x-1/3 blur-3xl pointer-events-none" />
-      <div className="hidden sm:block absolute bottom-0 left-0 size-72 bg-secondary/3 rounded-full translate-y-1/3 -translate-x-1/3 blur-3xl pointer-events-none" />
-
       <div className="relative z-10">
         {/* Header CSS-only stagger */}
         <LazySection
@@ -157,7 +153,7 @@ export default function ServicesSection({
                     <ul className="space-y-3">
                       {service.features?.map(feature => (
                         <li key={feature} className="flex items-start">
-                          <span className="text-feedback-success mr-3 shrink-0 mt-0.5">
+                          <span className="text-primary mr-3 shrink-0 mt-0.5">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               width="24"

@@ -129,6 +129,29 @@ export default async function ServicePage(props: ServicePageProps) {
         </Section>
       )}
 
+      {/* CTA Section */}
+      <Section className="bg-primary text-white">
+        <div className="text-center max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            {serviceDetailData.readyToStartCta.heading}
+          </h2>
+          <p className="text-xl mb-8 text-white/90">
+            {serviceDetailData.readyToStartCta.description}
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" variant="white" className="group" asChild>
+              <Link href={serviceDetailData.readyToStartCta.buttonLink || '/contact'}>
+                {serviceDetailData.readyToStartCta.buttonText}
+                <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </Button>
+            <Button size="lg" variant="white" className="opacity-90 hover:opacity-100" asChild>
+              <Link href="tel:+31611718358">Bel direct: 06 11718358</Link>
+            </Button>
+          </div>
+        </div>
+      </Section>
+
       {/* Unique Value Section */}
       {serviceDetailData.uniqueValue && (
         <Section>
@@ -218,29 +241,6 @@ export default async function ServicePage(props: ServicePageProps) {
           </div>
         </Section>
       )}
-
-      {/* CTA Section */}
-      <Section className="bg-primary text-white">
-        <div className="text-center max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            {serviceDetailData.readyToStartCta.heading}
-          </h2>
-          <p className="text-xl mb-8 text-white/90">
-            {serviceDetailData.readyToStartCta.description}
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="white" className="group" asChild>
-              <Link href={serviceDetailData.readyToStartCta.buttonLink || '/contact'}>
-                {serviceDetailData.readyToStartCta.buttonText}
-                <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </Button>
-            <Button size="lg" variant="white" className="opacity-90 hover:opacity-100" asChild>
-              <Link href="tel:+31611718358">Bel direct: 06 11718358</Link>
-            </Button>
-          </div>
-        </div>
-      </Section>
     </>
   );
 }

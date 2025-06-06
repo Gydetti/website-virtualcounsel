@@ -303,6 +303,54 @@
   .card-elevation-3 {
     box-shadow: var(--shadow-pronounced);
   }
+
+  /* Optimized card grid utilities - prevents excessive horizontal spacing */
+  .card-grid-optimized-2 {
+    display: grid;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 100%;
+    margin: auto;
+    grid-template-columns: 1fr;
+  }
+
+  .card-grid-optimized-3 {
+    display: grid;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 100%;
+    margin: auto;
+    grid-template-columns: 1fr;
+  }
+
+  .card-grid-optimized-4 {
+    display: grid;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 100%;
+    margin: auto;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 768px) {
+    .card-grid-optimized-2 {
+      grid-template-columns: repeat(2, minmax(0, 384px));
+      justify-content: center;
+      max-width: calc((384px * 2) + 1.5rem) !important;
+    }
+
+    .card-grid-optimized-3 {
+      grid-template-columns: repeat(3, minmax(0, 320px));
+      justify-content: center;
+      max-width: calc((320px * 3) + (1.5rem * 2)) !important;
+    }
+
+    .card-grid-optimized-4 {
+      grid-template-columns: repeat(4, minmax(0, 280px));
+      justify-content: center;
+      max-width: calc((280px * 4) + (1.5rem * 3)) !important;
+    }
+  }
 }
 
 /* Custom classes without @apply to avoid potential syntax issues */

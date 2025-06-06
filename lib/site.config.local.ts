@@ -173,7 +173,7 @@ export const siteConfig: SiteConfigSchema = {
   navLinks: [
     { text: 'Home', href: '/' },
     { text: 'Diensten', href: '/services' },
-    { text: 'Over Mij', href: '/about' },
+    { text: 'Over mij', href: '/about' },
     { text: 'Succesverhalen', href: '/testimonials' },
     { text: 'Blog', href: '/blog' },
     { text: 'Contact', href: '/contact' },
@@ -280,7 +280,7 @@ export const siteConfig: SiteConfigSchema = {
 
     // Sections
     enableHeroSection: true,
-    enableHeroStats: true, // Enable KPI stats bar in hero section
+    enableHeroStats: false, // Enable KPI stats bar in hero section
     enableBlog: true, // Blog enabled for content marketing
     enableServices: true, // All 8 services enabled
     enableContactForm: true,
@@ -306,7 +306,8 @@ export const siteConfig: SiteConfigSchema = {
   },
   // SECTION STYLES: Utility classes for special sections
   sectionStyles: {
-    heroGradient: 'bg-gradient-to-r from-white via-blue-50/50 to-white',
+    heroGradient:
+      'bg-[linear-gradient(to_top_right,_hsl(var(--brand-primary)/0.08)_0%,_hsl(var(--brand-primary)/0.04)_30%,_white_70%,_white_100%)]',
   },
   // ENABLED PAGES: All pages active for Virtual Counsel
   enabledPages: [
@@ -468,6 +469,10 @@ export const siteConfig: SiteConfigSchema = {
           variant: 'classic',
         },
         {
+          id: 'about-feature-cards',
+          sectionType: 'AboutFeatureCardsSection',
+        },
+        {
           id: 'about-personal-journey',
           sectionType: 'AboutPersonalJourneySection',
         },
@@ -480,23 +485,23 @@ export const siteConfig: SiteConfigSchema = {
           sectionType: 'AboutPhilosophySection',
         },
         {
+          id: 'about-cta',
+          sectionType: 'CtaSection',
+        },
+        {
           id: 'about-values',
           sectionType: 'AboutValuesSection',
         },
         {
           id: 'about-testimonials',
-          sectionType: 'TestimonialsSection',
-        },
-        {
-          id: 'about-cta',
-          sectionType: 'CtaSection',
+          sectionType: 'AboutSocialProofSection',
         },
       ],
     },
     {
       path: '/services',
       seo: {
-        title: 'Onze Diensten - Juridische expertise voor ICT-bedrijven',
+        title: 'Mijn Diensten - Juridische expertise voor ICT-bedrijven',
         description:
           'Specialistische juridische diensten voor software- en ICT-bedrijven. Van contracten tot compliance, wij spreken uw taal.',
       },

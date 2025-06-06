@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import type { z } from 'zod';
 
 import type { SectionProps } from '@/components/layout/Section';
@@ -8,8 +9,10 @@ import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { Badge } from '@/components/ui/badge';
 import LazySection from '@/components/ui/lazy-section';
 import OptimizedImage from '@/components/ui/optimized-image';
+import { useThemeBorderRadius } from '@/hooks/use-theme-border-radius';
 import { DEFAULT_PLACEHOLDER_IMAGE } from '@/lib/constants';
 import type { aboutPersonalJourneySectionDataSchema } from '@/lib/schemas/sections.schema';
+import { cn } from '@/lib/utils';
 
 export type AboutPersonalJourneySectionProps = z.infer<
   typeof aboutPersonalJourneySectionDataSchema
@@ -31,6 +34,8 @@ export default function AboutPersonalJourneySection({
   patternFade,
   patternColor,
 }: AboutPersonalJourneySectionProps) {
+  const { getBorderRadiusClass } = useThemeBorderRadius();
+
   return (
     <Section
       id="about-personal-journey"
@@ -81,16 +86,19 @@ export default function AboutPersonalJourneySection({
 
         {/* Image */}
         <LazySection animation="slide-up" delay={0.5} className="lg:order-last">
-          <AspectRatio ratio={5 / 4} className="overflow-hidden rounded-xl shadow-lg">
-            <OptimizedImage
-              src={image?.src || DEFAULT_PLACEHOLDER_IMAGE}
-              alt={image?.alt || 'Image representing professional journey and development'}
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="size-full"
-              priority
-            />
-          </AspectRatio>
+          <div className="relative">
+            <AspectRatio ratio={5 / 6}>
+              <OptimizedImage
+                src={image?.src || DEFAULT_PLACEHOLDER_IMAGE}
+                alt={image?.alt || 'Image representing professional journey and development'}
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className={cn(getBorderRadiusClass('image'), 'object-left')}
+                priority
+                objectFit="cover"
+              />
+            </AspectRatio>
+          </div>
         </LazySection>
       </div>
     </Section>

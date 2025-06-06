@@ -41,28 +41,22 @@ export default function Footer({ hideNewsletter = false }: FooterProps) {
     <>
       {/* Newsletter subscription - only show if not hidden */}
       {!hideNewsletter && (
-        <div className="relative overflow-hidden py-10 text-white bg-hero-gradient">
-          {/* Decorative blur spots */}
-          <div className="absolute top-0 left-1/4 size-96 bg-primary/10 rounded-full -translate-y-1/2 blur-3xl" />
-          <div className="absolute bottom-0 right-1/4 size-96 bg-secondary/10 rounded-full translate-y-1/2 blur-3xl" />
-          <div className="mx-auto max-w-[var(--container-max-width)] px-4 sm:px-6 md:px-8 xl:px-20 relative z-10">
-            <LazySection
-              animation="none"
-              className="stagger-container flex flex-col md:flex-row items-center justify-between gap-6"
-              style={{ '--stagger-delay': '0.1s' } as CSSProperties}
-            >
-              <div style={{ '--index': 0 } as CSSProperties}>
-                <h3 className="text-white mb-2">
-                  Blijf op de hoogte van juridische ontwikkelingen voor ICT-bedrijven
-                </h3>
-              </div>
-              <div style={{ '--index': 1 } as CSSProperties}>
-                <p className="text-body-base text-white/70">
-                  Blijf op de hoogte van de laatste juridische ontwikkelingen
-                </p>
-              </div>
-              <div style={{ '--index': 2 } as CSSProperties}>
-                <SubscribeForm />
+        <div className="bg-gradient-to-br from-brand-secondary-dark to-brand-secondary-dark/90 border-t border-brand-primary/10">
+          <div className="mx-auto max-w-[var(--container-max-width)] px-4 sm:px-6 md:px-8 xl:px-20 py-8">
+            <LazySection animation="fade-up" delay={0}>
+              <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div className="text-center md:text-left">
+                  <h3 className="text-lg font-medium text-white mb-2">
+                    Blijf op de hoogte van juridische ontwikkelingen voor ICT-bedrijven
+                  </h3>
+                  <p className="text-sm text-white/70">
+                    Ontvang maandelijks praktische juridische tips en inzichten speciaal voor de
+                    ICT-sector.
+                  </p>
+                </div>
+                <div className="md:ml-8">
+                  <SubscribeForm />
+                </div>
               </div>
             </LazySection>
           </div>

@@ -31,6 +31,12 @@ const AboutCredentialsSection = dynamic(
 const AboutPhilosophySection = dynamic(
   () => import('@/components/sections/about-philosophy-section')
 );
+const AboutSocialProofSection = dynamic(
+  () => import('@/components/sections/about-social-proof-section')
+);
+const AboutFeatureCardsSection = dynamic(
+  () => import('@/components/sections/about-feature-cards-section')
+);
 const ProcessSection = dynamic(() => import('@/components/sections/process-section'));
 const ResourceDetailSection = dynamic(() => import('@/components/sections/ResourceDetailSection'));
 const ResourceListSection = dynamic(() => import('@/components/sections/ResourceListSection'));
@@ -60,6 +66,8 @@ const sectionComponentMap: any = {
   AboutPersonalJourneySection,
   AboutCredentialsSection,
   AboutPhilosophySection,
+  AboutSocialProofSection,
+  AboutFeatureCardsSection,
   ProcessSection,
   ResourceDetailSection,
   ResourceListSection,
@@ -99,7 +107,7 @@ async function getSectionData(
       case 'SolutionVisionSection':
         return homepageData.solutionVisionSectionData;
       case 'AboutSection':
-        return homepageData.aboutSectionData;
+        return { ...homepageData.aboutSectionData, isHomepage: true };
       case 'ServicesSection': {
         const allServices = await getServices();
 
@@ -159,6 +167,10 @@ async function getSectionData(
         return aboutPageData.aboutCredentialsSectionData;
       case 'AboutPhilosophySection':
         return aboutPageData.aboutPhilosophySectionData;
+      case 'AboutSocialProofSection':
+        return aboutPageData.aboutSocialProofSectionData;
+      case 'AboutFeatureCardsSection':
+        return aboutPageData.aboutFeatureCardsSectionData;
       case 'TestimonialsSection':
         return homepageData.testimonialsSectionData;
       case 'CtaSection':

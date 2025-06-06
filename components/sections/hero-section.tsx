@@ -137,19 +137,18 @@ export default function HeroSection({
       patternOpacity={usedOpacity}
       patternFade={patternFade}
       patternColor={patternColor}
-      className={cn('relative md:min-h-[880px] flex', isTransparentHeader && heroTopPadding)}
+      className={cn(
+        'relative md:min-h-[800px] flex items-center',
+        isTransparentHeader && heroTopPadding
+      )}
     >
       {/* BackgroundPattern now handled by Section */}
 
-      {/* Enhanced gradient overlay with primary brand color - left to right fade */}
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/15 via-primary/8 to-transparent pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/30 pointer-events-none" />
+      {/* Enhanced gradient overlay with primary brand color - bottom left to top right fade (stronger) */}
 
-      {/* Floating elements for visual interest - complement the left-to-right gradient */}
-      <div className="hidden sm:block absolute top-20 right-10 size-64 bg-primary/8 rounded-full blur-3xl" />
-      <div className="hidden sm:block absolute bottom-10 left-10 size-72 bg-primary/12 rounded-full blur-3xl" />
+      {/* Floating elements for visual interest - contained within viewport */}
 
-      <div className="grid lg:grid-cols-2 items-center gap-8 sm:gap-8 md:gap-10 lg:gap-10">
+      <div className="grid lg:grid-cols-2 items-center gap-8 sm:gap-8 md:gap-10 lg:gap-8 w-full">
         {/* Removed parent LazySection to prevent delay compounding */}
         <div className={`${contentOrderClass} flex flex-col justify-center space-y-2 z-10`}>
           {badgeText && (
@@ -221,7 +220,7 @@ export default function HeroSection({
           {showHelpedStats && (
             <LazySection delay={0.5}>
               <div className="flex justify-center md:justify-start w-full">
-                <div className="flex items-center space-x-3 mt-6 text-sm">
+                <div className="flex items-center space-x-3 md:mt-6 text-sm">
                   <div className="flex items-center justify-center size-10 rounded-full bg-primary/10 shrink-0">
                     <svg
                       className="size-5 text-primary"
@@ -239,7 +238,7 @@ export default function HeroSection({
                   <div className="text-neutral-text">
                     <span className="font-semibold">Geen verplichtingen</span>
                     <span className="mx-2">•</span>
-                    <span className="text-muted-foreground">Gratis kennismakingsgesprek</span>
+                    <span className="text-neutral-text">Gratis kennismaken</span>
                   </div>
                 </div>
               </div>
@@ -260,7 +259,7 @@ export default function HeroSection({
               alt={imageAltText}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
-              className="absolute inset-0 scale-110 object-[75%_25%]"
+              className="absolute inset-0 scale-125 origin-bottom-right"
               objectFit="cover"
               priority
               placeholder="blur"

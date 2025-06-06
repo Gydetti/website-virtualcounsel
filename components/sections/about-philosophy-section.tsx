@@ -1,6 +1,7 @@
 'use client';
 
 import { Compass, Heart, Lightbulb, Quote, Target } from 'lucide-react';
+import Image from 'next/image';
 import type { z } from 'zod';
 
 import type { SectionProps } from '@/components/layout/Section';
@@ -9,8 +10,10 @@ import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { Badge } from '@/components/ui/badge';
 import LazySection from '@/components/ui/lazy-section';
 import OptimizedImage from '@/components/ui/optimized-image';
+import { useThemeBorderRadius } from '@/hooks/use-theme-border-radius';
 import { DEFAULT_PLACEHOLDER_IMAGE } from '@/lib/constants';
 import type { aboutPhilosophySectionDataSchema } from '@/lib/schemas/sections.schema';
+import { cn } from '@/lib/utils';
 
 export type AboutPhilosophySectionProps = z.infer<typeof aboutPhilosophySectionDataSchema> & {
   patternStyle?: string;
@@ -38,6 +41,8 @@ export default function AboutPhilosophySection({
   patternFade,
   patternColor,
 }: AboutPhilosophySectionProps) {
+  const { getBorderRadiusClass } = useThemeBorderRadius();
+
   return (
     <Section
       id="about-philosophy"
@@ -91,16 +96,19 @@ export default function AboutPhilosophySection({
 
         {/* Image */}
         <LazySection animation="slide-up" delay={0.5}>
-          <AspectRatio ratio={5 / 4} className="overflow-hidden rounded-xl shadow-lg">
-            <OptimizedImage
-              src={image?.src || DEFAULT_PLACEHOLDER_IMAGE}
-              alt={image?.alt || 'Image representing philosophy and approach to work'}
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="size-full"
-              priority
-            />
-          </AspectRatio>
+          <div className="relative">
+            <AspectRatio ratio={5 / 6}>
+              <OptimizedImage
+                src={image?.src || DEFAULT_PLACEHOLDER_IMAGE}
+                alt={image?.alt || 'Image representing our philosophy and values'}
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className={cn(getBorderRadiusClass('image'), 'object-left')}
+                priority
+                objectFit="cover"
+              />
+            </AspectRatio>
+          </div>
         </LazySection>
       </div>
 

@@ -66,12 +66,6 @@ export default function TestimonialsPage() {
 
       {/* Testimonials Grid Section */}
       <Section className="bg-neutral-background">
-        <LazySection animation="fade-up" delay={0} className="text-center mb-12">
-          <Badge className="mb-6">{badgeText}</Badge>
-          <h1 className="mb-4">{heading}</h1>
-          <p className="text-xl text-neutral-text max-w-3xl mx-auto">{subtitle}</p>
-        </LazySection>
-
         <LazySection
           animation="none"
           className="stagger-container grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch"

@@ -53,7 +53,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         <Suspense fallback={null}>
           <DynamicPageViewTracker />
         </Suspense>
-        <div className="flex min-h-screen flex-col">
+        <div className="flex min-h-screen flex-col overflow-x-hidden">
           {/* Only show main Header if NOT on a landing page */}
           {!isLandingPage && <Header />}
           <main className="grow">

@@ -73,22 +73,27 @@ export function SubscribeForm() {
   }
 
   return (
-    <form onSubmit={handleSubscribe} className="w-full md:w-auto flex flex-col sm:flex-row gap-3">
+    <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-2 min-w-[300px]">
       <Input
         type="email"
         placeholder="Uw e-mailadres"
         value={email}
         onChange={e => setEmail(e.currentTarget.value)}
-        className="bg-neutral-surface/30 border-white/60 text-white placeholder:text-white focus:border-white"
+        className="flex-1 bg-white/10 border-white/20 text-white placeholder:text-white/60 focus:border-brand-primary focus:ring-brand-primary/20 text-sm"
       />
       <Button
         type="submit"
         disabled={status === 'loading' || status === 'success'}
-        className="bg-neutral-surface text-primary hover:bg-neutral-background/200"
+        className="bg-brand-primary text-white hover:bg-brand-primary/90 font-medium whitespace-nowrap text-sm px-4 py-2"
+        animation="none"
       >
-        {status === 'loading' ? '…verzenden' : status === 'success' ? '✅ Aangemeld' : 'Aanmelden'}
+        {status === 'loading' ? 'Bezig...' : status === 'success' ? 'Verstuurd!' : 'Aanmelden'}
       </Button>
-      {status === 'error' && <p className="text-error-message mt-2">Oeps—er is iets misgegaan.</p>}
+      {status === 'error' && (
+        <p className="text-feedback-error-text text-sm mt-2 col-span-full">
+          Oeps—er is iets misgegaan. Probeer het opnieuw.
+        </p>
+      )}
     </form>
   );
 }

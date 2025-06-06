@@ -91,7 +91,7 @@ export default function OptimizedImage({
   const containerOverflow = dropShadow !== 'none' ? '' : 'overflow-hidden';
 
   return (
-    <div className={cn('relative', containerOverflow, className)}>
+    <div className={cn('relative', fill && 'h-full w-full', containerOverflow, className)}>
       {isLoading && (
         <div
           className="absolute inset-0 bg-neutral-background/200 animate-pulse"
