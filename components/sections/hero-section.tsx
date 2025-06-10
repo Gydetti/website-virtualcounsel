@@ -220,7 +220,7 @@ export default function HeroSection({
           {showHelpedStats && (
             <LazySection delay={0.5}>
               <div className="flex justify-center md:justify-start w-full">
-                <div className="flex items-center space-x-3 md:mt-6 text-sm">
+                <div className="flex items-center space-x-3 mt-0 md:mt-6 text-sm">
                   <div className="flex items-center justify-center size-10 rounded-full bg-primary/10 shrink-0">
                     <svg
                       className="size-5 text-primary"
@@ -259,7 +259,7 @@ export default function HeroSection({
               alt={imageAltText}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
-              className="absolute inset-0 scale-125 origin-bottom-right"
+              className="absolute inset-0 scale-125 md:scale-110 origin-bottom-right"
               objectFit="cover"
               priority
               placeholder="blur"

@@ -61,7 +61,7 @@ export default function ProblemPainSection({
                   }}
                   transition={{ duration: 0.1, delay: idx * 0.2 }}
                   viewport={{ once: true }}
-                  className="rounded-lg bg-white/10 p-6 shadow-sm hover:shadow-xl transition-shadow duration-300"
+                  className="rounded-lg bg-white/10 p-6 shadow-sm hover:shadow-xl transition-shadow duration-150"
                 >
                   <h3 className="mb-3 text-xl font-bold text-orange-400">{card.title}</h3>
                   <p className="text-white/95 text-base md:text-lg">{card.description}</p>

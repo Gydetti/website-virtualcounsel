@@ -1,8 +1,6 @@
 import { Star } from 'lucide-react';
-import Image from 'next/image';
 
 import { Card, CardContent } from '@/components/ui/card';
-import { DEFAULT_PLACEHOLDER_IMAGE } from '@/lib/constants';
 import { siteConfig } from '@/lib/siteConfig';
 import { cn } from '@/lib/utils';
 
@@ -12,10 +10,6 @@ interface TestimonialCardProps {
     quote: string;
     name: string;
     title: string;
-    image: {
-      src: string;
-      alt: string;
-    };
     rating?: number;
   };
   className?: string;
@@ -23,7 +17,7 @@ interface TestimonialCardProps {
 }
 
 export default function TestimonialCard({ testimonial, className, style }: TestimonialCardProps) {
-  const { quote, name, title, image, rating } = testimonial;
+  const { quote, name, title, rating } = testimonial;
 
   const microClass = siteConfig.features.enableMicroInteractions
     ? 'transition-all hover:shadow-xl'
@@ -59,18 +53,9 @@ export default function TestimonialCard({ testimonial, className, style }: Testi
         </blockquote>
 
         {/* Author info - fixed at bottom */}
-        <div className="card-footer flex items-center gap-3 mt-auto text-center">
-          <Image
-            src={image.src || DEFAULT_PLACEHOLDER_IMAGE}
-            alt={image.alt}
-            width={48}
-            height={48}
-            className="rounded-full object-cover"
-          />
-          <div className="text-left">
-            <div className="font-semibold text-foreground">{name}</div>
-            <div className="text-sm text-neutral-text">{title}</div>
-          </div>
+        <div className="card-footer text-center mt-auto">
+          <div className="font-semibold text-foreground">{name}</div>
+          <div className="text-sm text-neutral-text">{title}</div>
         </div>
       </CardContent>
     </Card>

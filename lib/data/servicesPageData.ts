@@ -31,23 +31,23 @@ export const servicesPageData: z.infer<typeof servicesPageDataSchema> = {
       'Met diepgaande kennis van de tech-industrie lever ik juridisch advies dat aansluit bij uw businessmodel en werkwijze.',
     benefits: [
       {
-        id: 'benefit-tech-knowledge',
-        text: 'Diepgaande kennis van software, SaaS en IT-dienstverlening',
-        icon: 'Check',
-      },
-      {
         id: 'benefit-fixed-price',
-        text: 'Vaste prijzen - geen verrassingen achteraf',
-        icon: 'Check',
-      },
-      {
-        id: 'benefit-fast-delivery',
-        text: 'Snelle levering binnen 1-2 weken',
+        text: 'Vaste prijzen - geen nacalculatie of verrassingen achteraf',
         icon: 'Check',
       },
       {
         id: 'benefit-direct-contact',
-        text: 'Direct contact met specialist - geen juniors',
+        text: 'Direct met gespecialiseerde jurist - geen juniors of tussenpersonen',
+        icon: 'Check',
+      },
+      {
+        id: 'benefit-practical-advice',
+        text: 'Praktische adviezen ipv theoretische modellen - oplossingen die werken',
+        icon: 'Check',
+      },
+      {
+        id: 'benefit-tech-knowledge',
+        text: 'Diepgaande kennis van software, SaaS en IT-dienstverlening',
         icon: 'Check',
       },
     ],

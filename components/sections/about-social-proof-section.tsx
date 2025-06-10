@@ -6,12 +6,9 @@ import type { z } from 'zod';
 
 import type { SectionProps } from '@/components/layout/Section';
 import { Section } from '@/components/layout/Section';
-import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { Badge } from '@/components/ui/badge';
 import LazySection from '@/components/ui/lazy-section';
-import OptimizedImage from '@/components/ui/optimized-image';
 import { useThemeBorderRadius } from '@/hooks/use-theme-border-radius';
-import { DEFAULT_PLACEHOLDER_IMAGE } from '@/lib/constants';
 import type { aboutSocialProofSectionDataSchema } from '@/lib/schemas/sections.schema';
 
 export type AboutSocialProofSectionProps = z.infer<typeof aboutSocialProofSectionDataSchema> & {
@@ -84,26 +81,11 @@ export default function AboutSocialProofSection({
               </div>
 
               {/* Author Info */}
-              <div className="flex items-center gap-4">
-                {testimonial.image?.src && (
-                  <div className="size-12 shrink-0">
-                    <AspectRatio ratio={1} className="overflow-hidden rounded-full">
-                      <OptimizedImage
-                        src={testimonial.image.src}
-                        alt={testimonial.image.alt || `${testimonial.name} - testimonial`}
-                        fill
-                        sizes="48px"
-                        className="size-full object-cover"
-                      />
-                    </AspectRatio>
-                  </div>
+              <div className="text-left">
+                <div className="font-semibold text-neutral-text">{testimonial.name}</div>
+                {testimonial.title && (
+                  <div className="text-sm text-neutral-text/70">{testimonial.title}</div>
                 )}
-                <div className="flex-1">
-                  <div className="font-semibold text-neutral-text">{testimonial.name}</div>
-                  {testimonial.title && (
-                    <div className="text-sm text-neutral-text/70">{testimonial.title}</div>
-                  )}
-                </div>
               </div>
 
               {/* Star Rating (Optional visual enhancement) */}

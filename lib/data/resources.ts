@@ -50,7 +50,7 @@ const sampleResourcesData: z.infer<typeof resourceSchema>[] = [
       {
         type: 'text',
         content:
-          'Deze uitgebreide checklist is speciaal ontwikkeld voor Nederlandse SaaS-providers en software-bedrijven die hun contracten professioneel willen inrichten. Op basis van 10+ jaar ervaring in de tech-industrie delen we de meest kritische contractuele aandachtspunten die vaak over het hoofd worden gezien.',
+          'Deze uitgebreide checklist is speciaal ontwikkeld voor Nederlandse SaaS-providers en software-bedrijven die hun contracten professioneel willen inrichten. Op basis van jarenlange ervaring in de tech-industrie deel ik de meest kritische contractuele aandachtspunten die vaak over het hoofd worden gezien.',
       },
       {
         type: 'text',
@@ -94,7 +94,7 @@ const sampleResourcesData: z.infer<typeof resourceSchema>[] = [
       {
         type: 'text',
         content:
-          'Privacy by design is niet langer optioneel. Deze gids helpt software-ontwikkelaars en SaaS-providers om AVG-compliant te worden zonder de innovatie te remmen. We vertalen de complexe privacywetgeving naar concrete acties voor uw development team.',
+          'Privacy by design is niet langer optioneel. Deze gids helpt software-ontwikkelaars en SaaS-providers om AVG-compliant te worden zonder de innovatie te remmen. Ik vertaal de complexe privacywetgeving naar concrete acties voor uw development team.',
       },
       {
         type: 'text',

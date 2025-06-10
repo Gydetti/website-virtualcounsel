@@ -1,14 +1,4 @@
-import {
-  ArrowRight,
-  ExternalLink,
-  Facebook,
-  Instagram,
-  Linkedin,
-  Mail,
-  MapPin,
-  Phone,
-  Twitter,
-} from 'lucide-react';
+import { ArrowRight, ExternalLink, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { CSSProperties } from 'react';
@@ -80,50 +70,19 @@ export default function Footer({ hideNewsletter = false }: FooterProps) {
           >
             <div style={{ '--index': 0 } as CSSProperties}>
               <Link href="/" className="inline-block mb-4">
-                {siteConfig.theme.logo.src ? (
-                  <Image
-                    src={siteConfig.theme.logo.src}
-                    alt={siteConfig.theme.logo.alt}
-                    width={40}
-                    height={40}
-                    loading="lazy"
-                    className="h-10 w-auto brightness-0 invert"
-                  />
-                ) : (
-                  <span className="text-xl font-bold text-white">{siteConfig.site.name}</span>
-                )}
+                <Image
+                  src="/images/branding/virtual-counsel-logo-transparant-white.png"
+                  alt={siteConfig.theme.logo.alt}
+                  width={160}
+                  height={33}
+                  loading="lazy"
+                  className="h-8 w-auto"
+                />
               </Link>
               <p className="text-body-base text-white mb-6 max-w-xs">
                 {siteConfig.site.description}
               </p>
               <div className="flex space-x-4">
-                <Link
-                  href={siteConfig.social.facebook ?? ''}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center text-white hover:text-brand-light transition-colors bg-neutral-surface/10 p-2 rounded-full"
-                  aria-label="Facebook"
-                >
-                  <Facebook className="size-5" />
-                </Link>
-                <Link
-                  href={siteConfig.social.instagram ?? ''}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center text-white hover:text-brand-light transition-colors bg-neutral-surface/10 p-2 rounded-full"
-                  aria-label="Instagram"
-                >
-                  <Instagram className="size-5" />
-                </Link>
-                <Link
-                  href={siteConfig.social.twitter ?? ''}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center text-white hover:text-brand-light transition-colors bg-neutral-surface/10 p-2 rounded-full"
-                  aria-label="Twitter"
-                >
-                  <Twitter className="size-5" />
-                </Link>
                 <Link
                   href={siteConfig.social.linkedin ?? ''}
                   target="_blank"

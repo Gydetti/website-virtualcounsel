@@ -154,7 +154,7 @@ export const siteConfig: SiteConfigSchema = {
     headerConfig: {
       transparentMode: true,
       scrolledBackgroundColor: 'bg-white/95 backdrop-blur-sm',
-      heroTopPadding: 'pt-24 md:pt-32 lg:pt-36',
+      heroTopPadding: 'pt-32 md:pt-32 lg:pt-32',
       transitionDuration: '300ms',
       scrollThreshold: 50,
       textColors: {
@@ -239,6 +239,7 @@ export const siteConfig: SiteConfigSchema = {
   legal: {
     businessName: 'VirtualCounsel - Maarten van Beek',
     kvkNumber: '81070411',
+    btwNumber: 'NL003525657B91',
     address: {
       line1: 'Wibautstraat 131D',
       line2: '',

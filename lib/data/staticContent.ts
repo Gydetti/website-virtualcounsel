@@ -334,7 +334,7 @@ export const resourceDetailSectionData: z.infer<typeof resourceDetailSectionData
   // Stats
   totalPages: "45 Pagina\'s",
   readingTime: '30 Minuten',
-  yearsExperience: '10+ Jaar',
+  yearsExperience: 'Jarenlange ervaring',
   methodologyType: 'Praktijkgericht',
   approachType: 'Direct toepasbaar',
   // Testimonial

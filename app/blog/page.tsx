@@ -88,13 +88,6 @@ export default async function BlogPage() {
                           {featuredPost.excerpt}
                         </CardDescription>
                         <div className="flex items-center justify-between mt-auto">
-                          <span className="text-sm text-neutral-text/500">
-                            {new Date(featuredPost.date).toLocaleDateString('nl-NL', {
-                              year: 'numeric',
-                              month: 'long',
-                              day: 'numeric',
-                            })}
-                          </span>
                           <div className="text-primary flex items-center space-x-2">
                             <span>{`${blogPageData.readFeaturedText ?? 'Lees het uitgelichte artikel'}: ${featuredPost.title}`}</span>
                             <ArrowRight className="ml-2 size-4" />
@@ -133,13 +126,6 @@ export default async function BlogPage() {
                         <Badge variant="outline" className="text-xs font-normal">
                           {post.category}
                         </Badge>
-                        <span className="text-xs text-neutral-text/500">
-                          {new Date(post.date).toLocaleDateString('nl-NL', {
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric',
-                          })}
-                        </span>
                       </div>
                       <CardTitle className="text-xl font-bold break-words hover:text-primary transition-colors">
                         {post.title}

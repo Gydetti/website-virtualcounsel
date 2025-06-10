@@ -261,6 +261,7 @@ export const siteConfigSchema = z.object({
     .object({
       businessName: z.string().min(1),
       kvkNumber: z.string().min(1),
+      btwNumber: z.string().optional(),
       address: z
         .object({
           line1: z.string().min(1),

@@ -23,19 +23,19 @@ import {
 // Note: The old PropType imports are removed as we'll use Zod inferred types.
 
 export const heroSectionData: z.infer<typeof heroSectionDataSchema> = {
-  badgeText: 'Juridisch advies voor de tech industrie',
+  badgeText: 'Juridische partner voor ICT',
   headline: 'De juridische partner voor <span class="text-primary">ICT- & softwarebedrijven</span>',
   subheadline:
-    'Ik neem het juridische werk uit handen zodat u zich kunt focussen op uw onderneming. Geen standaard contracten, maar maatwerk dat past bij uw specifieke situatie.',
+    'De juridische partner voor ICT- en softwarebedrijven die behoefte hebben aan een expert die hun taal spreekt. Flexibel, betaalbaar en altijd klaar om uw juridische zaken efficiënt te regelen.',
   primaryCta: { text: 'Maak een afspraak', href: '/contact' },
   secondaryCta: { text: 'Bekijk mijn diensten', href: '/services' },
   showSecondaryCta: true,
   typingWords: ['Tech bedrijven'], // Minimal content to satisfy schema typing words
   stats: [
-    { value: 7, suffix: '+', label: 'Jaar ervaring in ICT-recht' },
-    { value: 50, suffix: '+', label: 'Tevreden klanten' },
     { value: 100, suffix: '%', label: 'Focus op tech' },
     { value: 2, suffix: ' weken', label: 'Gemiddelde levertijd' },
+    { value: 1, suffix: '', label: 'Specialist' },
+    { value: 0, suffix: ' verrassingen', label: 'Vaste prijzen' },
   ],
   image: {
     src: '/images/team/virtual-counsel-maarten-hero-hq.webp',
@@ -163,37 +163,25 @@ export const testimonialsSectionData: z.infer<typeof testimonialsSectionDataSche
     {
       id: 'testimonial-1',
       quote:
-        'Hij doet pragmatische reviews waarbij hij rekening houdt met de commerciële context, zodat er geen overbodige obstakels worden opgeworpen. Hij denkt mee, stelt goede alternatieven voor, en komt snel tot de kern.',
-      name: 'Tim van Dalen',
-      title: 'CEO, Tech Startup',
-      image: {
-        src: '/images/placeholders/placeholder.svg',
-        alt: 'Tim van Dalen',
-      },
+        'Sinds een aantal maanden werken we samen met Maarten van VirtualCounsel en dat bevalt goed. Hij doet pragmatische reviews van onze juridische documenten, staat ons bij in gesprek met potentiële klanten waar vragen over voorwaarden zijn en heeft een commercieel model waarmee zijn dienst goed betaalbaar is. Aanrader!',
+      name: 'Ivar van Duuren',
+      title: 'Co-founder ISOPlanner',
       rating: 5,
     },
     {
       id: 'testimonial-2',
       quote:
-        'VirtualCounsel begrijpt echt wat er speelt in onze industrie. Geen juridisch jargon, maar concrete oplossingen die werken. De vaste prijzen geven ons zekerheid en de snelle levertijden zijn een verademing.',
-      name: 'Sarah Janssen',
-      title: 'Legal Manager, SaaS Provider',
-      image: {
-        src: '/images/placeholders/placeholder.svg',
-        alt: 'Sarah Janssen',
-      },
+        'Onze samenwerking met Maarten van Beek van VirtualCounsel was zeer vruchtbaar. Hij heeft ons bijgestaan in het opstellen van algemene voorwaarden, een Service Level Agreement (SLA), en een verwerkersovereenkomst voor meerdere van onze ondernemingen. Zijn expertise in juridische zaken is een waardevolle toevoeging in het succes van deze projecten. De communicatie met Maarten verliep steeds efficiënt en professioneel, wat het proces aanzienlijk vergemakkelijkte. Wij zijn uitermate tevreden over de kwaliteit van de dienstverlening en bevelen Maarten van harte aan als een deskundige en betrouwbare jurist.',
+      name: 'Joram van Doorn',
+      title: 'Founder SiteOnline',
       rating: 5,
     },
     {
       id: 'testimonial-3',
       quote:
-        'Eindelijk een jurist die onze taal spreekt! Maarten kent de ins en outs van software development en dat merk je in zijn adviezen. Hij is een echte partner, geen externe adviseur.',
-      name: 'Erik Vermeer',
-      title: 'CTO, Software Bureau',
-      image: {
-        src: '/images/placeholders/placeholder.svg',
-        alt: 'Erik Vermeer',
-      },
+        'Maarten heeft ons uitstekend ondersteund bij het opstellen van een maatwerk SLA en nieuwe algemene voorwaarden. In mijn zoektocht naar de juiste expertise heb ik contact gehad met verschillende partijen, maar Maarten was de enige die daadwerkelijk advies gaf en met ons meedacht. Hij is snel, betrouwbaar en betrokken. Een aanrader voor iedereen die zoekt naar een partner die net dat stapje extra zet!',
+      name: 'Joey Deckers',
+      title: 'Founder Retrii',
       rating: 5,
     },
   ],
@@ -262,25 +250,27 @@ export const valuePropSectionData: z.infer<typeof valuePropSectionDataSchema> = 
   badgeText: 'Waarom kiezen voor VirtualCounsel?',
   heading: 'Een juridische partner die uw business begrijpt',
   subheading:
-    'Met VirtualCounsel haal je geen standaard jurist in huis, maar een betrokken juridische partner die jouw bedrijf echt begrijpt.',
+    'Met VirtualCounsel haalt u geen standaard jurist in huis, maar een betrokken juridische partner die uw bedrijf echt begrijpt en met u meegroeit.',
   benefits: [
     {
       id: 'benefit-1',
-      title: 'Diepgaande ICT-kennis',
+      title: 'Vaste prijzen - geen nacalculatie',
       description:
-        'Jarenlange ervaring in de tech-industrie betekent dat ik uw uitdagingen echt begrijp.',
+        'Transparante prijsstelling zonder verrassingen achteraf. U weet vooraf precies wat het kost.',
       icon: 'check-circle',
     },
     {
       id: 'benefit-2',
-      title: 'Vaste prijzen',
-      description: 'Geen verrassingen achteraf. U weet vooraf exact wat het kost.',
+      title: 'Direct met gespecialiseerde jurist',
+      description:
+        'Rechtstreeks contact met mij, geen juniors of tussenpersonen. Persoonlijke expertise.',
       icon: 'check-circle',
     },
     {
       id: 'benefit-3',
-      title: 'Snelle levering',
-      description: 'Documenten binnen 1-2 weken, zodat u door kunt met ondernemen.',
+      title: 'Praktische adviezen ipv theoretische modellen',
+      description:
+        'Oplossingen die werken in de praktijk van uw tech-onderneming, geen juridische theorie.',
       icon: 'check-circle',
     },
   ],
@@ -346,7 +336,7 @@ export const homepageFaqSectionData: z.infer<typeof homepageFaqSectionDataSchema
             'De meeste documenten lever ik binnen 1-2 weken. Voor complexe projecten maak ik vooraf een realistische planning met u.',
         },
         {
-          question: 'Bied jij ook doorlopend juridisch advies?',
+          question: 'Biedt u ook doorlopend juridisch advies?',
           answer:
             'Ja, veel klanten kiezen voor een strippenkaart of abonnement voor doorlopende juridische ondersteuning. Dit bespreek ik graag tijdens het kennismakingsgesprek.',
         },
@@ -356,7 +346,7 @@ export const homepageFaqSectionData: z.infer<typeof homepageFaqSectionDataSchema
       category: 'Tarieven',
       questions: [
         {
-          question: 'Wat zijn jouw tarieven?',
+          question: 'Wat zijn uw tarieven?',
           answer:
             'Ik werk met vaste prijzen per project, zodat u vooraf weet waar u aan toe bent. De prijs is afhankelijk van de complexiteit en omvang. Geen uurtje-factuurtje of nacalculaties.',
         },
@@ -402,17 +392,17 @@ export const aboutSectionData: z.infer<typeof aboutSectionDataSchema> = {
   heading: 'De jurist die jullie taal spreekt',
   paragraphs: [
     'Ik ben Maarten van Beek, oprichter van VirtualCounsel. Met jarenlange ervaring in de tech-industrie begrijp ik de unieke uitdagingen waar ICT- en softwarebedrijven mee te maken hebben.',
-    'Bij grote kantoren was ik vaak de enige die echt begreep wat een API was of waarom SaaS-modellen andere contracten nodig hebben. Daarom richtte ik VirtualCounsel op: juridisch advies dat aansluit bij de realiteit van tech-bedrijven.',
+    'Met VirtualCounsel haalt u geen standaard jurist in huis, maar een betrokken juridische partner die uw bedrijf echt begrijpt en met u meegroeit.',
     'Mijn klanten waarderen vooral de combinatie van diepgaande juridische kennis en begrip voor hun business. Geen eindeloze discussies over technische details, maar direct to-the-point advies dat werkt.',
   ],
   image: {
     src: '/images/team/virtual-counsel-maarten-about2-hq.webp',
     alt: 'Maarten van Beek - Oprichter VirtualCounsel',
   },
-  variant: 'imageRight',
+  variant: 'imageLeft',
   stats: [
-    { id: 'stat-experience', value: '10+ jaar', label: 'Ervaring in ICT-recht' },
-    { id: 'stat-clients', value: '50+ bedrijven', label: 'Geholpen' },
+    { id: 'stat-experience', value: 'Jarenlange', label: 'Ervaring in ICT-recht' },
+    { id: 'stat-clients', value: 'Verschillende', label: 'Bedrijven geholpen' },
     {
       id: 'stat-delivery',
       value: '1-2 weken',
@@ -437,7 +427,7 @@ export const aboutSectionData: z.infer<typeof aboutSectionDataSchema> = {
     {
       id: 'proven',
       title: 'Bewezen resultaten',
-      description: 'Honderden succesvolle contracten en deals begeleid',
+      description: 'Succesvolle contracten en deals begeleid',
       icon: 'CheckCircle',
       iconBg: 'bg-emerald-100',
       iconColor: 'text-emerald-600',
@@ -518,24 +508,24 @@ export const contactSectionData: z.infer<typeof contactSectionDataSchema> = {
 export const kpiSectionData: z.infer<typeof kpiSectionDataSchema> = {
   stats: [
     {
-      id: 'kpi-experience',
-      value: 7,
-      suffix: '+',
-      label: 'Jaar ervaring in ICT-recht',
-    },
-    {
-      id: 'kpi-satisfaction',
+      id: 'kpi-focus',
       value: 100,
       suffix: '%',
-      label: 'Klanttevredenheid',
+      label: 'Focus op tech',
     },
     {
-      id: 'kpi-companies',
-      value: 50,
-      suffix: '+',
-      label: 'ICT-bedrijven geholpen',
+      id: 'kpi-delivery',
+      value: 2,
+      suffix: ' weken',
+      label: 'Gemiddelde levertijd',
     },
-    { id: 'kpi-response', value: 24, suffix: 'h', label: 'Gemiddelde reactietijd' },
+    {
+      id: 'kpi-specialist',
+      value: 1,
+      suffix: '',
+      label: 'ICT-recht specialist',
+    },
+    { id: 'kpi-pricing', value: 0, suffix: ' verrassingen', label: 'Vaste prijzen' },
   ],
 };
 

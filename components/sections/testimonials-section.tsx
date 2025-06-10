@@ -3,7 +3,6 @@
 
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Quote, Star } from 'lucide-react';
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import type { z } from 'zod';
 
@@ -142,22 +141,11 @@ export default function TestimonialsSection({
                       <p className="text-neutral-text text-base mb-8 line-clamp-6 italic">
                         &quot;{item.quote}&quot;
                       </p>
-                      <div className="flex items-center mt-auto">
-                        <div className="mr-4">
-                          <Image
-                            src={item.image.src}
-                            alt={item.image.alt}
-                            width={item.image.width || 60}
-                            height={item.image.height || 60}
-                            className={`rounded-full border-2 ${testimonialStyle === 'featured' ? 'border-primary/20 shadow-md' : 'border-divider'}`}
-                          />
-                        </div>
-                        <div>
-                          <h3 className="text-body-base font-semibold text-neutral-text">
-                            {item.name}
-                          </h3>
-                          <p className="text-caption">{item.title}</p>
-                        </div>
+                      <div className="text-center mt-auto">
+                        <h3 className="text-body-base font-semibold text-neutral-text">
+                          {item.name}
+                        </h3>
+                        <p className="text-caption">{item.title}</p>
                       </div>
                     </CardContent>
                   </Card>

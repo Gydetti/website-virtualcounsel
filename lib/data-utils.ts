@@ -150,93 +150,151 @@ export const getBlogPosts = async (limit?: number): Promise<BlogPostType[]> => {
   const postsDataRaw = [
     {
       id: 'post-1',
-      title: 'De 5 grootste juridische valkuilen voor SaaS-bedrijven',
+      title: 'Algemene voorwaarden voor Software as a Service (SaaS): de checklist',
       excerpt:
-        'Vermijd kostbare fouten met deze essentiële juridische checklist voor SaaS-providers. Van licentiemodellen tot aansprakelijkheid.',
-      date: '2025-04-15',
-      category: 'SaaS & Licenties',
+        'Net als softwareontwikkelaars dienen ook SaaS-leveranciers algemene voorwaarden toe te voegen aan contracten met opdrachtgevers. Wat zijn de gebruikslimieten van uw dienst? Wie is aansprakelijk wanneer er zich problemen voordoen?',
+      date: '2024-12-15',
+      category: 'SaaS & Contracten',
       coverImage: {
-        src: '/images/placeholders/placeholder.svg',
-        alt: 'Juridische valkuilen SaaS',
+        src: '/images/blog/saas.webp',
+        alt: 'Algemene voorwaarden SaaS',
       },
-      content: 'Volledige artikel inhoud over juridische valkuilen voor SaaS-bedrijven...',
-      slug: 'juridische-valkuilen-saas-bedrijven',
+      content: `Algemene voorwaarden toevoegen aan contracten is belangrijk voor SaaS-leveranciers. Deze voorwaarden worden van toepassing verklaard op de overeenkomst die wordt aangegaan met de klant die de SaaS-dienst afneemt. De SaaS-leverancier wordt aan de hand van deze voorwaarden beschermd voor juridische risico's.
+
+**Gebruikslimiet van de SaaS-dienst**
+
+De opslagruimte die de klant krijgt voor het gebruik van de SaaS-dienst kan onbeperkt zijn. Toch kan het wel wenselijk zijn om als SaaS-leverancier hier een limiet op te zetten. Deze limiet kan inhouden dat er gewerkt wordt met het zogenaamde 'fair use' principe. Volgens dit principe mag de klant geen overdadig gebruik maken van de SaaS-dienst.
+
+**Beschikbaarheid van de SaaS-dienst**
+
+Er is niks zo frustrerend als een SaaS-dienst die niet beschikbaar is voor de klant. Door (natuur)rampen of onvoorziene omstandigheden kan het dat een SaaS-dienst tijdelijk niet beschikbaar is. Klanten verlangen daarom vaak dat de SaaS-leverancier een bepaalde mate van beschikbaarheid garandeert.
+
+**Data en de intellectuele eigendomsrechten van de SaaS-dienst**
+
+Via een SaaS-dienst wordt data van klanten opgeslagen. Dit is vaak gevoelige en waardevolle informatie die ten alle tijde geheim dient te blijven. Hoewel het juridische eigendom van 'data' niet bestaat, is het toch aan te raden om in de algemene voorwaarden van de SaaS-leverancier op te nemen dat deze opgeslagen data van de klant eigendom blijft van diezelfde klant.
+
+**Aansprakelijkheid van de SaaS-leverancier**
+
+Een SaaS-leverancier kan niet het juridische risico nemen dat alle klanten de SaaS-leverancier onbeperkt aansprakelijk stellen in het geval van opgelopen schade zoals gelekte of verloren data. VirtualCounsel adviseert om de aansprakelijkheid van de SaaS-leverancier te beperken in de algemene voorwaarden.`,
+      slug: 'voorwaarden-saas',
       featured: true,
       author: {
         name: 'Maarten van Beek',
         image: { src: '/placeholder.svg', alt: 'Maarten van Beek' },
       },
-      seo: { title: 'De 5 grootste juridische valkuilen voor SaaS-bedrijven | VirtualCounsel' },
+      seo: {
+        title:
+          'Algemene voorwaarden voor Software as a Service (SaaS): de checklist | VirtualCounsel',
+      },
     },
     {
       id: 'post-2',
-      title: 'Open source software in commerciële producten: wat mag wel en niet?',
+      title: 'Van software start-up naar scale-up: juridische vereisten',
       excerpt:
-        'Een praktische gids over het gebruik van open source componenten in uw software. GPL, MIT, Apache - wat betekenen deze licenties voor u?',
-      date: '2025-03-28',
-      category: 'Intellectueel Eigendom',
+        'Bij de transitie van een start-up naar een scale-up van een softwarebedrijf dient u ook rekening te houden met verschillende juridische zaken. Denk aan op maat gemaakte juridische documenten, intellectuele eigendomsrechten en het waarborgen van continuïteit.',
+      date: '2024-11-28',
+      category: 'Startups & Scale-ups',
       coverImage: {
-        src: '/images/placeholders/placeholder.svg',
-        alt: 'Open source licenties',
+        src: '/images/blog/startup.webp',
+        alt: 'Software startup scale-up',
       },
-      content: 'Volledige artikel over open source licenties en commercieel gebruik...',
-      slug: 'open-source-software-commerciele-producten',
+      content: `**Op maat gemaakte juridische documenten**
+
+In de start-up fase worden vaak templates gebruikt om algemene voorwaarden en overeenkomsten op te stellen zonder dat hierbij juridisch advies wordt ingewonnen. Dit kan voor onduidelijkheden en problemen zorgen. Juridische documenten sluiten vaak niet helemaal aan op de dienst die wordt geleverd.
+
+**Intellectueel eigendom op de software**
+
+Zorg ervoor dat het altijd duidelijk is wie de eigenaar is van de software. Het kan zijn dat een deel van de software of code in handen is van de softwareontwikkelaar en een deel in handen van de opdrachtgever. Zet dit duidelijk op papier. Zo weet u wie verantwoordelijk is voor wat wanneer u een nieuwe investeerder aantrekt of uw bedrijf gaat groeien.
+
+**De continuïteit van de software**
+
+Wat gebeurt er als uw onderneming failliet gaat of wordt overgenomen door een derde partij? Kan uw klant dan nog steeds gebruik maken van de software en de bijbehorende data of gaat alles op zwart? Als softwareleverancier wilt u goed zorgen voor al uw klanten.
+
+Wanneer de softwareleverancier 'on premise' levert, oftewel de software draait op de servers van de klant, dan kan ervoor worden gekozen een escrowregeling op te zetten waarbij de escrow-agent de broncode bewaart en uitgeeft bij een faillissement.`,
+      slug: 'software-startup',
     },
     {
       id: 'post-3',
-      title: 'Verwerkersovereenkomst voor IT-bedrijven: een praktische aanpak',
+      title: 'Wat u moet weten over gebruiksvoorwaarden van apps',
       excerpt:
-        "Alles wat u moet weten over verwerkersovereenkomsten (DPA's) voor IT-dienstverleners. Inclusief concrete voorbeelden en valkuilen.",
-      date: '2025-03-10',
-      category: 'Privacy & AVG',
+        'Tegenwoordig kent bijna elke app gebruiksvoorwaarden, regels waaraan gebruikers van de app zich dienen te houden. Hoe begint u aan het opstellen van gebruiksvoorwaarden voor uw app? En wat mag u zeker niet vergeten?',
+      date: '2024-11-10',
+      category: 'Apps & Gebruiksrecht',
       coverImage: {
-        src: '/images/placeholders/placeholder.svg',
-        alt: 'Verwerkersovereenkomst IT',
+        src: '/images/blog/Gebruikersvoorwaardensoftwaredienst.webp',
+        alt: 'Gebruiksvoorwaarden apps',
       },
-      content: 'Artikel over verwerkersovereenkomsten voor IT-bedrijven...',
-      slug: 'verwerkersovereenkomst-it-bedrijven-praktisch',
+      content: `**Hoe komt de overeenkomst tot stand via de app of website?**
+
+Eerst en vooral neemt u in de gebruiksvoorwaarden op hoe de overeenkomst met de gebruiker tot stand komt. Het moment waarop de overeenkomst tot stand komt, kan voor elke app anders zijn. Is dat het moment waarop de gebruiker zich registreert op uw website of app? Of gaat de overeenkomst in op het moment dat de gebruiker daadwerkelijk gebruik maakt van de app.
+
+**De inhoud van de gebruiksvoorwaarden**
+
+Vervolgens zijn er regels die van toepassing zijn op het gebruik van uw website of app. Ook deze neemt u op in de gebruiksvoorwaarden. Dit omvat acties of handelingen die al dan niet toegestaan zijn op de app zoals het plaatsen van openbare berichten en het delen ervan met andere gebruikers.
+
+**Diensten van derden**
+
+Vandaag is alles online en aan elkaar gelinkt. Het kan dan ook goed zijn dat uw app of website koppelingen of links bevat naar diensten van derden. We adviseren ook dit op te nemen in uw gebruiksvoorwaarden.
+
+**Notice-and-takedown op basis van de gebruikersvoorwaarden**
+
+Wanneer gebruiksvoorwaarden geschonden worden door een gebruiker, wilt u als eigenaar van de website of app de bevoegdheid hebben om in te grijpen. Dit neemt u op in de notice-and-takedown procedure.`,
+      slug: 'gebruikersvoorwaarden-van-apps',
     },
     {
       id: 'post-4',
-      title: 'Aansprakelijkheid beperken in software contracten: zo doet u het goed',
+      title: 'Drie tips bij het opstellen van licentieovereenkomsten voor software',
       excerpt:
-        'Effectieve aansprakelijkheidsbeperking die stand houdt in de rechtszaal. Specifiek voor software- en IT-dienstverleners.',
-      date: '2025-02-22',
-      category: 'Contracten',
+        'Het goed en duidelijk opstellen van een licentie is belangrijk om problemen te vermijden. Zorg ervoor dat uw licentie volledig is en u achteraf geen spijt hebt dat u iets vergeten bent.',
+      date: '2024-10-22',
+      category: 'Licenties & Software',
       coverImage: {
-        src: '/images/placeholders/placeholder.svg',
-        alt: 'Aansprakelijkheid software',
+        src: '/images/blog/Softwareontwikkelingovereenkomstagilescrum.webp',
+        alt: 'Software licentieovereenkomsten',
       },
-      content: 'Artikel over aansprakelijkheidsbeperking in software contracten...',
-      slug: 'aansprakelijkheid-beperken-software-contracten',
+      content: `**Tip 1: Soorten licenties**
+
+Bij elke soort situatie hoort een andere type licentie. Niet alle softwareprogramma's hebben dezelfde licentie nodig. Het is belangrijk dat u weet welke soort licentie u nodig heeft voor uw situatie.
+
+Een eerste onderverdeling in licenties wordt gemaakt aan de hand van het aantal gebruikers van de software. Het kan zijn dat er steeds slechts één account nodig is voor uw software voor een bepaald bedrijf. Daarnaast is het ook mogelijk dat er meerdere accounts dienen aangemaakt te worden per bedrijf.
+
+**Tip 2: Licentieverplichtingen naar de klant toe**
+
+Om te hoge kosten voor uw klant te voorkomen moet u rekening houden met bepaalde (lange termijn) situaties ten opzichte van uw klant. Het aanbieden en leveren van software zoals een Software as a Service (SaaS)-dienst houdt meestal in dat de SaaS-dienst op dezelfde wijze wordt geleverd aan alle klanten.
+
+**Tip 3: Eigenaar van de data**
+
+De data die is opgeslagen in de software of SaaS-dienst is vaak in eigendom van de klant. Dat moet dan ook duidelijk worden gemaakt in de licentieovereenkomst. Wel geven wij de tip dat het de softwareleverancier toegestaan wordt om anonieme of geaggregeerde data gebruiken om analyses uit te voeren.`,
+      slug: 'drie-tips-software',
     },
     {
       id: 'post-5',
-      title: 'AI Act compliance checklist voor software ontwikkelaars',
+      title:
+        'Vier onderdelen die niet mogen ontbreken in de algemene voorwaarden van een softwareontwikkelaar',
       excerpt:
-        'De EU AI Act komt eraan. Is uw software met AI-componenten klaar? Praktische checklist voor ontwikkelaars en product owners.',
-      date: '2025-02-05',
-      category: 'AI & Compliance',
+        'Eigen algemene voorwaarden hanteren als softwareontwikkelaar is een must. Zo wordt het duidelijk wat een klant van u mag verwachten maar u beschermt ook uzelf en uw bedrijf ermee.',
+      date: '2024-10-05',
+      category: 'Softwareontwikkeling',
       coverImage: {
-        src: '/images/placeholders/placeholder.svg',
-        alt: 'AI Act compliance',
+        src: '/images/blog/avsoftware.webp',
+        alt: 'Algemene voorwaarden softwareontwikkelaar',
       },
-      content: 'Artikel over AI Act compliance voor software ontwikkelaars...',
-      slug: 'ai-act-compliance-checklist-software',
-    },
-    {
-      id: 'post-6',
-      title: 'Due diligence voorbereiding: juridische documenten voor tech funding',
-      excerpt:
-        'Welke juridische documenten heeft u nodig voor een investeringsronde? Complete checklist voor tech-startups en scale-ups.',
-      date: '2025-01-18',
-      category: 'Investeringen',
-      coverImage: {
-        src: '/images/placeholders/placeholder.svg',
-        alt: 'Due diligence tech',
-      },
-      content: 'Artikel over juridische voorbereiding voor funding rondes...',
-      slug: 'due-diligence-juridische-documenten-tech-funding',
+      content: `**1. Betaling voor de softwareontwikkeling**
+
+Niet onbelangrijk zijn de voorwaarden over hoe en wanneer de opdrachtgever de softwareontwikkelaar moet betalen. Dit wordt opgenomen in het contract en staat ook in de voorwaarden. Het kan goed zijn dat een opdrachtgever in verschillende termijnen moet betalen aangezien de ontwikkeling ook vaak in verschillende fases gebeurt.
+
+**2. Hoeveelheid en omvang van de softwareontwikkeling**
+
+In de algemene voorwaarden neemt u op wat de omvang is van de opdracht. Wat wordt er wel en wat wordt niet ontwikkeld? Het is vaak moeilijk in te schatten hoeveel uur u precies nodig zult hebben om de software te ontwikkelen.
+
+**3. Intellectuele eigendomsrechten van de software**
+
+Wie is de eigenaar van de software? Dat is vaak een veel betwiste vraag. Om onduidelijkheden te vermijden en moeilijkheden te voorkomen is het belangrijk dat zeer uitgebreid op te nemen in uw algemene voorwaarden.
+
+**4. Acceptatietest en oplevering van de software**
+
+Nieuwe software dient vaak goed getest te worden in verschillende fases. De softwareontwikkelaar test deze zelf maar vaak wil ook de opdrachtgever de nieuwe software of app uittesten.`,
+      slug: 'av-softwareontwikkelaar',
     },
   ];
 

@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, Calendar, Clock, Share2, User } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Clock, Share2, User } from 'lucide-react';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -149,16 +149,6 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
               <div className="flex items-center">
                 <User className="size-4 mr-2" />
                 <span>{author.name}</span>
-              </div>
-              <div className="flex items-center">
-                <Calendar className="size-4 mr-2" />
-                <span className="text-sm text-neutral-text/500">
-                  {new Date(post.date).toLocaleDateString('nl-NL', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                  })}
-                </span>
               </div>
               <div className="flex items-center">
                 <Clock className="size-4 mr-2" />

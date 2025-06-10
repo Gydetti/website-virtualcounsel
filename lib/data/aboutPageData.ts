@@ -11,7 +11,7 @@ export const aboutPageMainContentData: z.infer<typeof aboutSectionDataSchema> = 
   badgeText: 'Over VirtualCounsel',
   heading: 'De Juridische Partner voor Tech',
   paragraphs: [
-    'Ik ben Maarten van Beek, oprichter van VirtualCounsel. Met meer dan **10 jaar ervaring** in het adviseren van **ICT- en softwarebedrijven** begrijp ik de unieke uitdagingen waar tech-ondernemers tegenaan lopen.',
+    'Ik ben Maarten van Beek, oprichter van VirtualCounsel. Met **jarenlange ervaring** in het adviseren van **ICT- en softwarebedrijven** begrijp ik de unieke uitdagingen waar tech-ondernemers tegenaan lopen.',
     'Na jaren als bedrijfsjurist bij verschillende tech-bedrijven zag ik hoe vaak juridisch advies niet aansloot bij de realiteit van **software ontwikkeling, SaaS-modellen en agile werken**. Daarom richtte ik VirtualCounsel op: juridisch advies dat écht werkt voor tech-bedrijven.',
     'Mijn aanpak is **praktisch en to-the-point**. Geen juridisch jargon, maar concrete oplossingen die aansluiten bij uw businessmodel. Of het nu gaat om **SaaS-contracten, open source compliance of AI-regelgeving** - ik spreek uw taal.',
     'Wat mij drijft? Het gevoel wanneer een klant zegt: **"Eindelijk een jurist die ons begrijpt!"** Dat is waar ik het voor doe - juridische zekerheid bieden zonder uw innovatie te remmen.',
@@ -32,8 +32,7 @@ export const aboutPageMainContentData: z.infer<typeof aboutSectionDataSchema> = 
 export const aboutFeatureCardsSectionData: z.infer<typeof aboutFeatureCardsSectionDataSchema> = {
   badgeText: 'Waarom VirtualCounsel',
   heading: 'Juridische expertise die werkt voor tech',
-  subheading:
-    'Ontdek waarom meer dan 100 ICT-bedrijven kiezen voor VirtualCounsel als hun juridische partner.',
+  subheading: 'Ontdek waarom ICT-bedrijven kiezen voor VirtualCounsel als hun juridische partner.',
   featureCards: [
     {
       id: 'certified',
@@ -47,8 +46,7 @@ export const aboutFeatureCardsSectionData: z.infer<typeof aboutFeatureCardsSecti
     {
       id: 'proven',
       title: 'Bewezen resultaten',
-      description:
-        'Honderden succesvolle contracten en deals begeleid voor SaaS-bedrijven en tech startups.',
+      description: 'Succesvolle contracten en deals begeleid voor SaaS-bedrijven en tech startups.',
       icon: 'CheckCircle',
       iconBg: 'bg-emerald-100',
       iconColor: 'text-emerald-600',
@@ -80,11 +78,14 @@ export const aboutValuesSectionData = {
   badgeText: 'Mijn waarden',
   heading: 'De principes die mijn werk sturen',
   values: [
-    'Tech-first denken: Juridisch advies dat aansluit bij moderne software ontwikkeling',
-    'Transparantie: Vaste prijzen en duidelijke afspraken - geen verrassingen',
-    'Pragmatisme: Oplossingen die werken in de praktijk, niet alleen op papier',
-    'Toegankelijkheid: Direct contact met een specialist, geen juniors of tussenpersonen',
-    'Innovatie mogelijk maken: Juridische zekerheid zonder uw groei te belemmeren',
+    'Klantgerichtheid: Uw behoeften en doelen staan altijd centraal in mijn juridische advies',
+    'Kwaliteit: Diepgaande expertise en zorgvuldige uitwerking van elk document',
+    'Betrouwbaarheid: Afspraken nakomen en beschikbaar zijn wanneer u mij nodig heeft',
+    'Passie: Echte betrokkenheid bij het succes van uw tech-onderneming',
+    'Samenwerking: Als juridische partner die met u meedenkt en meegroeit',
+    'Flexibiliteit: Aanpasbaar aan uw specifieke situatie en groeiende behoeften',
+    'Professionaliteit: Uitstekende service met respect voor uw tijd en budget',
+    'Resultaatgerichtheid: Praktische oplossingen die uw business vooruit helpen',
   ],
 };
 
@@ -96,41 +97,23 @@ export const aboutSocialProofSectionData = {
     {
       id: 'sp1',
       quote:
-        'Eindelijk een jurist die snapt wat een API is en waarom onze SaaS-contracten anders moeten zijn dan traditionele software licenties. Maarten denkt mee vanuit ons businessmodel.',
-      name: 'Thomas K.',
-      title: 'CTO, CloudScale Solutions',
-      image: {
-        src: '/images/placeholders/placeholder.svg',
-        alt: 'Thomas K. - CTO CloudScale Solutions',
-        width: 60,
-        height: 60,
-      },
+        'Sinds een aantal maanden werken we samen met Maarten van VirtualCounsel en dat bevalt goed. Hij doet pragmatische reviews van onze juridische documenten, staat ons bij in gesprek met potentiële klanten waar vragen over voorwaarden zijn en heeft een commercieel model waarmee zijn dienst goed betaalbaar is. Aanrader!',
+      name: 'Ivar van Duuren',
+      title: 'Co-founder ISOPlanner',
     },
     {
       id: 'sp2',
       quote:
-        'De verwerkersovereenkomst die Maarten opstelde was niet alleen AVG-compliant, maar ook praktisch werkbaar. Hij begreep direct onze multi-tenant architectuur en de implicaties daarvan.',
-      name: 'Linda M.',
-      title: 'Legal Counsel, DataFlow B.V.',
-      image: {
-        src: '/images/placeholders/placeholder.svg',
-        alt: 'Linda M. - Legal Counsel DataFlow',
-        width: 60,
-        height: 60,
-      },
+        'Onze samenwerking met Maarten van Beek van VirtualCounsel was zeer vruchtbaar. Hij heeft ons bijgestaan in het opstellen van algemene voorwaarden, een Service Level Agreement (SLA), en een verwerkersovereenkomst voor meerdere van onze ondernemingen. Zijn expertise in juridische zaken is een waardevolle toevoeging in het succes van deze projecten. De communicatie met Maarten verliep steeds efficiënt en professioneel, wat het proces aanzienlijk vergemakkelijkte. Wij zijn uitermate tevreden over de kwaliteit van de dienstverlening en bevelen Maarten van harte aan als een deskundige en betrouwbare jurist.',
+      name: 'Joram van Doorn',
+      title: 'Founder SiteOnline',
     },
     {
       id: 'sp3',
       quote:
-        'Voor onze Series A hadden we snel onze juridische zaken op orde nodig. Maarten leverde binnen een week een complete legal cleanup. De investeerders waren onder de indruk.',
-      name: 'Pieter V.',
-      title: 'Founder & CEO, TechStart',
-      image: {
-        src: '/images/placeholders/placeholder.svg',
-        alt: 'Pieter V. - Founder TechStart',
-        width: 60,
-        height: 60,
-      },
+        'Maarten heeft ons uitstekend ondersteund bij het opstellen van een maatwerk SLA en nieuwe algemene voorwaarden. In mijn zoektocht naar de juiste expertise heb ik contact gehad met verschillende partijen, maar Maarten was de enige die daadwerkelijk advies gaf en met ons meedacht. Hij is snel, betrouwbaar en betrokken. Een aanrader voor iedereen die zoekt naar een partner die net dat stapje extra zet!',
+      name: 'Joey Deckers',
+      title: 'Founder Retrii',
     },
   ],
 };
@@ -143,24 +126,24 @@ export const aboutPersonalJourneySectionData = {
   journeySteps: [
     {
       id: 'step-1',
-      timeframe: '2010-2015',
-      title: 'Start als bedrijfsjurist in de tech-sector',
+      timeframe: 'Startperiode',
+      title: 'Begin als jurist in de tech-sector',
       description:
-        'Als juridisch adviseur bij verschillende software- en IT-bedrijven ontdekte ik hoe traditioneel juridisch advies vaak botst met de realiteit van tech. Ik leerde de taal van developers, product owners en CTOs.',
+        'Als juridisch adviseur bij verschillende ICT- en softwarebedrijven ontdekte ik hoe traditioneel juridisch advies vaak botst met de realiteit van tech. Ik leerde de taal van developers en ondernemers.',
     },
     {
       id: 'step-2',
-      timeframe: '2015-2020',
-      title: 'Specialisatie in SaaS en cloud computing',
+      timeframe: 'Specialisatie',
+      title: 'Focus op ICT- en softwarerecht',
       description:
-        'Focus op de juridische uitdagingen van subscription modellen, data processing en internationale tech-deals. Ontwikkelde praktische frameworks voor recurring revenue bedrijven en API-economie.',
+        'Jarenlange ervaring opgebouwd in de juridische uitdagingen van ICT- en softwarebedrijven. Van contracten tot privacy, van intellectueel eigendom tot commerciële overeenkomsten.',
     },
     {
       id: 'step-3',
-      timeframe: '2020-heden',
-      title: 'VirtualCounsel: juridisch advies voor de nieuwe economie',
+      timeframe: 'Heden',
+      title: 'VirtualCounsel: gespecialiseerd juridisch advies',
       description:
-        'Met VirtualCounsel combineer ik diepgaande juridische kennis met begrip van moderne technologie. Van AI Act compliance tot open source strategie - ik help tech-bedrijven veilig innoveren.',
+        'Met VirtualCounsel bied ik gespecialiseerd juridisch advies voor ICT- en softwarebedrijven. Een expert die hun taal spreekt en hun uitdagingen begrijpt.',
     },
   ],
   image: {
@@ -180,66 +163,66 @@ export const aboutCredentialsSectionData = {
   credentials: [
     {
       id: 'credential-1',
-      type: 'Certificering',
-      title: 'Certified Data Protection Officer (DPO)',
-      issuer: 'Privacy & Security Academy',
-      year: '2021',
+      type: 'Achtergrond',
+      title: 'ICT-jurist',
+      issuer: 'Gespecialiseerd in ICT- en softwarerecht',
+      year: '',
       description:
-        'Diepgaande kennis van GDPR/AVG specifiek voor SaaS en cloud diensten. Essentieel voor het opstellen van verwerkersovereenkomsten en privacy compliance.',
+        'Jarenlange ervaring met het juridisch bijstaan van verschillende ICT- en softwarebedrijven. Gespecialiseerd, effectief en duidelijk juridisch advies.',
       icon: 'award',
     },
     {
       id: 'credential-2',
-      type: 'Opleiding',
-      title: 'Master IT-recht & Intellectueel Eigendom',
-      issuer: 'Universiteit van Amsterdam',
-      year: '2012',
+      type: 'Expertise',
+      title: 'ICT-contracten en privacy',
+      issuer: 'Diverse ICT- en softwarebedrijven',
+      year: '',
       description:
-        'Specialisatie in software licenties, open source recht en digitale diensten. Basis voor mijn expertise in tech-contracten.',
+        'Ervaring met contracten, algemene voorwaarden, privacy compliance en alle juridische aspecten die ICT- en softwarebedrijven tegenkomen.',
       icon: 'book',
     },
     {
       id: 'credential-3',
-      type: 'Ervaring',
-      title: 'Legal advisor tech scale-ups',
-      issuer: 'Diverse SaaS & software bedrijven',
-      year: '10+ jaar',
+      type: 'Aanpak',
+      title: 'Praktisch en commercieel gericht',
+      issuer: 'VirtualCounsel',
+      year: '',
       description:
-        'Hands-on ervaring met funding rondes, internationale expansie, partner agreements en exit trajecten. Ik ken de groei-uitdagingen van tech-bedrijven van binnenuit.',
+        'Een expert die de taal van ICT- en softwarebedrijven spreekt en begrijpt wat er speelt in de sector. Flexibel, betaalbaar en altijd klaar om juridische zaken efficiënt te regelen.',
       icon: 'star',
     },
   ],
   cta: {
-    text: 'Bekijk onze diensten',
+    text: 'Bekijk mijn diensten',
     href: '/services',
   },
 };
 
 // Filosofie en aanpak
 export const aboutPhilosophySectionData = {
-  badgeText: 'Onze aanpak',
+  badgeText: 'Mijn aanpak',
   heading: 'Juridisch advies dat innovatie mogelijk maakt',
-  subtitle: 'Hoe we complexe juridische vraagstukken vertalen naar praktische oplossingen',
+  subtitle: 'Hoe ik complexe juridische vraagstukken vertaal naar praktische oplossingen',
   philosophyPoints: [
     {
       id: 'philosophy-1',
       title: 'Business-first benadering',
       description:
-        'We beginnen met uw businessmodel en doelen. Juridische oplossingen moeten uw groei ondersteunen, niet belemmeren. Daarom denken we eerst commercieel, dan pas juridisch.',
+        'Ik begin met uw businessmodel en doelen. Juridische oplossingen moeten uw groei ondersteunen, niet belemmeren. Daarom denk ik eerst commercieel, dan pas juridisch.',
       icon: 'heart',
     },
     {
       id: 'philosophy-2',
       title: 'Preventief in plaats van reactief',
       description:
-        "Voorkomen is beter dan genezen. We helpen u juridische risico's vroegtijdig te identificeren en aan te pakken, voordat ze kostbare problemen worden.",
+        "Voorkomen is beter dan genezen. Ik help u juridische risico's vroegtijdig te identificeren en aan te pakken, voordat ze kostbare problemen worden.",
       icon: 'compass',
     },
     {
       id: 'philosophy-3',
       title: 'Kennis delen maakt sterker',
       description:
-        'We geloven in empowerment door educatie. Daarom leggen we niet alleen uit wát we adviseren, maar ook waarom. Zo bouwt u intern juridische kennis op.',
+        'Ik geloof in empowerment door educatie. Daarom leg ik niet alleen uit wát ik adviseer, maar ook waarom. Zo bouwt u intern juridische kennis op.',
       icon: 'lightbulb',
     },
   ],

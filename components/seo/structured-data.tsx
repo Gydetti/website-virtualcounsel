@@ -55,7 +55,7 @@ export default function StructuredData({ type, data, breadcrumbItems }: Structur
       '@type': 'ContactPoint',
       telephone: data?.phone || '+31201234567',
       contactType: 'customer service',
-      email: data?.email || 'info@example.com',
+      email: data?.email || 'info@virtualcounsel.nl',
       areaServed: 'Worldwide',
       availableLanguage: ['English', 'Dutch'],
     },

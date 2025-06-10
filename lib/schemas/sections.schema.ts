@@ -69,7 +69,6 @@ export const testimonialItemSchema = z.object({
   quote: z.string().min(1, 'Testimonial quote cannot be empty'),
   name: z.string().min(1, 'Testimonial author name cannot be empty'),
   title: z.string().min(1, 'Testimonial author title/role cannot be empty'),
-  image: imageSchema, // Using common imageSchema
   rating: z.number().min(1).max(5).optional(), // Optional rating (1-5 stars)
 });
 
@@ -569,7 +568,6 @@ const serviceTestimonialSchema = z.object({
   quote: z.string().min(1),
   author: z.string().min(1),
   company: z.string().min(1),
-  image: imageSchema.optional(),
 });
 
 export const serviceTestimonialsSectionDataSchema = z.object({

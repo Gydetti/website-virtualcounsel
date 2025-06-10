@@ -253,6 +253,11 @@ export default function ContactPageClient() {
                     </div>
 
                     <div className="mb-6">
+                      <p className="font-semibold mb-2">BTW-nummer</p>
+                      <p className="text-white/80">NL003525657B91</p>
+                    </div>
+
+                    <div className="mb-6">
                       <p className="font-semibold mb-2">Plan direct een gesprek</p>
                       <a
                         href="https://calendly.com/virtualcounsel"
@@ -273,15 +278,6 @@ export default function ContactPageClient() {
                         rel="noopener noreferrer"
                       >
                         <Linkedin className="size-5 text-white" />
-                      </a>
-                      <a
-                        href="https://twitter.com/virtualcounsel"
-                        className="size-10 rounded-full bg-neutral-surface/20 flex items-center justify-center hover:bg-neutral-surface/30 transition-colors"
-                        aria-label="Twitter"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Twitter className="size-5 text-white" />
                       </a>
                     </div>
                   </div>

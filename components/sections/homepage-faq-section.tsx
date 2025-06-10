@@ -81,23 +81,25 @@ export default function HomepageFaqSection({
               key={cat.category}
               animation="fade-up"
               delay={0.1 * idx}
-              className="flex flex-col items-center"
+              className="w-full"
             >
               {/* Category badge with solid background and strong shadow effect */}
-              <div className="inline-flex items-center px-3 py-1 mb-6 bg-neutral-surface border border-divider rounded-full shadow-md">
-                <h3 className="text-sm font-medium text-neutral-text">{cat.category}</h3>
+              <div className="flex justify-center mb-6">
+                <div className="inline-flex items-center px-3 py-1 bg-neutral-surface border border-divider rounded-full shadow-md">
+                  <h3 className="text-sm font-medium text-neutral-text">{cat.category}</h3>
+                </div>
               </div>
               <Accordion
                 type="single"
                 collapsible
-                className="w-full max-w-2xl"
+                className="w-full"
                 style={{ display: 'grid', gap: '1rem' } as CSSProperties}
               >
                 {cat.questions.map((q, qIdx) => (
                   <AccordionItem
                     key={q.question}
                     value={`faq-${cat.category}-${q.question}`}
-                    className="w-full max-w-[670px] min-w-[670px] md:max-w-[670px] md:min-w-[670px] sm:max-w-full sm:min-w-full max-[640px]:max-w-full max-[640px]:min-w-full"
+                    className="w-full"
                   >
                     <AccordionTrigger className="flex items-center justify-between w-full px-6 py-4 text-body-base text-neutral-text font-medium text-left bg-neutral-surface rounded-lg shadow-sm hover:shadow-md">
                       {q.question}

@@ -63,7 +63,7 @@ export const serviceDetailPageData: ServiceDetailData = {
           'Na oplevering heeft u 5 werkdagen om feedback te geven. We verwerken uw feedback kosteloos (mits binnen scope). Daarna bespreken we de definitieve versie telefonisch door zodat u precies weet wat er staat.',
       },
       {
-        question: 'Zijn jouw documenten up-to-date?',
+        question: 'Zijn uw documenten up-to-date?',
         answer:
           'Absoluut. Ik volg alle relevante wetgeving op de voet - van AVG updates tot de nieuwe AI Act. Uw documenten voldoen altijd aan de laatste wettelijke vereisten en best practices in de tech-industrie.',
       },
@@ -75,18 +75,18 @@ export const serviceDetailPageData: ServiceDetailData = {
     heading: 'Wat klanten zeggen',
     testimonials: [
       {
-        id: 'testimonial-tech',
+        id: 'testimonial-ivar',
         quote:
-          'VirtualCounsel begrijpt echt wat wij als SaaS-bedrijf nodig hebben. De contracten sluiten perfect aan bij ons businessmodel en groeiambities.',
-        author: 'Robert van der Berg',
-        company: 'CloudPlatform B.V.',
+          'Sinds een aantal maanden werken we samen met Maarten van VirtualCounsel en dat bevalt goed. Hij doet pragmatische reviews van onze juridische documenten, staat ons bij in gesprek met potentiële klanten waar vragen over voorwaarden zijn en heeft een commercieel model waarmee zijn dienst goed betaalbaar is. Aanrader!',
+        author: 'Ivar van Duuren',
+        company: 'Co-founder ISOPlanner',
       },
       {
-        id: 'testimonial-startup',
+        id: 'testimonial-joram',
         quote:
-          'Voor onze funding ronde hadden we snel professionele contracten nodig. Binnen een week hadden we alles op orde - de investeerders waren onder de indruk.',
-        author: 'Sarah Jansen',
-        company: 'TechStartup Amsterdam',
+          'Onze samenwerking met Maarten van Beek van VirtualCounsel was zeer vruchtbaar. Hij heeft ons bijgestaan in het opstellen van algemene voorwaarden, een Service Level Agreement (SLA), en een verwerkersovereenkomst voor meerdere van onze ondernemingen.',
+        author: 'Joram van Doorn',
+        company: 'Founder SiteOnline',
       },
     ],
   },
@@ -175,7 +175,7 @@ export const servicesDetailData: Record<string, ServiceDetailData> = {
         id: 'step-1',
         title: 'IE-audit',
         description:
-          'We inventariseren alle betrokken ontwikkelaars, bestaande afspraken en gebruikte componenten.',
+          'Ik inventariseer alle betrokken ontwikkelaars, bestaande afspraken en gebruikte componenten.',
         duration: '1-2 dagen',
         icon: 'Search',
       },
@@ -219,7 +219,7 @@ export const servicesDetailData: Record<string, ServiceDetailData> = {
             'Geen theoretische modellen maar werkbare oplossingen die passen bij uw development workflow.',
         },
       ],
-      highlight: 'Specialist in software IE sinds 2017',
+      highlight: 'Gespecialiseerd in software intellectueel eigendom',
     },
     benefitsSection: {
       heading: 'Waarom is IE-bescherming cruciaal voor uw software?',
@@ -258,7 +258,7 @@ export const servicesDetailData: Record<string, ServiceDetailData> = {
         {
           question: 'Hoe werkt een IE-overdracht bij bestaande software?',
           answer:
-            'We inventariseren eerst alle betrokken ontwikkelaars en bestaande afspraken. Vervolgens stel ik retroactieve overdrachtsovereenkomsten op. Bij complexe situaties met veel partijen werk ik met een gefaseerde aanpak om alle rechten veilig te stellen.',
+            'Ik inventariseer eerst alle betrokken ontwikkelaars en bestaande afspraken. Vervolgens stel ik retroactieve overdrachtsovereenkomsten op. Bij complexe situaties met veel partijen werk ik met een gefaseerde aanpak om alle rechten veilig te stellen.',
         },
         {
           question: 'Wanneer is een aparte IE B.V. verstandig?',
@@ -268,26 +268,26 @@ export const servicesDetailData: Record<string, ServiceDetailData> = {
         {
           question: 'Hoe voorkom ik problemen met open source licenties?',
           answer:
-            'Ik voer een licentie-audit uit van alle gebruikte componenten. GPL-licenties kunnen bijvoorbeeld uw hele codebase "besmetten". We maken een open source policy en zorgen voor compliance zonder uw commerciële belangen te schaden.',
+            'Ik voer een licentie-audit uit van alle gebruikte componenten. GPL-licenties kunnen bijvoorbeeld uw hele codebase "besmetten". Ik maak een open source policy en zorg voor compliance zonder uw commerciële belangen te schaden.',
         },
       ],
     },
     testimonialsSection: {
-      heading: 'Ervaringen met IE-trajecten',
+      heading: 'Wat klanten zeggen',
       testimonials: [
         {
-          id: 'testimonial-saas',
+          id: 'testimonial-ivar',
           quote:
-            'Voor onze Series A hadden we alle IE-rechten binnen twee weken op orde. De investeerders waren onder de indruk van de grondige documentatie. Zonder Maarten hadden we deze ronde niet gehaald.',
-          author: 'Thomas de Groot',
-          company: 'SaaS Scale-up Amsterdam',
+            'Sinds een aantal maanden werken we samen met Maarten van VirtualCounsel en dat bevalt goed. Hij doet pragmatische reviews van onze juridische documenten, staat ons bij in gesprek met potentiële klanten waar vragen over voorwaarden zijn en heeft een commercieel model waarmee zijn dienst goed betaalbaar is. Aanrader!',
+          author: 'Ivar van Duuren',
+          company: 'Co-founder ISOPlanner',
         },
         {
-          id: 'testimonial-opensource',
+          id: 'testimonial-joey',
           quote:
-            'We gebruikten onbewust GPL-code in ons commerciële product. Maarten vond een praktische oplossing waarbij we compliant werden zonder onze hele architectuur om te gooien.',
-          author: 'Lisa Chen',
-          company: 'AI Software Company',
+            'Maarten heeft ons uitstekend ondersteund bij het opstellen van een maatwerk SLA en nieuwe algemene voorwaarden. In mijn zoektocht naar de juiste expertise heb ik contact gehad met verschillende partijen, maar Maarten was de enige die daadwerkelijk advies gaf en met ons meedacht.',
+          author: 'Joey Deckers',
+          company: 'Founder Retrii',
         },
       ],
     },
@@ -370,7 +370,7 @@ export const servicesDetailData: Record<string, ServiceDetailData> = {
       {
         id: 'step-1',
         title: 'Intake gesprek',
-        description: 'We bespreken uw diensten, werkwijze, klanttypen en huidige knelpunten.',
+        description: 'Ik bespreek uw diensten, werkwijze, klanttypen en huidige knelpunten.',
         duration: '30-45 minuten',
         icon: 'MessageSquare',
       },
@@ -404,7 +404,7 @@ export const servicesDetailData: Record<string, ServiceDetailData> = {
         {
           title: 'Sector expertise',
           description:
-            '7+ jaar exclusief bezig met ICT-contracten. Ik ken alle valkuilen en best practices.',
+            'Jarenlange ervaring met ICT-contracten. Ik ken de valkuilen en best practices van de sector.',
         },
         {
           title: 'Sales-enablement',
@@ -412,7 +412,7 @@ export const servicesDetailData: Record<string, ServiceDetailData> = {
             'Contracten die deals versnellen in plaats van vertragen. Met uitleg voor uw salesteam.',
         },
       ],
-      highlight: '500+ ICT-contracten opgesteld',
+      highlight: 'Gespecialiseerd in ICT-contracten',
     },
     benefitsSection: {
       heading: 'Waarom maatwerk contracten essentieel zijn',
@@ -459,28 +459,28 @@ export const servicesDetailData: Record<string, ServiceDetailData> = {
             'Essentieel zijn: gebruiksrechten, uptime-garanties, data-eigendom, privacy, aansprakelijkheidsbeperking, betalingsvoorwaarden en beëindigingsafspraken. Ik zorg dat alle elementen kloppen en aansluiten bij uw specifieke SaaS-model - of u nu B2B of B2C werkt.',
         },
         {
-          question: 'Kan je ook internationale contracten maken?',
+          question: 'Kunt u ook internationale contracten maken?',
           answer:
             'Jazeker. Ik maak Engelstalige contracten voor internationale klanten, rekening houdend met verschillende rechtssystemen. Voor complexe internationale deals werk ik samen met lokale specialisten om volledige dekking te garanderen.',
         },
       ],
     },
     testimonialsSection: {
-      heading: 'Wat klanten zeggen over onze contracten',
+      heading: 'Wat klanten zeggen',
       testimonials: [
         {
-          id: 'testimonial-agency',
+          id: 'testimonial-joram',
           quote:
-            'Eindelijk algemene voorwaarden die passen bij hoe wij werken. Geen gedoe meer met klanten over agile vs waterval - alles staat helder op papier.',
-          author: 'Mark Jansen',
-          company: 'Digital Agency Rotterdam',
+            'Onze samenwerking met Maarten van Beek van VirtualCounsel was zeer vruchtbaar. Hij heeft ons bijgestaan in het opstellen van algemene voorwaarden, een Service Level Agreement (SLA), en een verwerkersovereenkomst voor meerdere van onze ondernemingen. Zijn expertise in juridische zaken is een waardevolle toevoeging in het succes van deze projecten.',
+          author: 'Joram van Doorn',
+          company: 'Founder SiteOnline',
         },
         {
-          id: 'testimonial-saas',
+          id: 'testimonial-joey',
           quote:
-            'Onze enterprise klanten zijn onder de indruk van de professionaliteit van onze contracten. Het geeft vertrouwen en versnelt het salesproces enorm.',
-          author: 'Sophie van Dam',
-          company: 'B2B SaaS Platform',
+            'Maarten heeft ons uitstekend ondersteund bij het opstellen van een maatwerk SLA en nieuwe algemene voorwaarden. Hij is snel, betrouwbaar en betrokken. Een aanrader voor iedereen die zoekt naar een partner die net dat stapje extra zet!',
+          author: 'Joey Deckers',
+          company: 'Founder Retrii',
         },
       ],
     },
@@ -562,7 +562,7 @@ export const servicesDetailData: Record<string, ServiceDetailData> = {
         id: 'step-1',
         title: 'Risicoanalyse',
         description:
-          "We inventariseren uw diensten, klanttypen en huidige aansprakelijkheidsrisico's.",
+          "Ik inventariseer uw diensten, klanttypen en huidige aansprakelijkheidsrisico's.",
         duration: '1-2 uur',
         icon: 'Search',
       },
@@ -601,7 +601,7 @@ export const servicesDetailData: Record<string, ServiceDetailData> = {
         {
           title: 'Onderhandelingservaring',
           description:
-            'Ik weet hoe enterprise klanten denken en help je tot win-win oplossingen te komen.',
+            'Ik weet hoe enterprise klanten denken en help u tot win-win oplossingen te komen.',
         },
       ],
       highlight: 'Specialist in tech aansprakelijkheid',
@@ -658,21 +658,21 @@ export const servicesDetailData: Record<string, ServiceDetailData> = {
       ],
     },
     testimonialsSection: {
-      heading: 'Hoe beperking in de praktijk werkt',
+      heading: 'Wat klanten zeggen',
       testimonials: [
         {
-          id: 'testimonial-saved',
+          id: 'testimonial-ivar',
           quote:
-            'Een klant claimde €2 miljoen schade door een storing. Dankzij de clausules van Maarten bleef onze aansprakelijkheid beperkt tot €50k - precies wat onze verzekering dekte.',
-          author: 'Robert Koning',
-          company: 'Cloud Platform Provider',
+            'Sinds een aantal maanden werken we samen met Maarten van VirtualCounsel en dat bevalt goed. Hij doet pragmatische reviews van onze juridische documenten, staat ons bij in gesprek met potentiële klanten waar vragen over voorwaarden zijn en heeft een commercieel model waarmee zijn dienst goed betaalbaar is. Aanrader!',
+          author: 'Ivar van Duuren',
+          company: 'Co-founder ISOPlanner',
         },
         {
-          id: 'testimonial-enterprise',
+          id: 'testimonial-joram',
           quote:
-            'We dachten dat enterprise klanten nooit aansprakelijkheidsbeperking zouden accepteren. Maarten formuleerde het zo dat zelfs Fortune 500 bedrijven akkoord gingen.',
-          author: 'Anna Visser',
-          company: 'Enterprise SaaS',
+            'Onze samenwerking met Maarten van Beek van VirtualCounsel was zeer vruchtbaar. Hij heeft ons bijgestaan in het opstellen van algemene voorwaarden, een Service Level Agreement (SLA), en een verwerkersovereenkomst voor meerdere van onze ondernemingen.',
+          author: 'Joram van Doorn',
+          company: 'Founder SiteOnline',
         },
       ],
     },
@@ -751,7 +751,7 @@ export const servicesDetailData: Record<string, ServiceDetailData> = {
       {
         id: 'step-1',
         title: 'Privacy scan',
-        description: 'We analyseren uw datastromen, huidige documentatie en compliance gaps.',
+        description: 'Ik analyseer uw datastromen, huidige documentatie en compliance gaps.',
         duration: '2-3 uur',
         icon: 'Search',
       },
@@ -846,21 +846,21 @@ export const servicesDetailData: Record<string, ServiceDetailData> = {
       ],
     },
     testimonialsSection: {
-      heading: 'AVG-successen van klanten',
+      heading: 'Wat klanten zeggen',
       testimonials: [
         {
-          id: 'testimonial-audit',
+          id: 'testimonial-joram',
           quote:
-            'We doorstonden een strenge privacy-audit van een Fortune 500 klant met vlag en wimpel. De auditors waren onder de indruk van onze documentatie.',
-          author: 'Erik van der Berg',
-          company: 'Data Analytics Platform',
+            'Onze samenwerking met Maarten van Beek van VirtualCounsel was zeer vruchtbaar. Hij heeft ons bijgestaan in het opstellen van algemene voorwaarden, een Service Level Agreement (SLA), en een verwerkersovereenkomst voor meerdere van onze ondernemingen.',
+          author: 'Joram van Doorn',
+          company: 'Founder SiteOnline',
         },
         {
-          id: 'testimonial-international',
+          id: 'testimonial-ivar',
           quote:
-            'Dankzij Maarten konden we probleemloos Amerikaanse klanten bedienen. Hij regelde alle internationale data transfer documentatie perfect.',
-          author: 'Maria Santos',
-          company: 'HR Tech Startup',
+            'Sinds een aantal maanden werken we samen met Maarten van VirtualCounsel en dat bevalt goed. Hij doet pragmatische reviews van onze juridische documenten, staat ons bij in gesprek met potentiële klanten waar vragen over voorwaarden zijn en heeft een commercieel model waarmee zijn dienst goed betaalbaar is. Aanrader!',
+          author: 'Ivar van Duuren',
+          company: 'Co-founder ISOPlanner',
         },
       ],
     },
@@ -940,7 +940,7 @@ export const servicesDetailData: Record<string, ServiceDetailData> = {
       {
         id: 'step-1',
         title: 'Partner strategie',
-        description: 'We bepalen uw channel strategie, partnertypen en commerciële doelen.',
+        description: 'Ik bepaal uw channel strategie, partnertypen en commerciële doelen.',
         duration: '2 uur',
         icon: 'Target',
       },
@@ -1034,21 +1034,21 @@ export const servicesDetailData: Record<string, ServiceDetailData> = {
       ],
     },
     testimonialsSection: {
-      heading: 'Succesvol opgeschaald via partners',
+      heading: 'Wat klanten zeggen',
       testimonials: [
         {
-          id: 'testimonial-global',
+          id: 'testimonial-joey',
           quote:
-            'Van 2 naar 50 resellers in 18 maanden. De juridische structuur van Maarten schaalde moeiteloos mee zonder gedoe of conflicten.',
-          author: 'Peter van Dijk',
-          company: 'Business Software Suite',
+            'Maarten heeft ons uitstekend ondersteund bij het opstellen van een maatwerk SLA en nieuwe algemene voorwaarden. In mijn zoektocht naar de juiste expertise heb ik contact gehad met verschillende partijen, maar Maarten was de enige die daadwerkelijk advies gaf en met ons meedacht.',
+          author: 'Joey Deckers',
+          company: 'Founder Retrii',
         },
         {
-          id: 'testimonial-whitelabel',
+          id: 'testimonial-ivar',
           quote:
-            'Onze white label partners voelen zich beschermd maar wij behouden controle. Perfect uitgebalanceerde overeenkomsten die echt werken.',
-          author: 'Linda Bakker',
-          company: 'Marketing Automation Platform',
+            'Sinds een aantal maanden werken we samen met Maarten van VirtualCounsel en dat bevalt goed. Hij doet pragmatische reviews van onze juridische documenten, staat ons bij in gesprek met potentiële klanten waar vragen over voorwaarden zijn en heeft een commercieel model waarmee zijn dienst goed betaalbaar is. Aanrader!',
+          author: 'Ivar van Duuren',
+          company: 'Co-founder ISOPlanner',
         },
       ],
     },
@@ -1221,21 +1221,21 @@ export const servicesDetailData: Record<string, ServiceDetailData> = {
       ],
     },
     testimonialsSection: {
-      heading: 'Succesvolle funding rondes',
+      heading: 'Wat klanten zeggen',
       testimonials: [
         {
-          id: 'testimonial-series-a',
+          id: 'testimonial-joram',
           quote:
-            "De VC's waren verbaasd hoe goed onze juridische zaken op orde waren voor een startup. Het scheelde weken in het DD-proces en gaf ons een sterkere onderhandelingspositie.",
-          author: 'Tom Hendriks',
-          company: 'FinTech Scale-up',
+            'Onze samenwerking met Maarten van Beek van VirtualCounsel was zeer vruchtbaar. Hij heeft ons bijgestaan in het opstellen van algemene voorwaarden, een Service Level Agreement (SLA), en een verwerkersovereenkomst voor meerdere van onze ondernemingen. De communicatie met Maarten verliep steeds efficiënt en professioneel.',
+          author: 'Joram van Doorn',
+          company: 'Founder SiteOnline',
         },
         {
-          id: 'testimonial-acquisition',
+          id: 'testimonial-joey',
           quote:
-            'Bij onze exit bleek de juridische voorbereiding goud waard. Geen enkele onverwachte kwestie tijdens DD. De koper had binnen 3 weken comfort voor signing.',
-          author: 'Sandra Mol',
-          company: 'Acquired SaaS Company',
+            'Maarten heeft ons uitstekend ondersteund bij het opstellen van een maatwerk SLA en nieuwe algemene voorwaarden. Hij is snel, betrouwbaar en betrokken. Een aanrader voor iedereen die zoekt naar een partner die net dat stapje extra zet!',
+          author: 'Joey Deckers',
+          company: 'Founder Retrii',
         },
       ],
     },
@@ -1315,7 +1315,7 @@ export const servicesDetailData: Record<string, ServiceDetailData> = {
       {
         id: 'step-1',
         title: 'Service analyse',
-        description: 'We analyseren uw huidige service delivery en teamcapaciteit.',
+        description: 'Ik analyseer uw huidige service delivery en teamcapaciteit.',
         duration: '2-3 uur',
         icon: 'Activity',
       },
@@ -1409,21 +1409,21 @@ export const servicesDetailData: Record<string, ServiceDetailData> = {
       ],
     },
     testimonialsSection: {
-      heading: "SLA's in de praktijk",
+      heading: 'Wat klanten zeggen',
       testimonials: [
         {
-          id: 'testimonial-enterprise',
+          id: 'testimonial-joram',
           quote:
-            "Onze enterprise klanten waren gewend aan IBM-achtige SLA's. Maarten maakte documenten die net zo professioneel ogen maar veel praktischer zijn voor ons als scale-up.",
-          author: 'Dennis Smit',
-          company: 'Cloud Infrastructure Provider',
+            'Onze samenwerking met Maarten van Beek van VirtualCounsel was zeer vruchtbaar. Hij heeft ons bijgestaan in het opstellen van algemene voorwaarden, een Service Level Agreement (SLA), en een verwerkersovereenkomst voor meerdere van onze ondernemingen.',
+          author: 'Joram van Doorn',
+          company: 'Founder SiteOnline',
         },
         {
-          id: 'testimonial-support',
+          id: 'testimonial-joey',
           quote:
-            "Eindelijk SLA's die ons support team niet gek maken. Realistische targets die we consistent halen, en klanten zijn tevreden.",
-          author: 'Rachel de Vries',
-          company: 'B2B SaaS Platform',
+            'Maarten heeft ons uitstekend ondersteund bij het opstellen van een maatwerk SLA en nieuwe algemene voorwaarden. Hij is snel, betrouwbaar en betrokken.',
+          author: 'Joey Deckers',
+          company: 'Founder Retrii',
         },
       ],
     },
@@ -1596,21 +1596,21 @@ export const servicesDetailData: Record<string, ServiceDetailData> = {
       ],
     },
     testimonialsSection: {
-      heading: 'AI compliance succesverhalen',
+      heading: 'Wat klanten zeggen',
       testimonials: [
         {
-          id: 'testimonial-hr-tech',
+          id: 'testimonial-ivar',
           quote:
-            'Onze AI recruitment tool werd geclassificeerd als high-risk. Maarten hielp ons compliant worden zonder core features te verliezen. Nu gebruiken we compliance als selling point.',
-          author: 'Michael Chen',
-          company: 'HR Tech Innovator',
+            'Sinds een aantal maanden werken we samen met Maarten van VirtualCounsel en dat bevalt goed. Hij doet pragmatische reviews van onze juridische documenten, staat ons bij in gesprek met potentiële klanten waar vragen over voorwaarden zijn en heeft een commercieel model waarmee zijn dienst goed betaalbaar is. Aanrader!',
+          author: 'Ivar van Duuren',
+          company: 'Co-founder ISOPlanner',
         },
         {
-          id: 'testimonial-genai',
+          id: 'testimonial-joram',
           quote:
-            "We dachten dat onze generative AI features een compliance nightmare zouden worden. Met Maarten's aanpak was het verrassend straightforward en praktisch.",
-          author: 'Julia Petersen',
-          company: 'Content Generation Platform',
+            'Zijn expertise in juridische zaken is een waardevolle toevoeging in het succes van deze projecten. De communicatie met Maarten verliep steeds efficiënt en professioneel, wat het proces aanzienlijk vergemakkelijkte.',
+          author: 'Joram van Doorn',
+          company: 'Founder SiteOnline',
         },
       ],
     },

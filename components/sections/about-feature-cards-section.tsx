@@ -49,7 +49,7 @@ export default function AboutFeatureCardsSection({
 
         {subheading && (
           <LazySection animation="fade-up" delay={0.2}>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{subheading}</p>
+            <p className="text-lg text-neutral-text max-w-2xl mx-auto">{subheading}</p>
           </LazySection>
         )}
       </div>
