@@ -76,6 +76,7 @@ export default async function BlogPage() {
                           }
                           alt={featuredPost.coverImage?.alt || featuredPost.title}
                           fill
+                          priority
                           className="absolute inset-0 object-cover"
                         />
                       </div>
@@ -110,7 +111,7 @@ export default async function BlogPage() {
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {regularPosts.map((post, index) => (
-              <LazySection key={post.id} delay={index * 0.1} className="h-full">
+              <LazySection key={post.id} delay={index * 0.05} className="h-full">
                 <Link href={`/blog/${post.slug}`} className="block h-full group">
                   <Card className="h-full flex flex-col overflow-hidden transition-all duration-300 hover:shadow-xl">
                     <div className="relative h-48 w-full overflow-hidden">
@@ -118,6 +119,7 @@ export default async function BlogPage() {
                         src={post.coverImage?.src || '/images/placeholders/placeholder.svg'}
                         alt={post.coverImage?.alt || post.title}
                         fill
+                        priority={index < 3}
                         className="absolute inset-0 object-cover transition-transform duration-300 hover:scale-105"
                       />
                     </div>

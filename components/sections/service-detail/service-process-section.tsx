@@ -83,7 +83,7 @@ export default function ServiceProcessSection({
 
                 <Card
                   className={cn(
-                    'relative h-full p-6 hover:shadow-lg transition-all duration-300',
+                    'relative h-full p-6 hover:shadow-lg transition-all duration-300 flex flex-col',
                     getBorderRadiusClass('card')
                   )}
                 >
@@ -92,18 +92,18 @@ export default function ServiceProcessSection({
                     {stepNumber}
                   </div>
 
-                  <div className="space-y-4">
-                    <div className="size-12 bg-primary/10 rounded-full flex items-center justify-center">
+                  <div className="flex flex-col h-full">
+                    <div className="size-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
                       <IconComponent className="size-6 text-primary" />
                     </div>
 
-                    <div>
+                    <div className="flex-1">
                       <h3 className="text-lg font-semibold text-foreground mb-2">{step.title}</h3>
                       <p className="text-neutral-text">{step.description}</p>
                     </div>
 
                     {step.duration && (
-                      <div className="pt-4 border-t border-gray-100">
+                      <div className="pt-4 mt-auto border-t border-gray-100">
                         <p className="text-sm text-primary font-medium">
                           Doorlooptijd: {step.duration}
                         </p>

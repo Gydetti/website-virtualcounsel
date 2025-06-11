@@ -36,3 +36,30 @@ export function parseMarkdownParts(text: string): Array<{ text: string; isBold: 
 
   return parts;
 }
+
+export function calculateReadingTime(text: string): string {
+  if (!text || text.trim().length === 0) {
+    return '1 min lezen';
+  }
+
+  // Remove HTML tags and extra whitespace
+  const cleanText = text
+    .replace(/<[^>]*>/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  // Count words (split by spaces and filter empty)
+  const words = cleanText.split(' ').filter(word => word.length > 0);
+  const wordCount = words.length;
+
+  // Average reading speed is 200-250 words per minute in Dutch
+  // We'll use 225 words per minute
+  const wordsPerMinute = 225;
+  const minutes = Math.ceil(wordCount / wordsPerMinute);
+
+  if (minutes <= 1) {
+    return '1 min lezen';
+  }
+
+  return `${minutes} min lezen`;
+}

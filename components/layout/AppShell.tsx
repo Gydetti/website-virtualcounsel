@@ -29,10 +29,6 @@ const DynamicCookiebotLoaderClient = dynamic(
   () => import('@/components/cookie/CookiebotLoaderClient'),
   { ssr: false }
 );
-const DynamicCookieConsentBanner = dynamic(
-  () => import('@/components/cookie/cookie-consent-banner'),
-  { ssr: false }
-);
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -43,8 +39,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       <BfcacheSafety />
       {/* Animated background canvas */}
       {siteConfig.features.enableAdvancedBackgrounds && <DynamicBackgroundCanvas />}
-      {/* Custom React-based cookie banner (disabled by default) */}
-      {siteConfig.features.enableCustomCookieBanner && <DynamicCookieConsentBanner />}
+      {/* Custom React-based cookie banner removed - using Cookiebot instead */}
       {/* Cookiebot loader for production consent flow */}
       <DynamicCookiebotLoaderClient />
       <DataLayerProvider>

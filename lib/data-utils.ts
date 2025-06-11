@@ -302,7 +302,7 @@ Nieuwe software dient vaak goed getest te worden in verschillende fases. De soft
     ...post,
     author: post.author || {
       name: 'Maarten van Beek',
-      image: { src: '/placeholder.svg', alt: 'Maarten van Beek' },
+      image: { src: '/images/team/maarten-klein-profile.webp', alt: 'Maarten van Beek' },
     },
     seo: post.seo || { title: post.title },
   }));

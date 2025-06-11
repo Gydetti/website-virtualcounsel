@@ -7,7 +7,7 @@ test.describe('Smoke Tests for Core Pages', () => {
     test(`should load ${path}`, async ({ page }) => {
       await page.goto(path);
       await expect(page).toHaveTitle(/.+/);
-      await expect(page.locator('main')).toBeVisible();
+      await expect(page.locator('main').first()).toBeVisible();
     });
   }
 });

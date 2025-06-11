@@ -163,6 +163,15 @@ export default function Footer({ hideNewsletter = false }: FooterProps) {
                       AI Act compliance
                     </Link>
                   </li>
+                  <li className="pt-2 border-t border-neutral-surface/20">
+                    <Link
+                      href="/services"
+                      className="text-brand-light hover:text-white transition-colors inline-flex items-center group font-medium"
+                    >
+                      <span className="w-0 h-0.5 bg-brand-light transition-all duration-300 mr-0 group-hover:w-2 group-hover:mr-2" />
+                      Alle 8 diensten →
+                    </Link>
+                  </li>
                 </ul>
               </div>
             )}

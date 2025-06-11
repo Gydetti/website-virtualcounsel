@@ -233,7 +233,7 @@ export const siteConfig: SiteConfigSchema = {
     facebook: '', // Not used
     twitter: '', // Not used
     instagram: '', // Not used
-    linkedin: 'https://www.linkedin.com/company/virtualcounsel', // Company LinkedIn
+    linkedin: 'https://www.linkedin.com/in/maarten-van-beek-688177147/', // Maarten's personal LinkedIn
   },
   // LEGAL & COMPANY DETAILS: Virtual Counsel business information
   legal: {
@@ -300,7 +300,7 @@ export const siteConfig: SiteConfigSchema = {
     enableAboutHeroCta: false,
     enableAboutLearnMoreCta: true,
     enableLandingPages: true, // For future campaigns
-    enableCustomCookieBanner: true, // Using custom AVG-compliant banner
+    enableCustomCookieBanner: false, // Will use Cookiebot script instead
     enableFooterServices: true, // List services in footer
     enableKpiSection: false, // Using hero stats instead
     enableAboutKpiSection: false, // No KPIs for solo practice

@@ -85,76 +85,85 @@ export default function TestimonialsSection({
           <p className="section-subtitle">{subtitle}</p>
         </LazySection>
 
-        <LazySection animation="fade-up" delay={0.1} className="relative max-w-3xl mx-auto">
-          <div className="overflow-hidden">
-            <motion.div
-              className="flex"
-              drag={dragEnabled ? 'x' : false}
-              dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={0.2}
-              onDragEnd={(_, info) => {
-                if (info.offset.x < -50) nextTestimonial();
-                else if (info.offset.x > 50) prevTestimonial();
-              }}
-              animate={{ x: `-${activeIndex * 100}%` }}
-              transition={{ x: { type: 'tween', ease: 'easeInOut', duration: transitionDuration } }}
-              style={{ touchAction: 'pan-y' }}
-            >
-              {testimonials.map((item, index) => (
-                <motion.div key={item.id} className="w-full shrink-0 sm:px-4 pb-8">
-                  <Card
-                    elevation={cardElevation}
-                    hover="lift"
-                    border={testimonialStyle === 'minimal' ? 'subtle' : 'normal'}
-                    padding="large"
-                    className={`h-full ${testimonialStyle === 'featured' ? 'bg-gradient-to-br from-white to-blue-50/10' : ''}`}
-                  >
-                    <CardContent className="p-0">
-                      {/* Quote icon for featured style */}
-                      {testimonialStyle === 'featured' && (
-                        <div className="absolute -top-5 -left-2 text-primary/10">
-                          <Quote size={60} className="opacity-80" />
-                        </div>
-                      )}
+        <div className="relative max-w-3xl mx-auto">
+          <LazySection animation="fade-up" delay={0.1}>
+            <div className="overflow-hidden">
+              <motion.div
+                className="flex"
+                drag={dragEnabled ? 'x' : false}
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.2}
+                onDragEnd={(_, info) => {
+                  if (info.offset.x < -50) nextTestimonial();
+                  else if (info.offset.x > 50) prevTestimonial();
+                }}
+                animate={{ x: `-${activeIndex * 100}%` }}
+                transition={{
+                  x: { type: 'tween', ease: 'easeInOut', duration: transitionDuration },
+                }}
+                style={{ touchAction: 'pan-y' }}
+              >
+                {testimonials.map((item, index) => (
+                  <motion.div key={item.id} className="w-full shrink-0 sm:px-4 pb-8">
+                    <Card
+                      elevation={cardElevation}
+                      hover="lift"
+                      border={testimonialStyle === 'minimal' ? 'subtle' : 'normal'}
+                      padding="large"
+                      className={`h-full ${testimonialStyle === 'featured' ? 'bg-gradient-to-br from-white to-blue-50/10' : ''}`}
+                    >
+                      <CardContent className="p-0">
+                        {/* Quote icon for featured style */}
+                        {testimonialStyle === 'featured' && (
+                          <div className="absolute -top-5 -left-2 text-primary/10">
+                            <Quote size={60} className="opacity-80" />
+                          </div>
+                        )}
 
-                      <div className="flex items-center mb-6">
-                        {item.rating && item.rating > 0
-                          ? Array.from({ length: 5 }).map((_, starIndex) => (
-                              <Star
-                                key={`${item.id}-star-${starIndex}`}
-                                aria-hidden="true"
-                                className={`size-5 ${
-                                  starIndex < (item.rating || 0)
-                                    ? 'text-yellow-400 fill-yellow-400'
-                                    : 'text-neutral-text/300 fill-gray-300'
-                                }`}
-                              />
-                            ))
-                          : Array.from({ length: 5 }).map((_, starIndex) => (
-                              <Star
-                                key={`${item.id}-star-${starIndex}`}
-                                aria-hidden="true"
-                                className="size-5 text-neutral-text/300 fill-gray-300"
-                              />
-                            ))}
-                      </div>
-                      <p className="text-neutral-text text-base mb-8 line-clamp-6 italic">
-                        &quot;{item.quote}&quot;
-                      </p>
-                      <div className="text-center mt-auto">
-                        <h3 className="text-body-base font-semibold text-neutral-text">
-                          {item.name}
-                        </h3>
-                        <p className="text-caption">{item.title}</p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-          {/* Arrow controls positioned relative to LazySection container */}
-          <div className="hidden lg:block absolute top-1/2 -left-12 -translate-y-1/2">
+                        <div className="flex items-center mb-6">
+                          {item.rating && item.rating > 0
+                            ? Array.from({ length: 5 }).map((_, starIndex) => (
+                                <Star
+                                  key={`${item.id}-star-${starIndex}`}
+                                  aria-hidden="true"
+                                  className={`size-5 ${
+                                    starIndex < (item.rating || 0)
+                                      ? 'text-yellow-400 fill-yellow-400'
+                                      : 'text-neutral-text/300 fill-gray-300'
+                                  }`}
+                                />
+                              ))
+                            : Array.from({ length: 5 }).map((_, starIndex) => (
+                                <Star
+                                  key={`${item.id}-star-${starIndex}`}
+                                  aria-hidden="true"
+                                  className="size-5 text-neutral-text/300 fill-gray-300"
+                                />
+                              ))}
+                        </div>
+                        <p className="text-neutral-text text-base mb-8 line-clamp-6 italic">
+                          &quot;{item.quote}&quot;
+                        </p>
+                        <div className="text-center mt-auto">
+                          <h3 className="text-body-base font-semibold text-neutral-text">
+                            {item.name}
+                          </h3>
+                          <p className="text-caption">{item.title}</p>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+          </LazySection>
+
+          {/* Arrow controls with their own animations to prevent flicker but maintain animation */}
+          <LazySection
+            animation="fade"
+            delay={0.2}
+            className="hidden lg:block absolute top-1/2 -left-12 -translate-y-1/2"
+          >
             <button
               type="button"
               aria-label="Previous testimonial"
@@ -163,8 +172,12 @@ export default function TestimonialsSection({
             >
               <ChevronLeft className="size-5 text-foreground" />
             </button>
-          </div>
-          <div className="hidden lg:block absolute top-1/2 -right-12 -translate-y-1/2">
+          </LazySection>
+          <LazySection
+            animation="fade"
+            delay={0.2}
+            className="hidden lg:block absolute top-1/2 -right-12 -translate-y-1/2"
+          >
             <button
               type="button"
               aria-label="Next testimonial"
@@ -173,10 +186,15 @@ export default function TestimonialsSection({
             >
               <ChevronRight className="size-5 text-foreground" />
             </button>
-          </div>
-        </LazySection>
+          </LazySection>
+        </div>
 
-        <div className="flex justify-center mt-4 space-x-2 absolute bottom-0 inset-x-0">
+        {/* Pagination indicators with animation */}
+        <LazySection
+          animation="fade"
+          delay={0.3}
+          className="flex justify-center mt-4 space-x-2 absolute bottom-0 inset-x-0"
+        >
           {testimonials.map((testimonial, index) => (
             <button
               key={testimonial.id}
@@ -188,7 +206,7 @@ export default function TestimonialsSection({
               aria-label={`Go to testimonial ${index + 1}`}
             />
           ))}
-        </div>
+        </LazySection>
       </div>
 
       {/* Authority Badge */}

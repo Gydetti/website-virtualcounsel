@@ -271,7 +271,7 @@ export default function ContactPageClient() {
 
                     <div className="mt-auto flex space-x-4">
                       <a
-                        href="https://www.linkedin.com/company/virtualcounsel"
+                        href="https://www.linkedin.com/in/maarten-van-beek-688177147/"
                         className="size-10 rounded-full bg-neutral-surface/20 flex items-center justify-center hover:bg-neutral-surface/30 transition-colors"
                         aria-label="LinkedIn"
                         target="_blank"
