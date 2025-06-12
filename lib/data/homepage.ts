@@ -65,8 +65,8 @@ export const featuresSectionData: z.infer<typeof featuresSectionDataSchema> = {
 };
 
 export const clientsSectionData: z.infer<typeof clientsSectionDataSchema> = {
-  badgeText: 'Vertrouwd door',
-  heading: 'Bedrijven die op mij vertrouwen',
+  badgeText: 'Zij gingen u voor',
+  heading: 'Vertrouwd door toonaangevende bedrijven',
   clients: [
     {
       name: 'NN Group',
@@ -224,7 +224,7 @@ export const problemPainSectionData: z.infer<typeof problemPainSectionDataSchema
 
 export const solutionVisionSectionData: z.infer<typeof solutionVisionSectionDataSchema> = {
   badgeText: 'De oplossing',
-  heading: 'Concrete juridische bescherming in 4 stappen',
+  heading: 'Juridische zekerheid voor uw ICT-bedrijf',
   description:
     'Met VirtualCounsel krijgt u een juridische partner die uw business begrijpt en met u meedenkt.',
   imagineTitle: 'Hoe het ook kan zijn:',
@@ -399,7 +399,7 @@ export const aboutSectionData: z.infer<typeof aboutSectionDataSchema> = {
   badgeText: 'Over VirtualCounsel',
   heading: 'De jurist die jullie taal spreekt',
   paragraphs: [
-    'Ik ben Maarten van Beek, ICT-jurist en oprichter van VirtualCounsel. Met mijn achtergrond als Master Informatierecht (UvA 2018) en Master Information Law (Fordham Law School 2017), plus gerichte opleiding ICT-jurist (ICTRecht Academy 2020), begrijp ik de unieke uitdagingen waar ICT- en softwarebedrijven mee te maken hebben.',
+    'Ik ben Maarten van Beek, ICT-jurist en oprichter van VirtualCounsel. Met mijn achtergrond als Master Informatierecht (UvA) en Master Information Law (Fordham Law School), plus gerichte opleiding ICT-jurist (ICTRecht Academy), begrijp ik de unieke uitdagingen waar ICT- en softwarebedrijven mee te maken hebben.',
     'Met VirtualCounsel haalt u geen standaard jurist in huis, maar een betrokken juridische partner die uw bedrijf echt begrijpt en met u meegroeit. Sinds de start heb ik tientallen IT- en softwarebedrijven geholpen van start-ups tot snelgroeiende scale-ups.',
     'Mijn klanten waarderen vooral de combinatie van diepgaande juridische kennis en begrip voor hun business. Geen eindeloze discussies over technische details, maar direct to-the-point advies dat werkt. Ik ben geregistreerd bij de Kamer van Koophandel onder nummer 81070411.',
   ],
@@ -454,46 +454,25 @@ export const processSectionData: z.infer<typeof processSectionDataSchema> = {
       id: 'step-01',
       number: '01',
       title: 'Kennismaking',
-      description: 'We bespreken uw juridische vraagstuk tijdens een belafspraak of videocall.',
-      details: [
-        '30 minuten gratis intakegesprek',
-        'Analyse van uw specifieke situatie',
-        'Bepalen of ik de juiste juriste voor u ben',
-      ],
+      description: 'Een 30-minuten videogesprek waarin we uw juridische uitdaging bespreken en bepalen of VirtualCounsel de juiste partner is voor uw ICT-bedrijf. Vrijblijvend en zonder kosten.',
     },
     {
       id: 'step-02',
       number: '02',
       title: 'Offerte',
-      description: 'U ontvangt een helder voorstel met vaste kosten.',
-      details: [
-        'Heldere offerte binnen 24 uur',
-        'Vaste prijs - geen nacalculatie',
-        'Transparante aanpak en deliverables',
-      ],
+      description: 'Binnen 24 uur ontvangt u een heldere offerte met vaste kosten - geen nacalculatie. Inclusief planning, deliverables en transparante aanpak voor uw software- of IT-bedrijf.',
     },
     {
       id: 'step-03',
       number: '03',
       title: 'Oplevering',
-      description:
-        'Na akkoord gaan we direct voor u aan het werk. U ontvangt uw documenten binnen 1-2 weken.',
-      details: [
-        'Professionele documenten binnen 1-2 weken',
-        'Documenten op maat voor uw bedrijf',
-        'Snelle oplevering zonder kwaliteitsverlies',
-      ],
+      description: 'Professionele juridische documenten binnen 1-2 weken, volledig afgestemd op uw ICT-bedrijf. Van SaaS-contracten tot privacybeleid - alles op maat zonder kwaliteitsverlies.',
     },
     {
       id: 'step-04',
       number: '04',
       title: 'Feedbackronde',
-      description: 'We verwerken één feedbackronde om alles perfect af te stemmen.',
-      details: [
-        'Eén gratis revisieronde inbegrepen',
-        'Persoonlijke toelichting van de documenten',
-        'Implementatieondersteuning waar nodig',
-      ],
+      description: 'Eén gratis revisieronde inbegrepen, persoonlijke toelichting van alle documenten en implementatieondersteuning. Uw juridische partner blijft beschikbaar voor vragen.',
     },
   ],
 };

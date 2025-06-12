@@ -34,8 +34,13 @@ export default function ClientsSection({ badgeText, heading, clients }: ClientsS
         className="stagger-container relative z-10"
         style={{ '--stagger-delay': '0.1s' } as CSSProperties}
       >
-        <div className="text-center mb-4" style={{ '--index': 0 } as CSSProperties}>
+        <div className="text-center mb-8" style={{ '--index': 0 } as CSSProperties}>
           <Badge className="mb-4">{badgeText}</Badge>
+          {heading && (
+            <h2 id="clients-section-heading" className="">
+              {heading}
+            </h2>
+          )}
         </div>
 
         <div className="py-4" style={{ '--index': 1 } as CSSProperties}>
@@ -53,7 +58,7 @@ export default function ClientsSection({ badgeText, heading, clients }: ClientsS
                       alt={client.logo.alt}
                       width={120}
                       height={60}
-                      className="w-24 object-contain"
+                      className="w-24 object-contain scale-125 hover:scale-130 transition-transform duration-300"
                     />
                   </div>
                 ))}

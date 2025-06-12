@@ -55,17 +55,15 @@ export default function ProcessHorizontalSection({
           {/* Connecting line - desktop only */}
           <div className="hidden lg:block absolute top-16 inset-x-0 h-0.5 bg-gradient-to-r from-primary/20 via-primary/40 to-primary/20" />
 
-          {/* Steps Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
+          {/* Steps Grid - card-equal-height for dynamic equal heights */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 card-equal-height justify-items-center">
             {steps.map((step, index) => (
-              <LazySection
+              <div
                 key={step.id}
-                animation="slide-up"
-                delay={0.1 + index * 0.1}
-                className="relative"
+                className="size-full max-w-sm"
               >
-                {/* Step Card */}
-                <div className="group bg-white p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:-translate-y-1 relative">
+                {/* Step Card - h-full to fill available space, LazySection removed for proper height distribution */}
+                <div className="group bg-white p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:-translate-y-1 relative size-full flex flex-col">
                   {/* Step Number Circle */}
                   <div className="flex justify-center mb-4">
                     <div className="size-12 rounded-full flex items-center justify-center text-sm font-bold shadow-lg bg-gradient-to-br from-primary to-primary/80 text-white border-2 border-white relative z-10">
@@ -73,54 +71,11 @@ export default function ProcessHorizontalSection({
                     </div>
                   </div>
 
-                  {/* Content */}
-                  <div className="text-center">
-                    <h3 className="text-lg font-bold mb-2 text-gray-900">{step.title}</h3>
-                    <p className="text-sm text-gray-600 mb-4 leading-relaxed">{step.description}</p>
-
-                    {/* Key Details - Show max 2 for horizontal layout */}
-                    {step.details && step.details.length > 0 && (
-                      <div
-                        className={`bg-gray-50 p-3 ${getElementBorderRadius('card')} border-l-4 border-primary/30`}
-                      >
-                        <ul className="space-y-1 text-xs text-left">
-                          {step.details.slice(0, 2).map(detail => (
-                            <li key={detail} className="flex items-start gap-2">
-                              <div className="size-1 bg-primary/60 rounded-full mt-1.5 shrink-0" />
-                              <span className="text-gray-700">{detail}</span>
-                            </li>
-                          ))}
-                          {step.details.length > 2 && (
-                            <li className="text-gray-500 text-xs font-medium mt-1 text-center">
-                              +{step.details.length - 2} meer...
-                            </li>
-                          )}
-                        </ul>
-                      </div>
-                    )}
+                  {/* Content - flex-grow to fill available space */}
+                  <div className="text-center flex-1 flex flex-col justify-center">
+                    <h3 className="text-lg font-bold mb-2 text-foreground">{step.title}</h3>
+                    <p className="text-card-description">{step.description}</p>
                   </div>
-
-                  {/* Connecting Arrow - desktop only */}
-                  {index < steps.length - 1 && (
-                    <div className="hidden lg:block absolute top-16 -right-3 -translate-y-1/2 z-20">
-                      <div className="size-6 flex items-center justify-center">
-                        <svg
-                          className="size-4 text-primary/60"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          aria-hidden="true"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M9 5l7 7-7 7"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                  )}
                 </div>
 
                 {/* Mobile connection line */}
@@ -129,33 +84,12 @@ export default function ProcessHorizontalSection({
                     <div className="w-0.5 h-8 bg-gradient-to-b from-primary/40 to-primary/20" />
                   </div>
                 )}
-              </LazySection>
+              </div>
             ))}
           </div>
         </div>
 
-        {/* Call to Action Section */}
-        <LazySection animation="slide-up" delay={0.6} className="text-center mt-12">
-          <div className="bg-gradient-to-r from-primary/5 to-secondary/5 p-8 rounded-xl border border-primary/10">
-            <p className="text-lg font-medium text-gray-700 mb-4">
-              Klaar om te beginnen met juridische zekerheid voor uw ICT-bedrijf?
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="/contact"
-                className="inline-flex items-center justify-center px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-colors"
-              >
-                Plan een kennismaking
-              </a>
-              <a
-                href="/services"
-                className="inline-flex items-center justify-center px-6 py-3 border border-primary text-primary font-semibold rounded-lg hover:bg-primary/5 transition-colors"
-              >
-                Bekijk alle diensten
-              </a>
-            </div>
-          </div>
-        </LazySection>
+
       </div>
     </Section>
   );
