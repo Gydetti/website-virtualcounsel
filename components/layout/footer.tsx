@@ -82,7 +82,7 @@ export default function Footer({ hideNewsletter = false }: FooterProps) {
               <p className="text-body-base text-white mb-6 max-w-xs">
                 {siteConfig.site.description}
               </p>
-              <div className="flex space-x-4 mb-6">
+              <div className="flex space-x-4">
                 <Link
                   href={siteConfig.social.linkedin ?? ''}
                   target="_blank"
@@ -92,16 +92,6 @@ export default function Footer({ hideNewsletter = false }: FooterProps) {
                 >
                   <Linkedin className="size-5" />
                 </Link>
-              </div>
-              
-              {/* Business Information - Required by Dutch Law */}
-              <div className="text-neutral-text/200 text-xs space-y-1">
-                <h4 className="text-white font-medium mb-2 text-sm">Bedrijfsgegevens</h4>
-                <p>{siteConfig.legal.businessName}</p>
-                <p>KvK-nummer: {siteConfig.legal.kvkNumber}</p>
-                {siteConfig.legal.btwNumber && (
-                  <p>BTW-nummer: {siteConfig.legal.btwNumber}</p>
-                )}
               </div>
             </div>
 
@@ -236,15 +226,22 @@ export default function Footer({ hideNewsletter = false }: FooterProps) {
             </div>
           </LazySection>
 
-
           <LazySection
             animation="none"
             className="stagger-container border-t border-divider/700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-start"
             style={{ '--stagger-delay': '0.1s' } as CSSProperties}
           >
-            <p style={{ '--index': 0 } as CSSProperties} className="text-neutral-text/200 text-sm">
-              © {currentYear} {siteConfig.site.name}. Alle rechten voorbehouden.
-            </p>
+            <div style={{ '--index': 0 } as CSSProperties} className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6">
+              <p className="text-neutral-text/200 text-sm">
+                © {currentYear} {siteConfig.site.name}. Alle rechten voorbehouden.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-1 sm:gap-4 text-neutral-text/200 text-xs">
+                <span>KvK-nummer: {siteConfig.legal.kvkNumber}</span>
+                {siteConfig.legal.btwNumber && (
+                  <span>BTW-nummer: {siteConfig.legal.btwNumber}</span>
+                )}
+              </div>
+            </div>
             <div style={{ '--index': 1 } as CSSProperties} className="flex space-x-6 mt-4 md:mt-0">
               <Link
                 href="https://groeienmetgydo.nl"
