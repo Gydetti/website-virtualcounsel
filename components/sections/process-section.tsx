@@ -99,7 +99,7 @@ export default function ProcessSection({
                       >
                         <h4 className="text-sm font-semibold text-neutral-text mb-3 flex items-center gap-2">
                           <div className="size-1.5 bg-primary rounded-full" />
-                          What this includes:
+                          Wat dit inhoudt:
                         </h4>
                         <ul className="space-y-2 text-sm">
                           {step.details.slice(0, 3).map(detail => (

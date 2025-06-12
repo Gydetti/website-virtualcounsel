@@ -38,6 +38,9 @@ const AboutFeatureCardsSection = dynamic(
   () => import('@/components/sections/about-feature-cards-section')
 );
 const ProcessSection = dynamic(() => import('@/components/sections/process-section'));
+const ProcessHorizontalSection = dynamic(
+  () => import('@/components/sections/process-horizontal-section')
+);
 const ResourceDetailSection = dynamic(() => import('@/components/sections/ResourceDetailSection'));
 const ResourceListSection = dynamic(() => import('@/components/sections/ResourceListSection'));
 const ServicesOverviewSection = dynamic(
@@ -69,6 +72,7 @@ const sectionComponentMap: any = {
   AboutSocialProofSection,
   AboutFeatureCardsSection,
   ProcessSection,
+  ProcessHorizontalSection,
   ResourceDetailSection,
   ResourceListSection,
   ServicesOverviewSection,
@@ -155,6 +159,8 @@ async function getSectionData(
       case 'TestimonialsSection':
         return homepageData.testimonialsSectionData;
       case 'ProcessSection':
+        return homepageData.processSectionData;
+      case 'ProcessHorizontalSection':
         return homepageData.processSectionData;
       case 'HomepageFaqSection':
         return homepageData.homepageFaqSectionData;

@@ -86,6 +86,7 @@ export const aboutValuesSectionData = {
     'Flexibiliteit: Aanpasbaar aan uw specifieke situatie en groeiende behoeften',
     'Professionaliteit: Uitstekende service met respect voor uw tijd en budget',
     'Resultaatgerichtheid: Praktische oplossingen die uw business vooruit helpen',
+    'Transparantie: Vaste prijzen en heldere communicatie zonder verrassingen achteraf',
   ],
 };
 

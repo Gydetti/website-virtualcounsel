@@ -412,7 +412,11 @@ export const siteConfig: SiteConfigSchema = {
         },
         {
           id: 'home-solution-vision',
-          sectionType: 'SolutionVisionSection', // 4-step process
+          sectionType: 'SolutionVisionSection', // Benefits overview
+        },
+        {
+          id: 'home-process',
+          sectionType: 'ProcessHorizontalSection', // 4-step process visualization - horizontal layout
         },
         {
           id: 'home-cta',

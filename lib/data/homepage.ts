@@ -443,55 +443,56 @@ export const aboutSectionData: z.infer<typeof aboutSectionDataSchema> = {
   ],
 };
 
-// Process Section - showing 4-step approach
+// Process Section - showing 4-step approach based on VirtualCounsel's exact workflow
 export const processSectionData: z.infer<typeof processSectionDataSchema> = {
   badgeText: 'Mijn aanpak',
-  heading: 'Van probleem naar oplossing in 4 stappen',
+  heading: 'Concrete juridische bescherming in 4 stappen',
   subtitle:
-    'Een transparant proces waarbij u altijd weet waar u aan toe bent. Geen verrassingen, wel resultaat.',
+    'Mijn bewezen aanpak zorgt voor heldere, juridisch waterdichte documenten die uw ICT-bedrijf daadwerkelijk beschermen.',
   steps: [
     {
       id: 'step-01',
       number: '01',
-      title: 'Gratis kennismaking',
-      description: 'Ik bespreek uw situatie en bepaal of we een match zijn.',
+      title: 'Kennismaking',
+      description: 'We bespreken uw juridische vraagstuk tijdens een belafspraak of videocall.',
       details: [
-        '30 minuten videogesprek via Calendly',
-        'Vrijblijvend en zonder kosten',
-        'Direct praktisch advies waar mogelijk',
+        '30 minuten gratis intakegesprek',
+        'Analyse van uw specifieke situatie',
+        'Bepalen of ik de juiste juriste voor u ben',
       ],
     },
     {
       id: 'step-02',
       number: '02',
-      title: 'Intake & analyse',
-      description: 'Diepgaande analyse van uw juridische vraagstuk en businessmodel.',
+      title: 'Offerte',
+      description: 'U ontvangt een helder voorstel met vaste kosten.',
       details: [
-        'Inventarisatie van uw specifieke situatie',
-        'Analyse van bestaande contracten',
-        "Identificatie van risico's en kansen",
+        'Heldere offerte binnen 24 uur',
+        'Vaste prijs - geen nacalculatie',
+        'Transparante aanpak en deliverables',
       ],
     },
     {
       id: 'step-03',
       number: '03',
-      title: 'Voorstel & prijs',
-      description: 'Concrete aanpak met vaste prijs en duidelijke levertijd.',
+      title: 'Oplevering',
+      description:
+        'Na akkoord gaan we direct voor u aan het werk. U ontvangt uw documenten binnen 1-2 weken.',
       details: [
-        'Gedetailleerd plan van aanpak',
-        'Vaste prijs zonder verrassingen',
-        'Realistische planning (meestal 1-2 weken)',
+        'Professionele documenten binnen 1-2 weken',
+        'Documenten op maat voor uw bedrijf',
+        'Snelle oplevering zonder kwaliteitsverlies',
       ],
     },
     {
       id: 'step-04',
       number: '04',
-      title: 'Uitvoering & nazorg',
-      description: 'Professionele documenten met uitleg en ondersteuning bij implementatie.',
+      title: 'Feedbackronde',
+      description: 'We verwerken één feedbackronde om alles perfect af te stemmen.',
       details: [
-        'Documenten op maat voor uw situatie',
-        'Persoonlijke toelichting en Q&A',
-        'Gratis kleine aanpassingen binnen 30 dagen',
+        'Eén gratis revisieronde inbegrepen',
+        'Persoonlijke toelichting van de documenten',
+        'Implementatieondersteuning waar nodig',
       ],
     },
   ],

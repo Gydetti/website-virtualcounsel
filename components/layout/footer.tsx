@@ -239,8 +239,8 @@ export default function Footer({ hideNewsletter = false }: FooterProps) {
                 © {currentYear} {siteConfig.site.name}. Alle rechten voorbehouden.
               </p>
               <div className="flex flex-col sm:flex-row gap-1 sm:gap-4 text-neutral-text/200 text-xs">
-                <span>KvK-nummer: {siteConfig.legal.kvkNumber}</span>
-                {siteConfig.legal.btwNumber && (
+                <span>KvK-nummer: {siteConfig.legal?.kvkNumber}</span>
+                {siteConfig.legal?.btwNumber && (
                   <span>BTW-nummer: {siteConfig.legal.btwNumber}</span>
                 )}
               </div>
