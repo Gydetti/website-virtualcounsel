@@ -68,14 +68,7 @@ export default function BlogSection({
         {/* Posts grid stagger container */}
         <LazySection
           animation="none"
-          className={cn(
-            'stagger-container card-equal-height grid gap-8',
-            posts.length === 1
-              ? 'grid-cols-1'
-              : posts.length === 2
-                ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-2'
-                : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
-          )}
+          className="stagger-container grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
           style={{ '--stagger-delay': '0.2s' } as CSSProperties}
         >
           {posts.map((post, index) => (
@@ -84,7 +77,7 @@ export default function BlogSection({
               className="max-w-[550px] mx-auto size-full"
               style={{ '--index': index } as CSSProperties}
             >
-              <Card className="size-full flex flex-col justify-between overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-gradient-to-b from-card to-transparent border border-border shadow-lg">
+              <Card className="card-equal-height h-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-gradient-to-b from-card to-transparent border border-border shadow-lg">
                 <div className="relative h-48 w-full overflow-hidden">
                   <Image
                     src={post.image?.src || '/placeholder.svg'}

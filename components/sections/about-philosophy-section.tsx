@@ -97,13 +97,13 @@ export default function AboutPhilosophySection({
         {/* Image */}
         <LazySection animation="slide-up" delay={0.5}>
           <div className="relative">
-            <AspectRatio ratio={5 / 6}>
+            <AspectRatio ratio={4 / 3}>
               <OptimizedImage
                 src={image?.src || DEFAULT_PLACEHOLDER_IMAGE}
                 alt={image?.alt || 'Image representing our philosophy and values'}
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                className={cn(getBorderRadiusClass('image'), 'object-left')}
+                className={cn(getBorderRadiusClass('image'), 'object-center')}
                 priority
                 objectFit="cover"
               />
