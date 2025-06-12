@@ -183,7 +183,9 @@ export default function HeroSection({
           )}
           {subheadline && (
             <LazySection delay={0.3}>
-              <p className="text-body-lg text-center md:text-left mx-auto md:mx-0 md:pr-14 lg:pr-20">{subheadline}</p>
+              <p className="text-body-lg text-center md:text-left mx-auto md:mx-0 md:pr-14 lg:pr-20">
+                {subheadline}
+              </p>
             </LazySection>
           )}
           {(primaryCta?.text || secondaryCta?.text) && (

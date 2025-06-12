@@ -82,7 +82,7 @@ export default function Footer({ hideNewsletter = false }: FooterProps) {
               <p className="text-body-base text-white mb-6 max-w-xs">
                 {siteConfig.site.description}
               </p>
-              <div className="flex space-x-4">
+              <div className="flex space-x-4 mb-6">
                 <Link
                   href={siteConfig.social.linkedin ?? ''}
                   target="_blank"
@@ -92,6 +92,16 @@ export default function Footer({ hideNewsletter = false }: FooterProps) {
                 >
                   <Linkedin className="size-5" />
                 </Link>
+              </div>
+              
+              {/* Business Information - Required by Dutch Law */}
+              <div className="text-neutral-text/200 text-xs space-y-1">
+                <h4 className="text-white font-medium mb-2 text-sm">Bedrijfsgegevens</h4>
+                <p>{siteConfig.legal.businessName}</p>
+                <p>KvK-nummer: {siteConfig.legal.kvkNumber}</p>
+                {siteConfig.legal.btwNumber && (
+                  <p>BTW-nummer: {siteConfig.legal.btwNumber}</p>
+                )}
               </div>
             </div>
 
@@ -226,25 +236,6 @@ export default function Footer({ hideNewsletter = false }: FooterProps) {
             </div>
           </LazySection>
 
-          {/* Legal Information Section - Required by Dutch Law */}
-          <LazySection animation="none" className="border-t border-divider/700 mt-8 pt-6">
-            <div className="text-center md:text-left">
-              <h4 className="text-white font-medium mb-3 text-sm">Bedrijfsgegevens</h4>
-              <div className="text-neutral-text/200 text-xs space-y-1">
-                <p>{siteConfig.legal.businessName}</p>
-                <p>KvK-nummer: {siteConfig.legal.kvkNumber}</p>
-                {siteConfig.legal.btwNumber && <p>BTW-nummer: {siteConfig.legal.btwNumber}</p>}
-                <p>
-                  {siteConfig.legal.address.line1}
-                  {siteConfig.legal.address.line2 && `, ${siteConfig.legal.address.line2}`}
-                </p>
-                <p>
-                  {siteConfig.legal.address.zip} {siteConfig.legal.address.city},{' '}
-                  {siteConfig.legal.address.country}
-                </p>
-              </div>
-            </div>
-          </LazySection>
 
           <LazySection
             animation="none"
