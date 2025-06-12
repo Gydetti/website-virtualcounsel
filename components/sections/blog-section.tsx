@@ -18,6 +18,7 @@ import {
 } from '@/components/ui/card';
 import LazySection from '@/components/ui/lazy-section';
 import type { blogSectionDataSchema } from '@/lib/schemas/sections.schema';
+import { cn } from '@/lib/utils';
 
 // Updated props type alias using Zod schema
 export type BlogSectionProps = z.infer<typeof blogSectionDataSchema>;
@@ -67,13 +68,20 @@ export default function BlogSection({
         {/* Posts grid stagger container */}
         <LazySection
           animation="none"
-          className="stagger-container grid md:grid-cols-2 lg:grid-cols-3 gap-8 card-equal-height justify-items-center"
+          className={cn(
+            'stagger-container card-equal-height grid gap-8',
+            posts.length === 1
+              ? 'grid-cols-1'
+              : posts.length === 2
+                ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-2'
+                : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+          )}
           style={{ '--stagger-delay': '0.2s' } as CSSProperties}
         >
           {posts.map((post, index) => (
             <div
               key={post.id}
-              className="size-full max-w-sm"
+              className="max-w-[550px] mx-auto size-full"
               style={{ '--index': index } as CSSProperties}
             >
               <Card className="size-full flex flex-col justify-between overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-gradient-to-b from-card to-transparent border border-border shadow-lg">
@@ -87,17 +95,10 @@ export default function BlogSection({
                   />
                 </div>
                 <CardHeader className="pt-6">
-                  <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center justify-center mb-2">
                     <Badge variant="outline" className="text-xs font-normal">
                       {post.category}
                     </Badge>
-                    <span className="text-xs text-neutral-divider">
-                      {new Date(post.date).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                      })}
-                    </span>
                   </div>
                   <CardTitle className="text-xl font-bold hover:text-primary transition-colors">
                     <Link href={`/blog/${post.slug}`}>{post.title}</Link>

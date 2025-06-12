@@ -135,6 +135,15 @@ async function getSectionData(
           posts,
         };
       }
+      case 'BlogSection': {
+        const blogLimit = siteConfig.sectionsDataKeys?.blog?.limit || 3;
+        const posts = await getBlogPosts(blogLimit);
+        return {
+          ...homepageData.blogPreviewSectionData,
+          id: sectionConfig.id,
+          posts,
+        };
+      }
       case 'CtaSection':
         return homepageData.ctaSectionData;
       case 'KpiSection':
