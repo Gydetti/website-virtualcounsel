@@ -234,6 +234,7 @@ export const solutionVisionSectionData: z.infer<typeof solutionVisionSectionData
     'Documenten binnen 1-2 weken geleverd',
     'Vaste prijzen zonder verrassingen achteraf',
     'Direct toegang tot een specialist, geen juniors',
+    'Juridische partner die met uw bedrijf meegroeit',
   ],
   calloutText: 'Van juridisch obstakel naar strategisch voordeel.',
   calloutCta: { text: 'Ontdek mijn aanpak', href: '/about' },

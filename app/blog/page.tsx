@@ -109,11 +109,11 @@ export default async function BlogPage() {
           <h2 className="text-3xl font-bold mb-12">
             {blogPageData.regularPostsHeading ?? 'Recent articles'}
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 card-equal-height justify-items-center">
             {regularPosts.map((post, index) => (
-              <LazySection key={post.id} delay={index * 0.05} className="h-full">
+              <LazySection key={post.id} delay={index * 0.05} className="size-full max-w-sm">
                 <Link href={`/blog/${post.slug}`} className="block h-full group">
-                  <Card className="h-full flex flex-col overflow-hidden transition-all duration-300 hover:shadow-xl">
+                  <Card className="size-full flex flex-col justify-between overflow-hidden transition-all duration-300 hover:shadow-xl">
                     <div className="relative h-48 w-full overflow-hidden">
                       <OptimizedImage
                         src={post.coverImage?.src || '/images/placeholders/placeholder.svg'}
@@ -133,12 +133,12 @@ export default async function BlogPage() {
                         {post.title}
                       </CardTitle>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="card-content">
                       <CardDescription className="text-neutral-text/600 break-words">
                         {post.excerpt}
                       </CardDescription>
                     </CardContent>
-                    <CardFooter className="mt-auto pt-0">
+                    <CardFooter className="card-footer pt-0">
                       <div className="mt-auto pt-0 whitespace-normal break-words text-primary flex items-center space-x-2">
                         <span>{`${blogPageData.readMoreText ?? 'Lees verder'}: ${post.title}`}</span>
                         <ArrowRight className="ml-2 size-4" />

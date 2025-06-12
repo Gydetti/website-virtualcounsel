@@ -59,9 +59,9 @@
     --pattern-opacity: 0.05;
 
     /* Section Spacing */
-    --section-spacing-compact: 3rem;
-    --section-spacing-balanced: 4rem;
-    --section-spacing-airy: 8rem;
+    --section-spacing-compact: 2.5rem; /* 40px mobile, adjust via media queries */
+    --section-spacing-balanced: 3.125rem; /* 50px mobile, adjust via media queries */
+    --section-spacing-airy: 6rem; /* 96px mobile, adjust via media queries */
 
     /* Layout */
     --container-max-width: 1280px;
@@ -115,6 +115,15 @@
     /* Inlined spark-button.css styles to eliminate separate CSS chunk */
     --transition: 0.25s;
     --spark: 2.5s;
+  }
+
+  /* Responsive section spacing - increase padding on larger screens */
+  @media (min-width: 768px) {
+    :root {
+      --section-spacing-compact: 3rem; /* 48px tablet+ */
+      --section-spacing-balanced: 4rem; /* 64px tablet+ (original desktop value) */
+      --section-spacing-airy: 8rem; /* 128px tablet+ (original desktop value) */
+    }
   }
 
   /* Global typography scale */

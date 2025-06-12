@@ -12,7 +12,7 @@ import type { SiteConfigSchema } from './schemas/siteConfig.schema';
 export const siteConfig: SiteConfigSchema = {
   // SITE METADATA: Basic info for SEO, social sharing, and browser tabs.
   site: {
-    title: 'ICT-jurist Amsterdam | VirtualCounsel - Juridisch advies voor tech-bedrijven',
+    title: 'ICT-jurist Nederland | VirtualCounsel - Juridisch advies voor tech-bedrijven',
     description:
       'ICT-jurist Maarten van Beek helpt SaaS-bedrijven en software ontwikkelaars met contracten, IP-bescherming en compliance. Gespecialiseerd juridisch advies voor de tech-sector.',
     url: 'https://virtualcounsel.nl',
