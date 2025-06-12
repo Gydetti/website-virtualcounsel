@@ -1,6 +1,7 @@
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import type { CSSProperties } from 'react';
 
 import { Section } from '@/components/layout/Section';
 import { Badge } from '@/components/ui/badge';
@@ -104,8 +105,8 @@ export default async function BlogPage() {
         </LazySection>
       </Section>
 
-      <LazySection>
-        <Section className="bg-neutral-background">
+      <Section className="bg-neutral-background">
+        <LazySection>
           <h2 className="text-3xl font-bold mb-12">
             {blogPageData.regularPostsHeading ?? 'Recent articles'}
           </h2>
@@ -133,12 +134,12 @@ export default async function BlogPage() {
                         {post.title}
                       </CardTitle>
                     </CardHeader>
-                    <CardContent className="card-content">
+                    <CardContent className="grow card-content">
                       <CardDescription className="text-neutral-text/600 break-words">
                         {post.excerpt}
                       </CardDescription>
                     </CardContent>
-                    <CardFooter className="card-footer pt-0">
+                    <CardFooter className="mt-auto card-footer pt-0">
                       <div className="mt-auto pt-0 whitespace-normal break-words text-primary flex items-center space-x-2">
                         <span>{`${blogPageData.readMoreText ?? 'Lees verder'}: ${post.title}`}</span>
                         <ArrowRight className="ml-2 size-4" />
@@ -149,8 +150,8 @@ export default async function BlogPage() {
               </LazySection>
             ))}
           </div>
-        </Section>
-      </LazySection>
+        </LazySection>
+      </Section>
     </>
   );
 }
