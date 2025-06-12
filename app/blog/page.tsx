@@ -112,7 +112,7 @@ export default async function BlogPage() {
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 card-equal-height justify-items-center">
             {regularPosts.map((post, index) => (
-              <LazySection key={post.id} delay={index * 0.05} className="size-full max-w-sm">
+              <div key={post.id} className="size-full max-w-sm">
                 <Link href={`/blog/${post.slug}`} className="block h-full group">
                   <Card className="size-full flex flex-col justify-between overflow-hidden transition-all duration-300 hover:shadow-xl">
                     <div className="relative h-48 w-full overflow-hidden">
@@ -134,7 +134,7 @@ export default async function BlogPage() {
                         {post.title}
                       </CardTitle>
                     </CardHeader>
-                    <CardContent className="grow card-content">
+                    <CardContent className="card-content">
                       <CardDescription className="text-neutral-text/600 break-words">
                         {post.excerpt}
                       </CardDescription>
@@ -147,7 +147,7 @@ export default async function BlogPage() {
                     </CardFooter>
                   </Card>
                 </Link>
-              </LazySection>
+              </div>
             ))}
           </div>
         </LazySection>
