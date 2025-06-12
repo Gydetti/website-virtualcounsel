@@ -153,7 +153,7 @@ export default function HeroSection({
         <div className={`${contentOrderClass} flex flex-col justify-center space-y-2 z-10`}>
           {badgeText && (
             <LazySection delay={0.1}>
-              <div className="flex justify-start w-full">
+              <div className="flex justify-center md:justify-start w-full">
                 <Badge variant="dark" className="w-fit text-white">
                   {badgeText}
                 </Badge>
@@ -164,7 +164,7 @@ export default function HeroSection({
             <LazySection delay={0.2}>
               <h1
                 id="hero-section-heading"
-                className="font-bold leading-tight text-balance text-left mb-2"
+                className="font-bold leading-tight text-balance text-center md:text-left mb-2"
               >
                 <span className="block">
                   {headline ===
@@ -183,14 +183,12 @@ export default function HeroSection({
           )}
           {subheadline && (
             <LazySection delay={0.3}>
-              <p className="text-body-lg text-left md:pr-14 lg:pr-20">
-                {subheadline}
-              </p>
+              <p className="text-body-lg text-center md:text-left mx-auto md:mx-0 md:pr-14 lg:pr-20">{subheadline}</p>
             </LazySection>
           )}
           {(primaryCta?.text || secondaryCta?.text) && (
             <LazySection delay={0.4} className="w-full">
-              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 pt-12 justify-start items-start">
+              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 pt-12 justify-center md:justify-start items-center md:items-start">
                 {primaryCta?.text && primaryCta.href && (
                   <Button
                     size="lg"
@@ -219,7 +217,7 @@ export default function HeroSection({
           )}
           {showHelpedStats && (
             <LazySection delay={0.5}>
-              <div className="flex justify-start w-full">
+              <div className="flex justify-center md:justify-start w-full">
                 <div className="flex items-center space-x-3 mt-0 md:mt-6 text-sm">
                   <div className="flex items-center justify-center size-10 rounded-full bg-primary/10 shrink-0">
                     <svg
