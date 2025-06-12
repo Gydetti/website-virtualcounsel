@@ -454,25 +454,29 @@ export const processSectionData: z.infer<typeof processSectionDataSchema> = {
       id: 'step-01',
       number: '01',
       title: 'Kennismaking',
-      description: 'Een 30-minuten videogesprek waarin we uw juridische uitdaging bespreken en bepalen of VirtualCounsel de juiste partner is voor uw ICT-bedrijf. Vrijblijvend en zonder kosten.',
+      description:
+        'Een 30-minuten videogesprek waarin we uw juridische uitdaging bespreken en bepalen of VirtualCounsel de juiste partner is voor uw ICT-bedrijf. Vrijblijvend en zonder kosten.',
     },
     {
       id: 'step-02',
       number: '02',
       title: 'Offerte',
-      description: 'Binnen 24 uur ontvangt u een heldere offerte met vaste kosten - geen nacalculatie. Inclusief planning, deliverables en transparante aanpak voor uw software- of IT-bedrijf.',
+      description:
+        'Binnen 24 uur ontvangt u een heldere offerte met vaste kosten - geen nacalculatie. Inclusief planning, deliverables en transparante aanpak voor uw software- of IT-bedrijf.',
     },
     {
       id: 'step-03',
       number: '03',
       title: 'Oplevering',
-      description: 'Professionele juridische documenten binnen 1-2 weken, volledig afgestemd op uw ICT-bedrijf. Van SaaS-contracten tot privacybeleid - alles op maat zonder kwaliteitsverlies.',
+      description:
+        'Professionele juridische documenten binnen 1-2 weken, volledig afgestemd op uw ICT-bedrijf. Van SaaS-contracten tot privacybeleid - alles op maat zonder kwaliteitsverlies.',
     },
     {
       id: 'step-04',
       number: '04',
       title: 'Feedbackronde',
-      description: 'Eén gratis revisieronde inbegrepen, persoonlijke toelichting van alle documenten en implementatieondersteuning. Uw juridische partner blijft beschikbaar voor vragen.',
+      description:
+        'Eén gratis revisieronde inbegrepen, persoonlijke toelichting van alle documenten en implementatieondersteuning. Uw juridische partner blijft beschikbaar voor vragen.',
     },
   ],
 };

@@ -58,10 +58,7 @@ export default function ProcessHorizontalSection({
           {/* Steps Grid - card-equal-height for dynamic equal heights */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 card-equal-height justify-items-center">
             {steps.map((step, index) => (
-              <div
-                key={step.id}
-                className="size-full max-w-sm"
-              >
+              <div key={step.id} className="size-full max-w-sm">
                 {/* Step Card - h-full to fill available space, LazySection removed for proper height distribution */}
                 <div className="group bg-white p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:-translate-y-1 relative size-full flex flex-col">
                   {/* Step Number Circle */}
@@ -88,8 +85,6 @@ export default function ProcessHorizontalSection({
             ))}
           </div>
         </div>
-
-
       </div>
     </Section>
   );
