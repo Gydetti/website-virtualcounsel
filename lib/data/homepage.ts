@@ -26,7 +26,7 @@ export const heroSectionData: z.infer<typeof heroSectionDataSchema> = {
   badgeText: 'Juridische partner voor ICT',
   headline: 'De juridische partner voor <span class="text-primary">ICT- & softwarebedrijven</span>',
   subheadline:
-    'De juridische partner voor ICT- en softwarebedrijven die behoefte hebben aan een expert die hun taal spreekt. Flexibel, betaalbaar en altijd klaar om uw juridische zaken efficiënt te regelen.',
+    'ICT-jurist Maarten van Beek helpt tech-bedrijven met praktisch juridisch advies. Gespecialiseerd in SaaS-contracten, IP-bescherming en compliance. Vaste prijzen, snelle levering en een partner die uw technologie begrijpt.',
   primaryCta: { text: 'Maak een afspraak', href: '/contact' },
   secondaryCta: { text: 'Bekijk mijn diensten', href: '/services' },
   showSecondaryCta: true,
@@ -188,34 +188,36 @@ export const testimonialsSectionData: z.infer<typeof testimonialsSectionDataSche
 };
 
 export const problemPainSectionData: z.infer<typeof problemPainSectionDataSchema> = {
-  badgeText: 'De uitdaging',
-  heading: 'De kosten van standaard contracten',
+  badgeText: 'Juridische uitdagingen tech-bedrijven',
+  heading: 'Waarom standaard juristen niet werken voor ICT-bedrijven',
   description:
-    'ICT- en softwarebedrijven lopen tegen specifieke juridische uitdagingen aan die generieke juristen vaak niet begrijpen.',
-  calloutText: 'Elke dag zonder goede juridische bescherming is een risico voor uw bedrijf.',
+    'ICT- en softwarebedrijven hebben specialistische juridische ondersteuning nodig. Generieke juristen begrijpen SaaS-modellen, API-contracten en intellectueel eigendom van software vaak niet.',
+  calloutText:
+    "Zonder gespecialiseerd juridisch advies mist u kansen en loopt u onnodige risico's.",
   cards: [
     {
       id: 'pain-card-1',
-      title: 'Generieke contracten',
+      title: 'SaaS-contracten die niet kloppen',
       description:
-        'Standaard templates die niet passen bij SaaS modellen, agile development of managed services.',
+        'Standaard templates passen niet bij Software as a Service, API-integraties of agile development methodieken.',
     },
     {
       id: 'pain-card-2',
-      title: 'Onbegrip voor tech',
+      title: 'Geen begrip voor ICT-recht',
       description:
-        "Juristen die API's, SLA's en open source niet begrijpen en daarom verkeerde adviezen geven.",
+        "Traditionele juristen snappen intellectueel eigendom software, GDPR voor SaaS en SLA's niet.",
     },
     {
       id: 'pain-card-3',
-      title: 'Trage levering',
+      title: 'Lange wachttijden',
       description:
-        'Weken wachten op contracten terwijl uw deal on hold staat of de ontwikkeling vertraagt.',
+        'Weken wachten op juridische documenten terwijl uw klanten, investeerders of partners wachten.',
     },
     {
       id: 'pain-card-4',
-      title: 'Onvoorspelbare kosten',
-      description: 'Nacalculaties en verrassingen op de factuur maken budgetteren onmogelijk.',
+      title: 'Uurtje-factuurtje mentaliteit',
+      description:
+        'Nacalculaties en onduidelijke kosten maken budgettering voor juridisch advies onmogelijk.',
     },
   ],
 };
@@ -306,19 +308,24 @@ export const homepageFaqSectionData: z.infer<typeof homepageFaqSectionDataSchema
       category: 'Algemeen',
       questions: [
         {
-          question: 'Voor welke bedrijven is VirtualCounsel geschikt?',
+          question: 'Voor welke ICT-bedrijven is VirtualCounsel geschikt?',
           answer:
-            'Ik ben gespecialiseerd in juridisch advies voor ICT- en softwarebedrijven, waaronder SaaS providers, software ontwikkelaars, IT dienstverleners en tech startups.',
+            'Als ICT-jurist help ik SaaS-leveranciers, software ontwikkelaars, IT-dienstverleners, managed service providers en tech startups. Bedrijven die software bouwen, IT-services leveren of online platforms exploiteren.',
         },
         {
-          question: 'Wat maakt VirtualCounsel anders dan andere juristen?',
+          question: 'Wat maakt een ICT-jurist anders dan een gewone advocaat?',
           answer:
-            'Ik heb diepgaande kennis van de tech-industrie, werk met vaste prijzen, lever binnen 1-2 weken en u heeft direct contact met een specialist - geen juniors of assistenten.',
+            "Als ICT-jurist begrijp ik technologie zoals API's, SaaS-modellen en intellectueel eigendom software. Ik werk met vaste prijzen, lever binnen 1-2 weken en u heeft direct contact met een gespecialiseerde jurist.",
         },
         {
-          question: "In welke regio's bent u actief?",
+          question: "Waar is de ICT-jurist gevestigd en welke regio's bedient u?",
           answer:
-            'Ik werk volledig digitaal en bedien klanten door heel Nederland. Voor internationale contracten heb ik ervaring met Engels recht en internationale tech-deals.',
+            'VirtualCounsel is gevestigd in Amsterdam (Wibautstraat 131D). Ik werk volledig digitaal en bedien tech-bedrijven door heel Nederland. Voor internationale SaaS-contracten heb ik ervaring met Engels recht.',
+        },
+        {
+          question: 'Wat kost juridisch advies voor ICT-bedrijven?',
+          answer:
+            'Ik werk met transparante vaste prijzen per project, zodat u vooraf weet waar u aan toe bent. Geen uurtje-factuurtje of nacalculaties. De prijs is afhankelijk van complexiteit - van eenvoudige algemene voorwaarden tot complexe SaaS-contracten.',
         },
       ],
     },
@@ -326,19 +333,19 @@ export const homepageFaqSectionData: z.infer<typeof homepageFaqSectionDataSchema
       category: 'Werkwijze',
       questions: [
         {
-          question: 'Hoe werkt het traject?',
+          question: 'Hoe werkt samenwerking met een ICT-jurist?',
           answer:
-            'Ik start met een gratis kennismakingsgesprek, gevolgd door een intake waar ik uw situatie analyseer. Daarna stel ik een aanpak voor met vaste prijs en levertijd. Na akkoord ga ik direct aan de slag.',
+            'Ik start met een gratis kennismakingsgesprek van 30 minuten via Calendly. Daarna analyseer ik uw juridische situatie en stel een aanpak voor met vaste prijs en levertijd. Na akkoord lever ik binnen 1-2 weken uw juridische documenten.',
         },
         {
-          question: 'Hoe snel kan ik documenten verwachten?',
+          question: 'Hoe snel krijg ik mijn SaaS-contracten of algemene voorwaarden?',
           answer:
-            'De meeste documenten lever ik binnen 1-2 weken. Voor complexe projecten maak ik vooraf een realistische planning met u.',
+            'Eenvoudige documenten zoals algemene voorwaarden lever ik binnen 1 week. Complexere SaaS-contracten, IP-overdrachten of verwerkersovereenkomsten binnen 2 weken. Voor spoedopdrachten maak ik andere afspraken.',
         },
         {
-          question: 'Biedt u ook doorlopend juridisch advies?',
+          question: 'Biedt u doorlopend juridisch advies voor SaaS-bedrijven?',
           answer:
-            'Ja, veel klanten kiezen voor een strippenkaart of abonnement voor doorlopende juridische ondersteuning. Dit bespreek ik graag tijdens het kennismakingsgesprek.',
+            'Ja, veel tech-bedrijven kiezen voor een strippenkaart of juridisch abonnement voor doorlopende ondersteuning. Denk aan contractonderhandelingen, compliance-vragen of nieuwe juridische uitdagingen bij groei. Dit bespreek ik tijdens het gratis kennismakingsgesprek.',
         },
       ],
     },
@@ -346,19 +353,19 @@ export const homepageFaqSectionData: z.infer<typeof homepageFaqSectionDataSchema
       category: 'Tarieven',
       questions: [
         {
-          question: 'Wat zijn uw tarieven?',
+          question: 'Wat kosten juridische diensten voor ICT-bedrijven?',
           answer:
-            'Ik werk met vaste prijzen per project, zodat u vooraf weet waar u aan toe bent. De prijs is afhankelijk van de complexiteit en omvang. Geen uurtje-factuurtje of nacalculaties.',
+            'Ik werk met transparante vaste prijzen per project - geen uurtje-factuurtje. Eenvoudige algemene voorwaarden vanaf €800, complexere SaaS-contracten en IP-documenten vanaf €1200. Altijd vooraf duidelijkheid over de investering.',
         },
         {
-          question: 'Zijn er opstartkosten?',
+          question: 'Is het kennismakingsgesprek gratis?',
           answer:
-            'Nee, het kennismakingsgesprek is gratis en vrijblijvend. U betaalt pas wanneer ik een concrete opdracht overeenkom.',
+            'Ja, het eerste kennismakingsgesprek van 30 minuten is altijd gratis en vrijblijvend. U kunt direct een afspraak inplannen via Calendly. U betaalt pas bij een concrete juridische opdracht.',
         },
         {
-          question: 'Kan ik ook per uur afnemen?',
+          question: 'Kan ik als tech-bedrijf ook per uur juridisch advies inkopen?',
           answer:
-            'Voor ad-hoc vragen is dat mogelijk, maar de meeste klanten kiezen voor projectprijzen of een strippenkaart omdat dat meer zekerheid biedt.',
+            'Voor korte ad-hoc vragen werk ik met een uurtarief van €175. Maar de meeste SaaS-bedrijven en software ontwikkelaars kiezen voor projectprijzen of een strippenkaart omdat dat budgettaire zekerheid biedt.',
         },
       ],
     },
@@ -391,9 +398,9 @@ export const aboutSectionData: z.infer<typeof aboutSectionDataSchema> = {
   badgeText: 'Over VirtualCounsel',
   heading: 'De jurist die jullie taal spreekt',
   paragraphs: [
-    'Ik ben Maarten van Beek, oprichter van VirtualCounsel. Met jarenlange ervaring in de tech-industrie begrijp ik de unieke uitdagingen waar ICT- en softwarebedrijven mee te maken hebben.',
-    'Met VirtualCounsel haalt u geen standaard jurist in huis, maar een betrokken juridische partner die uw bedrijf echt begrijpt en met u meegroeit.',
-    'Mijn klanten waarderen vooral de combinatie van diepgaande juridische kennis en begrip voor hun business. Geen eindeloze discussies over technische details, maar direct to-the-point advies dat werkt.',
+    'Ik ben Maarten van Beek, ICT-jurist en oprichter van VirtualCounsel. Met mijn achtergrond als Master Informatierecht (UvA 2018) en Master Information Law (Fordham Law School 2017), plus gerichte opleiding ICT-jurist (ICTRecht Academy 2020), begrijp ik de unieke uitdagingen waar ICT- en softwarebedrijven mee te maken hebben.',
+    'Met VirtualCounsel haalt u geen standaard jurist in huis, maar een betrokken juridische partner die uw bedrijf echt begrijpt en met u meegroeit. Sinds de start heb ik tientallen IT- en softwarebedrijven geholpen van start-ups tot snelgroeiende scale-ups.',
+    'Mijn klanten waarderen vooral de combinatie van diepgaande juridische kennis en begrip voor hun business. Geen eindeloze discussies over technische details, maar direct to-the-point advies dat werkt. Ik ben geregistreerd bij de Kamer van Koophandel onder nummer 81070411.',
   ],
   image: {
     src: '/images/team/virtual-counsel-maarten-about2-hq.webp',
@@ -401,8 +408,8 @@ export const aboutSectionData: z.infer<typeof aboutSectionDataSchema> = {
   },
   variant: 'imageLeft',
   stats: [
-    { id: 'stat-experience', value: 'Jarenlange', label: 'Ervaring in ICT-recht' },
-    { id: 'stat-clients', value: 'Verschillende', label: 'Bedrijven geholpen' },
+    { id: 'stat-experience', value: '2018', label: 'ICT-jurist sinds' },
+    { id: 'stat-clients', value: 'Tientallen', label: 'Bedrijven geholpen' },
     {
       id: 'stat-delivery',
       value: '1-2 weken',
