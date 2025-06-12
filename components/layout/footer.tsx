@@ -231,8 +231,11 @@ export default function Footer({ hideNewsletter = false }: FooterProps) {
             className="stagger-container border-t border-divider/700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-start"
             style={{ '--stagger-delay': '0.1s' } as CSSProperties}
           >
-            <div style={{ '--index': 0 } as CSSProperties} className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6">
-              <p className="text-neutral-text/200 text-sm">
+            <div
+              style={{ '--index': 0 } as CSSProperties}
+              className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6"
+            >
+              <p className="text-neutral-text/200 text-xs">
                 © {currentYear} {siteConfig.site.name}. Alle rechten voorbehouden.
               </p>
               <div className="flex flex-col sm:flex-row gap-1 sm:gap-4 text-neutral-text/200 text-xs">
@@ -247,7 +250,7 @@ export default function Footer({ hideNewsletter = false }: FooterProps) {
                 href="https://groeienmetgydo.nl"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex text-neutral-text/200 hover:text-white text-sm"
+                className="inline-flex text-neutral-text/200 hover:text-white text-xs"
               >
                 <span>Website gemaakt met 🍌 door Groeien met Gydo</span>
                 <ExternalLink className="ml-1 size-4" />
@@ -255,14 +258,14 @@ export default function Footer({ hideNewsletter = false }: FooterProps) {
               <Link
                 style={{ '--index': 2 } as CSSProperties}
                 href="/privacy-policy"
-                className="text-neutral-text/200 hover:text-white text-sm"
+                className="text-neutral-text/200 hover:text-white text-xs"
               >
                 Privacy policy
               </Link>
               <Link
                 style={{ '--index': 3 } as CSSProperties}
                 href="/terms-of-service"
-                className="text-neutral-text/200 hover:text-white text-sm"
+                className="text-neutral-text/200 hover:text-white text-xs"
               >
                 Terms of service
               </Link>
