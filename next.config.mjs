@@ -67,6 +67,11 @@ const nextConfig = withBundleAnalyzer({
         source: '/placeholder.svg',
         destination: '/images/placeholders/placeholder.svg',
       },
+      // Serve Decap CMS admin UI
+      {
+        source: '/admin',
+        destination: '/admin/index.html',
+      },
     ];
   },
   // Instruct webpack to assume modern browser environment and skip legacy transpilation

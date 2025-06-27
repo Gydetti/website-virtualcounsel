@@ -1,10 +1,15 @@
 import { z } from 'zod';
 
+import aboutPageContent from '@/lib/content/aboutPage.json';
+import type { AboutPage } from '@/types/generated/aboutPage.d';
+
 // biome-ignore lint/style/useImportType: Schemas are used in z.infer<typeof T> which requires runtime imports
 import {
   aboutFeatureCardsSectionDataSchema,
   aboutSectionDataSchema,
 } from '../schemas/sections.schema';
+
+export const aboutPageData: AboutPage = aboutPageContent;
 
 export const aboutPageMainContentData: z.infer<typeof aboutSectionDataSchema> = {
   // Virtual Counsel - Maarten van Beek About Section

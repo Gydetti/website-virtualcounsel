@@ -1,0 +1,50 @@
+{
+  "overview": {
+    "badgeText": "Mijn expertise",
+    "heading": "Juridische diensten voor de tech industrie",
+    "description": "Specialistische juridische ondersteuning voor ICT- en softwarebedrijven. Van contracten tot compliance - ik spreek uw taal."
+  },
+  "whyChooseSection": {
+    "heading": "Waarom kiezen voor VirtualCounsel?",
+    "description": "Met diepgaande kennis van de tech-industrie lever ik juridisch advies dat aansluit bij uw businessmodel en werkwijze.",
+    "benefits": [
+      {
+        "id": "benefit-fixed-price",
+        "text": "Vaste prijzen - geen nacalculatie of verrassingen achteraf",
+        "icon": "Check"
+      },
+      {
+        "id": "benefit-direct-contact",
+        "text": "Direct met gespecialiseerde jurist - geen juniors of tussenpersonen",
+        "icon": "Check"
+      },
+      {
+        "id": "benefit-practical-advice",
+        "text": "Praktische adviezen ipv theoretische modellen - oplossingen die werken",
+        "icon": "Check"
+      },
+      {
+        "id": "benefit-tech-knowledge",
+        "text": "Diepgaande kennis van software, SaaS en IT-dienstverlening",
+        "icon": "Check"
+      }
+    ],
+    "buttonText": "Plan een kennismaking",
+    "buttonLink": "/contact",
+    "image": {
+      "src": "/images/team/virtual-counsel-maarten-pointing.webp",
+      "alt": "Maarten van Beek - VirtualCounsel specialist in ICT-recht"
+    }
+  },
+  "ctaSection": {
+    "heading": "Klaar om uw juridische zaken te regelen?",
+    "description": "Boek een gratis kennismakingsgesprek en ontdek hoe ik uw ICT-bedrijf kunnen beschermen en laten groeien.",
+    "buttonText": "Maak een afspraak",
+    "buttonLink": "/contact"
+  },
+  "buttonLabels": {
+    "learnMore": "Meer informatie",
+    "scheduleConsultation": "Plan een gesprek",
+    "getStartedToday": "Start vandaag"
+  }
+}

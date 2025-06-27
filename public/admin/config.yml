@@ -1,0 +1,229 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "homepage"
+    label: "Homepage"
+    files:
+      - file: "lib/content/homepage.json"
+        label: "Homepage Content"
+        name: "homepage"
+        fields:
+          # Define fields to match the structure of homepage.json
+          # Example:
+          # - { label: "Title", name: "title", widget: "string" }
+          # - { label: "Subtitle", name: "subtitle", widget: "string" }
+          # - { label: "HeroImage", name: "heroImage", widget: "image" }
+          # ... add all relevant fields here 
+  - name: "aboutPage"
+    label: "About Page"
+    files:
+      - file: "lib/content/aboutPage.json"
+        label: "About Page Content"
+        name: "aboutPage"
+        fields:
+          - label: "Main Content"
+            name: "mainContent"
+            widget: "object"
+            fields:
+              - { label: "Badge Text", name: "badgeText", widget: "string" }
+              - { label: "Heading", name: "heading", widget: "string" }
+              - label: "Paragraphs"
+                name: "paragraphs"
+                widget: "list"
+                field:
+                  label: "Paragraph"
+                  name: "paragraph"
+                  widget: "text"
+              - label: "Image"
+                name: "image"
+                widget: "object"
+                fields:
+                  - { label: "Src", name: "src", widget: "image" }
+                  - { label: "Alt", name: "alt", widget: "string" }
+                  - { label: "Width", name: "width", widget: "number" }
+                  - { label: "Height", name: "height", widget: "number" }
+              - { label: "Variant", name: "variant", widget: "string" }
+              - label: "CTA"
+                name: "cta"
+                widget: "object"
+                fields:
+                  - { label: "Text", name: "text", widget: "string" }
+                  - { label: "Href", name: "href", widget: "string" }
+          - label: "Feature Cards Section"
+            name: "featureCards"
+            widget: "object"
+            fields:
+              - { label: "Badge Text", name: "badgeText", widget: "string" }
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Subheading", name: "subheading", widget: "string" }
+              - label: "Cards"
+                name: "featureCards"
+                widget: "list"
+                field:
+                  label: "Card"
+                  name: "card"
+                  widget: "object"
+                  fields:
+                    - { label: "ID", name: "id", widget: "string" }
+                    - { label: "Title", name: "title", widget: "string" }
+                    - { label: "Description", name: "description", widget: "text" }
+                    - { label: "Icon", name: "icon", widget: "string" }
+                    - { label: "Icon Background", name: "iconBg", widget: "string" }
+                    - { label: "Icon Color", name: "iconColor", widget: "string" }
+          - label: "Values Section"
+            name: "values"
+            widget: "object"
+            fields:
+              - { label: "Badge Text", name: "badgeText", widget: "string" }
+              - { label: "Heading", name: "heading", widget: "string" }
+              - label: "Values"
+                name: "values"
+                widget: "list"
+                field:
+                  label: "Value"
+                  name: "value"
+                  widget: "string"
+          - label: "Social Proof Section"
+            name: "socialProof"
+            widget: "object"
+            fields:
+              - { label: "Badge Text", name: "badgeText", widget: "string" }
+              - { label: "Heading", name: "heading", widget: "string" }
+              - label: "Testimonials"
+                name: "socialProof"
+                widget: "list"
+                field:
+                  label: "Entry"
+                  name: "entry"
+                  widget: "object"
+                  fields:
+                    - { label: "ID", name: "id", widget: "string" }
+                    - { label: "Quote", name: "quote", widget: "text" }
+                    - { label: "Name", name: "name", widget: "string" }
+                    - { label: "Title", name: "title", widget: "string" }
+          - label: "Personal Journey Section"
+            name: "personalJourney"
+            widget: "object"
+            fields:
+              - { label: "Badge Text", name: "badgeText", widget: "string" }
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - label: "Journey Steps"
+                name: "journeySteps"
+                widget: "list"
+                field:
+                  label: "Step"
+                  name: "step"
+                  widget: "object"
+                  fields:
+                    - { label: "ID", name: "id", widget: "string" }
+                    - { label: "Timeframe", name: "timeframe", widget: "string" }
+                    - { label: "Title", name: "title", widget: "string" }
+                    - { label: "Description", name: "description", widget: "text" }
+              - label: "Image"
+                name: "image"
+                widget: "object"
+                fields:
+                  - { label: "Src", name: "src", widget: "image" }
+                  - { label: "Alt", name: "alt", widget: "string" }
+                  - { label: "Width", name: "width", widget: "number" }
+                  - { label: "Height", name: "height", widget: "number" }
+          - label: "Credentials Section"
+            name: "credentials"
+            widget: "object"
+            fields:
+              - { label: "Badge Text", name: "badgeText", widget: "string" }
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - label: "Credentials"
+                name: "credentials"
+                widget: "list"
+                field:
+                  label: "Credential"
+                  name: "credential"
+                  widget: "object"
+                  fields:
+                    - { label: "ID", name: "id", widget: "string" }
+                    - { label: "Type", name: "type", widget: "string" }
+                    - { label: "Title", name: "title", widget: "string" }
+                    - { label: "Issuer", name: "issuer", widget: "string" }
+                    - { label: "Year", name: "year", widget: "string" }
+                    - { label: "Description", name: "description", widget: "text" }
+                    - { label: "Icon", name: "icon", widget: "string" }
+              - label: "CTA"
+                name: "cta"
+                widget: "object"
+                fields:
+                  - { label: "Text", name: "text", widget: "string" }
+                  - { label: "Href", name: "href", widget: "string" }
+          - label: "Philosophy Section"
+            name: "philosophy"
+            widget: "object"
+            fields:
+              - { label: "Badge Text", name: "badgeText", widget: "string" }
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - label: "Philosophy Points"
+                name: "philosophyPoints"
+                widget: "list"
+                field:
+                  label: "Point"
+                  name: "point"
+                  widget: "object"
+                  fields:
+                    - { label: "ID", name: "id", widget: "string" }
+                    - { label: "Title", name: "title", widget: "string" }
+                    - { label: "Description", name: "description", widget: "text" }
+                    - { label: "Icon", name: "icon", widget: "string" }
+              - label: "Quote"
+                name: "quote"
+                widget: "object"
+                fields:
+                  - { label: "Text", name: "text", widget: "text" }
+                  - { label: "Author", name: "author", widget: "string" }
+              - label: "Image"
+                name: "image"
+                widget: "object"
+                fields:
+                  - { label: "Src", name: "src", widget: "image" }
+                  - { label: "Alt", name: "alt", widget: "string" }
+                  - { label: "Width", name: "width", widget: "number" }
+                  - { label: "Height", name: "height", widget: "number" }
+  # Collections for other content JSON files
+  - name: "servicesPage"
+    label: "Services Page"
+    files:
+      - file: "lib/content/servicesPage.json"
+        label: "Services Page Content"
+        name: "servicesPage"
+        fields:
+          # Define fields reflecting the structure of servicesPage.json
+  - name: "resources"
+    label: "Resources Page"
+    files:
+      - file: "lib/content/resources.json"
+        label: "Resources Content"
+        name: "resources"
+        fields:
+          # Define fields reflecting the structure of resources.json
+  - name: "serviceDetailPage"
+    label: "Service Detail"
+    files:
+      - file: "lib/content/serviceDetailPage.json"
+        label: "Service Detail Content"
+        name: "serviceDetailPage"
+        fields:
+          # Define fields reflecting the structure of serviceDetailPage.json
+  - name: "staticContent"
+    label: "Static Content"
+    files:
+      - file: "lib/content/staticContent.json"
+        label: "Static Content"
+        name: "staticContent"
+        fields:
+          # Define fields reflecting the structure of staticContent.json 

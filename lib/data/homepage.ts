@@ -1,5 +1,8 @@
 import { z } from 'zod';
 
+import homepageContent from '@/lib/content/homepage.json';
+import type { Homepage } from '@/types/generated/homepage.d';
+
 import {
   aboutSectionDataSchema,
   blogSectionDataSchema,
@@ -21,6 +24,8 @@ import {
 } from '../schemas/sections.schema';
 
 // Note: The old PropType imports are removed as we'll use Zod inferred types.
+
+export const homepageData: Homepage = homepageContent;
 
 export const heroSectionData: z.infer<typeof heroSectionDataSchema> = {
   badgeText: 'Juridische partner voor ICT',
