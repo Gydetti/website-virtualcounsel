@@ -4,10 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Content Manager</title>
-  <!-- Decap CMS App -->
-  <script src="https://unpkg.com/decap-cms-app/dist/decap-cms-app.js"></script>
+  <!-- Explicitly link to the config file -->
+  <link rel="cms-config-url" href="/admin/config.yml">
 </head>
 <body>
   <decap-cms-app></decap-cms-app>
+  <!-- Decap CMS App -->
+  <script src="https://unpkg.com/decap-cms-app/dist/decap-cms-app.js" async></script>
 </body>
 </html> 
