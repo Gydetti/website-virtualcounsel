@@ -1,0 +1,82 @@
+[
+  {
+    "category": "Algemeen",
+    "questions": [
+      {
+        "question": "Voor welke bedrijven is VirtualCounsel geschikt?",
+        "answer": "Ik ben gespecialiseerd in juridisch advies voor ICT- en softwarebedrijven, waaronder SaaS providers, software ontwikkelaars, IT dienstverleners, managed service providers en tech startups. Als u software ontwikkelt, IT-diensten levert of een online platform exploiteert, dan kan ik u helpen."
+      },
+      {
+        "question": "Wat maakt VirtualCounsel anders dan andere juristen?",
+        "answer": "Ik heb diepgaande kennis van de tech-industrie. Ik begrijp wat een API is, hoe SaaS-modellen werken en welke specifieke juridische uitdagingen u tegenkomt. Daarnaast werk ik met vaste prijzen, lever binnen 1-2 weken en heeft u direct contact met mij als ervaren specialist."
+      },
+      {
+        "question": "In welke regio's ben ik actief?",
+        "answer": "Ik werk volledig digitaal en bedien klanten door heel Nederland. Voor internationale contracten heb ik ervaring met Engels recht en internationale tech-deals. Videogesprekken voer ik via Teams, Zoom of uw voorkeurplatform."
+      }
+    ]
+  },
+  {
+    "category": "Werkwijze",
+    "questions": [
+      {
+        "question": "Hoe werkt het traject?",
+        "answer": "Ik start met een gratis kennismakingsgesprek van 30 minuten via Calendly. Daarna volgt een intake waar ik uw situatie analyseer. Vervolgens stel ik een aanpak voor met vaste prijs en levertijd. Na akkoord ga ik direct aan de slag en lever binnen de afgesproken termijn."
+      },
+      {
+        "question": "Hoe snel kan ik documenten verwachten?",
+        "answer": "De meeste documenten lever ik binnen 1-2 weken. Voor eenvoudige contracten vaak binnen een week, voor complexere projecten maak ik vooraf een realistische planning met u. Spoedopdrachten zijn mogelijk tegen een toeslag."
+      },
+      {
+        "question": "Bied ik ook doorlopend juridisch advies?",
+        "answer": "Ja, veel klanten kiezen voor een strippenkaart of abonnement voor doorlopende juridische ondersteuning. Dit is ideaal voor bedrijven die regelmatig juridische vragen hebben. De mogelijkheden bespreek ik graag tijdens het kennismakingsgesprek."
+      },
+      {
+        "question": "Hoe verloopt de communicatie?",
+        "answer": "U heeft rechtstreeks contact met mij, Maarten van Beek, geen juniors of assistenten. Communicatie verloopt via e-mail, telefoon of videobellen. Voor dringende zaken ben ik ook via WhatsApp bereikbaar tijdens kantooruren."
+      }
+    ]
+  },
+  {
+    "category": "Tarieven",
+    "questions": [
+      {
+        "question": "Wat zijn de tarieven?",
+        "answer": "Ik werk met vaste prijzen per project, zodat u vooraf weet waar u aan toe bent. De prijs is afhankelijk van de complexiteit en omvang. Een standaard SaaS-overeenkomst kost bijvoorbeeld tussen €1.500 en €3.000. Geen uurtje-factuurtje of nacalculaties."
+      },
+      {
+        "question": "Zijn er opstartkosten?",
+        "answer": "Nee, het kennismakingsgesprek is gratis en vrijblijvend. U betaalt pas wanneer ik een concrete opdracht overeenkom. Ik vraag wel 50% aanbetaling bij opdrachten boven €2.000."
+      },
+      {
+        "question": "Kan ik ook per uur afnemen?",
+        "answer": "Voor ad-hoc vragen is dat mogelijk tegen €275 per uur (ex BTW). De meeste klanten kiezen echter voor projectprijzen of een strippenkaart omdat dat meer zekerheid biedt over de kosten."
+      },
+      {
+        "question": "Bied ik betalingsregelingen?",
+        "answer": "Voor grotere projecten kan ik een betalingsregeling treffen. Standaard werk ik met 50% bij start en 50% bij oplevering. Voor vaste klanten zijn maandelijkse termijnen mogelijk."
+      }
+    ]
+  },
+  {
+    "category": "Specialisaties",
+    "questions": [
+      {
+        "question": "Welke contracten kan ik opstellen?",
+        "answer": "Ik ben gespecialiseerd in: SaaS overeenkomsten, software licentieovereenkomsten, verwerkersovereenkomsten (DPA's), algemene voorwaarden voor online platforms, API licenties, reseller/partner agreements, NDA's, service level agreements (SLA's) en development overeenkomsten."
+      },
+      {
+        "question": "Heb ik ervaring met privacy wetgeving?",
+        "answer": "Ja, ik help dagelijks ICT-bedrijven met AVG/GDPR compliance. Van privacy policies tot verwerkersovereenkomsten en data breach procedures. Ik begrijp de specifieke privacy uitdagingen van software- en SaaS-bedrijven."
+      },
+      {
+        "question": "Kan ik helpen met open source vraagstukken?",
+        "answer": "Absoluut. Ik adviseer over open source licenties, GPL compliance, en het veilig gebruiken van open source componenten in commerciële software. Ook help ik bij het opstellen van eigen open source licenties."
+      },
+      {
+        "question": "Wat weet ik van AI regelgeving?",
+        "answer": "Ik volg de AI Act ontwikkelingen op de voet en help bedrijven met AI-componenten in hun software om compliant te zijn. Van risico-assessments tot transparantie documentatie."
+      }
+    ]
+  }
+]

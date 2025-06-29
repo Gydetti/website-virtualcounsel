@@ -2,7 +2,12 @@
 
 import { useEffect } from 'react';
 
-import { errorPageData } from '@/lib/data/staticContent';
+const errorPageData = {
+  title: 'Something went wrong!',
+  description:
+    'We encountered an unexpected error. Please try refreshing the page or contact us if the problem persists.',
+  buttonText: 'Try again',
+};
 
 interface ErrorProps {
   error: Error;

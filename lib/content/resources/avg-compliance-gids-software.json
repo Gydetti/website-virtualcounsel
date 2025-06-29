@@ -1,0 +1,31 @@
+{
+  "slug": "avg-compliance-gids-software",
+  "resourceType": "guide",
+  "title": "AVG Compliance Gids voor Software-bedrijven",
+  "subtitle": "Praktische stappen voor GDPR-compliant software ontwikkelen en data processing agreements opstellen.",
+  "heroImage": {
+    "src": "/images/resources/avg-guide-hero.jpg",
+    "alt": "AVG GDPR Compliance Gids voor Software-bedrijven",
+    "width": 1200,
+    "height": 630
+  },
+  "sections": [
+    {
+      "type": "text",
+      "content": "Privacy by design is niet langer optioneel. Deze gids helpt software-ontwikkelaars en SaaS-providers om AVG-compliant te worden zonder de innovatie te remmen. Ik vertaal de complexe privacywetgeving naar concrete acties voor uw development team."
+    },
+    {
+      "type": "text",
+      "content": "Inclusief: Privacy by design principes voor developers, template verwerkersovereenkomst (DPA), data retention beleid voorbeelden, security maatregelen checklist, sub-processor management framework en incident response procedures."
+    },
+    {
+      "type": "form",
+      "title": "Download de AVG Compliance Gids",
+      "description": "Ontvang direct toegang tot alle templates en checklists.",
+      "config": {
+        "provider": "custom",
+        "embedCode": "<!-- VirtualCounsel form embed voor AVG gids -->"
+      }
+    }
+  ]
+}

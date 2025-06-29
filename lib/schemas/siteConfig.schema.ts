@@ -302,4 +302,65 @@ export const siteConfigSchema = z.object({
   cookieConsentText: cookieConsentTextSchema.optional(),
 });
 
+export const cookiePolicySchema = z.object({
+  lastUpdated: z.string(),
+  introduction: z.string(),
+  whatAreCookies: z.string(),
+  cookieTypes: z.string(),
+  essentialCookies: z.string(),
+  performanceCookies: z.string(),
+  functionalityCookies: z.string(),
+  targetingCookies: z.string(),
+  thirdPartyCookies: z.string(),
+  management: z.string(),
+  changes: z.string(),
+  contactInfo: z.string(),
+});
+
+export const privacyPolicySchema = z.object({
+  lastUpdated: z.string(),
+  introduction: z.string(),
+  informationCollected: z.string(),
+  personalInformation: z.string(),
+  usageData: z.string(),
+  howWeUse: z.string(),
+  usageListItem1: z.string(),
+  usageListItem2: z.string(),
+  usageListItem3: z.string(),
+  usageListItem4: z.string(),
+  dataSharing: z.string(),
+  dataSecurity: z.string(),
+  userRights: z.string(),
+  cookiesPolicy: z.string(),
+  policyChanges: z.string(),
+  contactInfo: z.string(),
+});
+
+export const termsOfServiceSchema = z.object({
+  lastUpdated: z.string(),
+  introduction: z.string(),
+  acceptance: z.string(),
+  services: z.string(),
+  userAccounts: z.string(),
+  intellectualProperty: z.string(),
+  userContent: z.string(),
+  prohibitedActivities: z.string(),
+  limitationOfLiability: z.string(),
+  indemnification: z.string(),
+  termination: z.string(),
+  governingLaw: z.string(),
+  changes: z.string(),
+  contactInfo: z.string(),
+});
+
+export const faqItemSchema = z.object({
+  question: z.string(),
+  answer: z.string(),
+});
+
+export const faqCategoriesSchema = z.object({
+  category: z.string(),
+  questions: faqItemSchema.array(),
+});
+
 export type SiteConfigSchema = z.infer<typeof siteConfigSchema>;

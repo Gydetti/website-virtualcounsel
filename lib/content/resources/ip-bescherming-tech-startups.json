@@ -1,0 +1,41 @@
+{
+  "slug": "ip-bescherming-tech-startups",
+  "resourceType": "whitepaper",
+  "title": "Intellectueel Eigendom beschermen: De tech startup survival guide",
+  "subtitle": "Voorkom dat uw code, algoritmes en innovaties in verkeerde handen vallen.",
+  "heroImage": {
+    "src": "/images/resources/ip-guide-hero.jpg",
+    "alt": "Intellectueel Eigendom bescherming voor tech startups",
+    "width": 1200,
+    "height": 630
+  },
+  "sections": [
+    {
+      "type": "text",
+      "content": "Uw source code is uw belangrijkste asset. Deze whitepaper laat zien hoe u vanaf dag één uw intellectuele eigendom beschermt, van employee IP agreements tot open source compliance en van trade secrets tot software patents."
+    },
+    {
+      "type": "text",
+      "content": "Behandelde onderwerpen: IP overdrachtsovereenkomsten voor developers, open source risico management, bescherming van algoritmes en AI-modellen, investeringsklare IP-structuur opzetten, internationale IP-strategie voor tech-bedrijven."
+    },
+    {
+      "type": "image",
+      "image": {
+        "src": "/images/resources/ip-framework-preview.png",
+        "alt": "IP bescherming framework voor tech bedrijven",
+        "width": 800,
+        "height": 600
+      },
+      "caption": "Het VirtualCounsel IP-bescherming framework."
+    },
+    {
+      "type": "form",
+      "title": "Download de IP Bescherming Guide",
+      "description": "Krijg toegang tot het complete framework en alle templates.",
+      "config": {
+        "provider": "custom",
+        "embedCode": "<!-- VirtualCounsel form embed voor IP guide -->"
+      }
+    }
+  ]
+}

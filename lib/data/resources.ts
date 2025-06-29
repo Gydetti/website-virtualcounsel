@@ -1,6 +1,9 @@
-import { z } from 'zod';
+import 'server-only';
 
-import resourcesContent from '@/lib/content/resources.json';
+import fs from 'node:fs';
+import path from 'node:path';
+
+import type { z } from 'zod';
 
 import { resourceSchema } from '../schemas/contentBlocks.schema';
 
@@ -34,17 +37,22 @@ export type Resource = {
   sections: ResourceSection[];
 };
 
-// Validate and parse the resources JSON data
-const parsedResources = z.array(resourceSchema).parse(resourcesContent);
+const resourcesDirectory = path.join(process.cwd(), 'lib/content/resources');
 
-// Return the parsed resource data (can be replaced by CMS fetch)
 export async function getResources(): Promise<z.infer<typeof resourceSchema>[]> {
-  return parsedResources;
+  const filenames = fs.readdirSync(resourcesDirectory);
+  const resources = filenames.map(filename => {
+    const filePath = path.join(resourcesDirectory, filename);
+    const fileContents = fs.readFileSync(filePath, 'utf8');
+    const resource = JSON.parse(fileContents);
+    return resourceSchema.parse(resource);
+  });
+  return resources;
 }
 
-// Find a resource by slug
 export async function getResourceBySlug(
   slug: string
 ): Promise<z.infer<typeof resourceSchema> | undefined> {
-  return parsedResources.find(r => r.slug === slug);
+  const resources = await getResources();
+  return resources.find(resource => resource.slug === slug);
 }

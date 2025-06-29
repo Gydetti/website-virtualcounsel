@@ -23,12 +23,26 @@ import type { CSSProperties } from 'react';
 import { Section } from '@/components/layout/Section';
 import { siteConfig } from '@/lib/siteConfig';
 import { cn } from '@/lib/utils';
+import type { FaqCategory } from '@/lib/schemas/siteConfig.schema';
+import type { z } from 'zod';
 
-export default function FaqClientPage() {
+interface FaqClientPageProps {
+  faqCategories: FaqCategory[];
+  faqSection: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    searchPlaceholder: string;
+    assistance: {
+      heading: string;
+      prompt: string;
+      buttonLabel: string;
+    };
+  };
+}
+
+export default function FaqClientPage({ faqCategories, faqSection }: FaqClientPageProps) {
   const [searchQuery, setSearchQuery] = useState('');
-
-  // Load FAQ categories from staticContent
-  const faqCategories = staticContent.faqCategories;
 
   // Prepare FAQ structured-data for SEO
   const faqSchemaData = faqCategories
@@ -67,17 +81,17 @@ export default function FaqClientPage() {
           style={{ '--stagger-delay': '0.1s' } as CSSProperties}
         >
           <Badge className="mb-4" style={{ '--index': 0 } as CSSProperties}>
-            {staticContent.faqSection.badge}
+            {faqSection.badge}
           </Badge>
-          <h1 style={{ '--index': 1 } as CSSProperties}>{staticContent.faqSection.title}</h1>
+          <h1 style={{ '--index': 1 } as CSSProperties}>{faqSection.title}</h1>
           <p className="text-neutral-text mb-8" style={{ '--index': 2 } as CSSProperties}>
-            {staticContent.faqSection.subtitle}
+            {faqSection.subtitle}
           </p>
           <div className="relative max-w-xl mx-auto" style={{ '--index': 3 } as CSSProperties}>
             <Input
               autoComplete="off"
               type="text"
-              placeholder={staticContent.faqSection.searchPlaceholder}
+              placeholder={faqSection.searchPlaceholder}
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
               className="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-primary focus:border-transparent pl-10"
@@ -153,15 +167,11 @@ export default function FaqClientPage() {
       <LazySection>
         <section className="py-16 bg-neutral-background">
           <div className="container-wide text-center">
-            <h2 className="text-3xl font-bold mb-6">
-              {staticContent.faqSection.assistance.heading}
-            </h2>
-            <p className="text-xl mb-8 max-w-2xl mx-auto">
-              {staticContent.faqSection.assistance.prompt}
-            </p>
+            <h2 className="text-3xl font-bold mb-6">{faqSection.assistance.heading}</h2>
+            <p className="text-xl mb-8 max-w-2xl mx-auto">{faqSection.assistance.prompt}</p>
             <Button size="lg" className="bg-primary hover:bg-primary90" asChild>
               <Link href="/contact">
-                {staticContent.faqSection.assistance.buttonLabel}
+                {faqSection.assistance.buttonLabel}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>

@@ -27,7 +27,12 @@ import type { resourceSchema } from '@/lib/schemas/contentBlocks.schema';
 import { siteConfig } from '@/lib/siteConfig';
 import { cn } from '@/lib/utils';
 
-export default function Header() {
+interface HeaderProps {
+  resources: z.infer<typeof resourceSchema>[];
+  services: ServiceType[];
+}
+
+export default function Header({ resources, services }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [expandedMenu, setExpandedMenu] = useState<string | null>(null);
   const [hoveredMenuItem, setHoveredMenuItem] = useState<string | null>(null);
@@ -158,12 +163,8 @@ export default function Header() {
 
   // Fetch resources and services for nav submenu
   type ResourcesType = z.infer<typeof resourceSchema>[];
-  const [resourcesList, setResourcesList] = useState<ResourcesType>([]);
-  const [servicesList, setServicesList] = useState<ServiceType[]>([]);
-  useEffect(() => {
-    getResources().then(data => setResourcesList(data));
-    getServices().then(data => setServicesList(data));
-  }, []);
+  const [resourcesList, setResourcesList] = useState<ResourcesType>(resources);
+  const [servicesList, setServicesList] = useState<ServiceType[]>(services);
 
   // Portal-based mobile menu overlay to escape header stacking context
   const mobileMenuOverlay = mobileMenuOpen

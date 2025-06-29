@@ -8,6 +8,8 @@ import { Poppins, Raleway } from 'next/font/google';
 import WebVitalsReporter from '@/components/analytics/WebVitalsReporter';
 import AppShell from '@/components/layout/AppShell';
 import StructuredData from '@/components/seo/structured-data';
+import { getResources } from '@/lib/data/resources';
+import { getServices } from '@/lib/data-utils';
 import { defaultMetadata } from '@/lib/metadata';
 import { siteConfig } from '@/lib/siteConfig';
 import { themeVariants } from '@/lib/theme.variants';
@@ -195,7 +197,7 @@ function getThemeCssVars(theme: typeof siteConfig.theme, variantKey: string): st
   `.trim();
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
   // Merge full variant into the base theme (colors, typography, spacing, borders, shadows, layout, animation, visualStyle, sectionStyles)
   const mergedTheme = {
     ...siteConfig.theme,
@@ -226,6 +228,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const themeCssVars = getThemeCssVars(augmentedTheme as typeof siteConfig.theme, themeKey);
   // Text style class from theme typography (balanced | tight | airy)
   const textStyleClass = `text-style-${mergedTheme.typography.textStyle}`;
+
+  const [resources, services] = await Promise.all([getResources(), getServices()]);
 
   return (
     <html lang="en" suppressHydrationWarning className="overflow-x-hidden">
@@ -284,7 +288,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <WebVitalsReporter />
         <SpeedInsights />
         <Analytics />
-        <AppShell>{children}</AppShell>
+        <AppShell resources={resources} services={services}>
+          {children}
+        </AppShell>
       </body>
     </html>
   );

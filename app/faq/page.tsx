@@ -3,6 +3,7 @@ import { defaultMetadata } from '@/lib/metadata';
 import { siteConfig } from '@/lib/siteConfig';
 import { notFound } from 'next/navigation';
 import FaqClientPage from './FaqClientPage';
+import { getFaqCategories, getFaqSection } from '@/lib/data/staticContent';
 
 export const metadata = defaultMetadata({
   title: `${siteConfig.site.name} | FAQ`,
@@ -10,7 +11,7 @@ export const metadata = defaultMetadata({
     'Vind hier antwoorden op veelgestelde vragen over mijn diensten, werkwijze en specialisaties in ICT-recht.',
 });
 
-export default function FaqPage() {
+export default async function FaqPage() {
   // Guard route by feature flag and enabledPages setting
   if (
     !siteConfig.features.enableFaqSection ||
@@ -19,5 +20,7 @@ export default function FaqPage() {
     notFound();
   }
 
-  return <FaqClientPage />;
+  const [faqCategories, faqSection] = await Promise.all([getFaqCategories(), getFaqSection()]);
+
+  return <FaqClientPage faqCategories={faqCategories} faqSection={faqSection} />;
 }
