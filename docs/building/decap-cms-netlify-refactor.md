@@ -265,20 +265,75 @@ Om alle pagina's, inclusief blog, resources en foutpagina's, met één centrale 
 
 Met deze implementatie zijn alle static-page imports centraal gecentraliseerd, consistent getypeerd en klaar voor toekomstige uitbreidingen.
 
-### 5.7 Netlify build-directory configuratie
+### 5.7 Build-directory configuratie voor Netlify & Vercel
 
-Standaard schrijven we production builds lokaal naar `.next-prod`, zodat de dev-cache (`.next`) gespaard blijft. Netlify (en Vercel) verwachten echter de output in `.next`. Daarom hebben we in `next.config.mjs` de `distDir`-instelling aangepast:
+Als je lokaal production builds maakt gebruiken we standaard de map `.next-prod` om je dev-cache (`.next`) niet te overschrijven. In CI-omgevingen zoals Vercel **en** Netlify moet de output echter in de map `.next` staan, anders faalt de Netlify-plugin.
 
+Plaats in **`next.config.mjs`** direct na de imports:
 ```js
-// Treat Netlify builds like Vercel to keep default .next distDir
+// Behandel Netlify-omgeving als Vercel zodat we altijd in .next schrijven
 const isVercel = process.env.VERCEL === '1' || process.env.NETLIFY === 'true';
-const distDir = process.env.NODE_ENV === 'production' && !isVercel ? '.next-prod' : '.next';
+// Gebruik .next-prod alleen bij lokale productie (dus niet op Vercel of Netlify)
+const distDir = process.env.NODE_ENV === 'production' && !isVercel
+  ? '.next-prod'
+  : '.next';
 ```
 
+Daarmee:
 - `process.env.NETLIFY === 'true'` detecteert Netlify's CI-omgeving.
-- Hiermee voorkomt de `@netlify/plugin-nextjs` de foutmelding over een ontbrekende `.next` map.
+- Vercel zet `VERCEL=1` automatisch, Netlify `NETLIFY=true`.
+- De `@netlify/plugin-nextjs` zoekt naar de `.next` map en faalt niet meer.
 
-Als alternatief kun je in de Netlify UI de **Publish directory** wijzigen naar `.next-prod`, maar de bovenstaande aanpak is robuuster en vereist geen UI-aanpassingen.
+Alternatieven:
+- Pas in de Netlify UI de **Publish directory** aan naar `.next`, maar dit vereist handmatige configuratie per site.
+
+### 5.8 Netlify Identity: Gebruikers uitnodigen & Magic Link Flow
+
+Om je klanten of content-editors eenvoudig in te laten loggen en direct bij `/admin` uit te komen, doorloop je de volgende stappen in het Netlify-dashboard:
+
+1. Identity inschakelen  
+   - Ga naar **Site settings** → **Identity** → klik **Enable Identity** indien nog niet geactiveerd.
+
+2. Providers & Registratie  
+   - Onder **Registration preferences**, kies:
+     - **Invite only**: alleen jij kunt uitnodigingen versturen.
+     - **Open**: gebruikers kunnen zichzelf registreren.
+   - Scroll naar **External providers** en schakel gewenste OAuth-providers (GitHub, GitLab, enz.) in, maar laat **Email/Password** login ingeschakeld (zet **"External providers only"** UIT als je e-mail login wilt toestaan).
+
+3. Git Gateway inschakelen  
+   - In **Identity** → **Services** → klik **Enable Git Gateway** zodat ingelogde gebruikers wijzigingen kunnen pushen.
+
+4. Uitnodiging versturen  
+   - In **Identity** → **Invite users** → voer klant-e-mailadres (bijv. `gydorutten@gmail.com`) in → klik **Invite**.
+
+5. Email templates aanpassen  
+   - **Password recovery**:
+     - Ga naar **Identity** → **Settings** → **Emails** → **Password recovery** → klik **Edit template**.
+     - Vervang standaard link:
+       ```html
+       {{ .URL }}/#recovery?token={{ .RecoveryToken }}
+       ```
+       door:
+       ```html
+       {{ .URL }}/admin/#recovery?token={{ .RecoveryToken }}
+       ```
+   - **Confirm signup**:
+     - Ga naar **Identity** → **Settings** → **Emails** → **Confirm signup** → klik **Edit template**.
+     - Vervang standaard link:
+       ```html
+       {{ .URL }}/#confirm?token={{ .ConfirmationToken }}
+       ```
+       door:
+       ```html
+       {{ .URL }}/admin/#confirm?token={{ .ConfirmationToken }}
+       ```
+
+6. Testen  
+   - Nodig gebruiker uit → controleer ontvangen invite e-mail → klik de aangepaste link → je komt op `/admin/#confirm?...` terecht → de CMS-widget detecteert automatisch de token en rondt de flow af zonder dat er nog een extra wachtwoord hoeft te worden ingevuld.
+
+**Let op:**
+- Dit is een passwordless Magic Link-flow. Gebruikers ontvangen per login een nieuwe link en hoeven geen permanent wachtwoord in te stellen.
+- Wil je wel een permanent wachtwoord toestaan? Schakel dan in **Registration preferences** de optie **"Allow users to set password"** in (indien beschikbaar).
 
 ---
 
