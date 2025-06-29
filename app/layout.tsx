@@ -3,6 +3,7 @@ import './globals.css';
 import { Partytown } from '@qwik.dev/partytown/react';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import dynamic from 'next/dynamic';
 import { Poppins, Raleway } from 'next/font/google';
 
 import WebVitalsReporter from '@/components/analytics/WebVitalsReporter';
@@ -13,6 +14,11 @@ import { getServices } from '@/lib/data-utils';
 import { defaultMetadata } from '@/lib/metadata';
 import { siteConfig } from '@/lib/siteConfig';
 import { themeVariants } from '@/lib/theme.variants';
+
+// Redirect Netlify Identity Magic Links (confirm/recovery) to /admin
+const MagicLinkRedirector = dynamic(() => import('@/components/identity/MagicLinkRedirector'), {
+  ssr: false,
+});
 
 // Poppins for headings
 const poppins = Poppins({
@@ -291,6 +297,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <AppShell resources={resources} services={services}>
           {children}
         </AppShell>
+        {/* Handle Magic Link redirects on free plan */}
+        <MagicLinkRedirector />
       </body>
     </html>
   );

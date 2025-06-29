@@ -329,7 +329,53 @@ Om je klanten of content-editors eenvoudig in te laten loggen en direct bij `/ad
        ```
 
 6. Testen  
-   - Nodig gebruiker uit → controleer ontvangen invite e-mail → klik de aangepaste link → je komt op `/admin/#confirm?...` terecht → de CMS-widget detecteert automatisch de token en rondt de flow af zonder dat er nog een extra wachtwoord hoeft te worden ingevuld.
+   - Nodig gebruiker uit → controleer ontvangen invite e-mail → klik de (root) link (`/#confirm?token=…` of `/#recovery?token=…`) → de browser komt op de hoofdpagina, maar de Magic Link verdient direct de Admin-interface.
+
+> Opmerking voor Free-teams:  
+> Netlify's UI-gebaseerde e-mail template-aanpassingen zijn alleen beschikbaar op Pro/Business-plannen; gratis teams kunnen de standaard links niet wijzigen.  
+> Voeg daarom in de code een client-side redirect-component toe die inkomende Identity Magic Links automatisch naar `/admin` stuurt en behoudt de hash-token:
+> ```tsx
+> // components/identity/MagicLinkRedirector.tsx
+> 'use client';
+> import { useEffect } from 'react';
+> import { useRouter } from 'next/navigation';
+>
+> export default function MagicLinkRedirector() {
+>   const router = useRouter();
+>
+>   useEffect(() => {
+>     const hash = window.location.hash;
+>     if (hash.startsWith('#confirm') || hash.startsWith('#recovery')) {
+>       const path = window.location.pathname;
+>       if (!path.startsWith('/admin')) {
+>         router.replace(`/admin${hash}`);
+>       }
+>     }
+>   }, [router]);
+>
+>   return null;
+> }
+> ```
+>
+> Importeer het vervolgens in `app/layout.tsx`:
+> ```tsx
+> import dynamic from 'next/dynamic';
+> const MagicLinkRedirector = dynamic(
+>   () => import('@/components/identity/MagicLinkRedirector'),
+>   { ssr: false }
+> );
+>
+> export default function RootLayout({ children }) {
+>   return (
+>     <html lang="nl">
+>       <body>
+>         {children}
+>         <MagicLinkRedirector />
+>       </body>
+>     </html>
+>   );
+> }
+> ```
 
 **Let op:**
 - Dit is een passwordless Magic Link-flow. Gebruikers ontvangen per login een nieuwe link en hoeven geen permanent wachtwoord in te stellen.
