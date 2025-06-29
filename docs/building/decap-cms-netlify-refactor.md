@@ -249,6 +249,7 @@ Om alle pagina's, inclusief blog, resources en foutpagina's, met één centrale 
       blogPage: { badgeText: '...', heading: '...', /* ... */ },
       resourcesPage: { noResourcesMessage: '...', readMoreText: '...' },
       notFoundPage: { statusCode: '404', title: '...', description: '...', buttonText: '...' },
+      resourceDetailSection: { /* default empty values for ResourceDetailSection */ },
     };
     ```
 - **Alias exports voor backward compatibility**
@@ -257,6 +258,7 @@ Om alle pagina's, inclusief blog, resources en foutpagina's, met één centrale 
     export const blogPageData = staticContent.blogPage;
     export const resourcesPageData = staticContent.resourcesPage;
     export const notFoundPageData = staticContent.notFoundPage;
+    export const resourceDetailSectionData = staticContent.resourceDetailSection;
     ```
 - **Type-safety**
   • Gebruik `unknown` (niet `any`) in `readJSON` om lint-errors te voorkomen.

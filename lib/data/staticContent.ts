@@ -108,9 +108,42 @@ export const staticContent = {
     noResourcesMessage: 'No resources available at the moment.',
     readMoreText: 'Lees verder',
   },
+  resourceDetailSection: {
+    outcomesTitle: '',
+    overviewTitle: '',
+    whoThisIsForTitle: '',
+    designedForTitle: '',
+    considerOthersTitle: '',
+    whatsInsideTitle: '',
+    bonusMaterialsTitle: '',
+    professionalValidationTitle: '',
+    accessFormTitle: '',
+    accessFormSubtitle: '',
+    downloadButtonText: '',
+    professionalOutcomes: [],
+    overviewParagraphs: [],
+    designedForPoints: [],
+    considerOthersPoints: [],
+    chapters: [],
+    bonusMaterials: [],
+    totalPages: '',
+    readingTime: '',
+    yearsExperience: '',
+    methodologyType: '',
+    approachType: '',
+    testimonialQuote: '',
+    testimonialAuthor: '',
+    formFieldLabels: {
+      nameLabel: '',
+      namePlaceholder: '',
+      emailLabel: '',
+      emailPlaceholder: '',
+    },
+  },
 };
 
 // Aliassen voor backwards compatibility met pagina-imports
 export const blogPageData = staticContent.blogPage;
 export const resourcesPageData = staticContent.resourcesPage;
 export const notFoundPageData = staticContent.notFoundPage;
+export const resourceDetailSectionData = staticContent.resourceDetailSection;
