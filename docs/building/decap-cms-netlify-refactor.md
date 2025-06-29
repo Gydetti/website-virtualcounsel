@@ -265,6 +265,21 @@ Om alle pagina's, inclusief blog, resources en foutpagina's, met één centrale 
 
 Met deze implementatie zijn alle static-page imports centraal gecentraliseerd, consistent getypeerd en klaar voor toekomstige uitbreidingen.
 
+### 5.7 Netlify build-directory configuratie
+
+Standaard schrijven we production builds lokaal naar `.next-prod`, zodat de dev-cache (`.next`) gespaard blijft. Netlify (en Vercel) verwachten echter de output in `.next`. Daarom hebben we in `next.config.mjs` de `distDir`-instelling aangepast:
+
+```js
+// Treat Netlify builds like Vercel to keep default .next distDir
+const isVercel = process.env.VERCEL === '1' || process.env.NETLIFY === 'true';
+const distDir = process.env.NODE_ENV === 'production' && !isVercel ? '.next-prod' : '.next';
+```
+
+- `process.env.NETLIFY === 'true'` detecteert Netlify's CI-omgeving.
+- Hiermee voorkomt de `@netlify/plugin-nextjs` de foutmelding over een ontbrekende `.next` map.
+
+Als alternatief kun je in de Netlify UI de **Publish directory** wijzigen naar `.next-prod`, maar de bovenstaande aanpak is robuuster en vereist geen UI-aanpassingen.
+
 ---
 
 **Gefeliciteerd!**
